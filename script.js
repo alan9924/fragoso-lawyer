@@ -63,4 +63,42 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Auto-scrolling Carousel with Touch Pause
+    const carousel = document.querySelector('.carousel-container.swipeable');
+    if (carousel) {
+        let autoScrollInterval;
+        const scrollAmount = 250; // Distance to trigger snap to next item
+
+        const startAutoScroll = () => {
+            autoScrollInterval = setInterval(() => {
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                // If reached the end, smoothly rewind to start
+                if (carousel.scrollLeft >= maxScroll - 10) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    // Scroll to next item (snap handles exact positioning)
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 2500); // 2.5 seconds per slide
+        };
+
+        const stopAutoScroll = () => {
+            clearInterval(autoScrollInterval);
+        };
+
+        // Start autoplay
+        startAutoScroll();
+
+        // Pause when user is interacting with finger or mouse
+        carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
+        carousel.addEventListener('mouseenter', stopAutoScroll);
+
+        // Resume autoplay after interaction ends
+        carousel.addEventListener('touchend', () => {
+            stopAutoScroll();
+            setTimeout(startAutoScroll, 4000); // Wait 4s before resuming
+        });
+        carousel.addEventListener('mouseleave', startAutoScroll);
+    }
 });
