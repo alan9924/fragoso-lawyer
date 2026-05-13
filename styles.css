@@ -580,10 +580,11 @@ footer {
     font-size: 0.85rem;
 }
 
-/* Responsive Design */
+/* Advanced Responsive Design & Mobile UX */
 @media (max-width: 992px) {
-    .cta-container {
-        grid-template-columns: 1fr;
+    .carousel-track.swipe-track {
+        gap: 2rem;
+        padding: 0 calc(50vw - 75px); /* Keep items centered while swiping */
     }
 }
 
@@ -596,19 +597,77 @@ footer {
         display: block;
     }
     
-    .hero-actions {
-        flex-direction: column;
+    /* Navbar adjustments for mobile */
+    .navbar {
+        padding: 1rem;
     }
     
-    .btn {
+    /* Hero scaling */
+    .hero {
+        padding: 6rem 1rem 3rem;
+        min-height: calc(100vh - env(safe-area-inset-bottom));
+    }
+    
+    .hero .title {
+        font-size: clamp(3rem, 12vw, 4rem);
+        letter-spacing: 4px;
+        margin-bottom: 1rem;
+    }
+    
+    .hero .tagline {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    /* Pill Button adjustments */
+    .hero-cta-pill {
+        padding: 4px;
+        border-radius: 40px;
         width: 100%;
+        max-width: 320px;
     }
     
-    .services {
-        padding: 5rem 1.5rem;
+    .cta-icon-wrapper {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
     }
     
-    .contact-cta {
-        padding: 5rem 1.5rem;
+    .cta-text {
+        font-size: 0.95rem;
+        padding-right: 1.5rem;
+        padding-left: 1rem;
+    }
+    
+    .contact-text-hero {
+        padding: 1rem;
+    }
+    
+    .contact-text-hero p {
+        font-size: 0.85rem;
+    }
+
+    /* Carousel refinements */
+    .carousel-container.swipeable {
+        padding: 1rem 0;
+    }
+    
+    .service-item .card-icon {
+        font-size: 2rem;
+    }
+    
+    .service-item h3 {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero .title {
+        font-size: 2.8rem;
+    }
+    
+    .cta-text {
+        font-size: 0.85rem;
     }
 }
