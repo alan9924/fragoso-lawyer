@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1500); // 1.5s initial loader animation
 
     // Observe service cards
-    const serviceCards = document.querySelectorAll('.service-card');
+    const serviceCards = document.querySelectorAll('.service-item');
     serviceCards.forEach(card => observer.observe(card));
 
 

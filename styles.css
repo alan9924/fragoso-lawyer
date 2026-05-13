@@ -451,93 +451,73 @@ nav.scrolled {
     margin: 2rem auto 0;
 }
 
-.carousel-container.marquee {
+.carousel-container.swipeable {
     position: relative;
     max-width: 100vw;
     width: 100vw;
     left: 50%;
     transform: translateX(-50%);
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding: 2rem 0;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.carousel-track.marquee-track {
+.carousel-container.swipeable::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-track.swipe-track {
     display: flex;
     width: max-content;
-    animation: scroll-marquee 20s linear infinite;
-    gap: 2rem;
-    padding: 0 1rem;
+    gap: 3.5rem;
+    padding: 0 50vw; /* Allows center snapping to work beautifully */
 }
 
-.carousel-track.marquee-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scroll-marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - 1rem)); }
-}
-
-.carousel-slide.marquee-slide {
+.carousel-slide {
     flex: 0 0 auto;
+    scroll-snap-align: center;
 }
 
-.service-card.compact {
-    height: 180px;
-    width: 250px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    padding: 2rem;
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-    transition: var(--transition-smooth);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+.service-item {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    opacity: 0.7;
+    transition: var(--transition-smooth);
+    cursor: pointer;
 }
 
-.service-card.compact:hover {
-    transform: translateY(-10px);
-    border-color: rgba(212, 175, 55, 0.4);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+.service-item:hover {
+    opacity: 1;
+    transform: translateY(-5px);
 }
 
-.service-card.compact .card-icon {
-    font-size: 2.2rem;
+.service-item .card-icon {
+    font-size: 2.5rem;
     color: var(--gold-500);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     transition: var(--transition-smooth);
 }
 
-.service-card.compact:hover .card-icon {
+.service-item:hover .card-icon {
     transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
 }
 
-.service-card.compact h3 {
-    font-size: 1.1rem;
+.service-item h3 {
+    font-size: 1rem;
+    font-weight: 500;
     margin: 0;
-    letter-spacing: 1px;
-}
-
-.card-glow {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(0,0,0,0) 70%);
-    top: -75px;
-    right: -75px;
-    border-radius: 50%;
-    transition: var(--transition-smooth);
-}
-
-.service-card:hover .card-glow {
-    transform: scale(1.5);
-    background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(0,0,0,0) 70%);
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    text-transform: uppercase;
 }
 
 
