@@ -64,23 +64,60 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Auto-scrolling Carousel with Touch Pause
+    // Auto-scrolling Carousel with Center Highlight & Seamless Loop
     const carousel = document.querySelector('.carousel-container.swipeable');
     if (carousel) {
         let autoScrollInterval;
-        const scrollAmount = 250; // Distance to trigger snap to next item
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        
+        // 1. Center Highlight Logic using IntersectionObserver
+        const highlightObserverOptions = {
+            root: carousel,
+            rootMargin: '0px -50% 0px -50%', // Triggers exactly at the horizontal center
+            threshold: 0
+        };
+
+        const highlightObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const serviceItem = entry.target.querySelector('.service-item');
+                if (entry.isIntersecting) {
+                    serviceItem.classList.add('active');
+                } else {
+                    serviceItem.classList.remove('active');
+                }
+            });
+        }, highlightObserverOptions);
+
+        slides.forEach(slide => highlightObserver.observe(slide));
+
+        // 2. Seamless Infinite Loop Auto-Scroll
+        // We know we duplicated the 5 items. Distance between item 0 and item 5 is our exact loop distance.
+        const calculateLoopDistance = () => {
+            if (slides.length >= 10) {
+                return slides[5].offsetLeft - slides[0].offsetLeft;
+            }
+            return 0;
+        };
 
         const startAutoScroll = () => {
             autoScrollInterval = setInterval(() => {
-                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                // If reached the end, smoothly rewind to start
-                if (carousel.scrollLeft >= maxScroll - 10) {
-                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                const loopDistance = calculateLoopDistance();
+                
+                // If we scrolled deep into the duplicate set, jump back silently
+                if (loopDistance > 0 && carousel.scrollLeft >= loopDistance) {
+                    // Instantly rewind to exact equivalent position in the first set without animation
+                    carousel.style.scrollBehavior = 'auto'; // Force disable CSS smooth scroll if any
+                    carousel.scrollTo({ left: carousel.scrollLeft - loopDistance, behavior: 'auto' });
+                    
+                    // Allow browser to render the instant jump, then animate to next
+                    requestAnimationFrame(() => {
+                        carousel.style.scrollBehavior = 'smooth';
+                        carousel.scrollBy({ left: 200, behavior: 'smooth' }); // Scroll one item roughly
+                    });
                 } else {
-                    // Scroll to next item (snap handles exact positioning)
-                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    carousel.scrollBy({ left: 200, behavior: 'smooth' });
                 }
-            }, 2500); // 2.5 seconds per slide
+            }, 3000); // 3 seconds per slide for a more fluid feel
         };
 
         const stopAutoScroll = () => {
@@ -90,14 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start autoplay
         startAutoScroll();
 
-        // Pause when user is interacting with finger or mouse
+        // Pause when user is interacting
         carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
         carousel.addEventListener('mouseenter', stopAutoScroll);
 
         // Resume autoplay after interaction ends
         carousel.addEventListener('touchend', () => {
             stopAutoScroll();
-            setTimeout(startAutoScroll, 4000); // Wait 4s before resuming
+            setTimeout(startAutoScroll, 4000); 
         });
         carousel.addEventListener('mouseleave', startAutoScroll);
     }

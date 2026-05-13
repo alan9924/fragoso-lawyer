@@ -489,14 +489,17 @@ nav.scrolled {
     justify-content: center;
     align-items: center;
     text-align: center;
-    opacity: 0.7;
-    transition: var(--transition-smooth);
+    opacity: 0.3; /* Base opacity for non-centered items */
+    transform: scale(0.85); /* Smaller when not focused */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
+/* The exact center item (or hovered item) becomes illuminated */
+.service-item.active,
 .service-item:hover {
     opacity: 1;
-    transform: translateY(-5px);
+    transform: scale(1.1);
 }
 
 .service-item .card-icon {
@@ -504,11 +507,13 @@ nav.scrolled {
     color: var(--gold-500);
     margin-bottom: 0.8rem;
     transition: var(--transition-smooth);
+    filter: drop-shadow(0 0 0px transparent);
 }
 
+.service-item.active .card-icon,
 .service-item:hover .card-icon {
     transform: scale(1.1);
-    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));
 }
 
 .service-item h3 {
