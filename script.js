@@ -90,8 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         slides.forEach(slide => highlightObserver.observe(slide));
 
-        // 2. Seamless Infinite Loop Auto-Scroll
-        // We know we duplicated the 5 items. Distance between item 0 and item 5 is our exact loop distance.
+        // 2. Seamless Infinite Loop Continuous Auto-Scroll (60fps Marquee)
         const calculateLoopDistance = () => {
             if (slides.length >= 10) {
                 return slides[5].offsetLeft - slides[0].offsetLeft;
@@ -99,43 +98,53 @@ document.addEventListener('DOMContentLoaded', () => {
             return 0;
         };
 
+        let autoScrollReq;
+        let isInteracting = false;
+        let resumeTimeout;
+        const scrollSpeed = 1; // Pixels per frame. Higher = faster.
+
         const startAutoScroll = () => {
-            autoScrollInterval = setInterval(() => {
+            if (!isInteracting) {
                 const loopDistance = calculateLoopDistance();
+                carousel.scrollLeft += scrollSpeed;
                 
-                // If we scrolled deep into the duplicate set, jump back silently
+                // If we scrolled exactly past the first set, seamlessly jump back to frame 1
                 if (loopDistance > 0 && carousel.scrollLeft >= loopDistance) {
-                    // Instantly rewind to exact equivalent position in the first set without animation
-                    carousel.style.scrollBehavior = 'auto'; // Force disable CSS smooth scroll if any
-                    carousel.scrollTo({ left: carousel.scrollLeft - loopDistance, behavior: 'auto' });
-                    
-                    // Allow browser to render the instant jump, then animate to next
-                    requestAnimationFrame(() => {
-                        carousel.style.scrollBehavior = 'smooth';
-                        carousel.scrollBy({ left: 200, behavior: 'smooth' }); // Scroll one item roughly
-                    });
-                } else {
-                    carousel.scrollBy({ left: 200, behavior: 'smooth' });
+                    carousel.scrollLeft = carousel.scrollLeft - loopDistance;
                 }
-            }, 3000); // 3 seconds per slide for a more fluid feel
+            }
+            autoScrollReq = requestAnimationFrame(startAutoScroll);
         };
 
-        const stopAutoScroll = () => {
-            clearInterval(autoScrollInterval);
+        const pauseAutoScroll = () => {
+            isInteracting = true;
+            clearTimeout(resumeTimeout);
         };
 
-        // Start autoplay
-        startAutoScroll();
+        const resumeAutoScroll = () => {
+            // Wait 1.5 seconds after interaction ends to resume scrolling
+            resumeTimeout = setTimeout(() => {
+                isInteracting = false;
+            }, 1500); 
+        };
 
-        // Pause when user is interacting
-        carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
-        carousel.addEventListener('mouseenter', stopAutoScroll);
+        // Start continuous loop
+        autoScrollReq = requestAnimationFrame(startAutoScroll);
 
-        // Resume autoplay after interaction ends
-        carousel.addEventListener('touchend', () => {
-            stopAutoScroll();
-            setTimeout(startAutoScroll, 4000); 
-        });
-        carousel.addEventListener('mouseleave', startAutoScroll);
+        // Pause when user is interacting with touch or mouse
+        carousel.addEventListener('touchstart', pauseAutoScroll, { passive: true });
+        carousel.addEventListener('mouseenter', pauseAutoScroll);
+
+        // Resume after interaction
+        carousel.addEventListener('touchend', resumeAutoScroll);
+        carousel.addEventListener('mouseleave', resumeAutoScroll);
+
+        // Also pause briefly if they use momentum scrolling so we don't fight it
+        carousel.addEventListener('scroll', () => {
+            if (!isInteracting) {
+                pauseAutoScroll();
+                resumeAutoScroll();
+            }
+        }, { passive: true });
     }
 });

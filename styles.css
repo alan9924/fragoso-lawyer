@@ -460,8 +460,7 @@ nav.scrolled {
     overflow-x: auto;
     overflow-y: hidden;
     padding: 2rem 0;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    scroll-behavior: auto; /* changed from smooth so JS rewind is instant */
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -475,12 +474,11 @@ nav.scrolled {
     display: flex;
     width: max-content;
     gap: 3.5rem;
-    padding: 0 50vw; /* Allows center snapping to work beautifully */
+    padding: 0 50vw; /* Keeps items centered while scrolling */
 }
 
 .carousel-slide {
     flex: 0 0 auto;
-    scroll-snap-align: center;
 }
 
 .service-item {
