@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRAGOSO | Sus Derechos Comienzan Aquí</title>
-    <meta name="description" content="Firma legal FRAGOSO. Especialistas en Orientación Jurídica, Civil, Mercantil, Corporativo y Migratorio.">
+    <title>ESTUDIO JURÍDICO FRAGOSO | Sus Derechos Comienzan Aquí</title>
+    <meta name="description" content="Estudio Jurídico Fragoso. Alan Obed Fragoso Rivera y Daniel Ferro Gutiérrez, abogados egresados de la Universidad Autónoma de Querétaro.">
     <link rel="stylesheet" href="styles.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600;700&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,10 +22,6 @@
         <div class="loader-line"></div>
     </div>
 
-    <!-- Background Elements -->
-    <div class="bg-glow"></div>
-    <div class="bg-glow glow-2"></div>
-
     <!-- Navigation -->
     <nav id="navbar" class="transparent-nav">
         <div class="nav-container">
@@ -33,8 +29,8 @@
                 <i class="fas fa-bars mobile-menu-btn"></i>
                 <ul class="nav-links">
                     <li><a href="#inicio" class="active-gold">INICIO</a></li>
-                    <li><a href="#servicios">SERVICIOS</a></li>
-                    <li><a href="#blog">BLOG</a></li>
+                    <li><a href="#socios">SOCIOS</a></li>
+                    <li><a href="#contacto">CONTACTO</a></li>
                 </ul>
             </div>
             
@@ -44,103 +40,117 @@
             
             <div class="nav-right">
                 <ul class="nav-links">
-                    <li><a href="#leyes">LEYES</a></li>
+                    <li><a href="#servicios">SERVICIOS</a></li>
                     <li><a href="#casos">CASOS</a></li>
-                    <li><a href="#contacto">CONTACTO</a></li>
+                    <li><a href="#blog">BLOG</a></li>
                 </ul>
                 <a href="#" class="user-icon"><i class="far fa-user"></i></a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero bg-building">
-        <div class="hero-content">
-            <h1 class="title fade-in-up delay-1">ESTUDIO JURIDICO</h1>
-            <p class="tagline fade-in-up delay-2">NO FIRMES NADA SIN CONSULTARNOS</p>
-            <div class="hero-actions fade-in-up delay-3">
-                <a href="https://wa.me/524425827053" target="_blank" class="hero-cta-oval">
-                    AGENDAR
-                </a>
-            </div>
+    <!-- ═══ HERO SECTION (Chess Background) ═══ -->
+    <section id="inicio" class="hero bg-chess">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content fade-in-up">
+            <p class="hero-eyebrow">ESTUDIO JURÍDICO</p>
+            <h1 class="hero-title">FRAGOSO</h1>
+            <div class="hero-rule"></div>
+            <p class="hero-tagline">NO FIRMES NADA SIN CONSULTARNOS</p>
+            <a href="https://wa.me/524425827053" target="_blank" class="hero-cta-oval">
+                AGENDAR CONSULTA
+            </a>
         </div>
 
-        <div class="hero-social-left fade-in-up delay-3">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+        <!-- Social Links Bottom Left -->
+        <div class="hero-social-left">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
 
-        <a href="https://wa.me/524425827053" class="hero-whatsapp-right fade-in-up delay-3">
+        <!-- WhatsApp Bottom Right -->
+        <a href="https://wa.me/524425827053" class="hero-whatsapp-right" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
 
-        <div class="carousel-container swipeable fade-in-up delay-3">
-            <div class="carousel-track swipe-track">
-                <!-- Original Set -->
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-scale-balanced"></i></div>
-                        <h3>Orientación Jurídica</h3>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-users"></i></div>
-                        <h3>Civil</h3>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-handshake"></i></div>
-                        <h3>Mercantil</h3>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-building"></i></div>
-                        <h3>Corporativo</h3>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-passport"></i></div>
-                        <h3>Migratorio</h3>
-                    </div>
-                </div>
-                
-                <!-- Duplicated Set for longer swiping -->
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-scale-balanced"></i></div>
-                        <h3>Orientación Jurídica</h3>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-users"></i></div>
-                        <h3>Civil</h3>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-handshake"></i></div>
-                        <h3>Mercantil</h3>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-building"></i></div>
-                        <h3>Corporativo</h3>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="service-item">
-                        <div class="card-icon"><i class="fas fa-passport"></i></div>
-                        <h3>Migratorio</h3>
-                    </div>
-                </div>
-            </div>
+        <!-- Scroll hint -->
+        <div class="hero-scroll-hint">
+            <span>SOCIOS</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
+    </section>
+
+    <!-- ═══ SOCIOS SECTION (Two Pillars) ═══ -->
+    <section id="socios" class="socios-section">
+
+        <div class="socios-header fade-in-up">
+            <p class="socios-label">DIRECTORIO INSTITUCIONAL</p>
+            <h2 class="socios-title">SOCIOS FUNDADORES</h2>
+            <div class="socios-rule"></div>
+        </div>
+
+        <div class="socios-grid">
+
+            <!-- ── PILAR 1: Alan Fragoso ── -->
+            <div class="pilar fade-in-up">
+                <div class="pilar-number">01</div>
+                <div class="pilar-column-line"></div>
+                <div class="pilar-content">
+                    <h3 class="pilar-name">ALAN OBED<br>FRAGOSO RIVERA</h3>
+                    <p class="pilar-title">ABOGADO</p>
+                    <div class="pilar-divider"></div>
+                    <p class="pilar-formation">
+                        <span class="pilar-label-sm">FORMACIÓN</span>
+                        Universidad Autónoma de Querétaro
+                    </p>
+                    <div class="pilar-contact">
+                        <a href="tel:4425827053" class="pilar-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>442 582 7053</span>
+                        </a>
+                        <a href="mailto:alan.f.9924@gmail.com" class="pilar-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>alan.f.9924@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="pilar-accent-bar"></div>
+            </div>
+
+            <!-- ── DIVISOR CENTRAL ── -->
+            <div class="socios-divider-vertical"></div>
+
+            <!-- ── PILAR 2: Daniel Ferro ── -->
+            <div class="pilar fade-in-up delay-1">
+                <div class="pilar-number">02</div>
+                <div class="pilar-column-line"></div>
+                <div class="pilar-content">
+                    <h3 class="pilar-name">DANIEL FERRO<br>GUTIÉRREZ</h3>
+                    <p class="pilar-title">ABOGADO</p>
+                    <div class="pilar-divider"></div>
+                    <p class="pilar-formation">
+                        <span class="pilar-label-sm">FORMACIÓN</span>
+                        Universidad Autónoma de Querétaro
+                    </p>
+                    <div class="pilar-contact">
+                        <a href="tel:4425948978" class="pilar-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>442 594 8978</span>
+                        </a>
+                        <a href="mailto:ferrodaniel@icloud.com" class="pilar-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>ferrodaniel@icloud.com</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="pilar-accent-bar"></div>
+            </div>
+
+        </div>
+
+        <!-- Bottom quote -->
+        <p class="socios-quote fade-in-up">"La estrategia adecuada, en el momento adecuado."</p>
     </section>
 
     <!-- Footer -->
@@ -149,12 +159,12 @@
             <div class="footer-logo">FRAGOSO</div>
             <p class="footer-tagline">Sus derechos comienzan aquí.</p>
             <div class="social-links">
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/524425827053" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Firma Legal Fragoso. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Estudio Jurídico Fragoso. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
