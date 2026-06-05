@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let autoScrollReq;
         let isInteracting = false;
         let resumeTimeout;
-        const scrollSpeed = 1; // Pixels per frame. Higher = faster.
+        const scrollSpeed = 4; // Pixels per frame. Higher = much faster.
 
         const startAutoScroll = () => {
             if (!isInteracting) {
