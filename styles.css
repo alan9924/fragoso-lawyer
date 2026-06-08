@@ -846,7 +846,208 @@ nav.scrolled {
     z-index: 0;
 }
 
+/* ─── Icon-only contact buttons with tooltip ─── */
+.pilar-contact {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.pilar-icon-btn {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--gold-500);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgba(212,175,55,0.04);
+}
+
+/* Tooltip from data-tooltip attribute */
+.pilar-icon-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(5,5,7,0.95);
+    color: var(--gold-300);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    border: 1px solid var(--gold-900);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+}
+
+.pilar-icon-btn:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.pilar-icon-btn[href*="wa.me"]:hover {
+    background: #25D366;
+    color: #fff;
+    border-color: #25D366;
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+}
+
+.pilar-icon-btn[href*="mailto"]:hover {
+    background: var(--gold-500);
+    color: #000;
+    border-color: var(--gold-500);
+    box-shadow: 0 4px 18px rgba(212,175,55,0.3);
+}
+
+/* ═══════════════════════════════════════════
+   CONTACTO SECTION
+═══════════════════════════════════════════ */
+
+.contacto-section {
+    padding: 7rem 2rem;
+    background: var(--bg-surface);
+    position: relative;
+}
+
+.contacto-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contacto-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: start;
+}
+
+.contacto-divider {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold-500) 20%, var(--gold-500) 80%, transparent);
+    align-self: stretch;
+    margin: 0 4rem;
+    min-height: 200px;
+}
+
+.contacto-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contacto-col-title {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    color: var(--gold-700);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.contacto-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.contacto-item:hover {
+    background: rgba(212,175,55,0.04);
+    border-color: var(--gold-900);
+}
+
+.contacto-icon-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--gold-500);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.contacto-item:hover .contacto-icon-wrap {
+    background: var(--gold-500);
+    color: #000;
+    border-color: var(--gold-500);
+}
+
+/* Brand colors on hover */
+.contacto-item:hover .contacto-icon-wrap.wa  { background: #25D366; border-color: #25D366; color: #fff; }
+.contacto-item:hover .contacto-icon-wrap.fb  { background: #1877F2; border-color: #1877F2; color: #fff; }
+.contacto-item:hover .contacto-icon-wrap.ig  { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: #dc2743; color: #fff; }
+.contacto-item:hover .contacto-icon-wrap.li  { background: #0A66C2; border-color: #0A66C2; color: #fff; }
+
+.contacto-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.contacto-label {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--gold-700);
+    text-transform: uppercase;
+}
+
+.contacto-value {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+    transition: color 0.3s;
+}
+
+.contacto-item:hover .contacto-value {
+    color: var(--gold-300);
+}
+
+@media (max-width: 768px) {
+    .contacto-grid {
+        grid-template-columns: 1fr;
+    }
+    .contacto-divider {
+        display: none;
+    }
+    .contacto-col:first-child {
+        padding-bottom: 3rem;
+        border-bottom: 1px solid rgba(212,175,55,0.1);
+        margin-bottom: 3rem;
+    }
+}
+
 /* Closing quote */
+
 .socios-quote {
     text-align: center;
     font-family: var(--font-heading);
