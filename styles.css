@@ -467,17 +467,13 @@ section { position: relative; }
 }
 
 .acerca-container {
-    max-width: 1100px;
+    max-width: 760px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
 }
 
-.acerca-text { text-align: left; }
+.acerca-text { text-align: center; }
 
-.acerca-rule { margin: 0 0 2.5rem; }
+.acerca-rule { margin: 0 auto 2.5rem; }
 
 .acerca-desc {
     font-size: 1.05rem;
