@@ -766,11 +766,13 @@ section { position: relative; }
 }
 
 .pilar-img {
-    width: min(220px, 85%);
+    width: min(240px, 90%);
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.06));
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.04));
+    mix-blend-mode: multiply; /* Makes white background transparent on light surface */
     transition: filter 0.6s ease, transform 0.6s ease;
+    opacity: 0.85;
 }
 
 .pilar:hover .pilar-img {
