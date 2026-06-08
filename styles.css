@@ -698,7 +698,7 @@ nav.scrolled {
 /* Lawyer info block — sits above image */
 .pilar-top {
     width: 100%;
-    padding: 0 1rem 2rem;
+    padding: 0 1rem 0.5rem;
     position: relative;
     z-index: 2;
 }
@@ -752,6 +752,7 @@ nav.scrolled {
     display: flex;
     justify-content: center;
     position: relative;
+    margin-top: -1.5rem; /* Pull image up closer to text */
 }
 
 .pilar-img {
