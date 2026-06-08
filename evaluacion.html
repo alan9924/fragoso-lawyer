@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Estratégica | Ferro Fragoso</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific styles for the evaluation page */
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .eval-header {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            background: linear-gradient(to bottom, #000, var(--bg-base));
+        }
+
+        .eval-logo {
+            font-size: 2.5rem;
+            color: var(--gold-500);
+            margin-bottom: 1rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .eval-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .eval-desc {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .eval-container {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        .eval-form {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .form-section-title {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--gold-500);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold-500);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+        
+        select.form-control option {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .radio-label:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .radio-input {
+            display: none;
+        }
+
+        .radio-input:checked + .radio-label {
+            border-color: var(--gold-500);
+            color: var(--gold-500);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--gold-500);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            margin-top: 3rem;
+        }
+
+        .submit-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212,175,55,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .eval-form {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="eval-header">
+        <a href="index.html" class="eval-logo"><i class="fas fa-building-columns"></i></a>
+        <h1 class="eval-title">EVALUACIÓN ESTRATÉGICA</h1>
+        <p class="eval-desc">Complete el siguiente formulario. Nuestro equipo analizará la información para diseñar una estrategia legal a la medida de sus intereses.</p>
+    </header>
+
+    <main class="eval-container">
+        <form id="evalForm" class="eval-form">
+            
+            <h2 class="form-section-title">1. Datos de Identificación</h2>
+            
+            <div class="form-group">
+                <label class="form-label" for="nombre">Nombre Completo o Razón Social *</label>
+                <input type="text" id="nombre" class="form-control" required placeholder="Ej. Juan Pérez / Empresa S.A. de C.V.">
+            </div>
+
+            <div class="radio-group form-group" style="display: flex; gap: 1rem; grid-template-columns: 1fr 1fr;">
+                <div style="flex: 1;">
+                    <label class="form-label" for="telefono">Teléfono / WhatsApp *</label>
+                    <input type="tel" id="telefono" class="form-control" required placeholder="10 dígitos">
+                </div>
+                <div style="flex: 1;">
+                    <label class="form-label" for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" class="form-control" placeholder="usuario@correo.com">
+                </div>
+            </div>
+
+            <h2 class="form-section-title" style="margin-top: 3rem;">2. Naturaleza del Conflicto</h2>
+
+            <div class="form-group">
+                <label class="form-label" for="materia">Área Legal Principal *</label>
+                <select id="materia" class="form-control" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="Corporativo">Corporativo / Empresarial (Contratos, Sociedades, Marcas)</option>
+                    <option value="Familiar">Familiar (Divorcio, Pensión, Sucesiones/Herencias)</option>
+                    <option value="Civil">Civil (Propiedad, Arrendamiento, Cobranza, Daños)</option>
+                    <option value="Otro">Otra / No estoy seguro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Estado Actual del Asunto *</label>
+                <div class="radio-group">
+                    <div>
+                        <input type="radio" id="estado_preventivo" name="estado" value="Preventivo" class="radio-input" required>
+                        <label class="radio-label" for="estado_preventivo">Preventivo (Aún no hay conflicto)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="estado_extrajudicial" name="estado" value="Extrajudicial" class="radio-input">
+                        <label class="radio-label" for="estado_extrajudicial">Extrajudicial (Hay conflicto, sin demanda)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="estado_judicial" name="estado" value="Judicial" class="radio-input">
+                        <label class="radio-label" for="estado_judicial">Judicial (Demanda o juicio en curso)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Nivel de Urgencia *</label>
+                <div class="radio-group">
+                    <div>
+                        <input type="radio" id="urgencia_inmediata" name="urgencia" value="Inmediata" class="radio-input" required>
+                        <label class="radio-label" for="urgencia_inmediata">Inmediata (Plazos corriendo, embargo)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="urgencia_alta" name="urgencia" value="Alta" class="radio-input">
+                        <label class="radio-label" for="urgencia_alta">Alta (En las próximas semanas)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="urgencia_media" name="urgencia" value="Media" class="radio-input">
+                        <label class="radio-label" for="urgencia_media">Media (Planeación, sin prisa)</label>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="form-section-title" style="margin-top: 3rem;">3. Descripción Estratégica</h2>
+
+            <div class="form-group">
+                <label class="form-label" for="descripcion">Breve resumen de los hechos y lo que busca lograr *</label>
+                <textarea id="descripcion" class="form-control" required placeholder="Describa de forma concisa el problema legal y su objetivo principal (ej. 'Busco recuperar un inmueble invadido', 'Deseo estructurar mi empresa')."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Enviar Evaluación a Socios</button>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById('evalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Gather data
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const correo = document.getElementById('correo').value || 'No proporcionado';
+            const materia = document.getElementById('materia').value;
+            
+            // Get selected radio values
+            const estado = document.querySelector('input[name="estado"]:checked').value;
+            const urgencia = document.querySelector('input[name="urgencia"]:checked').value;
+            
+            const descripcion = document.getElementById('descripcion').value;
+
+            // Format message for WhatsApp
+            let mensaje = `*EVALUACIÓN ESTRATÉGICA - NUEVO CASO*\n\n`;
+            mensaje += `*1. DATOS DE IDENTIFICACIÓN*\n`;
+            mensaje += `👤 Nombre/Empresa: ${nombre}\n`;
+            mensaje += `📱 Teléfono: ${telefono}\n`;
+            mensaje += `📧 Correo: ${correo}\n\n`;
+            
+            mensaje += `*2. NATURALEZA DEL CONFLICTO*\n`;
+            mensaje += `⚖️ Materia: ${materia}\n`;
+            mensaje += `📍 Estado: ${estado}\n`;
+            mensaje += `⏱️ Urgencia: ${urgencia}\n\n`;
+            
+            mensaje += `*3. DESCRIPCIÓN DE LOS HECHOS*\n`;
+            mensaje += `${descripcion}\n\n`;
+            
+            mensaje += `_Solicito análisis por parte de un socio fundador._`;
+
+            // Encode for URL
+            const urlEncodedMessage = encodeURIComponent(mensaje);
+            
+            // WhatsApp Number
+            const waNumber = '524191239646';
+            
+            // Redirect to WhatsApp
+            window.open(`https://wa.me/${waNumber}?text=${urlEncodedMessage}`, '_blank');
+        });
+    </script>
+</body>
+</html>
