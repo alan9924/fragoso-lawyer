@@ -610,46 +610,46 @@ nav.scrolled {
 ═══════════════════════════════════════════ */
 
 .socios-section {
-    padding: 8rem 2rem 8rem;
-    background: var(--bg-base);
+    padding: 8rem 2rem 5rem;
+    background: #f7f4ef; /* Warm ivory — matches white pillar background */
     position: relative;
     overflow: hidden;
 }
 
-/* Subtle background grid texture */
+/* Subtle texture lines on light bg */
 .socios-section::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(212,175,55,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(212,175,55,0.02) 1px, transparent 1px);
+        linear-gradient(rgba(180,155,100,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,155,100,0.06) 1px, transparent 1px);
     background-size: 80px 80px;
     pointer-events: none;
 }
 
 .socios-header {
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 5rem;
     position: relative;
     z-index: 1;
 }
 
 .socios-label {
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 300;
     letter-spacing: 6px;
-    color: var(--gold-700);
+    color: #a08040;
     text-transform: uppercase;
     margin-bottom: 1rem;
 }
 
 .socios-title {
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 300;
-    color: var(--text-primary);
+    color: #1a1a1a;
     letter-spacing: 8px;
     margin-bottom: 1.5rem;
 }
@@ -657,7 +657,7 @@ nav.scrolled {
 .socios-rule {
     width: 80px;
     height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold-500), transparent);
+    background: linear-gradient(to right, transparent, #c9a84c, transparent);
     margin: 0 auto;
 }
 
@@ -665,24 +665,24 @@ nav.scrolled {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     gap: 0;
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
-    align-items: start;
+    align-items: end; /* align bottoms so columns "stand" together */
     position: relative;
     z-index: 1;
 }
 
-/* Vertical divider between pillars */
 .socios-divider-vertical {
     width: 1px;
-    background: linear-gradient(to bottom, transparent, var(--gold-500) 20%, var(--gold-500) 80%, transparent);
+    background: linear-gradient(to bottom, transparent, #c9a84c 15%, #c9a84c 85%, transparent);
     align-self: stretch;
-    margin: 0 4rem;
-    min-height: 350px;
+    margin: 0 3rem;
+    min-height: 400px;
 }
 
+/* ─── PILAR CARD ─── */
 .pilar {
-    padding: 2rem 2rem 0;
+    padding: 0;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -695,155 +695,77 @@ nav.scrolled {
     transform: translateY(-6px);
 }
 
-/* ─── Lawyer info block ─── */
-.pilar-lawyer {
+/* Lawyer info block — sits above image */
+.pilar-top {
     width: 100%;
-    padding-bottom: 2.5rem;
+    padding: 0 1rem 2rem;
     position: relative;
+    z-index: 2;
 }
 
-.pilar-number-bg {
+/* Ordinal watermark */
+.pilar-num {
     font-family: var(--font-heading);
-    font-size: 7rem;
+    font-size: 5rem;
     font-weight: 700;
-    color: rgba(212, 175, 55, 0.05);
+    color: rgba(180, 155, 80, 0.08);
     line-height: 1;
-    position: absolute;
-    top: -1.5rem;
-    right: 0;
+    display: block;
+    margin-bottom: -1.5rem;
     user-select: none;
-    pointer-events: none;
 }
 
 .pilar-name {
     font-family: var(--font-heading);
-    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     font-weight: 400;
-    color: var(--text-primary);
+    color: #1a1a1a;
     letter-spacing: 3px;
-    line-height: 1.35;
-    margin-bottom: 0.6rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
     text-transform: uppercase;
 }
 
 .pilar-cargo {
     font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 300;
+    font-size: 0.68rem;
+    font-weight: 400;
     letter-spacing: 5px;
-    color: var(--gold-500);
+    color: #c9a84c;
     text-transform: uppercase;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.8rem;
 }
 
-.pilar-formation {
+.pilar-univ {
     font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    font-size: 0.8rem;
+    color: #6b6b6b;
     font-weight: 300;
-    line-height: 1.6;
-    margin-bottom: 1.8rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
 }
 
-.pilar-label-sm {
-    font-size: 0.62rem;
-    letter-spacing: 4px;
-    color: var(--gold-700);
-    text-transform: uppercase;
-    display: block;
-}
-
-.pilar-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    align-items: center;
-}
-
-.pilar-contact-item {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-size: 0.88rem;
-    font-weight: 300;
-    transition: all 0.3s ease;
-    letter-spacing: 0.4px;
-}
-
-/* Circle icon wrapper */
-.pilar-icon-wrap {
-    width: 34px;
-    height: 34px;
-    border: 1px solid var(--gold-900);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    color: var(--gold-500);
-    flex-shrink: 0;
-    transition: all 0.3s ease;
-}
-
-/* WhatsApp link — green glow on hover */
-.pilar-contact-item[href*="wa.me"]:hover .pilar-icon-wrap {
-    background: #25D366;
-    color: #fff;
-    border-color: #25D366;
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
-}
-
-/* Email link — gold on hover */
-.pilar-contact-item[href*="mailto"]:hover .pilar-icon-wrap {
-    background: var(--gold-500);
-    color: #000;
-    border-color: var(--gold-500);
-}
-
-.pilar-contact-item:hover {
-    color: var(--text-primary);
-}
-
-/* ─── Column image ─── */
+/* Column image — no blend mode needed (white bg on ivory section) */
 .pilar-img-wrap {
-    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 0.5rem;
+    position: relative;
 }
 
 .pilar-img {
-    width: min(260px, 90%);
+    width: min(240px, 85%);
     height: auto;
     object-fit: contain;
-    filter: brightness(0.95) contrast(1.05);
-    mix-blend-mode: screen; /* Removes dark background, only marble column shows */
+    /* No mix-blend-mode: image is white bg on ivory section — seamless */
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
     transition: all 0.6s ease;
-    position: relative;
-    z-index: 1;
 }
 
 .pilar:hover .pilar-img {
-    filter: brightness(1) contrast(1.1) drop-shadow(0 20px 40px rgba(212,175,55,0.2));
-    transform: scale(1.03);
-}
-
-.pilar-img-glow {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 180px;
-    height: 60px;
-    background: radial-gradient(ellipse, rgba(212,175,55,0.2), transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+    filter: drop-shadow(0 16px 40px rgba(180,155,80,0.25));
+    transform: scale(1.02);
 }
 
 /* ─── Icon-only contact buttons with tooltip ─── */
@@ -856,37 +778,37 @@ nav.scrolled {
 
 .pilar-icon-btn {
     position: relative;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    border: 1px solid var(--gold-900);
+    border: 1px solid rgba(180,155,80,0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    color: var(--gold-500);
+    font-size: 1rem;
+    color: #a08040;
     text-decoration: none;
     transition: all 0.3s ease;
-    background: rgba(212,175,55,0.04);
+    background: rgba(180,155,80,0.05);
 }
 
-/* Tooltip from data-tooltip attribute */
+/* Tooltip — dark on light background */
 .pilar-icon-btn::after {
     content: attr(data-tooltip);
     position: absolute;
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%) translateY(4px);
-    background: rgba(5,5,7,0.95);
-    color: var(--gold-300);
+    background: #1a1a1a;
+    color: #f0e0a0;
     font-family: var(--font-body);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 300;
     letter-spacing: 0.5px;
     white-space: nowrap;
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
-    border: 1px solid var(--gold-900);
+    border: 1px solid rgba(180,155,80,0.3);
     opacity: 0;
     pointer-events: none;
     transition: all 0.25s ease;
@@ -901,14 +823,14 @@ nav.scrolled {
     background: #25D366;
     color: #fff;
     border-color: #25D366;
-    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
 }
 
 .pilar-icon-btn[href*="mailto"]:hover {
-    background: var(--gold-500);
-    color: #000;
-    border-color: var(--gold-500);
-    box-shadow: 0 4px 18px rgba(212,175,55,0.3);
+    background: #c9a84c;
+    color: #fff;
+    border-color: #c9a84c;
+    box-shadow: 0 4px 18px rgba(180,155,80,0.3);
 }
 
 /* ═══════════════════════════════════════════
@@ -1051,12 +973,13 @@ nav.scrolled {
 .socios-quote {
     text-align: center;
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 300;
     font-style: italic;
-    color: var(--gold-700);
+    color: #a08040;
     letter-spacing: 2px;
-    margin-top: 6rem;
+    margin-top: 3rem;
+    padding-bottom: 1rem;
     position: relative;
     z-index: 1;
 }
