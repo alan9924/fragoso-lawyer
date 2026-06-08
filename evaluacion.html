@@ -192,9 +192,30 @@
                 padding: 2rem 1.5rem;
             }
         }
+        
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: var(--gold-500);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .back-btn:hover {
+            color: #fff;
+        }
     </style>
 </head>
 <body>
+
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
 
     <header class="eval-header">
         <a href="index.html" class="eval-logo"><i class="fas fa-building-columns"></i></a>
