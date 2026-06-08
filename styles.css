@@ -158,6 +158,8 @@ nav.scrolled {
     gap: 2.5rem;
 }
 
+.mobile-only-li { display: none; }
+
 .nav-links a {
     font-family: var(--font-body);
     font-size: 0.68rem;
@@ -943,6 +945,8 @@ footer {
         align-items: center;
         gap: 2.5rem;
     }
+
+    .mobile-only-li { display: block; }
 
     .nav-links a {
         font-size: 1.2rem;
