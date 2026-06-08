@@ -8,31 +8,37 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600;700&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome for brand icons (WhatsApp, Facebook, etc.) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Intro Loader -->
+    <!-- ═══ INTRO LOADER ═══ -->
     <div id="intro-loader" class="loader-overlay">
         <div class="loader-logo">FERRO FRAGOSO</div>
         <div class="loader-line"></div>
     </div>
 
-    <!-- Background Elements -->
-    <!-- Glow elements removed for Quiet Luxury theme -->
-
-    <!-- Navigation -->
+    <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar" class="transparent-nav">
         <div class="nav-container">
             <div class="nav-brand">
-                <a href="#" class="logo-icon"><i class="fas fa-building-columns"></i></a>
+                <!-- Custom SVG Column Icon -->
+                <svg class="nav-icon-svg" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="10" y="0" width="12" height="2" fill="currentColor"/>
+                    <rect x="13" y="2" width="6" height="1" fill="currentColor"/>
+                    <rect x="14" y="3" width="4" height="33" fill="currentColor"/>
+                    <rect x="13" y="36" width="6" height="1" fill="currentColor"/>
+                    <rect x="10" y="37" width="12" height="2" fill="currentColor"/>
+                    <rect x="8" y="39" width="16" height="1" fill="currentColor"/>
+                </svg>
                 <a href="#" class="logo-text">FERRO FRAGOSO</a>
             </div>
             
             <div class="nav-menu">
                 <ul class="nav-links">
-                    <li><a href="#inicio" class="active-gold">INICIO</a></li>
+                    <li><a href="#inicio" class="active-link">INICIO</a></li>
                     <li><a href="#acerca">ESENCIA</a></li>
                     <li><a href="#areas">ÁREAS</a></li>
                     <li><a href="#porque">DIFERENCIADORES</a></li>
@@ -42,33 +48,58 @@
 
             <div class="nav-actions">
                 <a href="evaluacion.html" target="_blank" class="nav-cta-btn">EVALUACIÓN</a>
-                <i class="fas fa-bars mobile-menu-btn"></i>
+                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- ═══ HERO ═══ -->
-    <section id="inicio" class="hero bg-chess">
-        <div class="hero-overlay"></div>
-        <div class="hero-content fade-in-up">
-            <p class="hero-eyebrow">ESTUDIO JURÍDICO</p>
-            <h1 class="hero-title">FERRO FRAGOSO</h1>
+    <section id="inicio" class="hero">
+        <!-- Full-bleed editorial image -->
+        <div class="hero-img-wrap">
+            <img src="corridor_columns.png" alt="Corredor monumental" class="hero-bg-img">
+            <div class="hero-img-veil"></div>
+        </div>
+
+        <div class="hero-content">
+            <p class="hero-eyebrow">ESTUDIO JURÍDICO · QUERÉTARO</p>
+            <h1 class="hero-title">FERRO<br><em>FRAGOSO</em></h1>
             <div class="hero-rule"></div>
             <p class="hero-tagline">NO FIRMES NADA SIN CONSULTARNOS</p>
             <a href="https://wa.me/524191239646?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta." target="_blank" class="hero-cta-oval">
                 AGENDAR CONSULTA
             </a>
         </div>
-        <div class="hero-social-left">
-            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/ferrofragoso.estudiojuridico" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+        <!-- Marble fragment accent -->
+        <div class="hero-fragment-wrap">
+            <img src="hero_marble_column.png" alt="Detalle de columna clásica" class="hero-fragment-img">
         </div>
-        <a href="https://wa.me/524191239646" class="hero-whatsapp-right" aria-label="WhatsApp">
+
+        <!-- Social bottom left -->
+        <div class="hero-social-left">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/ferrofragoso.estudiojuridico" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+
+        <!-- WhatsApp bottom right -->
+        <a href="https://wa.me/524191239646" class="hero-whatsapp-float" target="_blank" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
+
+        <!-- Scroll hint -->
         <div class="hero-scroll-hint">
-            <span>SOCIOS</span>
-            <i class="fas fa-chevron-down"></i>
+            <span>DESCUBRIR</span>
+            <svg viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="12">
+                <line x1="6" y1="0" x2="6" y2="18" stroke="currentColor" stroke-width="0.8"/>
+                <polyline points="2,13 6,18 10,13" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            </svg>
         </div>
     </section>
 
@@ -85,6 +116,8 @@
             </div>
             <div class="acerca-img-wrap fade-in-up delay-1">
                 <img src="estatua_justicia.png" alt="Estatua de la Justicia" class="acerca-img">
+                <!-- Drape accent behind statue -->
+                <img src="section_marble_drape.png" alt="" class="acerca-drape-accent" aria-hidden="true">
             </div>
         </div>
     </section>
@@ -97,21 +130,60 @@
             <div class="areas-rule"></div>
         </div>
         <div class="areas-grid">
+
+            <!-- Corporativo — Custom SVG: Arch / Building -->
             <div class="area-card fade-in-up">
-                <div class="area-icon"><i class="fas fa-building"></i></div>
+                <div class="area-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="4" y="42" width="40" height="1" stroke="currentColor" stroke-width="1"/>
+                        <rect x="8" y="14" width="2" height="28" stroke="currentColor" stroke-width="1"/>
+                        <rect x="38" y="14" width="2" height="28" stroke="currentColor" stroke-width="1"/>
+                        <path d="M8 14 Q24 2 40 14" stroke="currentColor" stroke-width="1" fill="none"/>
+                        <rect x="20" y="28" width="8" height="14" stroke="currentColor" stroke-width="1"/>
+                        <line x1="1" y1="14" x2="47" y2="14" stroke="currentColor" stroke-width="0.8"/>
+                    </svg>
+                </div>
                 <h3 class="area-title">CORPORATIVO</h3>
                 <p class="area-desc">Blindaje legal para empresas, contratos, fusiones y protección de activos corporativos.</p>
             </div>
+
+            <!-- Familiar — Custom SVG: Balance scale abstract -->
             <div class="area-card fade-in-up delay-1">
-                <div class="area-icon"><i class="fas fa-home"></i></div>
+                <div class="area-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <line x1="24" y1="6" x2="24" y2="42" stroke="currentColor" stroke-width="1"/>
+                        <line x1="14" y1="42" x2="34" y2="42" stroke="currentColor" stroke-width="1"/>
+                        <line x1="10" y1="18" x2="38" y2="18" stroke="currentColor" stroke-width="0.8"/>
+                        <line x1="10" y1="18" x2="10" y2="28" stroke="currentColor" stroke-width="0.8"/>
+                        <line x1="38" y1="18" x2="38" y2="28" stroke="currentColor" stroke-width="0.8"/>
+                        <path d="M6 28 Q10 32 14 28" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                        <path d="M34 28 Q38 32 42 28" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                        <circle cx="24" cy="6" r="2" stroke="currentColor" stroke-width="0.8"/>
+                    </svg>
+                </div>
                 <h3 class="area-title">FAMILIAR</h3>
                 <p class="area-desc">Resolución discreta y estratégica de divorcios, sucesiones y conflictos patrimoniales familiares.</p>
             </div>
+
+            <!-- Civil — Custom SVG: Column / Order -->
             <div class="area-card fade-in-up delay-2">
-                <div class="area-icon"><i class="fas fa-scale-balanced"></i></div>
+                <div class="area-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="12" y="4" width="24" height="2" stroke="currentColor" stroke-width="1"/>
+                        <rect x="16" y="6" width="4" height="32" stroke="currentColor" stroke-width="1"/>
+                        <rect x="28" y="6" width="4" height="32" stroke="currentColor" stroke-width="1"/>
+                        <rect x="14" y="38" width="20" height="2" stroke="currentColor" stroke-width="1"/>
+                        <rect x="10" y="40" width="28" height="2" stroke="currentColor" stroke-width="1"/>
+                        <line x1="16" y1="14" x2="20" y2="14" stroke="currentColor" stroke-width="0.6"/>
+                        <line x1="28" y1="14" x2="32" y2="14" stroke="currentColor" stroke-width="0.6"/>
+                        <line x1="16" y1="24" x2="20" y2="24" stroke="currentColor" stroke-width="0.6"/>
+                        <line x1="28" y1="24" x2="32" y2="24" stroke="currentColor" stroke-width="0.6"/>
+                    </svg>
+                </div>
                 <h3 class="area-title">CIVIL</h3>
                 <p class="area-desc">Litigio de alto nivel en controversias sobre propiedad, obligaciones y contratos civiles.</p>
             </div>
+
         </div>
     </section>
 
@@ -165,7 +237,11 @@
                             <i class="fab fa-whatsapp"></i>
                         </a>
                         <a href="mailto:alan.f.9924@gmail.com" class="pilar-icon-btn" data-tooltip="alan.f.9924@gmail.com">
-                            <i class="fas fa-envelope"></i>
+                            <!-- Custom SVG envelope -->
+                            <svg viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg" width="16" aria-hidden="true">
+                                <rect x="1" y="1" width="18" height="14" rx="1" stroke="currentColor" stroke-width="1"/>
+                                <polyline points="1,1 10,9 19,1" stroke="currentColor" stroke-width="1" fill="none"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -188,7 +264,10 @@
                             <i class="fab fa-whatsapp"></i>
                         </a>
                         <a href="mailto:ferrodaniel@icloud.com" class="pilar-icon-btn" data-tooltip="ferrodaniel@icloud.com">
-                            <i class="fas fa-envelope"></i>
+                            <svg viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg" width="16" aria-hidden="true">
+                                <rect x="1" y="1" width="18" height="14" rx="1" stroke="currentColor" stroke-width="1"/>
+                                <polyline points="1,1 10,9 19,1" stroke="currentColor" stroke-width="1" fill="none"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -201,7 +280,7 @@
         <p class="socios-quote fade-in-up">&ldquo;La estrategia adecuada, en el momento adecuado.&rdquo;</p>
     </section>
 
-    <!-- ═══ NECESITAS AYUDA LEGAL ═══ -->
+    <!-- ═══ CTA ═══ -->
     <section id="cta-ayuda" class="cta-section">
         <div class="cta-content fade-in-up">
             <h2 class="cta-title">¿NECESITAS AYUDA LEGAL?</h2>
@@ -212,8 +291,7 @@
         </div>
     </section>
 
-
-    <!-- Footer -->
+    <!-- ═══ FOOTER ═══ -->
     <footer>
         <div class="footer-content">
             <div class="footer-logo">FERRO FRAGOSO</div>
