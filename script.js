@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Ensure the site always loads at the very top (Hero section)
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     const navbar = document.getElementById('navbar');
     const loader = document.getElementById('intro-loader');
 
