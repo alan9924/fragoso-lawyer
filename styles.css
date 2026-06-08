@@ -462,13 +462,26 @@ section { position: relative; }
 
 /* ─── ACERCA DE NOSOTROS ─── */
 .acerca-section {
+    position: relative;
     padding: var(--section-gap) 2rem;
+    background: url('acerca_bg.png') center/cover no-repeat;
+    background-attachment: fixed;
+}
+
+.acerca-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: var(--bg-surface);
+    opacity: 0.85; /* Adjust opacity to let the texture show through nicely */
+    z-index: 1;
 }
 
 .acerca-container {
     max-width: 760px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .acerca-text { text-align: center; }
