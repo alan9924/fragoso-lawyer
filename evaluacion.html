@@ -25,7 +25,8 @@
         .eval-header {
             text-align: center;
             padding: 4rem 2rem 2rem;
-            background: linear-gradient(to bottom, #000, var(--bg-base));
+            background: var(--bg-base);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .eval-logo {
@@ -63,21 +64,21 @@
         }
 
         .eval-form {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 12px;
+            background: var(--bg-surface);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 2px;
             padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
         }
 
         .form-section-title {
             font-family: var(--font-body);
             font-size: 0.85rem;
-            color: var(--gold-500);
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             padding-bottom: 0.5rem;
         }
 
@@ -96,20 +97,21 @@
 
         .form-control {
             width: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-base);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             color: var(--text-primary);
             padding: 1rem;
-            border-radius: 4px;
+            border-radius: 2px;
             font-family: var(--font-body);
             font-size: 1rem;
+            font-weight: 300;
             transition: var(--transition-smooth);
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--gold-500);
-            background: rgba(0, 0, 0, 0.5);
+            background: var(--bg-surface-elevated);
         }
 
         select.form-control {
@@ -144,13 +146,13 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
             transition: var(--transition-smooth);
         }
 
         .radio-label:hover {
-            border-color: rgba(212, 175, 55, 0.5);
+            border-color: var(--gold-500);
         }
 
         .radio-input {
@@ -158,22 +160,22 @@
         }
 
         .radio-input:checked + .radio-label {
-            border-color: var(--gold-500);
-            color: var(--gold-500);
-            background: rgba(212, 175, 55, 0.05);
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+            background: rgba(0, 0, 0, 0.03);
         }
 
         .submit-btn {
             display: block;
             width: 100%;
             padding: 1.2rem;
-            background: var(--gold-500);
-            color: #000;
-            border: none;
-            border-radius: 4px;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            border-radius: 2px;
             font-family: var(--font-body);
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 400;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
@@ -182,9 +184,9 @@
         }
 
         .submit-btn:hover {
-            background: #fff;
+            background: var(--text-primary);
+            color: var(--bg-base);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(212,175,55,0.2);
         }
 
         @media (max-width: 768px) {
@@ -197,7 +199,7 @@
             position: absolute;
             top: 2rem;
             left: 2rem;
-            color: var(--gold-500);
+            color: var(--text-muted);
             text-decoration: none;
             font-family: var(--font-body);
             font-size: 0.9rem;
@@ -209,7 +211,7 @@
         }
         
         .back-btn:hover {
-            color: #fff;
+            color: var(--text-primary);
         }
     </style>
 </head>

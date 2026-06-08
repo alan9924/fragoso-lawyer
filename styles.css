@@ -5,34 +5,34 @@
 */
 
 :root {
-    /* Colors */
-    --bg-base: #050507;
-    --bg-surface: #0a0a0e;
-    --bg-surface-elevated: #111118;
+    /* Colors - Quiet Luxury Marble Aesthetic */
+    --bg-base: #fdfcf9; /* Off-white / Ivory */
+    --bg-surface: #f7f4ef; /* Soft beige */
+    --bg-surface-elevated: #f0ede6; /* Warm gray stone */
     
-    /* Gold Accent Palette */
-    --gold-100: #fbf5e6;
-    --gold-300: #ebd599;
-    --gold-500: #d4af37; /* Primary Gold */
-    --gold-700: #997d24;
-    --gold-900: #4a3c11;
+    /* Muted Accents */
+    --gold-100: #e3dec9;
+    --gold-300: #bfae8c;
+    --gold-500: #9e8e70; /* Muted Antique Brass/Stone */
+    --gold-700: #6b604b;
+    --gold-900: #3b3528;
     
     /* Text */
-    --text-primary: #ffffff;
-    --text-secondary: #a1a1aa;
-    --text-muted: #71717a;
+    --text-primary: #2b2a28; /* Charcoal / Graphite */
+    --text-secondary: #63615c; /* Warm mid-gray */
+    --text-muted: #96938b;
 
     /* Effects */
-    --glass-bg: rgba(255, 255, 255, 0.02);
-    --glass-border: rgba(212, 175, 55, 0.15);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(158, 142, 112, 0.15);
+    --glass-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
     
     /* Typography */
-    --font-heading: 'Cinzel', serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Cormorant Garamond', serif; /* Classical elegant serif */
+    --font-body: 'Montserrat', sans-serif; /* Clean, modern sans */
     
     /* Transitions */
-    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Base Reset */
@@ -50,7 +50,8 @@ body {
     background-color: var(--bg-base);
     color: var(--text-primary);
     font-family: var(--font-body);
-    line-height: 1.6;
+    font-weight: 300;
+    line-height: 1.8;
     overflow-x: hidden;
     position: relative;
 }
@@ -79,7 +80,7 @@ body {
 /* Typography Utility */
 h1, h2, h3, h4, .logo {
     font-family: var(--font-heading);
-    font-weight: 600;
+    font-weight: 400; /* Lighter weight for luxury feel */
 }
 
 /* Intro Loader Overlay */
@@ -147,7 +148,7 @@ nav {
 }
 
 nav.scrolled {
-    background: rgba(10, 10, 14, 0.85);
+    background: rgba(253, 252, 249, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border);
@@ -323,22 +324,14 @@ nav.scrolled {
 }
 
 .bg-building {
-    background-image: url('bg_building.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: var(--bg-surface);
+    /* We will use a clean solid or subtle texture instead of the dark image */
+    background-image: none;
     background-attachment: fixed;
 }
 
 .bg-building::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(5, 5, 7, 0.4); /* Slight darkening for text readability */
-    z-index: 1;
+    display: none; /* Remove dark overlay */
 }
 
 .hero-content {
@@ -350,14 +343,14 @@ nav.scrolled {
 }
 
 .hero .title {
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
     font-size: clamp(3rem, 9vw, 7rem);
-    font-weight: 200;
+    font-weight: 300;
     line-height: 1.1;
     margin-bottom: 1.5rem;
     letter-spacing: 15px;
-    color: var(--gold-500);
-    text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    color: var(--text-primary);
+    text-shadow: none;
     margin-left: 15px; /* Offset for tracking */
 }
 
@@ -379,22 +372,21 @@ nav.scrolled {
 .hero-cta-oval {
     display: inline-block;
     padding: 0.8rem 4rem;
-    border: 1px solid var(--gold-500);
-    border-radius: 50px;
-    color: var(--gold-500);
+    border: 1px solid var(--text-primary);
+    border-radius: 2px; /* Less rounded for architectural feel */
+    color: var(--text-primary);
     font-weight: 400;
     letter-spacing: 2px;
     text-decoration: none;
     transition: var(--transition-smooth);
-    background: rgba(5, 5, 7, 0.5);
-    backdrop-filter: blur(5px);
+    background: transparent;
 }
 
 .hero-cta-oval:hover {
-    background: var(--gold-500);
+    background: var(--text-primary);
     color: var(--bg-base);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+    box-shadow: none;
 }
 
 .hero-social-left {
@@ -669,7 +661,7 @@ nav.scrolled {
     font-size: 0.68rem;
     font-weight: 300;
     letter-spacing: 6px;
-    color: #a08040;
+    color: var(--text-muted);
     text-transform: uppercase;
     margin-bottom: 1rem;
 }
@@ -678,16 +670,17 @@ nav.scrolled {
     font-family: var(--font-heading);
     font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 300;
-    color: #1a1a1a;
+    color: var(--text-primary);
     letter-spacing: 8px;
     margin-bottom: 1.5rem;
 }
 
 .socios-rule {
-    width: 80px;
+    width: 60px;
     height: 1px;
-    background: linear-gradient(to right, transparent, #c9a84c, transparent);
+    background: var(--gold-500);
     margin: 0 auto;
+    opacity: 0.5;
 }
 
 .socios-grid {
@@ -703,7 +696,8 @@ nav.scrolled {
 
 .socios-divider-vertical {
     width: 1px;
-    background: linear-gradient(to bottom, transparent, #c9a84c 15%, #c9a84c 85%, transparent);
+    background: var(--gold-500);
+    opacity: 0.2;
     align-self: stretch;
     margin: 0 3rem;
     min-height: 400px;
@@ -736,8 +730,9 @@ nav.scrolled {
 .pilar-num {
     font-family: var(--font-heading);
     font-size: 5rem;
-    font-weight: 700;
-    color: rgba(180, 155, 80, 0.08);
+    font-weight: 400;
+    color: var(--text-muted);
+    opacity: 0.15;
     line-height: 1;
     display: block;
     margin-bottom: -1.5rem;
@@ -748,7 +743,7 @@ nav.scrolled {
     font-family: var(--font-heading);
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     font-weight: 400;
-    color: #1a1a1a;
+    color: var(--text-primary);
     letter-spacing: 3px;
     line-height: 1.4;
     margin-bottom: 0.5rem;
@@ -760,7 +755,7 @@ nav.scrolled {
     font-size: 0.68rem;
     font-weight: 400;
     letter-spacing: 5px;
-    color: #c9a84c;
+    color: var(--text-secondary);
     text-transform: uppercase;
     margin-bottom: 0.8rem;
 }
@@ -768,7 +763,7 @@ nav.scrolled {
 .pilar-univ {
     font-family: var(--font-body);
     font-size: 0.8rem;
-    color: #6b6b6b;
+    color: var(--text-muted);
     font-weight: 300;
     font-style: italic;
     margin-bottom: 1.5rem;
@@ -788,13 +783,12 @@ nav.scrolled {
     width: min(240px, 85%);
     height: auto;
     object-fit: contain;
-    /* No mix-blend-mode: image is white bg on ivory section — seamless */
-    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.05));
     transition: all 0.6s ease;
 }
 
 .pilar:hover .pilar-img {
-    filter: drop-shadow(0 16px 40px rgba(180,155,80,0.25));
+    filter: drop-shadow(0 16px 40px rgba(0,0,0,0.1));
     transform: scale(1.02);
 }
 
@@ -811,15 +805,15 @@ nav.scrolled {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    border: 1px solid rgba(180,155,80,0.4);
+    border: 1px solid rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-    color: #a08040;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: all 0.3s ease;
-    background: rgba(180,155,80,0.05);
+    background: transparent;
 }
 
 /* Tooltip — dark on light background */
@@ -829,16 +823,16 @@ nav.scrolled {
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%) translateY(4px);
-    background: #1a1a1a;
-    color: #f0e0a0;
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
     font-family: var(--font-body);
     font-size: 0.7rem;
     font-weight: 300;
     letter-spacing: 0.5px;
     white-space: nowrap;
     padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    border: 1px solid rgba(180,155,80,0.3);
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.05);
     opacity: 0;
     pointer-events: none;
     transition: all 0.25s ease;
@@ -1195,16 +1189,16 @@ footer {
 
 /* Footer */
 footer {
-    background: #000000;
+    background: var(--bg-base);
     padding: 4rem 2rem 2rem;
     text-align: center;
-    border-top: 1px solid var(--glass-border);
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .footer-logo {
     font-family: var(--font-heading);
     font-size: 2rem;
-    color: var(--gold-500);
+    color: var(--text-primary);
     letter-spacing: 3px;
     margin-bottom: 0.5rem;
 }
@@ -1231,22 +1225,23 @@ footer {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.05);
-    color: var(--text-primary);
+    background: transparent;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition-smooth);
-    border: 1px solid transparent;
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .social-links a:hover {
-    background: var(--gold-500);
+    background: var(--text-primary);
     color: var(--bg-base);
+    border-color: var(--text-primary);
     transform: translateY(-3px);
 }
 
 .footer-bottom {
     padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
     color: var(--text-muted);
     font-size: 0.85rem;
 }
@@ -1353,11 +1348,11 @@ footer {
     font-size: 0.68rem;
     font-weight: 300;
     letter-spacing: 6px;
-    color: var(--gold-500);
+    color: var(--text-muted);
     text-transform: uppercase;
     margin-bottom: 1rem;
 }
-.acerca-eyebrow, .porque-eyebrow { color: var(--gold-700); }
+.acerca-eyebrow, .porque-eyebrow { color: var(--text-muted); }
 
 .section-title, .acerca-title, .areas-title, .porque-title {
     font-family: var(--font-heading);
@@ -1367,27 +1362,20 @@ footer {
     letter-spacing: 6px;
     margin-bottom: 1.5rem;
 }
-.acerca-title, .porque-title { color: #1a1a1a; }
 
-.section-rule, .areas-rule {
-    width: 80px;
+.section-rule, .areas-rule, .acerca-rule, .porque-rule {
+    width: 60px;
     height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold-500), transparent);
+    background: var(--gold-500);
     margin: 0 auto 3rem;
+    opacity: 0.5;
 }
-
-.acerca-rule, .porque-rule {
-    width: 80px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #c9a84c, transparent);
-    margin: 0 auto 3rem;
-}
-.acerca-rule { margin: 0 0 3rem 0; background: linear-gradient(to right, #c9a84c, transparent); }
+.acerca-rule { margin: 0 0 3rem 0; }
 
 /* ─── Acerca de Nosotros (Light Theme) ─── */
 .acerca-section {
     padding: 8rem 2rem;
-    background: #f7f4ef;
+    background: var(--bg-surface);
     position: relative;
     overflow: hidden;
 }
@@ -1406,7 +1394,7 @@ footer {
     font-family: var(--font-body);
     font-size: 1.05rem;
     line-height: 1.8;
-    color: #4a4a4a;
+    color: var(--text-secondary);
     font-weight: 300;
 }
 .acerca-img-wrap {
@@ -1417,16 +1405,16 @@ footer {
 .acerca-img {
     max-width: 100%;
     height: auto;
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-radius: 2px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
 }
 @media (max-width: 900px) {
     .acerca-container { flex-direction: column; text-align: center; }
-    .acerca-rule { margin: 0 auto 3rem; background: linear-gradient(to right, transparent, #c9a84c, transparent); }
+    .acerca-rule { margin: 0 auto 3rem; }
     .acerca-text { text-align: center; }
 }
 
-/* ─── Áreas de Práctica (Dark Theme) ─── */
+/* ─── Áreas de Práctica (Light Theme) ─── */
 .areas-section {
     padding: 8rem 2rem;
     background: var(--bg-base);
@@ -1441,21 +1429,21 @@ footer {
     gap: 2rem;
 }
 .area-card {
-    background: rgba(212,175,55,0.02);
-    border: 1px solid rgba(212,175,55,0.1);
+    background: var(--bg-surface);
+    border: 1px solid rgba(0,0,0,0.03);
     padding: 3rem 2rem;
-    border-radius: 8px;
+    border-radius: 2px;
     text-align: center;
-    transition: all 0.4s ease;
+    transition: var(--transition-smooth);
 }
 .area-card:hover {
-    background: rgba(212,175,55,0.05);
+    background: var(--bg-surface-elevated);
     border-color: var(--gold-500);
     transform: translateY(-5px);
 }
 .area-icon {
     font-size: 2.5rem;
-    color: var(--gold-500);
+    color: var(--text-muted);
     margin-bottom: 1.5rem;
 }
 .area-title {
@@ -1476,7 +1464,7 @@ footer {
 /* ─── Por Qué Escogernos (Light Theme) ─── */
 .porque-section {
     padding: 8rem 2rem;
-    background: #fdfcf9;
+    background: var(--bg-base);
 }
 .porque-header { text-align: center; margin-bottom: 5rem; }
 .porque-container { max-width: 1100px; margin: 0 auto; }
@@ -1489,14 +1477,15 @@ footer {
 .porque-num {
     font-family: var(--font-heading);
     font-size: 4rem;
-    color: rgba(180, 155, 80, 0.15);
-    font-weight: 700;
+    color: var(--text-muted);
+    opacity: 0.2;
+    font-weight: 400;
     margin-bottom: -1rem;
 }
 .porque-item-title {
     font-family: var(--font-heading);
     font-size: 1.3rem;
-    color: #1a1a1a;
+    color: var(--text-primary);
     letter-spacing: 2px;
     margin-bottom: 1rem;
     text-transform: uppercase;
@@ -1504,17 +1493,17 @@ footer {
 .porque-item-desc {
     font-family: var(--font-body);
     font-size: 0.95rem;
-    color: #555;
+    color: var(--text-secondary);
     line-height: 1.6;
     font-weight: 300;
 }
 
-/* ─── CTA Ayuda Legal (Dark Theme) ─── */
+/* ─── CTA Ayuda Legal (Light Theme) ─── */
 .cta-section {
     padding: 6rem 2rem;
-    background: linear-gradient(135deg, var(--bg-base) 0%, #111 100%);
+    background: var(--bg-surface-elevated);
     text-align: center;
-    border-top: 1px solid rgba(212,175,55,0.1);
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 .cta-content { max-width: 700px; margin: 0 auto; }
 .cta-title {
@@ -1534,21 +1523,23 @@ footer {
 .cta-btn {
     display: inline-block;
     padding: 1rem 2.5rem;
-    background: var(--gold-500);
-    color: #000;
+    background: transparent;
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
     font-family: var(--font-body);
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 2px;
     text-decoration: none;
     text-transform: uppercase;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    border-radius: 2px;
+    transition: var(--transition-smooth);
 }
 .cta-btn:hover {
-    background: #fff;
+    background: var(--text-primary);
+    color: var(--bg-base);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(212,175,55,0.2);
+    box-shadow: none;
 }
 
 @media (max-width: 992px) {
