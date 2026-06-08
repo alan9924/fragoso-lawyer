@@ -37,7 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileBtn && navMenu) {
         mobileBtn.addEventListener('click', () => {
             const isOpen = navMenu.classList.toggle('open');
+            mobileBtn.classList.toggle('open');
             mobileBtn.setAttribute('aria-expanded', isOpen);
+            // Prevent scrolling when mobile menu is open
+            document.body.style.overflow = isOpen ? 'hidden' : '';
         });
     }
 
@@ -51,7 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const offset = navbar.offsetHeight + 16;
             window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' });
-            if (navMenu) navMenu.classList.remove('open');
+            
+            // Close mobile menu if open
+            if (navMenu && navMenu.classList.contains('open')) {
+                navMenu.classList.remove('open');
+                mobileBtn.classList.remove('open');
+                mobileBtn.setAttribute('aria-expanded', false);
+                document.body.style.overflow = '';
+            }
         });
     });
 
