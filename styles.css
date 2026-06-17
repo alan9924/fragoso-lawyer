@@ -496,6 +496,17 @@ nav.scrolled {
 .reveal-line.short.visible  { width: 32px !important; }
 .reveal-line.medium.visible { width: 36px !important; }
 
+/* animated vertical rule / line: scales from 0 to 1 top-to-bottom */
+.reveal-line-v {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: transform;
+}
+.reveal-line-v.visible {
+    transform: scaleY(1);
+}
+
 /* stagger-item: controlled via JS-set --stagger-i CSS var */
 .stagger-item {
     opacity: 0.18;
