@@ -510,7 +510,7 @@ nav.scrolled {
 /* stagger-item: controlled via JS-set --stagger-i CSS var */
 .stagger-item {
     opacity: 0; /* starts at 0 */
-    transform: translateY(24px); /* 24px offset */
+    transform: translateY(15px); /* 15px offset */
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* 0.8s transition */
     transition-delay: calc(var(--stagger-i, 0) * 100ms); /* 100ms incremental delay */
@@ -1090,6 +1090,25 @@ section { position: relative; }
     font-weight: 300;
 }
 
+.area-more-indicator {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-top: 1.5rem;
+    opacity: 0.8;
+    transition: opacity 0.4s var(--ease-out-quart), max-height 0.4s var(--ease-out-quart), margin 0.4s var(--ease-out-quart);
+    max-height: 20px;
+    overflow: hidden;
+}
+
+.area-card:hover .area-more-indicator {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .area-card:hover .area-sub-list {
     max-height: 200px;
     opacity: 1;
@@ -1166,7 +1185,7 @@ section { position: relative; }
     display: grid;
     grid-template-columns: 1fr 1px 1fr;
     gap: 0;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     align-items: end;
 }
