@@ -1255,13 +1255,13 @@ section { position: relative; }
 
 .pilar-desc-short {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 300;
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0 auto 1.25rem;
     max-width: 320px;
-    letter-spacing: 0.1px;
+    letter-spacing: 0.2px;
 }
 
 .pilar-contact {
