@@ -1300,18 +1300,18 @@ section { position: relative; }
 }
 
 .pilar-img {
-    width: min(240px, 90%);
-    height: auto;
+    width: min(180px, 80%);
+    height: 80px;
     object-fit: contain;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
-    mix-blend-mode: multiply;
-    transition: filter 0.6s ease, transform 0.6s ease;
-    opacity: 0.9;
+    filter: invert(1) contrast(1.15) brightness(0.9); /* Inverts white calligraphy to black on cream background */
+    mix-blend-mode: multiply; /* Filters out the white background box */
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    opacity: 0.85;
 }
 
 .pilar:hover .pilar-img {
-    filter: drop-shadow(0 16px 32px rgba(0,0,0,0.1));
-    transform: scale(1.02);
+    transform: scale(1.05);
+    opacity: 1;
 }
 
 .socios-quote {
