@@ -667,6 +667,17 @@ section { position: relative; }
     margin-bottom: 2rem;
 }
 
+.promesa-signature-img {
+    display: block;
+    margin: 2.5rem auto 1.5rem;
+    max-height: 96px; /* Elegant scale */
+    width: auto;
+    object-fit: contain;
+    mix-blend-mode: screen; /* Filters out black background organically */
+    opacity: 0.92;
+    filter: brightness(1.15); /* Slightly brighten the white strokes */
+}
+
 .promesa-firma {
     font-family: var(--font-heading);
     font-size: 1rem;
