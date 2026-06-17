@@ -40,7 +40,8 @@
 
     /* Motion */
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-    --transition: all 0.5s var(--ease-out-quart);
+    --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition: all 0.5s var(--ease-premium);
 }
 
 /* ─── RESET ─── */
@@ -444,10 +445,10 @@ nav.scrolled {
 
 /* fade + slide up (default) */
 .fade-in-up {
-    opacity: 0.18; /* Text is subtly visible before animation completes */
-    transform: translateY(15px);
-    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0; 
+    transform: translateY(30px);
+    transition: opacity 1.2s var(--ease-premium),
+                transform 1.2s var(--ease-premium);
 }
 .fade-in-up.visible {
     opacity: 1;
@@ -456,10 +457,10 @@ nav.scrolled {
 
 /* fade + slide left */
 .fade-in-left {
-    opacity: 0.18;
-    transform: translateX(-15px);
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 1.2s var(--ease-premium),
+                transform 1.2s var(--ease-premium);
 }
 .fade-in-left.visible {
     opacity: 1;
@@ -468,10 +469,10 @@ nav.scrolled {
 
 /* fade + slide right */
 .fade-in-right {
-    opacity: 0.18;
-    transform: translateX(15px);
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 1.2s var(--ease-premium),
+                transform 1.2s var(--ease-premium);
 }
 .fade-in-right.visible {
     opacity: 1;
@@ -480,10 +481,30 @@ nav.scrolled {
 
 /* pure fade */
 .fade-in {
-    opacity: 0.18;
-    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transition: opacity 1.2s var(--ease-premium);
 }
 .fade-in.visible { opacity: 1; }
+
+/* Text Mask Reveal */
+.reveal-mask {
+    opacity: 1;
+}
+.reveal-mask-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+}
+.reveal-mask-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 1.2s var(--ease-premium);
+    will-change: transform;
+}
+.reveal-mask.visible .reveal-mask-inner {
+    transform: translateY(0);
+}
 
 /* animated rule / line: draws from 0 width */
 .reveal-line {
@@ -613,7 +634,7 @@ section { position: relative; }
 
 /* ─── NUESTRA PROMESA ─── */
 .promesa-section {
-    padding: var(--section-gap) 3rem;
+    padding: 5rem 3rem;
     background: var(--carbon);
 }
 
@@ -641,7 +662,7 @@ section { position: relative; }
     color: var(--ivory);
     letter-spacing: 2px;
     line-height: 1.2;
-    margin-bottom: 1.5rem;
+    margin-bottom: 25px;
 }
 
 .promesa-title em {
@@ -655,7 +676,7 @@ section { position: relative; }
     height: 1px;
     background: var(--bronze);
     opacity: 0.6;
-    margin: 0 auto 2rem;
+    margin: 0 auto 35px;
 }
 
 .promesa-text {
@@ -664,14 +685,14 @@ section { position: relative; }
     font-weight: 300;
     color: var(--stone-300);
     line-height: 1.9;
-    margin-bottom: 2rem;
+    margin-bottom: 50px;
 }
 
 .promesa-signature-img {
     display: block;
-    margin: 2.5rem auto 1.5rem;
-    max-height: 96px; /* Elegant scale */
-    width: auto;
+    margin: 0 auto 20px;
+    width: 45%;
+    max-height: none;
     object-fit: contain;
     mix-blend-mode: screen; /* Filters out black background organically */
     opacity: 0.92;
@@ -685,6 +706,7 @@ section { position: relative; }
     font-weight: 300;
     color: var(--bronze);
     letter-spacing: 2px;
+    margin-bottom: 30px;
 }
 
 
@@ -1475,6 +1497,7 @@ footer {
 .promesa-cta-btn {
     border-color: rgba(253, 252, 249, 0.4);
     color: var(--ivory);
+    margin-top: 0;
 }
 
 .promesa-cta-btn:hover {

@@ -72,6 +72,40 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
+    // Premium Text Masking
+    document.querySelectorAll('.reveal-mask').forEach(el => {
+        const content = el.innerHTML;
+        el.innerHTML = `<span class="reveal-mask-line"><span class="reveal-mask-inner">${content}</span></span>`;
+        revealObserver.observe(el);
+    });
+
+    /* ════════════════════════════════════
+       MAGNETIC HOVER EFFECT & PARALLAX
+    ════════════════════════════════════ */
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = `translate(0px, 0px)`;
+            btn.style.transition = 'transform 0.7s var(--ease-premium)';
+        });
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transition = 'none';
+        });
+    });
+
+    const parallaxBg = document.querySelector('.parallax-bg');
+    if (parallaxBg) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            parallaxBg.style.transform = `translateY(${scrolled * 0.15}px)`;
+        }, { passive: true });
+    }
+
     // 2. Animated rules (lines that draw themselves)
     document.querySelectorAll('.reveal-line, .reveal-line-v, .line-wrap').forEach(el => revealObserver.observe(el));
 
