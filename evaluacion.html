@@ -507,7 +507,9 @@
         .success-panel {
             display: none;
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 4rem 1rem 6rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .success-panel.visible { display: block; }
@@ -527,11 +529,12 @@
 
         .success-title {
             font-family: var(--font-h);
-            font-size: 2rem;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
             font-weight: 400;
             letter-spacing: 3px;
             color: var(--carbon);
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .success-desc {
@@ -539,8 +542,68 @@
             color: var(--taupe);
             font-weight: 300;
             line-height: 1.8;
-            max-width: 420px;
-            margin: 0 auto 2.5rem;
+            max-width: 480px;
+            margin: 0 auto 2rem;
+        }
+
+        .success-protocol {
+            text-align: left;
+            max-width: 520px;
+            margin: 2.5rem auto 3rem;
+            border-top: 1px solid var(--stone-200);
+            border-bottom: 1px solid var(--stone-200);
+            padding: 2.2rem 0;
+        }
+
+        .protocol-title {
+            font-family: var(--font-b);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            color: var(--bronze);
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+            text-align: center;
+        }
+
+        .protocol-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .protocol-step {
+            display: grid;
+            grid-template-columns: 28px 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .protocol-num {
+            font-family: var(--font-h);
+            font-size: 1.35rem;
+            color: var(--bronze);
+            font-style: italic;
+            line-height: 1;
+            padding-top: 1px;
+        }
+
+        .protocol-text h4 {
+            font-family: var(--font-b);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--carbon);
+            margin-bottom: 0.35rem;
+            text-transform: uppercase;
+        }
+
+        .protocol-text p {
+            font-family: var(--font-b);
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: var(--taupe);
+            line-height: 1.6;
         }
 
         /* ── VALIDATION ── */
@@ -824,9 +887,41 @@
                 <div class="success-icon">
                     <i class="fas fa-check"></i>
                 </div>
-                <h2 class="success-title">EVALUACIÓN ENVIADA</h2>
-                <p class="success-desc">Su evaluación fue enviada directamente a los socios fundadores por WhatsApp. En breve le contactarán para analizar su caso de forma personalizada.</p>
-                <a href="index.html" style="display:inline-block; font-family: var(--font-b); font-size: 0.65rem; letter-spacing: 2px; color: var(--taupe); text-decoration: none; border-bottom: 1px solid var(--stone-300); padding-bottom: 2px;">VOLVER AL SITIO</a>
+                <h2 class="success-title">PROTOCOLO DE CONFIDENCIALIDAD INICIADO</h2>
+                <p class="success-desc">Su planteamiento ha sido registrado de forma segura. Se ha enviado una copia a la bandeja directa de nuestros socios fundadores.</p>
+                
+                <div class="success-protocol">
+                    <div class="protocol-title">¿Qué sucede a continuación?</div>
+                    <div class="protocol-steps">
+                        
+                        <div class="protocol-step">
+                            <span class="protocol-num">I</span>
+                            <div class="protocol-text">
+                                <h4>Evaluación de Viabilidad (24 Horas)</h4>
+                                <p>Los socios fundadores analizan la información del caso personalmente para verificar la ausencia de conflictos de interés y ponderar la solidez de la posición jurídica.</p>
+                            </div>
+                        </div>
+
+                        <div class="protocol-step">
+                            <span class="protocol-num">II</span>
+                            <div class="protocol-text">
+                                <h4>Contacto Personal Directo</h4>
+                                <p>Si el caso cumple con nuestro estándar de viabilidad, un socio fundador le contactará personalmente vía telefónica o WhatsApp para agendar una sesión privada.</p>
+                            </div>
+                        </div>
+
+                        <div class="protocol-step">
+                            <span class="protocol-num">III</span>
+                            <div class="protocol-text">
+                                <h4>Sesión de Diagnóstico</h4>
+                                <p>Definiremos en conjunto el mapa de ruta procesal y la estrategia a seguir, ya sea de forma presencial en nuestras oficinas o a través de una videoconferencia cifrada.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <a href="index.html" style="display:inline-block; font-family: var(--font-b); font-size: 0.65rem; letter-spacing: 2px; color: var(--taupe); text-decoration: none; border-bottom: 1px solid var(--stone-300); padding-bottom: 2px; text-transform: uppercase;">VOLVER AL INICIO</a>
             </div>
 
         </div>
