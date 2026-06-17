@@ -13,12 +13,12 @@
     --stone-100:    #f2ede4;
     --stone-200:    #e8e1d5;
     --stone-300:    #d5ccbf;
-    --warm-gray:    #b0a99e;
+    --warm-gray:    #9c9489; /* Refined from #b0a99e for better eyebrow legibility */
     --taupe:        #8c837a;
-    --taupe-dark:   #6b6260;
+    --taupe-dark:   #544e4b; /* Darkened from #6b6260 for better body text contrast and reading comfort */
     --carbon:       #2e2c2a;
     --carbon-deep:  #1a1917;
-    --bronze:       #9e8e70;
+    --bronze:       #958463; /* Enriched gold-bronze tone for premium accent presence */
 
     /* Semantic aliases */
     --bg-base:              var(--ivory);
@@ -748,10 +748,11 @@ section { position: relative; }
 
 .principio-desc {
     font-family: var(--font-body);
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     font-weight: 300;
     color: var(--text-secondary);
-    line-height: 1.8;
+    line-height: 1.85;
+    letter-spacing: 0.1px;
 }
 
 
@@ -855,10 +856,11 @@ section { position: relative; }
 
 .valor-desc {
     font-family: var(--font-body);
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     font-weight: 300;
     color: var(--text-secondary);
-    line-height: 1.8;
+    line-height: 1.85;
+    letter-spacing: 0.1px;
 }
 
 
