@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Animated rules (lines that draw themselves)
-    document.querySelectorAll('.reveal-line').forEach(el => revealObserver.observe(el));
+    document.querySelectorAll('.reveal-line, .reveal-line-v, .line-wrap').forEach(el => revealObserver.observe(el));
 
     // 3. Stagger grids — assign --stagger-i to each child automatically
     document.querySelectorAll('.stagger-grid').forEach(grid => {

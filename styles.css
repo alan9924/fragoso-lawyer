@@ -507,20 +507,6 @@ nav.scrolled {
     transform: scaleY(1);
 }
 
-/* animated horizontal full-bleed divider: scales from center to edges */
-.reveal-line-full {
-    width: 100%;
-    height: 1px;
-    background: var(--stone-200);
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 1.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    will-change: transform;
-}
-.reveal-line-full.visible {
-    transform: scaleX(1);
-}
-
 /* stagger-item: controlled via JS-set --stagger-i CSS var */
 .stagger-item {
     opacity: 0.18;
@@ -580,6 +566,7 @@ section { position: relative; }
 .mision-section {
     padding: var(--section-gap) 2rem;
     background: var(--bg-base);
+    border-top: 1px solid var(--stone-200);
 }
 
 .mision-container {
@@ -784,6 +771,7 @@ section { position: relative; }
 .valores-section {
     padding: var(--section-gap) 2rem;
     background: var(--bg-base);
+    border-top: 1px solid var(--stone-200);
 }
 
 .valores-header {
@@ -1379,6 +1367,7 @@ section { position: relative; }
 footer {
     padding: 5rem 2rem 3rem;
     background: var(--bg-base);
+    border-top: 1px solid var(--stone-200);
     text-align: center;
 }
 
@@ -1477,6 +1466,32 @@ footer {
 
 .areas-cta-wrap {
     text-align: center;
+}
+
+/* ─── FULL-BLEED ANIMATED DIVIDER LINES ─── */
+.line-wrap {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 2.5rem 2rem; /* generous spacing for quiet luxury feel */
+}
+
+.line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #b7a37a; /* warm classic bronze line */
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+}
+
+.line-wrap.visible .line {
+    animation: drawLine 1.4s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+@keyframes drawLine {
+    to { transform: scaleX(1); }
 }
 
 
