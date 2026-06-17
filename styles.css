@@ -444,7 +444,7 @@ nav.scrolled {
 
 /* fade + slide up (default) */
 .fade-in-up {
-    opacity: 0;
+    opacity: 0.18; /* Text is subtly visible before animation completes */
     transform: translateY(15px);
     transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
@@ -456,7 +456,7 @@ nav.scrolled {
 
 /* fade + slide left */
 .fade-in-left {
-    opacity: 0;
+    opacity: 0.18;
     transform: translateX(-15px);
     transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 1s cubic-bezier(0.16, 1, 0.3, 1);
@@ -468,7 +468,7 @@ nav.scrolled {
 
 /* fade + slide right */
 .fade-in-right {
-    opacity: 0;
+    opacity: 0.18;
     transform: translateX(15px);
     transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 1s cubic-bezier(0.16, 1, 0.3, 1);
@@ -480,7 +480,7 @@ nav.scrolled {
 
 /* pure fade */
 .fade-in {
-    opacity: 0;
+    opacity: 0.18;
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .fade-in.visible { opacity: 1; }
@@ -498,7 +498,7 @@ nav.scrolled {
 
 /* stagger-item: controlled via JS-set --stagger-i CSS var */
 .stagger-item {
-    opacity: 0;
+    opacity: 0.18;
     transform: translateY(12px);
     transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
@@ -971,16 +971,17 @@ section { position: relative; }
     max-width: var(--container);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    grid-template-columns: repeat(2, 1fr); /* 2x2 layout on desktop */
+    gap: 20px; /* elegant gaps instead of dense 2px dividers for museum look */
 }
 
 .area-card {
     background: var(--bg-surface);
-    padding: 3.5rem 2.5rem;
+    padding: 4rem 3rem;
     text-align: center;
     transition: var(--transition);
-    border: 1px solid transparent;
+    border: 1px solid var(--stone-200); /* subtle border */
+    border-radius: 4px;
     position: relative;
     overflow: hidden;
 }
@@ -995,20 +996,27 @@ section { position: relative; }
     transition: width 0.5s var(--ease-out-quart);
 }
 
-.area-card:hover { background: var(--stone-100); border-color: var(--stone-200); transform: translateY(-4px); }
+.area-card:hover { background: var(--stone-100); border-color: var(--stone-300); transform: translateY(-4px); }
 .area-card:hover::after { width: 60%; }
 
 .area-icon {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%; /* circular icon */
+    border: 1px solid var(--stone-200);
+    background: var(--bg-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto 2rem;
     color: var(--warm-gray);
-    transition: color 0.4s;
+    transition: all 0.4s var(--ease-out-quart);
+    padding: 15px;
 }
 
 .area-icon svg { width: 100%; height: 100%; }
 
-.area-card:hover .area-icon { color: var(--accent); }
+.area-card:hover .area-icon { color: var(--accent); border-color: var(--accent); background: var(--stone-100); }
 
 .area-title {
     font-family: var(--font-heading);
@@ -1404,6 +1412,49 @@ footer {
     font-size: 0.75rem;
     font-weight: 300;
     letter-spacing: 0.5px;
+}
+
+/* ─── NEW CTA BUTTONS (BORDER HOVER SYSTEM) ─── */
+.promesa-cta-btn, .areas-cta-btn {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    border: 1px solid var(--bronze);
+    color: var(--bronze);
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.35s var(--ease-out-quart), color 0.35s var(--ease-out-quart), border-color 0.35s var(--ease-out-quart), transform 0.35s var(--ease-out-quart);
+    margin-top: 2rem;
+}
+
+.promesa-cta-btn {
+    border-color: rgba(253, 252, 249, 0.4);
+    color: var(--ivory);
+}
+
+.promesa-cta-btn:hover {
+    background: rgba(253, 252, 249, 0.08); /* soft fill color */
+    color: var(--ivory);
+    border-color: var(--ivory);
+    transform: translateY(-2px);
+}
+
+.areas-cta-btn {
+    margin-top: 3rem;
+}
+
+.areas-cta-btn:hover {
+    background: rgba(149, 132, 99, 0.08); /* soft bronze fill */
+    color: var(--bronze);
+    border-color: var(--bronze);
+    transform: translateY(-2px);
+}
+
+.areas-cta-wrap {
+    text-align: center;
 }
 
 
