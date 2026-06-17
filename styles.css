@@ -1453,7 +1453,22 @@ footer {
 }
 
 @media (max-width: 768px) {
-    :root { --section-gap: 6rem; }
+    :root { 
+        --section-gap: 5rem; 
+    }
+
+    /* Padding adjustments for all sections on mobile */
+    .acerca-section, 
+    .mision-section, 
+    .promesa-section, 
+    .principios-section, 
+    .areas-section, 
+    .porque-section, 
+    .socios-section, 
+    .valores-section {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
 
     .hero {
         grid-template-columns: 1fr;
@@ -1462,22 +1477,46 @@ footer {
 
     .hero-img-wrap {
         width: 100%;
-        opacity: 0.35;
+        opacity: 0.28; /* Slightly reduced to enhance mobile text readability */
     }
 
     .hero-img-veil {
-        background: linear-gradient(to top, var(--stone-100) 30%, transparent 100%);
+        background: linear-gradient(to top, var(--stone-100) 25%, transparent 100%);
     }
 
     .hero-content {
-        padding: 8rem 2rem 4rem;
+        padding: 9rem 1.5rem 4rem;
         max-width: 100%;
         text-align: center;
+    }
+
+    .hero-title {
+        font-size: clamp(2.8rem, 10vw, 3.8rem);
+        line-height: 1.1;
+        margin-bottom: 1.75rem;
     }
 
     .hero-rule { margin: 0 auto 2rem; }
 
     .hero-fragment-wrap { display: none; }
+
+    /* Persistent floating WhatsApp button on mobile for conversion */
+    .hero-whatsapp-float {
+        position: fixed;
+        bottom: 2rem;
+        right: 1.5rem;
+        z-index: 999;
+        width: 50px;
+        height: 50px;
+        background: var(--ivory);
+        border: 1px solid var(--stone-200);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        color: var(--carbon);
+        transition: transform 0.3s;
+    }
+    .hero-whatsapp-float:active {
+        transform: scale(0.95);
+    }
 
     .acerca-container { grid-template-columns: 1fr; gap: 3rem; }
     .acerca-text { text-align: center; }
@@ -1485,14 +1524,65 @@ footer {
     .acerca-desc { margin: 0 auto; max-width: 100%; }
     .acerca-aside { display: none; }
 
-    .areas-grid { grid-template-columns: 1fr; gap: 2px; }
+    /* Áreas de Práctica - Stacked cards with visible list for touch devices */
+    .areas-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1.25rem; 
+        background: transparent;
+        border: none;
+    }
+    .area-card {
+        border: 1px solid var(--stone-200);
+        border-radius: 3px;
+        padding: 2.5rem 2rem;
+    }
+    .area-card .area-sub-list {
+        max-height: none;
+        opacity: 0.95;
+        margin-top: 1.5rem;
+    }
 
     .mision-container { grid-template-columns: 1fr; gap: 3rem; }
     .mision-divider-v { width: 36px; height: 1px; align-self: auto; }
-    .principios-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .valores-grid { grid-template-columns: 1fr; }
-    .porque-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .porque-item { text-align: center; }
+    
+    .principios-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1.25rem; 
+        background: transparent;
+        border: none;
+    }
+    .principio-item {
+        border: 1px solid var(--stone-200) !important;
+        border-radius: 3px;
+        padding: 2.5rem 2rem;
+    }
+
+    /* Valores - Clean card layout for mobile */
+    .valores-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1.25rem;
+        background: transparent;
+        border: none;
+    }
+    .valor-card {
+        border: 1px solid var(--stone-200) !important;
+        border-radius: 3px;
+        padding: 2.5rem 2rem;
+    }
+
+    /* Diferenciadores - Structured mobile view */
+    .porque-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1.25rem; 
+        background: transparent;
+        border: none;
+    }
+    .porque-item { 
+        text-align: center; 
+        border: 1px solid var(--stone-200) !important;
+        border-radius: 3px;
+        padding: 2.5rem 2rem;
+    }
 
     .socios-grid { grid-template-columns: 1fr; }
     .socios-divider-vertical { display: none; }
@@ -1504,5 +1594,5 @@ footer {
 }
 
 @media (max-width: 400px) {
-    .hero-title { font-size: 3.5rem; }
+    .hero-title { font-size: 2.8rem; }
 }
