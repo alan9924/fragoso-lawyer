@@ -211,4 +211,84 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* ════════════════════════════════════
+       MOBILE CAROUSEL — Swipe hint + card snap animation
+    ════════════════════════════════════ */
+    const isMobile = () => window.innerWidth <= 768;
+
+    const carouselSelectors = [
+        '.areas-grid',
+        '.principios-grid',
+        '.valores-grid',
+        '.porque-grid'
+    ];
+
+    if (isMobile()) {
+        carouselSelectors.forEach(selector => {
+            const track = document.querySelector(selector);
+            if (!track) return;
+
+            const cards = Array.from(track.children);
+            if (!cards.length) return;
+
+            /* ── 1. SWIPE HINT ─────────────────────────────────
+               Insert animated hint BEFORE the track.
+               Disappears on first scroll or after 2.8s.
+            ─────────────────────────────────────────────────── */
+            const hint = document.createElement('div');
+            hint.className = 'carousel-swipe-hint';
+            hint.setAttribute('aria-hidden', 'true');
+            hint.innerHTML =
+                `<span class="swipe-hand">` +
+                    `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" aria-hidden="true">` +
+                        `<path d="M6 16 L26 16" stroke="currentColor" stroke-width="1"/>` +
+                        `<polyline points="20,11 26,16 20,21" stroke="currentColor" stroke-width="1" fill="none"/>` +
+                        `<line x1="2" y1="16" x2="5" y2="16" stroke="currentColor" stroke-width="1" opacity="0.4"/>` +
+                    `</svg>` +
+                `</span>` +
+                `<span class="swipe-label">DESLIZA</span>`;
+
+            track.parentElement.insertBefore(hint, track);
+
+            /* Auto-dismiss after 2.8s */
+            const dismissHint = () => {
+                hint.classList.add('hint-dismissed');
+            };
+            const hintTimer = setTimeout(dismissHint, 2800);
+
+            /* Dismiss on first scroll interaction */
+            track.addEventListener('scroll', () => {
+                clearTimeout(hintTimer);
+                dismissHint();
+            }, { once: true, passive: true });
+
+            /* ── 2. ACTIVE CARD DETECTION ──────────────────────
+               On each scroll event, determine which card is
+               snapped and apply .carousel-active class to it.
+               Adjacent cards get .carousel-adjacent (dimmed).
+            ─────────────────────────────────────────────────── */
+            const updateActiveCard = () => {
+                const gap = 14;
+                const cardWidth = cards[0].offsetWidth + gap;
+                const activeIndex = Math.round(track.scrollLeft / cardWidth);
+
+                cards.forEach((card, i) => {
+                    if (i === activeIndex) {
+                        card.classList.add('carousel-active');
+                        card.classList.remove('carousel-adjacent');
+                    } else {
+                        card.classList.remove('carousel-active');
+                        card.classList.add('carousel-adjacent');
+                    }
+                });
+            };
+
+            /* Set initial active state */
+            cards[0].classList.add('carousel-active');
+            cards.slice(1).forEach(c => c.classList.add('carousel-adjacent'));
+
+            track.addEventListener('scroll', updateActiveCard, { passive: true });
+        });
+    }
+
 });

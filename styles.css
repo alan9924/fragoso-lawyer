@@ -1937,3 +1937,98 @@ footer {
         min-width: 88vw;
     }
 }
+
+/* ══════════════════════════════════════════════════════
+   MOBILE CAROUSEL ANIMATIONS
+   — Swipe hint:    fades in → pulses right → auto-hides
+   — Active card:   full opacity + slight lift
+   — Adjacent card: dimmed + scaled back (depth effect)
+   Only applied on mobile (JS handles the class toggling)
+══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* ── Swipe Hint ──────────────────────────────────── */
+    .carousel-swipe-hint {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 1.5rem 0.75rem;
+        opacity: 1;
+        transition: opacity 0.8s var(--ease-premium);
+        pointer-events: none;
+    }
+
+    .carousel-swipe-hint.hint-dismissed {
+        opacity: 0;
+        /* collapse height so it doesn't leave whitespace */
+        max-height: 0;
+        padding-bottom: 0;
+        overflow: hidden;
+        transition: opacity 0.6s var(--ease-premium),
+                    max-height 0.5s var(--ease-premium) 0.3s,
+                    padding 0.5s var(--ease-premium) 0.3s;
+    }
+
+    .swipe-hand {
+        display: flex;
+        align-items: center;
+        color: var(--bronze);
+        opacity: 0.75;
+        /* Pulse right animation — bounces twice then rests */
+        animation: swipePulse 1.6s var(--ease-premium) infinite;
+    }
+
+    .swipe-label {
+        font-family: var(--font-body);
+        font-size: 0.52rem;
+        font-weight: 400;
+        letter-spacing: 3.5px;
+        color: var(--warm-gray);
+        text-transform: uppercase;
+    }
+
+    @keyframes swipePulse {
+        0%   { transform: translateX(0px);  opacity: 0.5; }
+        35%  { transform: translateX(7px);  opacity: 1;   }
+        60%  { transform: translateX(3px);  opacity: 0.8; }
+        80%  { transform: translateX(8px);  opacity: 1;   }
+        100% { transform: translateX(0px);  opacity: 0.5; }
+    }
+
+    /* ── Active card: full presence ─────────────────── */
+    .area-card.carousel-active,
+    .principio-item.carousel-active,
+    .valor-card.carousel-active,
+    .porque-item.carousel-active {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        box-shadow: 0 6px 28px rgba(0,0,0,0.06);
+        border-color: var(--stone-300) !important;
+        transition: opacity 0.45s var(--ease-premium),
+                    transform 0.45s var(--ease-premium),
+                    box-shadow 0.45s var(--ease-premium),
+                    border-color 0.45s var(--ease-premium);
+    }
+
+    /* ── Adjacent cards: step back and dim ──────────── */
+    .area-card.carousel-adjacent,
+    .principio-item.carousel-adjacent,
+    .valor-card.carousel-adjacent,
+    .porque-item.carousel-adjacent {
+        opacity: 0.42;
+        transform: scale(0.97) translateY(2px);
+        box-shadow: none;
+        border-color: var(--stone-200) !important;
+        transition: opacity 0.45s var(--ease-premium),
+                    transform 0.45s var(--ease-premium),
+                    box-shadow 0.45s var(--ease-premium),
+                    border-color 0.45s var(--ease-premium);
+    }
+
+    /* Prevent opacity double-conflict with reveal animations on active card */
+    .area-card.carousel-active[class*="valor-reveal"],
+    .valor-card.carousel-active[class*="valor-reveal"] {
+        opacity: 1 !important;
+    }
+}
+
