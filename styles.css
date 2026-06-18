@@ -1695,17 +1695,29 @@ footer {
         --section-gap: 5rem; 
     }
 
-    /* Padding adjustments for all sections on mobile */
-    .acerca-section, 
-    .mision-section, 
-    .promesa-section, 
-    .principios-section, 
-    .areas-section, 
-    .porque-section, 
-    .socios-section, 
-    .valores-section {
+    /* Padding adjustments: keep section padding on top/bottom, remove horizontal
+       so carousels can bleed to screen edge and peek the next card */
+    .acerca-section,
+    .mision-section,
+    .promesa-section {
         padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
+    }
+    /* Carousel sections: top/bottom padding only — horizontal handled per-track */
+    .principios-section,
+    .areas-section,
+    .porque-section,
+    .valores-section {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    /* Carousel section headers keep their own padding */
+    .principios-header,
+    .areas-header,
+    .porque-header,
+    .valores-header {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 
     .hero {
@@ -1782,46 +1794,129 @@ footer {
 
     .mision-container { grid-template-columns: 1fr; gap: 3rem; }
     .mision-divider-v { width: 36px; height: 1px; align-self: auto; }
-    
-    .principios-grid { 
-        grid-template-columns: 1fr; 
-        gap: 1.25rem; 
+
+    .acerca-container { grid-template-columns: 1fr; gap: 3rem; }
+    .acerca-text { text-align: center; }
+    .acerca-rule { margin: 0 auto 2.5rem; }
+    .acerca-desc { margin: 0 auto; max-width: 100%; }
+    .acerca-aside { display: none; }
+
+    /* ═══════════════════════════════════════════════════════
+       MOBILE TOUCH CAROUSEL — Áreas · Principios · Valores · Diferenciadores
+       scroll-snap-type: x mandatory
+       Peek: last ~12vw of next card always visible
+       No dots. No autoplay. Scrollbar hidden. Elegante.
+    ═══════════════════════════════════════════════════════ */
+
+    /* Shared carousel track */
+    .areas-grid,
+    .principios-grid,
+    .valores-grid,
+    .porque-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        gap: 14px;
+        padding: 0 1.5rem 1.75rem;
+        /* Fade-to-edge illusion on right side */
+        -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+        mask-image: linear-gradient(to right, black 80%, transparent 100%);
+        /* Remove previous desktop overrides */
+        grid-template-columns: unset;
         background: transparent;
         border: none;
     }
+
+    /* Hide scrollbar — keep interaction */
+    .areas-grid::-webkit-scrollbar,
+    .principios-grid::-webkit-scrollbar,
+    .valores-grid::-webkit-scrollbar,
+    .porque-grid::-webkit-scrollbar {
+        display: none;
+    }
+    .areas-grid,
+    .principios-grid,
+    .valores-grid,
+    .porque-grid {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Card sizing — 82vw = comfortable, 12vw peek of next, 6vw gap buffer */
+    .area-card,
+    .principio-item,
+    .valor-card,
+    .porque-item {
+        flex: 0 0 82vw;
+        min-width: 82vw;
+        max-width: 82vw;
+        scroll-snap-align: start;
+        border: 1px solid var(--stone-200) !important;
+        border-radius: 4px;
+        padding: 2.25rem 1.75rem;
+        /* Cancel grid-forced widths */
+        width: unset;
+    }
+
+    /* Last card: full snap + no mask cut */
+    .area-card:last-child,
+    .principio-item:last-child,
+    .valor-card:last-child,
+    .porque-item:last-child {
+        flex: 0 0 84vw;
+        min-width: 84vw;
+        margin-right: 1.5rem;
+    }
+
+    /* Áreas: show sub-list always open on mobile */
+    .area-card .area-sub-list {
+        max-height: none;
+        opacity: 0.95;
+        margin-top: 1.5rem;
+    }
+    .area-card .area-more-indicator { display: none; }
+
+    /* Principios: text stagger still fires, adjust border */
     .principio-item {
-        border: 1px solid var(--stone-200) !important;
-        border-radius: 3px;
-        padding: 2.5rem 2rem;
+        border-right: 1px solid var(--stone-200) !important;
+    }
+    .principio-item:nth-child(3n) {
+        border-right: 1px solid var(--stone-200) !important;
     }
 
-    /* Valores - Clean card layout for mobile */
-    .valores-grid { 
-        grid-template-columns: 1fr; 
-        gap: 1.25rem;
-        background: transparent;
-        border: none;
-    }
-    .valor-card {
-        border: 1px solid var(--stone-200) !important;
-        border-radius: 3px;
-        padding: 2.5rem 2rem;
+    /* Por qué escogernos: center align in carousel */
+    .porque-item {
+        text-align: left;
     }
 
-    /* Diferenciadores - Structured mobile view */
-    .porque-grid { 
-        grid-template-columns: 1fr; 
-        gap: 1.25rem; 
-        background: transparent;
-        border: none;
-    }
-    .porque-item { 
-        text-align: center; 
-        border: 1px solid var(--stone-200) !important;
-        border-radius: 3px;
-        padding: 2.5rem 2rem;
+    /* Subtle scroll progress track (no dots — just a thin line) */
+    .principios-section::after,
+    .areas-section::after,
+    .porque-section::after,
+    .valores-section::after {
+        content: '';
+        display: block;
+        width: 3rem;
+        height: 1px;
+        background: var(--bronze);
+        opacity: 0.35;
+        margin: 0 auto 0.5rem;
     }
 
+    /* CTA wrap for areas */
+    .areas-cta-wrap {
+        padding: 0 1.5rem;
+    }
+
+    /* Socios — keep vertical */
+    .socios-section {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
     .socios-grid { grid-template-columns: 1fr; }
     .socios-divider-vertical { display: none; }
     .pilar { border-bottom: 1px solid var(--stone-200); padding-bottom: 3rem; margin-bottom: 3rem; }
@@ -1833,4 +1928,12 @@ footer {
 
 @media (max-width: 400px) {
     .hero-title { font-size: 2.8rem; }
+    /* Slightly narrower cards on very small screens */
+    .area-card,
+    .principio-item,
+    .valor-card,
+    .porque-item {
+        flex: 0 0 88vw;
+        min-width: 88vw;
+    }
 }
