@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
 
-    document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .fade-in').forEach(el => {
+    document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .fade-in, .valor-reveal-1, .valor-reveal-2, .valor-reveal-3, .valor-reveal-4, .valor-reveal-5, .valor-reveal-6').forEach(el => {
         revealObserver.observe(el);
     });
 

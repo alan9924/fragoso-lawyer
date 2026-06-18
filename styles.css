@@ -587,7 +587,7 @@ section { position: relative; }
 /* ─── MISIÓN Y VISIÓN ─── */
 .mision-section {
     padding: var(--section-gap) 2rem;
-    background: var(--bg-base);
+    background: var(--bg-surface);
     border-top: 1px solid var(--stone-200);
 }
 
@@ -713,7 +713,7 @@ section { position: relative; }
 /* ─── NUESTROS PRINCIPIOS ─── */
 .principios-section {
     padding: var(--section-gap) 2rem;
-    background: var(--bg-surface);
+    background: var(--stone-100);
 }
 
 .principios-header {
@@ -798,6 +798,33 @@ section { position: relative; }
     color: var(--text-secondary);
     line-height: 1.85;
     letter-spacing: 0.1px;
+}
+
+/* Soft text reveal inside stagger items */
+.principio-num,
+.principio-title,
+.principio-desc {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1.2s var(--ease-premium), transform 1.2s var(--ease-premium);
+}
+
+.principio-item.visible .principio-num {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--stagger-i, 0) * 100ms + 150ms);
+}
+
+.principio-item.visible .principio-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--stagger-i, 0) * 100ms + 300ms);
+}
+
+.principio-item.visible .principio-desc {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--stagger-i, 0) * 100ms + 450ms);
 }
 
 
@@ -908,11 +935,80 @@ section { position: relative; }
     letter-spacing: 0.1px;
 }
 
+/*
+ * ════════════════════════════════════════════════════
+ *  VALORES — Sistema de animación coreografiado
+ *  Cada tarjeta comparte la base: opacidad + desplaza-
+ *  miento. La variación sutil está en la dirección,
+ *  la intensidad del traslado y el timing. Sin rebotes,
+ *  sin rotaciones, sin movimientos continuos.
+ * ════════════════════════════════════════════════════
+ */
+
+/* BASE COMPARTIDA: todos parten de ocultos */
+[class^="valor-reveal-"] {
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+/* 1. Integridad — sube desde abajo, lento y sólido */
+.valor-reveal-1 {
+    transform: translateY(28px);
+    transition: opacity 1.3s var(--ease-premium) 0ms,
+                transform 1.3s var(--ease-premium) 0ms;
+}
+
+/* 2. Claridad — sube desde abajo, levemente más rápido */
+.valor-reveal-2 {
+    transform: translateY(22px);
+    transition: opacity 1.1s var(--ease-premium) 120ms,
+                transform 1.1s var(--ease-premium) 120ms;
+}
+
+/* 3. Excelencia — entra desde la derecha, sutil */
+.valor-reveal-3 {
+    transform: translate(20px, 10px);
+    transition: opacity 1.2s var(--ease-premium) 240ms,
+                transform 1.2s var(--ease-premium) 240ms;
+}
+
+/* 4. Compromiso — sube desde abajo, retraso mayor */
+.valor-reveal-4 {
+    transform: translateY(28px);
+    transition: opacity 1.3s var(--ease-premium) 100ms,
+                transform 1.3s var(--ease-premium) 100ms;
+}
+
+/* 5. Rigor Jurídico — entra desde la izquierda, sutil */
+.valor-reveal-5 {
+    transform: translate(-20px, 10px);
+    transition: opacity 1.2s var(--ease-premium) 220ms,
+                transform 1.2s var(--ease-premium) 220ms;
+}
+
+/* 6. Orientación al Cliente — fade casi puro, el más suave */
+.valor-reveal-6 {
+    transform: translateY(14px);
+    transition: opacity 1.5s var(--ease-premium) 340ms,
+                transform 1.5s var(--ease-premium) 340ms;
+}
+
+/* ESTADO ACTIVO: todas las variantes llegan al mismo punto de reposo */
+.valor-reveal-1.visible,
+.valor-reveal-2.visible,
+.valor-reveal-3.visible,
+.valor-reveal-4.visible,
+.valor-reveal-5.visible,
+.valor-reveal-6.visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
 
 /* ─── ACERCA DE NOSOTROS ─── */
 .acerca-section {
     padding: var(--section-gap) 3rem;
-    background: var(--bg-surface);
+    background: var(--bg-base);
 }
 
 .acerca-container {
@@ -1002,7 +1098,7 @@ section { position: relative; }
 /* ─── ÁREAS DE PRÁCTICA ─── */
 .areas-section {
     padding: var(--section-gap) 2rem;
-    background: var(--bg-base);
+    background: var(--bg-surface);
 }
 
 .areas-header {
@@ -1197,7 +1293,7 @@ section { position: relative; }
 /* ─── SOCIOS FUNDADORES ─── */
 .socios-section {
     padding: var(--section-gap) 2rem;
-    background: var(--bg-surface);
+    background: var(--stone-100);
     text-align: center;
 }
 
