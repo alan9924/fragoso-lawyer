@@ -1174,6 +1174,43 @@ section { position: relative; }
     border: 1px solid var(--stone-200);
 }
 
+.bento-card--wide {
+    grid-column: span 2;
+    background: var(--ivory);
+    border: 1px solid var(--stone-200);
+}
+.bento-card--wide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--bronze);
+    opacity: 0.9;
+}
+
+/* Wide card internal layout for mobile/tablet */
+.bento-card--wide .bento-card-inner {
+    gap: 2rem;
+}
+
+/* Wide card internal layout for desktop */
+@media (min-width: 1025px) {
+    .bento-card--wide .bento-card-inner {
+        flex-direction: row;
+        gap: 4rem;
+        align-items: center;
+    }
+    .bento-card--wide .bento-col-left {
+        flex: 1;
+        max-width: 45%;
+    }
+    .bento-card--wide .bento-col-right {
+        flex: 1;
+        border-left: 1px solid var(--stone-200);
+        padding-left: 4rem;
+    }
+}
+
 /* ── CARD INNER ─────────────────────────────────────── */
 .bento-card-inner {
     position: relative;
