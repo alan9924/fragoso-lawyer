@@ -217,9 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = () => window.innerWidth <= 768;
 
     const carouselSelectors = [
-        '.areas-grid',
-        '.principios-grid',
-        '.valores-grid',
+        '.areas-bento',
         '.porque-grid'
     ];
 
