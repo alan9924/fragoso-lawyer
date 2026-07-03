@@ -1192,6 +1192,9 @@ section { position: relative; }
 .bento-card--wide .bento-card-inner {
     gap: 2rem;
 }
+.bento-card--wide .bento-col-right {
+    flex-direction: column;
+}
 
 /* Wide card internal layout for desktop */
 @media (min-width: 1025px) {
@@ -1208,6 +1211,7 @@ section { position: relative; }
         flex: 1;
         border-left: 1px solid var(--stone-200);
         padding-left: 4rem;
+        flex-direction: row !important;
     }
 }
 
