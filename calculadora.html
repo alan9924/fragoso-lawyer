@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Laboral | FERRO FRAGOSO</title>
+    <meta name="description" content="Calcula tu finiquito y liquidación laboral en México. Estimación basada en la Ley Federal del Trabajo.">
+    <link rel="icon" type="image/png" href="logo_ff.png">
+    <link rel="apple-touch-icon" href="logo_ff.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="calculadora.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="calculadora-page">
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="navbar" class="transparent-nav formatos-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
+                <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="circular-back-btn" aria-label="Volver a Inicio">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ CALCULATOR WRAPPER ═══ -->
+    <div class="calc-wrapper">
+
+        <!-- STEP 0: LANDING -->
+        <div id="calc-step-0" class="calc-step active">
+            <div class="calc-landing">
+                <div class="calc-landing-tag">HERRAMIENTA GRATUITA</div>
+                <h1 class="calc-landing-title">Calculadora de Finiquito y Liquidación</h1>
+                <p class="calc-landing-subtitle">Estima lo que te corresponde conforme a la Ley Federal del Trabajo de México. Responde 6 preguntas y obtén tu desglose completo.</p>
+                <button id="calc-btn-start" class="calc-landing-btn">Calcular ahora</button>
+            </div>
+        </div>
+
+        <!-- STEP 1: WIZARD -->
+        <div id="calc-step-1" class="calc-step">
+            <div class="calc-wizard">
+                <!-- Header -->
+                <div class="calc-wizard-header">
+                    <div class="calc-wizard-progress" id="calc-progress">
+                        <div class="calc-progress-dot active" data-q="0"></div>
+                        <div class="calc-progress-dot" data-q="1"></div>
+                        <div class="calc-progress-dot" data-q="2"></div>
+                        <div class="calc-progress-dot" data-q="3"></div>
+                        <div class="calc-progress-dot" data-q="4"></div>
+                        <div class="calc-progress-dot" data-q="5"></div>
+                    </div>
+                    <span class="calc-wizard-step-label" id="calc-step-counter">1 / 6</span>
+                    <button class="calc-wizard-close" id="calc-wizard-close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Question Body -->
+                <div class="calc-question-area" id="calc-question-area">
+                    <!-- Dynamically rendered -->
+                </div>
+
+                <!-- Footer -->
+                <div class="calc-wizard-footer">
+                    <button class="calc-btn-prev" id="calc-btn-prev">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button class="calc-btn-next" id="calc-btn-next" disabled>
+                        Continuar <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: RESULTS -->
+        <div id="calc-step-2" class="calc-step">
+            <div class="calc-results" id="calc-results-container">
+                <!-- Dynamically rendered -->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="calculadora-engine.js"></script>
+    <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // ═══ STATE ═══
+        let currentQuestion = 0;
+        const answers = {
+            motivo: null,
+            fechaIngreso: null,
+            fechaSalida: null,
+            salarioMensual: null,
+            prestaciones: 0,
+            zona: 'general',
+        };
+
+        // ═══ DOM REFS ═══
+        const stepEls = [
+            document.getElementById('calc-step-0'),
+            document.getElementById('calc-step-1'),
+            document.getElementById('calc-step-2'),
+        ];
+        const questionArea = document.getElementById('calc-question-area');
+        const btnPrev = document.getElementById('calc-btn-prev');
+        const btnNext = document.getElementById('calc-btn-next');
+        const stepCounter = document.getElementById('calc-step-counter');
+        const progressDots = document.querySelectorAll('.calc-progress-dot');
+
+        // ═══ NAVIGATION ═══
+        function showStep(num) {
+            stepEls.forEach(el => el.classList.remove('active'));
+            stepEls[num].classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        document.getElementById('calc-btn-start').addEventListener('click', () => {
+            showStep(1);
+            renderQuestion(0);
+        });
+
+        document.getElementById('calc-wizard-close-btn').addEventListener('click', () => {
+            showStep(0);
+            currentQuestion = 0;
+        });
+
+        btnPrev.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion(currentQuestion);
+            } else {
+                showStep(0);
+            }
+        });
+
+        btnNext.addEventListener('click', () => {
+            if (!validateCurrentQuestion()) return;
+            if (currentQuestion < 5) {
+                currentQuestion++;
+                renderQuestion(currentQuestion);
+            } else {
+                runCalculation();
+            }
+        });
+
+        const MOTIVOS = [
+            { id: 'renuncia', label: 'Renuncia voluntaria', sub: 'Decisión propia del trabajador', icon: '<i class="fas fa-user-slash"></i>' },
+            { id: 'despido_injustificado', label: 'Despido injustificado', sub: 'Sin causa legal válida', icon: '<i class="fas fa-exclamation-triangle"></i>' },
+            { id: 'despido_justificado', label: 'Despido justificado', sub: 'Causa prevista en Art. 47 LFT', icon: '<i class="fas fa-gavel"></i>' },
+            { id: 'fin_contrato', label: 'Fin de contrato temporal', sub: 'Contrato por tiempo u obra determinada', icon: '<i class="fas fa-calendar-times"></i>' },
+        ];
+
+        const ZONAS = [
+            { id: 'general', label: 'Zona general', sub: 'Todo el país excepto frontera norte', icon: '<i class="fas fa-map-marker-alt"></i>' },
+            { id: 'frontera', label: 'Zona libre frontera norte', sub: 'Municipios fronterizos del norte', icon: '<i class="fas fa-city"></i>' },
+        ];
+
+        function renderQuestion(idx) {
+            currentQuestion = idx;
+            questionArea.innerHTML = '';
+            updateProgress(idx);
+            btnNext.disabled = false;
+            btnNext.textContent = idx === 5 ? 'Calcular' : 'Continuar';
+            btnNext.innerHTML = idx === 5
+                ? 'Calcular <i class="fas fa-calculator"></i>'
+                : 'Continuar <i class="fas fa-arrow-right"></i>';
+
+            const wrap = document.createElement('div');
+            wrap.style.width = '100%';
+
+            switch(idx) {
+                case 0: // Motivo
+                    wrap.innerHTML = `
+                        <div class="calc-question-number">PREGUNTA 01</div>
+                        <h2 class="calc-question-text">¿Cuál es el motivo de terminación?</h2>
+                        <div class="calc-options-grid" id="calc-motivo-options"></div>
+                    `;
+                    questionArea.appendChild(wrap);
+                    const grid = document.getElementById('calc-motivo-options');
+                    MOTIVOS.forEach(m => {
+                        const btn = document.createElement('button');
+                        btn.className = 'calc-option-card' + (answers.motivo === m.id ? ' selected' : '');
+                        btn.innerHTML = `
+                            <div class="calc-option-icon">${m.icon}</div>
+                            <div class="calc-option-label">
+                                ${m.label}
+                                <small>${m.sub}</small>
+                            </div>
+                        `;
+                        btn.addEventListener('click', () => {
+                            answers.motivo = m.id;
+                            grid.querySelectorAll('.calc-option-card').forEach(c => c.classList.remove('selected'));
+                            btn.classList.add('selected');
+                            btnNext.disabled = false;
+                            // Auto-advance after short delay
+                            setTimeout(() => { if (currentQuestion === 0) btnNext.click(); }, 400);
+                        });
+                        grid.appendChild(btn);
+                    });
+                    btnNext.disabled = !answers.motivo;
+                    break;
+
+                case 1: // Fechas
+                    const today = new Date().toISOString().split('T')[0];
+                    wrap.innerHTML = `
+                        <div class="calc-question-number">PREGUNTA 02</div>
+                        <h2 class="calc-question-text">¿Cuáles son las fechas de ingreso y salida?</h2>
+                        <div class="calc-date-row">
+                            <div class="calc-input-group">
+                                <label class="calc-input-label">Fecha de ingreso</label>
+                                <input type="date" class="calc-input" id="calc-fecha-ingreso" 
+                                       value="${answers.fechaIngreso || ''}" max="${today}">
+                            </div>
+                            <div class="calc-input-group">
+                                <label class="calc-input-label">Fecha de salida</label>
+                                <input type="date" class="calc-input" id="calc-fecha-salida" 
+                                       value="${answers.fechaSalida || ''}" max="${today}">
+                            </div>
+                        </div>
+                    `;
+                    questionArea.appendChild(wrap);
+                    const fi = document.getElementById('calc-fecha-ingreso');
+                    const fs = document.getElementById('calc-fecha-salida');
+                    const checkDates = () => {
+                        btnNext.disabled = !(fi.value && fs.value && fi.value < fs.value);
+                    };
+                    fi.addEventListener('change', () => { answers.fechaIngreso = fi.value; checkDates(); });
+                    fs.addEventListener('change', () => { answers.fechaSalida = fs.value; checkDates(); });
+                    checkDates();
+                    break;
+
+                case 2: // Salario
+                    wrap.innerHTML = `
+                        <div class="calc-question-number">PREGUNTA 03</div>
+                        <h2 class="calc-question-text">¿Cuál es el salario mensual bruto?</h2>
+                        <div class="calc-input-group">
+                            <label class="calc-input-label">Monto mensual (MXN)</label>
+                            <input type="number" class="calc-input" id="calc-salario" 
+                                   placeholder="$18,000" min="1" step="100"
+                                   value="${answers.salarioMensual || ''}">
+                        </div>
+                    `;
+                    questionArea.appendChild(wrap);
+                    const salInput = document.getElementById('calc-salario');
+                    salInput.addEventListener('input', () => {
+                        const v = parseFloat(salInput.value);
+                        answers.salarioMensual = v > 0 ? v : null;
+                        btnNext.disabled = !answers.salarioMensual;
+                    });
+                    btnNext.disabled = !answers.salarioMensual;
+                    salInput.focus();
+                    break;
+
+                case 3: // Prestaciones
+                    wrap.innerHTML = `
+                        <div class="calc-question-number">PREGUNTA 04</div>
+                        <h2 class="calc-question-text">¿Hay prestaciones fijas adicionales?</h2>
+                        <div class="calc-input-group">
+                            <label class="calc-input-label">Bonos, despensa, transporte mensuales (MXN)</label>
+                            <input type="number" class="calc-input" id="calc-prestaciones" 
+                                   placeholder="$0 (opcional)" min="0" step="100"
+                                   value="${answers.prestaciones || ''}">
+                        </div>
+                    `;
+                    questionArea.appendChild(wrap);
+                    const prestInput = document.getElementById('calc-prestaciones');
+                    prestInput.addEventListener('input', () => {
+                        answers.prestaciones = parseFloat(prestInput.value) || 0;
+                    });
+                    btnNext.disabled = false; // Optional field
+                    prestInput.focus();
+                    break;
+
+                case 4: // Días de vacaciones gozadas
+                    wrap.innerHTML = `
+                        <div class="calc-question-number">PREGUNTA 05</div>
+                        <h2 class="calc-question-text">¿Cuántos días de vacaciones ya tomaste este año?</h2>
+                        <div class="calc-input-group">
+                            <label class="calc-input-label">Días gozados (0 si ninguno)</label>
+                            <input type="number" class="calc-input" id="calc-vac-gozados" 
+                                   placeholder="0" min="0" max="50"
+                                   value="${answers.diasVacGozados || '0'}">
+                        </div>
+                    `;
+                    questionArea.appendChild(wrap);
+                    const vacInput = document.getElementById('calc-vac-gozados');
+                    vacInput.addEventListener('input', () => {
+                        answers.diasVacGozados = parseInt(vacInput.value) || 0;
+                    });
+                    btnNext.disabled = false;
+                    vacInput.focus();
+                    break;
+
+                case 5: // Zona
+                    wrap.innerHTML = `
+                        <div class="calc-question-number">PREGUNTA 06</div>
+                        <h2 class="calc-question-text">¿En qué zona geográfica laborabas?</h2>
+                        <div class="calc-options-grid" id="calc-zona-options"></div>
+                    `;
+                    questionArea.appendChild(wrap);
+                    const zGrid = document.getElementById('calc-zona-options');
+                    ZONAS.forEach(z => {
+                        const btn = document.createElement('button');
+                        btn.className = 'calc-option-card' + (answers.zona === z.id ? ' selected' : '');
+                        btn.innerHTML = `
+                            <div class="calc-option-icon">${z.icon}</div>
+                            <div class="calc-option-label">
+                                ${z.label}
+                                <small>${z.sub}</small>
+                            </div>
+                        `;
+                        btn.addEventListener('click', () => {
+                            answers.zona = z.id;
+                            zGrid.querySelectorAll('.calc-option-card').forEach(c => c.classList.remove('selected'));
+                            btn.classList.add('selected');
+                            btnNext.disabled = false;
+                        });
+                        zGrid.appendChild(btn);
+                    });
+                    btnNext.disabled = false; // default is 'general'
+                    break;
+            }
+        }
+
+        function updateProgress(idx) {
+            progressDots.forEach((dot, i) => {
+                dot.classList.remove('active', 'done');
+                if (i < idx) dot.classList.add('done');
+                if (i === idx) dot.classList.add('active');
+            });
+            stepCounter.textContent = `${idx + 1} / 6`;
+        }
+
+        function validateCurrentQuestion() {
+            switch(currentQuestion) {
+                case 0: return !!answers.motivo;
+                case 1: return !!(answers.fechaIngreso && answers.fechaSalida && answers.fechaIngreso < answers.fechaSalida);
+                case 2: return answers.salarioMensual > 0;
+                case 3: return true;
+                case 4: return true;
+                case 5: return !!answers.zona;
+            }
+            return false;
+        }
+
+        // ═══ CALCULATION ═══
+        function runCalculation() {
+            const datos = {
+                motivo: answers.motivo,
+                fechaIngreso: new Date(answers.fechaIngreso + 'T00:00:00'),
+                fechaSalida: new Date(answers.fechaSalida + 'T00:00:00'),
+                salarioMensual: answers.salarioMensual,
+                prestaciones: answers.prestaciones || 0,
+                zona: answers.zona,
+                diasVacGozados: answers.diasVacGozados || 0,
+            };
+
+            const result = calcularFiniquitoLiquidacion(datos);
+            renderResults(result);
+            showStep(2);
+        }
+
+        // ═══ RESULTS RENDERING ═══
+        function renderResults(r) {
+            const container = document.getElementById('calc-results-container');
+
+            const motivoLabels = {
+                renuncia: 'Renuncia voluntaria',
+                despido_injustificado: 'Despido injustificado',
+                despido_justificado: 'Despido justificado (Art. 47)',
+                fin_contrato: 'Fin de contrato temporal',
+            };
+
+            const legalTips = {
+                renuncia: {
+                    titulo: 'Tip Legal: Renuncia Voluntaria',
+                    icono: '<i class="fas fa-file-alt" style="color: #ccd0ff;"></i>',
+                    texto: 'Al renunciar voluntariamente, tienes derecho al pago proporcional de tus prestaciones básicas (aguinaldo, vacaciones y prima vacacional), además de tus días trabajados. Si acumulaste 15+ años de servicio, también te corresponde la prima de antigüedad (Art. 162 LFT).'
+                },
+                despido_injustificado: {
+                    titulo: 'Tip Legal: Despido Injustificado',
+                    icono: '<i class="fas fa-exclamation-circle" style="color: #ccd0ff;"></i>',
+                    texto: 'La ley te protege con la indemnización constitucional (90 días de SDI) y 20 días por año trabajado, además de la prima de antigüedad (12 días por año). ¡No firmes hojas en blanco ni cartas de renuncia voluntaria si te están despidiendo!'
+                },
+                despido_justificado: {
+                    titulo: 'Tip Legal: Despido con Causa',
+                    icono: '<i class="fas fa-gavel" style="color: #ccd0ff;"></i>',
+                    texto: 'El patrón debe entregarte por escrito un aviso de rescisión detallando las causas (Art. 47 LFT). Si no te lo entrega, el despido se presume injustificado. Aun siendo justificado, conservas derecho a recibir tu finiquito proporcional.'
+                },
+                fin_contrato: {
+                    titulo: 'Tip Legal: Término de Contrato',
+                    icono: '<i class="fas fa-calendar-check" style="color: #ccd0ff;"></i>',
+                    texto: 'Al vencer el plazo o terminar la obra, tu relación laboral concluye de forma natural. Te corresponde tu finiquito completo. Si la materia del trabajo subsiste, tienes derecho a solicitar una prórroga o permanencia.'
+                }
+            };
+
+            const tip = legalTips[r.motivo] || legalTips['renuncia'];
+
+            let html = `
+                <div class="dashboard-container">
+                    <!-- Top Level Brand & Status -->
+                    <div class="dash-top-bar">
+                        <span class="dash-brand">FERRO FRAGOSO</span>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span class="dash-pill-level">${motivoLabels[r.motivo].toUpperCase()}</span>
+                            <a href="index.html" class="circular-back-btn" aria-label="Volver a Inicio" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; width: 44px; height: 44px; position: static;">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Welcome / Overview Card -->
+                    <div class="dash-card-welcome">
+                        <div class="dash-welcome-eyebrow">ESTIMACIÓN DE FINIQUITO Y LIQUIDACIÓN</div>
+                        <h2 class="dash-welcome-title">Cálculo completado</h2>
+                        <p class="dash-welcome-desc">
+                            Periodo: ${formatDateES(r.fechaIngreso)} al ${formatDateES(r.fechaSalida)} <br>
+                            Antigüedad: <strong>${r.antiguedad.anios} años</strong> (${r.antiguedad.diasTotales} días)
+                        </p>
+                    </div>
+
+                    <!-- Main Progress / Total Neto Card -->
+                    <div class="dash-card-progress">
+                        <div class="dash-progress-label">TOTAL NETO ESTIMADO</div>
+                        <div class="dash-progress-value">${formatMoneda(r.totalNeto)}</div>
+                        <div class="dash-progress-bar-container">
+                            <div class="dash-progress-bar-fill" style="width: 100%;"></div>
+                        </div>
+                        <div class="dash-progress-footer">
+                            <span>Bruto: ${formatMoneda(r.totalBruto)}</span>
+                            <span>ISR Retenido: -${formatMoneda(r.isrMonto)}</span>
+                        </div>
+                    </div>
+
+                    <!-- Sub-metrics Grid (Best Score & Speed Style) -->
+                    <div class="dash-metrics-grid">
+                        <div class="dash-metric-card">
+                            <span class="dash-metric-label">Finiquito Proporcional</span>
+                            <span class="dash-metric-value">${formatMoneda(r.totalFiniquito)}</span>
+                        </div>
+                        <div class="dash-metric-card">
+                            <span class="dash-metric-label">Indemnizaciones</span>
+                            <span class="dash-metric-value">${formatMoneda(r.totalLiquidacion)}</span>
+                        </div>
+                    </div>
+
+                    <!-- Legal Tips Card (Achievements Unlocked Style) -->
+                    <div class="dash-card-achievement">
+                        <div class="dash-achievement-header">
+                            <span>Recomendación Jurídica</span>
+                            <span class="dash-achievement-action">Saber más</span>
+                        </div>
+                        <div class="dash-achievement-body">
+                            <div class="dash-achievement-icon-wrapper">
+                                <span class="dash-achievement-icon">${tip.icono}</span>
+                            </div>
+                            <div class="dash-achievement-text-col">
+                                <div class="dash-achievement-title">${tip.titulo}</div>
+                                <div class="dash-achievement-desc">${tip.texto}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Breakdowns (Collapse-ready or simple elegant rows) -->
+                    <div class="calc-desglose">
+                        <div class="calc-desglose-title">Desglose Detallado de Conceptos</div>
+            `;
+
+            // Finiquito items
+            r.finiquito.forEach(item => {
+                html += `
+                    <div class="calc-desglose-row">
+                        <div class="calc-desglose-left">
+                            <span class="calc-desglose-concepto">${item.concepto}</span>
+                            <span class="calc-desglose-detalle">${item.detalle}</span>
+                            ${item.detalleExtra ? `<span class="calc-desglose-detalle">${item.detalleExtra}</span>` : ''}
+                        </div>
+                        <span class="calc-desglose-monto">${formatMoneda(item.monto)}</span>
+                    </div>
+                `;
+            });
+
+            // Liquidacion items
+            if (r.liquidacion.length > 0) {
+                r.liquidacion.forEach(item => {
+                    html += `
+                        <div class="calc-desglose-row">
+                            <div class="calc-desglose-left">
+                                <span class="calc-desglose-concepto">${item.concepto}</span>
+                                <span class="calc-desglose-detalle">${item.detalle}</span>
+                            </div>
+                            <span class="calc-desglose-monto">${formatMoneda(item.monto)}</span>
+                        </div>
+                    `;
+                });
+            }
+
+            // ISR
+            if (r.isr && r.isrMonto > 0) {
+                html += `
+                    <div class="calc-desglose-row">
+                        <div class="calc-desglose-left">
+                            <span class="calc-desglose-concepto">${r.isr.concepto}</span>
+                            <span class="calc-desglose-detalle">${r.isr.detalle}</span>
+                        </div>
+                        <span class="calc-desglose-monto negative">-${formatMoneda(r.isr.monto)}</span>
+                    </div>
+                `;
+            }
+
+            html += `
+                    </div>
+
+                    <!-- Disclaimer -->
+                    <div class="calc-disclaimer">
+                        <div class="calc-disclaimer-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <p>
+                            <strong>Aviso legal:</strong> Esta herramienta proporciona una estimación de carácter informativo 
+                            según la LFT y LISR mexicanas. No sustituye la asesoría de un especialista laboral. 
+                            Consúltanos para una revisión detallada de tu caso particular.
+                        </p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="calc-results-actions">
+                        <button class="calc-action-btn primary" id="calc-btn-print">
+                            <i class="fas fa-file-pdf"></i> Guardar PDF
+                        </button>
+                        <button class="calc-action-btn secondary" id="calc-btn-consultar">
+                            <i class="fas fa-gavel"></i> Consultar con un abogado
+                        </button>
+                        <button class="calc-action-btn secondary" id="calc-btn-recalc">
+                            <i class="fas fa-redo"></i> Volver a hacer
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
+
+            // Bind action buttons
+            document.getElementById('calc-btn-print').addEventListener('click', () => window.print());
+            document.getElementById('calc-btn-recalc').addEventListener('click', () => {
+                currentQuestion = 0;
+                answers.motivo = null;
+                answers.fechaIngreso = null;
+                answers.fechaSalida = null;
+                answers.salarioMensual = null;
+                answers.prestaciones = 0;
+                answers.diasVacGozados = 0;
+                answers.zona = 'general';
+                showStep(0);
+            });
+            document.getElementById('calc-btn-consultar').addEventListener('click', () => {
+                const text = `Hola, he calculado una estimación en su sitio web y me gustaría recibir asesoría legal.\n\n` +
+                    `Mi cálculo estimado fue de ${formatMoneda(r.totalNeto)} por motivo de ${motivoLabels[r.motivo]}.\n\n` +
+                    `Quedo a la espera de sus comentarios.`;
+                const url = `mailto:contacto@ferrofragoso.com?subject=Consulta sobre cálculo laboral&body=${encodeURIComponent(text)}`;
+                window.location.href = url;
+            });
+        }
+
+        // ═══ UTILITIES ═══
+        function formatDateES(d) {
+            const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+            return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+        }
+
+    });
+    </script>
+
+</body>
+</html>

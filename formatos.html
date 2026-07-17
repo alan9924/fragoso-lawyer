@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formatos Legales | FERRO FRAGOSO</title>
+    <meta name="description" content="Genera borradores de contratos y documentos legales en tiempo real. Herramienta interactiva para empresas y particulares.">
+    <link rel="icon" type="image/png" href="logo_ff.png">
+    <link rel="apple-touch-icon" href="logo_ff.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="formatos.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="formatos-page">
+
+    <!-- ═══ INTRO LOADER (VIDEO) ═══ -->
+    <div id="intro-loader" class="loader-overlay video-loader-overlay">
+        <video id="loader-video" autoplay muted playsinline class="loader-video">
+            <source src="intro_loader.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="navbar" class="transparent-nav formatos-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
+                <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="index.html" class="circular-back-btn" aria-label="Volver a Inicio">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ FORMATOS WRAPPER ═══ -->
+    <div class="formatos-wrapper">
+
+        <!-- STEP 0: LANDING PAGE -->
+        <section id="step-0" class="step-container active">
+            <div class="step0-landing">
+                <div class="step0-content">
+                    <h1 class="step0-title">Crea contratos de forma rápida y sencilla, fírmalos y compártelos.</h1>
+                    <div class="step0-actions">
+                        <button id="btn-start" class="step0-btn-primary">Empezar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 1: CHOOSE CONTRACT (WHITE MODAL WITH BLACK CARDS) -->
+        <section id="step-1" class="step-container">
+            <div class="wizard-overlay">
+                <!-- Top Menu Bar -->
+                <div class="wizard-top-bar">
+                    <button class="wizard-close-btn" id="btn-back-to-step0" aria-label="Volver">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="wizard-brand">
+                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img">
+                        <span class="wizard-logo-text">FERRO FRAGOSO</span>
+                    </div>
+                </div>
+                
+                <div class="wizard-modal">
+                    <h1 class="step1-modal-title">Elige el tipo de contrato</h1>
+                    <div class="step1-list" id="step1-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 2: FICHA TECNICA (PRE-CONTRATO) -->
+        <section id="step-2" class="step-container">
+            <div class="wizard-overlay">
+                <!-- Top Nav inside Modal -->
+                <!-- Top Menu Bar -->
+                <div class="wizard-top-bar">
+                    <button class="wizard-close-btn" id="btn-back-to-step1-from-step2" aria-label="Volver">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="wizard-brand">
+                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img">
+                        <span class="wizard-logo-text">FERRO FRAGOSO</span>
+                    </div>
+                </div>
+                
+                <div class="wizard-modal step2-ficha">
+                    <h1 class="step2-modal-title" id="step2-title">Título del Contrato</h1>
+                    
+                    <div class="ficha-content">
+                        <div class="ficha-block">
+                            <h4>¿Qué es?</h4>
+                            <div class="ficha-card">
+                                <p id="step2-que-es"></p>
+                            </div>
+                        </div>
+                        <div class="ficha-block">
+                            <h4>¿Para qué sirve?</h4>
+                            <div class="ficha-card">
+                                <p id="step2-para-que"></p>
+                            </div>
+                        </div>
+                        <div class="ficha-block">
+                            <h4>Alcance Legal</h4>
+                            <div class="ficha-card">
+                                <p id="step2-alcance"></p>
+                            </div>
+                        </div>
+                        <div class="ficha-block">
+                            <h4>Fundamento Jurídico</h4>
+                            <div class="ficha-card">
+                                <p id="step2-fundamento"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wizard-footer step2-footer">
+                        <button class="wizard-nav-btn wizard-next" id="btn-start-wizard">
+                            Entendido, comenzar a redactar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 3: MONETTO-STYLE WIZARD -->
+        <section id="step-3" class="step-container">
+            <div class="wizard-overlay">
+                <!-- Top Menu Bar -->
+                <div class="wizard-top-bar">
+                    <button class="wizard-close-btn" id="btn-back-to-step1" aria-label="Cerrar">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="wizard-brand">
+                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img">
+                        <span class="wizard-logo-text">FERRO FRAGOSO</span>
+                    </div>
+                </div>
+                
+                <div class="wizard-modal">
+                    <!-- Progress Bar Header -->
+                    <div class="wizard-header">
+                        <div class="wizard-progress-text" id="wizard-progress-text">Step 1 of 10</div>
+                        <div class="wizard-progress-bar-bg">
+                            <div class="wizard-progress-bar-fill" id="wizard-progress-fill"></div>
+                        </div>
+                        <div class="wizard-tag" id="wizard-tag">FREELANCE CONTRACT</div>
+                    </div>
+
+                    <!-- Dynamic Body for Steps -->
+                    <!-- Dynamic Body for Steps -->
+                    <div class="wizard-body" id="wizard-body">
+                        <!-- JS injects the steps here -->
+                    </div>
+
+                    <!-- Footer / Navigation -->
+                    <div class="wizard-footer" id="wizard-footer">
+                        <button class="wizard-nav-btn wizard-prev" id="wizard-btn-prev">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <button class="wizard-nav-btn wizard-next" id="wizard-btn-next">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hidden containers to maintain compatibility with script rendering logic -->
+                <div id="form-fields-container" style="display:none;"></div>
+                <div id="options-container" style="display:none;"></div>
+                <h2 id="generator-header-title" style="display:none;"></h2>
+                <div id="document-preview" style="display:none;"></div>
+                <span id="preview-badge" style="display:none;"></span>
+                
+                <!-- Ocultamos temporalmente los botones de descarga, el JS los moverá al final -->
+                <div id="download-actions-template" style="display:none;">
+                    <div class="gen-preview-actions">
+                        <button class="doc-btn doc-btn--secondary" id="btn-print-doc"><i class="fas fa-print"></i> PDF</button>
+                        <button class="doc-btn doc-btn--secondary" id="btn-copy-doc"><i class="far fa-copy"></i> Copiar</button>
+                        <button class="doc-btn doc-btn--secondary" id="btn-share-wa"><i class="fab fa-whatsapp"></i> Enviar</button>
+                    </div>
+                    
+                    <!-- LEYENDA TARIFAS -> BOTONES PREMIUM -->
+                    <div class="gen-premium-services pricing-grid">
+                        
+                        <!-- Card 1: Revisión Puntual -->
+                        <div class="pricing-card">
+                            <div class="pricing-card-top">
+                                <div class="pricing-pill">PREMIUM <i class="fas fa-crown"></i></div>
+                                <div class="pricing-includes-title">Incluye:</div>
+                            </div>
+                            <div class="pricing-card-middle">
+                                <div class="pricing-price-col">
+                                    <div class="pricing-price">$450</div>
+                                    <div class="pricing-subtitle">MXN / Pago único</div>
+                                </div>
+                                <div class="pricing-features-col">
+                                    <ul class="pricing-features">
+                                        <li><i class="fas fa-check-circle"></i> Revisión de un contrato</li>
+                                        <li><i class="fas fa-check-circle"></i> Comentarios y notas</li>
+                                        <li><i class="fas fa-check-circle"></i> Entrega en 24-48h</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/524191239646?text=Hola,%20necesito%20la%20revisión%20puntual%20de%20un%20contrato." target="_blank" class="pricing-card-btn">
+                                <span>Solicitar Revisión</span>
+                                <div class="pricing-btn-icon"><i class="fas fa-chevron-right"></i></div>
+                            </a>
+                        </div>
+
+                        <!-- Card 2: Consulta Zoom -->
+                        <div class="pricing-card">
+                            <div class="pricing-card-top">
+                                <div class="pricing-pill">PREMIUM <i class="fas fa-crown"></i></div>
+                                <div class="pricing-includes-title">Incluye:</div>
+                            </div>
+                            <div class="pricing-card-middle">
+                                <div class="pricing-price-col">
+                                    <div class="pricing-price">$1,200</div>
+                                    <div class="pricing-subtitle">MXN / Pago único</div>
+                                </div>
+                                <div class="pricing-features-col">
+                                    <ul class="pricing-features">
+                                        <li><i class="fas fa-check-circle"></i> Videollamada (30-45 min)</li>
+                                        <li><i class="fas fa-check-circle"></i> Explicación legal clara</li>
+                                        <li><i class="fas fa-check-circle"></i> Recomendaciones prácticas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/524191239646?text=Hola,%20quiero%20agendar%20una%20consulta%20por%20Zoom." target="_blank" class="pricing-card-btn">
+                                <span>Agendar Consulta</span>
+                                <div class="pricing-btn-icon"><i class="fas fa-chevron-right"></i></div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Override loader timing for video (2 seconds) -->
+    <script>
+        // Prevent script.js from dismissing the loader early
+        window.__VIDEO_LOADER = true;
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('loader-video');
+            const loader = document.getElementById('intro-loader');
+            if (video && loader) {
+                // Force hide after exactly 2 seconds
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    // Pause and clean up video after fade-out
+                    setTimeout(() => {
+                        video.pause();
+                        video.removeAttribute('src');
+                        video.load();
+                    }, 1000);
+                }, 2000);
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="contratos.js"></script>
+    <script src="contratos-meta.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const FIELD_RE = /\{\{([^}]+)\}\}/g;
+
+            let selectedDoc = null;    // objeto CONTRATO seleccionado
+            let valores = {};          // { etiqueta: valor }
+            let opcionalesOn = {};     // { indiceBloque: true/false }
+
+            // Navigation Elements
+            const step0 = document.getElementById('step-0');
+            const step1 = document.getElementById('step-1');
+            const step2 = document.getElementById('step-2');
+            const step3 = document.getElementById('step-3');
+
+            function showStep(num) {
+                step0.classList.remove('active');
+                step1.classList.remove('active');
+                step2.classList.remove('active');
+                step3.classList.remove('active');
+                document.getElementById(`step-${num}`).classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            document.getElementById('btn-start').addEventListener('click', () => {
+                const content = document.querySelector('.step0-content');
+                content.classList.add('exit-animation');
+                setTimeout(() => {
+                    showStep(1);
+                    content.classList.remove('exit-animation');
+                }, 500);
+            });
+            document.getElementById('btn-back-to-step0').addEventListener('click', () => showStep(0));
+
+            /* ============================ STEP 1: LISTA ============================ */
+            const step1List = document.getElementById('step1-list');
+
+            function renderStep1(filter) {
+                const q = (filter || '').toLowerCase().trim();
+                step1List.innerHTML = '';
+                const items = CONTRATOS;
+                items.forEach((c) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'step1-card';
+                    btn.setAttribute('data-doc', c.id);
+                    btn.innerHTML = `
+                        <div class="step1-card-title">${c.titulo}</div>
+                        <div class="step1-card-subtitle">${c.categoria}</div>
+                    `;
+                    btn.addEventListener('click', () => {
+                        selectedDoc = c;
+                        
+                        // Poblar la ficha técnica (Step 2)
+                        document.getElementById('step2-title').textContent = c.titulo;
+                        document.getElementById('step2-que-es').textContent = c.que_es || "Documento legal que formaliza obligaciones.";
+                        document.getElementById('step2-para-que').textContent = c.para_que_sirve || "Prevenir malentendidos y futuras controversias.";
+                        document.getElementById('step2-alcance').textContent = c.alcance_legal || "Obligaciones exigibles ante la ley.";
+                        document.getElementById('step2-fundamento').textContent = c.base || "Legislación aplicable.";
+                        
+                        showStep(2);
+                    });
+                    step1List.appendChild(btn);
+                });
+            }
+
+            renderStep1('');
+
+            // Navegación adicional
+            document.getElementById('btn-back-to-step1-from-step2').addEventListener('click', () => showStep(1));
+            
+            document.getElementById('btn-start-wizard').addEventListener('click', () => {
+                initGenerator();
+                showStep(3);
+            });
+
+            document.getElementById('btn-back-to-step1').addEventListener('click', () => showStep(1));
+
+            /* ============================ ACCORDION TOGGLE ============================ */
+            const infoToggle = document.getElementById('gen-info-toggle');
+            const infoBody = document.getElementById('gen-info-body');
+            if (infoToggle && infoBody) {
+                infoToggle.addEventListener('click', () => {
+                    infoBody.classList.toggle('open');
+                    const icon = infoToggle.querySelector('i');
+                    icon.classList.toggle('fa-chevron-down');
+                    icon.classList.toggle('fa-chevron-up');
+                });
+            }
+
+            /* ============================ STEP 3: GENERADOR ============================  */
+
+            const formFieldsContainer = document.getElementById('form-fields-container');
+            const optionsContainer = document.getElementById('options-container');
+            const previewBadge = document.getElementById('preview-badge');
+            const documentPreview = document.getElementById('document-preview');
+            const generatorHeaderTitle = document.getElementById('generator-header-title');
+
+            // Código de pestañas eliminado para compatibilidad con wizard
+
+            function camposDeTexto(txt) {
+                const out = [];
+                let m;
+                FIELD_RE.lastIndex = 0;
+                while ((m = FIELD_RE.exec(txt)) !== null) out.push(m[1].trim());
+                return out;
+            }
+
+            function camposDelContrato(c) {
+                const seen = new Set(), list = [];
+                c.bloques.forEach((b) => {
+                    const textos = [];
+                    if (b.x) textos.push(b.x);
+                    if (b.a) textos.push(...b.a);
+                    if (b.b) textos.push(...b.b);
+                    textos.forEach((t) => camposDeTexto(t).forEach((f) => {
+                        if (!seen.has(f)) { seen.add(f); list.push(f); }
+                    }));
+                });
+                return list;
+            }
+
+            const esOpcional = (b) => b.t !== 'sign' && b.x && b.x.trim().startsWith('[CLÁUSULA OPCIONAL]');
+            const limpiaOpc = (txt) => txt.replace(/^\s*\[CLÁUSULA OPCIONAL\]\s*/, '');
+
+            function campoVisible(c, campo) {
+                let apareceEnActivo = false, apareceEnOpcionalOff = false;
+                c.bloques.forEach((b, i) => {
+                    const textos = [b.x, ...(b.a || []), ...(b.b || [])].filter(Boolean);
+                    const contiene = textos.some((t) => camposDeTexto(t).includes(campo));
+                    if (!contiene) return;
+                    if (esOpcional(b) && !opcionalesOn[i]) apareceEnOpcionalOff = true;
+                    else apareceEnActivo = true;
+                });
+                return apareceEnActivo || !apareceEnOpcionalOff;
+            }
+
+            let wizardSteps = []; 
+            let currentWizardStep = 0;
+
+            const wizardBody = document.getElementById('wizard-body');
+            const wizardProgressText = document.getElementById('wizard-progress-text');
+            const wizardProgressFill = document.getElementById('wizard-progress-fill');
+            const wizardTag = document.getElementById('wizard-tag');
+            const wizardBtnPrev = document.getElementById('wizard-btn-prev');
+            const wizardBtnNext = document.getElementById('wizard-btn-next');
+
+            function initGenerator() {
+                const c = selectedDoc;
+                valores = {};
+                opcionalesOn = {};
+                c.bloques.forEach((b, i) => { if (esOpcional(b)) opcionalesOn[i] = false; });
+
+                wizardTag.textContent = c.titulo.toUpperCase();
+                
+                wizardSteps = [];
+                const campos = camposDelContrato(c);
+                campos.forEach(f => {
+                    wizardSteps.push({ type: 'field', name: f });
+                });
+                
+                const opts = c.bloques.map((b, i) => ({ b, i })).filter((o) => esOpcional(o.b));
+                if (opts.length > 0) {
+                    wizardSteps.push({ type: 'options', opts: opts });
+                }
+                
+                wizardSteps.push({ type: 'signature' });
+                wizardSteps.push({ type: 'preview' });
+                
+                currentWizardStep = 0;
+                renderPreview(); 
+                renderWizardStep();
+            }
+
+            function renderWizardStep() {
+                wizardBody.innerHTML = '';
+                const step = wizardSteps[currentWizardStep];
+                const total = wizardSteps.length;
+                
+                wizardProgressText.textContent = `Step ${currentWizardStep + 1} of ${total}`;
+                wizardProgressFill.style.width = `${((currentWizardStep + 1) / total) * 100}%`;
+                
+                wizardBtnPrev.style.visibility = currentWizardStep === 0 ? 'hidden' : 'visible';
+                wizardBtnNext.textContent = currentWizardStep === total - 1 ? 'Terminar' : 'Continue';
+                
+                const container = document.createElement('div');
+                container.className = 'wizard-step-container active';
+                
+                if (step.type === 'field') {
+                    const f = step.name;
+                    const h2 = document.createElement('h2');
+                    h2.className = 'wizard-question';
+                    h2.textContent = f; 
+                    
+                    const inp = document.createElement('input');
+                    inp.type = 'text';
+                    inp.className = 'wizard-input';
+                    inp.value = valores[f] || '';
+                    inp.placeholder = '...';
+                    inp.addEventListener('input', () => { valores[f] = inp.value; renderPreview(); });
+                    
+                    container.appendChild(h2);
+                    container.appendChild(inp);
+                    setTimeout(() => inp.focus(), 100);
+                } 
+                else if (step.type === 'options') {
+                    const h2 = document.createElement('h2');
+                    h2.className = 'wizard-question';
+                    h2.textContent = 'Cláusulas opcionales';
+                    
+                    const hint = document.createElement('p');
+                    hint.className = 'wizard-hint';
+                    hint.textContent = 'Selecciona las opciones que necesites para este proyecto.';
+                    
+                    container.appendChild(h2);
+                    container.appendChild(hint);
+                    
+                    step.opts.forEach(({ b, i }) => {
+                        const row = document.createElement('div');
+                        row.className = 'wizard-option-row' + (opcionalesOn[i] ? ' selected' : '');
+                        
+                        const text = document.createElement('div');
+                        text.className = 'wizard-option-text';
+                        text.textContent = resumenOpcional(limpiaOpc(b.x));
+                        
+                        const check = document.createElement('div');
+                        check.className = 'wizard-option-check';
+                        
+                        row.appendChild(text);
+                        row.appendChild(check);
+                        
+                        row.addEventListener('click', () => {
+                            opcionalesOn[i] = !opcionalesOn[i];
+                            row.classList.toggle('selected', opcionalesOn[i]);
+                            renderPreview();
+                        });
+                        
+                        container.appendChild(row);
+                    });
+                }
+                else if (step.type === 'signature') {
+                    const h2 = document.createElement('h2');
+                    h2.className = 'wizard-question';
+                    h2.textContent = 'Firma en la pantalla';
+                    
+                    const hint = document.createElement('p');
+                    hint.className = 'wizard-hint';
+                    hint.textContent = 'Usa tu dedo o stylus para firmar en el recuadro.';
+                    
+                    const canvasWrapper = document.createElement('div');
+                    canvasWrapper.className = 'wizard-signature-wrapper';
+                    
+                    const canvas = document.createElement('canvas');
+                    canvas.id = 'wizard-signature-canvas';
+                    canvas.width = 400; // Será ajustado por CSS
+                    canvas.height = 200;
+                    
+                    const btnClear = document.createElement('button');
+                    btnClear.className = 'wizard-btn-clear-sig';
+                    btnClear.textContent = 'Limpiar firma';
+                    
+                    canvasWrapper.appendChild(canvas);
+                    canvasWrapper.appendChild(btnClear);
+                    
+                    container.appendChild(h2);
+                    container.appendChild(hint);
+                    container.appendChild(canvasWrapper);
+                    
+                    // Lógica de dibujo simple
+                    let drawing = false;
+                    let ctx = null;
+                    
+                    setTimeout(() => {
+                        // Ajustar tamaño del canvas al contenedor real (para dispositivos móviles)
+                        const rect = canvasWrapper.getBoundingClientRect();
+                        canvas.width = rect.width - 20; // pequeño padding
+                        
+                        ctx = canvas.getContext('2d');
+                        ctx.lineWidth = 3;
+                        ctx.lineCap = 'round';
+                        ctx.strokeStyle = '#000';
+                        
+                        const getPos = (e) => {
+                            const rect = canvas.getBoundingClientRect();
+                            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                            return { x: clientX - rect.left, y: clientY - rect.top };
+                        };
+                        
+                        const startDraw = (e) => { drawing = true; const pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); e.preventDefault(); };
+                        const draw = (e) => { if (!drawing) return; const pos = getPos(e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); e.preventDefault(); };
+                        const stopDraw = () => { drawing = false; };
+                        
+                        canvas.addEventListener('mousedown', startDraw);
+                        canvas.addEventListener('mousemove', draw);
+                        window.addEventListener('mouseup', stopDraw);
+                        
+                        canvas.addEventListener('touchstart', startDraw, { passive: false });
+                        canvas.addEventListener('touchmove', draw, { passive: false });
+                        window.addEventListener('touchend', stopDraw);
+                        
+                        // Si ya había una firma guardada, podríamos cargarla, pero es más fácil empezar en blanco.
+                        
+                        btnClear.addEventListener('click', () => {
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            valores['__firma__'] = null;
+                        });
+                    }, 50);
+                }
+                else if (step.type === 'preview') {
+                    const h2 = document.createElement('h2');
+                    h2.className = 'wizard-question';
+                    h2.textContent = 'Tu contrato está listo';
+                    
+                    const previewWrapper = document.createElement('div');
+                    previewWrapper.className = 'wizard-final-preview gen-preview-content';
+                    previewWrapper.setAttribute('data-lenis-prevent', 'true');
+                    previewWrapper.innerHTML = document.getElementById('document-preview').innerHTML;
+                    
+                    const actionsTemplate = document.getElementById('download-actions-template');
+                    const actions = actionsTemplate.cloneNode(true);
+                    actions.style.display = 'block';
+                    actions.id = '';
+                    
+                    container.appendChild(h2);
+                    container.appendChild(previewWrapper);
+                    container.appendChild(actions);
+                    
+                    // Enlazar eventos de botones en el clon
+                    actions.querySelector('#btn-copy-doc').addEventListener('click', function() {
+                        navigator.clipboard.writeText(buildPlainText()).then(() => {
+                            const btn = this; const prevText = btn.innerHTML;
+                            btn.innerHTML = '<i class="fas fa-check"></i>¡Copiado!'; setTimeout(()=>btn.innerHTML=prevText, 2000);
+                        });
+                    });
+                    actions.querySelector('#btn-print-doc').addEventListener('click', function() { window.print(); });
+                    
+                    // Compartir por WhatsApp (PDF real)
+                    actions.querySelector('#btn-share-wa').addEventListener('click', async function() {
+                        const btn = this;
+                        const prevHTML = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando PDF...';
+                        btn.disabled = true;
+
+                        try {
+                            // Build a clean print-ready clone of the document
+                            const clone = documentPreview.cloneNode(true);
+                            const wrapper = document.createElement('div');
+                            wrapper.style.cssText = 'font-family:Georgia,serif;line-height:1.9;color:#111;padding:3cm 2.5cm;font-size:11pt;max-width:21cm;';
+                            wrapper.innerHTML = `
+                                <div style="text-align:center;font-family:sans-serif;letter-spacing:2px;font-size:8pt;color:#666;margin-bottom:4pt">FERRO FRAGOSO</div>
+                                <div style="text-align:center;font-family:sans-serif;letter-spacing:3px;font-size:6pt;color:#999;margin-bottom:24pt">ESTUDIO JURÍDICO</div>
+                            `;
+                            wrapper.appendChild(clone);
+
+                            const opt = {
+                                margin: [1.5, 2, 1.5, 2.5],
+                                filename: (selectedDoc ? selectedDoc.titulo.replace(/[^a-zA-Z0-9 ]/g,'').trim().replace(/ +/g,'_') : 'contrato') + '.pdf',
+                                image: { type: 'jpeg', quality: 0.95 },
+                                html2canvas: { scale: 2, useCORS: true },
+                                jsPDF: { unit: 'cm', format: 'letter', orientation: 'portrait' }
+                            };
+
+                            const pdfBlob = await html2pdf().set(opt).from(wrapper).outputPdf('blob');
+                            const fileName = opt.filename;
+
+                            // Mobile: use native Web Share API to share the actual file
+                            if (navigator.canShare && navigator.canShare({ files: [new File([pdfBlob], fileName, { type: 'application/pdf' })] })) {
+                                const file = new File([pdfBlob], fileName, { type: 'application/pdf' });
+                                await navigator.share({
+                                    title: selectedDoc ? selectedDoc.titulo : 'Contrato',
+                                    text: 'Te comparto el contrato generado por Ferro Fragoso Estudio Jurídico.',
+                                    files: [file]
+                                });
+                                btn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
+                            } else {
+                                // Desktop fallback: download PDF and open WhatsApp Web
+                                const url = URL.createObjectURL(pdfBlob);
+                                const a = document.createElement('a');
+                                a.href = url;
+                                a.download = fileName;
+                                a.click();
+                                URL.revokeObjectURL(url);
+                                setTimeout(() => {
+                                    const msg = encodeURIComponent('Hola, te comparto el contrato «' + (selectedDoc ? selectedDoc.titulo : 'Contrato') + '» generado por Ferro Fragoso Estudio Jurídico. El PDF fue descargado en tu dispositivo.');
+                                    window.open('https://wa.me/?text=' + msg, '_blank');
+                                }, 800);
+                                btn.innerHTML = '<i class="fas fa-check"></i> PDF listo';
+                            }
+                        } catch (err) {
+                            console.error(err);
+                            btn.innerHTML = '<i class="fas fa-times"></i> Error';
+                        } finally {
+                            btn.disabled = false;
+                            setTimeout(() => { btn.innerHTML = prevHTML; }, 3000);
+                        }
+                    });
+                }
+                
+                wizardBody.appendChild(container);
+            }
+
+            wizardBtnNext.addEventListener('click', () => {
+                // Si estamos en el paso de firma, capturamos el canvas
+                const step = wizardSteps[currentWizardStep];
+                if (step.type === 'signature') {
+                    const canvas = document.getElementById('wizard-signature-canvas');
+                    if (canvas) {
+                        // Verificamos si hay algo dibujado (forma simple)
+                        const ctx = canvas.getContext('2d');
+                        const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                        const isEmpty = !data.some(channel => channel !== 0);
+                        if (!isEmpty) {
+                            valores['__firma__'] = canvas.toDataURL('image/png');
+                        } else {
+                            valores['__firma__'] = null; // Opcional
+                        }
+                        renderPreview(); // Actualizar preview con la firma
+                    }
+                }
+                
+                if (currentWizardStep < wizardSteps.length - 1) {
+                    currentWizardStep++;
+                    renderWizardStep();
+                } else {
+                    showStep(1); 
+                }
+            });
+            wizardBtnPrev.addEventListener('click', () => {
+                if (currentWizardStep > 0) {
+                    currentWizardStep--;
+                    renderWizardStep();
+                }
+            });
+
+            function resumenOpcional(txt) {
+                const clean = txt.replace(FIELD_RE, '___');
+                return clean.length > 130 ? clean.slice(0, 127) + '…' : clean;
+            }
+
+            /* --------- relleno de campos --------- */
+            const escapeHTML = (s) => s.replace(/[&<>"]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]));
+
+            function fill(txt, forHTML) {
+                return txt.replace(FIELD_RE, (_, raw) => {
+                    const key = raw.trim();
+                    const v = (valores[key] || '').trim();
+                    if (forHTML) {
+                        if (v) return '<span class="fill">' + escapeHTML(v) + '</span>';
+                        return '<span class="fill empty">[' + escapeHTML(key) + ']</span>';
+                    }
+                    return v || '[' + key + ']';
+                });
+            }
+
+            function fnMarkers(html) {
+                return html.replace(/\[\[(\d+)\]\]/g, '<span class="sup">$1</span>');
+            }
+
+            function signHTML(b) {
+                const col = (arr, isFirst) => {
+                    if (!arr || !arr[0]) return '<div class="sign"></div>';
+                    
+                    let signImgHtml = '';
+                    if (isFirst && valores['__firma__']) {
+                        signImgHtml = `<img src="${valores['__firma__']}" style="max-height: 80px; display: block; margin: -40px auto 10px auto;">`;
+                    }
+                    
+                    return '<div class="sign">' + signImgHtml + '<div class="line"></div>' +
+                        '<div class="role">' + fill(arr[0], true) + '</div>' +
+                        (arr[1] ? '<div class="who">' + fill(arr[1], true) + '</div>' : '') + '</div>';
+                };
+                return '<div class="signs">' + col(b.a, true) + col(b.b, false) + '</div>';
+            }
+
+            function renderPreview() {
+                const c = selectedDoc;
+                let h = '<div class="doc-brand">FERRO FRAGOSO<small>ESTUDIO JURÍDICO</small></div>';
+                h += '<h1 class="doc-title">' + escapeHTML(c.titulo.toUpperCase()) + '</h1>';
+                if (c.base) h += '<p class="doc-subtitle">' + escapeHTML(c.base) + '</p>';
+                h += '<hr>';
+
+                c.bloques.forEach((b, i) => {
+                    if (esOpcional(b) && !opcionalesOn[i]) return;
+                    const raw = b.x ? limpiaOpc(b.x) : '';
+                    switch (b.t) {
+                        case 'h': h += '<h4 class="clause">' + fnMarkers(fill(raw, true)) + '</h4>'; break;
+                        case 'p': h += '<p class="body">' + fnMarkers(fill(raw, true)) + '</p>'; break;
+                        case 'i': h += '<p class="indent">' + fnMarkers(fill(raw, true)) + '</p>'; break;
+                        case 'note': h += '<p class="note">' + fnMarkers(fill(raw, true)) + '</p>'; break;
+                        case 'sub': h += '<p class="subhd">' + fnMarkers(fill(raw, true)) + '</p>'; break;
+                        case 'br': h += '<div class="pagebreak">— salto de página —</div>'; break;
+                        case 'sign': h += signHTML(b); break;
+                    }
+                });
+
+                if (c.fns && c.fns.length) {
+                    h += '<div class="footnotes">';
+                    c.fns.forEach((f, idx) => { h += '<p>' + (idx + 1) + '. ' + escapeHTML(f) + '</p>'; });
+                    h += '</div>';
+                }
+                documentPreview.innerHTML = h;
+            }
+
+            /* --------- texto plano (para copiar) --------- */
+            function buildPlainText() {
+                const c = selectedDoc;
+                const lines = ['FERRO FRAGOSO — ESTUDIO JURÍDICO', c.titulo.toUpperCase()];
+                if (c.base) lines.push(c.base);
+                lines.push('');
+
+                c.bloques.forEach((b, i) => {
+                    if (esOpcional(b) && !opcionalesOn[i]) return;
+                    const raw = b.x ? limpiaOpc(b.x).replace(/\[\[\d+\]\]/g, '') : '';
+                    switch (b.t) {
+                        case 'h':
+                        case 'sub':
+                            lines.push('', fill(raw, false).toUpperCase(), '');
+                            break;
+                        case 'p':
+                        case 'i':
+                        case 'note':
+                            lines.push(fill(raw, false), '');
+                            break;
+                        case 'br':
+                            lines.push('', '— salto de página —', '');
+                            break;
+                        case 'sign': {
+                            const col = (arr) => arr && arr[0]
+                                ? ['_______________________________', fill(arr[0], false), arr[1] ? fill(arr[1], false) : ''].filter(Boolean).join('\n')
+                                : '';
+                            const a = col(b.a), bb = col(b.b);
+                            lines.push('', [a, bb].filter(Boolean).join('\n\n'), '');
+                            break;
+                        }
+                    }
+                });
+
+                if (c.fns && c.fns.length) {
+                    lines.push('', '—'.repeat(20));
+                    c.fns.forEach((f, idx) => lines.push((idx + 1) + '. ' + f));
+                }
+                return lines.join('\n');
+            }
+
+            /* --------- botones de acción --------- */
+            document.getElementById('btn-copy-doc').addEventListener('click', function () {
+                const text = buildPlainText();
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = this;
+                    const prevText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i>¡Copiado!';
+                    setTimeout(() => { btn.innerHTML = prevText; }, 2000);
+                });
+            });
+
+            document.getElementById('btn-print-doc').addEventListener('click', () => {
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <html>
+                    <head>
+                        <title>Impresión de Formato | FERRO FRAGOSO</title>
+                        <style>
+                            body { font-family: Georgia, serif; line-height: 1.6; padding: 3rem; color: #111; max-width: 800px; margin: 0 auto; }
+                            .doc-brand { text-align: center; font-family: sans-serif; letter-spacing: 2px; font-size: 0.8rem; color: #666; margin-bottom: 0.5rem; }
+                            .doc-brand small { display: block; font-size: 0.6rem; letter-spacing: 3px; }
+                            h1.doc-title { font-family: sans-serif; text-align: center; font-size: 1.2rem; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 0.5rem; }
+                            .doc-subtitle { text-align: center; font-size: 0.8rem; color: #666; margin-bottom: 3rem; font-style: italic; }
+                            h4.clause { margin-top: 1.5rem; }
+                            p.indent { margin-left: 2rem; }
+                            p.note { font-style: italic; color: #555; border-left: 3px solid #999; padding-left: 1rem; }
+                            p.subhd { text-align: center; font-weight: bold; margin-top: 2rem; }
+                            .signs { display: flex; justify-content: space-between; margin-top: 4rem; gap: 2rem; }
+                            .sign { text-align: center; flex: 1; }
+                            .sign .line { border-top: 1px solid #000; margin-bottom: 0.5rem; }
+                            .footnotes { margin-top: 3rem; border-top: 1px solid #ccc; padding-top: 1rem; font-size: 0.75rem; color: #666; }
+                            .not-legal { text-align: center; color: #666; font-size: 0.8rem; font-style: italic; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 20px; }
+                            .fill.empty { text-decoration: underline; }
+                        </style>
+                    </head>
+                    <body>
+                        ${documentPreview.innerHTML}
+                        <div class="not-legal">Nota: Este documento es un borrador preliminar. Se recomienda su revisión formal por un abogado calificado de Ferro Fragoso antes de su firma.</div>
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.print();
+            });
+
+            document.getElementById('btn-fill-example').addEventListener('click', () => {
+                const c = selectedDoc;
+                const ejemplos = {
+                    ciudad: 'Querétaro, Qro.',
+                    fecha: new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' }),
+                };
+                camposDelContrato(c).forEach((f) => {
+                    const l = f.toLowerCase();
+                    if (/ciudad/.test(l)) valores[f] = ejemplos.ciudad;
+                    else if (/fecha/.test(l)) valores[f] = ejemplos.fecha;
+                    else if (/monto|precio|salario|renta|adeudo|pago|pena|depósito|finiquito|aguinaldo|vacacional|vacaciones|salarios|antig/.test(l)) valores[f] = '10,000.00';
+                    else if (/letra/.test(l)) valores[f] = 'diez mil';
+                    else if (/porcentaje|interés|drag/.test(l)) valores[f] = '5';
+                    else if (/días|parcialidades|mensualidades|número de pagos/.test(l)) valores[f] = '3';
+                    else if (/rfc/.test(l)) valores[f] = 'XAXX010101000';
+                    else if (/curp/.test(l)) valores[f] = 'XAXX010101HDFXXX01';
+                    else if (/nombre|razón|beneficiario|arrendador|arrendatario|vendedor|comprador|mutuante|mutuatario|comodante|comodatario|acreedor|deudor|otorgante|apoderado|poderdante|testigo|socio|aval|suscriptor|declarante|patrón|trabajador|acompañante|padre|madre|tutor|menor|responsable|titular|parte/.test(l)) valores[f] = '[NOMBRE COMPLETO]';
+                    else if (/domicilio|lugar|destino|territorio/.test(l)) valores[f] = '[DOMICILIO / LUGAR]';
+                    else valores[f] = '[POR DEFINIR]';
+                });
+                renderForm();
+                renderPreview();
+            });
+
+            document.getElementById('btn-clear-form').addEventListener('click', () => {
+                valores = {};
+                renderForm();
+                renderPreview();
+            });
+
+            /* --------- exportación a Word (.docx) --------- */
+            const DOC_ACCENT = '8A6D3B', DOC_TEXT = '28251D', DOC_MUTED = '7A7974', DOC_RULE = 'D4D1CA';
+
+            const btnDocx = document.getElementById('btn-download-docx');
+            if (btnDocx) btnDocx.addEventListener('click', () => {
+                const D = window.docx;
+                if (!D) { alert('No se pudo cargar la librería de Word. Verifica tu conexión a internet.'); return; }
+                const c = selectedDoc;
+                const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle, Table, TableRow, TableCell, WidthType, Header, Footer, PageNumber } = D;
+
+                const runsFrom = (txt, base = {}) => {
+                    const clean = txt.replace(/\[\[\d+\]\]/g, '');
+                    const parts = [];
+                    let last = 0, m;
+                    FIELD_RE.lastIndex = 0;
+                    while ((m = FIELD_RE.exec(clean)) !== null) {
+                        if (m.index > last) parts.push(new TextRun(Object.assign({ text: clean.slice(last, m.index) }, base)));
+                        const key = m[1].trim(); const v = (valores[key] || '').trim();
+                        parts.push(new TextRun(Object.assign({ text: v || '[' + key + ']', bold: true }, base)));
+                        last = m.index + m[0].length;
+                    }
+                    if (last < clean.length) parts.push(new TextRun(Object.assign({ text: clean.slice(last) }, base)));
+                    return parts.length ? parts : [new TextRun(Object.assign({ text: '' }, base))];
+                };
+
+                // Función para convertir Base64 a ArrayBuffer para docx.js
+                function base64DataURLToArrayBuffer(dataURL) {
+                    const base64Regex = /^data:image\/(png|jpg|jpeg|svg|svg\+xml);base64,/;
+                    if (!base64Regex.test(dataURL)) return null;
+                    const stringBase64 = dataURL.replace(base64Regex, "");
+                    let binaryString;
+                    if (typeof window !== "undefined") {
+                        binaryString = window.atob(stringBase64);
+                    } else {
+                        binaryString = new Buffer(stringBase64, "base64").toString("binary");
+                    }
+                    const len = binaryString.length;
+                    const bytes = new Uint8Array(len);
+                    for (let i = 0; i < len; i++) {
+                        const ascii = binaryString.charCodeAt(i);
+                        bytes[i] = ascii;
+                    }
+                    return bytes.buffer;
+                }
+
+                const signTable = (b) => {
+                    const none = { style: BorderStyle.NONE };
+                    const cell = (arr, isFirst) => {
+                        const lines = [];
+                        
+                        // Añadir la firma si existe y es la primera columna
+                        if (isFirst && valores['__firma__']) {
+                            const buffer = base64DataURLToArrayBuffer(valores['__firma__']);
+                            if (buffer) {
+                                lines.push(new Paragraph({ 
+                                    alignment: AlignmentType.CENTER,
+                                    spacing: { before: 200, after: 0 },
+                                    children: [new D.ImageRun({ data: buffer, transformation: { width: 150, height: 75 } })] 
+                                }));
+                            } else {
+                                lines.push(new Paragraph({ spacing: { before: 320, after: 0 }, children: [] }));
+                            }
+                        } else {
+                            lines.push(new Paragraph({ spacing: { before: 320, after: 0 }, children: [] }));
+                        }
+                        
+                        lines.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 20, after: 40 }, children: [new TextRun(arr && arr[0] ? '_______________________________' : '')] }));
+                        if (arr && arr[0]) lines.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 20 }, children: runsFrom(arr[0], { bold: true, size: 20 }) }));
+                        if (arr && arr[1]) lines.push(new Paragraph({ alignment: AlignmentType.CENTER, children: runsFrom(arr[1], { size: 20 }) }));
+                        return new TableCell({ width: { size: 4680, type: WidthType.DXA }, borders: { top: none, bottom: none, left: none, right: none }, margins: { left: 120, right: 120 }, children: lines });
+                    };
+                    return new Table({
+                        width: { size: 9360, type: WidthType.DXA }, columnWidths: [4680, 4680],
+                        borders: { top: none, bottom: none, left: none, right: none, insideHorizontal: none, insideVertical: none },
+                        rows: [new TableRow({ children: [cell(b.a, true), cell(b.b, false)] })]
+                    });
+                };
+
+                const children = [];
+                children.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 40 }, children: [new TextRun({ text: 'FERRO FRAGOSO', bold: true, size: 22, color: DOC_ACCENT })] }));
+                children.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 180 }, children: [new TextRun({ text: 'ESTUDIO JURÍDICO', size: 15, color: DOC_MUTED })] }));
+                children.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 60 }, children: [new TextRun({ text: c.titulo.toUpperCase(), bold: true, size: 26, color: DOC_TEXT })] }));
+                if (c.base) children.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 60 }, children: [new TextRun({ text: c.base, italics: true, size: 18, color: DOC_MUTED })] }));
+                children.push(new Paragraph({ border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: DOC_RULE } }, spacing: { after: 160 }, children: [new TextRun('')] }));
+
+                c.bloques.forEach((b, i) => {
+                    if (esOpcional(b) && !opcionalesOn[i]) return;
+                    const raw = b.x ? limpiaOpc(b.x) : '';
+                    const fnNums = [];
+                    raw.replace(/\[\[(\d+)\]\]/g, (_, n) => { fnNums.push(parseInt(n, 10)); return ''; });
+                    const addFn = (paraChildren) => {
+                        fnNums.forEach((n) => {
+                            if (c.fns && c.fns[n - 1] && D.FootnoteReferenceRun) paraChildren.push(new D.FootnoteReferenceRun(n));
+                        });
+                    };
+                    switch (b.t) {
+                        case 'h': {
+                            const ch = runsFrom(raw, { bold: true, color: DOC_ACCENT, size: 22 });
+                            children.push(new Paragraph({ spacing: { before: 220, after: 90 }, children: ch }));
+                            break;
+                        }
+                        case 'p': {
+                            const ch = runsFrom(raw); addFn(ch);
+                            children.push(new Paragraph({ alignment: AlignmentType.JUSTIFIED, spacing: { after: 130, line: 276 }, children: ch }));
+                            break;
+                        }
+                        case 'i': {
+                            const ch = runsFrom(raw); addFn(ch);
+                            children.push(new Paragraph({ alignment: AlignmentType.JUSTIFIED, spacing: { after: 110, line: 276 }, indent: { left: 480 }, children: ch }));
+                            break;
+                        }
+                        case 'note': {
+                            const ch = runsFrom(raw, { italics: true, color: DOC_MUTED, size: 19 });
+                            children.push(new Paragraph({
+                                alignment: AlignmentType.JUSTIFIED, spacing: { before: 60, after: 150, line: 264 }, indent: { left: 360 },
+                                border: { left: { style: BorderStyle.SINGLE, size: 18, color: DOC_ACCENT, space: 12 } }, children: ch
+                            }));
+                            break;
+                        }
+                        case 'sub': {
+                            const ch = runsFrom(raw, { bold: true, color: DOC_ACCENT, size: 22 });
+                            children.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 200, after: 160 }, children: ch }));
+                            break;
+                        }
+                        case 'br':
+                            children.push(new Paragraph({ pageBreakBefore: true, children: [new TextRun('')] }));
+                            break;
+                        case 'sign':
+                            children.push(signTable(b));
+                            break;
+                    }
+                });
+
+                const footnotes = {};
+                if (c.fns) c.fns.forEach((f, idx) => {
+                    footnotes[idx + 1] = { children: [new Paragraph({ children: [new TextRun({ text: f, size: 18 })] })] };
+                });
+
+                const doc = new Document({
+                    styles: { default: { document: { run: { font: 'Arial', size: 21, color: DOC_TEXT } } } },
+                    footnotes,
+                    sections: [{
+                        properties: { page: { margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } } },
+                        headers: {
+                            default: new Header({
+                                children: [new Paragraph({
+                                    alignment: AlignmentType.RIGHT,
+                                    border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: DOC_RULE } }, spacing: { after: 120 },
+                                    children: [new TextRun({ text: 'FERRO FRAGOSO · Estudio Jurídico', bold: true, size: 16, color: DOC_MUTED })]
+                                })]
+                            })
+                        },
+                        footers: {
+                            default: new Footer({
+                                children: [new Paragraph({
+                                    alignment: AlignmentType.CENTER,
+                                    border: { top: { style: BorderStyle.SINGLE, size: 6, color: DOC_RULE } }, spacing: { before: 80 },
+                                    children: [
+                                        new TextRun({ text: 'Plantilla de uso general — adáptese al caso concreto y verifique legislación local vigente.   Pág. ', size: 14, color: DOC_MUTED }),
+                                        new TextRun({ children: [PageNumber.CURRENT], size: 14, color: DOC_MUTED }),
+                                        new TextRun({ text: ' de ', size: 14, color: DOC_MUTED }),
+                                        new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 14, color: DOC_MUTED }),
+                                    ]
+                                })]
+                            })
+                        },
+                        children,
+                    }],
+                });
+
+                Packer.toBlob(doc).then((blob) => {
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = c.id + '.docx';
+                    document.body.appendChild(a); a.click(); a.remove();
+                    URL.revokeObjectURL(a.href);
+                }).catch((e) => { console.error(e); alert('Ocurrió un error al generar el documento: ' + e.message); });
+            });
+        });
+    </script>
+</body>
+</html>

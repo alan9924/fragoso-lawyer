@@ -1,0 +1,1923 @@
+/* 
+   ══════════════════════════════════════════════
+   FERRO FRAGOSO — Formatos CSS v2.0
+   Restructure: Three-step SPA flow
+   ══════════════════════════════════════════════
+*/
+
+:root {
+    --tech-bg: #131313; /* Deep black from first mockup */
+    --tech-card-bg: #d1d5db;
+    --tech-card-bg-dark: #1f1f1e;
+    --tech-border-color: #2e2c2a;
+    --tech-font: 'Roboto Mono', Consolas, monospace;
+    --carmine-cream: #f4f3ef; /* Off-white for detail card */
+    --indigo-soft: #e0e7ff; /* Soft blue-violet for detail text box */
+}
+
+/* ─── VIDEO LOADER ─── */
+.video-loader-overlay {
+    background: #ffffff !important;
+    gap: 0 !important;
+}
+
+.loader-video {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    filter: brightness(1.05) contrast(1.1);
+}
+
+/* Force html + body to white on formatos page */
+html:has(body.formatos-page),
+body.formatos-page {
+    background-color: #ffffff !important;
+    color: #2c2c2c;
+    padding-top: 0;
+    min-height: 100vh;
+    font-family: inherit;
+    overflow-x: clip; /* clip instead of hidden so sticky doesn't break */
+}
+
+/* Override navbar to stay transparent on formatos page */
+body.formatos-page nav.scrolled {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+body.formatos-page nav {
+    background: transparent !important;
+    position: absolute !important;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+body.formatos-page nav a, 
+body.formatos-page nav .logo-text {
+    color: #2c2c2c !important;
+}
+body.formatos-page .logo-text {
+    color: rgba(255, 255, 255, 0.75);
+}
+body:has(#step-0.active) .logo-text {
+    color: #000000;
+    font-weight: 600;
+}
+body:has(#step-0.active) .nav-logo-img {
+    filter: invert(1);
+}
+
+/* Simplified nav: only the brand + a back-to-home button (no menu links) */
+.formatos-nav .nav-container {
+    justify-content: space-between;
+}
+
+.formatos-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 30px;
+    padding: 0.6rem 1.4rem;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.formatos-back-btn:hover {
+    background: rgba(255, 255, 255, 0.92);
+    color: #0a0a0a;
+    border-color: rgba(255, 255, 255, 0.92);
+}
+
+.formatos-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 8rem 1.5rem 6rem;
+    position: relative;
+    min-height: 70vh;
+}
+
+/* Step Flow Visibility */
+.step-container {
+    display: none;
+    width: 100%;
+}
+
+.step-container.active {
+    display: block;
+    animation: fadeInStep 0.5s var(--ease-premium) forwards;
+}
+
+@keyframes fadeInStep {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── STEP 0: LANDING PAGE ─── */
+#step-0.active {
+    position: fixed;
+    inset: 0;
+    background-color: #FFFFFF;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+.step0-landing {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10rem 2rem 4rem;
+    background-image: url('abstract_signature.png');
+    background-color: #FFFFFF;
+    background-size: contain;
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+    position: relative;
+}
+
+.step0-landing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.step0-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.step0-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 500;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    color: #000000;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+#step-0.active .step0-title {
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.exit-animation {
+    animation: fadeOutUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeOutUp {
+    to {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+}
+
+.step0-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 5rem;
+}
+
+.step0-btn-primary {
+    background-color: #000000;
+    color: #D9FF00;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 1.2rem 2rem;
+    cursor: pointer;
+    flex: 1;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.step0-btn-primary:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+/* ─── STEP 1: MENÚ DE CONTRATOS (MODAL BLANCO) ─── */
+#step-1.active {
+    position: fixed;
+    inset: 0;
+    background-color: #000000;
+    z-index: 10;
+    overflow-y: auto;
+    display: block;
+}
+
+.step1-modal-title {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    letter-spacing: -1px;
+    color: #0a0a0a;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+}
+
+.step1-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.step1-card {
+    background: #1a1a1a;
+    border: 1px solid #c9a96e;
+    border-radius: 4px !important;
+    padding: 1.5rem 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    color: #f5f0ea;
+    transition: transform 0.2s ease, border-color 0.3s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.step1-card:hover {
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.step1-card:active {
+    background-color: #D9FF00;
+}
+.step1-card:active .step1-card-title, .step1-card:active .step1-card-subtitle {
+    color: #000000;
+}
+
+.step1-card-title {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.step1-card-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 640px) {
+    .step0-landing {
+        padding-top: 8rem;
+    }
+    .step0-actions {
+        flex-direction: column;
+    }
+}
+
+/* ─── BACK BUTTON ─── */
+.back-to-list-btn {
+    background: none;
+    border: none;
+    color: var(--stone-300);
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+
+.back-to-list-btn:hover {
+    color: var(--accent);
+}
+
+/* ─── STEP 1: SEARCH ─── */
+.step1-search-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.3rem;
+    max-width: 520px;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.35);
+    flex-shrink: 0;
+}
+
+.step1-search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+}
+
+.step1-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.step1-empty {
+    color: rgba(255, 255, 255, 0.4);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    padding: 2rem 0;
+}
+
+/* ═══ STEP 3: COMBINED WIZARD — GEN-FICHA + GEN-PREVIEW ═══ */
+
+/* Layout: ficha left, preview right */
+.gen-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 2.5rem;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ─── GEN-FICHA: The dark card ─── */
+.gen-ficha-wrap {
+    position: relative;
+}
+
+.gen-ficha-shadow {
+    position: absolute;
+    inset: 10px -10px -10px 10px;
+    background: rgba(255, 255, 255, 0.025);
+    border-radius: 24px;
+    z-index: 0;
+}
+
+.gen-ficha {
+    position: relative;
+    z-index: 1;
+    background: #161616;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+/* Decorative inner border frame — like the reference mockup */
+.gen-ficha-border {
+    margin: 5px;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 1.8rem 1.6rem;
+}
+
+/* ── Header ── */
+.gen-ficha-header {
+    text-align: center;
+    padding-bottom: 1.3rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.gen-ficha-header h2 {
+    font-family: var(--tech-font);
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+/* ── Blocks (rounded sections inside the ficha) ── */
+.gen-block {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 1.2rem 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.gen-block-title {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+/* ── Info accordion ── */
+.gen-block--info {
+    padding: 0.9rem 1.1rem;
+}
+
+.gen-block-toggle {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    letter-spacing: 0.3px;
+}
+
+.gen-block-toggle i {
+    transition: transform 0.35s ease;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.gen-block-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease, padding 0.3s ease;
+}
+
+.gen-block-body.open {
+    max-height: 400px;
+    padding-top: 0.9rem;
+}
+
+.gen-block-body p {
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Hint text ── */
+.gen-hint {
+    font-family: var(--font-body);
+    font-size: 0.73rem;
+    color: rgba(255, 255, 255, 0.35);
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+}
+
+/* ── Tabs (segmented control) ── */
+.gen-ficha-tabs {
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    margin-bottom: 1rem;
+}
+
+.gen-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.35);
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 0.75rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gen-tab.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-weight: 600;
+}
+
+.gen-tab:hover:not(.active) {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Utility buttons ── */
+.gen-ficha-utils {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.gen-util-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.35);
+    font-family: var(--font-body);
+    font-size: 0.58rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.gen-util-btn:hover {
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.gen-util-btn i {
+    font-size: 0.65rem;
+}
+
+/* ── Form fields inside blocks ── */
+.gen-block .tech-input-group {
+    margin-bottom: 1rem;
+}
+
+.gen-block .tech-input-group label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.35rem;
+}
+
+.gen-block .tech-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.65rem 0.85rem;
+    color: var(--ivory);
+    font-family: var(--tech-font);
+    font-size: 0.78rem;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.gen-block .tech-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.gen-block textarea.tech-input {
+    min-height: 72px;
+    resize: vertical;
+    font-family: var(--font-body);
+    line-height: 1.5;
+}
+
+/* ── Checkboxes inside blocks ── */
+.gen-block .tech-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+}
+
+.gen-block .tech-option:last-child {
+    border-bottom: none;
+}
+
+.gen-block .tech-option input[type="checkbox"] {
+    margin-top: 3px;
+    accent-color: var(--accent);
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.gen-block .tech-option span {
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* Max-height scroll for sections with many fields */
+.gen-block#tab-panel-vars,
+.gen-block#tab-panel-options {
+    max-height: 48vh;
+    overflow-y: auto;
+}
+
+.gen-block#tab-panel-vars::-webkit-scrollbar,
+.gen-block#tab-panel-options::-webkit-scrollbar {
+    width: 4px;
+}
+
+.gen-block#tab-panel-vars::-webkit-scrollbar-thumb,
+.gen-block#tab-panel-options::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* ═══ GEN-PREVIEW: Live document preview ═══ */
+.gen-preview {
+    background: #ffffff;
+    border-radius: 0;
+    padding: 2.5rem 3rem;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+    border: 1px solid rgba(0,0,0,0.12);
+    position: sticky;
+    top: 6rem;
+}
+
+.gen-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    flex-shrink: 0;
+}
+
+.gen-preview-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #111;
+}
+
+.gen-preview-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.gen-preview-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.gen-live-dot {
+    width: 6px;
+    height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.gen-preview-badge {
+    font-family: var(--tech-font);
+    font-size: 0.65rem;
+    background: #111;
+    color: #fff;
+    padding: 0.25rem 0.6rem;
+    border-radius: 16px;
+    letter-spacing: 1px;
+}
+
+/* Preview content */
+.gen-preview-content {
+    flex: 1;
+    overflow-y: auto;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: #1a1a1a;
+    padding-right: 6px;
+    text-align: left;
+}
+
+.gen-preview-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.gen-preview-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+}
+
+/* Document content styles (kept from original) */
+.gen-preview-content .doc-brand {
+    text-align: center;
+    font-family: var(--font-body);
+    letter-spacing: 2px;
+    font-size: 0.62rem;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+}
+
+.gen-preview-content .doc-brand small {
+    display: block;
+    font-size: 0.5rem;
+    letter-spacing: 3px;
+    margin-top: 2px;
+}
+
+.gen-preview-content .doc-title {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin: 0.5rem 0 0.3rem;
+}
+
+.gen-preview-content .doc-subtitle {
+    text-align: center;
+    font-size: 0.7rem;
+    color: #999;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.gen-preview-content hr {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin-bottom: 1rem;
+}
+
+.gen-preview-content h4.clause {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: #111;
+    margin: 1.2rem 0 0.4rem;
+    text-transform: uppercase;
+}
+
+.gen-preview-content p.body {
+    text-align: left;
+    margin-bottom: 1rem;
+    line-height: 1.9;
+}
+
+.gen-preview-content p.indent {
+    margin: 0 0 0.7rem 1.5rem;
+    text-align: left;
+    line-height: 1.9;
+}
+
+.gen-preview-content p.note {
+    font-style: italic;
+    color: #555;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.82rem;
+}
+
+.gen-preview-content p.subhd {
+    text-align: center;
+    font-weight: 700;
+    margin: 1.3rem 0 0.7rem;
+    letter-spacing: 1px;
+}
+
+.gen-preview-content .pagebreak {
+    text-align: center;
+    font-size: 0.6rem;
+    color: #aaa;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 1.3rem 0;
+}
+
+.gen-preview-content .fill {
+    color: #111;
+    font-weight: 600;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+}
+
+.gen-preview-content .fill.empty {
+    color: #a68a52;
+    font-weight: 600;
+    font-style: normal;
+    border-bottom: none;
+}
+
+.gen-preview-content .sup {
+    font-size: 0.6em;
+    vertical-align: super;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.gen-preview-content .signs {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.gen-preview-content .sign {
+    flex: 1;
+    text-align: center;
+}
+
+.gen-preview-content .sign .line {
+    border-top: 1px solid #111;
+    margin-bottom: 0.4rem;
+}
+
+.gen-preview-content .sign .role {
+    font-family: var(--font-body);
+    font-size: 0.64rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.gen-preview-content .sign .who {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: #555;
+    margin-top: 0.2rem;
+}
+
+.gen-preview-content .footnotes {
+    margin-top: 2rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.gen-preview-content .footnotes p {
+    font-family: var(--font-body);
+    font-size: 0.64rem;
+    color: #888;
+    line-height: 1.5;
+    margin-bottom: 0.3rem;
+}
+
+/* Preview action buttons */
+.gen-preview-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.doc-btn {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    border: 1px solid #111;
+}
+
+.doc-btn--primary {
+    background: #111;
+    color: #fff;
+}
+
+.doc-btn--primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.doc-btn--secondary {
+    background: transparent;
+    color: #111;
+}
+
+.doc-btn--secondary:hover {
+    background: #111;
+    color: #fff;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+    .gen-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .gen-preview {
+        max-height: none;
+        position: static;
+    }
+
+    .gen-block#tab-panel-vars,
+    .gen-block#tab-panel-options {
+        max-height: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .gen-ficha-border {
+        padding: 1.2rem 1rem;
+    }
+
+    .gen-ficha-header h2 {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+
+    .gen-ficha-tabs {
+        flex-direction: column;
+    }
+
+    .gen-ficha-utils {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gen-preview-actions {
+        flex-direction: column;
+    }
+
+    .doc-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* ─── LEYENDA TARIFAS FORMATOS ─── */
+.gen-pricing-legend {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--stone-200);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.gen-pricing-legend h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--carbon);
+    margin-bottom: 1rem;
+}
+
+.gen-pricing-legend ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.gen-pricing-legend li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.gen-pricing-legend li strong {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--carbon);
+    font-weight: 600;
+}
+
+.gen-pricing-legend li span {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* ============================================================================
+   WIZARD STYLES (MONETTO STYLE)
+   ============================================================================ */
+
+/* Full dark background mode for step-3 */
+#step-3 {
+    background: #000000;
+    min-height: 100vh;
+}
+
+.wizard-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Push content to top, no massive gap */
+    min-height: 100vh;
+    padding: 0; /* Remove padding that creates extra top space */
+    position: relative;
+    background-color: #ffffff; /* Make it white */
+    z-index: 1100; /* Cover the navbar */
+}
+
+.wizard-close-btn, .circular-back-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 200;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.wizard-close-btn svg, .circular-back-btn svg {
+    stroke: #ffffff !important;
+    color: #ffffff !important;
+}
+
+.wizard-close-btn:hover, .circular-back-btn:hover { 
+    transform: scale(1.05);
+    background-color: #222;
+}
+
+.circular-back-btn {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.wizard-modal {
+    background: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    min-height: 600px;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header & Progress */
+.wizard-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.formatos-nav .nav-brand {
+    /* Reverted centering, relying on default left position */
+}
+
+/* Hide the main navbar when a modal step (not step-0) is active to prevent overlap */
+body:has(.step-container.active:not(#step-0)) #navbar {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute !important;
+    top: -100px;
+    transition: opacity 0.3s ease;
+}
+
+/* The 8rem top padding on .formatos-wrapper exists to clear the navbar on step-0,
+   but step-0 is position:fixed so it never uses it. When a wizard step (1/2/3)
+   is active the navbar is hidden above, so remove that padding to avoid the gap
+   above .wizard-top-bar. */
+body:has(.step-container.active:not(#step-0)) .formatos-wrapper {
+    padding-top: 0;
+}
+
+.wizard-top-bar {
+    width: 100%;
+    position: -webkit-sticky;
+    position: sticky; /* Makes it follow on scroll */
+    top: 0;
+    background-color: #ffffff;
+    padding: 1rem 2rem; /* Reduced vertical padding slightly for a sleeker bar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border to separate from content when scrolling */
+}
+
+.wizard-top-bar .wizard-close-btn {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+
+.wizard-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.wizard-logo-img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    filter: invert(1); /* Invert so it's visible on white background */
+}
+
+.wizard-logo-text {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #2c2c2c; /* Dark color for white background */
+}
+
+.wizard-progress-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111;
+}
+
+.wizard-progress-bar-bg {
+    width: 100%;
+    height: 4px;
+    background: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.wizard-progress-bar-fill {
+    height: 100%;
+    width: 10%;
+    background: #111;
+    transition: width 0.3s ease;
+}
+
+.wizard-tag {
+    align-self: flex-start;
+    background: #D9FF00; /* Neon yellow */
+    color: #000;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Body & Steps */
+.wizard-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wizard-step-container {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+.wizard-step-container.active {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.wizard-question {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #000;
+}
+
+.wizard-input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 0.8rem 0;
+    font-size: 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: transparent;
+    transition: border-color 0.2s;
+    outline: none;
+}
+.wizard-input:focus {
+    border-bottom-color: #000;
+}
+
+.wizard-hint {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: -1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Checkbox / Options */
+.wizard-option-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem;
+    background: #f8f8f8;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-bottom: 0.8rem;
+}
+.wizard-option-row:hover { background: #f0f0f0; }
+.wizard-option-row.selected {
+    background: #D9FF00; /* Neon yellow */
+}
+
+.wizard-option-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000;
+}
+.wizard-option-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wizard-option-row.selected .wizard-option-check {
+    background: #000;
+}
+.wizard-option-row.selected .wizard-option-check::after {
+    content: "✓";
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Footer & Navigation */
+.wizard-footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.wizard-nav-btn {
+    border: none;
+    background: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 1rem;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+.wizard-nav-btn:active { transform: scale(0.96); }
+
+.wizard-prev {
+    width: 60px;
+    flex-shrink: 0;
+}
+.wizard-next {
+    flex: 1;
+}
+
+/* Final Step Preview */
+.wizard-final-preview {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    border: 1px solid #eaeaea;
+    margin-bottom: 2rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── STEP 2: FICHA TECNICA ─── */
+.step2-ficha {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.step2-modal-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    color: var(--carbon);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--stone-200);
+}
+
+.ficha-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ficha-block {
+    background: transparent;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.ficha-block h4 {
+    font-family: var(--font-heading), 'Helvetica Neue', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--carbon);
+    margin: 0;
+    text-align: center;
+    max-width: 80%;
+    line-height: 1.2;
+}
+
+.ficha-card {
+    background: #e1e6f9;
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ficha-card p {
+    font-family: var(--font-body), sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--carbon);
+    margin: 0;
+    font-weight: 400;
+}
+
+.ficha-explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--carbon);
+    cursor: default;
+    background: transparent;
+}
+
+.ficha-explore-btn span {
+    font-size: 0.6rem;
+}
+
+.step2-footer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ─── SIGNATURE PAD ─── */
+.wizard-signature-wrapper {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#wizard-signature-canvas {
+    background-color: #fafafa;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    cursor: crosshair;
+    touch-action: none; /* Previene scroll en movil al dibujar */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.wizard-btn-clear-sig {
+    background: transparent;
+    border: none;
+    color: var(--carbon);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.wizard-btn-clear-sig:hover {
+    opacity: 1;
+}
+
+/* Desktop adjustments for Ficha Técnica */
+@media (min-width: 768px) {
+    .wizard-modal.step2-ficha {
+        max-width: 900px;
+        padding: 3.5rem;
+    }
+    .ficha-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+/* ============================================================
+   DESKTOP WIZARD LAYOUT  (≥768 px)
+   Centered, single-column, full-screen white — no phone card
+   ============================================================ */
+@media (min-width: 768px) {
+
+    /* White background — no more black phone screen */
+    /* Make containers relative so they scroll with the window (enables smooth scroll) */
+    #step-1.active,
+    #step-2.active,
+    #step-3.active {
+        background: transparent !important;
+        position: relative !important;
+        overflow-y: visible !important;
+        z-index: 10;
+    }
+
+    /* The dark overlay becomes a neutral light container */
+    #step-1 .wizard-overlay,
+    #step-2 .wizard-overlay,
+    #step-3 .wizard-overlay {
+        background: transparent;
+        padding: 0;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+
+    /* Remove every trace of the phone-card on desktop */
+    #step-1 .wizard-modal,
+    #step-2 .wizard-modal,
+    #step-3 .wizard-modal {
+        max-width: 640px;
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 40px 60px;
+        background: transparent !important;
+        margin: 0 !important;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Back button — fixed inside top bar */
+    #step-1 .wizard-close-btn,
+    #step-2 .circular-back-btn,
+    #step-3 .wizard-close-btn {
+        background: #111;
+        color: #fff;
+    }
+
+    /* ── STEP-1: contract list ── */
+    #step-1 .wizard-modal {
+        align-items: center;
+        justify-content: flex-start;
+        padding: 3rem 2rem 4rem; /* Reduced from 6rem to 3rem to tighten space below top bar */
+        max-width: 780px;
+    }
+    .step1-modal-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 300;
+        letter-spacing: -1px;
+        color: #111;
+        margin-bottom: 2.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    #step1-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .step1-card {
+        text-align: left;
+    }
+
+    /* ── STEP-3: questionnaire — single column centered ── */
+    #step-3 .wizard-modal {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+    }
+
+    #step-3 .wizard-header {
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    #step-3 .wizard-body {
+        flex: 1;
+        padding: 0;
+        justify-content: flex-start;
+    }
+
+    #step-3 .wizard-footer {
+        padding: 0;
+        margin-top: 2.5rem;
+    }
+
+    /* Progress text */
+    .wizard-progress-text {
+        font-size: 0.85rem;
+        color: #555;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+    }
+
+    /* Question: larger on desktop */
+    .wizard-question {
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+        letter-spacing: -1.5px;
+    }
+
+    /* Input field */
+    .wizard-input {
+        font-size: 1.6rem;
+        padding: 1rem 0;
+    }
+
+    /* "Continue" button */
+    .wizard-next {
+        max-width: 280px;
+        border-radius: 8px;
+        font-size: 1rem;
+        padding: 1rem 2rem;
+    }
+    .wizard-prev {
+        border-radius: 8px;
+    }
+
+    /* Final step preview panel */
+    .wizard-final-preview {
+        max-height: 55vh;
+        font-size: 0.9rem;
+    }
+}
+
+/* ── Very large screens (≥1200px) ── */
+@media (min-width: 1200px) {
+    #step-1 .wizard-modal {
+        padding: 7rem 4rem 4rem;
+        max-width: 920px;
+    }
+    #step-3 .wizard-modal {
+        max-width: 700px;
+        padding: 6rem 4rem 4rem;
+    }
+}
+
+
+    /* ============================ PRICING CARDS ============================ */
+.pricing-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    align-items: center; /* Center cards horizontally */
+}
+
+.pricing-card {
+    background-color: #121212;
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
+    flex: 1;
+    border: 1px solid rgba(255,255,255,0.05);
+    text-align: left;
+}
+
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(219,254,1,0.15) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.pricing-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pricing-pill {
+    background-color: rgba(255,255,255,0.05);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #aaa;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.pricing-pill i {
+    color: #dbfe01;
+}
+
+.pricing-includes-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ccc;
+}
+
+.pricing-card-middle {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+@media (max-width: 500px) {
+    .pricing-card-middle {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.pricing-price-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-price {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #dbfe01;
+    line-height: 1;
+}
+
+.pricing-subtitle {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.5rem;
+}
+
+.pricing-features-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #ddd;
+}
+
+.pricing-features i {
+    color: #ccc;
+    font-size: 1rem;
+}
+
+.pricing-card-btn {
+    background-color: #dbfe01;
+    color: #000;
+    border-radius: 50px;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, background-color 0.2s;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.pricing-card-btn:hover {
+    transform: translateY(-2px);
+    background-color: #c4e600;
+    color: #000;
+}
+
+.pricing-btn-icon {
+    background-color: rgba(0,0,0,0.1);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pricing-btn-icon i {
+    font-size: 0.8rem;
+}
+
+/* ============================ PRINT STYLES (FOR PDF EXPORT) ============================ */
+@media print {
+    @page {
+        size: Letter;
+        margin: 2.5cm 2.5cm 2.5cm 3cm;
+    }
+
+    /* Hide all website UI */
+    #navbar,
+    #intro-loader,
+    .wizard-header,
+    .wizard-footer,
+    .wizard-question,
+    .gen-preview-actions,
+    .gen-preview-header,
+    .gen-premium-services,
+    .pricing-grid,
+    .wizard-close-btn {
+        display: none !important;
+    }
+
+    /* Reset layout for print */
+    body, html {
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: #000 !important;
+        font-size: 11pt !important;
+    }
+
+    .formatos-wrapper,
+    .step-container,
+    .wizard-overlay,
+    .wizard-modal,
+    .wizard-body,
+    .wizard-step {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        position: static !important;
+        display: block !important;
+    }
+
+    /* Ensure only active step is printed */
+    .step-container:not(.active) {
+        display: none !important;
+    }
+
+    /* The document preview area — plain paper */
+    .gen-preview {
+        position: static !important;
+        max-height: none !important;
+        height: auto !important;
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: #fff !important;
+    }
+
+    .gen-preview-content {
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        color: #000 !important;
+        background: #fff !important;
+        width: 100% !important;
+        border: none !important;
+        border-radius: 0 !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        font-size: 11pt !important;
+        line-height: 1.9 !important;
+        text-align: left !important;
+    }
+
+    .gen-preview-content p,
+    .gen-preview-content p.body,
+    .gen-preview-content p.indent,
+    .gen-preview-content li,
+    .gen-preview-content span,
+    .gen-preview-content b,
+    .gen-preview-content strong {
+        color: #000 !important;
+        text-align: left !important;
+    }
+
+    .gen-preview-content h4.clause,
+    .gen-preview-content h1,
+    .gen-preview-content h2,
+    .gen-preview-content h3 {
+        color: #000 !important;
+        page-break-after: avoid;
+    }
+
+    .gen-preview-content .pagebreak {
+        page-break-before: always;
+    }
+}
+
+    .ficha-block {
+        margin-bottom: 0;
+    }
+}

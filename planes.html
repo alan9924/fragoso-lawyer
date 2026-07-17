@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes de Suscripción | FERRO FRAGOSO</title>
+    <meta name="description" content="Planes de suscripción legal para particulares y empresas. Ferro Fragoso, Estudio Jurídico.">
+    <link rel="icon" type="image/png" href="logo_ff.png">
+    <link rel="apple-touch-icon" href="logo_ff.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="page-planes">
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="navbar" class="transparent-nav scrolled">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
+                <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
+            </div>
+            
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html#inicio">INICIO</a></li>
+                    <li><a href="index.html#acerca">ESENCIA</a></li>
+                    <li><a href="index.html#areas">ÁREAS</a></li>
+                    <li><a href="index.html#socios">SOCIOS</a></li>
+                    <li><a href="formatos.html">FORMATOS</a></li>
+                    <li class="mobile-only-li"><a href="planes.html" class="active-link">PLANES</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-actions">
+                <a href="planes.html" class="nav-cta-btn">PLANES</a>
+                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ PLANES HEADER ═══ -->
+    <header class="planes-header">
+        <div class="planes-header-content fade-in-up">
+            <h1 class="planes-title reveal-mask">Su blindaje legal,<br>como servicio.</h1>
+            <p class="planes-subtitle">Acceda a nuestra firma bajo un modelo de iguala mensual diseñado para ofrecerle prevención, respuesta rápida y certeza absoluta.</p>
+        </div>
+    </header>
+
+    <!-- ═══ PRICING SECTION ═══ -->
+    <section class="pricing-section">
+
+        <div class="pricing-toggle-wrap fade-in-up">
+            <div class="pricing-toggle" id="pricingToggle">
+                <span class="pricing-toggle-pill" id="pricingTogglePill"></span>
+                <button type="button" class="pricing-toggle-btn active" data-mode="monthly">Mensual</button>
+                <button type="button" class="pricing-toggle-btn" data-mode="annual">Anual <span class="save-tag">Ahorra 2 meses</span></button>
+            </div>
+        </div>
+
+        <div class="pricing-grid">
+
+            <!-- PLAN ESENCIAL -->
+            <div class="pricing-card fade-in-up delay-1" id="esencial">
+                <div class="pricing-card-header">
+                    <div class="pricing-card-icon"><i class="fas fa-user-shield"></i></div>
+                    <h2 class="pricing-card-title">ESENCIAL</h2>
+                    <p class="pricing-card-desc">Protección legal accesible para profesionistas independientes y freelancers. No firmes nada sin respaldo.</p>
+                </div>
+                <div class="pricing-card-price">
+                    <span class="amount"><span class="amount-prefix"></span>$<span class="amount-value" data-monthly="1290" data-annual="1075">1,290</span></span>
+                    <span class="period">MXN / MES</span>
+                    <span class="annual-note" data-monthly-note="$12,900 MXN/año — ahorra 2 meses si facturas anual" data-annual-note="Equivale a $1,075 MXN/mes — facturado $12,900 MXN al año">$12,900 MXN/año — ahorra 2 meses si facturas anual</span>
+                </div>
+                <div class="pricing-card-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Consultas por WhatsApp y correo (respuesta &lt;24h hábiles)</li>
+                        <li><i class="fas fa-check"></i> Revisión de hasta 1 contrato/documento al mes</li>
+                        <li><i class="fas fa-check"></i> Acceso a formatos y plantillas legales</li>
+                        <li><i class="fas fa-check"></i> 5% de descuento en litigios</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="https://wa.me/524191239646?text=Me%20interesa%20el%20Plan%20Esencial" target="_blank" class="pricing-btn">CONTRATAR PLAN ESENCIAL</a>
+                </div>
+            </div>
+
+            <!-- PLAN FAMILIAR & PATRIMONIAL -->
+            <div class="pricing-card fade-in-up delay-2" id="familiar">
+                <div class="pricing-card-header">
+                    <div class="pricing-card-icon"><i class="fas fa-people-roof"></i></div>
+                    <h2 class="pricing-card-title">FAMILIAR &amp; PATRIMONIAL</h2>
+                    <p class="pricing-card-desc">Protección y prevención para individuos y familias. Resuelve tus dudas diarias con un abogado de cabecera.</p>
+                </div>
+                <div class="pricing-card-price">
+                    <span class="amount"><span class="amount-prefix"></span>$<span class="amount-value" data-monthly="2990" data-annual="2492">2,990</span></span>
+                    <span class="period">MXN / MES</span>
+                    <span class="annual-note" data-monthly-note="$29,900 MXN/año — ahorra 2 meses si facturas anual" data-annual-note="Equivale a $2,492 MXN/mes — facturado $29,900 MXN al año">$29,900 MXN/año — ahorra 2 meses si facturas anual</span>
+                </div>
+                <div class="pricing-card-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Consultas ilimitadas por WhatsApp y correo</li>
+                        <li><i class="fas fa-check"></i> Revisión de hasta 3 contratos/documentos al mes</li>
+                        <li><i class="fas fa-check"></i> Asesoría en derecho familiar y civil</li>
+                        <li><i class="fas fa-check"></i> Planeación patrimonial y testamentos</li>
+                        <li><i class="fas fa-check"></i> 10% de descuento en litigios</li>
+                        <li><i class="fas fa-check"></i> Resumen de actualidad jurídica quincenal</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="https://wa.me/524191239646?text=Me%20interesa%20el%20Plan%20Familiar%20y%20Patrimonial" target="_blank" class="pricing-btn">CONTRATAR PLAN FAMILIAR</a>
+                </div>
+            </div>
+
+            <!-- PLAN PYME & EMPRENDEDOR -->
+            <div class="pricing-card premium-card fade-in-up delay-3" id="pyme">
+                <div class="pricing-badge"><i class="fas fa-star"></i> MÁS ELEGIDO</div>
+                <div class="pricing-card-header">
+                    <div class="pricing-card-icon"><i class="fas fa-rocket"></i></div>
+                    <h2 class="pricing-card-title">PYME &amp; EMPRENDEDOR</h2>
+                    <p class="pricing-card-desc">Tu departamento legal externo mientras creces. Constitución, contratos y cumplimiento sin sorpresas.</p>
+                </div>
+                <div class="pricing-card-price">
+                    <span class="amount"><span class="amount-prefix"></span>$<span class="amount-value" data-monthly="6900" data-annual="5750">6,900</span></span>
+                    <span class="period">MXN / MES</span>
+                    <span class="annual-note" data-monthly-note="$69,000 MXN/año — ahorra 2 meses si facturas anual" data-annual-note="Equivale a $5,750 MXN/mes — facturado $69,000 MXN al año">$69,000 MXN/año — ahorra 2 meses si facturas anual</span>
+                </div>
+                <div class="pricing-card-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Constitución y estructuración de tu sociedad</li>
+                        <li><i class="fas fa-check"></i> Elaboración/revisión de hasta 5 contratos comerciales al mes</li>
+                        <li><i class="fas fa-check"></i> Cumplimiento laboral básico (altas, contratos, políticas internas)</li>
+                        <li><i class="fas fa-check"></i> 1 registro de marca ante IMPI al año con descuento preferencial</li>
+                        <li><i class="fas fa-check"></i> 15% de descuento en litigios</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="https://wa.me/524191239646?text=Me%20interesa%20el%20Plan%20PyME%20y%20Emprendedor" target="_blank" class="pricing-btn pricing-btn-premium">CONTRATAR PLAN PYME</a>
+                </div>
+            </div>
+
+            <!-- PLAN CORPORATIVO -->
+            <div class="pricing-card fade-in-up delay-4" id="corporativo">
+                <div class="pricing-card-header">
+                    <div class="pricing-card-icon"><i class="fas fa-building-columns"></i></div>
+                    <h2 class="pricing-card-title">CORPORATIVO</h2>
+                    <p class="pricing-card-desc">Su departamento legal "In-House" para empresas consolidadas. Blindaje total, cumplimiento normativo y estrategia de negocios.</p>
+                </div>
+                <div class="pricing-card-price">
+                    <span class="amount"><span class="amount-prefix">Desde </span>$<span class="amount-value" data-monthly="14900" data-annual="12417">14,900</span></span>
+                    <span class="period">MXN / MES</span>
+                    <span class="annual-note" data-monthly-note="Desde $149,000 MXN/año — ahorra 2 meses si facturas anual" data-annual-note="Equivale a $12,417 MXN/mes — facturado desde $149,000 MXN al año">Desde $149,000 MXN/año — ahorra 2 meses si facturas anual</span>
+                </div>
+                <div class="pricing-card-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Elaboración/revisión de contratos comerciales y laborales sin límite mensual</li>
+                        <li><i class="fas fa-check"></i> Mantenimiento de actas de asamblea y libros</li>
+                        <li><i class="fas fa-check"></i> Inteligencia Jurídica: auditoría y 1 sesión de estrategia mensual</li>
+                        <li><i class="fas fa-check"></i> Prevención y manejo de terminaciones laborales</li>
+                        <li><i class="fas fa-check"></i> Resumen diario DOF especializado en su sector</li>
+                        <li><i class="fas fa-check"></i> 20% de descuento en litigios extraordinarios</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="https://wa.me/524191239646?text=Me%20interesa%20el%20Plan%20Corporativo" target="_blank" class="pricing-btn">CONTRATAR PLAN CORPORATIVO</a>
+                </div>
+            </div>
+
+        </div>
+        <p class="pricing-disclaimer">Todos los planes son mensuales, sin permanencia forzosa — cancela cuando quieras. Precios más IVA.</p>
+    </section>
+
+    <!-- Scripts locales -->
+    <script src="script.js"></script>
+</body>
+</html>

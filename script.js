@@ -1,5 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    /* ─── SCROLL INERCIAL PREMIUM (LENIS) ─── */
+    let lenis;
+    const lenisScript = document.createElement('script');
+    lenisScript.src = "https://unpkg.com/lenis@1.1.13/dist/lenis.min.js";
+    lenisScript.onload = () => {
+        lenis = new Lenis({
+            autoRaf: true,
+            duration: 1.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 0.9,
+            // Optimizaciones para móvil y trackpad
+            touchMultiplier: 1.5,
+            smoothTouch: false,
+            syncTouch: true,
+        });
+        
+        // Integración con GSAP ScrollTrigger
+        if (window.ScrollTrigger && window.gsap) {
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+        }
+        
+        // Bloquear scroll inicial (isScrolling logic state)
+        lenis.stop();
+        document.body.style.overflow = 'hidden';
+    };
+    document.head.appendChild(lenisScript);
+
     /* ── Always start at top (Hero) ── */
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
@@ -18,11 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.hero-cta-oval'),
     ].filter(Boolean);
 
-    // Start hero items fully hidden
     heroItems.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'none'; });
 
     setTimeout(() => {
-        if (loader) loader.classList.add('hidden');
+        if (!window.__VIDEO_LOADER && loader) loader.classList.add('hidden');
+        
+        // Liberar el scroll (Reset de flag "isScrolling" virtual)
+        if (lenis) lenis.start();
+        document.body.style.overflow = '';
 
         setTimeout(() => {
             heroItems.forEach((el, i) => {
@@ -48,11 +81,112 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ════════════════════════════════════
+       BLUR-WORD ANIMATION ENGINE
+       Ported from React blur-text-animation component to vanilla JS.
+       Animates each word in the hero taglines with cinematic blur + 3D reveal.
+    ════════════════════════════════════ */
+    function initBlurWordAnimation(selector, startDelay = 2200, loopDelay = 7000) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+
+        // Wrap each word in an animated span
+        const rawText = el.textContent.trim();
+        const splitWords = rawText.split(' ');
+        const totalWords = splitWords.length;
+
+        const wordData = splitWords.map((word, index) => {
+            const progress = index / totalWords;
+            const exponentialDelay = Math.pow(progress, 0.8) * 0.5;
+            const baseDelay = index * 0.06;
+            const microVariation = (Math.random() - 0.5) * 0.05;
+            return {
+                text: word,
+                duration: 2.2 + Math.cos(index * 0.3) * 0.3,
+                delay:    baseDelay + exponentialDelay + microVariation,
+                blur:     12 + Math.floor(Math.random() * 8),
+                scale:    0.9 + Math.sin(index * 0.2) * 0.05
+            };
+        });
+
+        // Build HTML
+        el.innerHTML = wordData.map((w, i) =>
+            `<span class="blur-word" data-index="${i}"></span>`
+        ).join('');
+
+        const spans = el.querySelectorAll('.blur-word');
+        spans.forEach((span, i) => {
+            span.textContent = wordData[i].text;
+            span.style.transitionDuration      = `${wordData[i].duration}s`;
+            span.style.transitionTimingFunction = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            // Initial hidden state
+            span.style.transitionDelay = '0s';
+        });
+
+        // Calculate how long the full reveal takes
+        let maxTime = 0;
+        wordData.forEach(w => { maxTime = Math.max(maxTime, w.delay + w.duration); });
+
+        let animTimer = null;
+        let loopTimer = null;
+
+        function reveal() {
+            spans.forEach((span, i) => {
+                span.style.transitionDelay = `${wordData[i].delay}s`;
+                span.classList.remove('is-hidden');
+                span.classList.add('is-visible');
+            });
+            // After full reveal, schedule hide + loop
+            animTimer = setTimeout(() => {
+                spans.forEach(span => {
+                    span.style.transitionDelay = '0s';
+                    span.classList.remove('is-visible');
+                    span.classList.add('is-hidden');
+                });
+                loopTimer = setTimeout(reveal, loopDelay);
+            }, (maxTime + 0.8) * 1000);
+        }
+
+        // Kick off after page intro delay
+        setTimeout(reveal, startDelay);
+    }
+
+    // Animate primary tagline (starts at 2.2s after page load)
+    initBlurWordAnimation('.hero-tagline-primary', 2200, 7000);
+    // Animate secondary tagline (starts 0.6s after primary for cascade feel)
+    initBlurWordAnimation('.hero-tagline-secondary', 2800, 7000);
+
+    /* ════════════════════════════════════
        NAVBAR SCROLL BEHAVIOR
     ════════════════════════════════════ */
+    const heroSection = document.getElementById('inicio');
     window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
+        // Show navbar ONLY after scrolling past the Hero
+        const triggerHeight = heroSection ? window.innerHeight * 0.9 : 60;
+        
+        if (window.scrollY > triggerHeight) {
+            navbar.classList.add('scrolled');
+            navbar.classList.remove('hidden-top');
+        } else {
+            navbar.classList.remove('scrolled');
+            // Only hide it completely if it's the home page with a Hero
+            if (heroSection) {
+                navbar.classList.add('hidden-top');
+            }
+        }
     }, { passive: true });
+
+    const heroScrollBtn = document.getElementById('hero-scroll-btn');
+    if (heroScrollBtn) {
+        heroScrollBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const offset = window.innerHeight;
+            if (typeof lenis !== 'undefined' && lenis) {
+                lenis.scrollTo(offset);
+            } else {
+                window.scrollTo({ top: offset, behavior: 'smooth' });
+            }
+        });
+    }
 
     /* ════════════════════════════════════
        SCROLL REVEAL ENGINE
@@ -77,6 +211,60 @@ document.addEventListener('DOMContentLoaded', () => {
         const content = el.innerHTML;
         el.innerHTML = `<span class="reveal-mask-line"><span class="reveal-mask-inner">${content}</span></span>`;
         revealObserver.observe(el);
+    });
+
+    // Typewriter Reveal Effect (Ported from useAnimatedText React hook)
+    const typewriterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                if (el.dataset.animated) return;
+                el.dataset.animated = 'true';
+                
+                const parseString = el.dataset.original.replace(/<br\s*\/?>/gi, '¶');
+                const parts = parseString.split(''); 
+                const totalLength = parts.length;
+                
+                // Adjust duration based on text length (longer text = slightly longer duration)
+                const durationMs = Math.min(Math.max(totalLength * 15, 800), 2500);
+                const startTime = performance.now();
+                
+                // easeOut function
+                const easeOut = t => 1 - Math.pow(1 - t, 3);
+                
+                el.style.opacity = '1';
+
+                function update(time) {
+                    const elapsed = time - startTime;
+                    let progress = Math.min(elapsed / durationMs, 1);
+                    progress = easeOut(progress);
+                    
+                    const cursor = Math.floor(progress * totalLength);
+                    const currentText = parts.slice(0, cursor).join('');
+                    
+                    el.innerHTML = currentText.replace(/¶/g, '<br>');
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    } else {
+                        // Ensure original HTML is fully restored at the end
+                        el.innerHTML = el.dataset.original;
+                    }
+                }
+                
+                requestAnimationFrame(update);
+                typewriterObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.typewriter-reveal').forEach(el => {
+        el.dataset.original = el.innerHTML;
+        // Fix height so layout doesn't jump during typing
+        el.style.minHeight = el.offsetHeight + 'px';
+        el.style.opacity = '0'; // Hide initially until typing starts
+        el.innerHTML = '';
+        typewriterObserver.observe(el);
     });
 
     /* ════════════════════════════════════
@@ -218,7 +406,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const carouselSelectors = [
         '.areas-bento',
-        '.porque-grid'
+        '.porque-grid',
+        '.criterio-grid'
     ];
 
     if (isMobile()) {
@@ -287,6 +476,117 @@ document.addEventListener('DOMContentLoaded', () => {
 
             track.addEventListener('scroll', updateActiveCard, { passive: true });
         });
+    }
+
+    /* ════════════════════════════════════
+       MOBILE TAB NAVIGATION (App-like UI)
+    ════════════════════════════════════ */
+    const mobileTabBtns = document.querySelectorAll('.mobile-tab-btn');
+    const hPanels = document.querySelectorAll('.h-panel');
+
+    if (mobileTabBtns.length > 0 && hPanels.length > 0) {
+        // Init active state
+        if (window.innerWidth < 900) {
+            hPanels[0].classList.add('active-panel');
+        }
+
+        mobileTabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes
+                mobileTabBtns.forEach(b => b.classList.remove('active'));
+                hPanels.forEach(p => p.classList.remove('active-panel'));
+                
+                // Add active to clicked btn
+                btn.classList.add('active');
+                
+                // Show target panel
+                const targetId = btn.getAttribute('data-target');
+                const targetPanel = document.getElementById(targetId);
+                if (targetPanel) {
+                    targetPanel.classList.add('active-panel');
+                    
+                    // Center the clicked tab in the horizontal scroll container
+                    const tabNav = document.querySelector('.mobile-tab-nav');
+                    const tabRect = btn.getBoundingClientRect();
+                    const navRect = tabNav.getBoundingClientRect();
+                    
+                    tabNav.scrollTo({
+                        left: tabNav.scrollLeft + (tabRect.left - navRect.left) - (navRect.width / 2) + (tabRect.width / 2),
+                        behavior: 'smooth'
+                    });
+                    
+                    // Scroll page slightly so the card sits nicely below tabs
+                    const offset = document.querySelector('.mobile-tab-nav').offsetTop;
+                    window.scrollTo({
+                        top: offset - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 900) {
+                hPanels.forEach(p => p.classList.remove('active-panel'));
+            } else {
+                const hasActive = Array.from(hPanels).some(p => p.classList.contains('active-panel'));
+                if (!hasActive && hPanels[0]) {
+                    hPanels[0].classList.add('active-panel');
+                    mobileTabBtns[0].classList.add('active');
+                }
+            }
+        });
+    }
+
+    /* ════════════════════════════════════
+       PLANES — Toggle Mensual / Anual
+    ════════════════════════════════════ */
+    const pricingToggle = document.getElementById('pricingToggle');
+    const pricingPill = document.getElementById('pricingTogglePill');
+
+    if (pricingToggle && pricingPill) {
+        const toggleBtns = pricingToggle.querySelectorAll('.pricing-toggle-btn');
+        const amountValues = document.querySelectorAll('.pricing-card-price .amount-value');
+        const annualNotes = document.querySelectorAll('.pricing-card-price .annual-note');
+
+        const formatMXN = (n) => Number(n).toLocaleString('es-MX');
+
+        const movePill = (btn) => {
+            pricingPill.style.width = `${btn.offsetWidth}px`;
+            pricingPill.style.transform = `translateX(${btn.offsetLeft - 6}px)`;
+        };
+
+        const setMode = (mode) => {
+            toggleBtns.forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+            const activeBtn = pricingToggle.querySelector(`.pricing-toggle-btn[data-mode="${mode}"]`);
+            if (activeBtn) movePill(activeBtn);
+
+            amountValues.forEach(el => {
+                const value = mode === 'monthly' ? el.dataset.monthly : el.dataset.annual;
+                el.classList.add('is-updating');
+                setTimeout(() => {
+                    el.textContent = formatMXN(value);
+                    el.classList.remove('is-updating');
+                }, 150);
+            });
+
+            annualNotes.forEach(el => {
+                const text = mode === 'monthly' ? el.dataset.monthlyNote : el.dataset.annualNote;
+                if (text) el.textContent = text;
+            });
+        };
+
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => setMode(btn.dataset.mode));
+        });
+
+        const syncPill = () => {
+            const activeBtn = pricingToggle.querySelector('.pricing-toggle-btn.active') || toggleBtns[0];
+            movePill(activeBtn);
+        };
+
+        requestAnimationFrame(syncPill);
+        window.addEventListener('resize', syncPill);
     }
 
 });
