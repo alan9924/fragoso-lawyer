@@ -2,7 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#fdfdfc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>FERRO FRAGOSO | Sus Derechos Comienzan Aquí</title>
     <meta name="description" content="Ferro Fragoso, Estudio Jurídico. Alan Obed Fragoso Rivera y Daniel Ferro Gutiérrez, abogados egresados de la Universidad Autónoma de Querétaro.">
     <link rel="icon" type="image/png" href="logo_ff.png">
@@ -96,13 +100,36 @@
         <span class="line"></span>
     </div>
 
-    <!-- ═══ MOBILE TAB NAVIGATION (App-like Interface) ═══ -->
-    <nav class="mobile-tab-nav" aria-label="Menú de secciones">
-        <button class="mobile-tab-btn active" data-target="acerca">Nosotros</button>
-        <button class="mobile-tab-btn" data-target="areas">Áreas</button>
-        <button class="mobile-tab-btn" data-target="socios">Socios</button>
-        <button class="mobile-tab-btn" data-target="porque">Diferenciadores</button>
-    </nav>
+    <!-- ═══ MOBILE RADIAL NAVIGATION (App-like Interface) ═══ -->
+    <div class="mobile-radial-nav" aria-label="Menú de secciones">
+        <!-- Flower background wrapper -->
+        <div class="radial-flower-bg">
+            <div class="flower-petal petal-1"></div>
+            <div class="flower-petal petal-2"></div>
+            <div class="flower-petal petal-3"></div>
+            <div class="flower-petal petal-4"></div>
+        </div>
+        
+        <div class="radial-menu-container">
+            <button class="radial-tab-btn active" data-target="acerca" style="--i: 0;">
+                <span class="radial-tab-text">Nosotros</span>
+            </button>
+            <button class="radial-tab-btn" data-target="areas" style="--i: 1;">
+                <span class="radial-tab-text">Áreas</span>
+            </button>
+            <button class="radial-tab-btn" data-target="socios" style="--i: 2;">
+                <span class="radial-tab-text">Socios</span>
+            </button>
+            <button class="radial-tab-btn" data-target="porque" style="--i: 3;">
+                <span class="radial-tab-text">Diferencias</span>
+            </button>
+        </div>
+        
+        <!-- FAB Trigger -->
+        <button class="radial-fab-btn" aria-label="Abrir menú" id="radial-fab-trigger">
+            <span class="fab-lines"></span>
+        </button>
+    </div>
 
     <!-- ═══ ESCENARIO HORIZONTAL: Acerca → Áreas → Socios → Por qué → Promesa ═══ -->
     <section class="h-stage" id="h-stage" aria-label="Secciones del despacho">

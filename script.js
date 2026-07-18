@@ -479,21 +479,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ════════════════════════════════════
-       MOBILE TAB NAVIGATION (App-like UI)
+       MOBILE RADIAL NAVIGATION (App-like UI)
     ════════════════════════════════════ */
-    const mobileTabBtns = document.querySelectorAll('.mobile-tab-btn');
+    const radialNav = document.querySelector('.mobile-radial-nav');
+    const radialFab = document.getElementById('radial-fab-trigger');
+    const radialTabBtns = document.querySelectorAll('.radial-tab-btn');
     const hPanels = document.querySelectorAll('.h-panel');
 
-    if (mobileTabBtns.length > 0 && hPanels.length > 0) {
-        // Init active state
+    if (radialNav && radialFab && radialTabBtns.length > 0 && hPanels.length > 0) {
+        
+        // Init active state for the first panel
         if (window.innerWidth < 900) {
             hPanels[0].classList.add('active-panel');
         }
 
-        mobileTabBtns.forEach(btn => {
+        // Toggle radial menu
+        radialFab.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent document click from firing immediately
+            radialNav.classList.toggle('is-open');
+        });
+
+        // Close menu if clicking outside
+        document.addEventListener('click', (e) => {
+            if (radialNav.classList.contains('is-open') && !radialNav.contains(e.target)) {
+                radialNav.classList.remove('is-open');
+            }
+        });
+
+        // Handle button clicks
+        radialTabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 // Remove active classes
-                mobileTabBtns.forEach(b => b.classList.remove('active'));
+                radialTabBtns.forEach(b => b.classList.remove('active'));
                 hPanels.forEach(p => p.classList.remove('active-panel'));
                 
                 // Add active to clicked btn
@@ -505,34 +522,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (targetPanel) {
                     targetPanel.classList.add('active-panel');
                     
-                    // Center the clicked tab in the horizontal scroll container
-                    const tabNav = document.querySelector('.mobile-tab-nav');
-                    const tabRect = btn.getBoundingClientRect();
-                    const navRect = tabNav.getBoundingClientRect();
-                    
-                    tabNav.scrollTo({
-                        left: tabNav.scrollLeft + (tabRect.left - navRect.left) - (navRect.width / 2) + (tabRect.width / 2),
-                        behavior: 'smooth'
-                    });
-                    
-                    // Scroll page slightly so the card sits nicely below tabs
-                    const offset = document.querySelector('.mobile-tab-nav').offsetTop;
-                    window.scrollTo({
-                        top: offset - 20,
-                        behavior: 'smooth'
-                    });
+                    // Scroll to the top of the panels area so it's fully visible
+                    const track = document.getElementById('h-track');
+                    if (track) {
+                        window.scrollTo({
+                            top: track.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
+                
+                // Close radial menu
+                radialNav.classList.remove('is-open');
             });
         });
         
+        // Handle resize layout changes
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 900) {
                 hPanels.forEach(p => p.classList.remove('active-panel'));
+                radialNav.classList.remove('is-open'); // ensure closed
             } else {
                 const hasActive = Array.from(hPanels).some(p => p.classList.contains('active-panel'));
                 if (!hasActive && hPanels[0]) {
                     hPanels[0].classList.add('active-panel');
-                    mobileTabBtns[0].classList.add('active');
+                    radialTabBtns[0].classList.add('active');
                 }
             }
         });
