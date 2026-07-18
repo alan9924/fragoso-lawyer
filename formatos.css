@@ -1931,7 +1931,6 @@ body:has(.step-container.active:not(#step-0)) .formatos-wrapper {
     .gen-preview-content .pagebreak {
         page-break-before: always;
     }
-}
 
     .ficha-block {
         margin-bottom: 0;

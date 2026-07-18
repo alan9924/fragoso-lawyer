@@ -99,36 +99,27 @@
         <span class="line"></span>
     </div>
 
-    <!-- ═══ MOBILE RADIAL NAVIGATION (App-like Interface) ═══ -->
-    <div class="mobile-radial-nav" aria-label="Menú de secciones">
-        <!-- Flower background wrapper -->
-        <div class="radial-flower-bg">
-            <div class="flower-petal petal-1"></div>
-            <div class="flower-petal petal-2"></div>
-            <div class="flower-petal petal-3"></div>
-            <div class="flower-petal petal-4"></div>
+    <!-- ═══ MOBILE BUBBLE MENU (App-like Interface) ═══ -->
+    <section id="mobile-bubble-menu" class="mobile-only fade-in-up">
+        <div class="bubble-menu-header">
+            <h2 class="bubble-menu-title">Descubre</h2>
+            <p class="bubble-menu-subtitle">Navega por nuestras soluciones</p>
         </div>
-        
-        <div class="radial-menu-container">
-            <button class="radial-tab-btn active" data-target="areas" style="--i: 0;">
-                <span class="radial-tab-text">Áreas</span>
-            </button>
-            <button class="radial-tab-btn" data-target="acerca" style="--i: 1;">
-                <span class="radial-tab-text">Nosotros</span>
-            </button>
-            <button class="radial-tab-btn" data-target="socios" style="--i: 2;">
-                <span class="radial-tab-text">Socios</span>
-            </button>
-            <button class="radial-tab-btn" data-target="porque" style="--i: 3;">
-                <span class="radial-tab-text">Diferencias</span>
-            </button>
+        <div class="bubble-cluster">
+            <!-- Central big bubble (Yellow/Accent) -->
+            <a href="#areas" class="bubble bubble-lg bubble-yellow" data-panel="0"><span>Áreas</span></a>
+            
+            <!-- Medium bubbles -->
+            <a href="formatos.html" class="bubble bubble-md bubble-black"><span>Contratos</span></a>
+            <a href="planes.html" class="bubble bubble-md bubble-white"><span>Membresía</span></a>
+            
+            <!-- Small bubbles -->
+            <a href="#acerca" class="bubble bubble-sm bubble-white" data-panel="1"><span>Nosotros</span></a>
+            <a href="calculadora.html" class="bubble bubble-sm bubble-gray"><span>Cálculo</span></a>
+            <a href="#socios" class="bubble bubble-sm bubble-black" data-panel="2"><span>Socios</span></a>
+            <a href="#porque" class="bubble bubble-sm bubble-white" data-panel="3"><span>Diferencias</span></a>
         </div>
-        
-        <!-- FAB Trigger -->
-        <button class="radial-fab-btn" aria-label="Abrir menú" id="radial-fab-trigger">
-            <span class="fab-lines"></span>
-        </button>
-    </div>
+    </section>
 
     <!-- ═══ ESCENARIO HORIZONTAL: Acerca → Áreas → Socios → Por qué → Promesa ═══ -->
     <section class="h-stage" id="h-stage" aria-label="Secciones del despacho">
