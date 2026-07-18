@@ -3905,7 +3905,7 @@ footer {
         top: 0;
         transform: rotate(-45deg);
     }
-}
+
     /* Convert h-panels to white cards on mobile */
     .h-track {
         background: var(--bg-base); /* Cream background behind cards */
