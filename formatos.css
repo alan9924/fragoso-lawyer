@@ -17,16 +17,25 @@
 
 /* ─── VIDEO LOADER ─── */
 .video-loader-overlay {
-    background: #ffffff !important;
+    background: #ffffff url('minimalist_letters_bg.png') center/cover no-repeat fixed !important;
     gap: 0 !important;
 }
 
 .loader-video {
-    width: 120px;
-    height: 120px;
+    width: 220px;
+    height: 220px;
+    max-width: 60vw;
     object-fit: contain;
-    mix-blend-mode: multiply;
-    filter: brightness(1.05) contrast(1.1);
+    mix-blend-mode: multiply; /* Blends the video's white background seamlessly with the wallpaper */
+    filter: brightness(1.02) contrast(1.05); /* Slight adjustment to remove harsh edges */
+    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Force hardware accel */
+}
+
+@media (max-width: 768px) {
+    .loader-video {
+        width: 180px;
+        height: 180px;
+    }
 }
 
 /* Force html + body to white on formatos page */
@@ -130,6 +139,8 @@ body:has(#step-0.active) .nav-logo-img {
     z-index: 10;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .step0-landing {
