@@ -56,6 +56,19 @@ html, body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── SCROLL SNAP (solo portada / newsletter / promesa) ───────────────
+   "proximity" en vez de "mandatory" a propósito: el #h-stage (Áreas →
+   Nosotros → Socios → Diferenciadores) ya tiene su propio snap vía GSAP
+   ScrollTrigger (horizontal-scroll.js). Con "mandatory" el navegador
+   forzaría un salto largo de vuelta a portada o hacia newsletter si el
+   usuario se detiene a mitad del recorrido del h-stage. "proximity" solo
+   snapea cuando ya se está cerca de un punto, sin pelear con el pin. ── */
+html {
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-h);
+}
+
 body {
     background-color: var(--bg-base);
     color: var(--text-primary);
@@ -317,11 +330,13 @@ nav.scrolled {
 /* ─── HERO ─── */
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     overflow: hidden;
     background: #0a0908;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 /* Full-bleed video background */
@@ -878,8 +893,14 @@ section { position: relative; }
 
 /* ─── NUESTRA PROMESA ─── */
 .promesa-section {
+    min-height: 100svh;
     padding: 5rem 3rem;
     background: var(--carbon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .promesa-container {
@@ -2213,11 +2234,14 @@ section { position: relative; }
 /* ─── NEWSLETTER (SUBSTACK) - ESTILO PÓSTER ─── */
 .newsletter-section {
     position: relative;
+    min-height: 100svh;
     padding: 8rem 2rem 15rem 2rem;
     background: #ffffff; /* Blanco puro para contraste extremo */
     text-align: center;
     overflow: hidden;
     color: #000000;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .newsletter-container {

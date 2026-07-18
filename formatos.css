@@ -46,7 +46,7 @@ body.formatos-page {
     padding-top: 0;
     min-height: 100vh;
     font-family: inherit;
-    overflow-x: clip; /* clip instead of hidden so sticky doesn't break */
+    overflow-x: hidden;
 }
 
 /* Override navbar to stay transparent on formatos page */
@@ -140,7 +140,9 @@ body:has(#step-0.active) .nav-logo-img {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
 }
 
 .step0-landing {
@@ -241,6 +243,9 @@ body:has(#step-0.active) .nav-logo-img {
     background-color: #000000;
     z-index: 10;
     overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
     display: block;
 }
 
