@@ -16,12 +16,6 @@
 </head>
 <body class="formatos-page">
 
-    <!-- ═══ INTRO LOADER (VIDEO) ═══ -->
-    <div id="intro-loader" class="loader-overlay video-loader-overlay">
-        <video id="loader-video" autoplay muted playsinline class="loader-video">
-            <source src="intro_loader.mp4" type="video/mp4">
-        </video>
-    </div>
 
     <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar" class="transparent-nav formatos-nav">
@@ -257,27 +251,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Override loader timing for video (2 seconds) -->
-    <script>
-        // Prevent script.js from dismissing the loader early
-        window.__VIDEO_LOADER = true;
-        document.addEventListener('DOMContentLoaded', () => {
-            const video = document.getElementById('loader-video');
-            const loader = document.getElementById('intro-loader');
-            if (video && loader) {
-                // Force hide after exactly 2 seconds
-                setTimeout(() => {
-                    loader.classList.add('hidden');
-                    // Pause and clean up video after fade-out
-                    setTimeout(() => {
-                        video.pause();
-                        video.removeAttribute('src');
-                        video.load();
-                    }, 1000);
-                }, 2000);
-            }
-        });
-    </script>
+
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
