@@ -1,0 +1,161 @@
+/* ─── HOME SOLUTIONS (3 CARDS) ─── */
+.home-solutions {
+    padding: 6rem 2rem;
+    background: var(--bg-base);
+}
+
+.solutions-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.solution-card {
+    background: #fff;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.solution-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.solution-card h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--carbon);
+    margin-bottom: 0.5rem;
+}
+
+.price-tag {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #b08d55; /* brand gold */
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.solution-card p:not(.price-tag) {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.solution-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--carbon);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    transition: background 0.3s ease;
+}
+
+.solution-btn:hover {
+    background: #000;
+}
+
+/* ─── HOW IT WORKS ─── */
+.how-it-works {
+    padding: 6rem 2rem;
+    background: #fff;
+    text-align: center;
+}
+
+.hiw-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--carbon);
+    margin-bottom: 4rem;
+}
+
+.hiw-steps {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.hiw-step {
+    padding: 1rem;
+}
+
+.step-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: var(--bg-base);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--carbon);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.hiw-step h4 {
+    font-size: 1.3rem;
+    color: var(--carbon);
+    margin-bottom: 1rem;
+}
+
+.hiw-step p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* ─── FINAL CTA ─── */
+.final-cta {
+    padding: 8rem 2rem;
+    background: var(--carbon);
+    color: #fff;
+    text-align: center;
+}
+
+.final-cta h2 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.final-cta p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.final-cta-btn {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background: #fff;
+    color: var(--carbon);
+    text-decoration: none;
+    border-radius: 40px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+.final-cta-btn:hover {
+    transform: scale(1.05);
+}

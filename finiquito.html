@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="logo_ff.png">
     <link rel="apple-touch-icon" href="logo_ff.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home-new.css">
     <link rel="stylesheet" href="calculadora.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,19 +17,30 @@
 </head>
 <body class="calculadora-page">
 
-    <!-- ═══ NAVIGATION ═══ -->
-    <nav id="navbar" class="transparent-nav formatos-nav">
+        <!-- ═══ NAVIGATION ═══ -->
+    <nav id="navbar" class="transparent-nav">
         <div class="nav-container">
             <div class="nav-brand">
                 <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
-                <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
+                <a href="/" class="logo-text">FERRO FRAGOSO</a>
             </div>
+            
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="marcas.html">REGISTRO DE MARCA</a></li>
+                    <li><a href="revision.html">REVISIÓN CONTRATO</a></li>
+                    <li><a href="consulta.html">CONSULTA</a></li>
+                    <li><a href="contratos.html">CONTRATOS</a></li>
+                    <li><a href="finiquito.html">CALCULADORA</a></li>
+                    <li><a href="nosotros.html">NOSOTROS</a></li>
+                </ul>
+            </div>
+
             <div class="nav-actions">
-                <a href="index.html" class="circular-back-btn" aria-label="Volver a Inicio">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </a>
+                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
+                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
