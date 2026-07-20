@@ -264,6 +264,36 @@ document.addEventListener('DOMContentLoaded', () => {
         blurInObserver.observe(el);
     });
 
+    // --- WORD FADE IN REVEAL (Ported from React WordFadeIn component) ---
+    const wordFadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                if (el.dataset.animated) return;
+                el.dataset.animated = 'true';
+                
+                const spans = el.querySelectorAll('.word-fade-span');
+                spans.forEach((span, index) => {
+                    setTimeout(() => {
+                        span.style.opacity = '1';
+                        span.style.transform = 'translateY(0)';
+                    }, index * 100); // 100ms stagger per word as per typical framer motion configs
+                });
+                
+                wordFadeInObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.word-fade-in').forEach(el => {
+        const text = el.textContent.trim();
+        const words = text.split(/\s+/);
+        el.innerHTML = words.map(word => 
+            `<span class="word-fade-span" style="display:inline-block; opacity:0; transform:translateY(10px); transition:opacity 0.5s ease-out, transform 0.5s ease-out;">${word}</span>`
+        ).join(' ');
+        wordFadeInObserver.observe(el);
+    });
+
     /* ════════════════════════════════════
        MAGNETIC HOVER EFFECT & PARALLAX
     ════════════════════════════════════ */
