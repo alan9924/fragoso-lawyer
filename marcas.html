@@ -12,13 +12,170 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Editorial Layout specific to Marcas */
+        body.editorial-body {
+            background-color: #f2efeb;
+            color: #111;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Override navbar for editorial feel */
+        .transparent-nav {
+            mix-blend-mode: difference;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        .transparent-nav a.logo-text, .transparent-nav .nav-links a {
+            color: #fff; /* mix-blend-mode difference will invert it against light bg to dark */
+        }
+
+        .editorial-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            padding: 100px 2rem 4rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* 4 Corners Meta Text */
+        .ed-meta {
+            position: absolute;
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8c8983;
+            z-index: 10;
+        }
+        .ed-meta.top-left { top: 120px; left: 3rem; }
+        .ed-meta.top-right { top: 120px; right: 3rem; }
+        .ed-meta.bottom-left { bottom: 250px; left: 3rem; } /* Above columns */
+        .ed-meta.bottom-right { bottom: 250px; right: 3rem; }
+
+        /* Giant Typography */
+        .ed-giant-title {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: clamp(5rem, 18vw, 16rem);
+            font-weight: 400;
+            line-height: 0.8;
+            color: #cdc9c1; /* Soft grayish beige */
+            z-index: 1;
+            white-space: nowrap;
+            user-select: none;
+            letter-spacing: -2px;
+        }
+
+        /* Center Art */
+        .ed-center-art {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 250px;
+            height: auto;
+            mix-blend-mode: multiply; /* Helps integrate the image with the bg */
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        /* Bottom Columns */
+        .ed-bottom-content {
+            position: relative;
+            z-index: 10;
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            padding-top: 60vh; /* Push to bottom */
+        }
+
+        .ed-col {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #444;
+        }
+        
+        .ed-col p {
+            margin-bottom: 1rem;
+        }
+
+        .ed-price {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: #111;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        .ed-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+        .ed-btn:hover {
+            background: #333;
+        }
+
+        @media (max-width: 1024px) {
+            .ed-bottom-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            .ed-meta.top-left, .ed-meta.top-right, 
+            .ed-meta.bottom-left, .ed-meta.bottom-right {
+                display: none; /* Hide decorative text on mobile to avoid clutter */
+            }
+        }
+        @media (max-width: 600px) {
+            .ed-giant-title {
+                font-size: 5.5rem;
+                top: 40%;
+                white-space: normal;
+                word-wrap: break-word;
+            }
+            .ed-center-art {
+                width: 180px;
+                top: 55%;
+            }
+            .ed-bottom-content {
+                grid-template-columns: 1fr;
+                padding-top: 50vh;
+            }
+            .editorial-container {
+                padding: 100px 1.5rem 3rem 1.5rem;
+            }
+        }
+    </style>
 </head>
-<body style="background: var(--bg-base);">
+<body class="editorial-body">
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar" class="transparent-nav">
         <div class="nav-container">
             <div class="nav-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img" style="filter: invert(1);">
                 <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
             <div class="nav-menu">
@@ -32,55 +189,55 @@
                 </ul>
             </div>
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
+                <a href="empresas.html" class="nav-cta-btn" style="border-color:#fff; color:#fff;">Membresía</a>
                 <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
-                    <span></span><span></span><span></span>
+                    <span style="background:#fff;"></span><span style="background:#fff;"></span><span style="background:#fff;"></span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <div style="padding-top: 120px;"></div>
-
-    <section class="final-cta" style="background: #fff; color: var(--carbon); padding: 4rem 2rem;">
-        <h1 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem;">Registro de Marca</h1>
-        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-inline: auto;">Protege tu activo más valioso. Evita que otros lucren con tu nombre.</p>
+    <!-- ═══ EDITORIAL LAYOUT ═══ -->
+    <main class="editorial-container">
         
-        <div class="solutions-container" style="max-width: 800px;">
-            <div class="solution-card">
-                <h3>Búsqueda Fonética</h3>
-                <p class="price-tag">$490 MXN</p>
-                <p>Estudio de viabilidad antes de registrar para asegurar que tu marca no esté ocupada. (Se abona al paquete completo si decides continuar).</p>
-                <a href="#pago" class="solution-btn">Solicitar Búsqueda</a>
+        <!-- Corners -->
+        <div class="ed-meta top-left">FERRO FRAGOSO / EST. 2024</div>
+        <div class="ed-meta top-right">MÉXICO / 01</div>
+        <div class="ed-meta bottom-left">PROPIEDAD INTELECTUAL</div>
+        <div class="ed-meta bottom-right">IMPI / 02</div>
+
+        <!-- Giant Title -->
+        <div class="ed-giant-title">
+            PROPIEDAD<br>INTELECTUAL
+        </div>
+
+        <!-- Center Art -->
+        <!-- Usamos el ionic_capital.png o estatua_justicia.png como pieza central de arte clásico -->
+        <img src="ionic_capital.png" alt="Símbolo Clásico" class="ed-center-art">
+
+        <!-- Columns at Bottom -->
+        <div class="ed-bottom-content">
+            <div class="ed-col">
+                <p>El registro de marca es un paso fundamental que otorga identidad y protección a tu negocio. Este proceso legal derivado del Instituto Mexicano de la Propiedad Industrial (IMPI), no solo resguarda tu nombre comercial ante competidores, sino que cimenta la confianza de tus clientes en el mercado moderno.</p>
             </div>
-            <div class="solution-card" style="border: 2px solid var(--carbon);">
-                <h3>Registro Todo Incluido</h3>
-                <p class="price-tag">$6,990 MXN</p>
-                <p>Honorarios, tarifas oficiales del IMPI y seguimiento de tu expediente de principio a fin hasta la obtención del título.</p>
-                <a href="#pago" class="solution-btn">Iniciar Registro</a>
+            <div class="ed-col">
+                <p>Nuestra firma se encarga de analizar a fondo la viabilidad de tu marca antes de proceder. Un estudio de búsqueda fonética exhaustivo es el primer filtro para asegurar que el registro sea exitoso y no se enfrente a oposiciones u obstáculos legales por nombres similares ya existentes.</p>
+            </div>
+            <div class="ed-col">
+                <div class="ed-price">$490 <span style="font-size:0.5em;">MXN</span></div>
+                <p style="font-weight: 600; color:#111;">BÚSQUEDA FONÉTICA</p>
+                <p>Estudio de viabilidad antes de registrar para asegurar que tu marca no esté ocupada. Se abona al paquete completo si decides continuar.</p>
+                <a href="#pago" class="ed-btn">Solicitar Búsqueda</a>
+            </div>
+            <div class="ed-col">
+                <div class="ed-price">$6,990 <span style="font-size:0.5em;">MXN</span></div>
+                <p style="font-weight: 600; color:#111;">REGISTRO TODO INCLUIDO</p>
+                <p>Honorarios, tarifas oficiales del IMPI y seguimiento ininterrumpido de tu expediente de principio a fin, hasta la obtención de tu título.</p>
+                <a href="#pago" class="ed-btn">Iniciar Registro</a>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- ═══ FOOTER ═══ -->
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img">
-                <span class="footer-brand-name">FERRO FRAGOSO</span>
-            </div>
-            <p class="footer-tagline">Estudio Jurídico — Blindaje legal con propósito.</p>
-            
-            <div class="footer-links" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
-                <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
-                <a href="blog/" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Blog</a>
-                <a href="https://wa.me/524191239646" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">WhatsApp</a>
-            </div>
-
-            <p class="footer-copy" style="margin-top: 2rem;">&copy; 2026 Ferro Fragoso, Estudio Jurídico. Todos los derechos reservados.</p>
-        </div>
-    </footer>
     <script src="script.js"></script>
 </body>
 </html>
