@@ -229,3 +229,123 @@
 .final-cta-btn:hover {
     transform: scale(1.05);
 }
+
+/* ─── SUBSCRIPTION PLAN CARDS (empresas.html & plan.html) ─── */
+.plan-cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+.pricing-plan-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: #111;
+}
+
+.pricing-plan-card.dark {
+    background: #111111;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-color: #222;
+}
+
+.pricing-plan-card .plan-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+.pricing-plan-card.dark .plan-name { color: #aaa; }
+
+.pricing-plan-card .plan-price-row {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
+.pricing-plan-card .plan-price {
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.pricing-plan-card .plan-period {
+    font-size: 0.85rem;
+    color: #666;
+    margin-left: 0.4rem;
+}
+.pricing-plan-card.dark .plan-period { color: #aaa; }
+
+.pricing-plan-card .plan-desc {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 2rem;
+}
+.pricing-plan-card.dark .plan-desc { color: #ccc; }
+
+.pricing-plan-card .plan-features-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.pricing-plan-card .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    flex-grow: 1;
+}
+
+.pricing-plan-card .plan-features li {
+    font-size: 0.85rem;
+    color: #444;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+}
+.pricing-plan-card.dark .plan-features li { color: #ddd; }
+
+.pricing-plan-card .plan-features li::before {
+    content: "\f058"; /* FontAwesome check-circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #111;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+.pricing-plan-card.dark .plan-features li::before { color: #fff; }
+
+.pricing-plan-card .plan-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.pricing-plan-card .plan-btn:hover { background: #000; }
+
+.pricing-plan-card.dark .plan-btn {
+    background: #fff;
+    color: #111;
+}
+.pricing-plan-card.dark .plan-btn:hover { background: #e5e5e5; }
