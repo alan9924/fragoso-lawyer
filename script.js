@@ -1,34 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ─── SCROLL INERCIAL PREMIUM (LENIS) ─── */
-    let lenis;
-    const lenisScript = document.createElement('script');
-    lenisScript.src = "https://unpkg.com/lenis@1.1.13/dist/lenis.min.js";
-    lenisScript.onload = () => {
-        lenis = new Lenis({
-            autoRaf: true,
-            duration: 1.5,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-            wheelMultiplier: 0.9,
-            // Optimizaciones para móvil y trackpad
-            touchMultiplier: 1.5,
-            smoothTouch: false,
-            syncTouch: true,
-        });
-        
-        // Integración con GSAP ScrollTrigger
-        if (window.ScrollTrigger && window.gsap) {
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-            gsap.ticker.lagSmoothing(0);
-        }
-        
-        // Bloquear scroll inicial (isScrolling logic state)
-        lenis.stop();
-        document.body.style.overflow = 'hidden';
-    };
-    document.head.appendChild(lenisScript);
+    /* ── Always start at top (Hero) ── */
 
     /* ── Always start at top (Hero) ── */
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -53,8 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         if (!window.__VIDEO_LOADER && loader) loader.classList.add('hidden');
         
-        // Liberar el scroll (Reset de flag "isScrolling" virtual)
-        if (lenis) lenis.start();
         document.body.style.overflow = '';
 
         setTimeout(() => {
@@ -180,11 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         heroScrollBtn.addEventListener('click', (e) => {
             e.preventDefault();
             const offset = window.innerHeight;
-            if (typeof lenis !== 'undefined' && lenis) {
-                lenis.scrollTo(offset);
-            } else {
-                window.scrollTo({ top: offset, behavior: 'smooth' });
-            }
+            window.scrollTo({ top: offset, behavior: 'smooth' });
         });
     }
 
