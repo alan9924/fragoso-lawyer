@@ -147,7 +147,7 @@ body:has(#step-0.active) .nav-logo-img {
     flex-direction: column;
     justify-content: flex-start;
     padding: 10rem 2rem 4rem;
-    background-image: url('abstract_signature.png');
+    background-image: url('blue_vertical_signature.png');
     background-color: #FFFFFF;
     background-size: contain;
     background-position: center right;
