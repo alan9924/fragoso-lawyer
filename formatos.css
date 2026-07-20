@@ -46,7 +46,6 @@ body.formatos-page {
     padding-top: 0;
     min-height: 100vh;
     font-family: inherit;
-    overflow-x: hidden;
 }
 
 /* Override navbar to stay transparent on formatos page */
@@ -136,16 +135,10 @@ body:has(#step-0.active) .nav-logo-img {
 
 /* ─── STEP 0: LANDING PAGE ─── */
 #step-0.active {
-    position: fixed;
-    inset: 0;
-    background-color: #FFFFFF;
+    position: relative;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
 }
 
 .step0-landing {
@@ -241,14 +234,8 @@ body:has(#step-0.active) .nav-logo-img {
 
 /* ─── STEP 1: MENÚ DE CONTRATOS (MODAL BLANCO) ─── */
 #step-1.active {
-    position: fixed;
-    inset: 0;
-    background-color: #000000;
+    position: relative;
     z-index: 10;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
     display: block;
 }
 
