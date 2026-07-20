@@ -159,13 +159,19 @@ body:has(#step-0.active) .nav-logo-img {
     background-size: cover;
     background-position: center right;
     background-repeat: no-repeat;
-    background-blend-mode: multiply;
     z-index: 1;
     pointer-events: none;
     opacity: 0.9;
-    /* Smooth fade on the left to merge flawlessly with white background and prevent hard cutouts */
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 25%, black 100%);
+    
+    /* Multiply the image against the white background */
+    mix-blend-mode: multiply;
+    
+    /* Push any off-white tones in the image to pure white to completely hide the rectangular margins */
+    filter: brightness(1.08) contrast(1.5) grayscale(100%);
+    
+    /* Smooth fade on the left to merge flawlessly with white background */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%);
 }
 
 .step0-content {
