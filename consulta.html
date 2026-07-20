@@ -10,10 +10,140 @@
     <link rel="stylesheet" href="home-new.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Editorial Consulta Specific Layout */
+        body.consulta-body {
+            background-color: #f6f5f3; /* Light beige for bottom section */
+            margin: 0;
+            padding: 0;
+            color: #111;
+        }
+
+        /* Dark Hero Section */
+        .consulta-hero {
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+            min-height: 85vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 2rem 4rem 2rem;
+            overflow: hidden;
+        }
+
+        .consulta-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .consulta-headline {
+            font-family: var(--font-body); /* Sans-serif */
+            font-weight: 300;
+            font-size: clamp(3rem, 7vw, 5rem);
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 2.5rem;
+            color: #d8d8d8;
+        }
+
+        .consulta-headline em {
+            font-family: var(--font-heading); /* Serif italic */
+            font-weight: 500;
+            font-style: italic;
+            color: #ffffff;
+            font-size: 1.1em;
+            letter-spacing: 0;
+        }
+
+        .consulta-subtext {
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 600px;
+            color: #a0a0a0;
+            margin-left: auto; /* Push slightly to right for staggered editorial look */
+            margin-right: 0;
+            text-align: left;
+        }
+
+        /* Geometric pattern overlay at bottom of dark section */
+        .consulta-pattern {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            background-image: repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(255,255,255,0.03) 19px, rgba(255,255,255,0.03) 20px),
+                              repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255,255,255,0.03) 19px, rgba(255,255,255,0.03) 20px);
+            mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            pointer-events: none;
+        }
+
+        /* Light Bottom Section */
+        .consulta-details {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .consulta-info h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #111;
+        }
+
+        .consulta-info p {
+            font-family: var(--font-body);
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Override navbar to be transparent over dark */
+        .transparent-nav {
+            background: transparent !important;
+        }
+        .transparent-nav .logo-text, .transparent-nav .nav-links a {
+            color: #fff !important;
+        }
+        .transparent-nav .nav-logo-img {
+            filter: invert(1);
+        }
+        
+        .scrolled.transparent-nav {
+            background: rgba(26,26,26,0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .consulta-headline {
+                font-size: 3rem;
+            }
+            .consulta-subtext {
+                margin-left: 0;
+            }
+            .consulta-details {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+    </style>
 </head>
-<body style="background: var(--bg-base);">
+<body class="consulta-body">
+
+    <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar" class="transparent-nav">
         <div class="nav-container">
             <div class="nav-brand">
@@ -24,51 +154,63 @@
                 <ul class="nav-links">
                     <li><a href="marcas.html">REGISTRO DE MARCA</a></li>
                     <li><a href="revision.html">REVISIÓN CONTRATO</a></li>
-                    <li><a href="consulta.html">CONSULTA</a></li>
+                    <li><a href="consulta.html" class="active-link">CONSULTA</a></li>
                     <li><a href="contratos.html">CONTRATOS</a></li>
                     <li><a href="finiquito.html">CALCULADORA</a></li>
                     <li><a href="nosotros.html">NOSOTROS</a></li>
                 </ul>
             </div>
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
+                <a href="empresas.html" class="nav-cta-btn" style="border-color:#fff; color:#fff;">Membresía</a>
                 <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
-                    <span></span><span></span><span></span>
+                    <span style="background:#fff;"></span><span style="background:#fff;"></span><span style="background:#fff;"></span>
                 </button>
             </div>
         </div>
     </nav>
-    <div style="padding-top: 120px;"></div>
 
-    <section class="final-cta" style="background: #fff; color: var(--carbon); padding: 4rem 2rem; min-height: 60vh;">
-        <h1 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem;">Consulta Estratégica</h1>
-        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-inline: auto;">Resolución directa a tus dudas legales más complejas.</p>
-        
-        <div class="solutions-container" style="max-width: 500px;">
-            <div class="solution-card">
-                <h3>Sesión por Zoom</h3>
-                <p class="price-tag">$1,290 MXN</p>
-                <p>60 minutos uno-a-uno con un socio de la firma. Evaluaremos tu escenario, riesgos e indicaremos la ruta jurídica óptima a seguir.</p>
-                <a href="#pago" class="solution-btn">Agendar Sesión</a>
-            </div>
+    <!-- ═══ DARK HERO SECTION ═══ -->
+    <header class="consulta-hero">
+        <div class="consulta-pattern"></div>
+        <div class="consulta-hero-content fade-in-up">
+            <h1 class="consulta-headline">Resolución directa,<br>visión <em>Estratégica</em></h1>
+            <p class="consulta-subtext">A través de una evaluación minuciosa y la aplicación de nuestra experiencia en el campo, transformamos la complejidad legal en una hoja de ruta clara, brindando certidumbre a tu toma de decisiones.</p>
+        </div>
+    </header>
+
+    <!-- ═══ LIGHT DETAILS SECTION ═══ -->
+    <section class="consulta-details">
+        <div class="consulta-info fade-in-up">
+            <h2>Hablemos de tu caso.</h2>
+            <p>Sabemos que enfrentas decisiones cruciales donde el margen de error es mínimo. Una consulta estratégica no es una simple charla; es una inmersión profunda en la situación actual de tu negocio.</p>
+            <p>Identificamos riesgos ocultos, planteamos alternativas tácticas y te entregamos una dirección jurídica precisa.</p>
         </div>
         
+        <div class="fade-in-up delay-1">
+            <div class="solution-card" style="margin: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.06); border: none;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.5rem; color:#111;">Sesión por Zoom</h3>
+                <p class="price-tag" style="font-size: 2.2rem;">$1,290 <span style="font-size: 0.9rem; color:#666;">MXN</span></p>
+                <p style="color: #555; margin-bottom: 2rem;">60 minutos uno-a-uno con un socio de la firma. Evaluaremos tu escenario y trazaremos la ruta óptima a seguir.</p>
+                <a href="#pago" class="solution-btn" style="width: 100%; text-align: center;">Agendar Sesión</a>
+            </div>
+        </div>
     </section>
 
-    <footer class="site-footer">
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="site-footer" style="background: #111; color: #fff; padding: 4rem 2rem; text-align: center;">
         <div class="footer-container">
-            <div class="footer-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img">
-                <span class="footer-brand-name">FERRO FRAGOSO</span>
+            <div class="footer-brand" style="margin-bottom: 1rem;">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img" style="filter: invert(1);">
+                <span class="footer-brand-name" style="color: #fff;">FERRO FRAGOSO</span>
             </div>
-            <p class="footer-tagline">Estudio Jurídico — Blindaje legal con propósito.</p>
+            <p class="footer-tagline" style="color: #999;">Estudio Jurídico — Blindaje legal con propósito.</p>
             <div class="footer-links" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
-                <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
-                <a href="blog/" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Blog</a>
-                <a href="https://wa.me/524191239646" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">WhatsApp</a>
+                <a href="terminos.html" style="color: #999; text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
+                <a href="privacidad.html" style="color: #999; text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
+                <a href="blog/" style="color: #999; text-decoration: none; font-size: 0.85rem;">Blog</a>
+                <a href="https://wa.me/524191239646" style="color: #999; text-decoration: none; font-size: 0.85rem;">WhatsApp</a>
             </div>
-            <p class="footer-copy" style="margin-top: 2rem;">&copy; 2026 Ferro Fragoso, Estudio Jurídico.</p>
+            <p class="footer-copy" style="margin-top: 2rem; color: #666;">&copy; 2026 Ferro Fragoso, Estudio Jurídico.</p>
         </div>
     </footer>
     <script src="script.js"></script>
