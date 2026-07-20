@@ -788,6 +788,7 @@ body:has(#calc-step-2.active) #navbar {
     max-width: 600px;
     margin: 0 auto;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden; /* Prevent edge-to-edge elements from breaking corners */
 }
 
 .dash-top-bar {
@@ -892,35 +893,61 @@ body:has(#calc-step-2.active) #navbar {
     color: rgba(255, 255, 255, 0.5);
 }
 
-/* Sub-metrics Grid */
+/* Sub-metrics Grid (Image Reference Style) */
 .dash-metrics-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    display: flex;
+    width: calc(100% + 4.4rem);
+    margin: 0.5rem -2.2rem;
 }
 
 .dash-metric-card {
-    background-color: #0d2325;
-    border-radius: 22px;
-    padding: 1.4rem;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    flex: 1;
+    padding: 1.5rem 1rem 1.5rem 2.2rem; /* Add padding back to align text, left card gets left padding */
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    justify-content: flex-end;
+    gap: 0.2rem;
+    border-radius: 0;
+    border: none;
+}
+
+.dash-metric-card:last-child {
+    padding: 1.5rem 2.2rem 1.5rem 1rem; /* Right card gets right padding */
+}
+
+.dash-metric-card:first-child {
+    background-color: #e4ff5f; /* Bright lime green */
+}
+
+.dash-metric-card:last-child {
+    background-color: #5c524d; /* Dark grey/brown */
+}
+
+.dash-metric-card:first-child .dash-metric-label {
+    color: #1a1a1a;
+}
+.dash-metric-card:first-child .dash-metric-value {
+    color: #000;
+}
+
+.dash-metric-card:last-child .dash-metric-label {
+    color: rgba(255, 255, 255, 0.8);
+}
+.dash-metric-card:last-child .dash-metric-value {
+    color: #ffffff;
 }
 
 .dash-metric-label {
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
 }
 
 .dash-metric-value {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #ffffff;
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: -1px;
 }
 
 /* Achievement/Legal tips card */
@@ -1091,6 +1118,10 @@ body:has(#calc-step-2.active) {
     .dash-metrics-grid {
         grid-column: 1;
         grid-row: 4;
+        width: 100%;
+        margin: 0;
+        border-radius: 22px;
+        overflow: hidden;
     }
     
     .dash-card-achievement {
