@@ -147,12 +147,7 @@ body:has(#step-0.active) .nav-logo-img {
     flex-direction: column;
     justify-content: flex-start;
     padding: 10rem 2rem 4rem;
-    background-image: url('blue_vertical_signature.png');
     background-color: #FFFFFF;
-    background-size: contain;
-    background-position: center right;
-    background-repeat: no-repeat;
-    background-blend-mode: multiply;
     position: relative;
 }
 
@@ -160,9 +155,17 @@ body:has(#step-0.active) .nav-logo-img {
     content: '';
     position: absolute;
     inset: 0;
-    background: transparent;
+    background-image: url('abstract_ink_bg.png');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
     z-index: 1;
     pointer-events: none;
+    opacity: 0.9;
+    /* Smooth fade on the left to merge flawlessly with white background and prevent hard cutouts */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 25%, black 100%);
 }
 
 .step0-content {
