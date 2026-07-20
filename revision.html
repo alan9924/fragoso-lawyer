@@ -10,227 +10,238 @@
     <link rel="stylesheet" href="home-new.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Signature Editorial Layout specific to Revision */
-        body.revision-sig-body {
-            background-color: #f8f8f8; /* Very clean off-white */
-            color: #111;
+        /* Editorial "Prada" Dark Layout */
+        body.revision-dark-body {
+            background-color: #1a1a1a;
+            color: #fff;
             margin: 0;
             padding: 0;
             font-family: var(--font-body);
-        }
-
-        .revision-nav {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-        
-        .revision-logo {
-            font-family: var(--font-body);
-            font-weight: 800;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            color: #111;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .revision-menu-btn {
-            font-family: var(--font-body);
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #111;
-            text-transform: uppercase;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .sig-hero {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding: 140px 3rem 0 3rem;
+        }
+
+        /* Override nav for dark theme */
+        #navbar.transparent-nav {
+            background: transparent !important;
+            border-bottom: none;
+        }
+        #navbar.transparent-nav .logo-text,
+        #navbar.transparent-nav .nav-links a,
+        #navbar.transparent-nav .nav-cta-btn {
+            color: #fff !important;
+        }
+        #navbar.transparent-nav .nav-logo-img {
+            filter: invert(1);
+        }
+        #navbar.transparent-nav .nav-cta-btn {
+            border-color: #fff !important;
+        }
+        #navbar.transparent-nav .mobile-menu-btn span {
+            background: #fff !important;
+        }
+
+        .prada-hero {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 2rem 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prada-split {
+            display: flex;
+            width: 100%;
+            max-width: 1000px;
+            align-items: stretch;
             position: relative;
         }
 
-        .tiny-top-label {
-            text-align: center;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #555;
-            margin-top: 2rem;
+        .prada-left {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            padding-right: 0; /* Giant letter touches the line */
         }
 
-        .huge-cursive {
-            font-family: 'Alex Brush', cursive;
-            font-size: clamp(6rem, 15vw, 15rem);
-            line-height: 0.9;
-            color: #111;
-            text-align: center;
-            margin: 2rem 0 4rem 0;
+        .giant-letter {
+            font-family: var(--font-heading);
+            font-size: clamp(20rem, 40vw, 40rem);
+            font-weight: 400;
+            font-style: italic;
+            color: #fff;
+            line-height: 0.7;
+            margin-right: -0.1em; /* Pull it into the line */
+            user-select: none;
+        }
+
+        .prada-line {
+            width: 4px;
+            background-color: #fff;
+            margin: 0 4rem;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+
+        .prada-right {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 2rem 0;
-        }
-
-        .huge-cursive span:nth-child(2) {
-            padding-left: 20%;
-        }
-
-        .sig-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            width: 100%;
+            justify-content: center;
+            padding-top: 2rem;
             padding-bottom: 2rem;
         }
 
-        .sig-bottom-left {
-            display: flex;
-            align-items: flex-end;
-        }
-
-        .vertical-wrap {
-            display: flex;
-            align-items: center;
-            height: 150px;
-        }
-
-        .vertical-line {
-            width: 4px;
-            height: 100%;
-            background-color: #111;
-            margin-right: 1rem;
-        }
-
-        .vertical-text {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
+        .prada-top-text {
             font-family: var(--font-heading);
             font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: 4px;
-            color: #111;
-        }
-
-        .sig-bottom-right {
-            max-width: 450px;
-            text-align: left;
-        }
-
-        .sig-bold-text {
-            font-family: var(--font-body);
-            font-weight: 500;
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #111;
             margin-bottom: 1.5rem;
+            font-weight: 400;
         }
 
-        .sig-light-text {
+        .prada-title {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 5vw, 4rem);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .prada-desc {
             font-family: var(--font-body);
             font-weight: 300;
-            font-size: 0.8rem;
-            line-height: 1.8;
-            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #ccc;
+            max-width: 400px;
+            margin-bottom: 4rem;
         }
 
-        /* Minimal Pricing Section below Hero */
-        .sig-pricing-section {
-            padding: 2rem 3rem 5rem 3rem;
+        .prada-bottom-logo {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .prada-bottom-logo span {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-top: 0.3rem;
+            color: #aaa;
+        }
+
+        /* Dark Theme Pricing Section */
+        .dark-pricing-section {
+            padding: 2rem 2rem 6rem 2rem;
             display: flex;
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
+            background: #1a1a1a;
         }
 
-        .sig-price-card {
+        .dark-price-card {
             background: transparent;
-            border: 1px solid #ddd;
+            border: 1px solid #444;
             padding: 3rem 2rem;
             width: 100%;
             max-width: 380px;
             text-align: left;
+            color: #fff;
+            transition: border-color 0.3s;
+        }
+        
+        .dark-price-card:hover {
+            border-color: #fff;
         }
 
-        .sig-price-card h3 {
+        .dark-price-card h3 {
             font-family: var(--font-heading);
             font-size: 2rem;
             margin-bottom: 0.5rem;
             font-style: italic;
+            font-weight: 400;
         }
 
-        .sig-price-card .price {
+        .dark-price-card .price {
             font-size: 2rem;
             font-weight: 300;
             margin-bottom: 1.5rem;
             font-family: var(--font-body);
         }
 
-        .sig-price-card p {
+        .dark-price-card p {
             font-size: 0.85rem;
-            color: #666;
+            color: #aaa;
             line-height: 1.6;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             min-height: 60px;
         }
 
-        .sig-btn {
+        .dark-btn {
             display: inline-block;
             padding: 1rem 2rem;
-            border: 1px solid #111;
-            color: #111;
+            border: 1px solid #fff;
+            color: #1a1a1a;
+            background: #fff;
             text-decoration: none;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 600;
             transition: all 0.3s;
         }
 
-        .sig-btn:hover {
-            background: #111;
+        .dark-btn:hover {
+            background: transparent;
             color: #fff;
         }
 
-        @media (max-width: 768px) {
-            .sig-hero {
-                padding: 100px 1.5rem 2rem 1.5rem;
-            }
-            .sig-bottom {
+        @media (max-width: 1024px) {
+            .prada-split {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 3rem;
             }
-            .huge-cursive {
-                align-items: flex-start;
-                font-size: 5rem;
+            .prada-left {
+                justify-content: center;
+                padding-right: 0;
             }
-            .huge-cursive span:nth-child(2) {
-                padding-left: 10%;
+            .giant-letter {
+                margin-right: 0;
+                margin-bottom: -2rem;
+                font-size: 20rem;
             }
-            .vertical-wrap {
-                height: 100px;
+            .prada-line {
+                width: 100%;
+                height: 4px;
+                margin: 2rem 0;
             }
-            .sig-pricing-section {
-                padding: 3rem 1.5rem;
+            .prada-right {
+                align-items: center;
+                text-align: center;
+            }
+            .prada-bottom-logo {
+                text-align: center;
             }
         }
     </style>
 </head>
-<body class="revision-sig-body">
+<body class="revision-dark-body">
 
     <!-- ═══ NAVIGATION ═══ -->
-    <nav id="navbar" class="transparent-nav" style="background: transparent;">
+    <nav id="navbar" class="transparent-nav">
         <div class="nav-container">
             <div class="nav-brand">
                 <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
@@ -255,57 +266,48 @@
         </div>
     </nav>
 
-    <!-- ═══ HERO SECTION ═══ -->
-    <header class="sig-hero">
-        
-        <div class="tiny-top-label">Revisión de Contrato.</div>
-
-        <div class="huge-cursive">
-            <span>Revisión</span>
-            <span>de Contratos</span>
-        </div>
-
-        <div class="sig-bottom">
-            
-            <div class="sig-bottom-left">
-                <div class="vertical-wrap">
-                    <div class="vertical-line"></div>
-                    <div class="vertical-text">EST. 2026</div>
-                </div>
+    <!-- ═══ PRADA EDITORIAL HERO ═══ -->
+    <section class="prada-hero">
+        <div class="prada-split">
+            <div class="prada-left">
+                <!-- An elegant lowercase 'r' (for revisión) cut by the line -->
+                <div class="giant-letter">r</div>
             </div>
-
-            <div class="sig-bottom-right">
-                <p class="sig-bold-text">
-                    Evita firmar cláusulas abusivas.<br>
-                    Un análisis legal experto antes de comprometer tu firma.
+            <div class="prada-line"></div>
+            <div class="prada-right">
+                <div class="prada-top-text">Servicio Especializado!</div>
+                <h1 class="prada-title">Revisión de<br>Contratos !</h1>
+                
+                <p class="prada-desc">
+                    El margen de error al firmar documentos legales es nulo. Nuestro servicio de revisión desmenuza cada párrafo, identificando riesgos ocultos y asimetrías legales.<br><br>Entregamos reportes detallados en 48 horas hábiles, traduciendo el lenguaje técnico en directrices claras para la toma de decisiones.
                 </p>
-                <div class="sig-light-text">
-                    El margen de error al firmar documentos legales es nulo. Nuestro servicio de revisión desmenuza cada párrafo, identificando riesgos ocultos y asimetrías legales.<br><br>
-                    Entregamos reportes detallados en 48 horas hábiles, traduciendo el lenguaje técnico en directrices claras para la toma de decisiones.
+
+                <div class="prada-bottom-logo">
+                    FERRO FRAGOSO
+                    <span>EST. 2026</span>
                 </div>
             </div>
-
         </div>
-    </header>
+    </section>
 
-    <!-- ═══ PRICING SECTION ═══ -->
-    <section class="sig-pricing-section">
-        <div class="sig-price-card">
-            <h3>Simple</h3>
-            <div class="price">$490 <span style="font-size:0.5em; color:#999;">MXN</span></div>
+    <!-- ═══ DARK PRICING SECTION ═══ -->
+    <section class="dark-pricing-section">
+        <div class="dark-price-card">
+            <h3>Revisión Simple</h3>
+            <div class="price">$490 <span style="font-size:0.5em; color:#777;">MXN</span></div>
             <p>Análisis de contratos estándar de hasta 10 páginas. Entrega de reporte de riesgos vía WhatsApp o correo en 48 hrs hábiles.</p>
-            <a href="#pago" class="sig-btn">Solicitar Revisión</a>
+            <a href="#pago" class="dark-btn">Solicitar Revisión</a>
         </div>
-        <div class="sig-price-card">
-            <h3>Compleja</h3>
-            <div class="price">$890 <span style="font-size:0.5em; color:#999;">MXN</span></div>
+        <div class="dark-price-card" style="border-color:#fff;">
+            <h3>Revisión Compleja</h3>
+            <div class="price">$890 <span style="font-size:0.5em; color:#777;">MXN</span></div>
             <p>Contratos de más de 10 páginas, redactados en inglés, o de alta complejidad corporativa. Mismo tiempo de respuesta excepcional.</p>
-            <a href="#pago" class="sig-btn">Solicitar Revisión</a>
+            <a href="#pago" class="dark-btn">Solicitar Revisión</a>
         </div>
     </section>
 
     <!-- Minimal Footer -->
-    <footer style="padding: 2rem; border-top: 1px solid #eaeaea; text-align: center; font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 2px;">
+    <footer style="padding: 2rem; border-top: 1px solid #333; text-align: center; font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 2px;">
         &copy; 2026 FERRO FRAGOSO. <a href="terminos.html" style="color:#999; text-decoration:none; margin-left:1rem;">Términos</a> <a href="privacidad.html" style="color:#999; text-decoration:none; margin-left:1rem;">Privacidad</a>
     </footer>
 
