@@ -421,88 +421,43 @@
             const tip = legalTips[r.motivo] || legalTips['renuncia'];
 
             let html = `
-                <div class="dashboard-container">
-                    <!-- Top Level Brand & Status -->
-                    <div class="dash-top-bar">
-                        <span class="dash-brand">FERRO FRAGOSO</span>
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <span class="dash-pill-level">${motivoLabels[r.motivo].toUpperCase()}</span>
-                            <a href="index.html" class="circular-back-btn" aria-label="Volver a Inicio" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; width: 44px; height: 44px; position: static;">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="15 18 9 12 15 6"></polyline>
-                                </svg>
-                            </a>
+                <div class="receipt-container">
+                    <div class="receipt-top">
+                        <div class="receipt-header">
+                            ✦ FERRO FRAGOSO ✦<br>
+                            <span style="font-size: 0.7em;">ESTIMACIÓN LABORAL</span>
                         </div>
-                    </div>
-
-                    <!-- Welcome / Overview Card -->
-                    <div class="dash-card-welcome">
-                        <div class="dash-welcome-eyebrow">ESTIMACIÓN DE FINIQUITO Y LIQUIDACIÓN</div>
-                        <h2 class="dash-welcome-title">Cálculo completado</h2>
-                        <p class="dash-welcome-desc">
-                            Periodo: ${formatDateES(r.fechaIngreso)} al ${formatDateES(r.fechaSalida)} <br>
-                            Antigüedad: <strong>${r.antiguedad.anios} años</strong> (${r.antiguedad.diasTotales} días)
-                        </p>
-                    </div>
-
-                    <!-- Main Progress / Total Neto Card -->
-                    <div class="dash-card-progress">
-                        <div class="dash-progress-label">TOTAL NETO ESTIMADO</div>
-                        <div class="dash-progress-value">${formatMoneda(r.totalNeto)}</div>
-                        <div class="dash-progress-bar-container">
-                            <div class="dash-progress-bar-fill" style="width: 100%;"></div>
+                        <div class="receipt-divider"></div>
+                        
+                        <div class="receipt-row">
+                            <span class="receipt-key">Motivo:</span>
+                            <span class="receipt-value">${motivoLabels[r.motivo]}</span>
                         </div>
-                        <div class="dash-progress-footer">
-                            <span>Bruto: ${formatMoneda(r.totalBruto)}</span>
-                            <span>ISR Retenido: -${formatMoneda(r.isrMonto)}</span>
+                        <div class="receipt-row">
+                            <span class="receipt-key">Antigüedad:</span>
+                            <span class="receipt-value">${r.antiguedad.anios} años (${r.antiguedad.diasTotales} días)</span>
                         </div>
-                    </div>
-
-                    <!-- Sub-metrics Grid (Best Score & Speed Style) -->
-                    <div class="dash-metrics-grid">
-                        <div class="dash-metric-card">
-                            <span class="dash-metric-label">Finiquito Proporcional</span>
-                            <span class="dash-metric-value">${formatMoneda(r.totalFiniquito)}</span>
+                        <div class="receipt-row">
+                            <span class="receipt-key">Salida:</span>
+                            <span class="receipt-value">${formatDateES(r.fechaSalida)}</span>
                         </div>
-                        <div class="dash-metric-card">
-                            <span class="dash-metric-label">Indemnizaciones</span>
-                            <span class="dash-metric-value">${formatMoneda(r.totalLiquidacion)}</span>
+                        <div class="receipt-row">
+                            <span class="receipt-key">Salario:</span>
+                            <span class="receipt-value">${formatMoneda(r.salarios.salarioDiario * 30)}/mes</span>
                         </div>
-                    </div>
-
-                    <!-- Legal Tips Card (Achievements Unlocked Style) -->
-                    <div class="dash-card-achievement">
-                        <div class="dash-achievement-header">
-                            <span>Recomendación Jurídica</span>
-                            <span class="dash-achievement-action">Saber más</span>
-                        </div>
-                        <div class="dash-achievement-body">
-                            <div class="dash-achievement-icon-wrapper">
-                                <span class="dash-achievement-icon">${tip.icono}</span>
-                            </div>
-                            <div class="dash-achievement-text-col">
-                                <div class="dash-achievement-title">${tip.titulo}</div>
-                                <div class="dash-achievement-desc">${tip.texto}</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Detailed Breakdowns (Collapse-ready or simple elegant rows) -->
-                    <div class="calc-desglose">
-                        <div class="calc-desglose-title">Desglose Detallado de Conceptos</div>
+                        
+                        <div class="receipt-divider"></div>
+                        
+                        <div class="receipt-items">
             `;
 
             // Finiquito items
             r.finiquito.forEach(item => {
                 html += `
-                    <div class="calc-desglose-row">
-                        <div class="calc-desglose-left">
-                            <span class="calc-desglose-concepto">${item.concepto}</span>
-                            <span class="calc-desglose-detalle">${item.detalle}</span>
-                            ${item.detalleExtra ? `<span class="calc-desglose-detalle">${item.detalleExtra}</span>` : ''}
-                        </div>
-                        <span class="calc-desglose-monto">${formatMoneda(item.monto)}</span>
-                    </div>
+                            <div class="receipt-row">
+                                <span class="receipt-key">${item.concepto}</span>
+                                <span class="receipt-value">${formatMoneda(item.monto)}</span>
+                            </div>
                 `;
             });
 
@@ -510,13 +465,10 @@
             if (r.liquidacion.length > 0) {
                 r.liquidacion.forEach(item => {
                     html += `
-                        <div class="calc-desglose-row">
-                            <div class="calc-desglose-left">
-                                <span class="calc-desglose-concepto">${item.concepto}</span>
-                                <span class="calc-desglose-detalle">${item.detalle}</span>
+                            <div class="receipt-row">
+                                <span class="receipt-key">${item.concepto}</span>
+                                <span class="receipt-value">${formatMoneda(item.monto)}</span>
                             </div>
-                            <span class="calc-desglose-monto">${formatMoneda(item.monto)}</span>
-                        </div>
                     `;
                 });
             }
@@ -524,39 +476,55 @@
             // ISR
             if (r.isr && r.isrMonto > 0) {
                 html += `
-                    <div class="calc-desglose-row">
-                        <div class="calc-desglose-left">
-                            <span class="calc-desglose-concepto">${r.isr.concepto}</span>
-                            <span class="calc-desglose-detalle">${r.isr.detalle}</span>
-                        </div>
-                        <span class="calc-desglose-monto negative">-${formatMoneda(r.isr.monto)}</span>
-                    </div>
+                            <div class="receipt-row">
+                                <span class="receipt-key">${r.isr.concepto}</span>
+                                <span class="receipt-value">-${formatMoneda(r.isr.monto)}</span>
+                            </div>
                 `;
             }
 
             html += `
+                        </div>
+                        
+                        <div class="receipt-dots-spacer">. . . . . . . . . . .</div>
                     </div>
-
-                    <!-- Disclaimer -->
-                    <div class="calc-disclaimer">
-                        <div class="calc-disclaimer-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                        <p>
-                            <strong>Aviso legal:</strong> Esta herramienta proporciona una estimación de carácter informativo 
-                            según la LFT y LISR mexicanas. No sustituye la asesoría de un especialista laboral. 
-                            Consúltanos para una revisión detallada de tu caso particular.
-                        </p>
+                    
+                    <div class="receipt-tear-wrap">
+                        <div class="receipt-tear-line"></div>
+                        <span class="receipt-tear-text">- TEAR HERE -</span>
+                    </div>
+                    
+                    <div class="receipt-bottom">
+                        <div class="receipt-pull-down">
+                            <div class="receipt-pull-lines"><span></span><span></span></div>
+                            pull down to confirm
+                        </div>
+                        
+                        <div class="receipt-divider"></div>
+                        
+                        <div class="receipt-total-block">
+                            <div class="receipt-total-label">✦ TOTAL NETO ✦</div>
+                            <div class="receipt-total-amount">${formatMoneda(r.totalNeto)}</div>
+                            <div class="receipt-total-desc">Moneda Nacional (MXN)</div>
+                        </div>
+                        
+                        <div class="receipt-divider"></div>
+                        
+                        <div class="receipt-footer">
+                            THANK YOU ▽
+                        </div>
                     </div>
 
                     <!-- Actions -->
-                    <div class="calc-results-actions">
+                    <div class="calc-results-actions receipt-actions">
                         <button class="calc-action-btn primary" id="calc-btn-print">
                             <i class="fas fa-file-pdf"></i> Guardar PDF
                         </button>
                         <button class="calc-action-btn secondary" id="calc-btn-consultar">
-                            <i class="fas fa-gavel"></i> Consultar con un abogado
+                            <i class="fas fa-gavel"></i> Consultar Abogado
                         </button>
                         <button class="calc-action-btn secondary" id="calc-btn-recalc">
-                            <i class="fas fa-redo"></i> Volver a hacer
+                            <i class="fas fa-redo"></i> Recalcular
                         </button>
                     </div>
                 </div>
