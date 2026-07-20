@@ -233,6 +233,37 @@ document.addEventListener('DOMContentLoaded', () => {
         typewriterObserver.observe(el);
     });
 
+    // --- TEXT BLUR IN REVEAL (Ported from React TextBlurIn component) ---
+    const blurInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                if (el.dataset.animated) return;
+                el.dataset.animated = 'true';
+                
+                const spans = el.querySelectorAll('.blur-word-in');
+                spans.forEach((span, index) => {
+                    setTimeout(() => {
+                        span.style.opacity = '1';
+                        span.style.filter = 'blur(0px)';
+                        span.style.transform = 'translateY(0)';
+                    }, index * 40); // 40ms stagger per word
+                });
+                
+                blurInObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.text-blur-in').forEach(el => {
+        const text = el.textContent.trim();
+        const words = text.split(/\s+/);
+        el.innerHTML = words.map(word => 
+            `<span class="blur-word-in" style="display:inline-block; opacity:0; filter:blur(10px); transform:translateY(5px); transition:opacity 0.8s ease-out, filter 0.8s ease-out, transform 0.8s ease-out;">${word}</span>`
+        ).join(' ');
+        blurInObserver.observe(el);
+    });
+
     /* ════════════════════════════════════
        MAGNETIC HOVER EFFECT & PARALLAX
     ════════════════════════════════════ */
