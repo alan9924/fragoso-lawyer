@@ -10,74 +10,315 @@
     <link rel="stylesheet" href="home-new.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Editorial/Brutalist Layout specific to Revision */
+        body.revision-body {
+            background-color: #f6f6f4; /* Paper-like off-white */
+            color: #111;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-body);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Subtle paper texture */
+        body.revision-body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .revision-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .revision-logo {
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+            color: #111;
+            text-decoration: none;
+        }
+
+        .revision-menu-btn {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #111;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid #111;
+            border-radius: 40px;
+            padding: 0.4rem 1.2rem;
+            transition: all 0.2s;
+        }
+        .revision-menu-btn:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        .revision-top-label {
+            position: absolute;
+            top: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #111;
+            z-index: 100;
+        }
+
+        .revision-center {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            padding-top: 5rem;
+        }
+
+        .services-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .services-list li {
+            font-family: var(--font-body);
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 400;
+            color: rgba(0,0,0,0.15); /* Faded gray */
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin: 0.5rem 0;
+            line-height: 1;
+        }
+
+        .services-list li.active {
+            font-weight: 700;
+            color: #111;
+            position: relative;
+        }
+
+        /* Scribble overlay */
+        .scribble-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .handwritten-note {
+            position: absolute;
+            top: -60px;
+            right: -250px;
+            font-family: 'Kalam', cursive;
+            color: #3b82f6; /* Blue marker ink */
+            font-size: 1.2rem;
+            line-height: 1.2;
+            width: 250px;
+            transform: rotate(-5deg);
+            text-transform: uppercase;
+        }
+
+        .handwritten-author {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .revision-bottom-text {
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.4;
+            max-width: 600px;
+            margin: 4rem auto;
+            color: #111;
+            padding: 0 2rem;
+        }
+
+        /* Pricing Section */
+        .revision-pricing {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0 2rem 5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .rev-price-card {
+            background: transparent;
+            border: 2px solid #111;
+            padding: 2rem;
+            width: 100%;
+            max-width: 350px;
+            text-align: left;
+            position: relative;
+        }
+
+        .rev-price-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .rev-price-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .rev-price-card p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #444;
+            margin-bottom: 2rem;
+        }
+
+        .rev-btn {
+            display: inline-block;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.2s;
+        }
+        .rev-btn:hover {
+            background: #333;
+        }
+
+        @media (max-width: 1024px) {
+            .handwritten-note {
+                right: -100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .revision-nav {
+                padding: 1.5rem;
+            }
+            .revision-top-label {
+                top: 2rem;
+            }
+            .handwritten-note {
+                position: relative;
+                top: auto;
+                right: auto;
+                transform: rotate(-3deg);
+                text-align: center;
+                margin: 2rem auto;
+                width: 100%;
+                font-size: 1.4rem;
+            }
+        }
+    </style>
 </head>
-<body style="background: var(--bg-base);">
-    <nav id="navbar" class="transparent-nav">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
-                <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
-            </div>
-            <div class="nav-menu">
-                <ul class="nav-links">
-                    <li><a href="marcas.html">REGISTRO DE MARCA</a></li>
-                    <li><a href="revision.html">REVISIÓN CONTRATO</a></li>
-                    <li><a href="consulta.html">CONSULTA</a></li>
-                    <li><a href="contratos.html">CONTRATOS</a></li>
-                    <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="nosotros.html">NOSOTROS</a></li>
-                </ul>
-            </div>
-            <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
-                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
+<body class="revision-body">
+
+    <!-- ═══ TOP NAVIGATION ═══ -->
+    <nav class="revision-nav">
+        <a href="index.html" class="revision-logo">FERRO FRAGOSO</a>
+        <a href="index.html" class="revision-menu-btn">Menú Principal</a>
     </nav>
-    <div style="padding-top: 120px;"></div>
+    <div class="revision-top-label">Servicios</div>
 
-    <section class="final-cta" style="background: #fff; color: var(--carbon); padding: 4rem 2rem; min-height: 60vh;">
-        <h1 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem;">Revisión de Contrato</h1>
-        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-inline: auto;">Evita firmar cláusulas abusivas. Un análisis legal experto antes de comprometer tu firma.</p>
-        
-        <div class="solutions-container" style="max-width: 800px;">
-            <div class="solution-card">
-                <h3>Revisión Simple</h3>
-                <p class="price-tag">$490 MXN</p>
-                <p>Análisis de contratos estándar de hasta 10 páginas. Entrega de reporte de riesgos vía WhatsApp o correo en 48 hrs hábiles.</p>
-                <a href="#pago" class="solution-btn">Solicitar</a>
-            </div>
-            <div class="solution-card" style="border: 2px solid var(--carbon);">
-                <h3>Revisión Compleja</h3>
-                <p class="price-tag">$890 MXN</p>
-                <p>Contratos de más de 10 páginas, en inglés, o de alta complejidad corporativa. Mismo tiempo de entrega.</p>
-                <a href="#pago" class="solution-btn">Solicitar</a>
-            </div>
-        </div>
-        <p style="text-align:center; margin-top: 2rem; color: var(--text-muted);">* Opción de Entrega Exprés 24h disponible por <strong>+$300 MXN</strong> adicionales al finalizar el pedido.</p>
-        
-    </section>
+    <!-- ═══ CENTER TYPOGRAPHY ═══ -->
+    <div class="revision-center">
+        <ul class="services-list">
+            <li>Registro de Marcas</li>
+            <li>Asesoría Corporativa</li>
+            <li class="active">
+                Revisión de Contratos
+                
+                <!-- Blue Scribble (SVG) -->
+                <svg class="scribble-overlay" viewBox="0 0 400 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 20 60 Q 150 20 250 80 T 380 40" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" />
+                    <path d="M 30 50 Q 180 30 220 90 T 390 50" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                </svg>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img">
-                <span class="footer-brand-name">FERRO FRAGOSO</span>
-            </div>
-            <p class="footer-tagline">Estudio Jurídico — Blindaje legal con propósito.</p>
-            <div class="footer-links" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
-                <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
-                <a href="blog/" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Blog</a>
-                <a href="https://wa.me/524191239646" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">WhatsApp</a>
-            </div>
-            <p class="footer-copy" style="margin-top: 2rem;">&copy; 2026 Ferro Fragoso, Estudio Jurídico.</p>
+                <!-- Handwritten note -->
+                <div class="handwritten-note">
+                    "Me salvaron de una cláusula que me hubiera costado la empresa entera."
+                    <span class="handwritten-author">— Carlos, Startup Founder</span>
+                </div>
+            </li>
+            <li>Consulta Estratégica</li>
+            <li>Calculadora Laboral</li>
+        </ul>
+
+        <div class="revision-bottom-text">
+            DETECCIÓN DE CLÁUSULAS ABUSIVAS / ANÁLISIS DE VIABILIDAD / ASESORÍA CORPORATIVA / PROTECCIÓN PATRIMONIAL / RESOLUCIÓN EN 48 HORAS HÁBILES / REPORTES DETALLADOS EN LENGUAJE CLARO / EXPERTOS EN DERECHO PRIVADO / REDACCIÓN A MEDIDA
         </div>
+    </div>
+
+    <!-- ═══ PRICING SECTION ═══ -->
+    <div class="revision-pricing">
+        <div class="rev-price-card">
+            <h3>Revisión Simple</h3>
+            <div class="price">$490</div>
+            <p>Análisis de contratos estándar de hasta 10 páginas. Entrega de reporte de riesgos vía WhatsApp o correo en 48 hrs hábiles.</p>
+            <a href="#pago" class="rev-btn">Solicitar Análisis</a>
+        </div>
+        <div class="rev-price-card" style="background: #111; color: #fff;">
+            <h3 style="color:#fff;">Revisión Compleja</h3>
+            <div class="price" style="color:#fff;">$890</div>
+            <p style="color:#ccc;">Contratos de más de 10 páginas, en inglés, o de alta complejidad corporativa. Mismo tiempo de respuesta excepcional.</p>
+            <a href="#pago" class="rev-btn" style="background: #fff; color: #111;">Solicitar Análisis</a>
+        </div>
+    </div>
+
+    <!-- Express note -->
+    <p style="text-align:center; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: #111; margin-bottom: 4rem; position: relative; z-index: 10;">
+        Opción de Entrega Exprés 24h disponible por +$300 MXN adicionales.
+    </p>
+
+    <!-- FOOTER minimal para esta pagina -->
+    <footer style="padding: 2rem; border-top: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 0.8rem; font-family: var(--font-body); position: relative; z-index: 10;">
+        &copy; 2026 Ferro Fragoso. <a href="terminos.html" style="color:#111; text-decoration:none; margin-left:1rem;">Términos</a> <a href="privacidad.html" style="color:#111; text-decoration:none; margin-left:1rem;">Privacidad</a>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
