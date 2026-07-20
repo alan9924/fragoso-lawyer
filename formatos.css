@@ -64,9 +64,12 @@ body.formatos-page nav {
     left: 0;
     z-index: 1000;
 }
-body.formatos-page nav a, 
+body.formatos-page nav a:not(.nav-cta-btn), 
 body.formatos-page nav .logo-text {
     color: #2c2c2c !important;
+}
+body.formatos-page nav .nav-cta-btn {
+    color: var(--ivory, #ffffff) !important;
 }
 body.formatos-page .logo-text {
     color: rgba(255, 255, 255, 0.75);
