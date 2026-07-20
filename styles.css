@@ -407,7 +407,7 @@ nav.scrolled {
     font-size: 0.62rem;
     font-weight: 500;
     letter-spacing: 5px;
-    color: rgba(255,255,255,0.65);
+    color: rgba(10, 10, 10, 0.65);
     text-transform: uppercase;
     margin-bottom: 2rem;
 }
@@ -418,20 +418,20 @@ nav.scrolled {
     font-weight: 400;
     line-height: 0.95;
     letter-spacing: 4px;
-    color: #ffffff;
+    color: #111111;
     margin-bottom: 2.5rem;
 }
 
 .hero-title em {
     font-style: italic;
     font-weight: 300;
-    color: rgba(255,255,255,0.80);
+    color: rgba(10, 10, 10, 0.80);
 }
 
 .hero-rule {
     width: 48px;
     height: 1px;
-    background: var(--bronze);
+    background: var(--carbon);
     margin-bottom: 2rem;
     opacity: 0.7;
 }
@@ -441,7 +441,7 @@ nav.scrolled {
     font-size: clamp(1.4rem, 2.5vw, 1.9rem);
     font-weight: 300;
     line-height: 1.4;
-    color: rgba(255,255,255,0.92);
+    color: rgba(10, 10, 10, 0.92);
     margin-bottom: 0.6rem;
     max-width: 30ch;
 }
@@ -677,11 +677,11 @@ nav.scrolled {
     border: none;
     outline: none;
     transition: color 0.3s ease;
-    color: rgba(255,255,255,0.55);
+    color: rgba(10, 10, 10, 0.55);
     pointer-events: auto;
 }
 .hero-scroll-hint:hover {
-    color: rgba(255,255,255,0.95);
+    color: rgba(10, 10, 10, 0.95);
 }
 
 @keyframes scrollBob {
