@@ -18,7 +18,7 @@
 <body class="formatos-page">
 
 
-        <!-- ═══ NAVIGATION ═══ -->
+            <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar" class="transparent-nav">
         <div class="nav-container">
             <div class="nav-brand">
@@ -28,12 +28,13 @@
             
             <div class="nav-menu">
                 <ul class="nav-links">
-                    <li><a href="marcas.html">REGISTRO DE MARCA</a></li>
+                    <li><a href="marcas.html">MARCAS</a></li>
                     <li><a href="derechos-autor.html">DERECHOS DE AUTOR</a></li>
-                    <li><a href="revision.html">REVISIÓN CONTRATO</a></li>
+                    <li><a href="revision.html">REVISIÓN</a></li>
                     <li><a href="consulta.html">CONSULTA</a></li>
                     <li><a href="contratos.html">CONTRATOS</a></li>
                     <li><a href="finiquito.html">CALCULADORA</a></li>
+                    <li><a href="radar/">RADAR LEGAL</a></li>
                     <li><a href="nosotros.html">NOSOTROS</a></li>
                 </ul>
             </div>
@@ -128,6 +129,18 @@
                             <h4>Fundamento Jurídico</h4>
                             <div class="ficha-card">
                                 <p id="step2-fundamento"></p>
+                            </div>
+                        </div>
+                        <div class="ficha-block" id="step2-cuando-block" style="display:none;">
+                            <h4>¿Cuándo se usa?</h4>
+                            <div class="ficha-card">
+                                <p id="step2-cuando"></p>
+                            </div>
+                        </div>
+                        <div class="ficha-block" id="step2-validez-block" style="display:none;">
+                            <h4>Validez</h4>
+                            <div class="ficha-card">
+                                <p id="step2-validez"></p>
                             </div>
                         </div>
                     </div>
@@ -233,6 +246,7 @@
                 <div id="download-actions-template" style="display:none;">
                     <div class="gen-preview-actions">
                         <button class="doc-btn doc-btn--secondary" id="btn-print-doc"><i class="fas fa-print"></i> PDF</button>
+                        <button class="doc-btn doc-btn--secondary" id="btn-download-docx"><i class="fas fa-file-word"></i> Word</button>
                         <button class="doc-btn doc-btn--secondary" id="btn-copy-doc"><i class="far fa-copy"></i> Copiar</button>
                         <button class="doc-btn doc-btn--secondary" id="btn-share-wa"><i class="fab fa-whatsapp"></i> Enviar</button>
                     </div>
@@ -370,7 +384,25 @@
                         document.getElementById('step2-para-que').textContent = c.para_que_sirve || "Prevenir malentendidos y futuras controversias.";
                         document.getElementById('step2-alcance').textContent = c.alcance_legal || "Obligaciones exigibles ante la ley.";
                         document.getElementById('step2-fundamento').textContent = c.base || "Legislación aplicable.";
-                        
+
+                        // Metadatos complementarios (cuándo se usa / validez) — vienen de
+                        // contratos-meta.js, que hasta ahora se cargaba pero no se usaba.
+                        const meta = (window.CONTRATOS_META || {})[c.id];
+                        const cuandoBlock = document.getElementById('step2-cuando-block');
+                        const validezBlock = document.getElementById('step2-validez-block');
+                        if (meta && meta.cuandoSeUsa) {
+                            document.getElementById('step2-cuando').textContent = meta.cuandoSeUsa;
+                            cuandoBlock.style.display = '';
+                        } else {
+                            cuandoBlock.style.display = 'none';
+                        }
+                        if (meta && meta.validez) {
+                            document.getElementById('step2-validez').textContent = meta.validez;
+                            validezBlock.style.display = '';
+                        } else {
+                            validezBlock.style.display = 'none';
+                        }
+
                         showStep(2);
                     });
                     step1List.appendChild(btn);
@@ -399,7 +431,6 @@
                     return;
                 }
                 errorEl.textContent = '';
-                valores['__email__'] = email;
                 const quiereRadar = document.getElementById('step2b-radar').checked;
                 if (typeof trackEvent === 'function') {
                     trackEvent('generador_email', { radar: quiereRadar, contrato: selectedDoc ? selectedDoc.id : null });
@@ -408,11 +439,24 @@
                     // exista la cuenta y el formulario real.
                     if (quiereRadar) trackEvent('radar_alta', { etiqueta: 'generador' });
                 }
+                // initGenerator() reinicia valores a {}, así que el correo debe
+                // guardarse DESPUÉS de llamarlo — antes se sobrescribía al instante.
                 initGenerator();
+                valores['__email__'] = email;
                 showStep(3);
             });
 
-            document.getElementById('btn-back-to-step1').addEventListener('click', () => showStep(1));
+            document.getElementById('btn-back-to-step1').addEventListener('click', () => {
+                // Este botón ("Cerrar") regresa a la lista de contratos y descarta
+                // todo lo que el usuario ya llenó (valores, firma). Sin confirmación,
+                // un toque accidental en la esquina —muy fácil en móvil— borra todo
+                // el progreso sin aviso.
+                const hayProgreso = Object.keys(valores).some((k) => valores[k]);
+                if (hayProgreso && !confirm('Vas a salir de este contrato y perderás la información que ya llenaste (incluida tu firma). ¿Deseas continuar?')) {
+                    return;
+                }
+                showStep(1);
+            });
 
             /* ============================ ACCORDION TOGGLE ============================ */
             const infoToggle = document.getElementById('gen-info-toggle');
@@ -473,8 +517,9 @@
                 return apareceEnActivo || !apareceEnOpcionalOff;
             }
 
-            let wizardSteps = []; 
+            let wizardSteps = [];
             let currentWizardStep = 0;
+            let cleanupFirmaListeners = null; // limpia los listeners de window de la firma anterior
 
             const wizardBody = document.getElementById('wizard-body');
             const wizardProgressText = document.getElementById('wizard-progress-text');
@@ -607,38 +652,58 @@
                     // Lógica de dibujo simple
                     let drawing = false;
                     let ctx = null;
-                    
+
+                    // Si había una firma de una visita anterior a este paso, límpia sus
+                    // listeners de window — de lo contrario se acumulan cada vez que el
+                    // usuario va y vuelve a este paso (se re-crea el canvas cada vez).
+                    if (cleanupFirmaListeners) { cleanupFirmaListeners(); cleanupFirmaListeners = null; }
+
                     setTimeout(() => {
                         // Ajustar tamaño del canvas al contenedor real (para dispositivos móviles)
+                        // OJO: cambiar canvas.width/height siempre borra el contenido dibujado,
+                        // por eso el redibujo de la firma guardada ocurre DESPUÉS de este resize.
                         const rect = canvasWrapper.getBoundingClientRect();
                         canvas.width = rect.width - 20; // pequeño padding
-                        
+
                         ctx = canvas.getContext('2d');
                         ctx.lineWidth = 3;
                         ctx.lineCap = 'round';
                         ctx.strokeStyle = '#000';
-                        
+
                         const getPos = (e) => {
                             const rect = canvas.getBoundingClientRect();
                             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
                             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
                             return { x: clientX - rect.left, y: clientY - rect.top };
                         };
-                        
+
                         const startDraw = (e) => { drawing = true; const pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); e.preventDefault(); };
                         const draw = (e) => { if (!drawing) return; const pos = getPos(e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); e.preventDefault(); };
                         const stopDraw = () => { drawing = false; };
-                        
+
                         canvas.addEventListener('mousedown', startDraw);
                         canvas.addEventListener('mousemove', draw);
                         window.addEventListener('mouseup', stopDraw);
-                        
+
                         canvas.addEventListener('touchstart', startDraw, { passive: false });
                         canvas.addEventListener('touchmove', draw, { passive: false });
                         window.addEventListener('touchend', stopDraw);
-                        
-                        // Si ya había una firma guardada, podríamos cargarla, pero es más fácil empezar en blanco.
-                        
+
+                        cleanupFirmaListeners = () => {
+                            window.removeEventListener('mouseup', stopDraw);
+                            window.removeEventListener('touchend', stopDraw);
+                        };
+
+                        // Restaurar la firma ya capturada si el usuario vuelve a este paso
+                        // (por ejemplo, tras retroceder a corregir un campo anterior). Sin esto,
+                        // el canvas siempre nace en blanco y al pulsar "Continuar" sin redibujar
+                        // se sobrescribe valores['__firma__'] con null, perdiendo la firma real.
+                        if (valores['__firma__']) {
+                            const img = new Image();
+                            img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            img.src = valores['__firma__'];
+                        }
+
                         btnClear.addEventListener('click', () => {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             valores['__firma__'] = null;
@@ -680,6 +745,10 @@
                         if (typeof trackEvent === 'function') trackEvent('generador_descarga', { medio: 'print', contrato: selectedDoc ? selectedDoc.id : null });
                         window.print();
                     });
+                    actions.querySelector('#btn-download-docx').addEventListener('click', function() {
+                        if (typeof trackEvent === 'function') trackEvent('generador_descarga', { medio: 'docx', contrato: selectedDoc ? selectedDoc.id : null });
+                        generarDocx();
+                    });
                     const upsellBtn = actions.querySelector('#btn-upsell-generador');
                     if (upsellBtn) {
                         upsellBtn.addEventListener('click', () => {
@@ -695,22 +764,42 @@
                         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando PDF...';
                         btn.disabled = true;
 
+                        let wrapper = null;
                         try {
-                            // Build a clean print-ready clone of the document
+                            // Build a clean print-ready clone of the document.
+                            // documentPreview is the hidden data store (style="display:none") used to
+                            // render the wizard preview via .innerHTML, so it has NO layout/classes of
+                            // its own — cloning it directly carries over display:none and none of the
+                            // .gen-preview-content styling (titles, clauses, signatures, footnotes).
                             const clone = documentPreview.cloneNode(true);
-                            const wrapper = document.createElement('div');
-                            wrapper.style.cssText = 'font-family:Georgia,serif;line-height:1.9;color:#111;padding:3cm 2.5cm;font-size:11pt;max-width:21cm;';
+                            clone.removeAttribute('id');
+                            clone.removeAttribute('style');
+                            clone.classList.add('gen-preview-content');
+
+                            wrapper = document.createElement('div');
+                            // position:absolute (NOT fixed) off-canvas — html2canvas measures
+                            // position:fixed elements unreliably (observed 0-height captures);
+                            // an absolutely-positioned element far outside the document flow
+                            // measures and renders correctly.
+                            wrapper.style.cssText = 'position:absolute;top:0;left:0;z-index:-9999;width:21cm;background:#fff;font-family:Georgia,serif;line-height:1.9;color:#111;padding:3cm 2.5cm;font-size:11pt;box-sizing:border-box;';
                             wrapper.innerHTML = `
                                 <div style="text-align:center;font-family:sans-serif;letter-spacing:2px;font-size:8pt;color:#666;margin-bottom:4pt">FERRO FRAGOSO</div>
                                 <div style="text-align:center;font-family:sans-serif;letter-spacing:3px;font-size:6pt;color:#999;margin-bottom:24pt">ESTUDIO JURÍDICO</div>
                             `;
                             wrapper.appendChild(clone);
+                            // html2canvas needs the node laid out in the real DOM (with the site's
+                            // stylesheet applied) to measure and render it correctly — an off-screen
+                            // but attached wrapper achieves that without flashing on screen.
+                            document.body.appendChild(wrapper);
+                            // Force layout before handing off to html2canvas.
+                            const measuredHeight = wrapper.scrollHeight;
+                            const measuredWidth = wrapper.scrollWidth;
 
                             const opt = {
                                 margin: [1.5, 2, 1.5, 2.5],
                                 filename: (selectedDoc ? selectedDoc.titulo.replace(/[^a-zA-Z0-9 ]/g,'').trim().replace(/ +/g,'_') : 'contrato') + '.pdf',
                                 image: { type: 'jpeg', quality: 0.95 },
-                                html2canvas: { scale: 2, useCORS: true },
+                                html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: -window.scrollY, windowWidth: measuredWidth, windowHeight: measuredHeight },
                                 jsPDF: { unit: 'cm', format: 'letter', orientation: 'portrait' }
                             };
 
@@ -744,12 +833,13 @@
                             console.error(err);
                             btn.innerHTML = '<i class="fas fa-times"></i> Error';
                         } finally {
+                            if (wrapper && wrapper.parentNode) wrapper.parentNode.removeChild(wrapper);
                             btn.disabled = false;
                             setTimeout(() => { btn.innerHTML = prevHTML; }, 3000);
                         }
                     });
                 }
-                
+
                 wizardBody.appendChild(container);
             }
 
@@ -896,86 +986,21 @@
                 return lines.join('\n');
             }
 
-            /* --------- botones de acción --------- */
-            document.getElementById('btn-copy-doc').addEventListener('click', function () {
-                const text = buildPlainText();
-                navigator.clipboard.writeText(text).then(() => {
-                    const btn = this;
-                    const prevText = btn.innerHTML;
-                    btn.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i>¡Copiado!';
-                    setTimeout(() => { btn.innerHTML = prevText; }, 2000);
-                });
-            });
-
-            document.getElementById('btn-print-doc').addEventListener('click', () => {
-                const printWindow = window.open('', '_blank');
-                printWindow.document.write(`
-                    <html>
-                    <head>
-                        <title>Impresión de Formato | FERRO FRAGOSO</title>
-                        <style>
-                            body { font-family: Georgia, serif; line-height: 1.6; padding: 3rem; color: #111; max-width: 800px; margin: 0 auto; }
-                            .doc-brand { text-align: center; font-family: sans-serif; letter-spacing: 2px; font-size: 0.8rem; color: #666; margin-bottom: 0.5rem; }
-                            .doc-brand small { display: block; font-size: 0.6rem; letter-spacing: 3px; }
-                            h1.doc-title { font-family: sans-serif; text-align: center; font-size: 1.2rem; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 0.5rem; }
-                            .doc-subtitle { text-align: center; font-size: 0.8rem; color: #666; margin-bottom: 3rem; font-style: italic; }
-                            h4.clause { margin-top: 1.5rem; }
-                            p.indent { margin-left: 2rem; }
-                            p.note { font-style: italic; color: #555; border-left: 3px solid #999; padding-left: 1rem; }
-                            p.subhd { text-align: center; font-weight: bold; margin-top: 2rem; }
-                            .signs { display: flex; justify-content: space-between; margin-top: 4rem; gap: 2rem; }
-                            .sign { text-align: center; flex: 1; }
-                            .sign .line { border-top: 1px solid #000; margin-bottom: 0.5rem; }
-                            .footnotes { margin-top: 3rem; border-top: 1px solid #ccc; padding-top: 1rem; font-size: 0.75rem; color: #666; }
-                            .not-legal { text-align: center; color: #666; font-size: 0.8rem; font-style: italic; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 20px; }
-                            .fill.empty { text-decoration: underline; }
-                        </style>
-                    </head>
-                    <body>
-                        ${documentPreview.innerHTML}
-                        <div class="not-legal">Nota: Este documento es un borrador preliminar. Se recomienda su revisión formal por un abogado calificado de Ferro Fragoso antes de su firma.</div>
-                    </body>
-                    </html>
-                `);
-                printWindow.document.close();
-                printWindow.print();
-            });
-
-            document.getElementById('btn-fill-example').addEventListener('click', () => {
-                const c = selectedDoc;
-                const ejemplos = {
-                    ciudad: 'Querétaro, Qro.',
-                    fecha: new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' }),
-                };
-                camposDelContrato(c).forEach((f) => {
-                    const l = f.toLowerCase();
-                    if (/ciudad/.test(l)) valores[f] = ejemplos.ciudad;
-                    else if (/fecha/.test(l)) valores[f] = ejemplos.fecha;
-                    else if (/monto|precio|salario|renta|adeudo|pago|pena|depósito|finiquito|aguinaldo|vacacional|vacaciones|salarios|antig/.test(l)) valores[f] = '10,000.00';
-                    else if (/letra/.test(l)) valores[f] = 'diez mil';
-                    else if (/porcentaje|interés|drag/.test(l)) valores[f] = '5';
-                    else if (/días|parcialidades|mensualidades|número de pagos/.test(l)) valores[f] = '3';
-                    else if (/rfc/.test(l)) valores[f] = 'XAXX010101000';
-                    else if (/curp/.test(l)) valores[f] = 'XAXX010101HDFXXX01';
-                    else if (/nombre|razón|beneficiario|arrendador|arrendatario|vendedor|comprador|mutuante|mutuatario|comodante|comodatario|acreedor|deudor|otorgante|apoderado|poderdante|testigo|socio|aval|suscriptor|declarante|patrón|trabajador|acompañante|padre|madre|tutor|menor|responsable|titular|parte/.test(l)) valores[f] = '[NOMBRE COMPLETO]';
-                    else if (/domicilio|lugar|destino|territorio/.test(l)) valores[f] = '[DOMICILIO / LUGAR]';
-                    else valores[f] = '[POR DEFINIR]';
-                });
-                renderForm();
-                renderPreview();
-            });
-
-            document.getElementById('btn-clear-form').addEventListener('click', () => {
-                valores = {};
-                renderForm();
-                renderPreview();
-            });
-
-            /* --------- exportación a Word (.docx) --------- */
+            /* --------- exportación a Word (.docx) ---------
+               NOTA: este bloque estaba escrito como listener directo de botones
+               (btn-copy-doc, btn-print-doc, btn-fill-example, btn-clear-form,
+               btn-download-docx) que ya no existen en el HTML actual (la UI de
+               pestañas fue reemplazada por el wizard). btn-fill-example y
+               btn-clear-form no existen en ningún lado: llamar
+               document.getElementById(...).addEventListener(...) sobre ellos
+               lanzaba un TypeError no capturado en CADA carga de la página,
+               deteniendo el resto del script — incluyendo esta exportación a
+               Word, que sí funciona y ya sabe incluso incrustar la firma como
+               imagen. Se convierte en una función nombrada y se conecta al botón
+               real dentro de renderWizardStep(), igual que copiar/imprimir/enviar. */
             const DOC_ACCENT = '8A6D3B', DOC_TEXT = '28251D', DOC_MUTED = '7A7974', DOC_RULE = 'D4D1CA';
 
-            const btnDocx = document.getElementById('btn-download-docx');
-            if (btnDocx) btnDocx.addEventListener('click', () => {
+            function generarDocx() {
                 const D = window.docx;
                 if (!D) { alert('No se pudo cargar la librería de Word. Verifica tu conexión a internet.'); return; }
                 const c = selectedDoc;
@@ -1148,8 +1173,30 @@
                     document.body.appendChild(a); a.click(); a.remove();
                     URL.revokeObjectURL(a.href);
                 }).catch((e) => { console.error(e); alert('Ocurrió un error al generar el documento: ' + e.message); });
-            });
+            }
         });
     </script>
+
+    <!-- TODO: Slot "Del Radar Legal:" — activar cuando existan artículos de la categoría Contratos y Empresas -->
+    <!--
+    <section style="padding: 4rem 2rem; background: var(--bg-base);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <span style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880); display: block; margin-bottom: 1.5rem;">Del Radar Legal:</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+                <article style="background: #fff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; padding: 1.5rem;">
+                    <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--bronze, #c5a880);">Contratos y Empresas</span>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 400; margin: 0.5rem 0;">Título del artículo relacionado</h3>
+                    <a href="radar/slug.html" style="font-family: var(--font-body); font-size: 0.8rem; color: var(--carbon, #2e2c2a); text-decoration: underline;">Leer más →</a>
+                </article>
+                <article style="background: #fff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; padding: 1.5rem;">
+                    <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--bronze, #c5a880);">Contratos y Empresas</span>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 400; margin: 0.5rem 0;">Título del artículo relacionado</h3>
+                    <a href="radar/slug.html" style="font-family: var(--font-body); font-size: 0.8rem; color: var(--carbon, #2e2c2a); text-decoration: underline;">Leer más →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+    -->
+
 </body>
 </html>

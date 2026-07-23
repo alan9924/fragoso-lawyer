@@ -214,28 +214,31 @@
 </head>
 <body class="editorial-body">
 
-    <!-- ═══ NAVIGATION ═══ -->
+        <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar" class="transparent-nav">
         <div class="nav-container">
             <div class="nav-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img" style="filter: invert(1);">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
                 <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
+            
             <div class="nav-menu">
                 <ul class="nav-links">
-                    <li><a href="marcas.html" class="active-link">REGISTRO DE MARCA</a></li>
+                    <li><a href="marcas.html">MARCAS</a></li>
                     <li><a href="derechos-autor.html">DERECHOS DE AUTOR</a></li>
-                    <li><a href="revision.html">REVISIÓN CONTRATO</a></li>
+                    <li><a href="revision.html">REVISIÓN</a></li>
                     <li><a href="consulta.html">CONSULTA</a></li>
                     <li><a href="contratos.html">CONTRATOS</a></li>
                     <li><a href="finiquito.html">CALCULADORA</a></li>
+                    <li><a href="radar/">RADAR LEGAL</a></li>
                     <li><a href="nosotros.html">NOSOTROS</a></li>
                 </ul>
             </div>
+
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn" style="border-color:#fff; color:#fff;">Membresía</a>
+                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
                 <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
-                    <span style="background:#fff;"></span><span style="background:#fff;"></span><span style="background:#fff;"></span>
+                    <span></span><span></span><span></span>
                 </button>
             </div>
         </div>
@@ -389,6 +392,27 @@
         ]
     }
     </script>
+
+    <!-- TODO: Slot "Del Radar Legal:" — activar cuando existan artículos de la categoría Marcas y Propiedad Intelectual -->
+    <!--
+    <section style="padding: 4rem 2rem; background: var(--bg-base);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <span style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880); display: block; margin-bottom: 1.5rem;">Del Radar Legal:</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+                <article style="background: #fff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; padding: 1.5rem;">
+                    <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--bronze, #c5a880);">Marcas y Propiedad Intelectual</span>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 400; margin: 0.5rem 0;">Título del artículo relacionado</h3>
+                    <a href="radar/slug.html" style="font-family: var(--font-body); font-size: 0.8rem; color: var(--carbon, #2e2c2a); text-decoration: underline;">Leer más →</a>
+                </article>
+                <article style="background: #fff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; padding: 1.5rem;">
+                    <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--bronze, #c5a880);">Marcas y Propiedad Intelectual</span>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 400; margin: 0.5rem 0;">Título del artículo relacionado</h3>
+                    <a href="radar/slug.html" style="font-family: var(--font-body); font-size: 0.8rem; color: var(--carbon, #2e2c2a); text-decoration: underline;">Leer más →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+    -->
 
     <script src="script.js"></script>
     <script src="analytics.js"></script>
