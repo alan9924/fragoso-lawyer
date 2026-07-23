@@ -283,12 +283,12 @@
         <div class="prada-split">
             <div class="prada-left">
                 <!-- An elegant lowercase 'r' (for revisión) cut by the line -->
-                <div class="giant-letter">r</div>
+                <div class="giant-letter"></div>
             </div>
             <div class="prada-line"></div>
             <div class="prada-right">
-                <div class="prada-top-text">Servicio Especializado!</div>
-                <h1 class="prada-title">Revisión de<br>Contratos !</h1>
+                <div class="prada-top-text">Servicio Especializado</div>
+                <h1 class="prada-title">Revisión de<br>Contratos</h1>
                 
                 <p class="prada-desc">
                     El margen de error al firmar documentos legales es nulo. Nuestro servicio de revisión desmenuza cada párrafo, identificando riesgos ocultos y asimetrías legales.<br><br>Entregamos reportes detallados en 48 horas hábiles, traduciendo el lenguaje técnico en directrices claras para la toma de decisiones.
@@ -296,7 +296,7 @@
 
                 <div class="prada-bottom-logo">
                     FERRO FRAGOSO
-                    <span>EST. 2026</span>
+                    <span>EST. 2024</span>
                 </div>
             </div>
         </div>
@@ -326,6 +326,15 @@
                target="_blank" rel="noopener" class="dark-btn"
                data-mp-link="PENDIENTE:revision-compleja-890" data-producto="Revisión compleja">Solicitar Revisión</a>
         </div>
+        <div class="dark-price-card" data-precio-normal="2490" data-nombre="Redacción a Medida">
+            <h3>Redacción a Medida</h3>
+            <div class="price"><span class="price-amount">$2,490</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
+            <p>Redactamos tu contrato desde cero a la medida de tu operación: cláusulas negociadas, anexos y versión lista para firma. Entrega en 3–5 días hábiles.</p>
+            <div style="height: 1.5rem; margin: 1rem 0;"></div>
+            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20redacci%C3%B3n%20a%20medida%20de%20un%20contrato%20(%242%2C490%20MXN)."
+               target="_blank" rel="noopener" class="dark-btn"
+               data-mp-link="PENDIENTE:redaccion-medida-2490" data-producto="Redacción a medida">Iniciar Proyecto</a>
+        </div>
     </section>
 
     <style>
@@ -345,6 +354,7 @@
     <script>
         document.querySelectorAll('.dark-price-card').forEach((card) => {
             const checkbox = card.querySelector('.express-checkbox');
+            if (!checkbox) return;
             const amountEl = card.querySelector('.price-amount');
             const btn = card.querySelector('.dark-btn');
             const normal = card.dataset.precioNormal;
@@ -387,7 +397,7 @@
         </details>
         <details class="faq-item">
             <summary>¿Qué pasa si necesito cambios después de la entrega?</summary>
-            <p>El reporte incluye una ronda de dudas por WhatsApp sobre los hallazgos entregados. Si necesitas que redactemos las cláusulas modificadas o un contrato completamente nuevo, ese trabajo se cotiza por separado a través de nuestro generador de contratos o una consulta estratégica.</p>
+            <p>El reporte incluye una ronda de dudas por WhatsApp sobre los hallazgos entregados. Si necesitas que redactemos las cláusulas modificadas o un contrato completamente nuevo, la redacción de cláusulas o contratos nuevos se cotiza como "Redacción a medida ($2,490)".</p>
         </details>
     </section>
 
@@ -402,7 +412,7 @@
                     { "@type": "Question", "name": "¿Cuál es el tiempo de entrega?", "acceptedAnswer": { "@type": "Answer", "text": "El servicio estándar se entrega en 24–48 horas hábiles. La opción exprés reduce el tiempo de entrega a 24 horas por $300 MXN adicionales." } },
                     { "@type": "Question", "name": "¿Qué recibo al final de la revisión?", "acceptedAnswer": { "@type": "Answer", "text": "Un reporte con las cláusulas de riesgo identificadas, su explicación en lenguaje claro, y recomendaciones sobre qué negociar antes de firmar." } },
                     { "@type": "Question", "name": "¿Revisan contratos en inglés?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, los contratos en inglés se cotizan dentro de la revisión compleja ($890 MXN)." } },
-                    { "@type": "Question", "name": "¿Qué pasa si necesito cambios después de la entrega?", "acceptedAnswer": { "@type": "Answer", "text": "El reporte incluye una ronda de dudas por WhatsApp. La redacción de cláusulas nuevas se cotiza por separado." } }
+                    { "@type": "Question", "name": "¿Qué pasa si necesito cambios después de la entrega?", "acceptedAnswer": { "@type": "Answer", "text": "El reporte incluye una ronda de dudas por WhatsApp. La redacción de cláusulas o contratos nuevos se cotiza como Redacción a medida ($2,490)." } }
                 ]
             },
             {
@@ -418,6 +428,13 @@
                 "description": "Análisis de contratos de más de 10 páginas, en inglés o de alta complejidad corporativa.",
                 "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
                 "offers": { "@type": "Offer", "price": "890", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/revision.html" }
+            },
+            {
+                "@type": "Product",
+                "name": "Redacción a medida de contrato",
+                "description": "Redactamos tu contrato desde cero a la medida de tu operación: cláusulas negociadas, anexos y versión lista para firma.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "2490", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/revision.html" }
             }
         ]
     }
