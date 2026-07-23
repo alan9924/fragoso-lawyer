@@ -799,7 +799,7 @@
                                 margin: [1.5, 2, 1.5, 2.5],
                                 filename: (selectedDoc ? selectedDoc.titulo.replace(/[^a-zA-Z0-9 ]/g,'').trim().replace(/ +/g,'_') : 'contrato') + '.pdf',
                                 image: { type: 'jpeg', quality: 0.95 },
-                                html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: -window.scrollY, windowWidth: measuredWidth, windowHeight: measuredHeight },
+                                html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
                                 jsPDF: { unit: 'cm', format: 'letter', orientation: 'portrait' }
                             };
 
