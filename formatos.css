@@ -1182,6 +1182,32 @@ body:has(.step-container.active:not(#step-0)) .formatos-wrapper {
     color: #2c2c2c; /* Dark color for white background */
 }
 
+/* On mobile the back button is absolutely positioned at the left while .wizard-brand
+   stays centered in the same bar — at narrow widths the centered logo text runs directly
+   under the button. Reserve room for the button and left-align the brand instead. */
+@media (max-width: 600px) {
+    .wizard-top-bar {
+        justify-content: flex-start;
+        padding: 0.85rem 1rem 0.85rem 3.75rem;
+    }
+    .wizard-top-bar .wizard-close-btn {
+        left: 1rem;
+        width: 40px;
+        height: 40px;
+    }
+    .wizard-brand {
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+    .wizard-logo-img {
+        height: 28px;
+    }
+    .wizard-logo-text {
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+    }
+}
+
 .wizard-progress-text {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 0.9rem;

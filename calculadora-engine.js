@@ -270,10 +270,18 @@ function calcularFiniquitoLiquidacion(datos) {
 
         // ISR sobre indemnización
         isrResult = calcularISRIndemnizacion(totalLiquidacion, aniosTrabajados, config.umaDiario);
-    }
-
-    // Prima de antigüedad para fin de contrato (solo si 15+ años)
-    if (motivo === 'fin_contrato' && aniosCompletos >= 15) {
+    } else if (motivo === 'despido_justificado') {
+        // Art. 162 LFT: el despido con causa NO da derecho a indemnización constitucional
+        // ni a los 20 días por año, pero SÍ conserva la prima de antigüedad,
+        // sin requisito de años mínimos de servicio.
+        const prima = calcularPrimaAntiguedad(
+            salarios.salarioDiario, aniosTrabajados, config.umaDiario
+        );
+        liquidacion.push(prima);
+        totalLiquidacion = prima.monto;
+    } else if ((motivo === 'renuncia' || motivo === 'fin_contrato') && aniosCompletos >= 15) {
+        // Art. 162 LFT: la separación voluntaria (o el término natural del contrato)
+        // solo genera prima de antigüedad si el trabajador cumplió 15 años o más de servicio.
         const prima = calcularPrimaAntiguedad(
             salarios.salarioDiario, aniosTrabajados, config.umaDiario
         );
