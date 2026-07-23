@@ -7,7 +7,7 @@
     <meta name="description" content="Calcula tu finiquito y liquidación laboral en México. Estimación basada en la Ley Federal del Trabajo.">
     <link rel="icon" type="image/png" href="logo_ff.png">
     <link rel="apple-touch-icon" href="logo_ff.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <link rel="stylesheet" href="home-new.css">
     <link rel="stylesheet" href="calculadora.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -105,6 +105,7 @@
 
     <script src="calculadora-engine.js"></script>
     <script src="script.js"></script>
+    <script src="analytics.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -388,6 +389,10 @@
         function renderResults(r) {
             const container = document.getElementById('calc-results-container');
 
+            if (typeof trackEvent === 'function') {
+                trackEvent('calc_resultado', { motivo: r.motivo, total: r.totalNeto });
+            }
+
             const motivoLabels = {
                 renuncia: 'Renuncia voluntaria',
                 despido_injustificado: 'Despido injustificado',
@@ -520,13 +525,41 @@
                         <button class="calc-action-btn primary" id="calc-btn-print">
                             <i class="fas fa-file-pdf"></i> Guardar PDF
                         </button>
-                        <button class="calc-action-btn secondary" id="calc-btn-consultar">
-                            <i class="fas fa-gavel"></i> Consultar Abogado
+                        <button class="calc-action-btn secondary" id="calc-btn-consultar"
+                                data-mp-link="PENDIENTE:calculadora-consulta-490" data-producto="Consulta post-calculadora">
+                            <i class="fas fa-gavel"></i> Un abogado revisa tu caso — $490
                         </button>
                         <button class="calc-action-btn secondary" id="calc-btn-recalc">
                             <i class="fas fa-redo"></i> Recalcular
                         </button>
                     </div>
+                </div>
+
+                <!-- Radar Legal FF — contextual: laboral -->
+                <div style="max-width: 480px; margin: 2rem auto 0; padding: 2rem; background: #ffffff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem;">
+                        <img src="sello_ff.png" alt="" style="width: 44px; height: 44px; object-fit: contain; opacity: 0.15; filter: grayscale(100%); flex-shrink: 0;">
+                        <div>
+                            <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880);">RADAR LEGAL FF</span>
+                            <p style="font-family: var(--font-body); font-size: 0.88rem; line-height: 1.5; margin: 0.3rem 0 0; color: var(--text-muted, #9c9489);">¿Quieres saber cuando la ley laboral cambia y te afecta? Cada martes, en 3 minutos.</p>
+                        </div>
+                    </div>
+                    <form id="calc-radar-form" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                            <label for="calc-radar-email" style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted, #9c9489);">Correo</label>
+                            <input type="email" id="calc-radar-email" required placeholder="tu@correo.com"
+                                   style="padding: 0.75rem 1rem; border: 1.5px solid var(--stone-300, #d5ccbf); border-radius: 8px; font-family: var(--font-body); font-size: 0.9rem; color: var(--carbon, #2e2c2a); background: #fff; outline: none;"
+                                   onfocus="this.style.borderColor='#2e2c2a'"
+                                   onblur="this.style.borderColor='#d5ccbf'">
+                        </div>
+                        <button type="submit" style="padding: 0.8rem 1.5rem; background: var(--carbon, #2e2c2a); color: #fff; border: none; border-radius: 8px; font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; cursor: pointer;"
+                                onmouseover="this.style.background='#c5a880'"
+                                onmouseout="this.style.background='#2e2c2a'">
+                            Quiero mis alertas laborales
+                        </button>
+                        <p style="font-family: var(--font-body); font-size: 0.7rem; color: var(--text-muted, #9c9489); margin: 0; text-align: center;">Cero spam. Cancela cuando quieras.</p>
+                    </form>
+                    <p id="calc-radar-msg" style="font-size: 0.8rem; margin: 0.6rem 0 0; min-height: 1.1em; text-align: center; color: var(--carbon, #2e2c2a);"></p>
                 </div>
             `;
 
@@ -546,11 +579,27 @@
                 showStep(0);
             });
             document.getElementById('calc-btn-consultar').addEventListener('click', () => {
-                const text = `Hola, he calculado una estimación en su sitio web y me gustaría recibir asesoría legal.\n\n` +
+                if (typeof trackEvent === 'function') {
+                    trackEvent('calc_upsell_click', { motivo: r.motivo, ref: 'calculadora' });
+                }
+                const text = `Hola, he calculado una estimación en su sitio web y quiero que un abogado revise mi caso ($490 MXN).\n\n` +
                     `Mi cálculo estimado fue de ${formatMoneda(r.totalNeto)} por motivo de ${motivoLabels[r.motivo]}.\n\n` +
                     `Quedo a la espera de sus comentarios.`;
-                const url = `mailto:contacto@ferrofragoso.com?subject=Consulta sobre cálculo laboral&body=${encodeURIComponent(text)}`;
-                window.location.href = url;
+                const url = `https://wa.me/524191239646?text=${encodeURIComponent(text)}`;
+                window.open(url, '_blank');
+            });
+            document.getElementById('calc-radar-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const msg = document.getElementById('calc-radar-msg');
+                const email = document.getElementById('calc-radar-email').value.trim();
+                // NOTA PARA PRODUCCIÓN: reemplazar por el alta real en Brevo/MailerLite
+                // (doble opt-in, etiqueta 'calculadora') una vez exista la cuenta.
+                if (typeof trackEvent === 'function') {
+                    trackEvent('radar_alta', { etiqueta: 'calculadora', email_dominio: email.split('@')[1] || '' });
+                }
+                msg.textContent = '¡Listo! Revisa tu correo para confirmar tu suscripción.';
+                msg.style.color = 'var(--exito, #2E5E3A)';
+                document.getElementById('calc-radar-form').reset();
             });
         }
 

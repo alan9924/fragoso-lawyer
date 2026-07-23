@@ -238,60 +238,77 @@
         </article>
     </main>
 
-    <!-- Newsletter Section (Pop-up themed, integrated block) -->
+    <!-- Radar Legal FF — Blog Context -->
     <section class="blog-newsletter-section">
-        <div class="newsletter-card">
-            <div class="newsletter-left">
-                <h2 class="newsletter-card-title">NEWSLETTER</h2>
-                <p class="newsletter-card-desc">Únete para recibir los resúmenes jurídicos más breves y accionables directamente en tu buzón.</p>
-                <div style="margin-top: 1rem;">
-                    <!-- Inline SVG Barcode -->
-                    <svg class="newsletter-barcode" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0" y="0" width="3" height="30" fill="currentColor"/>
-                        <rect x="4" y="0" width="1" height="30" fill="currentColor"/>
-                        <rect x="7" y="0" width="4" height="30" fill="currentColor"/>
-                        <rect x="13" y="0" width="1" height="30" fill="currentColor"/>
-                        <rect x="16" y="0" width="2" height="30" fill="currentColor"/>
-                        <rect x="20" y="0" width="3" height="30" fill="currentColor"/>
-                        <rect x="25" y="0" width="1" height="30" fill="currentColor"/>
-                        <rect x="28" y="0" width="2" height="30" fill="currentColor"/>
-                        <rect x="32" y="0" width="4" height="30" fill="currentColor"/>
-                        <rect x="38" y="0" width="1" height="30" fill="currentColor"/>
-                        <rect x="41" y="0" width="3" height="30" fill="currentColor"/>
-                        <rect x="46" y="0" width="1" height="30" fill="currentColor"/>
-                        <rect x="49" y="0" width="2" height="30" fill="currentColor"/>
-                        <rect x="53" y="0" width="4" height="30" fill="currentColor"/>
-                        <rect x="59" y="0" width="1" height="30" fill="currentColor"/>
-                        <rect x="62" y="0" width="3" height="30" fill="currentColor"/>
-                        <rect x="67" y="0" width="1" height="30" fill="currentColor"/>
-                        <rect x="70" y="0" width="2" height="30" fill="currentColor"/>
-                        <rect x="74" y="0" width="4" height="30" fill="currentColor"/>
-                        <rect x="80" y="0" width="1" height="30" fill="currentColor"/>
-                        <rect x="83" y="0" width="3" height="30" fill="currentColor"/>
-                        <rect x="88" y="0" width="2" height="30" fill="currentColor"/>
-                        <rect x="92" y="0" width="4" height="30" fill="currentColor"/>
-                    </svg>
+        <div style="
+            background: var(--blog-card-bg, #141414);
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 3.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: center;
+        ">
+            <!-- Left: copy + form -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div>
+                    <span style="font-family: var(--blog-mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--blog-accent, #c5a880);">RADAR LEGAL FF</span>
+                    <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.2; margin: 0.5rem 0 0.8rem; color: #ffffff; letter-spacing: -0.5px;">
+                        Actualidad jurídica<br><em>que sí vas a leer</em>
+                    </h2>
+                    <p style="font-family: 'Montserrat', sans-serif; font-size: 0.9rem; line-height: 1.6; margin: 0; color: var(--blog-text-muted, #8a8a8a);">
+                        Los cambios legales relevantes para tu negocio y tu vida — cada martes, en 3 minutos, y qué hacer al respecto.
+                    </p>
                 </div>
+
+                <form class="newsletter-form" action="#" method="POST" style="display: flex; flex-direction: column; gap: 1rem;" id="blog-radar-form">
+                    <input type="hidden" name="etiqueta" value="blog">
+                    <div class="newsletter-input-group" style="border-bottom-color: #555;">
+                        <label class="newsletter-input-label" for="news-email" style="color: #8a8a8a;">Correo</label>
+                        <input class="newsletter-input" type="email" id="news-email" name="email" placeholder="tu@correo.com" required>
+                    </div>
+                    <label class="newsletter-checkbox-label" style="color: #8a8a8a; font-family: 'Montserrat', sans-serif;">
+                        <input class="newsletter-checkbox" type="checkbox" required>
+                        <span>He leído y acepto el <a href="../privacidad.html" style="color: var(--blog-accent, #c5a880); text-decoration: underline;">aviso de privacidad</a>.</span>
+                    </label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem;">
+                        <!-- Trust signals row -->
+                        <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                            <span style="font-family: var(--blog-mono); font-size: 0.65rem; color: #8a8a8a;">✓ Cada martes &nbsp;&nbsp; ✓ 3 minutos &nbsp;&nbsp; ✓ Cero spam</span>
+                        </div>
+                        <button class="newsletter-submit-btn" type="submit" style="background-color: #ffffff; color: #000; font-family: var(--blog-mono); letter-spacing: 2px; text-transform: uppercase; font-size: 0.75rem; font-weight: 700; border: none; padding: 0.85rem 2rem; cursor: pointer; border-radius: 4px; transition: background 0.2s;"
+                                onmouseover="this.style.background='var(--blog-accent,#c5a880)'"
+                                onmouseout="this.style.background='#ffffff'">
+                            Quiero mis alertas
+                        </button>
+                    </div>
+                    <p id="blog-radar-msg" role="status" style="font-size: 0.8rem; margin: 0; min-height: 1.1em; color: #c5a880;"></p>
+                </form>
             </div>
-            <form class="newsletter-form" action="#" method="POST">
-                <div class="newsletter-input-group">
-                    <label class="newsletter-input-label" for="news-name">NAME</label>
-                    <input class="newsletter-input" type="text" id="news-name" name="name" placeholder="Tu nombre" required>
-                </div>
-                <div class="newsletter-input-group">
-                    <label class="newsletter-input-label" for="news-email">EMAIL</label>
-                    <input class="newsletter-input" type="email" id="news-email" name="email" placeholder="mail@domain.com" required>
-                </div>
-                <label class="newsletter-checkbox-label">
-                    <input class="newsletter-checkbox" type="checkbox" required>
-                    <span>He leído la política de privacidad y acepto recibir actualizaciones jurídicas periódicas.</span>
-                </label>
-                <div class="newsletter-bottom-row">
-                    <button class="newsletter-submit-btn" type="submit">SUBSCRIBE</button>
-                </div>
-            </form>
+
+            <!-- Right: sello -->
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <img src="../sello_ff.png" alt="Sello Ferro Fragoso" style="width: 120px; height: 120px; object-fit: contain; opacity: 0.12; filter: grayscale(100%) invert(1);">
+            </div>
         </div>
     </section>
+
+    <script>
+        (function () {
+            const form = document.getElementById('blog-radar-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const msg = document.getElementById('blog-radar-msg');
+                msg.textContent = '¡Listo! Revisa tu correo para confirmar tu suscripción.';
+                form.reset();
+            });
+        })();
+    </script>
+
 
     <!-- Footer -->
     <footer class="site-footer">
