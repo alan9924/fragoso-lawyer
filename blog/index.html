@@ -4,64 +4,276 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Blog | FERRO FRAGOSO</title>
-    <meta name="description" content="Análisis jurídico y novedades legales.">
-    <link rel="icon" type="image/png" href="logo_ff.png">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="home-new.css">
+    <meta name="description" content="Actualidad jurídica que sí vas a leer. Análisis y estrategia legal.">
+    <link rel="icon" type="image/png" href="../logo_ff.png">
+    
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../home-new.css">
+    <link rel="stylesheet" href="blog.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body style="background: var(--bg-base);">
+<body class="blog-page">
     <nav id="navbar" class="transparent-nav">
         <div class="nav-container">
             <div class="nav-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
+                <img src="../logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
                 <a href="../index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
             <div class="nav-menu">
                 <ul class="nav-links">
-                    <li><a href="marcas.html">REGISTRO DE MARCA</a></li>
-                    <li><a href="revision.html">REVISIÓN CONTRATO</a></li>
-                    <li><a href="consulta.html">CONSULTA</a></li>
-                    <li><a href="contratos.html">CONTRATOS</a></li>
-                    <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="nosotros.html">NOSOTROS</a></li>
+                    <li><a href="../marcas.html">REGISTRO DE MARCA</a></li>
+                    <li><a href="../revision.html">REVISIÓN CONTRATO</a></li>
+                    <li><a href="../consulta.html">CONSULTA</a></li>
+                    <li><a href="../contratos.html">CONTRATOS</a></li>
+                    <li><a href="../finiquito.html">CALCULADORA</a></li>
+                    <li><a href="../nosotros.html">NOSOTROS</a></li>
                 </ul>
             </div>
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
+                <a href="../empresas.html" class="nav-cta-btn">Membresía</a>
                 <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
             </div>
         </div>
     </nav>
-    <div style="padding-top: 120px;"></div>
 
-    <section class="final-cta" style="background: #fff; color: var(--carbon); padding: 4rem 2rem; min-height: 60vh;">
-        <h1 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem;">Blog</h1>
-        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-inline: auto;">Análisis jurídico y novedades legales.</p>
-        <p>[4 Artículos Placeholder Aquí]</p>
+    <!-- Main Header -->
+    <header class="blog-hero">
+        <span class="blog-hero-eyebrow">FF COLLECT</span>
+        <h1 class="blog-hero-title">Actualidad jurídica<br><em>que sí vas a leer</em></h1>
+        <p class="blog-hero-desc">Análisis sintético y estratégico sobre el panorama legal en México. Explicado sin rodeos tecnocráticos.</p>
+    </header>
+
+    <!-- Desktop Grid of Ticket-styled Articles -->
+    <main class="blog-grid">
+        <!-- Ticket 1 -->
+        <article class="ticket-card">
+            <div class="ticket-top">
+                <div class="ticket-brand">
+                    FF COLLECT
+                    <span>ARTÍCULO 01</span>
+                </div>
+                <div class="ticket-swatch"></div>
+            </div>
+            <div>
+                <div class="ticket-section-title">ABOUT / TECNOLOGÍA & TRABAJO</div>
+                <h2 class="ticket-title">La Nueva Regulación de Inteligencia Artificial en el Entorno Laboral</h2>
+                <p class="ticket-desc">Análisis de las nuevas directrices para la implementación segura de algoritmos en la contratación y gestión de personal bajo el marco de la LFT mexicana.</p>
+            </div>
+            <div class="ticket-meta">
+                <div class="ticket-meta-row">
+                    <span class="ticket-meta-label">LOCATION</span>
+                    <span class="ticket-meta-val">19.4326° N, 99.1332° W</span>
+                </div>
+                <div class="ticket-meta-row">
+                    <span class="ticket-meta-label">CODE & SIZE</span>
+                    <div class="ticket-barcode-wrap">
+                        <span class="ticket-meta-val" style="margin-right: 8px;">ART-IA-2026</span>
+                        <div class="ticket-size-box filled"></div>
+                        <div class="ticket-size-box"></div>
+                    </div>
+                </div>
+                <div class="ticket-bottom-action">
+                    <div class="ticket-price">
+                        00.00 MXN
+                        <span>ACCESO LIBRE</span>
+                    </div>
+                    <a href="#" class="ticket-btn">LEER TICKET</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Ticket 2 -->
+        <article class="ticket-card">
+            <div class="ticket-top">
+                <div class="ticket-brand">
+                    FF COLLECT
+                    <span>ARTÍCULO 02</span>
+                </div>
+                <div class="ticket-swatch" style="opacity: 0.7;"></div>
+            </div>
+            <div>
+                <div class="ticket-section-title">ABOUT / ESTRATEGIA CORPORATIVA</div>
+                <h2 class="ticket-title">Blindaje Patrimonial: Cómo Proteger tu Empresa de Contingencias Fiscales</h2>
+                <p class="ticket-desc">Claves para estructurar de manera óptima las actas de asamblea y contratos comerciales previniendo revisiones y auditorías invasivas de la autoridad hacendaria.</p>
+            </div>
+            <div class="ticket-meta">
+                <div class="ticket-meta-row">
+                    <span class="ticket-meta-label">LOCATION</span>
+                    <span class="ticket-meta-val">25.6866° N, 100.3161° W</span>
+                </div>
+                <div class="ticket-meta-row">
+                    <span class="ticket-meta-label">CODE & SIZE</span>
+                    <div class="ticket-barcode-wrap">
+                        <span class="ticket-meta-val" style="margin-right: 8px;">ART-TAX-04</span>
+                        <div class="ticket-size-box filled"></div>
+                        <div class="ticket-size-box filled"></div>
+                    </div>
+                </div>
+                <div class="ticket-bottom-action">
+                    <div class="ticket-price">
+                        00.00 MXN
+                        <span>ACCESO LIBRE</span>
+                    </div>
+                    <a href="#" class="ticket-btn">LEER TICKET</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Ticket 3 -->
+        <article class="ticket-card">
+            <div class="ticket-top">
+                <div class="ticket-brand">
+                    FF COLLECT
+                    <span>ARTÍCULO 03</span>
+                </div>
+                <div class="ticket-swatch" style="opacity: 0.5;"></div>
+            </div>
+            <div>
+                <div class="ticket-section-title">ABOUT / PROPIEDAD INTELECTUAL</div>
+                <h2 class="ticket-title">El Registro de Marca como Activo Intangible Clave para levantar Venture Capital</h2>
+                <p class="ticket-desc">Por qué los fondos de inversión exigen que la propiedad de los signos distintivos esté plenamente protegida antes de inyectar capital semilla en startups.</p>
+            </div>
+            <div class="ticket-meta">
+                <div class="ticket-meta-row">
+                    <span class="ticket-meta-label">LOCATION</span>
+                    <span class="ticket-meta-val">20.6597° N, 103.3496° W</span>
+                </div>
+                <div class="ticket-meta-row">
+                    <span class="ticket-meta-label">CODE & SIZE</span>
+                    <div class="ticket-barcode-wrap">
+                        <span class="ticket-meta-val" style="margin-right: 8px;">ART-IP-88</span>
+                        <div class="ticket-size-box"></div>
+                        <div class="ticket-size-box filled"></div>
+                    </div>
+                </div>
+                <div class="ticket-bottom-action">
+                    <div class="ticket-price">
+                        00.00 MXN
+                        <span>ACCESO LIBRE</span>
+                    </div>
+                    <a href="#" class="ticket-btn">LEER TICKET</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Ticket 4 -->
+        <article class="ticket-card">
+            <div class="ticket-top">
+                <div class="ticket-brand">
+                    FF COLLECT
+                    <span>ARTÍCULO 04</span>
+                </div>
+                <div class="ticket-swatch" style="opacity: 0.3;"></div>
+            </div>
+            <div>
+                <div class="ticket-section-title">ABOUT / LITIGIO DIGITAL</div>
+                <h2 class="ticket-title">Validez Legal de la Firma Electrónica Avanzada en Contratos Mercantiles</h2>
+                <p class="ticket-desc">Estudio de caso sobre la jurisprudencia más reciente que valida las firmas digitales tipo e.firma (SAT) ante juzgados civiles federales.</p>
+            </div>
+            <div class="ticket-meta">
+                <div class="ticket-meta-row">
+                    <span class="ticket-meta-label">LOCATION</span>
+                    <span class="ticket-meta-val">21.0190° N, 101.2574° W</span>
+                </div>
+                <div class="ticket-meta-row">
+                    <span class="ticket-meta-label">CODE & SIZE</span>
+                    <div class="ticket-barcode-wrap">
+                        <span class="ticket-meta-val" style="margin-right: 8px;">ART-E-SIGN</span>
+                        <div class="ticket-size-box filled"></div>
+                        <div class="ticket-size-box filled"></div>
+                    </div>
+                </div>
+                <div class="ticket-bottom-action">
+                    <div class="ticket-price">
+                        00.00 MXN
+                        <span>ACCESO LIBRE</span>
+                    </div>
+                    <a href="#" class="ticket-btn">LEER TICKET</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Newsletter Section (Pop-up themed, integrated block) -->
+    <section class="blog-newsletter-section">
+        <div class="newsletter-card">
+            <div class="newsletter-left">
+                <h2 class="newsletter-card-title">NEWSLETTER</h2>
+                <p class="newsletter-card-desc">Únete para recibir los resúmenes jurídicos más breves y accionables directamente en tu buzón.</p>
+                <div style="margin-top: 1rem;">
+                    <!-- Inline SVG Barcode -->
+                    <svg class="newsletter-barcode" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0" y="0" width="3" height="30" fill="currentColor"/>
+                        <rect x="4" y="0" width="1" height="30" fill="currentColor"/>
+                        <rect x="7" y="0" width="4" height="30" fill="currentColor"/>
+                        <rect x="13" y="0" width="1" height="30" fill="currentColor"/>
+                        <rect x="16" y="0" width="2" height="30" fill="currentColor"/>
+                        <rect x="20" y="0" width="3" height="30" fill="currentColor"/>
+                        <rect x="25" y="0" width="1" height="30" fill="currentColor"/>
+                        <rect x="28" y="0" width="2" height="30" fill="currentColor"/>
+                        <rect x="32" y="0" width="4" height="30" fill="currentColor"/>
+                        <rect x="38" y="0" width="1" height="30" fill="currentColor"/>
+                        <rect x="41" y="0" width="3" height="30" fill="currentColor"/>
+                        <rect x="46" y="0" width="1" height="30" fill="currentColor"/>
+                        <rect x="49" y="0" width="2" height="30" fill="currentColor"/>
+                        <rect x="53" y="0" width="4" height="30" fill="currentColor"/>
+                        <rect x="59" y="0" width="1" height="30" fill="currentColor"/>
+                        <rect x="62" y="0" width="3" height="30" fill="currentColor"/>
+                        <rect x="67" y="0" width="1" height="30" fill="currentColor"/>
+                        <rect x="70" y="0" width="2" height="30" fill="currentColor"/>
+                        <rect x="74" y="0" width="4" height="30" fill="currentColor"/>
+                        <rect x="80" y="0" width="1" height="30" fill="currentColor"/>
+                        <rect x="83" y="0" width="3" height="30" fill="currentColor"/>
+                        <rect x="88" y="0" width="2" height="30" fill="currentColor"/>
+                        <rect x="92" y="0" width="4" height="30" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+            <form class="newsletter-form" action="#" method="POST">
+                <div class="newsletter-input-group">
+                    <label class="newsletter-input-label" for="news-name">NAME</label>
+                    <input class="newsletter-input" type="text" id="news-name" name="name" placeholder="Tu nombre" required>
+                </div>
+                <div class="newsletter-input-group">
+                    <label class="newsletter-input-label" for="news-email">EMAIL</label>
+                    <input class="newsletter-input" type="email" id="news-email" name="email" placeholder="mail@domain.com" required>
+                </div>
+                <label class="newsletter-checkbox-label">
+                    <input class="newsletter-checkbox" type="checkbox" required>
+                    <span>He leído la política de privacidad y acepto recibir actualizaciones jurídicas periódicas.</span>
+                </label>
+                <div class="newsletter-bottom-row">
+                    <button class="newsletter-submit-btn" type="submit">SUBSCRIBE</button>
+                </div>
+            </form>
+        </div>
     </section>
 
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img">
+                <img src="../logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img">
                 <span class="footer-brand-name">FERRO FRAGOSO</span>
             </div>
             <p class="footer-tagline">Estudio Jurídico — Blindaje legal con propósito.</p>
             <div class="footer-links" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
-                <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
-                <a href="blog/" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Blog</a>
+                <a href="../terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
+                <a href="../privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
+                <a href="./" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Blog</a>
                 <a href="https://wa.me/524191239646" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">WhatsApp</a>
             </div>
             <p class="footer-copy" style="margin-top: 2rem;">&copy; 2026 Ferro Fragoso, Estudio Jurídico.</p>
         </div>
     </footer>
-    <script src="script.js"></script>
+    
+    <script src="../script.js"></script>
 </body>
 </html>
