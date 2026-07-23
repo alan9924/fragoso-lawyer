@@ -6,7 +6,7 @@
     <title>Revisión de Contrato | FERRO FRAGOSO</title>
     <meta name="description" content="Evita firmar cláusulas abusivas. Un análisis legal experto antes de comprometer tu firma.">
     <link rel="icon" type="image/png" href="logo_ff.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <link rel="stylesheet" href="home-new.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +29,8 @@
         #navbar.transparent-nav {
             background: transparent !important;
             border-bottom: none;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
         }
         #navbar.transparent-nav .logo-text,
         #navbar.transparent-nav .nav-links a,
@@ -210,6 +212,15 @@
             color: #fff;
         }
 
+        /* FAQ adaptado al tema oscuro de esta página */
+        .revision-dark-body .faq-section { background: #1a1a1a; }
+        .revision-dark-body .faq-eyebrow { color: #999; }
+        .revision-dark-body .faq-title { color: #fff; }
+        .revision-dark-body .faq-item { border-bottom-color: #333; }
+        .revision-dark-body .faq-item summary { color: #fff; }
+        .revision-dark-body .faq-item summary::after { color: #dbfe01; }
+        .revision-dark-body .faq-item p { color: #aaa; }
+
         @media (max-width: 1024px) {
             .prada-split {
                 flex-direction: column;
@@ -250,6 +261,7 @@
             <div class="nav-menu">
                 <ul class="nav-links">
                     <li><a href="marcas.html">REGISTRO DE MARCA</a></li>
+                    <li><a href="derechos-autor.html">DERECHOS DE AUTOR</a></li>
                     <li><a href="revision.html" class="active-link">REVISIÓN CONTRATO</a></li>
                     <li><a href="consulta.html">CONSULTA</a></li>
                     <li><a href="contratos.html">CONTRATOS</a></li>
@@ -292,19 +304,124 @@
 
     <!-- ═══ DARK PRICING SECTION ═══ -->
     <section class="dark-pricing-section">
-        <div class="dark-price-card">
+        <div class="dark-price-card" data-precio-normal="490" data-precio-expres="790" data-nombre="Revisión Simple">
             <h3>Revisión Simple</h3>
-            <div class="price">$490 <span style="font-size:0.5em; color:#777;">MXN</span></div>
-            <p>Análisis de contratos estándar de hasta 10 páginas. Entrega de reporte de riesgos vía WhatsApp o correo en 48 hrs hábiles.</p>
-            <a href="#pago" class="dark-btn">Solicitar Revisión</a>
+            <div class="price"><span class="price-amount">$490</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
+            <p>Análisis de contratos estándar de hasta 10 páginas. Entrega de reporte de riesgos vía WhatsApp en 24–48 hrs hábiles.</p>
+            <label class="express-toggle">
+                <input type="checkbox" class="express-checkbox"> Exprés (+$300, entrega en 24h) <i class="fas fa-bolt"></i>
+            </label>
+            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20revisi%C3%B3n%20simple%20de%20mi%20contrato%20(%24490%20MXN)."
+               target="_blank" rel="noopener" class="dark-btn"
+               data-mp-link="PENDIENTE:revision-simple-490" data-producto="Revisión simple">Solicitar Revisión</a>
         </div>
-        <div class="dark-price-card" style="border-color:#fff;">
+        <div class="dark-price-card" style="border-color:#fff;" data-precio-normal="890" data-precio-expres="1190" data-nombre="Revisión Compleja">
             <h3>Revisión Compleja</h3>
-            <div class="price">$890 <span style="font-size:0.5em; color:#777;">MXN</span></div>
+            <div class="price"><span class="price-amount">$890</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
             <p>Contratos de más de 10 páginas, redactados en inglés, o de alta complejidad corporativa. Mismo tiempo de respuesta excepcional.</p>
-            <a href="#pago" class="dark-btn">Solicitar Revisión</a>
+            <label class="express-toggle">
+                <input type="checkbox" class="express-checkbox"> Exprés (+$300, entrega en 24h) <i class="fas fa-bolt"></i>
+            </label>
+            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20revisi%C3%B3n%20compleja%20de%20mi%20contrato%20(%24890%20MXN)."
+               target="_blank" rel="noopener" class="dark-btn"
+               data-mp-link="PENDIENTE:revision-compleja-890" data-producto="Revisión compleja">Solicitar Revisión</a>
         </div>
     </section>
+
+    <style>
+        .express-toggle {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .8rem;
+            color: #ccc;
+            margin: 1rem 0;
+            cursor: pointer;
+            user-select: none;
+        }
+        .express-toggle .fa-bolt { color: #dbfe01; font-size: .75rem; }
+        .express-checkbox { accent-color: #dbfe01; width: 16px; height: 16px; cursor: pointer; }
+    </style>
+    <script>
+        document.querySelectorAll('.dark-price-card').forEach((card) => {
+            const checkbox = card.querySelector('.express-checkbox');
+            const amountEl = card.querySelector('.price-amount');
+            const btn = card.querySelector('.dark-btn');
+            const normal = card.dataset.precioNormal;
+            const expres = card.dataset.precioExpres;
+            const nombre = card.dataset.nombre;
+
+            checkbox.addEventListener('change', () => {
+                const esExpres = checkbox.checked;
+                const precio = esExpres ? expres : normal;
+                amountEl.textContent = '$' + Number(precio).toLocaleString('es-MX');
+                const etiqueta = esExpres ? `${nombre} exprés (entrega en 24h)` : nombre;
+                btn.textContent = esExpres ? 'Solicitar Revisión Exprés' : 'Solicitar Revisión';
+                btn.href = `https://wa.me/524191239646?text=${encodeURIComponent(`Hola, quiero solicitar ${etiqueta.toLowerCase()} de mi contrato ($${precio} MXN).`)}`;
+                btn.setAttribute('data-mp-link', `PENDIENTE:revision-${esExpres ? 'expres-' : ''}${precio}`);
+                btn.setAttribute('data-producto', etiqueta);
+            });
+        });
+    </script>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq-section">
+        <span class="faq-eyebrow">Preguntas frecuentes</span>
+        <h2 class="faq-title">Revisión de contratos</h2>
+
+        <details class="faq-item">
+            <summary>¿Qué diferencia hay entre revisión simple y compleja?</summary>
+            <p>La revisión simple cubre contratos estándar de hasta 10 páginas en español. La compleja aplica a contratos de más de 10 páginas, redactados en inglés, o con estructuras corporativas de mayor complejidad (sociedades, garantías cruzadas, cláusulas internacionales).</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Cuál es el tiempo de entrega?</summary>
+            <p>El servicio estándar se entrega en 24–48 horas hábiles vía WhatsApp. Si necesitas el reporte antes, la opción exprés reduce el tiempo de entrega a 24 horas por un costo adicional de $300 MXN.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Qué recibo al final de la revisión?</summary>
+            <p>Un reporte con las cláusulas de riesgo identificadas, una explicación en lenguaje claro de lo que implican, y recomendaciones concretas sobre qué negociar o modificar antes de firmar.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Revisan contratos en inglés?</summary>
+            <p>Sí. Los contratos redactados en inglés se cotizan dentro de la revisión compleja ($890 MXN), dado el tiempo adicional que requiere el análisis bilingüe.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Qué pasa si necesito cambios después de la entrega?</summary>
+            <p>El reporte incluye una ronda de dudas por WhatsApp sobre los hallazgos entregados. Si necesitas que redactemos las cláusulas modificadas o un contrato completamente nuevo, ese trabajo se cotiza por separado a través de nuestro generador de contratos o una consulta estratégica.</p>
+        </details>
+    </section>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    { "@type": "Question", "name": "¿Qué diferencia hay entre revisión simple y compleja?", "acceptedAnswer": { "@type": "Answer", "text": "La revisión simple cubre contratos estándar de hasta 10 páginas en español. La compleja aplica a contratos de más de 10 páginas, redactados en inglés, o de alta complejidad corporativa." } },
+                    { "@type": "Question", "name": "¿Cuál es el tiempo de entrega?", "acceptedAnswer": { "@type": "Answer", "text": "El servicio estándar se entrega en 24–48 horas hábiles. La opción exprés reduce el tiempo de entrega a 24 horas por $300 MXN adicionales." } },
+                    { "@type": "Question", "name": "¿Qué recibo al final de la revisión?", "acceptedAnswer": { "@type": "Answer", "text": "Un reporte con las cláusulas de riesgo identificadas, su explicación en lenguaje claro, y recomendaciones sobre qué negociar antes de firmar." } },
+                    { "@type": "Question", "name": "¿Revisan contratos en inglés?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, los contratos en inglés se cotizan dentro de la revisión compleja ($890 MXN)." } },
+                    { "@type": "Question", "name": "¿Qué pasa si necesito cambios después de la entrega?", "acceptedAnswer": { "@type": "Answer", "text": "El reporte incluye una ronda de dudas por WhatsApp. La redacción de cláusulas nuevas se cotiza por separado." } }
+                ]
+            },
+            {
+                "@type": "Product",
+                "name": "Revisión simple de contrato",
+                "description": "Análisis de contratos estándar de hasta 10 páginas con reporte de riesgos en 24–48 horas hábiles.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "490", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/revision.html" }
+            },
+            {
+                "@type": "Product",
+                "name": "Revisión compleja de contrato",
+                "description": "Análisis de contratos de más de 10 páginas, en inglés o de alta complejidad corporativa.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "890", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/revision.html" }
+            }
+        ]
+    }
+    </script>
 
     <!-- Minimal Footer -->
     <footer style="padding: 2rem; border-top: 1px solid #333; text-align: center; font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 2px;">
@@ -312,5 +429,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="analytics.js"></script>
 </body>
 </html>

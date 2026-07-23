@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Derechos de Autor | FERRO FRAGOSO</title>
+    <meta name="description" content="Registra tus obras creativas ante el INDAUTOR con precio fijo. Logotipos, software, contenido digital, música y más. Todo incluido, sin sorpresas.">
+    <link rel="canonical" href="https://ferrofragoso.com/derechos-autor.html">
+    <link rel="icon" type="image/png" href="logo_ff.png">
+    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="home-new.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body.editorial-body {
+            background-color: #f2efeb;
+            color: #111;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .transparent-nav {
+            mix-blend-mode: difference;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        .transparent-nav a.logo-text, .transparent-nav .nav-links a {
+            color: #fff;
+        }
+        .transparent-nav.scrolled {
+            mix-blend-mode: normal;
+        }
+        .transparent-nav.scrolled .logo-text,
+        .transparent-nav.scrolled .nav-links a {
+            color: var(--carbon) !important;
+        }
+        .transparent-nav.scrolled .nav-logo-img {
+            filter: none !important;
+        }
+        .transparent-nav.scrolled .nav-cta-btn {
+            border-color: var(--carbon) !important;
+            color: var(--carbon) !important;
+        }
+        .transparent-nav.scrolled .mobile-menu-btn span {
+            background: var(--carbon) !important;
+        }
+
+        .editorial-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            padding: 100px 2rem 4rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* 4 Corners Meta Text */
+        .ed-meta {
+            position: absolute;
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8c8983;
+            z-index: 10;
+        }
+        .ed-meta.top-left { top: 120px; left: 3rem; }
+        .ed-meta.top-right { top: 120px; right: 3rem; }
+        .ed-meta.bottom-left { bottom: 250px; left: 3rem; }
+        .ed-meta.bottom-right { bottom: 250px; right: 3rem; }
+
+        /* Giant Typography */
+        .ed-giant-title {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: clamp(5rem, 18vw, 14rem);
+            font-weight: 400;
+            line-height: 0.85;
+            color: #cdc9c1;
+            z-index: 1;
+            white-space: nowrap;
+            user-select: none;
+            letter-spacing: -2px;
+        }
+
+        /* Center Art — the © symbol */
+        .ed-center-art {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            font-family: var(--font-heading);
+            font-size: clamp(9rem, 22vw, 17rem);
+            color: #111;
+            text-align: center;
+            line-height: 1;
+            mix-blend-mode: normal;
+            filter: none;
+            user-select: none;
+        }
+
+        /* Bottom Columns */
+        .ed-bottom-content {
+            position: relative;
+            z-index: 10;
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            padding-top: 62vh;
+        }
+
+        .ed-col {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .ed-col p {
+            margin-bottom: 1rem;
+        }
+
+        .ed-price {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: #111;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .ed-badge {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            background: #111;
+            color: #f2efeb;
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            margin-bottom: 0.6rem;
+        }
+
+        .ed-badge.best {
+            background: var(--bronze, #c5a880);
+            color: #fff;
+        }
+
+        .ed-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+            font-family: var(--font-body);
+        }
+        .ed-btn:hover {
+            background: #333;
+        }
+
+        /* Package total highlight */
+        .ed-col.highlight-col {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid #e8e1d5;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 1024px) {
+            .editorial-container {
+                display: block;
+                min-height: auto;
+                padding-top: 110px;
+            }
+            .ed-meta.top-left, .ed-meta.top-right,
+            .ed-meta.bottom-left, .ed-meta.bottom-right {
+                display: none;
+            }
+            .ed-giant-title {
+                position: static;
+                transform: none;
+                width: auto;
+                white-space: normal;
+                text-align: center;
+                margin: 1rem 0 1.5rem;
+                font-size: clamp(3rem, 12vw, 6rem);
+            }
+            .ed-center-art {
+                position: static;
+                transform: none;
+                display: block;
+                margin: 0 auto 3rem;
+                font-size: clamp(6rem, 20vw, 10rem);
+            }
+            .ed-bottom-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                padding-top: 0;
+                margin-top: 0;
+            }
+        }
+        @media (max-width: 600px) {
+            .ed-giant-title {
+                font-size: clamp(2.4rem, 13vw, 3.6rem);
+                line-height: 1.05;
+                margin: 0.5rem 0 1rem;
+            }
+            .ed-center-art {
+                font-size: clamp(5rem, 25vw, 7rem);
+                margin-bottom: 2rem;
+            }
+            .ed-bottom-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .editorial-container {
+                padding: 100px 1.5rem 3rem 1.5rem;
+            }
+            .ed-col.highlight-col {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body class="editorial-body">
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="navbar" class="transparent-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img" style="filter: invert(1);">
+                <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="marcas.html">REGISTRO DE MARCA</a></li>
+                    <li><a href="derechos-autor.html" class="active-link">DERECHOS DE AUTOR</a></li>
+                    <li><a href="revision.html">REVISIÓN CONTRATO</a></li>
+                    <li><a href="consulta.html">CONSULTA</a></li>
+                    <li><a href="contratos.html">CONTRATOS</a></li>
+                    <li><a href="finiquito.html">CALCULADORA</a></li>
+                    <li><a href="nosotros.html">NOSOTROS</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <a href="empresas.html" class="nav-cta-btn" style="border-color:#fff; color:#fff;">Membresía</a>
+                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                    <span style="background:#fff;"></span><span style="background:#fff;"></span><span style="background:#fff;"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ EDITORIAL LAYOUT ═══ -->
+    <main class="editorial-container">
+
+        <!-- Corners -->
+        <div class="ed-meta top-left">FERRO FRAGOSO / EST. 2024</div>
+        <div class="ed-meta top-right">MÉXICO / 02</div>
+        <div class="ed-meta bottom-left">PROPIEDAD INTELECTUAL</div>
+        <div class="ed-meta bottom-right">INDAUTOR / 03</div>
+
+        <!-- Giant Title -->
+        <div class="ed-giant-title">
+            DERECHOS<br>DE AUTOR
+        </div>
+
+        <!-- Center Art — © symbol -->
+        <div class="ed-center-art">©</div>
+
+        <!-- Columns at Bottom -->
+        <div class="ed-bottom-content">
+
+            <!-- Col 1: What is it -->
+            <div class="ed-col">
+                <p>El derecho de autor protege automáticamente toda obra original desde su creación —pero la protección real, la que vale ante tribunales y en disputas comerciales, proviene del registro ante el <strong>Instituto Nacional del Derecho de Autor (INDAUTOR)</strong>.</p>
+                <p>Un registro formaliza tu titularidad y genera el instrumento público que necesitas para actuar contra quienes copien, reproduzcan o usen tu obra sin permiso.</p>
+            </div>
+
+            <!-- Col 2: What qualifies -->
+            <div class="ed-col">
+                <p><strong style="color:#111;">¿Qué obras se registran?</strong></p>
+                <p>Logotipos e identidad visual · Software y aplicaciones · Contenido editorial y literario · Fotografías y audiovisual · Música y composiciones · Diseño web y UX · Material pedagógico y cursos · Obras arquitectónicas y planos.</p>
+                <p>Si lo creaste y tiene originalidad expresiva, se puede registrar. Nuestro equipo evalúa sin costo adicional si tu obra califica antes de proceder.</p>
+            </div>
+
+            <!-- Col 3: Price — Registro básico -->
+            <div class="ed-col">
+                <div class="ed-price">$2,990 <span style="font-size:0.5em;">MXN</span></div>
+                <p style="font-weight: 600; color:#111;">REGISTRO DE OBRA</p>
+                <p>Todo incluido: honorarios, tramitación ante el INDAUTOR y acuse oficial de registro. Aplica para una obra o colección de obras del mismo autor.</p>
+                <ul style="padding-left: 1.2rem; margin: 0 0 1rem; display: flex; flex-direction: column; gap: 0.3rem;">
+                    <li>Evaluación de elegibilidad sin costo</li>
+                    <li>Preparación del expediente completo</li>
+                    <li>Seguimiento hasta el acuse oficial</li>
+                    <li>1 obra o colección de obras</li>
+                </ul>
+                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20registrar%20los%20derechos%20de%20autor%20de%20mi%20obra%20(%242%2C990%20MXN)."
+                   target="_blank" rel="noopener" class="ed-btn"
+                   data-mp-link="PENDIENTE:derechos-autor-2990" data-producto="Derechos de autor">Registrar mi Obra</a>
+            </div>
+
+            <!-- Col 4: Paquete Protección Total -->
+            <div class="ed-col highlight-col">
+                <div class="ed-badge best">Recomendado</div>
+                <div class="ed-price">$8,990 <span style="font-size:0.5em;">MXN</span></div>
+                <p style="font-weight: 600; color:#111;">PAQUETE PROTECCIÓN TOTAL</p>
+                <p>Registro de marca ante el IMPI + registro de derechos de autor ante el INDAUTOR en un solo expediente coordinado. Protege tu nombre <em>y</em> tu obra al mismo tiempo.</p>
+                <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem; display: flex; flex-direction: column; gap: 0.3rem;">
+                    <li>Búsqueda fonética de marca incluida</li>
+                    <li>Registro de marca todo incluido</li>
+                    <li>Registro de obra ante INDAUTOR</li>
+                    <li>Seguimiento unificado de ambos expedientes</li>
+                    <li><strong>Ahorro vs. contratar por separado</strong></li>
+                </ul>
+                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Paquete%20Protecci%C3%B3n%20Total%20(marca%20%2B%20derechos%20de%20autor%2C%20%248%2C990%20MXN)."
+                   target="_blank" rel="noopener" class="ed-btn"
+                   data-mp-link="PENDIENTE:proteccion-total-8990" data-producto="Protección Total">Solicitar Paquete</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq-section" style="background: #fff;">
+        <span class="faq-eyebrow">Preguntas frecuentes</span>
+        <h2 class="faq-title">Derechos de autor en México</h2>
+
+        <details class="faq-item">
+            <summary>¿Cuál es la diferencia entre derechos de autor y registro de marca?</summary>
+            <p>El <strong>derecho de autor</strong> protege la <em>expresión</em> de una idea: la forma específica en que escribiste un texto, diseñaste un logotipo o compusiste una canción. El <strong>registro de marca</strong> protege los <em>signos distintivos</em> — el nombre, logo o eslogan que identifica tu empresa en el mercado. Son protecciones complementarias, no equivalentes: un logotipo puede protegerse con ambas figuras jurídicas al mismo tiempo.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿El derecho de autor no surge automáticamente desde que creo la obra?</summary>
+            <p>Sí, la ley reconoce los derechos morales y patrimoniales desde la creación. Pero sin un registro, probar ante un juez que eres el autor original —y la fecha exacta en que creaste la obra— depende de evidencia indirecta (metadatos, correos, testimonios). El registro ante el INDAUTOR genera una presunción legal de autoría con fecha oficial, lo que simplifica radicalmente cualquier reclamación.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Qué tipos de obras calificam para registrarse?</summary>
+            <p>La Ley Federal del Derecho de Autor protege obras literarias, musicales, dramáticas, de danza, pictóricas, escultóricas, caricaturescas, arquitectónicas, cinematográficas, programas de cómputo, bases de datos, fotografías, obras de arte aplicado y compilaciones, entre otras. Si tu creación tiene originalidad y forma expresiva, muy probablemente califica.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Cuánto tiempo tarda el registro ante el INDAUTOR?</summary>
+            <p>El trámite ordinario toma entre 3 y 6 semanas desde la presentación completa del expediente. Nosotros coordinamos todos los documentos, la presentación y el seguimiento hasta que tienes el acuse oficial en tus manos.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Qué pasa si alguien ya copió mi obra antes de que la registre?</summary>
+            <p>Puedes actuar igualmente, pero la carga probatoria recae sobre ti. Si tienes el registro, la ley presume que eres el titular desde la fecha registrada. Si no lo tienes, necesitas evidencia alternativa de autoría y fecha —lo que complica y encarece cualquier proceso legal. Registrar antes de publicar es siempre la estrategia más costo-efectiva.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿El registro protege mi obra en otros países?</summary>
+            <p>México es parte de la <em>Convención de Berna</em> y el <em>Acuerdo ADPIC</em>, que reconocen los derechos de autor entre países signatarios sin necesidad de registro local en cada uno. El registro ante el INDAUTOR te da un instrumento jurídico mexicano; para disputas internacionales más complejas, puede requerirse asesoría adicional por jurisdicción.</p>
+        </details>
+    </section>
+
+    <!-- ═══ RADAR LEGAL FF ═══ -->
+    <section style="background: var(--bg-surface-elevated, #f4f2ee); padding: 5rem 2rem;">
+        <div style="
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 3rem 3.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+            border: 1px solid #e8e1d5;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2.5rem;
+            align-items: start;
+        ">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <span style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #c5a880;">RADAR LEGAL FF</span>
+                <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+                    <h2 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 400; line-height: 1.2; margin: 0; color: #2e2c2a; letter-spacing: -0.5px;">
+                        Actualidad jurídica<br><em>que sí vas a leer</em>
+                    </h2>
+                    <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; margin: 0; color: #9c9489;">
+                        Los cambios en materia de propiedad intelectual que afectan tu negocio — cada martes, en 3 minutos, y qué hacer al respecto.
+                    </p>
+                </div>
+                <form id="radar-da-form" action="#" data-brevo-action="PENDIENTE" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <input type="hidden" name="etiqueta" value="derechos-autor">
+                    <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label for="radar-da-email" style="font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #9c9489;">Correo</label>
+                        <input type="email" id="radar-da-email" name="email" required placeholder="tu@correo.com"
+                               style="padding: 0.85rem 1.2rem; border: 1.5px solid #d5ccbf; border-radius: 8px; font-family: var(--font-body); font-size: 0.95rem; color: #2e2c2a; background: #fff; outline: none;"
+                               onfocus="this.style.borderColor='#2e2c2a'"
+                               onblur="this.style.borderColor='#d5ccbf'">
+                    </div>
+                    <label style="display: flex; align-items: flex-start; gap: 8px; font-family: var(--font-body); font-size: 0.78rem; line-height: 1.45; cursor: pointer; color: #9c9489;">
+                        <input type="checkbox" id="radar-da-privacidad" required style="margin-top: 2px; flex-shrink: 0;">
+                        <span>He leído y acepto el <a href="privacidad.html" style="color: #2e2c2a; text-decoration: underline;">aviso de privacidad</a>.</span>
+                    </label>
+                    <button type="submit"
+                            style="padding: 0.95rem 2rem; background: #2e2c2a; color: #fff; border: none; border-radius: 8px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; cursor: pointer;"
+                            onmouseover="this.style.background='#c5a880'"
+                            onmouseout="this.style.background='#2e2c2a'">
+                        Quiero mis alertas
+                    </button>
+                    <p id="radar-da-msg" role="status" style="font-size: 0.82rem; margin: 0; min-height: 1.2em; color: #2e2c2a;"></p>
+                </form>
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; padding-top: 0.75rem; border-top: 1px solid #e8e1d5;">
+                    <span style="font-family: var(--font-body); font-size: 0.72rem; color: #9c9489; display: flex; align-items: center; gap: 5px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Cada martes
+                    </span>
+                    <span style="font-family: var(--font-body); font-size: 0.72rem; color: #9c9489; display: flex; align-items: center; gap: 5px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Cero spam — cancela cuando quieras
+                    </span>
+                    <span style="font-family: var(--font-body); font-size: 0.72rem; color: #9c9489; display: flex; align-items: center; gap: 5px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        3 minutos de lectura
+                    </span>
+                </div>
+            </div>
+            <div style="padding-top: 0.5rem;">
+                <img src="sello_ff.png" alt="Sello Ferro Fragoso" style="width: 100px; height: 100px; object-fit: contain; opacity: 0.15; filter: grayscale(100%);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Cuál es la diferencia entre derechos de autor y registro de marca?",
+                "acceptedAnswer": { "@type": "Answer", "text": "El derecho de autor protege la expresión de una idea: la forma específica de un texto, diseño o composición. El registro de marca protege los signos distintivos que identifican tu empresa en el mercado. Son protecciones complementarias, no equivalentes." }
+            },
+            {
+                "@type": "Question",
+                "name": "¿El derecho de autor no surge automáticamente desde que creo la obra?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Sí, la ley reconoce los derechos desde la creación, pero sin registro ante el INDAUTOR, probar autoría ante un juez depende de evidencia indirecta. El registro genera una presunción legal de autoría con fecha oficial." }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cuánto tiempo tarda el registro ante el INDAUTOR?",
+                "acceptedAnswer": { "@type": "Answer", "text": "El trámite ordinario toma entre 3 y 6 semanas desde la presentación completa del expediente. Ferro Fragoso coordina todos los documentos y el seguimiento hasta el acuse oficial." }
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Product",
+                "name": "Registro de derechos de autor",
+                "description": "Registro de obra (logotipo, software, contenido o material creativo) ante el Instituto Nacional del Derecho de Autor (INDAUTOR). Todo incluido.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "2990", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/derechos-autor.html" }
+            },
+            {
+                "@type": "Product",
+                "name": "Paquete Protección Total (marca + derechos de autor)",
+                "description": "Registro de marca ante el IMPI y registro de derechos de autor ante el INDAUTOR en un solo paquete con seguimiento unificado de ambos expedientes.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "8990", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/derechos-autor.html" }
+            }
+        ]
+    }
+    </script>
+
+    <script>
+        (function () {
+            const form = document.getElementById('radar-da-form');
+            if (!form) return;
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const msg = document.getElementById('radar-da-msg');
+                const aceptaPrivacidad = document.getElementById('radar-da-privacidad').checked;
+                if (!aceptaPrivacidad) {
+                    msg.textContent = 'Debes aceptar el aviso de privacidad para continuar.';
+                    msg.style.color = '#900';
+                    return;
+                }
+                const email = document.getElementById('radar-da-email').value.trim();
+                if (typeof trackEvent === 'function') {
+                    trackEvent('radar_alta', { etiqueta: 'derechos-autor', email_dominio: email.split('@')[1] || '' });
+                }
+                msg.textContent = '¡Listo! Revisa tu correo para confirmar tu suscripción.';
+                msg.style.color = '#2e2c2a';
+                form.reset();
+            });
+        })();
+    </script>
+
+    <script src="script.js"></script>
+    <script src="analytics.js"></script>
+</body>
+</html>

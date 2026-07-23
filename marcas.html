@@ -6,7 +6,7 @@
     <title>Registro de Marca | FERRO FRAGOSO</title>
     <meta name="description" content="Protege tu marca con nuestro servicio de registro ante IMPI todo incluido.">
     <link rel="icon" type="image/png" href="logo_ff.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <link rel="stylesheet" href="home-new.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +31,27 @@
         }
         .transparent-nav a.logo-text, .transparent-nav .nav-links a {
             color: #fff; /* mix-blend-mode difference will invert it against light bg to dark */
+        }
+
+        /* Once scrolled, the nav gets a solid light background (see nav.scrolled in styles.css) —
+           mix-blend-mode + white text/icons would render as a near-invisible dark smear, so switch
+           back to normal dark-on-light styling for that state. */
+        .transparent-nav.scrolled {
+            mix-blend-mode: normal;
+        }
+        .transparent-nav.scrolled .logo-text,
+        .transparent-nav.scrolled .nav-links a {
+            color: var(--carbon) !important;
+        }
+        .transparent-nav.scrolled .nav-logo-img {
+            filter: none !important;
+        }
+        .transparent-nav.scrolled .nav-cta-btn {
+            border-color: var(--carbon) !important;
+            color: var(--carbon) !important;
+        }
+        .transparent-nav.scrolled .mobile-menu-btn span {
+            background: var(--carbon) !important;
         }
 
         .editorial-container {
@@ -139,29 +160,51 @@
         }
 
         @media (max-width: 1024px) {
+            .editorial-container {
+                display: block;
+                min-height: auto;
+                padding-top: 110px;
+            }
+            .ed-meta.top-left, .ed-meta.top-right,
+            .ed-meta.bottom-left, .ed-meta.bottom-right {
+                display: none; /* Hide decorative text on mobile to avoid clutter */
+            }
+            /* Decorative title/mark move into normal flow so they never overlap the real content below */
+            .ed-giant-title {
+                position: static;
+                transform: none;
+                width: auto;
+                white-space: normal;
+                text-align: center;
+                margin: 1rem 0 2rem;
+                font-size: clamp(3rem, 12vw, 6rem);
+            }
+            .ed-center-art {
+                position: static;
+                transform: none;
+                margin: 0 auto 3rem;
+                width: 150px;
+            }
             .ed-bottom-content {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
-            }
-            .ed-meta.top-left, .ed-meta.top-right, 
-            .ed-meta.bottom-left, .ed-meta.bottom-right {
-                display: none; /* Hide decorative text on mobile to avoid clutter */
+                padding-top: 0;
+                margin-top: 0;
             }
         }
         @media (max-width: 600px) {
             .ed-giant-title {
-                font-size: 5.5rem;
-                top: 40%;
-                white-space: normal;
-                word-wrap: break-word;
+                font-size: clamp(2.4rem, 13vw, 3.6rem);
+                line-height: 1.05;
+                margin: 0.5rem 0 1.5rem;
             }
             .ed-center-art {
-                width: 180px;
-                top: 55%;
+                width: 110px;
+                margin-bottom: 2rem;
             }
             .ed-bottom-content {
                 grid-template-columns: 1fr;
-                padding-top: 50vh;
+                gap: 2.5rem;
             }
             .editorial-container {
                 padding: 100px 1.5rem 3rem 1.5rem;
@@ -226,17 +269,135 @@
                 <div class="ed-price">$490 <span style="font-size:0.5em;">MXN</span></div>
                 <p style="font-weight: 600; color:#111;">BÚSQUEDA FONÉTICA</p>
                 <p>Estudio de viabilidad antes de registrar para asegurar que tu marca no esté ocupada. Se abona al paquete completo si decides continuar.</p>
-                <a href="#pago" class="ed-btn">Solicitar Búsqueda</a>
+                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20b%C3%BAsqueda%20fon%C3%A9tica%20de%20mi%20marca%20(%24490%20MXN)."
+                   target="_blank" rel="noopener" class="ed-btn"
+                   data-mp-link="PENDIENTE:busqueda-fonetica-490" data-producto="Búsqueda fonética">Solicitar Búsqueda</a>
             </div>
             <div class="ed-col">
                 <div class="ed-price">$6,990 <span style="font-size:0.5em;">MXN</span></div>
                 <p style="font-weight: 600; color:#111;">REGISTRO TODO INCLUIDO</p>
                 <p>Honorarios, tarifas oficiales del IMPI y seguimiento ininterrumpido de tu expediente de principio a fin, hasta la obtención de tu título.</p>
-                <a href="#pago" class="ed-btn">Iniciar Registro</a>
+                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20iniciar%20el%20registro%20de%20mi%20marca%2C%20todo%20incluido%20(%246%2C990%20MXN)."
+                   target="_blank" rel="noopener" class="ed-btn"
+                   data-mp-link="PENDIENTE:registro-marca-6990" data-producto="Registro de marca">Iniciar Registro</a>
+            </div>
+            <div class="ed-col">
+                <div class="ed-price">$2,990 <span style="font-size:0.5em;">MXN</span></div>
+                <p style="font-weight: 600; color:#111;">DERECHOS DE AUTOR</p>
+                <p>Registro de tu obra (logotipo, software, contenido o material creativo) ante el Instituto Nacional del Derecho de Autor, protegiendo tu creación frente a copias o usos no autorizados.</p>
+                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20registrar%20los%20derechos%20de%20autor%20de%20mi%20obra%20(%242%2C990%20MXN)."
+                   target="_blank" rel="noopener" class="ed-btn"
+                   data-mp-link="PENDIENTE:derechos-autor-2990" data-producto="Derechos de autor">Registrar Obra</a>
+            </div>
+            <div class="ed-col">
+                <div class="ed-price">$8,990 <span style="font-size:0.5em;">MXN</span></div>
+                <p style="font-weight: 600; color:#111;">PAQUETE PROTECCIÓN TOTAL</p>
+                <p>Registro de marca ante el IMPI y registro de derechos de autor de tu obra en un solo paquete, con seguimiento unificado de ambos expedientes. Ahorra frente a contratarlos por separado.</p>
+                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Paquete%20Protecci%C3%B3n%20Total%20(marca%20%2B%20derechos%20de%20autor%2C%20%248%2C990%20MXN)."
+                   target="_blank" rel="noopener" class="ed-btn"
+                   data-mp-link="PENDIENTE:proteccion-total-8990" data-producto="Protección Total">Solicitar Paquete</a>
             </div>
         </div>
     </main>
 
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq-section" style="background: #fff;">
+        <span class="faq-eyebrow">Preguntas frecuentes</span>
+        <h2 class="faq-title">Registro de marca en México</h2>
+
+        <details class="faq-item">
+            <summary>¿Qué es el sistema "first-to-file" en México?</summary>
+            <p>México otorga el derecho sobre una marca a quien la registra primero ante el IMPI, no a quien la usó primero en el mercado. Por eso conviene registrar tu marca antes de invertir en publicidad, empaques o dominios: si alguien más la registra antes que tú, esa persona se vuelve la titular legal, aunque tú la hayas usado desde antes.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Qué es una declaración de uso y cuándo debo presentarla?</summary>
+            <p>Es un documento que acredita ante el IMPI que efectivamente estás usando tu marca en el mercado. Debe presentarse dentro de los 3 meses posteriores al tercer aniversario del registro; si no se presenta, el IMPI puede declarar la caducidad de la marca. Nuestro seguimiento de expediente incluye recordarte este plazo.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Cuánto tiempo tarda el registro de una marca ante el IMPI?</summary>
+            <p>En condiciones normales, entre 6 y 10 meses desde la presentación de la solicitud hasta la obtención del título, siempre que no existan objeciones u oposiciones de terceros. La búsqueda fonética previa reduce significativamente el riesgo de retrasos.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Qué pasa si mi marca es rechazada u objetada?</summary>
+            <p>Si el IMPI encuentra una marca similar o algún otro impedimento, emite un oficio de objeción que puede responderse con argumentos legales dentro del plazo correspondiente. Si un tercero se opone a tu solicitud, también puedes contestar esa oposición. Ambos escenarios están incluidos en el seguimiento del paquete todo incluido.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿La búsqueda fonética garantiza que mi marca será aprobada?</summary>
+            <p>No es una garantía absoluta, pero reduce sustancialmente el riesgo: identifica marcas idénticas o fonéticamente similares ya registradas en tu clase antes de que gastes en el registro completo. Es el filtro más costo-efectivo antes de proceder, y su costo se abona al paquete si decides continuar.</p>
+        </details>
+    </section>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Qué es el sistema \"first-to-file\" en México?",
+                "acceptedAnswer": { "@type": "Answer", "text": "México otorga el derecho sobre una marca a quien la registra primero ante el IMPI, no a quien la usó primero en el mercado. Por eso conviene registrar tu marca antes de invertir en publicidad, empaques o dominios." }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Qué es una declaración de uso y cuándo debo presentarla?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Es un documento que acredita ante el IMPI que efectivamente estás usando tu marca. Debe presentarse dentro de los 3 meses posteriores al tercer aniversario del registro." }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cuánto tiempo tarda el registro de una marca ante el IMPI?",
+                "acceptedAnswer": { "@type": "Answer", "text": "En condiciones normales, entre 6 y 10 meses desde la presentación de la solicitud hasta la obtención del título, siempre que no existan objeciones u oposiciones de terceros." }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Qué pasa si mi marca es rechazada u objetada?",
+                "acceptedAnswer": { "@type": "Answer", "text": "El IMPI emite un oficio de objeción que puede responderse con argumentos legales dentro del plazo correspondiente. Si un tercero se opone, también puedes contestar esa oposición." }
+            },
+            {
+                "@type": "Question",
+                "name": "¿La búsqueda fonética garantiza que mi marca será aprobada?",
+                "acceptedAnswer": { "@type": "Answer", "text": "No es una garantía absoluta, pero reduce sustancialmente el riesgo al identificar marcas idénticas o fonéticamente similares ya registradas en tu clase antes de proceder con el registro completo." }
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Product",
+                "name": "Búsqueda fonética de marca",
+                "description": "Estudio de viabilidad antes de registrar tu marca ante el IMPI para asegurar que no esté ocupada.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "490", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
+            },
+            {
+                "@type": "Product",
+                "name": "Registro de marca ante el IMPI",
+                "description": "Registro de marca todo incluido: honorarios, tarifas oficiales del IMPI y seguimiento del expediente hasta la obtención del título.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "6990", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
+            },
+            {
+                "@type": "Product",
+                "name": "Registro de derechos de autor",
+                "description": "Registro de obra (logotipo, software, contenido o material creativo) ante el Instituto Nacional del Derecho de Autor.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "2990", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
+            },
+            {
+                "@type": "Product",
+                "name": "Paquete Protección Total (marca + derechos de autor)",
+                "description": "Registro de marca ante el IMPI y registro de derechos de autor de tu obra en un solo paquete con seguimiento unificado.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "8990", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
+            }
+        ]
+    }
+    </script>
+
     <script src="script.js"></script>
+    <script src="analytics.js"></script>
 </body>
 </html>
