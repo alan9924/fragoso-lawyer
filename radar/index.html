@@ -204,7 +204,7 @@
         .radar-split-art {
             margin-top: 3rem;
             text-align: center;
-            opacity: 0.4;
+            opacity: 0.85; /* Increased opacity since screen mode is subtle */
             transition: opacity 0.3s;
             position: relative;
             z-index: 1;
@@ -214,13 +214,16 @@
             justify-content: center;
         }
         .radar-split-col:hover .radar-split-art {
-            opacity: 0.75;
+            opacity: 1;
         }
         .radar-split-art img {
-            max-height: 220px;
+            max-height: 240px;
             width: auto;
             max-width: 100%;
-            filter: grayscale(1) invert(1) brightness(1.2);
+            /* Invertir colores (blanco a negro) y usar screen para hacer el negro transparente.
+               Esto deja las líneas en blanco y los bloques en colores neón/oscuros sobre el fondo #161616 */
+            filter: invert(1);
+            mix-blend-mode: screen;
             object-fit: contain;
         }
         
@@ -338,7 +341,7 @@
                     <a href="#archivo" class="radar-split-btn">Ver archivo &rarr;</a>
                     
                     <div class="radar-split-art">
-                        <img src="../geometric_cover_1_1783708458087.png" alt="Arte Wireframe 1">
+                        <img src="../radar_ill_1.png" alt="Arte Minimalista Libro">
                     </div>
                 </div>
 
@@ -351,7 +354,7 @@
                     <a href="../empresas.html" class="radar-split-btn">Descubrir membresía &rarr;</a>
                     
                     <div class="radar-split-art">
-                        <img src="../abstract_signature.png" alt="Arte Wireframe 2">
+                        <img src="../radar_ill_2.png" alt="Arte Minimalista Edificio">
                     </div>
                 </div>
 
