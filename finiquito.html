@@ -445,6 +445,29 @@
             const isrMonto = (r.isr && r.isrMonto > 0) ? r.isrMonto : 0;
             const motivoSlug = r.motivo;
 
+            // Scenario calculations for 3D comparative chart
+            const valorFiniquito = r.totalFiniquito;
+            let valorLiquidacion = valorFiniquito;
+            if (r.motivo === 'despido_injustificado') {
+                valorLiquidacion = r.totalNeto;
+            } else {
+                // Approximate liquidacion scenario for comparison
+                const sdi = r.salarios.sdi || r.salarios.salarioDiario;
+                const sDiario = r.salarios.salarioDiario;
+                const anios = r.antiguedad.anios || 1;
+                const uma = 108.57;
+                const primaAntiguedad = Math.min(sDiario, 2 * uma) * 12 * anios;
+                const indemnizacion90 = sdi * 90;
+                const veinteDias = sdi * 20 * anios;
+                const brutoLiq = valorFiniquito + indemnizacion90 + veinteDias + primaAntiguedad;
+                const isrEst = isrMonto || (indemnizacion90 * 0.1);
+                valorLiquidacion = brutoLiq - isrEst;
+            }
+
+            const maxVal = Math.max(valorFiniquito, valorLiquidacion);
+            const heightFiniquito = Math.max(20, Math.round((valorFiniquito / maxVal) * 100));
+            const heightLiquidacion = Math.max(20, Math.round((valorLiquidacion / maxVal) * 100));
+
             const rowsHTML = (items) => items.map(it => `
                                 <div class="dictamen-row">
                                     <span class="dictamen-row-concept">${it.concepto}</span>
@@ -468,35 +491,65 @@
                         </header>
 
                         <div class="dictamen-body">
+                        
                         <div class="dictamen-summary">
+                            <div class="dictamen-summary-info">
+                                <div class="dictamen-summary-head">
+                                    <span class="dictamen-summary-eyebrow">Estimación conforme a la LFT</span>
+                                    <h2 class="dictamen-summary-title">Cómputo Comparativo</h2>
+                                </div>
+                                <div class="dictamen-summary-payout">
+                                    <span class="dictamen-summary-eyebrow">Total neto estimado</span>
+                                    <div class="dictamen-summary-amount">${formatMoneda(r.totalNeto)}</div>
+                                    <span class="dictamen-summary-eyebrow" style="color: #647a90; font-size: 0.55rem;">Pesos Mexicanos &middot; MXN</span>
+                                </div>
+                                <div class="dictamen-summary-legend">
+                                    <div class="dictamen-legend-item">
+                                        <span class="dictamen-legend-color finiquito"></span>
+                                        <span>Finiquito (Renuncia): <strong>${formatMoneda(valorFiniquito)}</strong></span>
+                                    </div>
+                                    <div class="dictamen-legend-item">
+                                        <span class="dictamen-legend-color liquidacion"></span>
+                                        <span>Liquidación (Despido): <strong>${formatMoneda(valorLiquidacion)}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="dictamen-hero">
-                            <span class="dictamen-hero-label">Total neto estimado</span>
-                            <div class="dictamen-hero-amount">${formatMoneda(r.totalNeto)}</div>
-                            <span class="dictamen-hero-currency">Pesos mexicanos &middot; MXN</span>
-                        </div>
-
-                        <div class="dictamen-meta">
-                            <div class="dictamen-meta-item">
-                                <span>Antig&uuml;edad</span>
-                                <strong>${r.antiguedad.anios} ${r.antiguedad.anios === 1 ? 'a&ntilde;o' : 'a&ntilde;os'}</strong>
+                            <div class="dictamen-summary-chart">
+                                <div class="dictamen-chart-col">
+                                    <div class="dictamen-cylinder-container">
+                                        <div class="dictamen-cylinder finiquito" style="height: ${heightFiniquito}%;"></div>
+                                    </div>
+                                    <span class="dictamen-cylinder-label">Finiquito</span>
+                                </div>
+                                <div class="dictamen-chart-col">
+                                    <div class="dictamen-cylinder-container">
+                                        <div class="dictamen-cylinder liquidacion" style="height: ${heightLiquidacion}%;"></div>
+                                    </div>
+                                    <span class="dictamen-cylinder-label">Liquidación</span>
+                                </div>
                             </div>
-                            <div class="dictamen-meta-item">
-                                <span>D&iacute;as computados</span>
-                                <strong>${r.antiguedad.diasTotales} d&iacute;as</strong>
-                            </div>
-                            <div class="dictamen-meta-item">
-                                <span>Salario mensual</span>
-                                <strong>${formatMoneda(r.salarios.salarioDiario * 30)}</strong>
-                            </div>
-                            <div class="dictamen-meta-item">
-                                <span>Fecha de salida</span>
-                                <strong>${formatDateES(r.fechaSalida)}</strong>
-                            </div>
-                        </div>
                         </div><!-- /.dictamen-summary -->
 
                         <div class="dictamen-detail">
+                            <div class="dictamen-meta" style="margin-bottom: 2rem;">
+                                <div class="dictamen-meta-item">
+                                    <span>Antig&uuml;edad</span>
+                                    <strong>${r.antiguedad.anios} ${r.antiguedad.anios === 1 ? 'a&ntilde;o' : 'a&ntilde;os'}</strong>
+                                </div>
+                                <div class="dictamen-meta-item">
+                                    <span>D&iacute;as computados</span>
+                                    <strong>${r.antiguedad.diasTotales} d&iacute;as</strong>
+                                </div>
+                                <div class="dictamen-meta-item">
+                                    <span>Salario mensual</span>
+                                    <strong>${formatMoneda(r.salarios.salarioDiario * 30)}</strong>
+                                </div>
+                                <div class="dictamen-meta-item">
+                                    <span>Fecha de salida</span>
+                                    <strong>${formatDateES(r.fechaSalida)}</strong>
+                                </div>
+                            </div>
                         <section class="dictamen-desglose">
                             <div class="dictamen-group">
                                 <h3 class="dictamen-group-title">Finiquito</h3>
