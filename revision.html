@@ -47,6 +47,17 @@
             background: #fff !important;
         }
 
+        /* The white text/icon above is styled for the transparent nav sitting
+           over this page's dark hero. The full-screen mobile menu it opens has
+           a light background — left white-on-white it's unreadable. Reset to
+           dark whenever the menu is open (body.nav-open, toggled in script.js). */
+        body.nav-open #navbar.transparent-nav .nav-links a {
+            color: var(--carbon) !important;
+        }
+        body.nav-open #navbar.transparent-nav .mobile-menu-btn span {
+            background: var(--carbon) !important;
+        }
+
         .prada-hero {
             flex-grow: 1;
             display: flex;
@@ -267,7 +278,7 @@
                     <li><a href="consulta.html">CONSULTA</a></li>
                     <li><a href="contratos.html">CONTRATOS</a></li>
                     <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="radar/">RADAR LEGAL</a></li>
+                    <li><a href="radar/index.html">RADAR LEGAL</a></li>
                     <li><a href="nosotros.html">NOSOTROS</a></li>
                 </ul>
             </div>

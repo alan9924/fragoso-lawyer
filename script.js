@@ -374,6 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileBtn.classList.toggle('open');
             mobileBtn.setAttribute('aria-expanded', isOpen);
             document.body.style.overflow = isOpen ? 'hidden' : '';
+            document.body.classList.toggle('nav-open', isOpen);
         });
     }
 
@@ -395,6 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 mobileBtn.classList.remove('open');
                 mobileBtn.setAttribute('aria-expanded', false);
                 document.body.style.overflow = '';
+                document.body.classList.remove('nav-open');
             }
         });
     });
@@ -550,5 +552,50 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(syncPill);
         window.addEventListener('resize', syncPill);
     }
+
+    /* ════════════════════════════════════
+       RADAR LEGAL — ALTA DE SUSCRIPTORES
+       No hay proveedor de email marketing conectado todavía
+       (Brevo queda pendiente de credenciales). Mientras tanto,
+       en vez de simular un envío que nunca llega a ningún lado,
+       el formulario abre un correo pre-llenado hacia el despacho
+       para no perder al lead. Para migrar a Brevo: sustituir el
+       bloque `mailto:` por un fetch() al Form Action URL real.
+    ════════════════════════════════════ */
+    document.querySelectorAll('#radar-form, #article-radar-form').forEach((form) => {
+        const msg = form.querySelector('[role="status"]');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const emailInput = form.querySelector('input[type="email"]');
+            const privacyInput = form.querySelector('input[type="checkbox"]');
+            const etiquetaInput = form.querySelector('input[name="etiqueta"]');
+            const email = emailInput ? emailInput.value.trim() : '';
+            const etiqueta = etiquetaInput ? etiquetaInput.value : 'radar';
+
+            if (privacyInput && !privacyInput.checked) {
+                if (msg) {
+                    msg.textContent = 'Debes aceptar el aviso de privacidad para continuar.';
+                    msg.style.color = '#900';
+                }
+                return;
+            }
+
+            if (typeof trackEvent === 'function') {
+                trackEvent('radar_alta', { etiqueta, email_dominio: email.split('@')[1] || '' });
+            }
+
+            const subject = encodeURIComponent('Alta Radar Legal FF');
+            const body = encodeURIComponent(`Quiero suscribirme al Radar Legal FF.\n\nCorreo: ${email}\nOrigen: ${etiqueta}`);
+            window.location.href = `mailto:contacto@ferrofragoso.com?subject=${subject}&body=${body}`;
+
+            if (msg) {
+                msg.textContent = 'Se abrió tu correo para confirmar la suscripción. Si no se abrió automáticamente, escríbenos a contacto@ferrofragoso.com.';
+                msg.style.color = 'var(--carbon, #2e2c2a)';
+            }
+            form.reset();
+        });
+    });
 
 });

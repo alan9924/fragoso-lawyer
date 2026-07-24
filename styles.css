@@ -2993,6 +2993,72 @@ footer {
 
     .nav-container { padding: 0 1.5rem; }
     .nav-cta-btn { display: none; }
+
+    /* Fixed WhatsApp/Email sidebar: the desktop version is a pair of
+       45x140px vertical tabs pinned at right:0/top:50%. Left as-is on
+       mobile it permanently covers page content (prices, headings,
+       buttons) and — because its z-index is higher than the full-screen
+       mobile nav — it also sits on top of and blocks taps on the open
+       nav menu's links. Shrink it to two small corner icon buttons and
+       hide it entirely while the mobile nav menu is open. */
+    .fixed-sidebar-contact {
+        top: auto;
+        bottom: 1.25rem;
+        right: 1rem;
+        transform: none;
+        flex-direction: column;
+        gap: 0.75rem;
+        box-shadow: none;
+    }
+
+    .sidebar-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border-left: none;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    }
+
+    .sidebar-btn:hover { width: 48px; }
+
+    .sidebar-btn span { display: none; }
+
+    .sidebar-btn::before {
+        font-size: 1.25rem;
+        line-height: 1;
+    }
+
+    .sidebar-wa::before {
+        font-family: "Font Awesome 6 Brands";
+        font-weight: 400;
+        content: "\f232";
+    }
+
+    .sidebar-email::before {
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        content: "\f0e0";
+    }
+
+    body.nav-open .fixed-sidebar-contact {
+        display: none;
+    }
+
+    /* Radar Legal FF signup card: fixed grid-template-columns:1fr auto
+       with no mobile override left the "auto" sello-image column with
+       zero available width (it collapses to 0x100), and the 3.5rem
+       side padding ate too much of a narrow screen. Stack to one
+       column and drop the now-invisible decorative sello. */
+    .radar-card,
+    .radar-subscribe-card {
+        grid-template-columns: 1fr !important;
+        padding: 2.25rem 1.5rem !important;
+        gap: 1.5rem !important;
+    }
+
+    .radar-sello {
+        display: none;
+    }
 }
 
 @media (max-width: 400px) {

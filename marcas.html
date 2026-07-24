@@ -54,6 +54,21 @@
             background: var(--carbon) !important;
         }
 
+        /* Same problem as .scrolled above, but for the full-screen mobile menu:
+           mix-blend-mode is meant for the nav bar sitting over page content, not
+           for the menu's own opaque light overlay — left blending, the overlay
+           renders as a ghostly smear instead of a clean readable menu. Reset it
+           the same way whenever the menu is open (body.nav-open, from script.js). */
+        body.nav-open .transparent-nav {
+            mix-blend-mode: normal;
+        }
+        body.nav-open .transparent-nav .nav-links a {
+            color: var(--carbon) !important;
+        }
+        body.nav-open .transparent-nav .mobile-menu-btn span {
+            background: var(--carbon) !important;
+        }
+
         .editorial-container {
             min-height: 100vh;
             display: flex;
@@ -230,7 +245,7 @@
                     <li><a href="consulta.html">CONSULTA</a></li>
                     <li><a href="contratos.html">CONTRATOS</a></li>
                     <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="radar/">RADAR LEGAL</a></li>
+                    <li><a href="radar/index.html">RADAR LEGAL</a></li>
                     <li><a href="nosotros.html">NOSOTROS</a></li>
                 </ul>
             </div>

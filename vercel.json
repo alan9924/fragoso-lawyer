@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/blog", "destination": "/radar/", "permanent": true },
+    { "source": "/blog/:path*", "destination": "/radar/", "permanent": true }
+  ]
+}

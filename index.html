@@ -42,7 +42,7 @@
                     <li><a href="consulta.html">CONSULTA</a></li>
                     <li><a href="contratos.html">CONTRATOS</a></li>
                     <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="radar/">RADAR LEGAL</a></li>
+                    <li><a href="radar/index.html">RADAR LEGAL</a></li>
                     <li><a href="nosotros.html">NOSOTROS</a></li>
                 </ul>
             </div>
@@ -268,7 +268,8 @@
                 box-shadow: 0 8px 30px rgba(0,0,0,0.04);
             ">
                 <!-- Banner Image -->
-                <div style="height: 180px; width: 100%; position: relative; overflow: hidden; background: linear-gradient(135deg, #2a3c36 0%, #162420 100%); border-bottom: 2px solid #3c544c;">
+                <div style="height: 180px; width: 100%; position: relative; overflow: hidden; background: #cbe8f6;">
+                    <img src="b2b_banner.png" alt="" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 
                 <!-- Tab Row -->
@@ -342,7 +343,8 @@
                 box-shadow: 0 8px 30px rgba(0,0,0,0.04);
             ">
                 <!-- Banner Image -->
-                <div style="height: 180px; width: 100%; position: relative; overflow: hidden; background: linear-gradient(135deg, #243342 0%, #121d28 100%); border-bottom: 2px solid #354a5e;">
+                <div style="height: 180px; width: 100%; position: relative; overflow: hidden; background: #f2c96c;">
+                    <img src="diagnostico_banner.png" alt="" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 
                 <!-- Tab Row -->
@@ -451,7 +453,7 @@
 
     <!-- ═══ RADAR LEGAL FF ═══ -->
     <section style="background: var(--bg-surface-elevated); padding: 5rem 2rem;">
-        <div style="
+        <div class="radar-card" style="
             background: #ffffff;
             border-radius: 20px;
             padding: 3rem 3.5rem;
@@ -477,7 +479,8 @@
                     </p>
                 </div>
 
-                <form id="radar-form" action="#" data-brevo-action="PENDIENTE" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Alta se maneja en script.js (mailto: hasta conectar Brevo) -->
+                <form id="radar-form" action="#" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
                     <input type="hidden" name="etiqueta" value="home">
                     <div style="display: flex; flex-direction: column; gap: 0.4rem;">
                         <label for="radar-email" style="font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted, #9c9489);">Correo</label>
@@ -501,7 +504,7 @@
                 </form>
 
                 <p style="font-family: var(--font-body); font-size: 0.82rem; margin: 0.5rem 0 0; text-align: center;">
-                    <a href="radar/" style="color: var(--bronze, #c5a880); text-decoration: underline;">Lee las ediciones anteriores →</a>
+                    <a href="radar/index.html" style="color: var(--bronze, #c5a880); text-decoration: underline;">Lee las ediciones anteriores →</a>
                 </p>
 
                 <!-- Trust signals -->
@@ -522,36 +525,11 @@
             </div>
 
             <!-- Right: sello -->
-            <div style="padding-top: 0.5rem;">
+            <div class="radar-sello" style="padding-top: 0.5rem;">
                 <img src="sello_ff.png" alt="Sello Ferro Fragoso" style="width: 100px; height: 100px; object-fit: contain; opacity: 0.15; filter: grayscale(100%);">
             </div>
         </div>
     </section>
-
-    <script>
-        (function () {
-            const form = document.getElementById('radar-form');
-            if (!form) return;
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const msg = document.getElementById('radar-mensaje');
-                const email = document.getElementById('radar-email').value.trim();
-                const aceptaPrivacidad = document.getElementById('radar-privacidad').checked;
-                if (!aceptaPrivacidad) {
-                    msg.textContent = 'Debes aceptar el aviso de privacidad para continuar.';
-                    msg.style.color = '#900';
-                    return;
-                }
-                if (typeof trackEvent === 'function') {
-                    trackEvent('radar_alta', { etiqueta: 'home', email_dominio: email.split('@')[1] || '' });
-                }
-                msg.textContent = '¡Listo! Revisa tu correo para confirmar tu suscripción.';
-                msg.style.color = 'var(--carbon, #2e2c2a)';
-                form.reset();
-            });
-        })();
-    </script>
-
 
     <!-- ═══ FOOTER ═══ -->
     <footer class="site-footer">
@@ -565,7 +543,7 @@
             <div class="footer-links" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
                 <a href="terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
                 <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
-                <a href="radar/" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Radar Legal</a>
+                <a href="radar/index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Radar Legal</a>
                 <a href="https://wa.me/524191239646" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">WhatsApp</a>
             </div>
 
