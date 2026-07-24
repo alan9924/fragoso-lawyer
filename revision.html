@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Revisión de Contrato | FERRO FRAGOSO</title>
     <meta name="description" content="Evita firmar cláusulas abusivas. Un análisis legal experto antes de comprometer tu firma.">
-    <link rel="icon" type="image/png" href="logo_ff.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css?v=2">
     <link rel="stylesheet" href="home-new.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,29 +82,64 @@
         .prada-left {
             flex: 1;
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start; /* frases alineadas a la izquierda */
             align-items: center;
             position: relative;
-            padding-right: 0; /* Giant letter touches the line */
+            padding-right: 3rem; /* aire entre el texto y la guía vertical */
         }
 
-        .giant-letter {
+        /* ── Cursor editorial que "escribe" frases legales en tiempo real ── */
+        .rev-typewriter {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 4.4em;          /* reserva de alto: evita saltos de layout */
+            margin: 0;
+            transition: opacity 0.6s ease;
+            will-change: opacity;
+        }
+        .rev-typewriter__inner {
             font-family: var(--font-heading);
-            font-size: clamp(20rem, 40vw, 40rem);
-            font-weight: 400;
             font-style: italic;
+            font-weight: 300;
+            font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+            line-height: 1.4;
             color: #fff;
-            line-height: 0.7;
-            margin-right: -0.1em; /* Pull it into the line */
-            user-select: none;
+            text-align: left;
+            max-width: 22ch;
+        }
+        .rev-typewriter__text { white-space: pre-wrap; }
+        .rev-typewriter__caret {
+            display: inline-block;
+            width: 2px;
+            height: 1.05em;
+            margin-left: 3px;
+            vertical-align: -0.14em;
+            background: #fff;
+            animation: revCaretBlink 1.15s ease-in-out infinite;
+        }
+        /* mientras escribe, el cursor permanece sólido (más natural) */
+        .rev-typewriter.is-typing .rev-typewriter__caret {
+            animation: none;
+            opacity: 1;
+        }
+        @keyframes revCaretBlink {
+            0%, 100% { opacity: 1; }
+            50%      { opacity: 0.12; }
         }
 
+        /* Guía vertical tenue: referencia estructural, ya no es el elemento fuerte */
         .prada-line {
-            width: 4px;
-            background-color: #fff;
+            width: 1px;
+            background-color: rgba(255, 255, 255, 0.14);
             margin: 0 4rem;
             flex-shrink: 0;
             z-index: 2;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .rev-typewriter { transition: none; }
+            .rev-typewriter__caret { animation: none; opacity: 0.5; }
         }
 
         .prada-right {
@@ -240,15 +278,20 @@
                 justify-content: center;
                 padding-right: 0;
             }
-            .giant-letter {
-                margin-right: 0;
-                margin-bottom: -2rem;
-                font-size: 20rem;
+            .rev-typewriter {
+                justify-content: center;
+                min-height: 3.4em;   /* compacto: no ocupa demasiado alto */
             }
+            .rev-typewriter__inner {
+                text-align: center;
+                font-size: clamp(1.4rem, 4.6vw, 1.9rem);
+                max-width: 26ch;
+            }
+            /* La guía pasa a un trazo horizontal corto y tenue, sobre el contenido */
             .prada-line {
-                width: 100%;
-                height: 4px;
-                margin: 2rem 0;
+                width: 48px;
+                height: 1px;
+                margin: 1.75rem auto;
             }
             .prada-right {
                 align-items: center;
@@ -296,10 +339,12 @@
     <section class="prada-hero">
         <div class="prada-split">
             <div class="prada-left">
-                <!-- An elegant lowercase 'r' (for revisión) cut by the line -->
-                <div class="giant-letter"></div>
+                <!-- Cursor editorial: escribe frases legales en tiempo real -->
+                <p class="rev-typewriter" aria-live="polite" aria-label="Revisión de contratos">
+                    <span class="rev-typewriter__inner"><span class="rev-typewriter__text"></span><span class="rev-typewriter__caret" aria-hidden="true"></span></span>
+                </p>
             </div>
-            <div class="prada-line"></div>
+            <div class="prada-line" aria-hidden="true"></div>
             <div class="prada-right">
                 <div class="prada-top-text">Servicio Especializado</div>
                 <h1 class="prada-title">Revisión de<br>Contratos</h1>
@@ -461,5 +506,57 @@
 
     <script src="script.js"></script>
     <script src="analytics.js"></script>
+
+    <!-- ══ Cursor editorial: escribe frases sobre revisión contractual ══ -->
+    <script>
+    (function () {
+        const wrap = document.querySelector('.rev-typewriter');
+        if (!wrap) return;
+        const textEl = wrap.querySelector('.rev-typewriter__text');
+
+        const phrases = [
+            'Cada cláusula tiene consecuencias.',
+            'Los riesgos no siempre están a simple vista.',
+            'Revisamos antes de que firmes.',
+            'Claridad legal para decidir con certeza.'
+        ];
+
+        // Respeta prefers-reduced-motion: una frase estática, sin animación.
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            textEl.textContent = phrases[0];
+            return;
+        }
+
+        const TYPE_MS = 48;   // velocidad de escritura (35–55 ms por carácter)
+        const HOLD_MS = 2600; // tiempo visible tras completar la frase
+        const FADE_MS = 600;  // atenuación (coincide con la transición CSS)
+        const GAP_MS  = 220;  // pausa con el lienzo vacío antes de la siguiente
+        const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+        let i = 0;
+
+        (async function loop() {
+            while (true) {
+                const phrase = phrases[i];
+
+                wrap.classList.add('is-typing');   // cursor sólido al escribir
+                wrap.style.opacity = '1';
+                for (let c = 1; c <= phrase.length; c++) {
+                    textEl.textContent = phrase.slice(0, c);
+                    await sleep(TYPE_MS);
+                }
+                wrap.classList.remove('is-typing'); // el cursor vuelve a parpadear
+
+                await sleep(HOLD_MS);
+                wrap.style.opacity = '0';           // se atenúa suavemente
+                await sleep(FADE_MS);
+                textEl.textContent = '';            // se limpia ya oculto
+                await sleep(GAP_MS);
+
+                i = (i + 1) % phrases.length;       // siguiente frase del ciclo
+            }
+        })();
+    })();
+    </script>
 </body>
 </html>

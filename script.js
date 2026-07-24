@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     span.classList.add('is-hidden');
                 });
                 loopTimer = setTimeout(reveal, loopDelay);
-            }, (maxTime + 0.8) * 1000);
+            }, (maxTime + 6.0) * 1000);
         }
 
         // Kick off after page intro delay
@@ -121,9 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Animate primary tagline (starts at 2.2s after page load)
-    initBlurWordAnimation('.hero-tagline-primary', 2200, 7000);
+    initBlurWordAnimation('.hero-tagline-primary', 2200, 3000);
     // Animate secondary tagline (starts 0.6s after primary for cascade feel)
-    initBlurWordAnimation('.hero-tagline-secondary', 2800, 7000);
+    initBlurWordAnimation('.hero-tagline-secondary', 2800, 3000);
 
     /* ════════════════════════════════════
        NAVBAR SCROLL BEHAVIOR
