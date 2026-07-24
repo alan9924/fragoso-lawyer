@@ -150,6 +150,7 @@
             border: 1px solid #333;
         }
         .radar-split-col {
+            background: #161616; /* El mix-blend-mode necesita que su padre directo tenga fondo para funcionar en todos los navegadores */
             padding: 4.5rem 3.5rem;
             display: flex;
             flex-direction: column;
@@ -204,8 +205,6 @@
         .radar-split-art {
             margin-top: 3rem;
             text-align: center;
-            opacity: 0.85; /* Increased opacity since screen mode is subtle */
-            transition: opacity 0.3s;
             position: relative;
             z-index: 1;
             flex-grow: 1;
@@ -213,18 +212,19 @@
             align-items: flex-end;
             justify-content: center;
         }
-        .radar-split-col:hover .radar-split-art {
-            opacity: 1;
-        }
         .radar-split-art img {
             max-height: 240px;
             width: auto;
             max-width: 100%;
-            /* Invertir colores (blanco a negro) y usar screen para hacer el negro transparente.
-               Esto deja las líneas en blanco y los bloques en colores neón/oscuros sobre el fondo #161616 */
-            filter: invert(1);
+            /* Invertir colores (blanco a negro) y aumentar contraste para asegurar que el fondo sea 100% negro */
+            filter: invert(1) contrast(1.1);
             mix-blend-mode: screen;
+            opacity: 0.85;
+            transition: opacity 0.3s;
             object-fit: contain;
+        }
+        .radar-split-col:hover .radar-split-art img {
+            opacity: 1;
         }
         
         .radar-archivo-section {
