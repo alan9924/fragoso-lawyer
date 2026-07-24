@@ -420,6 +420,24 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(s => sectionObserver.observe(s));
 
     /* ════════════════════════════════════
+       FIRMA ANIMADA — la caligrafía se "escribe" al entrar en vista
+       (y se vuelve a firmar cada vez que la sección reaparece)
+    ════════════════════════════════════ */
+    const firmaVideo = document.querySelector('.promesa-signature-video');
+    if (firmaVideo) {
+        const firmaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    try { firmaVideo.currentTime = 0; } catch (e) {}
+                    const p = firmaVideo.play();
+                    if (p && p.catch) p.catch(() => {});
+                }
+            });
+        }, { threshold: 0.4 });
+        firmaObserver.observe(firmaVideo);
+    }
+
+    /* ════════════════════════════════════
        VALOR CARD — subtle scale on hover via JS (touch fallback)
     ════════════════════════════════════ */
     document.querySelectorAll('.valor-card, .area-card').forEach(card => {

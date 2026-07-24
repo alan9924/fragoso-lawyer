@@ -61,17 +61,18 @@
             background: #fff !important;
         }
 
+        /* HERO — solo título + diagrama animado, centrado y sin encimar contenido */
         .editorial-container {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            padding: 120px 2rem 4rem 2rem;
+            overflow: hidden;
+            padding: 130px 2rem 5rem 2rem;
             max-width: 1600px;
             margin: 0 auto;
-            background: url('blueprint_bg.png') no-repeat center 28%;
-            background-size: min(650px, 85vw);
         }
 
         /* 4 Corners Meta Text */
@@ -109,21 +110,140 @@
             letter-spacing: -2px;
         }
 
-        /* Center Art — the © symbol */
-        .ed-center-art {
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        /* ─── SCHEMATIC HERO — exploded technical diagram (Higgsfield asset) ─── */
+        .schematic-stage {
+            position: relative;
             z-index: 2;
-            font-family: var(--font-heading);
-            font-size: clamp(9rem, 22vw, 17rem);
-            color: rgba(255, 255, 255, 0.08);
-            text-align: center;
-            line-height: 1;
-            mix-blend-mode: normal;
-            filter: none;
+            width: min(440px, 74vw);
             user-select: none;
+        }
+
+        .schematic-float {
+            animation: schematicFloat 9s ease-in-out infinite;
+        }
+
+        .schematic-img {
+            display: block;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            animation: schematicIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+        }
+
+        @keyframes schematicIn {
+            from { opacity: 0; transform: translateY(28px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes schematicFloat {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-14px); }
+        }
+
+        /* Overlay SVG: crop marks + scan line + blinking ticks over the image */
+        .schematic-overlay {
+            position: absolute;
+            inset: -24px;
+            width: calc(100% + 48px);
+            height: calc(100% + 48px);
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .schematic-overlay line,
+        .schematic-overlay rect,
+        .schematic-overlay circle {
+            stroke: rgba(255, 255, 255, 0.55);
+            stroke-width: 1;
+            fill: none;
+            vector-effect: non-scaling-stroke;
+        }
+
+        .draw-line {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: drawLine 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .draw-line.d1 { animation-delay: 1.0s; }
+        .draw-line.d2 { animation-delay: 1.25s; }
+        .draw-line.d3 { animation-delay: 1.5s; }
+        .draw-line.d4 { animation-delay: 1.75s; }
+
+        @keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+        .blink-tick {
+            opacity: 0;
+            animation: blinkTick 3.2s ease-in-out 2.2s infinite;
+        }
+        .blink-tick.b2 { animation-delay: 2.9s; }
+        .blink-tick.b3 { animation-delay: 3.6s; }
+
+        @keyframes blinkTick {
+            0%, 100% { opacity: 0; }
+            12%, 60% { opacity: 0.85; }
+            72%      { opacity: 0.25; }
+        }
+
+        /* Horizontal scan line sweeping the diagram */
+        .scan-line {
+            position: absolute;
+            left: -6%;
+            width: 112%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.35) 20%, rgba(255,255,255,0.35) 80%, transparent);
+            top: 0;
+            opacity: 0;
+            animation: scanSweep 7s cubic-bezier(0.4, 0, 0.2, 1) 2.4s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanSweep {
+            0%   { top: 2%;  opacity: 0; }
+            8%   { opacity: 0.7; }
+            46%  { top: 96%; opacity: 0.7; }
+            54%  { opacity: 0; }
+            100% { top: 96%; opacity: 0; }
+        }
+
+        /* HUD label chips around the stage */
+        .schematic-hud {
+            position: absolute;
+            font-family: var(--font-body);
+            font-size: 0.58rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.65);
+            white-space: nowrap;
+            opacity: 0;
+            animation: hudIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .schematic-hud::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.45);
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .schematic-hud.h1 { top: 6%;  left: calc(100% + 18px); animation-delay: 1.9s; }
+        .schematic-hud.h2 { top: 42%; right: calc(100% + 18px); animation-delay: 2.15s; }
+        .schematic-hud.h2::before { margin-right: 0; margin-left: 8px; float: right; margin-top: 6px; }
+        .schematic-hud.h3 { bottom: 10%; left: calc(100% + 18px); animation-delay: 2.4s; }
+
+        @keyframes hudIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .schematic-float, .scan-line, .blink-tick { animation: none; }
+            .schematic-img { animation-duration: 0.01s; animation-delay: 0s; }
+            .draw-line { animation-duration: 0.01s; stroke-dashoffset: 0; }
+            .schematic-hud { animation-duration: 0.01s; opacity: 1; }
+            .blink-tick { opacity: 0.6; }
+            .scan-line { display: none; }
         }
 
         /* Bottom Columns */
@@ -205,40 +325,190 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.5);
         }
 
+        /* Hero tagline bajo el diagrama */
+        .ed-hero-tagline {
+            position: relative;
+            z-index: 3;
+            margin: 2.5rem auto 0;
+            max-width: 540px;
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 300;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        /* ─── CONTENIDO ORDENADO (secciones normales bajo el hero) ─── */
+        .da-section-wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+        .da-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--bronze, #c5a880);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .da-h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            font-weight: 400;
+            color: #ffffff;
+            margin: 0 0 1.5rem;
+            line-height: 1.2;
+        }
+
+        /* Intro: qué es + qué se registra */
+        .da-intro { padding: 4rem 0; border-top: 1px solid #1e1e1e; }
+        .da-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: start;
+        }
+        .da-intro-col p {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #b3b0aa;
+            margin: 0 0 1rem;
+        }
+        .da-intro-col p:last-child { margin-bottom: 0; }
+        .da-intro-col strong { color: #ffffff; }
+        .da-intro-col img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 1.4rem;
+            display: block;
+            border: 1px solid #333;
+        }
+        .da-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.4rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+        .da-chips li {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            color: #cfccc5;
+            background: #161616;
+            border: 1px solid #2c2c2c;
+            border-radius: 30px;
+            padding: 0.35rem 0.85rem;
+        }
+
+        /* Pricing: 2 tarjetas ordenadas */
+        .da-pricing { padding: 4rem 0 5rem; border-top: 1px solid #1e1e1e; }
+        .da-pricing-head { text-align: center; margin-bottom: 2.5rem; }
+        .da-pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
+            max-width: 800px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+        .da-card {
+            background: #0e0e0e;
+            border: 1px solid #2a2a2a;
+            border-radius: 18px;
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .da-card.highlight {
+            background: #141210;
+            border-color: var(--bronze, #c5a880);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .da-card .ed-price { margin-bottom: 0.4rem; }
+        .da-card-label {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 0.9rem;
+        }
+        .da-card p.da-card-desc {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #a8a49d;
+            margin: 0 0 1.4rem;
+        }
+        .da-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            flex-grow: 1;
+        }
+        .da-card li {
+            font-family: var(--font-body);
+            font-size: 0.86rem;
+            line-height: 1.5;
+            color: #c4c0b9;
+            padding-left: 1.4rem;
+            position: relative;
+        }
+        .da-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--bronze, #c5a880);
+        }
+        .da-card .ed-btn { margin-top: auto; width: 100%; }
+
+        @media (max-width: 900px) {
+            .da-intro-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .da-pricing-grid { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 1024px) {
             .editorial-container {
-                display: block;
                 min-height: auto;
-                padding-top: 110px;
-                background-position: center 220px;
-                background-size: min(450px, 80vw);
+                padding-top: 118px;
             }
             .ed-meta.top-left, .ed-meta.top-right,
             .ed-meta.bottom-left, .ed-meta.bottom-right {
                 display: none;
             }
+            /* En móvil el título deja de ser marca de agua de fondo y pasa a
+               ser el encabezado real de la página: legible y sobre el diagrama */
             .ed-giant-title {
                 position: static;
                 transform: none;
                 width: auto;
                 white-space: normal;
                 text-align: center;
-                margin: 1rem 0 1.5rem;
+                margin: 0 0 1.5rem;
                 font-size: clamp(3rem, 12vw, 6rem);
+                color: rgba(255, 255, 255, 0.92);
             }
-            .ed-center-art {
-                position: static;
-                transform: none;
-                display: block;
-                margin: 0 auto 3rem;
-                font-size: clamp(6rem, 20vw, 10rem);
+            .schematic-stage {
+                margin: 0 auto;
+                width: min(420px, 82vw);
             }
-            .ed-bottom-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-                padding-top: 0;
-                margin-top: 0;
-            }
+            /* HUD chips overflow a narrow screen when hung off the sides —
+               tuck them inside the stage corners instead */
+            .schematic-hud.h1 { left: auto; right: 2%; top: 2%; }
+            .schematic-hud.h2 { right: auto; left: 2%; top: 2%; }
+            .schematic-hud.h2::before { float: none; margin: 0 8px 0 0; }
+            .schematic-hud.h3 { left: auto; right: 2%; bottom: 2%; }
         }
         @media (max-width: 600px) {
             .ed-giant-title {
@@ -246,20 +516,15 @@
                 line-height: 1.05;
                 margin: 0.5rem 0 1rem;
             }
-            .ed-center-art {
-                font-size: clamp(5rem, 25vw, 7rem);
-                margin-bottom: 2rem;
-            }
-            .ed-bottom-content {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
             .editorial-container {
                 padding: 100px 1.5rem 3rem 1.5rem;
             }
-            .ed-col.highlight-col {
-                padding: 1.2rem;
-            }
+            .da-intro, .da-pricing { padding: 3rem 0; }
+            .da-card { padding: 1.6rem; }
+            /* En móvil los chips HUD se enciman con las etiquetas propias del
+               diagrama; el diagrama ya las trae, así que los ocultamos para
+               mantener la vista limpia */
+            .schematic-hud { display: none; }
         }
     </style>
 </head>
@@ -309,62 +574,122 @@
             DERECHOS<br>DE AUTOR
         </div>
 
-        <!-- Center Art — © symbol -->
-        <div class="ed-center-art">©</div>
-
-        <!-- Columns at Bottom -->
-        <div class="ed-bottom-content">
-
-            <!-- Col 1: What is it -->
-            <div class="ed-col">
-                <p>El derecho de autor protege automáticamente toda obra original desde su creación —pero la protección real, la que vale ante tribunales y en disputas comerciales, proviene del registro ante el <strong>Instituto Nacional del Derecho de Autor (INDAUTOR)</strong>.</p>
-                <p>Un registro formaliza tu titularidad y genera el instrumento público que necesitas para actuar contra quienes copien, reproduzcan o usen tu obra sin permiso.</p>
+        <!-- Center Art — exploded schematic diagram animado (generado con Higgsfield) -->
+        <div class="schematic-stage">
+            <div class="schematic-float">
+                <video class="schematic-img" autoplay muted loop playsinline
+                       poster="copyright_exploded.png"
+                       aria-label="Diagrama técnico explosionado de una obra protegida por derechos de autor">
+                    <source src="copyright_exploded.mp4" type="video/mp4">
+                </video>
+                <svg class="schematic-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <!-- Crop marks (corners) -->
+                    <line class="draw-line d1" x1="0" y1="6" x2="0" y2="0"/>
+                    <line class="draw-line d1" x1="0" y1="0" x2="5" y2="0"/>
+                    <line class="draw-line d2" x1="95" y1="0" x2="100" y2="0"/>
+                    <line class="draw-line d2" x1="100" y1="0" x2="100" y2="6"/>
+                    <line class="draw-line d3" x1="100" y1="94" x2="100" y2="100"/>
+                    <line class="draw-line d3" x1="100" y1="100" x2="95" y2="100"/>
+                    <line class="draw-line d4" x1="5" y1="100" x2="0" y2="100"/>
+                    <line class="draw-line d4" x1="0" y1="100" x2="0" y2="94"/>
+                    <!-- Blinking registration ticks -->
+                    <circle class="blink-tick" cx="8" cy="30" r="1.4"/>
+                    <rect class="blink-tick b2" x="88" y="55" width="3" height="3"/>
+                    <circle class="blink-tick b3" cx="14" cy="78" r="1.4"/>
+                </svg>
+                <div class="scan-line"></div>
+                <span class="schematic-hud h1">Fig. 01 — Obra original</span>
+                <span class="schematic-hud h2">Reg. INDAUTOR / MX</span>
+                <span class="schematic-hud h3">Titularidad © 2026</span>
             </div>
-
-            <!-- Col 2: What qualifies -->
-            <div class="ed-col">
-                <img src="software_copyright.png" alt="Registro de software y código" style="width: 100%; border-radius: 12px; margin-bottom: 1.2rem; display: block; border: 1px solid #333; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-                <p><strong style="color:#ffffff;">¿Qué obras se registran?</strong></p>
-                <p>Logotipos e identidad visual · Software y aplicaciones · Contenido editorial y literario · Fotografías y audiovisual · Música y composiciones · Diseño web y UX · Material pedagógico y cursos · Obras arquitectónicas y planos.</p>
-                <p>Si lo creaste y tiene originalidad expresiva, se puede registrar. Nuestro equipo evalúa sin costo adicional si tu obra califica antes de proceder.</p>
-            </div>
-
-            <!-- Col 3: Price — Registro básico -->
-            <div class="ed-col">
-                <div class="ed-price">$2,990 <span style="font-size:0.5em;">MXN</span></div>
-                <p style="font-weight: 600; color:#ffffff;">REGISTRO DE OBRA</p>
-                <p>Todo incluido: honorarios, tramitación ante el INDAUTOR y acuse oficial de registro. Aplica para una obra o colección de obras del mismo autor.</p>
-                <ul style="padding-left: 1.2rem; margin: 0 0 1rem; display: flex; flex-direction: column; gap: 0.3rem;">
-                    <li>Evaluación de elegibilidad sin costo</li>
-                    <li>Preparación del expediente completo</li>
-                    <li>Seguimiento hasta el acuse oficial</li>
-                    <li>1 obra o colección de obras</li>
-                </ul>
-                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20registrar%20los%20derechos%20de%20autor%20de%20mi%20obra%20(%242%2C990%20MXN)."
-                   target="_blank" rel="noopener" class="ed-btn"
-                   data-mp-link="PENDIENTE:derechos-autor-2990" data-producto="Derechos de autor">Registrar mi Obra</a>
-            </div>
-
-            <!-- Col 4: Paquete Protección Total -->
-            <div class="ed-col highlight-col">
-                <div class="ed-badge best">Recomendado</div>
-                <div class="ed-price">$8,990 <span style="font-size:0.5em;">MXN</span></div>
-                <p style="font-weight: 600; color:#ffffff;">PAQUETE PROTECCIÓN TOTAL</p>
-                <p>Registro de marca ante el IMPI + registro de derechos de autor ante el INDAUTOR en un solo expediente coordinado. Protege tu nombre <em>y</em> tu obra al mismo tiempo.</p>
-                <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem; display: flex; flex-direction: column; gap: 0.3rem;">
-                    <li>Búsqueda fonética de marca incluida</li>
-                    <li>Registro de marca todo incluido</li>
-                    <li>Registro de obra ante INDAUTOR</li>
-                    <li>Seguimiento unificado de ambos expedientes</li>
-                    <li><strong>Ahorro vs. contratar por separado</strong></li>
-                </ul>
-                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Paquete%20Protecci%C3%B3n%20Total%20(marca%20%2B%20derechos%20de%20autor%2C%20%248%2C990%20MXN)."
-                   target="_blank" rel="noopener" class="ed-btn"
-                   data-mp-link="PENDIENTE:proteccion-total-8990" data-producto="Protección Total">Solicitar Paquete</a>
-            </div>
-
         </div>
+
+        <!-- Tagline del hero -->
+        <p class="ed-hero-tagline">Registra tu obra ante el INDAUTOR y obtén la prueba oficial de que es tuya.</p>
     </main>
+
+    <!-- ═══ INTRO — QUÉ ES Y QUÉ SE REGISTRA ═══ -->
+    <section class="da-intro">
+        <div class="da-section-wrap">
+            <div class="da-intro-grid">
+
+                <!-- Qué es -->
+                <div class="da-intro-col">
+                    <span class="da-eyebrow">Por qué registrar</span>
+                    <h2 class="da-h2">La protección que sí vale ante un juez</h2>
+                    <p>El derecho de autor protege automáticamente toda obra original desde su creación. Pero la protección <strong>real</strong> —la que vale ante tribunales y en disputas comerciales— proviene del registro ante el <strong>Instituto Nacional del Derecho de Autor (INDAUTOR)</strong>.</p>
+                    <p>Un registro formaliza tu titularidad y genera el instrumento público que necesitas para actuar contra quienes copien, reproduzcan o usen tu obra sin permiso.</p>
+                </div>
+
+                <!-- Qué se registra -->
+                <div class="da-intro-col">
+                    <img src="software_copyright.png" alt="Registro de software y código">
+                    <span class="da-eyebrow">Qué se registra</span>
+                    <h2 class="da-h2">Si lo creaste, se puede proteger</h2>
+                    <ul class="da-chips">
+                        <li>Logotipos e identidad visual</li>
+                        <li>Software y aplicaciones</li>
+                        <li>Contenido editorial y literario</li>
+                        <li>Fotografía y audiovisual</li>
+                        <li>Música y composiciones</li>
+                        <li>Diseño web y UX</li>
+                        <li>Material pedagógico y cursos</li>
+                        <li>Obras arquitectónicas y planos</li>
+                    </ul>
+                    <p style="margin-top: 1.2rem;">Si tiene originalidad expresiva, se puede registrar. Evaluamos <strong>sin costo</strong> si tu obra califica antes de proceder.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PRECIOS ═══ -->
+    <section class="da-pricing">
+        <div class="da-section-wrap">
+            <div class="da-pricing-head">
+                <span class="da-eyebrow">Precios claros</span>
+                <h2 class="da-h2" style="margin-bottom: 0;">Todo incluido, sin sorpresas</h2>
+            </div>
+
+            <div class="da-pricing-grid">
+
+                <!-- Registro de Obra -->
+                <div class="da-card">
+                    <div class="ed-price">$2,990 <span style="font-size:0.5em;">MXN</span></div>
+                    <p class="da-card-label">Registro de obra</p>
+                    <p class="da-card-desc">Todo incluido: honorarios, tramitación ante el INDAUTOR y acuse oficial de registro. Aplica para una obra o colección de obras del mismo autor.</p>
+                    <ul>
+                        <li>Evaluación de elegibilidad sin costo</li>
+                        <li>Preparación del expediente completo</li>
+                        <li>Seguimiento hasta el acuse oficial</li>
+                        <li>1 obra o colección de obras</li>
+                    </ul>
+                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20registrar%20los%20derechos%20de%20autor%20de%20mi%20obra%20(%242%2C990%20MXN)."
+                       target="_blank" rel="noopener" class="ed-btn"
+                       data-mp-link="PENDIENTE:derechos-autor-2990" data-producto="Derechos de autor">Registrar mi Obra</a>
+                </div>
+
+                <!-- Paquete Protección Total -->
+                <div class="da-card highlight">
+                    <div class="ed-badge best">Recomendado</div>
+                    <div class="ed-price">$8,990 <span style="font-size:0.5em;">MXN</span></div>
+                    <p class="da-card-label">Paquete Protección Total</p>
+                    <p class="da-card-desc">Registro de marca ante el IMPI + registro de derechos de autor ante el INDAUTOR en un solo expediente coordinado. Protege tu nombre <em>y</em> tu obra al mismo tiempo.</p>
+                    <ul>
+                        <li>Búsqueda fonética de marca incluida</li>
+                        <li>Registro de marca todo incluido</li>
+                        <li>Registro de obra ante INDAUTOR</li>
+                        <li>Seguimiento unificado de ambos expedientes</li>
+                        <li><strong style="color:#fff;">Ahorro vs. contratar por separado</strong></li>
+                    </ul>
+                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Paquete%20Protecci%C3%B3n%20Total%20(marca%20%2B%20derechos%20de%20autor%2C%20%248%2C990%20MXN)."
+                       target="_blank" rel="noopener" class="ed-btn"
+                       data-mp-link="PENDIENTE:proteccion-total-8990" data-producto="Protección Total">Solicitar Paquete</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- ═══ FAQ ═══ -->
     <section class="faq-section" style="background: #fff;">

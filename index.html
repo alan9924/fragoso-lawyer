@@ -418,7 +418,17 @@
             <p class="promesa-text text-blur-in">
                 Operamos como plataforma: precios públicos, procesos claros y entregas en 48 horas. Pero decidimos como firma: cada asunto lo analiza un socio, con rigor y criterio. Tecnología en el proceso, abogados en las decisiones.
             </p>
-            <img src="signature_logo.png" alt="Ferro Fragoso Caligrafía" class="promesa-signature-img">
+            <!-- Firma animada (Higgsfield): la caligrafía se escribe en tiempo real.
+                 El fondo del video es el mismo carbón de la sección; el degradado
+                 del wrapper (::after) cubre los bordes con ese carbón para una
+                 fusión perfecta. Se reproduce al entrar en vista (ver script.js). -->
+            <div class="promesa-signature-wrap">
+                <video class="promesa-signature-video" muted playsinline preload="auto"
+                       poster="signature_on_dark.png" aria-label="Firma Ferro Fragoso escribiéndose">
+                    <source src="signature_write.mp4" type="video/mp4">
+                    <img src="signature_logo.png" alt="Ferro Fragoso Caligrafía" class="promesa-signature-img">
+                </video>
+            </div>
             <p class="promesa-firma">— Ferro Fragoso, Estudio Jurídico</p>
             <a href="nosotros.html" class="promesa-cta-btn magnetic-btn">CONOCE NUESTROS SOCIOS</a>
         </div>

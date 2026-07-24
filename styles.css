@@ -182,7 +182,7 @@ nav.scrolled {
 }
 
 .nav-logo-img {
-    height: 48px;
+    height: 67px;
     width: auto;
     object-fit: contain;
     flex-shrink: 0;
@@ -962,6 +962,60 @@ section { position: relative; }
     mix-blend-mode: screen; /* Filters out black background organically */
     opacity: 0.92;
     filter: brightness(1.15); /* Slightly brighten the white strokes */
+}
+
+/* Firma animada — wrapper: contiene el video y superpone un degradado del
+   carbón exacto de la sección sobre los bordes, para que nunca se vea el borde
+   de la caja del video (independiente de blend-mode / rango de color). */
+.promesa-signature-wrap {
+    position: relative;
+    width: 78%;
+    max-width: 540px;
+    aspect-ratio: 16 / 8;
+    margin: 0 auto 18px;
+}
+
+.promesa-signature-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Overlay del color de la sección: transparente en el centro (se ve la firma),
+   carbón hacia los bordes. El degradado LINEAL vertical difumina fuerte los
+   márgenes superior e inferior; el radial suaviza los lados/esquinas. Se usa
+   rgba(46,44,42,0) —carbón transparente— para que el fundido no tire a gris. */
+.promesa-signature-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        /* Difuminado vertical: funde los márgenes superior e inferior */
+        linear-gradient(to bottom,
+            var(--carbon) 0%,
+            rgba(46, 44, 42, 0) 32%,
+            rgba(46, 44, 42, 0) 68%,
+            var(--carbon) 100%),
+        /* Difuminado horizontal: funde las costuras de los lados izq./der.
+           (la firma va centrada ~20%–80%, por eso el centro queda transparente) */
+        linear-gradient(to right,
+            var(--carbon) 0%,
+            rgba(46, 44, 42, 0) 13%,
+            rgba(46, 44, 42, 0) 87%,
+            var(--carbon) 100%),
+        /* Suaviza las esquinas donde se cruzan los dos degradados */
+        radial-gradient(ellipse 90% 78% at 50% 50%,
+            rgba(46, 44, 42, 0) 55%,
+            var(--carbon) 92%);
+}
+
+@media (max-width: 768px) {
+    .promesa-signature-wrap {
+        width: 92%;
+        aspect-ratio: 16 / 9;
+    }
 }
 
 .promesa-firma {
