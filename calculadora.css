@@ -67,11 +67,22 @@ body:has(#calc-step-2.active) #navbar {
 .calc-landing {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 6rem 2rem 4rem;
-    text-align: center;
+}
+
+.calc-landing-inner {
+    width: 100%;
+    max-width: 1120px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: 4.5rem;
+}
+
+.calc-landing-text {
+    text-align: left;
 }
 
 .calc-landing-tag {
@@ -79,27 +90,59 @@ body:has(#calc-step-2.active) #navbar {
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #999;
-    margin-bottom: 1.5rem;
+    color: #b0392f; /* guiño al rojo de la ilustración */
+    margin-bottom: 1.25rem;
 }
 
 .calc-landing-title {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-size: clamp(2.1rem, 4.2vw, 3.3rem);
     font-weight: 700;
     letter-spacing: -1.5px;
-    line-height: 1.05;
+    line-height: 1.06;
     color: #1a1a1a;
-    margin-bottom: 1rem;
-    max-width: 600px;
+    margin-bottom: 1.25rem;
 }
 
 .calc-landing-subtitle {
     font-size: 1rem;
     color: #777;
-    max-width: 450px;
-    line-height: 1.5;
-    margin-bottom: 3rem;
+    max-width: 440px;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+/* Ilustración editorial animada */
+.calc-landing-art {
+    margin: 0;
+    position: relative;
+}
+.calc-landing-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 24px 60px rgba(46, 44, 42, 0.16);
+    background: #f2ede1;
+}
+.calc-landing-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+@media (max-width: 860px) {
+    .calc-landing { min-height: 100vh; padding: 6rem 1.5rem 3rem; }
+    .calc-landing-inner {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+        max-width: 520px;
+    }
+    .calc-landing-text { text-align: center; }
+    .calc-landing-subtitle { margin-left: auto; margin-right: auto; }
+    .calc-landing-art { order: -1; } /* la ilustración abre en móvil */
 }
 
 .calc-landing-btn {
@@ -1679,4 +1722,40 @@ body:has(#calc-step-2.active) {
     .dictamen-card { box-shadow: none; border-color: #ccc; }
     .dictamen-radar { display: none !important; }
     .dictamen-watermark { opacity: 0.06; }
+}
+
+/* ── DICTAMEN · Layout de dos columnas para escritorio (≥860px) ──
+   Resumen (total protagonista + datos del caso) a la izquierda;
+   desglose itemizado, total neto y nota legal a la derecha.
+   En móvil/tablet se mantiene el apilado natural en una columna. */
+@media (min-width: 860px) {
+    .dictamen { max-width: 980px; }
+    .dictamen-card { padding: 3rem 3.25rem 2.75rem; }
+
+    .dictamen-body {
+        display: grid;
+        grid-template-columns: 0.9fr 1fr;
+        column-gap: 3rem;
+        align-items: start;
+    }
+    /* border-box: que el padding/borde queden DENTRO del track del grid
+       (si no, la columna se desborda y la tarjeta recorta los montos) */
+    .dictamen-summary,
+    .dictamen-detail {
+        box-sizing: border-box;
+        min-width: 0;
+    }
+    .dictamen-detail {
+        border-left: 1px solid var(--stone-200, #e8e1d5);
+        padding-left: 3rem;
+    }
+
+    /* Columna resumen (izquierda) */
+    .dictamen-summary .dictamen-hero { padding-top: 1.25rem; }
+    .dictamen-summary .dictamen-hero-amount { font-size: clamp(2.4rem, 4.5vw, 3.4rem); }
+    .dictamen-summary .dictamen-meta { margin-bottom: 0; }
+
+    /* Columna detalle (derecha) */
+    .dictamen-detail .dictamen-desglose { margin-bottom: 1.6rem; }
+    .dictamen-detail .dictamen-disclaimer { text-align: left; margin-top: 1.3rem; }
 }

@@ -55,10 +55,22 @@
         <!-- STEP 0: LANDING -->
         <div id="calc-step-0" class="calc-step active">
             <div class="calc-landing">
-                <div class="calc-landing-tag">HERRAMIENTA GRATUITA</div>
-                <h1 class="calc-landing-title">Calculadora de Finiquito y Liquidación</h1>
-                <p class="calc-landing-subtitle">Estima lo que te corresponde conforme a la Ley Federal del Trabajo de México. Responde 6 preguntas y obtén tu desglose completo.</p>
-                <button id="calc-btn-start" class="calc-landing-btn">Calcular ahora</button>
+                <div class="calc-landing-inner">
+                    <div class="calc-landing-text">
+                        <div class="calc-landing-tag">HERRAMIENTA GRATUITA</div>
+                        <h1 class="calc-landing-title">Calculadora de Finiquito y Liquidación</h1>
+                        <p class="calc-landing-subtitle">Estima lo que te corresponde conforme a la Ley Federal del Trabajo de México. Responde 6 preguntas y obtén tu desglose completo.</p>
+                        <button id="calc-btn-start" class="calc-landing-btn">Calcular ahora</button>
+                    </div>
+                    <figure class="calc-landing-art">
+                        <video class="calc-landing-video" autoplay muted loop playsinline preload="auto"
+                               poster="finiquito_portada.png"
+                               aria-label="Ilustración editorial: una persona con maletín frente a un gran umbral, al concluir una relación laboral">
+                            <source src="finiquito_portada.mp4" type="video/mp4">
+                            <img src="finiquito_portada.png" alt="Persona con maletín frente a un gran umbral rojo">
+                        </video>
+                    </figure>
+                </div>
             </div>
         </div>
 
@@ -455,6 +467,9 @@
                             <span class="dictamen-motivo dictamen-motivo--${motivoSlug}">${motivoLabels[r.motivo]}</span>
                         </header>
 
+                        <div class="dictamen-body">
+                        <div class="dictamen-summary">
+
                         <div class="dictamen-hero">
                             <span class="dictamen-hero-label">Total neto estimado</span>
                             <div class="dictamen-hero-amount">${formatMoneda(r.totalNeto)}</div>
@@ -479,7 +494,9 @@
                                 <strong>${formatDateES(r.fechaSalida)}</strong>
                             </div>
                         </div>
+                        </div><!-- /.dictamen-summary -->
 
+                        <div class="dictamen-detail">
                         <section class="dictamen-desglose">
                             <div class="dictamen-group">
                                 <h3 class="dictamen-group-title">Finiquito</h3>
@@ -516,6 +533,8 @@
                         </aside>
 
                         <p class="dictamen-disclaimer">Estimaci&oacute;n orientativa basada en la Ley Federal del Trabajo vigente. No constituye un c&aacute;lculo oficial ni asesor&iacute;a jur&iacute;dica personalizada; los montos pueden variar seg&uacute;n prestaciones, convenios y particularidades de tu caso.</p>
+                        </div><!-- /.dictamen-detail -->
+                        </div><!-- /.dictamen-body -->
                     </article>
 
                     <div class="calc-results-actions dictamen-actions">
