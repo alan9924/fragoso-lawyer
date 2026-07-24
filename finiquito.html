@@ -488,40 +488,30 @@
                         <div class="dictamen-body">
                         
                         <div class="dictamen-summary">
-                            <div class="dictamen-summary-info">
-                                <div class="dictamen-summary-head">
-                                    <span class="dictamen-summary-eyebrow">Estimación conforme a la LFT</span>
-                                    <h2 class="dictamen-summary-title">Cómputo Comparativo</h2>
-                                </div>
-                                <div class="dictamen-summary-payout">
-                                    <span class="dictamen-summary-eyebrow">Total neto estimado</span>
-                                    <div class="dictamen-summary-amount">${formatMoneda(r.totalNeto)}</div>
-                                    <span class="dictamen-summary-eyebrow" style="color: #647a90; font-size: 0.55rem;">Pesos Mexicanos &middot; MXN</span>
-                                </div>
-                                <div class="dictamen-summary-legend">
-                                    <div class="dictamen-legend-item">
-                                        <span class="dictamen-legend-color finiquito"></span>
-                                        <span>Finiquito (Renuncia): <strong>${formatMoneda(valorFiniquito)}</strong></span>
-                                    </div>
-                                    <div class="dictamen-legend-item">
-                                        <span class="dictamen-legend-color liquidacion"></span>
-                                        <span>Liquidación (Despido): <strong>${formatMoneda(valorLiquidacion)}</strong></span>
-                                    </div>
-                                </div>
+                            <div class="dictamen-summary-kpi">
+                                <span class="dictamen-summary-eyebrow">Total neto estimado</span>
+                                <div class="dictamen-summary-amount">${formatMoneda(r.totalNeto)}</div>
+                                <span class="dictamen-summary-sub">Pesos Mexicanos &middot; MXN</span>
                             </div>
 
-                            <div class="dictamen-summary-chart">
-                                <div class="dictamen-chart-col">
-                                    <div class="dictamen-cylinder-container">
-                                        <div class="dictamen-cylinder finiquito" style="height: ${heightFiniquito}%;"></div>
+                            <div class="dictamen-bars">
+                                <div class="dictamen-bar-row">
+                                    <div class="dictamen-bar-label">
+                                        <span class="dictamen-bar-concept">Finiquito proporcional</span>
+                                        <span class="dictamen-bar-value">${formatMoneda(valorFiniquito)}</span>
                                     </div>
-                                    <span class="dictamen-cylinder-label">Finiquito</span>
+                                    <div class="dictamen-bar-track">
+                                        <div class="dictamen-bar-fill dictamen-bar-fill--finiquito" style="width: ${heightFiniquito}%;"></div>
+                                    </div>
                                 </div>
-                                <div class="dictamen-chart-col">
-                                    <div class="dictamen-cylinder-container">
-                                        <div class="dictamen-cylinder liquidacion" style="height: ${heightLiquidacion}%;"></div>
+                                <div class="dictamen-bar-row">
+                                    <div class="dictamen-bar-label">
+                                        <span class="dictamen-bar-concept">Liquidación por ley</span>
+                                        <span class="dictamen-bar-value">${formatMoneda(valorLiquidacion)}</span>
                                     </div>
-                                    <span class="dictamen-cylinder-label">Liquidación</span>
+                                    <div class="dictamen-bar-track">
+                                        <div class="dictamen-bar-fill dictamen-bar-fill--liquidacion" style="width: ${heightLiquidacion}%;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div><!-- /.dictamen-summary -->
