@@ -117,7 +117,7 @@ body:has(#calc-step-2.active) #navbar {
     margin: 0;
     position: relative;
 }
-.calc-landing-video {
+.calc-landing-video, .calc-landing-img {
     display: block;
     width: 100%;
     aspect-ratio: 3 / 2;
