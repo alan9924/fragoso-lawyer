@@ -211,14 +211,15 @@
             display: flex;
             align-items: flex-end;
             justify-content: center;
+            /* Aplicar el mix-blend-mode en el contenedor para evitar el bug de WebKit con filter */
+            mix-blend-mode: screen;
         }
         .radar-split-art img {
             max-height: 240px;
             width: auto;
             max-width: 100%;
-            /* Invertir colores (blanco a negro) y aumentar contraste para asegurar que el fondo sea 100% negro */
+            /* Invertir el color aquí */
             filter: invert(1) contrast(1.1);
-            mix-blend-mode: screen;
             opacity: 0.85;
             transition: opacity 0.3s;
             object-fit: contain;
