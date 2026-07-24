@@ -1076,7 +1076,7 @@ body:has(#calc-step-2.active) #navbar {
 
 /* Change page background to match the dashboard on results view */
 body:has(#calc-step-2.active) {
-    background-color: #081719 !important;
+    background-color: #f4f3ef !important; /* tono cálido de marca, consistente con el wizard */
 }
 
 /* Desktop layout for Dashboard */
@@ -1355,4 +1355,328 @@ body:has(#calc-step-2.active) {
     .receipt-tear-wrap {
         margin: 0.5rem -1.25rem;
     }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DICTAMEN — Resultado editorial de la Calculadora de Finiquito
+   Reemplaza el antiguo "ticket": lenguaje de documento jurídico,
+   paleta de marca (ivory / carbon / bronze) y jerarquía clara.
+   ═══════════════════════════════════════════════════════════════ */
+.dictamen {
+    max-width: 640px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+}
+
+.dictamen-card {
+    position: relative;
+    background: #fdfcf9;
+    border: 1px solid var(--stone-200, #e8e1d5);
+    border-radius: 22px;
+    padding: 3rem 2.75rem 2.5rem;
+    box-shadow: 0 20px 55px rgba(46, 44, 42, 0.10);
+    overflow: hidden;
+}
+
+.dictamen-watermark {
+    position: absolute;
+    top: -46px;
+    right: -46px;
+    width: 260px;
+    height: 260px;
+    object-fit: contain;
+    opacity: 0.035;
+    filter: grayscale(100%);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── Encabezado ── */
+.dictamen-head {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--stone-200, #e8e1d5);
+}
+.dictamen-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+.dictamen-seal {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+.dictamen-eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--bronze, #958463);
+    margin-bottom: 0.25rem;
+}
+.dictamen-title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--carbon, #2e2c2a);
+    margin: 0;
+    line-height: 1.1;
+}
+.dictamen-motivo {
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.4rem 0.85rem;
+    border-radius: 30px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+.dictamen-motivo--renuncia              { background: #f2ede4; color: #6e6658; }
+.dictamen-motivo--fin_contrato          { background: #edefe9; color: #5c6152; }
+.dictamen-motivo--despido_justificado   { background: #f3ece5; color: #7a6a58; }
+.dictamen-motivo--despido_injustificado { background: #f6ece8; color: #9a5b45; border-color: #e6d2c8; }
+
+/* ── Total protagonista ── */
+.dictamen-hero {
+    text-align: center;
+    padding: 2.4rem 0 1.8rem;
+}
+.dictamen-hero-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted, #9c9489);
+    margin-bottom: 0.7rem;
+}
+.dictamen-hero-amount {
+    font-family: var(--font-heading);
+    font-size: clamp(2.8rem, 9vw, 4.2rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    color: var(--carbon, #2e2c2a);
+    font-variant-numeric: tabular-nums;
+}
+.dictamen-hero-currency {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted, #9c9489);
+}
+.dictamen-hero::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--bronze, #958463);
+    opacity: 0.6;
+    margin: 1.4rem auto 0;
+}
+
+/* ── Metadatos del caso ── */
+.dictamen-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--stone-200, #e8e1d5);
+    border: 1px solid var(--stone-200, #e8e1d5);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+}
+.dictamen-meta-item {
+    background: #fdfcf9;
+    padding: 1rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+.dictamen-meta-item span {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted, #9c9489);
+}
+.dictamen-meta-item strong {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--carbon, #2e2c2a);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Desglose itemizado ── */
+.dictamen-desglose { margin-bottom: 1.8rem; }
+.dictamen-group { margin-bottom: 1.6rem; }
+.dictamen-group:last-child { margin-bottom: 0; }
+.dictamen-group-title {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bronze, #958463);
+    margin: 0 0 0.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--stone-200, #e8e1d5);
+}
+.dictamen-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.62rem 0;
+    border-bottom: 1px dotted var(--stone-300, #d5ccbf);
+}
+.dictamen-row:last-child { border-bottom: none; }
+.dictamen-row-concept {
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    color: var(--carbon, #2e2c2a);
+    line-height: 1.4;
+}
+.dictamen-row-amount {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--carbon, #2e2c2a);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+.dictamen-row--deduct .dictamen-row-concept,
+.dictamen-row--deduct .dictamen-row-amount {
+    color: #9a5b45;
+}
+
+/* ── Total neto (bloque oscuro de cierre) ── */
+.dictamen-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.3rem 1.5rem;
+    margin-bottom: 2rem;
+    background: var(--carbon, #2e2c2a);
+    border-radius: 14px;
+}
+.dictamen-total-label {
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+.dictamen-total-amount {
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* ── Nota legal por motivo (antes calculada pero nunca mostrada) ── */
+.dictamen-nota {
+    background: #f7f4ee;
+    border-left: 2px solid var(--bronze, #958463);
+    border-radius: 0 10px 10px 0;
+    padding: 1.3rem 1.4rem;
+    margin-bottom: 1.5rem;
+}
+.dictamen-nota-tag {
+    font-family: var(--font-body);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bronze, #958463);
+}
+.dictamen-nota-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--carbon, #2e2c2a);
+    margin: 0.3rem 0 0.5rem;
+    line-height: 1.2;
+}
+.dictamen-nota-text {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--text-secondary, #6e6658);
+    margin: 0;
+}
+
+.dictamen-disclaimer {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    line-height: 1.55;
+    color: var(--text-muted, #9c9489);
+    text-align: center;
+    margin: 0;
+}
+
+/* ── Acciones ── */
+.dictamen-actions {
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.dictamen-btn-cta {
+    background: var(--bronze, #958463);
+    color: #fff;
+}
+.dictamen-btn-cta:hover { background: #7f7053; }
+.dictamen-btn-ghost {
+    background: #fff;
+    color: var(--carbon, #2e2c2a);
+    border: 1px solid var(--stone-300, #d5ccbf);
+}
+.dictamen-btn-ghost:hover { border-color: var(--carbon, #2e2c2a); }
+.dictamen-btn-text {
+    background: transparent;
+    color: var(--text-muted, #9c9489);
+}
+.dictamen-btn-text:hover { color: var(--carbon, #2e2c2a); }
+
+.dictamen-radar { margin-top: 1.5rem; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .dictamen-card { padding: 2rem 1.35rem 1.75rem; border-radius: 18px; }
+    .dictamen-head { flex-direction: column; }
+    .dictamen-meta { grid-template-columns: 1fr; }
+    .dictamen-total { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+    .dictamen-total-amount { font-size: 1.7rem; }
+    .dictamen-actions { flex-direction: column; }
+    .dictamen-actions .calc-action-btn { width: 100%; justify-content: center; }
+}
+
+/* ── Impresión ── */
+@media print {
+    body:has(#calc-step-2.active) { background: #fff !important; }
+    .dictamen-card { box-shadow: none; border-color: #ccc; }
+    .dictamen-radar { display: none !important; }
+    .dictamen-watermark { opacity: 0.06; }
 }

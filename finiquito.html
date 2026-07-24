@@ -429,141 +429,134 @@
 
             const tip = legalTips[r.motivo] || legalTips['renuncia'];
 
+            const grossTotal = [...r.finiquito, ...r.liquidacion].reduce((s, it) => s + it.monto, 0);
+            const isrMonto = (r.isr && r.isrMonto > 0) ? r.isrMonto : 0;
+            const motivoSlug = r.motivo;
+
+            const rowsHTML = (items) => items.map(it => `
+                                <div class="dictamen-row">
+                                    <span class="dictamen-row-concept">${it.concepto}</span>
+                                    <span class="dictamen-row-amount">${formatMoneda(it.monto)}</span>
+                                </div>`).join('');
+
             let html = `
-                <div class="receipt-container">
-                    <div class="receipt-top">
-                        <div class="receipt-header">
-                            ✦ FERRO FRAGOSO ✦<br>
-                            <span style="font-size: 0.7em;">ESTIMACIÓN LABORAL</span>
-                        </div>
-                        <div class="receipt-divider"></div>
-                        
-                        <div class="receipt-row">
-                            <span class="receipt-key">Motivo:</span>
-                            <span class="receipt-value">${motivoLabels[r.motivo]}</span>
-                        </div>
-                        <div class="receipt-row">
-                            <span class="receipt-key">Antigüedad:</span>
-                            <span class="receipt-value">${r.antiguedad.anios} años (${r.antiguedad.diasTotales} días)</span>
-                        </div>
-                        <div class="receipt-row">
-                            <span class="receipt-key">Salida:</span>
-                            <span class="receipt-value">${formatDateES(r.fechaSalida)}</span>
-                        </div>
-                        <div class="receipt-row">
-                            <span class="receipt-key">Salario:</span>
-                            <span class="receipt-value">${formatMoneda(r.salarios.salarioDiario * 30)}/mes</span>
-                        </div>
-                        
-                        <div class="receipt-divider"></div>
-                        
-                        <div class="receipt-items">
-            `;
+                <div class="dictamen">
+                    <article class="dictamen-card">
+                        <img src="sello_ff.png" alt="" class="dictamen-watermark" aria-hidden="true">
 
-            // Finiquito items
-            r.finiquito.forEach(item => {
-                html += `
-                            <div class="receipt-row">
-                                <span class="receipt-key">${item.concepto}</span>
-                                <span class="receipt-value">${formatMoneda(item.monto)}</span>
+                        <header class="dictamen-head">
+                            <div class="dictamen-brand">
+                                <img src="sello_ff.png" alt="" class="dictamen-seal">
+                                <div>
+                                    <span class="dictamen-eyebrow">Estimacion conforme a la LFT</span>
+                                    <h2 class="dictamen-title">Dictamen de finiquito</h2>
+                                </div>
                             </div>
-                `;
-            });
+                            <span class="dictamen-motivo dictamen-motivo--${motivoSlug}">${motivoLabels[r.motivo]}</span>
+                        </header>
 
-            // Liquidacion items
-            if (r.liquidacion.length > 0) {
-                r.liquidacion.forEach(item => {
-                    html += `
-                            <div class="receipt-row">
-                                <span class="receipt-key">${item.concepto}</span>
-                                <span class="receipt-value">${formatMoneda(item.monto)}</span>
+                        <div class="dictamen-hero">
+                            <span class="dictamen-hero-label">Total neto estimado</span>
+                            <div class="dictamen-hero-amount">${formatMoneda(r.totalNeto)}</div>
+                            <span class="dictamen-hero-currency">Pesos mexicanos &middot; MXN</span>
+                        </div>
+
+                        <div class="dictamen-meta">
+                            <div class="dictamen-meta-item">
+                                <span>Antig&uuml;edad</span>
+                                <strong>${r.antiguedad.anios} ${r.antiguedad.anios === 1 ? 'a&ntilde;o' : 'a&ntilde;os'}</strong>
                             </div>
-                    `;
-                });
-            }
-
-            // ISR
-            if (r.isr && r.isrMonto > 0) {
-                html += `
-                            <div class="receipt-row">
-                                <span class="receipt-key">${r.isr.concepto}</span>
-                                <span class="receipt-value">-${formatMoneda(r.isr.monto)}</span>
+                            <div class="dictamen-meta-item">
+                                <span>D&iacute;as computados</span>
+                                <strong>${r.antiguedad.diasTotales} d&iacute;as</strong>
                             </div>
-                `;
-            }
+                            <div class="dictamen-meta-item">
+                                <span>Salario mensual</span>
+                                <strong>${formatMoneda(r.salarios.salarioDiario * 30)}</strong>
+                            </div>
+                            <div class="dictamen-meta-item">
+                                <span>Fecha de salida</span>
+                                <strong>${formatDateES(r.fechaSalida)}</strong>
+                            </div>
+                        </div>
 
-            html += `
-                        </div>
-                        
-                        <div class="receipt-dots-spacer">. . . . . . . . . . .</div>
-                    </div>
-                    
-                    <div class="receipt-tear-wrap">
-                        <div class="receipt-tear-line"></div>
-                        <span class="receipt-tear-text">- TEAR HERE -</span>
-                    </div>
-                    
-                    <div class="receipt-bottom">
-                        <div class="receipt-pull-down">
-                            <div class="receipt-pull-lines"><span></span><span></span></div>
-                            pull down to confirm
-                        </div>
-                        
-                        <div class="receipt-divider"></div>
-                        
-                        <div class="receipt-total-block">
-                            <div class="receipt-total-label">✦ TOTAL NETO ✦</div>
-                            <div class="receipt-total-amount">${formatMoneda(r.totalNeto)}</div>
-                            <div class="receipt-total-desc">Moneda Nacional (MXN)</div>
-                        </div>
-                        
-                        <div class="receipt-divider"></div>
-                        
-                        <div class="receipt-footer">
-                            THANK YOU ▽
-                        </div>
-                    </div>
+                        <section class="dictamen-desglose">
+                            <div class="dictamen-group">
+                                <h3 class="dictamen-group-title">Finiquito</h3>
+                                ${rowsHTML(r.finiquito)}
+                            </div>
+                            ${r.liquidacion.length > 0 ? `
+                            <div class="dictamen-group">
+                                <h3 class="dictamen-group-title">Liquidaci&oacute;n</h3>
+                                ${rowsHTML(r.liquidacion)}
+                            </div>` : ''}
+                            <div class="dictamen-group">
+                                <h3 class="dictamen-group-title">Resumen</h3>
+                                <div class="dictamen-row">
+                                    <span class="dictamen-row-concept">Subtotal bruto</span>
+                                    <span class="dictamen-row-amount">${formatMoneda(grossTotal)}</span>
+                                </div>
+                                ${isrMonto > 0 ? `
+                                <div class="dictamen-row dictamen-row--deduct">
+                                    <span class="dictamen-row-concept">ISR retenido</span>
+                                    <span class="dictamen-row-amount">&minus; ${formatMoneda(isrMonto)}</span>
+                                </div>` : ''}
+                            </div>
+                        </section>
 
-                    <!-- Actions -->
-                    <div class="calc-results-actions receipt-actions">
-                        <button class="calc-action-btn primary" id="calc-btn-print">
+                        <div class="dictamen-total">
+                            <span class="dictamen-total-label">Total neto a recibir</span>
+                            <span class="dictamen-total-amount">${formatMoneda(r.totalNeto)}</span>
+                        </div>
+
+                        <aside class="dictamen-nota">
+                            <span class="dictamen-nota-tag">Nota del despacho</span>
+                            <p class="dictamen-nota-title">${tip.titulo.replace('Tip Legal: ', '')}</p>
+                            <p class="dictamen-nota-text">${tip.texto}</p>
+                        </aside>
+
+                        <p class="dictamen-disclaimer">Estimaci&oacute;n orientativa basada en la Ley Federal del Trabajo vigente. No constituye un c&aacute;lculo oficial ni asesor&iacute;a jur&iacute;dica personalizada; los montos pueden variar seg&uacute;n prestaciones, convenios y particularidades de tu caso.</p>
+                    </article>
+
+                    <div class="calc-results-actions dictamen-actions">
+                        <button class="calc-action-btn dictamen-btn-cta" id="calc-btn-consultar"
+                                data-mp-link="PENDIENTE:calculadora-consulta-490" data-producto="Consulta post-calculadora">
+                            <i class="fas fa-gavel"></i> Un abogado revisa tu caso &mdash; $490
+                        </button>
+                        <button class="calc-action-btn dictamen-btn-ghost" id="calc-btn-print">
                             <i class="fas fa-file-pdf"></i> Guardar PDF
                         </button>
-                        <button class="calc-action-btn secondary" id="calc-btn-consultar"
-                                data-mp-link="PENDIENTE:calculadora-consulta-490" data-producto="Consulta post-calculadora">
-                            <i class="fas fa-gavel"></i> Un abogado revisa tu caso — $490
-                        </button>
-                        <button class="calc-action-btn secondary" id="calc-btn-recalc">
+                        <button class="calc-action-btn dictamen-btn-text" id="calc-btn-recalc">
                             <i class="fas fa-redo"></i> Recalcular
                         </button>
                     </div>
-                </div>
 
-                <!-- Radar Legal FF — contextual: laboral -->
-                <div style="max-width: 480px; margin: 2rem auto 0; padding: 2rem; background: #ffffff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-                    <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem;">
-                        <img src="sello_ff.png" alt="" style="width: 44px; height: 44px; object-fit: contain; opacity: 0.15; filter: grayscale(100%); flex-shrink: 0;">
-                        <div>
-                            <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880);">RADAR LEGAL FF</span>
-                            <p style="font-family: var(--font-body); font-size: 0.88rem; line-height: 1.5; margin: 0.3rem 0 0; color: var(--text-muted, #9c9489);">¿Quieres saber cuando la ley laboral cambia y te afecta? Cada martes, en 3 minutos.</p>
+                    <!-- Radar Legal FF -->
+                    <div class="dictamen-radar" style="max-width: 480px; margin: 1.5rem auto 0; padding: 2rem; background: #ffffff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem;">
+                            <img src="sello_ff.png" alt="" style="width: 44px; height: 44px; object-fit: contain; opacity: 0.15; filter: grayscale(100%); flex-shrink: 0;">
+                            <div>
+                                <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880);">RADAR LEGAL FF</span>
+                                <p style="font-family: var(--font-body); font-size: 0.88rem; line-height: 1.5; margin: 0.3rem 0 0; color: var(--text-muted, #9c9489);">&iquest;Quieres saber cuando la ley laboral cambia y te afecta? Cada martes, en 3 minutos.</p>
+                            </div>
                         </div>
+                        <form id="calc-radar-form" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                <label for="calc-radar-email" style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted, #9c9489);">Correo</label>
+                                <input type="email" id="calc-radar-email" required placeholder="tu@correo.com"
+                                       style="padding: 0.75rem 1rem; border: 1.5px solid var(--stone-300, #d5ccbf); border-radius: 8px; font-family: var(--font-body); font-size: 0.9rem; color: var(--carbon, #2e2c2a); background: #fff; outline: none;"
+                                       onfocus="this.style.borderColor='#2e2c2a'"
+                                       onblur="this.style.borderColor='#d5ccbf'">
+                            </div>
+                            <button type="submit" style="padding: 0.8rem 1.5rem; background: var(--carbon, #2e2c2a); color: #fff; border: none; border-radius: 8px; font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; cursor: pointer;"
+                                    onmouseover="this.style.background='#c5a880'"
+                                    onmouseout="this.style.background='#2e2c2a'">
+                                Quiero mis alertas laborales
+                            </button>
+                            <p style="font-family: var(--font-body); font-size: 0.7rem; color: var(--text-muted, #9c9489); margin: 0; text-align: center;">Cero spam. Cancela cuando quieras.</p>
+                        </form>
+                        <p id="calc-radar-msg" style="font-size: 0.8rem; margin: 0.6rem 0 0; min-height: 1.1em; text-align: center; color: var(--carbon, #2e2c2a);"></p>
                     </div>
-                    <form id="calc-radar-form" style="display: flex; flex-direction: column; gap: 0.8rem;">
-                        <div style="display: flex; flex-direction: column; gap: 0.3rem;">
-                            <label for="calc-radar-email" style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted, #9c9489);">Correo</label>
-                            <input type="email" id="calc-radar-email" required placeholder="tu@correo.com"
-                                   style="padding: 0.75rem 1rem; border: 1.5px solid var(--stone-300, #d5ccbf); border-radius: 8px; font-family: var(--font-body); font-size: 0.9rem; color: var(--carbon, #2e2c2a); background: #fff; outline: none;"
-                                   onfocus="this.style.borderColor='#2e2c2a'"
-                                   onblur="this.style.borderColor='#d5ccbf'">
-                        </div>
-                        <button type="submit" style="padding: 0.8rem 1.5rem; background: var(--carbon, #2e2c2a); color: #fff; border: none; border-radius: 8px; font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; cursor: pointer;"
-                                onmouseover="this.style.background='#c5a880'"
-                                onmouseout="this.style.background='#2e2c2a'">
-                            Quiero mis alertas laborales
-                        </button>
-                        <p style="font-family: var(--font-body); font-size: 0.7rem; color: var(--text-muted, #9c9489); margin: 0; text-align: center;">Cero spam. Cancela cuando quieras.</p>
-                    </form>
-                    <p id="calc-radar-msg" style="font-size: 0.8rem; margin: 0.6rem 0 0; min-height: 1.1em; text-align: center; color: var(--carbon, #2e2c2a);"></p>
                 </div>
             `;
 

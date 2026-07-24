@@ -224,6 +224,7 @@ nav.scrolled {
     text-decoration: none;
     transition: color 0.3s;
     position: relative;
+    white-space: nowrap;
 }
 
 .nav-links a::after {
@@ -2873,7 +2874,7 @@ footer {
 
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .nav-menu {
         position: fixed;
         top: 0;
