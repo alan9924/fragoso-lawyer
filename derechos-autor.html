@@ -15,15 +15,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body.editorial-body {
-            background-color: #f2efeb;
-            color: #111;
+            background-color: #000000;
+            color: #fdfdfc;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
 
         .transparent-nav {
-            mix-blend-mode: difference;
+            mix-blend-mode: normal;
             position: fixed;
             width: 100%;
             z-index: 1000;
@@ -32,36 +32,33 @@
             color: #fff;
         }
         .transparent-nav.scrolled {
-            mix-blend-mode: normal;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #222;
         }
         .transparent-nav.scrolled .logo-text,
         .transparent-nav.scrolled .nav-links a {
-            color: var(--carbon) !important;
+            color: #fff !important;
         }
         .transparent-nav.scrolled .nav-logo-img {
-            filter: none !important;
+            filter: invert(1) !important;
         }
         .transparent-nav.scrolled .nav-cta-btn {
-            border-color: var(--carbon) !important;
-            color: var(--carbon) !important;
+            border-color: #fff !important;
+            color: #fff !important;
         }
         .transparent-nav.scrolled .mobile-menu-btn span {
-            background: var(--carbon) !important;
+            background: #fff !important;
         }
 
-        /* Same problem as .scrolled above, but for the full-screen mobile menu:
-           mix-blend-mode is meant for the nav bar sitting over page content, not
-           for the menu's own opaque light overlay — left blending, the overlay
-           renders as a ghostly smear instead of a clean readable menu. Reset it
-           the same way whenever the menu is open (body.nav-open, from script.js). */
         body.nav-open .transparent-nav {
             mix-blend-mode: normal;
         }
         body.nav-open .transparent-nav .nav-links a {
-            color: var(--carbon) !important;
+            color: #fff !important;
         }
         body.nav-open .transparent-nav .mobile-menu-btn span {
-            background: var(--carbon) !important;
+            background: #fff !important;
         }
 
         .editorial-container {
@@ -70,9 +67,11 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            padding: 100px 2rem 4rem 2rem;
+            padding: 120px 2rem 4rem 2rem;
             max-width: 1600px;
             margin: 0 auto;
+            background: url('blueprint_bg.png') no-repeat center 28%;
+            background-size: min(650px, 85vw);
         }
 
         /* 4 Corners Meta Text */
@@ -83,18 +82,18 @@
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #8c8983;
+            color: #666663;
             z-index: 10;
         }
-        .ed-meta.top-left { top: 120px; left: 3rem; }
-        .ed-meta.top-right { top: 120px; right: 3rem; }
+        .ed-meta.top-left { top: 140px; left: 3rem; }
+        .ed-meta.top-right { top: 140px; right: 3rem; }
         .ed-meta.bottom-left { bottom: 250px; left: 3rem; }
         .ed-meta.bottom-right { bottom: 250px; right: 3rem; }
 
         /* Giant Typography */
         .ed-giant-title {
             position: absolute;
-            top: 45%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100%;
@@ -103,7 +102,7 @@
             font-size: clamp(5rem, 18vw, 14rem);
             font-weight: 400;
             line-height: 0.85;
-            color: #cdc9c1;
+            color: rgba(255, 255, 255, 0.03);
             z-index: 1;
             white-space: nowrap;
             user-select: none;
@@ -113,13 +112,13 @@
         /* Center Art — the © symbol */
         .ed-center-art {
             position: absolute;
-            top: 52%;
+            top: 45%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
             font-family: var(--font-heading);
             font-size: clamp(9rem, 22vw, 17rem);
-            color: #111;
+            color: rgba(255, 255, 255, 0.08);
             text-align: center;
             line-height: 1;
             mix-blend-mode: normal;
@@ -135,14 +134,14 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 3rem;
-            padding-top: 62vh;
+            padding-top: 65vh;
         }
 
         .ed-col {
             font-family: var(--font-body);
             font-size: 0.8rem;
             line-height: 1.6;
-            color: #444;
+            color: #b3b0aa;
         }
 
         .ed-col p {
@@ -152,7 +151,7 @@
         .ed-price {
             font-family: var(--font-heading);
             font-size: 2rem;
-            color: #111;
+            color: #ffffff;
             margin-bottom: 0.5rem;
             line-height: 1;
         }
@@ -160,8 +159,8 @@
         .ed-badge {
             display: inline-block;
             padding: 0.2rem 0.7rem;
-            background: #111;
-            color: #f2efeb;
+            background: #ffffff;
+            color: #000000;
             font-family: var(--font-body);
             font-size: 0.6rem;
             letter-spacing: 2px;
@@ -172,34 +171,38 @@
 
         .ed-badge.best {
             background: var(--bronze, #c5a880);
-            color: #fff;
+            color: #000000;
+            font-weight: 600;
         }
 
         .ed-btn {
             display: inline-block;
             margin-top: 1rem;
             padding: 0.8rem 1.5rem;
-            background: #111;
-            color: #fff;
+            background: var(--bronze, #c5a880);
+            color: #000000;
             text-decoration: none;
             border-radius: 30px;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background 0.3s;
+            transition: background 0.3s, color 0.3s;
             font-family: var(--font-body);
+            font-weight: 600;
+            text-align: center;
         }
         .ed-btn:hover {
-            background: #333;
+            background: #ffffff;
+            color: #000000;
         }
 
         /* Package total highlight */
         .ed-col.highlight-col {
-            background: #fff;
+            background: #111111;
             border-radius: 16px;
             padding: 1.5rem;
-            border: 1px solid #e8e1d5;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #333333;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
         }
 
         @media (max-width: 1024px) {
@@ -207,6 +210,8 @@
                 display: block;
                 min-height: auto;
                 padding-top: 110px;
+                background-position: center 220px;
+                background-size: min(450px, 80vw);
             }
             .ed-meta.top-left, .ed-meta.top-right,
             .ed-meta.bottom-left, .ed-meta.bottom-right {
@@ -318,8 +323,8 @@
 
             <!-- Col 2: What qualifies -->
             <div class="ed-col">
-                <img src="software_copyright.png" alt="Registro de software y código" style="width: 100%; border-radius: 12px; margin-bottom: 1.2rem; display: block; border: 1px solid var(--stone-200, #e8e1d5); box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-                <p><strong style="color:#111;">¿Qué obras se registran?</strong></p>
+                <img src="software_copyright.png" alt="Registro de software y código" style="width: 100%; border-radius: 12px; margin-bottom: 1.2rem; display: block; border: 1px solid #333; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                <p><strong style="color:#ffffff;">¿Qué obras se registran?</strong></p>
                 <p>Logotipos e identidad visual · Software y aplicaciones · Contenido editorial y literario · Fotografías y audiovisual · Música y composiciones · Diseño web y UX · Material pedagógico y cursos · Obras arquitectónicas y planos.</p>
                 <p>Si lo creaste y tiene originalidad expresiva, se puede registrar. Nuestro equipo evalúa sin costo adicional si tu obra califica antes de proceder.</p>
             </div>
@@ -327,7 +332,7 @@
             <!-- Col 3: Price — Registro básico -->
             <div class="ed-col">
                 <div class="ed-price">$2,990 <span style="font-size:0.5em;">MXN</span></div>
-                <p style="font-weight: 600; color:#111;">REGISTRO DE OBRA</p>
+                <p style="font-weight: 600; color:#ffffff;">REGISTRO DE OBRA</p>
                 <p>Todo incluido: honorarios, tramitación ante el INDAUTOR y acuse oficial de registro. Aplica para una obra o colección de obras del mismo autor.</p>
                 <ul style="padding-left: 1.2rem; margin: 0 0 1rem; display: flex; flex-direction: column; gap: 0.3rem;">
                     <li>Evaluación de elegibilidad sin costo</li>
@@ -344,7 +349,7 @@
             <div class="ed-col highlight-col">
                 <div class="ed-badge best">Recomendado</div>
                 <div class="ed-price">$8,990 <span style="font-size:0.5em;">MXN</span></div>
-                <p style="font-weight: 600; color:#111;">PAQUETE PROTECCIÓN TOTAL</p>
+                <p style="font-weight: 600; color:#ffffff;">PAQUETE PROTECCIÓN TOTAL</p>
                 <p>Registro de marca ante el IMPI + registro de derechos de autor ante el INDAUTOR en un solo expediente coordinado. Protege tu nombre <em>y</em> tu obra al mismo tiempo.</p>
                 <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem; display: flex; flex-direction: column; gap: 0.3rem;">
                     <li>Búsqueda fonética de marca incluida</li>
@@ -393,15 +398,15 @@
     </section>
 
     <!-- ═══ RADAR LEGAL FF ═══ -->
-    <section style="background: var(--bg-surface-elevated, #f4f2ee); padding: 5rem 2rem;">
+    <section style="background: #000000; padding: 5rem 2rem; border-top: 1px solid #222;">
         <div style="
-            background: #ffffff;
+            background: #111111;
             border-radius: 20px;
             padding: 3rem 3.5rem;
             max-width: 700px;
             margin: 0 auto;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.07);
-            border: 1px solid #e8e1d5;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+            border: 1px solid #333333;
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 2.5rem;
@@ -410,7 +415,7 @@
             <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                 <span style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #c5a880;">RADAR LEGAL FF</span>
                 <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                    <h2 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 400; line-height: 1.2; margin: 0; color: #2e2c2a; letter-spacing: -0.5px;">
+                    <h2 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 400; line-height: 1.2; margin: 0; color: #ffffff; letter-spacing: -0.5px;">
                         Actualidad jurídica<br><em>que sí vas a leer</em>
                     </h2>
                     <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; margin: 0; color: #9c9489;">
@@ -422,23 +427,23 @@
                     <div style="display: flex; flex-direction: column; gap: 0.4rem;">
                         <label for="radar-da-email" style="font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #9c9489;">Correo</label>
                         <input type="email" id="radar-da-email" name="email" required placeholder="tu@correo.com"
-                               style="padding: 0.85rem 1.2rem; border: 1.5px solid #d5ccbf; border-radius: 8px; font-family: var(--font-body); font-size: 0.95rem; color: #2e2c2a; background: #fff; outline: none;"
-                               onfocus="this.style.borderColor='#2e2c2a'"
-                               onblur="this.style.borderColor='#d5ccbf'">
+                               style="padding: 0.85rem 1.2rem; border: 1.5px solid #333; border-radius: 8px; font-family: var(--font-body); font-size: 0.95rem; color: #ffffff; background: #1a1917; outline: none;"
+                               onfocus="this.style.borderColor='#c5a880'"
+                               onblur="this.style.borderColor='#333'">
                     </div>
                     <label style="display: flex; align-items: flex-start; gap: 8px; font-family: var(--font-body); font-size: 0.78rem; line-height: 1.45; cursor: pointer; color: #9c9489;">
                         <input type="checkbox" id="radar-da-privacidad" required style="margin-top: 2px; flex-shrink: 0;">
-                        <span>He leído y acepto el <a href="privacidad.html" style="color: #2e2c2a; text-decoration: underline;">aviso de privacidad</a>.</span>
+                        <span>He leído y acepto el <a href="privacidad.html" style="color: #ffffff; text-decoration: underline;">aviso de privacidad</a>.</span>
                     </label>
                     <button type="submit"
-                            style="padding: 0.95rem 2rem; background: #2e2c2a; color: #fff; border: none; border-radius: 8px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; cursor: pointer;"
-                            onmouseover="this.style.background='#c5a880'"
-                            onmouseout="this.style.background='#2e2c2a'">
+                            style="padding: 0.95rem 2rem; background: var(--bronze, #c5a880); color: #000000; border: none; border-radius: 8px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s;"
+                            onmouseover="this.style.background='#ffffff'"
+                            onmouseout="this.style.background='var(--bronze,#c5a880)'">
                         Quiero mis alertas
                     </button>
-                    <p id="radar-da-msg" role="status" style="font-size: 0.82rem; margin: 0; min-height: 1.2em; color: #2e2c2a;"></p>
+                    <p id="radar-da-msg" role="status" style="font-size: 0.82rem; margin: 0; min-height: 1.2em; color: #c5a880;"></p>
                 </form>
-                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; padding-top: 0.75rem; border-top: 1px solid #e8e1d5;">
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; padding-top: 0.75rem; border-top: 1px solid #333;">
                     <span style="font-family: var(--font-body); font-size: 0.72rem; color: #9c9489; display: flex; align-items: center; gap: 5px;">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         Cada martes
