@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Consulta Estratégica | FERRO FRAGOSO</title>
     <meta name="description" content="Resolución directa a tus dudas legales más complejas.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -118,7 +118,7 @@
         .transparent-nav {
             background: transparent !important;
         }
-        .transparent-nav .logo-text, .transparent-nav .nav-links a {
+        .transparent-nav .logo-text, .transparent-nav .nav-links a, .transparent-nav .nav-group-btn, .transparent-nav .nav-socios-link {
             color: #fff !important;
         }
         .transparent-nav .nav-logo-img {
@@ -154,22 +154,52 @@
                 <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
             
-            <div class="nav-menu">
+            <div class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="marcas.html">MARCAS</a></li>
-                    <li><a href="derechos-autor.html">DERECHOS DE AUTOR</a></li>
-                    <li><a href="revision.html">REVISIÓN</a></li>
-                    <li><a href="consulta.html">CONSULTA</a></li>
-                    <li><a href="contratos.html">CONTRATOS</a></li>
-                    <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="radar/index.html">RADAR LEGAL</a></li>
-                    <li><a href="nosotros.html">NOSOTROS</a></li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="marcas.html">Registrar mi marca</a></li>
+                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="contratos.html">Crear un contrato</a></li>
+                            <li><a href="revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-he">
+                            Herramientas gratis<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-he">
+                            <li><a href="finiquito.html">Calcular mi finiquito</a></li>
+                            <li><a href="radar/index.html">Leer el Radar Legal</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 1 solo destino => enlace directo, sin desplegable -->
+                    <li><a href="empresas.html" class="nav-top-link">Empresas</a></li>
+
+                    <!-- Visibles solo en el panel movil (en escritorio viven a la derecha) -->
+                    <li class="nav-mobile-only"><a href="index.html#socios" class="nav-top-link">Socios</a></li>
+                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
-                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                <a href="index.html#socios" class="nav-socios-link">Socios</a>
+                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -186,22 +216,44 @@
     </header>
 
     <!-- ═══ LIGHT DETAILS SECTION ═══ -->
-    <section class="consulta-details">
-        <div class="consulta-info fade-in-up">
+    <section class="consulta-details" style="display: flex; flex-direction: column; gap: 40px; padding: 4rem 1.5rem;">
+        <div class="consulta-info fade-in-up" style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2>Hablemos de tu caso.</h2>
-            <p>Sabemos que enfrentas decisiones cruciales donde el margen de error es mínimo. Una consulta estratégica no es una simple charla; es una inmersión profunda en la situación actual de tu negocio.</p>
-            <p>Identificamos riesgos ocultos, planteamos alternativas tácticas y te entregamos una dirección jurídica precisa.</p>
+            <p>Sabemos que enfrentas decisiones cruciales donde el margen de error es mínimo. Una sesión estratégica no es una simple charla; es una inmersión profunda en tu situación jurídica para entregarte una hoja de ruta clara.</p>
         </div>
         
-        <div class="fade-in-up delay-1">
-            <div class="solution-card" style="margin: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.06); border: none;">
-                <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.5rem; color:#111;">Consulta Estratégica</h3>
-                <p class="price-tag" style="font-size: 2.2rem;">$1,290 <span style="font-size: 0.9rem; color:#666;">MXN</span></p>
-                <p style="color: #555; margin-bottom: 2rem;">Sesión por Zoom (60 min) uno-a-uno con un socio de la firma. Evaluaremos tu escenario y trazaremos la ruta óptima a seguir.</p>
-                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20agendar%20una%20Consulta%20Estrat%C3%A9gica%20por%20Zoom%20de%2060%20min%20(%241%2C290%20MXN)."
-                   target="_blank" rel="noopener" class="solution-btn" style="width: 100%; text-align: center;"
-                   data-mp-link="PENDIENTE:consulta-1290" data-cal-link="PENDIENTE:evento-consulta-60min" data-producto="Consulta Estratégica">Agendar Sesión</a>
-                <p style="font-size: 0.75rem; color: #999; margin-top: 0.75rem; text-align: center;">El pago confirma tu horario; recibirás el link de Zoom y recordatorios automáticos.</p>
+        <div class="consulta-cards-grid fade-in-up delay-1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 900px; margin: 0 auto; width: 100%;">
+            <!-- CARD 1: PERSONAS -->
+            <div class="solution-card" style="margin: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; height: 100%; border-radius: 12px; padding: 2rem;">
+                <div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.3rem; color:#111; font-weight: 500;">Consulta Estratégica</h3>
+                    <span style="font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); font-weight: 600; display: inline-block; margin-bottom: 1rem;">Para Particulares</span>
+                    <p class="price-tag" style="font-size: 2.2rem; margin-top: 0.5rem; font-weight: 700; color: #111;">$1,290 <span style="font-size: 0.9rem; color:#666; font-weight: 400;">MXN</span></p>
+                    <p style="color: #555; margin-bottom: 2rem; font-size: 0.92rem; line-height: 1.5;">Sesión por Zoom (60 min) uno-a-uno con un socio de la firma. Evaluaremos tu escenario civil, familiar, de arrendamiento o laboral y trazaremos la ruta óptima a seguir.</p>
+                </div>
+                <div>
+                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20agendar%20una%20Consulta%20Estrat%C3%A9gica%20por%20Zoom%20de%2060%20min%20(%241%2C290%20MXN)."
+                       target="_blank" rel="noopener" class="solution-btn" style="width: 100%; text-align: center; display: block;"
+                       data-mp-link="PENDIENTE:consulta-1290" data-cal-link="PENDIENTE:evento-consulta-60min" data-producto="Consulta Estratégica">Agendar Sesión</a>
+                    <p style="font-size: 0.72rem; color: #999; margin-top: 0.75rem; text-align: center;">El pago confirma tu horario; recibirás el link de Zoom y recordatorios automáticos.</p>
+                </div>
+            </div>
+
+            <!-- CARD 2: NEGOCIOS -->
+            <div class="solution-card" style="margin: 0; box-shadow: 0 15px 45px rgba(0,0,0,0.08); border: 2px solid var(--accent); display: flex; flex-direction: column; justify-content: space-between; height: 100%; position: relative; border-radius: 12px; padding: 2rem;">
+                <div style="position: absolute; top: -12px; right: 20px; background: var(--accent); color: #fff; font-size: 0.65rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;">Empresarial</div>
+                <div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.3rem; color:#111; font-weight: 500;">Diagnóstico Legal</h3>
+                    <span style="font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); font-weight: 600; display: inline-block; margin-bottom: 1rem;">Para Negocios y PyMEs</span>
+                    <p class="price-tag" style="font-size: 2.2rem; margin-top: 0.5rem; font-weight: 700; color: #111;">$1,490 <span style="font-size: 0.9rem; color:#666; font-weight: 400;">MXN</span></p>
+                    <p style="color: #555; margin-bottom: 2rem; font-size: 0.92rem; line-height: 1.5;">Sesión por Zoom (30 min) + matriz de riesgos de tu negocio. Evaluaremos tus contratos, riesgos laborales y obligaciones corporativas urgentes.</p>
+                </div>
+                <div>
+                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20un%20Diagn%C3%B3stico%20Legal%20Empresarial%20(%241%2C490%20MXN)."
+                       target="_blank" rel="noopener" class="solution-btn" style="width: 100%; text-align: center; display: block; background: var(--accent); color: #fff;"
+                       data-mp-link="PENDIENTE:diagnostico-1490" data-cal-link="PENDIENTE:evento-diagnostico-30min" data-producto="Diagnóstico Legal Empresarial">Agendar Diagnóstico</a>
+                    <p style="font-size: 0.72rem; color: #999; margin-top: 0.75rem; text-align: center;">El pago confirma tu horario; recibirás el link de Zoom y recordatorios automáticos.</p>
+                </div>
             </div>
         </div>
     </section>
