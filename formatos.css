@@ -191,6 +191,7 @@ body:has(#step-0.active) .nav-logo-img {
     z-index: 1;
     pointer-events: none;
     opacity: 0.9;
+    /* No blend mode, no filter, no mask – the PNG is already transparent */
 }
 
 .step0-content {
