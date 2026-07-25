@@ -177,31 +177,11 @@ body:has(#step-0.active) .nav-logo-img {
     justify-content: flex-start;
     align-items: center;
     padding: 10rem 2rem 4rem;
-    background-color: transparent; /* Let body background show through — no box visible */
+    background-color: transparent;
     position: relative;
-    /* Break out of the 900px container to fill viewport */
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     overflow: hidden;
-}
-
-.step0-landing::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -5%;
-    bottom: 0;
-    width: 60%;
-    background-image: url('abstract_ink_bg.png');
-    background-size: contain;
-    background-position: center right;
-    background-repeat: no-repeat;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.7;
-    /* Feather all edges so the ink dissolves into the background */
-    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 60% 50%, black 30%, transparent 75%);
-    mask-image: radial-gradient(ellipse 80% 70% at 60% 50%, black 30%, transparent 75%);
 }
 
 .step0-content {
