@@ -194,6 +194,168 @@
             </div>
         </section>
 
+        <!-- STEP 2C: JURISDICCIÓN Y NORMATIVA APLICABLE -->
+        <section id="step-2c" class="step-container">
+            <div class="wizard-overlay">
+                <div class="wizard-top-bar">
+                    <button class="wizard-close-btn" id="btn-back-to-2b-from-2c" aria-label="Volver">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="wizard-brand">
+                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img">
+                        <span class="wizard-logo-text">FERRO FRAGOSO</span>
+                    </div>
+                </div>
+
+                <div class="wizard-modal step2-ficha">
+                    <h1 class="step2-modal-title">Jurisdicción y normativa aplicable</h1>
+                    <p style="color: #666; margin-bottom: 2.5rem; max-width: 520px;">Antes de generar tu documento, necesitamos saber dónde surtirá sus efectos para aplicar la legislación correcta.</p>
+
+                    <div class="jurisdiccion-form">
+
+                        <!-- P1: Entidad Federativa -->
+                        <div class="jurisdiccion-field">
+                            <label class="jurisdiccion-label" for="jur-entidad">1. Entidad federativa donde se celebra o ejecuta el contrato <span class="jurisdiccion-required">*</span></label>
+                            <select id="jur-entidad" class="jurisdiccion-select" required>
+                                <option value="" disabled selected>Selecciona una entidad</option>
+                                <option value="Aguascalientes">Aguascalientes</option>
+                                <option value="Baja California">Baja California</option>
+                                <option value="Baja California Sur">Baja California Sur</option>
+                                <option value="Campeche">Campeche</option>
+                                <option value="Chiapas">Chiapas</option>
+                                <option value="Chihuahua">Chihuahua</option>
+                                <option value="Ciudad de México">Ciudad de México</option>
+                                <option value="Coahuila">Coahuila</option>
+                                <option value="Colima">Colima</option>
+                                <option value="Durango">Durango</option>
+                                <option value="Estado de México">Estado de México</option>
+                                <option value="Guanajuato">Guanajuato</option>
+                                <option value="Guerrero">Guerrero</option>
+                                <option value="Hidalgo">Hidalgo</option>
+                                <option value="Jalisco">Jalisco</option>
+                                <option value="Michoacán">Michoacán</option>
+                                <option value="Morelos">Morelos</option>
+                                <option value="Nayarit">Nayarit</option>
+                                <option value="Nuevo León">Nuevo León</option>
+                                <option value="Oaxaca">Oaxaca</option>
+                                <option value="Puebla">Puebla</option>
+                                <option value="Querétaro">Querétaro</option>
+                                <option value="Quintana Roo">Quintana Roo</option>
+                                <option value="San Luis Potosí">San Luis Potosí</option>
+                                <option value="Sinaloa">Sinaloa</option>
+                                <option value="Sonora">Sonora</option>
+                                <option value="Tabasco">Tabasco</option>
+                                <option value="Tamaulipas">Tamaulipas</option>
+                                <option value="Tlaxcala">Tlaxcala</option>
+                                <option value="Veracruz">Veracruz</option>
+                                <option value="Yucatán">Yucatán</option>
+                                <option value="Zacatecas">Zacatecas</option>
+                            </select>
+                            <p id="jur-entidad-error" class="jurisdiccion-error"></p>
+                        </div>
+
+                        <!-- P2: Municipio / Alcaldía -->
+                        <div class="jurisdiccion-field" id="jur-municipio-block">
+                            <label class="jurisdiccion-label" for="jur-municipio">2. Municipio o alcaldía <span class="jurisdiccion-optional">(cuando aplique)</span></label>
+                            <input type="text" id="jur-municipio" class="jurisdiccion-input" placeholder="Ej: Benito Juárez, Monterrey, Guadalajara…">
+                            <p class="jurisdiccion-hint">Requerido para materias inmobiliarias, arrendamiento, licencias o uso de suelo.</p>
+                        </div>
+
+                        <!-- P3: Jurisdicción distinta -->
+                        <div class="jurisdiccion-field jurisdiccion-full-width">
+                            <label class="jurisdiccion-label">3. ¿Las partes desean someterse a los tribunales de una entidad federativa distinta?</label>
+                            <div class="jurisdiccion-toggle-group">
+                                <button type="button" class="jurisdiccion-toggle-btn active" data-value="no" id="jur-distinta-no">No</button>
+                                <button type="button" class="jurisdiccion-toggle-btn" data-value="si" id="jur-distinta-si">Sí</button>
+                            </div>
+                        </div>
+
+                        <!-- P3 Condicional -->
+                        <div class="jurisdiccion-conditional" id="jur-distinta-fields" style="display: none;">
+                            <div class="jurisdiccion-field">
+                                <label class="jurisdiccion-label" for="jur-distinta-entidad">Entidad federativa para jurisdicción <span class="jurisdiccion-required">*</span></label>
+                                <select id="jur-distinta-entidad" class="jurisdiccion-select">
+                                    <option value="" disabled selected>Selecciona una entidad</option>
+                                    <option value="Aguascalientes">Aguascalientes</option>
+                                    <option value="Baja California">Baja California</option>
+                                    <option value="Baja California Sur">Baja California Sur</option>
+                                    <option value="Campeche">Campeche</option>
+                                    <option value="Chiapas">Chiapas</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                    <option value="Ciudad de México">Ciudad de México</option>
+                                    <option value="Coahuila">Coahuila</option>
+                                    <option value="Colima">Colima</option>
+                                    <option value="Durango">Durango</option>
+                                    <option value="Estado de México">Estado de México</option>
+                                    <option value="Guanajuato">Guanajuato</option>
+                                    <option value="Guerrero">Guerrero</option>
+                                    <option value="Hidalgo">Hidalgo</option>
+                                    <option value="Jalisco">Jalisco</option>
+                                    <option value="Michoacán">Michoacán</option>
+                                    <option value="Morelos">Morelos</option>
+                                    <option value="Nayarit">Nayarit</option>
+                                    <option value="Nuevo León">Nuevo León</option>
+                                    <option value="Oaxaca">Oaxaca</option>
+                                    <option value="Puebla">Puebla</option>
+                                    <option value="Querétaro">Querétaro</option>
+                                    <option value="Quintana Roo">Quintana Roo</option>
+                                    <option value="San Luis Potosí">San Luis Potosí</option>
+                                    <option value="Sinaloa">Sinaloa</option>
+                                    <option value="Sonora">Sonora</option>
+                                    <option value="Tabasco">Tabasco</option>
+                                    <option value="Tamaulipas">Tamaulipas</option>
+                                    <option value="Tlaxcala">Tlaxcala</option>
+                                    <option value="Veracruz">Veracruz</option>
+                                    <option value="Yucatán">Yucatán</option>
+                                    <option value="Zacatecas">Zacatecas</option>
+                                </select>
+                            </div>
+                            <div class="jurisdiccion-field">
+                                <label class="jurisdiccion-label" for="jur-distinta-municipio">Municipio o alcaldía (opcional)</label>
+                                <input type="text" id="jur-distinta-municipio" class="jurisdiccion-input" placeholder="Ej: Benito Juárez">
+                            </div>
+                            <div class="jurisdiccion-field jurisdiccion-full-width">
+                                <label class="jurisdiccion-label" for="jur-distinta-justificacion">Justificación breve</label>
+                                <textarea id="jur-distinta-justificacion" class="jurisdiccion-textarea" rows="2" placeholder="Ej: El domicilio fiscal de ambas partes se encuentra en esa entidad."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- P4: Materia principal -->
+                        <div class="jurisdiccion-field jurisdiccion-full-width">
+                            <label class="jurisdiccion-label" for="jur-materia">4. Materia principal del documento <span class="jurisdiccion-required">*</span></label>
+                            <select id="jur-materia" class="jurisdiccion-select" required>
+                                <option value="" disabled selected>Selecciona la materia</option>
+                                <option value="Civil">Civil</option>
+                                <option value="Mercantil">Mercantil</option>
+                                <option value="Laboral">Laboral</option>
+                                <option value="Arrendamiento inmobiliario">Arrendamiento inmobiliario</option>
+                                <option value="Protección de datos personales">Protección de datos personales</option>
+                                <option value="Societaria">Societaria</option>
+                                <option value="Servicios profesionales">Servicios profesionales</option>
+                                <option value="Propiedad intelectual">Propiedad intelectual</option>
+                                <option value="Inmobiliaria">Inmobiliaria</option>
+                                <option value="Otra">Otra</option>
+                            </select>
+                            <p id="jur-materia-error" class="jurisdiccion-error"></p>
+                        </div>
+
+                        <!-- Warning badge -->
+                        <div class="jurisdiccion-warning" id="jur-warning" style="display: none;">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            <span id="jur-warning-text">Revisión humana obligatoria</span>
+                        </div>
+
+                    </div>
+
+                    <div class="wizard-footer step2-footer" style="margin-top: 2rem;">
+                        <button class="wizard-nav-btn wizard-next" id="btn-continue-from-2c">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- STEP 3: MONETTO-STYLE WIZARD -->
         <section id="step-3" class="step-container">
             <div class="wizard-overlay">
@@ -339,13 +501,37 @@
             const step1 = document.getElementById('step-1');
             const step2 = document.getElementById('step-2');
             const step2b = document.getElementById('step-2b');
+            const step2c = document.getElementById('step-2c');
             const step3 = document.getElementById('step-3');
+
+            // Objeto global de jurisdicción
+            const jurisdiccion = { entidad: '', municipio: '', materia: '', distintoJurisdiccion: false, distintaEntidad: '', distintaMunicipio: '', distintoJustificacion: '' };
+
+            // Mapa: id de contrato → materia sugerida
+            const MATERIA_POR_CONTRATO = {
+                '01_prestacion_servicios': 'Servicios profesionales',
+                '02_arrendamiento': 'Arrendamiento inmobiliario',
+                '03_compraventa': 'Civil',
+                '04_nda': 'Mercantil',
+                '05_mutuo': 'Civil',
+                '06_comodato': 'Civil',
+                '07_contrato_trabajo': 'Laboral',
+                '08_renuncia_finiquito': 'Laboral',
+                '09_aviso_privacidad': 'Protección de datos personales',
+                '10_terminos_condiciones': 'Mercantil',
+                '11_pagare': 'Mercantil',
+                '12_pacto_socios': 'Societaria',
+                '13_carta_poder': 'Civil',
+                '14_poder_general': 'Civil',
+                '15_declaracion_protesta': 'Civil',
+            };
 
             function showStep(num) {
                 step0.classList.remove('active');
                 step1.classList.remove('active');
                 step2.classList.remove('active');
                 step2b.classList.remove('active');
+                step2c.classList.remove('active');
                 step3.classList.remove('active');
                 document.getElementById(`step-${num}`).classList.add('active');
                 window.scrollTo(0, 0);
@@ -441,10 +627,119 @@
                     // exista la cuenta y el formulario real.
                     if (quiereRadar) trackEvent('radar_alta', { etiqueta: 'generador' });
                 }
-                // initGenerator() reinicia valores a {}, así que el correo debe
-                // guardarse DESPUÉS de llamarlo — antes se sobrescribía al instante.
+                // Guardar email temporalmente y pasar a jurisdicción
+                window.__tempEmail = email;
+                window.__tempRadar = quiereRadar;
+
+                // Pre-seleccionar materia según el contrato elegido
+                if (selectedDoc && MATERIA_POR_CONTRATO[selectedDoc.id]) {
+                    document.getElementById('jur-materia').value = MATERIA_POR_CONTRATO[selectedDoc.id];
+                }
+
+                showStep('2c');
+            });
+
+            /* ============================ STEP 2C: JURISDICCIÓN ============================ */
+
+            // Toggle Sí/No para jurisdicción distinta
+            document.getElementById('jur-distinta-no').addEventListener('click', () => {
+                document.getElementById('jur-distinta-no').classList.add('active');
+                document.getElementById('jur-distinta-si').classList.remove('active');
+                document.getElementById('jur-distinta-fields').style.display = 'none';
+            });
+            document.getElementById('jur-distinta-si').addEventListener('click', () => {
+                document.getElementById('jur-distinta-si').classList.add('active');
+                document.getElementById('jur-distinta-no').classList.remove('active');
+                document.getElementById('jur-distinta-fields').style.display = '';
+            });
+
+            // Función para evaluar si requiere revisión humana
+            function evaluarRevisionHumana() {
+                const materia = document.getElementById('jur-materia').value;
+                const distintoJur = document.getElementById('jur-distinta-si').classList.contains('active');
+                const warning = document.getElementById('jur-warning');
+                const warningText = document.getElementById('jur-warning-text');
+                let msg = '';
+
+                if (materia === 'Laboral' && distintoJur) {
+                    msg = 'En materia laboral, la jurisdicción no puede pactarse libremente (art. 700 LFT). Se recomienda revisión profesional.';
+                } else if (['Arrendamiento inmobiliario', 'Inmobiliaria'].includes(materia) && distintoJur) {
+                    msg = 'Cuando existe un inmueble, la jurisdicción suele corresponder al lugar donde se ubica el bien. Se recomienda revisión profesional.';
+                } else if (materia === 'Otra') {
+                    msg = 'La materia seleccionada requiere análisis jurídico individualizado. Se recomienda revisión profesional.';
+                }
+
+                if (msg) {
+                    warningText.textContent = msg;
+                    warning.style.display = '';
+                } else {
+                    warning.style.display = 'none';
+                }
+            }
+
+            document.getElementById('jur-materia').addEventListener('change', evaluarRevisionHumana);
+            document.getElementById('jur-distinta-si').addEventListener('click', evaluarRevisionHumana);
+            document.getElementById('jur-distinta-no').addEventListener('click', evaluarRevisionHumana);
+
+            // Botón atrás: 2C → 2B
+            document.getElementById('btn-back-to-2b-from-2c').addEventListener('click', () => showStep('2b'));
+
+            // Botón continuar: 2C → 3
+            document.getElementById('btn-continue-from-2c').addEventListener('click', () => {
+                const entidad = document.getElementById('jur-entidad').value;
+                const materia = document.getElementById('jur-materia').value;
+                const entidadError = document.getElementById('jur-entidad-error');
+                const materiaError = document.getElementById('jur-materia-error');
+                let valid = true;
+
+                if (!entidad) {
+                    entidadError.textContent = 'Selecciona una entidad federativa.';
+                    valid = false;
+                } else {
+                    entidadError.textContent = '';
+                }
+
+                if (!materia) {
+                    materiaError.textContent = 'Selecciona la materia principal.';
+                    valid = false;
+                } else {
+                    materiaError.textContent = '';
+                }
+
+                const distintoJur = document.getElementById('jur-distinta-si').classList.contains('active');
+                if (distintoJur && !document.getElementById('jur-distinta-entidad').value) {
+                    entidadError.textContent = 'Si eliges jurisdicción distinta, selecciona la entidad.';
+                    valid = false;
+                }
+
+                if (!valid) return;
+
+                // Guardar datos de jurisdicción
+                jurisdiccion.entidad = entidad;
+                jurisdiccion.municipio = document.getElementById('jur-municipio').value.trim();
+                jurisdiccion.materia = materia;
+                jurisdiccion.distintoJurisdiccion = distintoJur;
+                if (distintoJur) {
+                    jurisdiccion.distintaEntidad = document.getElementById('jur-distinta-entidad').value;
+                    jurisdiccion.distintaMunicipio = document.getElementById('jur-distinta-municipio').value.trim();
+                    jurisdiccion.distintoJustificacion = document.getElementById('jur-distinta-justificacion').value.trim();
+                }
+
+                // Inicializar el generador
                 initGenerator();
-                valores['__email__'] = email;
+                valores['__email__'] = window.__tempEmail || '';
+
+                // Auto-inyectar jurisdicción en los campos del contrato
+                const ciudadJur = distintoJur
+                    ? (jurisdiccion.distintaMunicipio ? jurisdiccion.distintaMunicipio + ', ' : '') + jurisdiccion.distintaEntidad
+                    : (jurisdiccion.municipio ? jurisdiccion.municipio + ', ' : '') + jurisdiccion.entidad;
+                valores['Ciudad y estado de jurisdicción'] = ciudadJur;
+                valores['Ciudad de firma'] = (jurisdiccion.municipio ? jurisdiccion.municipio + ', ' : '') + jurisdiccion.entidad;
+
+                if (typeof trackEvent === 'function') {
+                    trackEvent('generador_jurisdiccion', { entidad, materia, distintoJur });
+                }
+
                 showStep(3);
             });
 
@@ -758,81 +1053,110 @@
                         });
                     }
                     
-                    // Compartir por WhatsApp (PDF real)
+                    // Compartir documento (PDF real)
                     actions.querySelector('#btn-share-wa').addEventListener('click', async function() {
-                        if (typeof trackEvent === 'function') trackEvent('generador_descarga', { medio: 'whatsapp', contrato: selectedDoc ? selectedDoc.id : null });
+                        if (typeof trackEvent === 'function') trackEvent('generador_descarga', { medio: 'share', contrato: selectedDoc ? selectedDoc.id : null });
                         const btn = this;
                         const prevHTML = btn.innerHTML;
+
+                        // 1. Validar que existe un contrato seleccionado
+                        if (!selectedDoc) {
+                            alert('No hay contrato seleccionado. Elige un contrato antes de compartir.');
+                            return;
+                        }
+
+                        // 2. Validar que el contenido generado no esté vacío
+                        if (!documentPreview || !documentPreview.innerHTML.trim()) {
+                            alert('El contrato está vacío. Completa los datos y espera a que se genere la vista previa.');
+                            return;
+                        }
+
+                        // 3. Validar campos esenciales (alerta si quedan placeholders visibles)
+                        const tempCheck = documentPreview.cloneNode(true);
+                        tempCheck.classList.add('gen-preview-content');
+                        const camposVacios = tempCheck.querySelectorAll('.fill.empty').length;
+                        if (camposVacios > 0) {
+                            const confirmar = confirm('Aún hay campos sin completar en el contrato. ¿Deseas compartir el borrador incompleto?');
+                            if (!confirmar) return;
+                        }
+
                         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando PDF...';
                         btn.disabled = true;
 
                         let wrapper = null;
                         try {
-                            // Build a clean print-ready clone of the document.
-                            // documentPreview is the hidden data store (style="display:none") used to
-                            // render the wizard preview via .innerHTML, so it has NO layout/classes of
-                            // its own — cloning it directly carries over display:none and none of the
-                            // .gen-preview-content styling (titles, clauses, signatures, footnotes).
+                            // 4. Preparar un clon limpio con los estilos de impresión
                             const clone = documentPreview.cloneNode(true);
                             clone.removeAttribute('id');
                             clone.removeAttribute('style');
                             clone.classList.add('gen-preview-content');
 
                             wrapper = document.createElement('div');
-                            // position:absolute (NOT fixed) off-canvas — html2canvas measures
-                            // position:fixed elements unreliably (observed 0-height captures);
-                            // an absolutely-positioned element far outside the document flow
-                            // measures and renders correctly.
-                            wrapper.style.cssText = 'position:absolute;top:0;left:0;z-index:-9999;width:21cm;background:#fff;font-family:Georgia,serif;line-height:1.9;color:#111;padding:3cm 2.5cm;font-size:11pt;box-sizing:border-box;';
+                            // opacity:0 + pointer-events:none es la forma más segura de ocultar un nodo
+                            // para html2canvas/html2pdf: sigue existiendo en el layout y en las capas de
+                            // composición, pero el usuario no lo ve ni puede interactuar con él.
+                            wrapper.style.cssText = 'position:absolute;top:0;left:0;width:21cm;background:#fff;font-family:Georgia,serif;line-height:1.9;color:#111;padding:3cm 2.5cm;font-size:11pt;box-sizing:border-box;opacity:0;pointer-events:none;';
                             wrapper.innerHTML = `
                                 <div style="text-align:center;font-family:sans-serif;letter-spacing:2px;font-size:8pt;color:#666;margin-bottom:4pt">FERRO FRAGOSO</div>
                                 <div style="text-align:center;font-family:sans-serif;letter-spacing:3px;font-size:6pt;color:#999;margin-bottom:24pt">ESTUDIO JURÍDICO</div>
                             `;
                             wrapper.appendChild(clone);
-                            // html2canvas needs the node laid out in the real DOM (with the site's
-                            // stylesheet applied) to measure and render it correctly — an off-screen
-                            // but attached wrapper achieves that without flashing on screen.
+
+                            // html2canvas necesita el nodo en el DOM real (con la hoja de estilos del sitio
+                            // aplicada) para medir y renderizar correctamente.
                             document.body.appendChild(wrapper);
-                            // Force layout before handing off to html2canvas.
+
+                            // Forzar layout y esperar dos ciclos de pintado antes de capturar
                             const measuredHeight = wrapper.scrollHeight;
                             const measuredWidth = wrapper.scrollWidth;
+                            if (!measuredHeight || !measuredWidth) {
+                                throw new Error('El contenedor de impresión no tiene dimensiones. Verifica que el contrato no esté vacío.');
+                            }
+                            await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
+                            const fileNameBase = (selectedDoc ? selectedDoc.titulo.replace(/[^a-zA-Z0-9 ]/g,'').trim().replace(/ +/g,'_') : 'contrato');
                             const opt = {
                                 margin: [1.5, 2, 1.5, 2.5],
-                                filename: (selectedDoc ? selectedDoc.titulo.replace(/[^a-zA-Z0-9 ]/g,'').trim().replace(/ +/g,'_') : 'contrato') + '.pdf',
+                                filename: fileNameBase + '.pdf',
                                 image: { type: 'jpeg', quality: 0.95 },
-                                html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
+                                html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0, windowWidth: wrapper.scrollWidth },
                                 jsPDF: { unit: 'cm', format: 'letter', orientation: 'portrait' }
                             };
 
-                            const pdfBlob = await html2pdf().set(opt).from(wrapper).outputPdf('blob');
-                            const fileName = opt.filename;
+                            const worker = html2pdf().set(opt).from(wrapper);
+                            const pdfBlob = await worker.outputPdf('blob');
 
-                            // Mobile: use native Web Share API to share the actual file
-                            if (navigator.canShare && navigator.canShare({ files: [new File([pdfBlob], fileName, { type: 'application/pdf' })] })) {
-                                const file = new File([pdfBlob], fileName, { type: 'application/pdf' });
+                            // Validar que el blob no esté vacío (un PDF mínimo válido suele pesar >1 KB)
+                            if (!pdfBlob || pdfBlob.size < 1024) {
+                                throw new Error('El PDF generado está vacío o corrupto.');
+                            }
+
+                            const fileName = opt.filename;
+                            const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
+
+                            // 5. Compartir nativo (móvil) o descarga (escritorio)
+                            if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
                                 await navigator.share({
                                     title: selectedDoc ? selectedDoc.titulo : 'Contrato',
                                     text: 'Te comparto el contrato generado por Ferro Fragoso Estudio Jurídico.',
-                                    files: [file]
+                                    files: [pdfFile]
                                 });
                                 btn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
                             } else {
-                                // Desktop fallback: download PDF and open WhatsApp Web
+                                // Fallback escritorio: descarga directa
                                 const url = URL.createObjectURL(pdfBlob);
                                 const a = document.createElement('a');
                                 a.href = url;
                                 a.download = fileName;
+                                document.body.appendChild(a);
                                 a.click();
+                                a.remove();
                                 URL.revokeObjectURL(url);
-                                setTimeout(() => {
-                                    const msg = encodeURIComponent('Hola, te comparto el contrato «' + (selectedDoc ? selectedDoc.titulo : 'Contrato') + '» generado por Ferro Fragoso Estudio Jurídico. El PDF fue descargado en tu dispositivo.');
-                                    window.open('https://wa.me/?text=' + msg, '_blank');
-                                }, 800);
                                 btn.innerHTML = '<i class="fas fa-check"></i> PDF listo';
                             }
                         } catch (err) {
                             console.error(err);
+                            alert('No se pudo generar el PDF: ' + (err.message || 'Error desconocido'));
                             btn.innerHTML = '<i class="fas fa-times"></i> Error';
                         } finally {
                             if (wrapper && wrapper.parentNode) wrapper.parentNode.removeChild(wrapper);
