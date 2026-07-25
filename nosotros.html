@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nosotros | FERRO FRAGOSO</title>
     <meta name="description" content="Nuestra esencia y socios fundadores.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -25,22 +25,52 @@
                 <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
             
-            <div class="nav-menu">
+            <div class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="marcas.html">MARCAS</a></li>
-                    <li><a href="derechos-autor.html">DERECHOS DE AUTOR</a></li>
-                    <li><a href="revision.html">REVISIÓN</a></li>
-                    <li><a href="consulta.html">CONSULTA</a></li>
-                    <li><a href="contratos.html">CONTRATOS</a></li>
-                    <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="radar/index.html">RADAR LEGAL</a></li>
-                    <li><a href="nosotros.html">NOSOTROS</a></li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="marcas.html">Registrar mi marca</a></li>
+                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="contratos.html">Crear un contrato</a></li>
+                            <li><a href="revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-he">
+                            Herramientas gratis<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-he">
+                            <li><a href="finiquito.html">Calcular mi finiquito</a></li>
+                            <li><a href="radar/index.html">Leer el Radar Legal</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 1 solo destino => enlace directo, sin desplegable -->
+                    <li><a href="empresas.html" class="nav-top-link">Empresas</a></li>
+
+                    <!-- Visibles solo en el panel movil (en escritorio viven a la derecha) -->
+                    <li class="nav-mobile-only"><a href="index.html#socios" class="nav-top-link">Socios</a></li>
+                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
-                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                <a href="index.html#socios" class="nav-socios-link">Socios</a>
+                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -101,8 +131,6 @@
                     <h3 class="pilar-name">ALAN OBED<br>FRAGOSO RIVERA</h3>
                     <p class="pilar-cargo">ABOGADO</p>
                     <p class="pilar-univ">Universidad Autónoma de Querétaro</p>
-                    <!-- TODO: Cédula profesional real de Alan Obed Fragoso Rivera -->
-                    <p class="pilar-cedula" style="font-size: 0.72rem; color: var(--text-muted, #9c9489); margin: 0.2rem 0 0.5rem 0;">Cédula profesional: [PENDIENTE]</p>
                     <p class="pilar-desc-short word-fade-in">Trayectoria destacada en materia corporativa, administrativa y civil. Especialista en estrategia legal preventiva y blindaje de negocios.</p>
                     <div class="pilar-contact">
                         <a href="https://wa.me/524425827053" target="_blank" class="pilar-icon-btn"><i class="fab fa-whatsapp"></i></a>
@@ -124,8 +152,6 @@
                     <h3 class="pilar-name">DANIEL FERRO<br>GUTIÉRREZ</h3>
                     <p class="pilar-cargo">ABOGADO</p>
                     <p class="pilar-univ">Universidad Autónoma de Querétaro</p>
-                    <!-- TODO: Cédula profesional real de Daniel Ferro Gutiérrez -->
-                    <p class="pilar-cedula" style="font-size: 0.72rem; color: var(--text-muted, #9c9489); margin: 0.2rem 0 0.5rem 0;">Cédula profesional: [PENDIENTE]</p>
                     <p class="pilar-desc-short word-fade-in">Trayectoria especializada en derecho constitucional, contratos y protección del patrimonio. Estratega enfocado en consultoría empresarial y reestructuración de activos.</p>
                     <div class="pilar-contact">
                         <a href="https://wa.me/524425948978" target="_blank" class="pilar-icon-btn"><i class="fab fa-whatsapp"></i></a>

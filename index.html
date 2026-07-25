@@ -19,6 +19,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Sin JS, el estado inicial de .blur-fade dejaría los títulos invisibles -->
+    <noscript>
+        <style>
+            .blur-fade { opacity: 1 !important; transform: none !important; filter: none !important; }
+        </style>
+    </noscript>
 </head>
 <body>
 
@@ -175,7 +181,7 @@
 
     <!-- ═══ HOW IT WORKS (INFOGRAPHIC) ═══ -->
     <section class="how-it-works-infographic" style="background-color: #f6f5f3; padding: 6rem 2rem; position: relative; overflow: hidden; min-height: 800px;">
-        <h2 style="position: absolute; top: 4rem; right: 4rem; font-family: var(--font-body); font-weight: 700; text-align: right; margin: 0; font-size: 1.2rem; line-height: 1.2; text-transform: uppercase;">Cómo funciona<br><span style="font-weight: 400; font-size: 0.8rem; color: #666; letter-spacing: 1px;">Flujo de trabajo legal</span></h2>
+        <h2 class="blur-fade" style="position: absolute; top: 4rem; right: 4rem; font-family: var(--font-body); font-weight: 700; text-align: right; margin: 0; font-size: 1.2rem; line-height: 1.2; text-transform: uppercase;">Cómo funciona<br><span style="font-weight: 400; font-size: 0.8rem; color: #666; letter-spacing: 1px;">Flujo de trabajo legal</span></h2>
 
         <!-- SVG Lines Background -->
         <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;" preserveAspectRatio="xMidYMid slice">
@@ -288,8 +294,8 @@
     <section class="testimonios-section" id="testimonios">
         <div class="testimonios-inner">
             <header class="sec-head fade-in-up">
-                <span class="sec-eyebrow">Testimonios</span>
-                <h2 class="sec-title">Lo que dicen quienes<br><em>ya nos consultaron</em></h2>
+                <span class="sec-eyebrow blur-fade">Testimonios</span>
+                <h2 class="sec-title blur-fade" data-bf-delay="1">Lo que dicen quienes<br><em>ya nos consultaron</em></h2>
             </header>
 
             <!-- ═══════════════════════════════════════════════════════════════
@@ -345,8 +351,8 @@
     <section class="empresas-section" id="empresas">
         <div class="empresas-inner">
             <div class="empresas-copy fade-in-up">
-                <span class="sec-eyebrow">Empresas</span>
-                <h2 class="sec-title">¿Tu empresa firma<br><em>contratos todos los meses?</em></h2>
+                <span class="sec-eyebrow blur-fade">Empresas</span>
+                <h2 class="sec-title blur-fade" data-bf-delay="1">¿Tu empresa firma<br><em>contratos todos los meses?</em></h2>
                 <p class="empresas-text">
                     Tu departamento legal externo: contratos siempre actualizados, revisiones ilimitadas
                     y canal directo con los socios. Sin contratar un abogado de planta.
@@ -377,9 +383,9 @@
     <section id="socios" class="socios-home">
         <div class="socios-home-inner">
             <header class="sec-head fade-in-up">
-                <span class="sec-eyebrow">Quiénes somos</span>
-                <h2 class="sec-title">Las personas detrás<br><em>de tu asunto.</em></h2>
-                <p class="socios-home-intro">
+                <span class="sec-eyebrow blur-fade">Quiénes somos</span>
+                <h2 class="sec-title blur-fade" data-bf-delay="1">Las personas detrás<br><em>de tu asunto.</em></h2>
+                <p class="socios-home-intro blur-fade" data-bf-delay="2">
                     No hay call center ni asociados junior: tu caso lo analiza y lo firma uno de los dos socios fundadores.
                 </p>
             </header>
@@ -390,9 +396,7 @@
                     <h3 class="socio-card-nombre">Alan Obed Fragoso Rivera</h3>
                     <p class="socio-card-cargo">Socio fundador &middot; Abogado</p>
                     <p class="socio-card-univ">Universidad Autónoma de Querétaro</p>
-                    <!-- TODO: cédula profesional real -->
-                    <p class="socio-card-cedula">Cédula profesional: [PENDIENTE]</p>
-                    <p class="socio-card-desc">
+                    <p class="socio-card-desc word-fade-in">
                         Trayectoria en materia corporativa, administrativa y civil. Especialista en estrategia
                         legal preventiva y blindaje de negocios.
                     </p>
@@ -407,9 +411,7 @@
                     <h3 class="socio-card-nombre">Daniel Ferro Gutiérrez</h3>
                     <p class="socio-card-cargo">Socio fundador &middot; Abogado</p>
                     <p class="socio-card-univ">Universidad Autónoma de Querétaro</p>
-                    <!-- TODO: cédula profesional real -->
-                    <p class="socio-card-cedula">Cédula profesional: [PENDIENTE]</p>
-                    <p class="socio-card-desc">
+                    <p class="socio-card-desc word-fade-in">
                         Especializado en derecho constitucional, contratos y protección del patrimonio.
                         Enfocado en consultoría empresarial y reestructuración de activos.
                     </p>
@@ -427,8 +429,8 @@
     <!-- ═══ 6. NUESTRA PROMESA ═══ -->
     <section id="promesa" class="promesa-section">
         <div class="promesa-container fade-in-up">
-            <span class="promesa-eyebrow">NUESTRA PROMESA</span>
-            <h2 class="promesa-title reveal-mask">Un compromiso que<br><em>no tiene letra pequeña</em></h2>
+            <span class="promesa-eyebrow blur-fade">NUESTRA PROMESA</span>
+            <h2 class="promesa-title blur-fade" data-bf-delay="1">Un compromiso que<br><em>no tiene letra pequeña</em></h2>
             <div class="promesa-rule reveal-line"></div>
             <p class="promesa-text text-blur-in">
                 Operamos como plataforma: precios públicos, procesos claros y entregas en 48 horas. Pero decidimos como firma: cada asunto lo analiza un socio, con rigor y criterio. Tecnología en el proceso, abogados en las decisiones.
@@ -468,7 +470,7 @@
                 <span style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880);">RADAR LEGAL FF</span>
 
                 <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                    <h2 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 400; line-height: 1.2; margin: 0; color: var(--carbon, #2e2c2a); letter-spacing: -0.5px;">
+                    <h2 class="blur-fade" style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 400; line-height: 1.2; margin: 0; color: var(--carbon, #2e2c2a); letter-spacing: -0.5px;">
                         Actualidad jurídica<br><em>que sí vas a leer</em>
                     </h2>
                     <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; margin: 0; color: var(--text-muted, #9c9489);">
