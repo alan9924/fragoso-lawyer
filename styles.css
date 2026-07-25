@@ -3582,3 +3582,688 @@ footer {
     outline-offset: 4px;
 }
 
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVEGACIÓN POR INTENCIÓN — 4 grupos + desplegables
+   Regla: pestaña con 2+ hijos despliega; con 1 hijo es enlace directo.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Botón de grupo: hereda el mismo lenguaje visual que los enlaces del nav */
+.nav-group-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+.nav-top-link { text-transform: uppercase; }
+
+.nav-group-btn:hover,
+.nav-group:hover > .nav-group-btn,
+.nav-group-btn[aria-expanded="true"] { color: var(--carbon); }
+
+/* Chevron */
+.nav-chevron {
+    width: 7px;
+    height: 7px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(45deg) translate(-1px, -1px);
+    transition: transform 0.3s var(--ease-out-quart);
+    flex-shrink: 0;
+}
+.nav-group-btn[aria-expanded="true"] .nav-chevron {
+    transform: rotate(-135deg) translate(-2px, -2px);
+}
+
+/* ── Desplegable (escritorio) ── */
+@media (min-width: 1201px) {
+    .nav-group { position: relative; }
+
+    .nav-submenu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(6px);
+        min-width: 232px;
+        margin: 0;
+        padding: 0.6rem 0;
+        list-style: none;
+        background: var(--ivory, #fdfdfc);
+        border: 1px solid var(--stone-200, #e8e1d5);
+        border-radius: 14px;
+        box-shadow: 0 18px 44px rgba(46, 44, 42, 0.13);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s var(--ease-out-quart),
+                    transform 0.25s var(--ease-out-quart),
+                    visibility 0.25s;
+        z-index: 200;
+    }
+    /* Puente invisible: evita que el submenú se cierre al bajar el cursor */
+    .nav-group::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 14px;
+    }
+    .nav-group:hover > .nav-submenu,
+    .nav-group:focus-within > .nav-submenu,
+    .nav-group .nav-group-btn[aria-expanded="true"] + .nav-submenu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .nav-submenu a {
+        display: block;
+        padding: 0.6rem 1.35rem;
+        font-family: var(--font-body);
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0.3px;
+        text-transform: none;
+        color: var(--text-secondary);
+        white-space: nowrap;
+        transition: color 0.2s, background-color 0.2s;
+    }
+    .nav-submenu a::after { display: none; } /* sin subrayado animado aquí */
+    .nav-submenu a:hover,
+    .nav-submenu a:focus-visible {
+        color: var(--carbon);
+        background: var(--stone-100, #f2ede4);
+    }
+
+    .nav-mobile-only { display: none !important; }
+}
+
+/* Enlace "Socios" a la derecha, junto al botón de Membresía */
+.nav-socios-link {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+.nav-socios-link:hover { color: var(--carbon); }
+
+/* ── Panel móvil a pantalla completa (≤1200px) ── */
+@media (max-width: 1200px) {
+    .nav-socios-link { display: none; }
+
+    .nav-menu {
+        /* el layout base ya lo fija a pantalla completa; ajustamos el interior */
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        overflow-y: auto;
+        padding: 7.5rem 1.75rem 3rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 0 !important;
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .nav-links > li { border-bottom: 1px solid var(--stone-200, #e8e1d5); }
+
+    .nav-group-btn,
+    .nav-links > li > .nav-top-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1.15rem 0;
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+        color: var(--carbon);
+    }
+
+    /* Acordeón: cerrado por defecto, se abre con el botón */
+    .nav-submenu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.35s var(--ease-out-quart);
+    }
+    .nav-group-btn[aria-expanded="true"] + .nav-submenu { max-height: 320px; }
+
+    .nav-submenu a {
+        display: block;
+        padding: 0.75rem 0 0.75rem 1rem;
+        font-size: 0.95rem;
+        letter-spacing: 0.3px;
+        text-transform: none;
+        color: var(--text-secondary);
+        border-left: 1px solid var(--stone-300, #d5ccbf);
+        margin-bottom: 0.35rem;
+    }
+    .nav-submenu li:last-child a { margin-bottom: 1rem; }
+    .nav-submenu a::after { display: none; }
+
+    .nav-mobile-cta {
+        display: block;
+        margin: 1.5rem 0 0;
+        padding: 0.95rem 1.5rem;
+        background: var(--carbon, #2e2c2a);
+        color: var(--ivory, #fdfdfc) !important;
+        border-radius: 30px;
+        text-align: center;
+        font-size: 0.8rem !important;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    .nav-mobile-cta::after { display: none; }
+    .nav-links > li:last-child { border-bottom: none; }
+
+    /* En móvil el CTA del header se oculta: ya vive dentro del panel */
+    .nav-actions .nav-cta-btn { display: none; }
+}
+
+/* ── Accesibilidad: foco siempre visible ── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--bronze, #958463);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+/* Sobre fondos oscuros, el foco necesita contraste claro */
+.editorial-body a:focus-visible,
+.editorial-body button:focus-visible,
+.revision-dark-body a:focus-visible,
+.revision-dark-body button:focus-visible {
+    outline-color: #fff;
+}
+
+/* ── prefers-reduced-motion: respeta la preferencia del sistema ── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    html { scroll-behavior: auto !important; }
+    /* Elementos que se revelan con animación deben quedar visibles */
+    .fade-in-up, .fade-in-left, .fade-in-right, .fade-in,
+    .reveal-mask, .text-blur-in, .word-fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOME — Secciones reordenadas por intención
+   Una sola acción primaria por bloque.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Encabezado común de sección */
+.sec-head { margin-bottom: 3rem; }
+.sec-eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bronze, #958463);
+    margin-bottom: 1rem;
+}
+.sec-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+    font-weight: 400;
+    line-height: 1.18;
+    color: var(--carbon, #2e2c2a);
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+.sec-title em { font-style: italic; color: var(--taupe-dark, #6e6658); }
+
+/* Botones — jerarquía explícita */
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 2.4rem;
+    background: var(--carbon, #2e2c2a);
+    color: var(--ivory, #fdfdfc);
+    border-radius: 32px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.btn-primary:hover {
+    background: var(--bronze, #958463);
+    transform: translateY(-2px);
+}
+.btn-secondary-light {
+    display: inline-block;
+    padding: 0.9rem 2.1rem;
+    background: transparent;
+    color: var(--ivory, #fdfdfc);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 32px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.btn-secondary-light:hover {
+    background: var(--ivory, #fdfdfc);
+    color: var(--carbon, #2e2c2a);
+    border-color: var(--ivory, #fdfdfc);
+}
+
+/* ── 3. TESTIMONIOS ── */
+.testimonios-section {
+    background: #fafaf8;
+    padding: 7rem 2rem;
+    border-top: 1px solid var(--stone-200, #e8e1d5);
+}
+.testimonios-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+.testimonios-section .sec-head {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+.testimonios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.2rem;
+}
+.testimonio-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    padding: 2.5rem 2.2rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015), 0 10px 40px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.testimonio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03), 0 15px 50px rgba(0, 0, 0, 0.04);
+}
+
+/* Glow effects inspired by reference image */
+.testimonio-card.glow-yellow::before {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -50px;
+    right: -50px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 240, 138, 0.45) 0%, rgba(254, 240, 138, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+.testimonio-card.glow-blue::before {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -50px;
+    right: -50px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(186, 230, 253, 0.45) 0%, rgba(186, 230, 253, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+.testimonio-card.glow-coral::before {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -50px;
+    right: -50px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 226, 226, 0.45) 0%, rgba(254, 226, 226, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.testimonio-card blockquote {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 450;
+    line-height: 1.65;
+    color: #2c2c2c;
+    position: relative;
+    z-index: 2;
+}
+.testimonio-card figcaption {
+    margin-top: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* User profile layout */
+.testimonio-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.testimonio-avatar-letters {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    flex-shrink: 0;
+}
+.glow-yellow .testimonio-avatar-letters {
+    background: #eab308; /* Yellow theme */
+}
+.glow-blue .testimonio-avatar-letters {
+    background: #0284c7; /* Blue theme */
+}
+.glow-coral .testimonio-avatar-letters {
+    background: #e11d48; /* Coral theme */
+}
+
+.testimonio-profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+.testimonio-autor {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+.testimonio-meta {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.78rem;
+    color: #666662;
+}
+
+/* ── 4. EMPRESAS ── */
+.empresas-section {
+    background: var(--bg-surface-elevated, #f4f2ee);
+    padding: 6rem 2rem;
+    border-top: 1px solid var(--stone-200, #e8e1d5);
+}
+.empresas-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: 4rem;
+    align-items: center;
+}
+.empresas-text {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text-muted, #9c9489);
+    max-width: 460px;
+    margin: 1.5rem 0 2rem;
+}
+.empresas-precio {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin: 0 0 2rem;
+}
+.empresas-precio-monto {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--carbon, #2e2c2a);
+}
+.empresas-precio-periodo {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted, #9c9489);
+}
+/* Enlace secundario: deliberadamente sin peso de botón */
+.empresas-secundario {
+    margin: 1.5rem 0 0;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-muted, #9c9489);
+}
+.empresas-secundario a {
+    color: var(--carbon, #2e2c2a);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.empresas-secundario a:hover { color: var(--bronze, #958463); }
+.empresas-art img {
+    width: 100%;
+    height: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
+/* ── 6. SOCIOS (home) ── */
+.socios-home {
+    background: var(--bg-base, #fdfdfc);
+    padding: 6rem 2rem;
+    border-top: 1px solid var(--stone-200, #e8e1d5);
+}
+.socios-home-inner { max-width: 1000px; margin: 0 auto; }
+.socios-home .sec-head { text-align: center; }
+.socios-home-intro {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text-muted, #9c9489);
+    max-width: 560px;
+    margin: 1.5rem auto 0;
+}
+.socios-home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+.socio-card { text-align: center; }
+.socio-card-foto {
+    width: 132px;
+    height: 132px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(--stone-200, #e8e1d5);
+    margin-bottom: 1.4rem;
+}
+.socio-card-nombre {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--carbon, #2e2c2a);
+    margin: 0 0 0.35rem;
+}
+.socio-card-cargo {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bronze, #958463);
+    margin: 0 0 0.5rem;
+}
+.socio-card-univ,
+.socio-card-cedula {
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    color: var(--text-muted, #9c9489);
+    margin: 0 0 0.25rem;
+}
+.socio-card-desc {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--text-secondary, #6e6658);
+    margin: 1rem auto 1.3rem;
+    max-width: 380px;
+}
+.socio-card-contacto {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+.socio-card-contacto a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--stone-300, #d5ccbf);
+    border-radius: 50%;
+    color: var(--carbon, #2e2c2a);
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.socio-card-contacto a:hover {
+    background: var(--carbon, #2e2c2a);
+    color: var(--ivory, #fdfdfc);
+    border-color: var(--carbon, #2e2c2a);
+}
+.socios-home-quote {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--taupe-dark, #6e6658);
+    margin: 3.5rem auto 0;
+    max-width: 620px;
+}
+
+@media (max-width: 860px) {
+    .testimonios-section,
+    .empresas-section,
+    .socios-home { padding: 4rem 1.5rem; }
+    .empresas-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .empresas-art { order: -1; }
+    .empresas-art img { max-height: 240px; }
+    .socios-home-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+}
+
+/* ═══ Acceso a la navegación en móvil ═══
+   1) El panel móvil vive dentro de <nav>. Si el navbar está oculto con
+      transform+opacity (clase .hidden-top del hero del home), el transform crea
+      un bloque contenedor que rompe el position:fixed del panel y la opacidad
+      lo hace invisible. Con el panel abierto, el navbar debe estar neutro. */
+body.nav-open #navbar {
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* 2) En móvil la navegación no puede depender del scroll: logo + hamburguesa
+      siempre visibles, con fondo sólido que garantiza contraste sobre el hero. */
+@media (max-width: 1200px) {
+    nav#navbar.hidden-top {
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        background: rgba(253, 252, 249, 0.96);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--stone-200, #e8e1d5);
+    }
+    nav#navbar.hidden-top .logo-text { color: var(--carbon, #2e2c2a); }
+    nav#navbar.hidden-top .mobile-menu-btn span { background: var(--carbon, #2e2c2a); }
+}
+
+/* ═══ Legibilidad del desplegable sobre páginas de tema oscuro ═══
+   Los submenús viven dentro de ul.nav-links, así que las reglas de página
+   ".transparent-nav .nav-links a { color:#fff }" (algunas con !important)
+   también pintaban de blanco los hijos — y el panel del desplegable es
+   marfil: texto blanco sobre fondo claro = ilegible.
+   El panel es SIEMPRE claro, así que su texto es SIEMPRE oscuro. */
+.nav-submenu a,
+.transparent-nav .nav-links .nav-submenu a,
+.transparent-nav.scrolled .nav-links .nav-submenu a,
+#navbar.transparent-nav .nav-links .nav-submenu a,
+body.nav-open .transparent-nav .nav-links .nav-submenu a,
+body.nav-open #navbar.transparent-nav .nav-links .nav-submenu a {
+    color: var(--text-secondary, #6e6658) !important;
+}
+.nav-submenu a:hover,
+.nav-submenu a:focus-visible,
+.transparent-nav .nav-links .nav-submenu a:hover,
+#navbar.transparent-nav .nav-links .nav-submenu a:hover {
+    color: var(--carbon, #2e2c2a) !important;
+}
+
+/* Panel más definido: fondo sólido, borde y sombra con más presencia para que
+   recorte contra fondos negros. */
+@media (min-width: 1201px) {
+    .nav-submenu {
+        background: #ffffff;
+        border-color: rgba(0, 0, 0, 0.10);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.30);
+    }
+    .nav-submenu a {
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 0.7rem 1.4rem;
+    }
+}
+
+/* La pestaña activa debe leerse como activa también en tema oscuro */
+.transparent-nav .nav-group-btn[aria-expanded="true"],
+#navbar.transparent-nav .nav-group-btn[aria-expanded="true"] {
+    opacity: 1;
+}

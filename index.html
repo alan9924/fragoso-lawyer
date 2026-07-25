@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#fdfdfc">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -36,22 +36,52 @@
                 <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
             
-            <div class="nav-menu">
+            <div class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="marcas.html">MARCAS</a></li>
-                    <li><a href="derechos-autor.html">DERECHOS DE AUTOR</a></li>
-                    <li><a href="revision.html">REVISIÓN</a></li>
-                    <li><a href="consulta.html">CONSULTA</a></li>
-                    <li><a href="contratos.html">CONTRATOS</a></li>
-                    <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="radar/index.html">RADAR LEGAL</a></li>
-                    <li><a href="nosotros.html">NOSOTROS</a></li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="marcas.html">Registrar mi marca</a></li>
+                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="contratos.html">Crear un contrato</a></li>
+                            <li><a href="revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-he">
+                            Herramientas gratis<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-he">
+                            <li><a href="finiquito.html">Calcular mi finiquito</a></li>
+                            <li><a href="radar/index.html">Leer el Radar Legal</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 1 solo destino => enlace directo, sin desplegable -->
+                    <li><a href="empresas.html" class="nav-top-link">Empresas</a></li>
+
+                    <!-- Visibles solo en el panel movil (en escritorio viven a la derecha) -->
+                    <li class="nav-mobile-only"><a href="#socios" class="nav-top-link">Socios</a></li>
+                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
-                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                <a href="#socios" class="nav-socios-link">Socios</a>
+                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -254,164 +284,147 @@
         </style>
     </section>
 
-    <!-- ═══ B2B & REPORTE DE RIESGO ═══ -->
-    <section class="b2b-section" style="background-color: var(--bg-surface-elevated, #f4f2ee); padding: 5rem 2rem; border-top: 1px solid var(--stone-200, #e8e1d5);">
-        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 3rem; align-items: stretch;">
-            
-            <!-- Left: Franja B2B Folder Card -->
-            <div class="folder-card" style="
-                position: relative; 
-                overflow: hidden; 
-                border-radius: 28px; 
-                background: #fdfdfc; 
-                border: 1px solid var(--stone-200, #e8e1d5); 
-                display: flex; 
-                flex-direction: column; 
-                box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-            ">
-                <!-- Banner Image -->
-                <div style="height: 180px; width: 100%; position: relative; overflow: hidden; background: #cbe8f6;">
-                    <img src="b2b_banner.png" alt="" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                
-                <!-- Tab Row -->
-                <div style="display: flex; width: 100%; margin-top: -35px; position: relative; z-index: 2;">
-                    <!-- White Tab -->
-                    <div style="
-                        background: #ffffff; 
-                        border-top-left-radius: 20px; 
-                        border-top-right-radius: 20px; 
-                        padding: 1.2rem 2rem 0.5rem; 
-                        width: 65%;
-                    ">
-                        <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880);">SOLUCIONES CORPORATIVAS</span>
-                    </div>
-                    <!-- Transparent Spacer -->
-                    <div style="flex-grow: 1; background: transparent;"></div>
-                </div>
-                
-                <!-- Card Body -->
-                <div style="
-                    background: #ffffff; 
-                    padding: 1rem 2rem 2.5rem; 
-                    border-top-right-radius: 20px; 
-                    border-bottom-left-radius: 28px; 
-                    border-bottom-right-radius: 28px; 
-                    flex-grow: 1; 
-                    display: flex; 
-                    flex-direction: column; 
-                    justify-content: space-between; 
-                    position: relative; 
-                    z-index: 2;
-                ">
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <h3 style="font-family: var(--font-heading); font-size: 1.9rem; font-weight: 400; line-height: 1.25; margin: 0; color: var(--carbon, #2e2c2a);">¿Tu empresa firma contratos todos los meses?</h3>
-                        <p style="font-family: var(--font-body); font-size: 0.9rem; line-height: 1.5; color: var(--text-muted, #9c9489); margin: 0;">
-                            Membresía desde $1,990/mes: tu departamento legal externo, con contratos siempre actualizados.
-                        </p>
-                    </div>
-                    <div style="margin-top: 2rem;">
-                        <a href="empresas.html" class="solution-btn" style="
-                            display: inline-block; 
-                            width: auto; 
-                            padding: 0.85rem 2rem; 
-                            background: var(--carbon, #2e2c2a); 
-                            color: #fff; 
-                            text-decoration: none; 
-                            border-radius: 30px; 
-                            font-family: var(--font-body); 
-                            font-size: 0.78rem; 
-                            font-weight: 600; 
-                            letter-spacing: 1px; 
-                            text-transform: uppercase; 
-                            transition: background-color 0.2s; 
-                            text-align: center;
-                        "
-                        onmouseover="this.style.background='var(--bronze,#c5a880)'"
-                        onmouseout="this.style.background='var(--carbon,#2e2c2a)'">Ver planes</a>
-                    </div>
-                </div>
-            </div>
+    <!-- ═══ 3. TESTIMONIOS ═══ -->
+    <section class="testimonios-section" id="testimonios">
+        <div class="testimonios-inner">
+            <header class="sec-head fade-in-up">
+                <span class="sec-eyebrow">Testimonios</span>
+                <h2 class="sec-title">Lo que dicen quienes<br><em>ya nos consultaron</em></h2>
+            </header>
 
-            <!-- Right: Tarjeta Reporte de Riesgo Folder Card -->
-            <div class="folder-card" style="
-                position: relative; 
-                overflow: hidden; 
-                border-radius: 28px; 
-                background: #fdfdfc; 
-                border: 1px solid var(--stone-200, #e8e1d5); 
-                display: flex; 
-                flex-direction: column; 
-                box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-            ">
-                <!-- Banner Image -->
-                <div style="height: 180px; width: 100%; position: relative; overflow: hidden; background: #f2c96c;">
-                    <img src="diagnostico_banner.png" alt="" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                
-                <!-- Tab Row -->
-                <div style="display: flex; width: 100%; margin-top: -35px; position: relative; z-index: 2;">
-                    <!-- White Tab -->
-                    <div style="
-                        background: #ffffff; 
-                        border-top-left-radius: 20px; 
-                        border-top-right-radius: 20px; 
-                        padding: 1.2rem 2rem 0.5rem; 
-                        width: 65%;
-                    ">
-                        <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880);">DIAGNÓSTICO</span>
-                    </div>
-                    <!-- Transparent Spacer -->
-                    <div style="flex-grow: 1; background: transparent;"></div>
-                </div>
-                
-                <!-- Card Body -->
-                <div style="
-                    background: #ffffff; 
-                    padding: 1rem 2rem 2.5rem; 
-                    border-top-right-radius: 20px; 
-                    border-bottom-left-radius: 28px; 
-                    border-bottom-right-radius: 28px; 
-                    flex-grow: 1; 
-                    display: flex; 
-                    flex-direction: column; 
-                    justify-content: space-between; 
-                    position: relative; 
-                    z-index: 2;
-                ">
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <h3 style="font-family: var(--font-heading); font-size: 1.9rem; font-weight: 400; line-height: 1.25; margin: 0; color: var(--carbon, #2e2c2a);">Reporte de Riesgo Contractual — $4,990</h3>
-                        <p style="font-family: var(--font-body); font-size: 0.9rem; line-height: 1.5; color: var(--text-muted, #9c9489); margin: 0;">
-                            Auditamos hasta 5 de tus contratos vigentes y te decimos dónde estás expuesto. Entrega en 5 días.
-                        </p>
-                    </div>
-                    <div style="margin-top: 2rem;">
-                        <a href="empresas.html#reporte" class="solution-btn" style="
-                            display: inline-block; 
-                            width: auto; 
-                            padding: 0.85rem 2rem; 
-                            background: var(--carbon, #2e2c2a); 
-                            color: #fff; 
-                            text-decoration: none; 
-                            border-radius: 30px; 
-                            font-family: var(--font-body); 
-                            font-size: 0.78rem; 
-                            font-weight: 600; 
-                            letter-spacing: 1px; 
-                            text-transform: uppercase; 
-                            transition: background-color 0.2s; 
-                            text-align: center;
-                        "
-                        onmouseover="this.style.background='var(--bronze,#c5a880)'"
-                        onmouseout="this.style.background='var(--carbon,#2e2c2a)'">Solicitar Reporte</a>
-                    </div>
-                </div>
-            </div>
+            <!-- ═══════════════════════════════════════════════════════════════
+                 PENDIENTE: sustituir por testimonios REALES de clientes.
+                 No publicar con estos textos de muestra: serían reseñas
+                 inventadas. Requiere consentimiento del cliente para usar su
+                 nombre/empresa. Borrar la clase "is-placeholder" al reemplazar.
+                 ═══════════════════════════════════════════════════════════════ -->
+            <div class="testimonios-grid">
+                <figure class="testimonio-card glow-yellow fade-in-up">
+                    <blockquote>“Teníamos dudas constantes sobre la validez de las firmas digitales en nuestros contratos de arrendamiento. Su asesoría no solo nos dio certeza legal, sino que rediseñaron los convenios para que fueran claros y directos.”</blockquote>
+                    <figcaption>
+                        <div class="testimonio-profile">
+                            <div class="testimonio-avatar-letters">SV</div>
+                            <div class="testimonio-profile-info">
+                                <span class="testimonio-autor">Sofía Valenzuela</span>
+                                <span class="testimonio-meta">Directora de Operaciones, Kaltia Tech</span>
+                            </div>
+                        </div>
+                    </figcaption>
+                </figure>
 
+                <figure class="testimonio-card glow-blue fade-in-up delay-1">
+                    <blockquote>“Registrar nuestras marcas y blindar las relaciones con creadores de contenido era un dolor de cabeza. Ferro Fragoso lo hizo sencillo, explicándonos todo sin tecnicismos innecesarios. Se siente la diferencia de trabajar con profesionales.”</blockquote>
+                    <figcaption>
+                        <div class="testimonio-profile">
+                            <div class="testimonio-avatar-letters">AR</div>
+                            <div class="testimonio-profile-info">
+                                <span class="testimonio-autor">Alejandro Ruiz</span>
+                                <span class="testimonio-meta">Cofundador, Spark Media</span>
+                            </div>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="testimonio-card glow-coral fade-in-up delay-2">
+                    <blockquote>“El rediseño de nuestros contratos de trabajo y actas de asamblea fue impecable. Buscábamos claridad y protección sin saturar al personal con documentos eternos. Entendieron nuestro modelo de negocio desde el primer día.”</blockquote>
+                    <figcaption>
+                        <div class="testimonio-profile">
+                            <div class="testimonio-avatar-letters">ME</div>
+                            <div class="testimonio-profile-info">
+                                <span class="testimonio-autor">Mónica Elizondo</span>
+                                <span class="testimonio-meta">Socia Fundadora, NEXO Corporativo</span>
+                            </div>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
         </div>
     </section>
 
-    <!-- ═══ NUESTRA PROMESA ═══ -->
+    <!-- ═══ 4. EMPRESAS ═══ -->
+    <section class="empresas-section" id="empresas">
+        <div class="empresas-inner">
+            <div class="empresas-copy fade-in-up">
+                <span class="sec-eyebrow">Empresas</span>
+                <h2 class="sec-title">¿Tu empresa firma<br><em>contratos todos los meses?</em></h2>
+                <p class="empresas-text">
+                    Tu departamento legal externo: contratos siempre actualizados, revisiones ilimitadas
+                    y canal directo con los socios. Sin contratar un abogado de planta.
+                </p>
+
+                <p class="empresas-precio">
+                    <span class="empresas-precio-monto">$1,990</span>
+                    <span class="empresas-precio-periodo">MXN / mes</span>
+                </p>
+
+                <!-- Una sola acción primaria -->
+                <a href="empresas.html" class="btn-primary">Ver planes de membresía</a>
+
+                <!-- Reporte de Riesgo: enlace secundario, no compite -->
+                <p class="empresas-secundario">
+                    ¿Prefieres empezar con un diagnóstico?
+                    <a href="empresas.html#reporte">Reporte de Riesgo Contractual — $4,990</a>
+                </p>
+            </div>
+
+            <div class="empresas-art fade-in-up delay-1" aria-hidden="true">
+                <img src="b2b_banner.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ 5. SOCIOS — pieza de confianza ═══ -->
+    <section id="socios" class="socios-home">
+        <div class="socios-home-inner">
+            <header class="sec-head fade-in-up">
+                <span class="sec-eyebrow">Quiénes somos</span>
+                <h2 class="sec-title">Las personas detrás<br><em>de tu asunto.</em></h2>
+                <p class="socios-home-intro">
+                    No hay call center ni asociados junior: tu caso lo analiza y lo firma uno de los dos socios fundadores.
+                </p>
+            </header>
+
+            <div class="socios-home-grid">
+                <article class="socio-card fade-in-up">
+                    <img src="socio_alan.png" alt="Alan Obed Fragoso Rivera, socio fundador" class="socio-card-foto">
+                    <h3 class="socio-card-nombre">Alan Obed Fragoso Rivera</h3>
+                    <p class="socio-card-cargo">Socio fundador &middot; Abogado</p>
+                    <p class="socio-card-univ">Universidad Autónoma de Querétaro</p>
+                    <!-- TODO: cédula profesional real -->
+                    <p class="socio-card-cedula">Cédula profesional: [PENDIENTE]</p>
+                    <p class="socio-card-desc">
+                        Trayectoria en materia corporativa, administrativa y civil. Especialista en estrategia
+                        legal preventiva y blindaje de negocios.
+                    </p>
+                    <div class="socio-card-contacto">
+                        <a href="https://wa.me/524425827053" target="_blank" rel="noopener" aria-label="WhatsApp de Alan Fragoso"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="mailto:alan@ferrofragoso.com" aria-label="Correo de Alan Fragoso"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                </article>
+
+                <article class="socio-card fade-in-up delay-1">
+                    <img src="socio_daniel.png" alt="Daniel Ferro Gutiérrez, socio fundador" class="socio-card-foto">
+                    <h3 class="socio-card-nombre">Daniel Ferro Gutiérrez</h3>
+                    <p class="socio-card-cargo">Socio fundador &middot; Abogado</p>
+                    <p class="socio-card-univ">Universidad Autónoma de Querétaro</p>
+                    <!-- TODO: cédula profesional real -->
+                    <p class="socio-card-cedula">Cédula profesional: [PENDIENTE]</p>
+                    <p class="socio-card-desc">
+                        Especializado en derecho constitucional, contratos y protección del patrimonio.
+                        Enfocado en consultoría empresarial y reestructuración de activos.
+                    </p>
+                    <div class="socio-card-contacto">
+                        <a href="https://wa.me/524425948978" target="_blank" rel="noopener" aria-label="WhatsApp de Daniel Ferro"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="mailto:daniel@ferrofragoso.com" aria-label="Correo de Daniel Ferro"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <p class="socios-home-quote fade-in-up">&ldquo;La mejor posición jurídica posible, construida con estrategia y honestidad.&rdquo;</p>
+        </div>
+    </section>
+
+    <!-- ═══ 6. NUESTRA PROMESA ═══ -->
     <section id="promesa" class="promesa-section">
         <div class="promesa-container fade-in-up">
             <span class="promesa-eyebrow">NUESTRA PROMESA</span>
@@ -420,10 +433,7 @@
             <p class="promesa-text text-blur-in">
                 Operamos como plataforma: precios públicos, procesos claros y entregas en 48 horas. Pero decidimos como firma: cada asunto lo analiza un socio, con rigor y criterio. Tecnología en el proceso, abogados en las decisiones.
             </p>
-            <!-- Firma animada (Higgsfield): la caligrafía se escribe en tiempo real.
-                 El fondo del video es el mismo carbón de la sección; el degradado
-                 del wrapper (::after) cubre los bordes con ese carbón para una
-                 fusión perfecta. Se reproduce al entrar en vista (ver script.js). -->
+            <!-- Firma animada (Higgsfield): la caligrafía se escribe en tiempo real. -->
             <div class="promesa-signature-wrap">
                 <video class="promesa-signature-video" muted playsinline preload="auto"
                        poster="signature_on_dark.png" aria-label="Firma Ferro Fragoso escribiéndose">
@@ -432,34 +442,9 @@
                 </video>
             </div>
             <p class="promesa-firma">— Ferro Fragoso, Estudio Jurídico</p>
-            <a href="nosotros.html" class="promesa-cta-btn magnetic-btn">CONOCE NUESTROS SOCIOS</a>
-        </div>
-    </section>
 
-    <!-- Full-bleed animated divider -->
-    <div class="line-wrap">
-        <span class="line"></span>
-    </div>
-
-    <!-- ═══ FINAL CTA ═══ -->
-    <section class="final-cta">
-        <h2 class="fade-in-up">¿Necesitas algo más específico?</h2>
-        <p class="fade-in-up delay-1">Agenda una sesión por Zoom con un socio para trazar la estrategia ideal para tu caso.</p>
-        <a href="consulta.html" class="final-cta-btn fade-in-up delay-2">Agendar Consulta por $1,290</a>
-    </section>
-
-    <!-- ═══ RUTA DEL CONFUNDIDO ═══ -->
-    <section class="confundido-section" style="background-color: var(--bg-surface-elevated, #f4f2ee); padding: 5rem 2rem; border-top: 1px solid var(--stone-200, #e8e1d5); text-align: center;">
-        <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
-            <span style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880);">¿TIENES DUDAS?</span>
-            <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 400; line-height: 1.25; margin: 0; color: var(--carbon, #2e2c2a);">¿No sabes qué necesitas?</h3>
-            <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; color: var(--text-muted, #9c9489); margin: 0; max-width: 600px;">
-                Cuéntanos tu situación por WhatsApp y te decimos qué servicio aplica — sin costo.
-            </p>
-            <a href="https://wa.me/524191239646?text=Hola%2C%20tengo%20una%20duda%20legal%20y%20no%20s%C3%A9%20qu%C3%A9%20servicio%20necesito."
-               target="_blank" rel="noopener" class="solution-btn" style="display: inline-block; width: auto; padding: 0.9rem 2.2rem; background-color: var(--carbon, #2e2c2a); color: #fff;">
-                Preguntar por WhatsApp
-            </a>
+            <!-- Consulta por Zoom: vive aquí, no en el menú (es acción, no categoría) -->
+            <a href="consulta.html" class="btn-secondary-light">Agendar consulta por Zoom — $1,290</a>
         </div>
     </section>
 
