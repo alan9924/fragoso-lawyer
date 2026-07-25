@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Plan Personal | FERRO FRAGOSO</title>
     <meta name="description" content="Protección legal constante para individuos y profesionistas independientes.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -25,22 +25,52 @@
                 <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
             
-            <div class="nav-menu">
+            <div class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="marcas.html">MARCAS</a></li>
-                    <li><a href="derechos-autor.html">DERECHOS DE AUTOR</a></li>
-                    <li><a href="revision.html">REVISIÓN</a></li>
-                    <li><a href="consulta.html">CONSULTA</a></li>
-                    <li><a href="contratos.html">CONTRATOS</a></li>
-                    <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="radar/index.html">RADAR LEGAL</a></li>
-                    <li><a href="nosotros.html">NOSOTROS</a></li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="marcas.html">Registrar mi marca</a></li>
+                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="contratos.html">Crear un contrato</a></li>
+                            <li><a href="revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-he">
+                            Herramientas gratis<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-he">
+                            <li><a href="finiquito.html">Calcular mi finiquito</a></li>
+                            <li><a href="radar/index.html">Leer el Radar Legal</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 1 solo destino => enlace directo, sin desplegable -->
+                    <li><a href="empresas.html" class="nav-top-link">Empresas</a></li>
+
+                    <!-- Visibles solo en el panel movil (en escritorio viven a la derecha) -->
+                    <li class="nav-mobile-only"><a href="index.html#socios" class="nav-top-link">Socios</a></li>
+                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
-                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                <a href="index.html#socios" class="nav-socios-link">Socios</a>
+                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -48,33 +78,61 @@
     </nav>
     <div style="padding-top: 120px;"></div>
 
-    <section class="final-cta" style="background: #fff; color: var(--carbon); padding: 4rem 2rem; min-height: 60vh;">
-        <h1 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem;">Plan Personal</h1>
-        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-inline: auto;">Protección legal constante para individuos y profesionistas independientes.</p>
-        
-        <div style="background:#f4f4f4; padding: 1rem; border-radius:10px; margin-bottom:3rem; text-align:center; color: #b08d55; font-weight: 600;">PRECIO FUNDADOR: Los primeros 30 miembros conservan su tarifa de por vida.</div>
-        <div class="plan-cards-wrapper">
-            <div class="pricing-plan-card">
-                <div class="plan-name">Plan Personal</div>
-                <div class="plan-price-row">
-                    <span class="plan-price">$399</span>
-                    <span class="plan-period">/ mes</span>
-                </div>
-                <div class="plan-desc">O $3,990 / año (Ahorra 2 meses). Protección legal constante para individuos y profesionistas.</div>
-                
-                <div class="plan-features-title">Features:</div>
-                <ul class="plan-features">
-                    <li>1 Revisión de contrato al mes</li>
-                    <li>1 Consulta estratégica por trimestre</li>
-                    <li>15% de descuento en servicios extra</li>
-                    <li>Acceso al generador premium</li>
-                </ul>
-                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20suscribirme%20al%20Plan%20Personal%20(%24399%20MXN%2Fmes)."
-                   target="_blank" rel="noopener" class="plan-btn"
-                   data-mp-link="PENDIENTE:plan-personal-mensual-399" data-producto="Plan Personal (mensual)">Suscribirse</a>
+    <section class="home-solutions" style="padding: 4rem 0 6rem 0; min-height: 60vh;">
+        <div class="wrap">
+            <div class="top" style="padding: 0 0 30px 0;">
+                <h1 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem; color: var(--ivory); text-align: center;">Escudo Legal Personal</h1>
+                <p style="font-size: 1.2rem; color: var(--stone-300); margin-bottom: 2rem; max-width: 600px; margin-inline: auto; text-align: center;">Protección legal constante para individuos y profesionistas independientes.</p>
+                <div style="background:#242220; border: 1px solid rgba(253,252,249,0.08); padding: 1rem; border-radius:10px; margin-bottom:3rem; text-align:center; color: var(--accent); font-weight: 600; font-family: var(--font-body); font-size: 0.9rem;">PRECIO FUNDADOR: Los primeros 30 miembros conservan su tarifa de por vida.</div>
             </div>
+            
+            <div class="grid">
+                <div class="plan">
+                    <div class="pname">Tranquilidad</div>
+                    <div class="ptag">Para ti</div>
+                    <div class="price">$199 <small>MXN / MES</small></div>
+                    <div class="annual">o $1,990/año · 2 meses gratis</div>
+                    <ul>
+                        <li>Orientación legal <b>ilimitada</b> por chat</li>
+                        <li>1 consulta telefónica al mes</li>
+                        <li>Tu <b>testamento</b> incluido 1 vez/año</li>
+                        <li>Descuento de miembro en todo servicio</li>
+                    </ul>
+                    <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Tranquilidad" target="_blank" rel="noopener">Empezar</a>
+                </div>
+
+                <div class="plan feat">
+                    <div class="ribbon">★ Más elegido</div>
+                    <div class="pname">Familia</div>
+                    <div class="ptag">Para tu hogar</div>
+                    <div class="price">$399 <small>MXN / MES</small></div>
+                    <div class="annual">o $3,990/año · 2 meses gratis</div>
+                    <ul>
+                        <li>Todo lo de Tranquilidad, para <b>toda la familia</b></li>
+                        <li>1 revisión de documento al mes <small>(renta, compraventa…)</small></li>
+                        <li>2 consultas telefónicas al mes</li>
+                        <li>Atención prioritaria</li>
+                    </ul>
+                    <a class="btn btn-brass" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Familia" target="_blank" rel="noopener">Proteger a mi familia</a>
+                </div>
+
+                <div class="plan">
+                    <div class="pname">Patrimonio</div>
+                    <div class="ptag">Freelancer / propietario</div>
+                    <div class="price">$699 <small>MXN / MES</small></div>
+                    <div class="annual">o $6,990/año · 2 meses gratis</div>
+                    <ul>
+                        <li>Todo lo de Familia</li>
+                        <li>Hasta 3 revisiones de documento al mes</li>
+                        <li>Orientación en arrendamientos e inversiones</li>
+                        <li>Sesión estratégica trimestral</li>
+                    </ul>
+                    <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Patrimonio" target="_blank" rel="noopener">Empezar</a>
+                </div>
+            </div>
+            
+            <p class="note" style="margin-top: 3rem;"><b>Lo que "ilimitado" sí significa:</b> orientación y respuestas por chat, sin límite. Los servicios concretos (revisiones, documentos) van incluidos con el tope de cada plan o con descuento de miembro. No incluye litigio ni representación en juicio — eso se cotiza aparte, siempre con precio cerrado.</p>
         </div>
-        
     </section>
 
     <footer class="site-footer">

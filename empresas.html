@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Planes para Empresas | FERRO FRAGOSO</title>
     <meta name="description" content="Departamento legal in-house a una fracción del costo. Suscripción sin plazos forzosos.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -33,22 +33,52 @@
                 <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
             
-            <div class="nav-menu">
+            <div class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="marcas.html">MARCAS</a></li>
-                    <li><a href="derechos-autor.html">DERECHOS DE AUTOR</a></li>
-                    <li><a href="revision.html">REVISIÓN</a></li>
-                    <li><a href="consulta.html">CONSULTA</a></li>
-                    <li><a href="contratos.html">CONTRATOS</a></li>
-                    <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="radar/index.html">RADAR LEGAL</a></li>
-                    <li><a href="nosotros.html">NOSOTROS</a></li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="marcas.html">Registrar mi marca</a></li>
+                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="contratos.html">Crear un contrato</a></li>
+                            <li><a href="revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-he">
+                            Herramientas gratis<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-he">
+                            <li><a href="finiquito.html">Calcular mi finiquito</a></li>
+                            <li><a href="radar/index.html">Leer el Radar Legal</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 1 solo destino => enlace directo, sin desplegable -->
+                    <li><a href="empresas.html" class="nav-top-link">Empresas</a></li>
+
+                    <!-- Visibles solo en el panel movil (en escritorio viven a la derecha) -->
+                    <li class="nav-mobile-only"><a href="index.html#socios" class="nav-top-link">Socios</a></li>
+                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
-                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                <a href="index.html#socios" class="nav-socios-link">Socios</a>
+                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -56,60 +86,62 @@
     </nav>
     <div style="padding-top: 120px;"></div>
 
-    <section class="final-cta" style="background: #fff; color: var(--carbon); padding: 4rem 2rem; min-height: 60vh;">
-        <h1 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem;">Planes para Empresas</h1>
-        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-inline: auto;">Departamento legal in-house a una fracción del costo. Suscripción sin plazos forzosos.</p>
-        
-        <div style="background:#f4f4f4; padding: 1rem; border-radius:10px; margin-bottom:3rem; text-align:center; color: #b08d55; font-weight: 600;">PRECIO FUNDADOR: Los primeros 30 miembros conservan su tarifa de por vida.</div>
-        <div class="plan-cards-wrapper">
-            <!-- Plan Negocio -->
-            <div class="pricing-plan-card">
-                <div class="plan-name">Plan Negocio</div>
-                <div class="plan-price-row">
-                    <span class="plan-price">$1,990</span>
-                    <span class="plan-period">/ mes</span>
-                </div>
-                <div class="plan-desc">O $19,900 / año (Ahorra 2 meses). Ideal para startups y pequeños negocios.</div>
-                
-                <div class="plan-features-title">Beneficios:</div>
-                <ul class="plan-features">
-                    <li>Tu biblioteca de 5 contratos maestros, personalizada y SIEMPRE actualizada cuando cambia la ley</li>
-                    <li>Radar Sectorial: te avisamos qué cambió en tu giro y qué hacer — ya aplicado a tus documentos</li>
-                    <li>2 revisiones de contrato al mes</li>
-                    <li>1 sesión de estrategia mensual (60 min)</li>
-                    <li>15% de descuento en todos los demás servicios</li>
-                    <li>Acceso al generador premium</li>
-                </ul>
-                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20suscribirme%20al%20Plan%20Negocio%20(%241%2C990%20MXN%2Fmes)."
-                   target="_blank" rel="noopener" class="plan-btn"
-                   data-mp-link="PENDIENTE:plan-negocio-mensual-1990" data-producto="Plan Negocio (mensual)">Suscribirse</a>
+    <section class="home-solutions" style="padding: 4rem 0 6rem 0; min-height: 60vh;">
+        <div class="wrap">
+            <div class="top" style="padding: 0 0 30px 0;">
+                <h1 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem; color: var(--ivory); text-align: center;">Planes para Empresas</h1>
+                <p style="font-size: 1.2rem; color: var(--stone-300); margin-bottom: 2rem; max-width: 600px; margin-inline: auto; text-align: center;">Departamento legal in-house a una fracción del costo. Suscripción sin plazos forzosos.</p>
+                <div style="background:#242220; border: 1px solid rgba(253,252,249,0.08); padding: 1rem; border-radius:10px; margin-bottom:3rem; text-align:center; color: var(--accent); font-weight: 600; font-family: var(--font-body); font-size: 0.9rem;">PRECIO FUNDADOR: Los primeros 30 miembros conservan su tarifa de por vida.</div>
             </div>
+            
+            <div class="grid">
+                <div class="plan">
+                    <div class="pname">Contratos Esenciales</div>
+                    <div class="ptag">Negocio en marcha</div>
+                    <div class="price">$1,990 <small>MXN / MES</small></div>
+                    <div class="annual">o anual · 2 meses gratis</div>
+                    <ul>
+                        <li>1 revisión de contrato simple al mes</li>
+                        <li>1 consulta breve al mes</li>
+                        <li>Acceso a plantillas y su mantenimiento</li>
+                        <li>Respuesta en hasta 48 h hábiles</li>
+                    </ul>
+                    <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Contratos%20Esenciales" target="_blank" rel="noopener">Empezar</a>
+                </div>
 
-            <!-- Plan Negocio Pro (Dark version) -->
-            <div class="pricing-plan-card dark">
-                <div class="plan-name">Plan Negocio Pro</div>
-                <div class="plan-price-row">
-                    <span class="plan-price">$3,990</span>
-                    <span class="plan-period">/ mes</span>
+                <div class="plan feat">
+                    <div class="ribbon">★ Más elegido</div>
+                    <div class="pname">Dirección Ligera</div>
+                    <div class="ptag">PyME que firma seguido</div>
+                    <div class="price">$3,990 <small>MXN / MES</small></div>
+                    <div class="annual">o anual · 2 meses gratis</div>
+                    <ul>
+                        <li>Hasta 3 revisiones simples <b>o</b> 1 contrato intermedio</li>
+                        <li>Videollamada mensual con un socio</li>
+                        <li>Canal prioritario</li>
+                        <li>Alertas legislativas de tu giro</li>
+                    </ul>
+                    <a class="btn btn-brass" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Dirección%20Ligera" target="_blank" rel="noopener">Elegir plan</a>
                 </div>
-                <div class="plan-desc">O $39,900 / año (Ahorra 2 meses). Protección completa para empresas establecidas.</div>
-                
-                <div class="plan-features-title">Beneficios:</div>
-                <ul class="plan-features">
-                    <li>Biblioteca de 10 contratos maestros, mantenida y auditada cada semestre</li>
-                    <li>Radar Sectorial con alertas prioritarias</li>
-                    <li>4 revisiones de contrato al mes</li>
-                    <li>2 sesiones de estrategia mensuales</li>
-                    <li>1 redacción de contrato a medida por trimestre</li>
-                    <li>Atención prioritaria: respuesta en 24h</li>
-                    <li>20% de descuento en todos los demás servicios</li>
-                </ul>
-                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20suscribirme%20al%20Plan%20Negocio%20Pro%20(%243%2C990%20MXN%2Fmes)."
-                   target="_blank" rel="noopener" class="plan-btn"
-                   data-mp-link="PENDIENTE:plan-negocio-pro-mensual-3990" data-producto="Plan Negocio Pro (mensual)">Suscribirse</a>
+
+                <div class="plan">
+                    <div class="pname">Dirección Externa</div>
+                    <div class="ptag">Empresa consolidada</div>
+                    <div class="price">desde $6,990 <small>MXN / MES</small></div>
+                    <div class="annual">requiere diagnóstico previo</div>
+                    <ul>
+                        <li>Hasta 5 revisiones simples al mes</li>
+                        <li>Hasta 2 documentos nuevos o ajustes relevantes</li>
+                        <li>2 sesiones mensuales + acompañamiento</li>
+                        <li>Estrategia jurídica continua</li>
+                    </ul>
+                    <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Dirección%20Externa" target="_blank" rel="noopener">Agendar diagnóstico</a>
+                </div>
             </div>
+            
+            <p class="note" style="margin-top: 3rem;"><b>Sin "ilimitado" de humo:</b> cada plan trae topes claros bajo política de uso razonable. Litigios, trámites y operaciones extraordinarias se cotizan por separado, siempre con precio cerrado antes de arrancar.</p>
         </div>
-        <p style="text-align:center; margin-top: 2rem; font-size: 0.85rem; color: var(--text-muted);">* Los usos no se acumulan mes a mes. Límite de revisión: 15 páginas por documento.</p>
+    </section>
 
         <!-- Línea de facturación & Ancla de precio -->
         <div style="max-width: 800px; margin: 3rem auto 0; text-align: center; font-family: var(--font-body); display: flex; flex-direction: column; gap: 1.2rem;">
