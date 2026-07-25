@@ -412,7 +412,6 @@
                         <button class="doc-btn doc-btn--secondary" id="btn-print-doc"><i class="fas fa-print"></i> PDF</button>
                         <button class="doc-btn doc-btn--secondary" id="btn-download-docx"><i class="fas fa-file-word"></i> Word</button>
                         <button class="doc-btn doc-btn--secondary" id="btn-copy-doc"><i class="far fa-copy"></i> Copiar</button>
-                        <button class="doc-btn doc-btn--secondary" id="btn-share-wa"><i class="fab fa-whatsapp"></i> Enviar</button>
                     </div>
                     
                     <!-- LEYENDA TARIFAS -> BOTONES PREMIUM -->
@@ -1053,123 +1052,7 @@
                         });
                     }
                     
-                    // Compartir documento (PDF real)
-                    // SOLUCIÓN DEFINITIVA: leer previewWrapper (el div VISIBLE en pantalla),
-                    // no documentPreview que tiene display:none en el HTML base.
-                    actions.querySelector('#btn-share-wa').addEventListener('click', async function() {
-                        if (typeof trackEvent === 'function') trackEvent('generador_descarga', { medio: 'share', contrato: selectedDoc ? selectedDoc.id : null });
-                        const btn = this;
-                        const prevHTML = btn.innerHTML;
 
-                        if (!selectedDoc) {
-                            alert('No hay contrato seleccionado.');
-                            return;
-                        }
-                        if (!previewWrapper || !previewWrapper.innerHTML.trim()) {
-                            alert('El contrato está vacío. Completa los datos primero.');
-                            return;
-                        }
-
-                        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando PDF...';
-                        btn.disabled = true;
-
-                        let printDiv = null;
-                        try {
-                            const fileNameBase = (selectedDoc.titulo.replace(/[^a-zA-Z0-9 ]/g,'').trim().replace(/ +/g,'_') || 'contrato');
-
-                            // Construir el HTML del contrato directamente desde renderPreview()
-                            // que ya produce el HTML correcto con los datos del usuario.
-                            // Crear un div temporal FUERA del flujo normal pero VISIBLE para html2canvas.
-                            printDiv = document.createElement('div');
-                            printDiv.style.cssText = [
-                                'position:fixed',
-                                'top:0',
-                                'left:-9999px',   // fuera de pantalla pero NO display:none
-                                'width:21cm',
-                                'background:#fff',
-                                'font-family:Georgia,serif',
-                                'font-size:11pt',
-                                'line-height:1.9',
-                                'color:#111',
-                                'padding:2cm 2.5cm 2cm 2.5cm',
-                                'box-sizing:border-box',
-                                'overflow:visible',
-                                'z-index:99999'
-                            ].join(';');
-
-                            // Encabezado de firma
-                            printDiv.innerHTML = `
-                                <div style="text-align:center;font-family:sans-serif;letter-spacing:2px;font-size:8pt;color:#555;margin-bottom:6pt;text-transform:uppercase">Ferro Fragoso</div>
-                                <div style="text-align:center;font-family:sans-serif;letter-spacing:3px;font-size:6pt;color:#999;margin-bottom:28pt;text-transform:uppercase">Estudio Jurídico</div>
-                            `;
-
-                            // Copiar el innerHTML del previewWrapper (que YA está en el DOM y tiene los datos del usuario)
-                            const contentDiv = document.createElement('div');
-                            contentDiv.innerHTML = previewWrapper.innerHTML;
-                            // Limpiar restricciones de scroll/flex que causaban el PDF vacío
-                            contentDiv.style.cssText = 'display:block;overflow:visible;height:auto;width:100%;';
-                            printDiv.appendChild(contentDiv);
-
-                            document.body.appendChild(printDiv);
-
-                            // Esperar a que el navegador haga layout completo
-                            await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-
-                            const safeScale = window.innerWidth < 768 ? 1 : 1.5;
-
-                            const opt = {
-                                margin:     [1.2, 1.5, 1.2, 2],
-                                filename:   fileNameBase + '.pdf',
-                                image:      { type: 'jpeg', quality: 0.92 },
-                                html2canvas: {
-                                    scale:       safeScale,
-                                    useCORS:     true,
-                                    scrollX:     0,
-                                    scrollY:     0,
-                                    windowWidth: printDiv.scrollWidth,
-                                    logging:     false
-                                },
-                                jsPDF: { unit: 'cm', format: 'letter', orientation: 'portrait' }
-                            };
-
-                            const pdfBlob = await html2pdf().set(opt).from(printDiv).outputPdf('blob');
-
-                            if (!pdfBlob || pdfBlob.size < 1024) {
-                                throw new Error('El PDF generado está vacío. Tamaño: ' + (pdfBlob ? pdfBlob.size : 0) + ' bytes.');
-                            }
-
-                            const pdfFile = new File([pdfBlob], fileNameBase + '.pdf', { type: 'application/pdf' });
-
-                            if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
-                                await navigator.share({
-                                    title: selectedDoc.titulo,
-                                    text:  'Te comparto el contrato generado por Ferro Fragoso Estudio Jurídico.',
-                                    files: [pdfFile]
-                                });
-                                btn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
-                            } else {
-                                // Fallback: descarga directa en escritorio
-                                const url = URL.createObjectURL(pdfBlob);
-                                const a = document.createElement('a');
-                                a.href = url;
-                                a.download = fileNameBase + '.pdf';
-                                document.body.appendChild(a);
-                                a.click();
-                                a.remove();
-                                URL.revokeObjectURL(url);
-                                btn.innerHTML = '<i class="fas fa-check"></i> PDF listo';
-                            }
-
-                        } catch (err) {
-                            console.error('[Compartir PDF] Error:', err);
-                            alert('No se pudo generar el PDF: ' + (err.message || 'Error desconocido'));
-                            btn.innerHTML = '<i class="fas fa-times"></i> Error';
-                        } finally {
-                            if (printDiv && printDiv.parentNode) printDiv.parentNode.removeChild(printDiv);
-                            btn.disabled = false;
-                            setTimeout(() => { btn.innerHTML = prevHTML; }, 3000);
-                        }
-                    });
                 }
 
                 wizardBody.appendChild(container);
