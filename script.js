@@ -368,14 +368,127 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const navMenu   = document.querySelector('.nav-menu');
 
+    /* Grupos desplegables del nav (Propiedad intelectual / Contratos / Herramientas) */
+    const navGroupBtns = document.querySelectorAll('.nav-group-btn');
+
+    const closeAllNavGroups = (except) => {
+        navGroupBtns.forEach(b => {
+            if (b !== except) b.setAttribute('aria-expanded', 'false');
+        });
+    };
+
+    const closeMobilePanel = () => {
+        if (!navMenu || !navMenu.classList.contains('open')) return;
+        navMenu.classList.remove('open');
+        if (mobileBtn) {
+            mobileBtn.classList.remove('open');
+            mobileBtn.setAttribute('aria-expanded', 'false');
+            mobileBtn.setAttribute('aria-label', 'Abrir menú');
+        }
+        document.body.style.overflow = '';
+        document.body.classList.remove('nav-open');
+        closeAllNavGroups();
+    };
+
     if (mobileBtn && navMenu) {
         mobileBtn.addEventListener('click', () => {
             const isOpen = navMenu.classList.toggle('open');
             mobileBtn.classList.toggle('open');
             mobileBtn.setAttribute('aria-expanded', isOpen);
+            mobileBtn.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
             document.body.style.overflow = isOpen ? 'hidden' : '';
             document.body.classList.toggle('nav-open', isOpen);
+            if (!isOpen) closeAllNavGroups();
         });
+    }
+
+    navGroupBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = btn.getAttribute('aria-expanded') === 'true';
+            closeAllNavGroups(btn);
+            btn.setAttribute('aria-expanded', String(!isOpen));
+        });
+    });
+
+    /* Clic fuera cierra los desplegables abiertos */
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-group')) closeAllNavGroups();
+    });
+
+    /* Escape cierra desplegables y el panel móvil, devolviendo el foco */
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        const anyOpen = [...navGroupBtns].some(b => b.getAttribute('aria-expanded') === 'true');
+        if (anyOpen) closeAllNavGroups();
+        if (navMenu && navMenu.classList.contains('open')) {
+            closeMobilePanel();
+            if (mobileBtn) mobileBtn.focus();
+        }
+    });
+
+    /* Al navegar a un enlace del panel móvil, ciérralo */
+    document.querySelectorAll('.nav-menu a').forEach(a => {
+        a.addEventListener('click', () => closeMobilePanel());
+    });
+
+    /* ════════════════════════════════════
+       BLUR FADE — equivalente nativo de <BlurFade inView/>
+       useInView(ref, { once: true, margin: "-50px" })
+    ════════════════════════════════════ */
+    const blurFadeEls = document.querySelectorAll('.blur-fade');
+
+    if (blurFadeEls.length) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (reduceMotion) {
+            // Sin animación: el contenido aparece directamente
+            blurFadeEls.forEach(el => el.classList.add('is-visible'));
+        } else {
+            // Se repite en cada entrada: al salir de pantalla vuelve al estado
+            // "hidden" (sin transición) y se anima de nuevo al reaparecer.
+            const blurFadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+                });
+            }, { rootMargin: '-50px' });
+
+            blurFadeEls.forEach(el => {
+                // delay personalizado por elemento: data-bf-delay-ms="250"
+                const ms = el.dataset.bfDelayMs;
+                if (ms) el.style.setProperty('--bf-delay', (parseFloat(ms) / 1000) + 's');
+                blurFadeObserver.observe(el);
+            });
+        }
+    }
+
+    /* ════════════════════════════════════
+       ANIMATED GROUP — equivalente nativo de <AnimatedGroup preset="..."/>
+       El contenedor escalona a sus hijos (staggerChildren: 0.1)
+    ════════════════════════════════════ */
+    const animatedGroups = document.querySelectorAll('.animated-group');
+
+    if (animatedGroups.length) {
+        const reduceMotionAG = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Índice de cada hijo -> retardo escalonado (var --ag-i)
+        animatedGroups.forEach(group => {
+            [...group.children].forEach((child, i) => {
+                child.style.setProperty('--ag-i', i);
+            });
+        });
+
+        if (reduceMotionAG) {
+            animatedGroups.forEach(g => g.classList.add('is-visible'));
+        } else {
+            const groupObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+                });
+            }, { rootMargin: '-50px' });
+
+            animatedGroups.forEach(g => groupObserver.observe(g));
+        }
     }
 
     /* ════════════════════════════════════
@@ -614,6 +727,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             form.reset();
         });
-    });
+    /* ════════════════════════════════════
+       HOME SOLUTIONS LANES TOGGLE
+       Controls switching between "Para mí" and "Para mi empresa" lanes in the pricing section.
+    ════════════════════════════════════ */
+    const solutionsSection = document.getElementById('soluciones');
+    if (solutionsSection) {
+        const toggleButtons = solutionsSection.querySelectorAll('.toggle button');
+        const lanes = solutionsSection.querySelectorAll('.lane');
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                toggleButtons.forEach(x => x.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const targetLaneId = btn.getAttribute('data-lane');
+                lanes.forEach(lane => {
+                    lane.classList.toggle('active', lane.id === targetLaneId);
+                });
+                
+                // Smooth scroll to the top of the solutions section to keep layout aligned
+                solutionsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    }
 
 });
