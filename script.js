@@ -727,6 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             form.reset();
         });
+    });
     /* ════════════════════════════════════
        HOME SOLUTIONS LANES TOGGLE
        Controls switching between "Para mí" and "Para mi empresa" lanes in the pricing section.
