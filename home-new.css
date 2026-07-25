@@ -789,3 +789,32 @@
     color: #111;
 }
 .pricing-plan-card.dark .plan-btn:hover { background: #e5e5e5; }
+
+/* Animated Radar Component Keyframes */
+@keyframes radar-sweep-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes blip-fade {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+    }
+    45% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    55% {
+        opacity: 0;
+    }
+}
