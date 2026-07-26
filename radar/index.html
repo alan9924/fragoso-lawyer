@@ -205,22 +205,50 @@
                 <a href="../index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
             
-            <div class="nav-menu">
+            <div class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="../marcas.html">MARCAS</a></li>
-                    <li><a href="../derechos-autor.html">DERECHOS DE AUTOR</a></li>
-                    <li><a href="../revision.html">REVISIÓN</a></li>
-                    <li><a href="../consulta.html">CONSULTA</a></li>
-                    <li><a href="../contratos.html">CONTRATOS</a></li>
-                    <li><a href="../finiquito.html">CALCULADORA</a></li>
-                    <li><a href="index.html">RADAR LEGAL</a></li>
-                    <li><a href="../nosotros.html">NOSOTROS</a></li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="../marcas.html">Registrar mi marca</a></li>
+                            <li><a href="../derechos-autor.html">Registrar derechos de autor</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="../contratos.html">Crear un contrato</a></li>
+                            <li><a href="../revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-he">
+                            Herramientas gratis<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-he">
+                            <li><a href="../finiquito.html">Calcular mi finiquito</a></li>
+                            <li><a href="index.html">Leer el Radar Legal</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="../empresas.html" class="nav-top-link">Empresas</a></li>
+
+                    <li class="nav-mobile-only"><a href="../index.html#socios" class="nav-top-link">Socios</a></li>
+                    <li class="nav-mobile-only"><a href="../empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="../empresas.html" class="nav-cta-btn">Membresía</a>
-                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                <a href="../index.html#socios" class="nav-socios-link">Socios</a>
+                <a href="../empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
             </div>
