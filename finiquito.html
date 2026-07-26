@@ -64,74 +64,504 @@
         </div>
     </nav>
 
-    <!-- ═══ CALCULATOR WRAPPER ═══ -->
+    <!-- ═══ CALCULATOR HUB ═══ -->
     <div class="calc-wrapper">
 
-        <!-- STEP 0: LANDING -->
-        <div id="calc-step-0" class="calc-step active">
-            <div class="calc-landing">
-                <div class="calc-landing-inner">
-                    <div class="calc-landing-text">
-                        <div class="calc-landing-tag">HERRAMIENTA GRATUITA</div>
-                        <h1 class="calc-landing-title">Calculadora de Finiquito y Liquidación</h1>
-                        <p class="calc-landing-subtitle">Estima lo que te corresponde conforme a la Ley Federal del Trabajo de México. Responde 6 preguntas y obtén tu desglose completo.</p>
-                        <button id="calc-btn-start" class="calc-landing-btn">Calcular ahora</button>
-                    </div>
-                    <figure class="calc-landing-art">
-                        <img src="finiquito_portada.png" alt="Cálculo de finiquito y liquidación con monedas flotantes de curso legal" class="calc-landing-img">
-                    </figure>
-                </div>
+        <!-- HUB: TOOL SELECTOR -->
+        <div id="calc-hub" class="calc-hub-screen active">
+            <div class="calc-hub-hero">
+                <div class="calc-minimos" id="calcMinimos" aria-label="Valores de referencia vigentes"></div>
+                <div class="calc-hub-tag">HERRAMIENTAS GRATUITAS</div>
+                <h1 class="calc-hub-title">Calculadora Laboral</h1>
+                <p class="calc-hub-subtitle">Todas las herramientas que necesitas para entender lo que te corresponde, conforme a la Ley Federal del Trabajo.</p>
             </div>
+
+            <div class="calc-hub-grid">
+
+                <button class="calc-hub-card" data-tool="finiquito" aria-label="Abrir Calculadora de Finiquito y Liquidación">
+                    <div class="calc-hub-card-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="8" y="6" width="32" height="36" rx="3"/>
+                            <line x1="15" y1="17" x2="33" y2="17"/>
+                            <line x1="15" y1="24" x2="33" y2="24"/>
+                            <line x1="15" y1="31" x2="25" y2="31"/>
+                            <circle cx="36" cy="36" r="6"/>
+                            <line x1="33" y1="36" x2="39" y2="36"/>
+                        </svg>
+                    </div>
+                    <div class="calc-hub-card-body">
+                        <span class="calc-hub-card-name">Finiquito y Liquidación</span>
+                        <span class="calc-hub-card-desc">Calcula lo que te corresponde al terminar una relación laboral, incluyendo indemnización e ISR.</span>
+                    </div>
+                    <span class="calc-hub-card-arrow">→</span>
+                </button>
+
+                <button class="calc-hub-card" data-tool="horas-extras" aria-label="Abrir Calculadora de Horas Extras">
+                    <div class="calc-hub-card-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="24" cy="24" r="16"/>
+                            <polyline points="24,14 24,24 30,30"/>
+                            <line x1="36" y1="12" x2="40" y2="8"/>
+                            <line x1="38" y1="10" x2="42" y2="14"/>
+                        </svg>
+                    </div>
+                    <div class="calc-hub-card-body">
+                        <span class="calc-hub-card-name">Horas Extras</span>
+                        <span class="calc-hub-card-desc">Calcula el pago de horas extra simples y dobles conforme al Art. 68 de la LFT.</span>
+                    </div>
+                    <span class="calc-hub-card-arrow">→</span>
+                </button>
+
+                <button class="calc-hub-card" data-tool="nomina" aria-label="Abrir Calculadora de Nómina">
+                    <div class="calc-hub-card-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="6" y="10" width="36" height="28" rx="3"/>
+                            <line x1="6" y1="18" x2="42" y2="18"/>
+                            <line x1="16" y1="10" x2="16" y2="18"/>
+                            <line x1="32" y1="10" x2="32" y2="18"/>
+                            <line x1="14" y1="26" x2="22" y2="26"/>
+                            <line x1="14" y1="30" x2="22" y2="30"/>
+                            <line x1="26" y1="26" x2="34" y2="26"/>
+                            <line x1="26" y1="30" x2="34" y2="30"/>
+                        </svg>
+                    </div>
+                    <div class="calc-hub-card-body">
+                        <span class="calc-hub-card-name">Nómina Quincenal / Mensual</span>
+                        <span class="calc-hub-card-desc">Estima tu nómina neta después de deducciones de IMSS e ISR con subsidio al empleo.</span>
+                    </div>
+                    <span class="calc-hub-card-arrow">→</span>
+                </button>
+
+                <button class="calc-hub-card" data-tool="sueldo-bruto" aria-label="Abrir Calculadora de Sueldo Bruto a Neto">
+                    <div class="calc-hub-card-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="24" cy="24" r="16"/>
+                            <line x1="24" y1="14" x2="24" y2="34"/>
+                            <path d="M19,18 h8 a4,4 0 0,1 0,8 h-8"/>
+                            <path d="M19,26 h10"/>
+                        </svg>
+                    </div>
+                    <div class="calc-hub-card-body">
+                        <span class="calc-hub-card-name">Sueldo Bruto a Neto</span>
+                        <span class="calc-hub-card-desc">Descubre cuánto recibirás en mano a partir de tu sueldo bruto, o al revés.</span>
+                    </div>
+                    <span class="calc-hub-card-arrow">→</span>
+                </button>
+
+                <button class="calc-hub-card" data-tool="aguinaldo" aria-label="Abrir Calculadora de Aguinaldo">
+                    <div class="calc-hub-card-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="10" y="20" width="28" height="20" rx="2"/>
+                            <path d="M10,24 h28"/>
+                            <path d="M24,20 v20"/>
+                            <path d="M24,20 C24,20 18,14 14,16 C10,18 12,22 16,22 C20,22 24,20 24,20 Z"/>
+                            <path d="M24,20 C24,20 30,14 34,16 C38,18 36,22 32,22 C28,22 24,20 24,20 Z"/>
+                        </svg>
+                    </div>
+                    <div class="calc-hub-card-body">
+                        <span class="calc-hub-card-name">Aguinaldo + ISR</span>
+                        <span class="calc-hub-card-desc">Calcula tu aguinaldo proporcional y el ISR que aplica, con la tabla SAT 2026 actualizada.</span>
+                    </div>
+                    <span class="calc-hub-card-arrow">→</span>
+                </button>
+
+            </div>
+
+            <p class="calc-hub-disclaimer">Estimaciones orientativas basadas en la LFT y tablas SAT 2026. No sustituyen asesoría jurídica.</p>
         </div>
 
-        <!-- STEP 1: WIZARD -->
-        <div id="calc-step-1" class="calc-step">
-            <div class="calc-wizard">
-                <!-- Header -->
-                <div class="calc-wizard-header">
-                    <div class="calc-wizard-progress" id="calc-progress">
-                        <div class="calc-progress-dot active" data-q="0"></div>
-                        <div class="calc-progress-dot" data-q="1"></div>
-                        <div class="calc-progress-dot" data-q="2"></div>
-                        <div class="calc-progress-dot" data-q="3"></div>
-                        <div class="calc-progress-dot" data-q="4"></div>
-                        <div class="calc-progress-dot" data-q="5"></div>
-                        <div class="calc-progress-dot" data-q="6"></div>
-                        <div class="calc-progress-dot" data-q="7"></div>
-                    </div>
-                    <span class="calc-wizard-step-label" id="calc-step-counter">1 / 8</span>
-                    <button class="calc-wizard-close" id="calc-wizard-close-btn">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
+        <!-- ══════════ FINIQUITO (existing wizard) ══════════ -->
+        <div id="tool-finiquito" class="calc-tool-screen">
+            <div class="calc-tool-back-bar">
+                <button class="calc-back-hub-btn" data-target="calc-hub">← Todas las calculadoras</button>
+            </div>
 
-                <!-- Question Body -->
-                <div class="calc-question-area" id="calc-question-area">
+            <!-- STEP 0: LANDING -->
+            <div id="calc-step-0" class="calc-step active">
+                <div class="calc-landing">
+                    <div class="calc-landing-inner">
+                        <div class="calc-landing-text">
+                            <div class="calc-landing-tag">HERRAMIENTA GRATUITA</div>
+                            <h2 class="calc-landing-title">Calculadora de Finiquito y Liquidación</h2>
+                            <p class="calc-landing-subtitle">Estima lo que te corresponde conforme a la Ley Federal del Trabajo de México. Responde las preguntas y obtén tu desglose completo.</p>
+                            <button id="calc-btn-start" class="calc-landing-btn">Calcular ahora</button>
+                            <button id="calc-btn-marco" class="calc-landing-btn-alt" type="button"
+                                    aria-haspopup="dialog" aria-controls="calc-marco-legal">
+                                Marco legal
+                            </button>
+                        </div>
+                        <figure class="calc-landing-art">
+                            <img src="finiquito_portada.png" alt="Cálculo de finiquito y liquidación con monedas flotantes de curso legal" class="calc-landing-img">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 1: WIZARD -->
+            <div id="calc-step-1" class="calc-step">
+                <div class="calc-wizard">
+                    <div class="calc-wizard-header">
+                        <div class="calc-wizard-progress" id="calc-progress">
+                            <div class="calc-progress-dot active" data-q="0"></div>
+                            <div class="calc-progress-dot" data-q="1"></div>
+                            <div class="calc-progress-dot" data-q="2"></div>
+                            <div class="calc-progress-dot" data-q="3"></div>
+                            <div class="calc-progress-dot" data-q="4"></div>
+                            <div class="calc-progress-dot" data-q="5"></div>
+                            <div class="calc-progress-dot" data-q="6"></div>
+                            <div class="calc-progress-dot" data-q="7"></div>
+                        </div>
+                        <span class="calc-wizard-step-label" id="calc-step-counter">1 / 8</span>
+                        <button class="calc-wizard-close" id="calc-wizard-close-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="calc-question-area" id="calc-question-area">
+                        <!-- Dynamically rendered -->
+                    </div>
+                    <div class="calc-wizard-footer">
+                        <button class="calc-btn-prev" id="calc-btn-prev">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <button class="calc-btn-next" id="calc-btn-next" disabled>
+                            Continuar <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: RESULTS -->
+            <div id="calc-step-2" class="calc-step">
+                <div class="calc-results" id="calc-results-container">
                     <!-- Dynamically rendered -->
                 </div>
+            </div>
+        </div>
 
-                <!-- Footer -->
-                <div class="calc-wizard-footer">
-                    <button class="calc-btn-prev" id="calc-btn-prev">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <button class="calc-btn-next" id="calc-btn-next" disabled>
-                        Continuar <i class="fas fa-arrow-right"></i>
-                    </button>
+        <!-- ══════════ HORAS EXTRAS ══════════ -->
+        <div id="tool-horas-extras" class="calc-tool-screen">
+            <div class="calc-tool-back-bar">
+                <button class="calc-back-hub-btn" data-target="calc-hub">← Todas las calculadoras</button>
+            </div>
+            <div class="calc-simple-wrapper">
+                <div class="calc-simple-header">
+                    <div class="calc-landing-tag">ART. 68 LFT</div>
+                    <h2 class="calc-simple-title">Calculadora de Horas Extras</h2>
+                    <p class="calc-simple-desc">Las primeras 9 horas extra semanales se pagan al doble. Las que excedan ese límite, al triple.</p>
+                </div>
+                <div class="calc-simple-form" id="form-horas-extras">
+                    <div class="calc-simple-field">
+                        <label for="he-salario">Salario mensual bruto (MXN)</label>
+                        <input type="number" id="he-salario" placeholder="15000" min="1" inputmode="decimal">
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="he-frecuencia">Frecuencia de pago</label>
+                        <select id="he-frecuencia">
+                            <option value="mensual">Mensual</option>
+                            <option value="quincenal">Quincenal</option>
+                            <option value="semanal">Semanal</option>
+                            <option value="diario">Diario</option>
+                        </select>
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="he-horas">Horas extra trabajadas en la semana</label>
+                        <input type="number" id="he-horas" placeholder="5" min="1" max="40" inputmode="numeric">
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="he-jornada">Tipo de jornada</label>
+                        <select id="he-jornada">
+                            <option value="diurna">Diurna (8 h)</option>
+                            <option value="nocturna">Nocturna (7 h)</option>
+                            <option value="mixta">Mixta (7.5 h)</option>
+                        </select>
+                    </div>
+                    <button class="calc-simple-btn" id="btn-calcular-he">Calcular →</button>
+                </div>
+                <div class="calc-simple-results" id="results-horas-extras" hidden>
+                    <div class="calc-simple-results-inner" id="results-he-inner"></div>
+                    <button class="calc-simple-reset" data-tool="horas-extras">Calcular de nuevo</button>
                 </div>
             </div>
         </div>
 
-        <!-- STEP 2: RESULTS -->
-        <div id="calc-step-2" class="calc-step">
-            <div class="calc-results" id="calc-results-container">
-                <!-- Dynamically rendered -->
+        <!-- ══════════ NÓMINA ══════════ -->
+        <div id="tool-nomina" class="calc-tool-screen">
+            <div class="calc-tool-back-bar">
+                <button class="calc-back-hub-btn" data-target="calc-hub">← Todas las calculadoras</button>
+            </div>
+            <div class="calc-simple-wrapper">
+                <div class="calc-simple-header">
+                    <div class="calc-landing-tag">IMSS + ISR 2026</div>
+                    <h2 class="calc-simple-title">Calculadora de Nómina</h2>
+                    <p class="calc-simple-desc">Estima tus deducciones de IMSS e ISR y calcula tu sueldo neto a recibir.</p>
+                </div>
+                <div class="calc-simple-form" id="form-nomina">
+                    <div class="calc-simple-field">
+                        <label for="nom-salario">Salario mensual bruto (MXN)</label>
+                        <input type="number" id="nom-salario" placeholder="20000" min="1" inputmode="decimal">
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="nom-periodo">Periodo de pago</label>
+                        <select id="nom-periodo">
+                            <option value="mensual">Mensual</option>
+                            <option value="quincenal">Quincenal</option>
+                        </select>
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="nom-extras">Otras percepciones del periodo (bonos, comisiones, etc.)</label>
+                        <input type="number" id="nom-extras" placeholder="0" min="0" value="0" inputmode="decimal">
+                    </div>
+                    <button class="calc-simple-btn" id="btn-calcular-nomina">Calcular →</button>
+                </div>
+                <div class="calc-simple-results" id="results-nomina" hidden>
+                    <div class="calc-simple-results-inner" id="results-nomina-inner"></div>
+                    <button class="calc-simple-reset" data-tool="nomina">Calcular de nuevo</button>
+                </div>
             </div>
         </div>
 
+        <!-- ══════════ SUELDO BRUTO / NETO ══════════ -->
+        <div id="tool-sueldo-bruto" class="calc-tool-screen">
+            <div class="calc-tool-back-bar">
+                <button class="calc-back-hub-btn" data-target="calc-hub">← Todas las calculadoras</button>
+            </div>
+            <div class="calc-simple-wrapper">
+                <div class="calc-simple-header">
+                    <div class="calc-landing-tag">ISR + IMSS 2026</div>
+                    <h2 class="calc-simple-title">Calculadora de Sueldo Bruto a Neto</h2>
+                    <p class="calc-simple-desc">Parte de tu sueldo bruto y descubre cuánto recibirás de verdad, o al revés.</p>
+                </div>
+                <div class="calc-simple-form" id="form-sueldo-bruto">
+                    <div class="calc-simple-toggle-row">
+                        <button class="calc-toggle-btn active" id="toggle-bruto-a-neto">De Bruto → Neto</button>
+                        <button class="calc-toggle-btn" id="toggle-neto-a-bruto">De Neto → Bruto</button>
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="sb-monto" id="sb-monto-label">Sueldo mensual bruto (MXN)</label>
+                        <input type="number" id="sb-monto" placeholder="25000" min="1" inputmode="decimal">
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="sb-periodo">Periodo</label>
+                        <select id="sb-periodo">
+                            <option value="mensual">Mensual</option>
+                            <option value="quincenal">Quincenal</option>
+                            <option value="anual">Anual</option>
+                        </select>
+                    </div>
+                    <button class="calc-simple-btn" id="btn-calcular-sb">Calcular →</button>
+                </div>
+                <div class="calc-simple-results" id="results-sueldo-bruto" hidden>
+                    <div class="calc-simple-results-inner" id="results-sb-inner"></div>
+                    <button class="calc-simple-reset" data-tool="sueldo-bruto">Calcular de nuevo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════ AGUINALDO + ISR ══════════ -->
+        <div id="tool-aguinaldo" class="calc-tool-screen">
+            <div class="calc-tool-back-bar">
+                <button class="calc-back-hub-btn" data-target="calc-hub">← Todas las calculadoras</button>
+            </div>
+            <div class="calc-simple-wrapper">
+                <div class="calc-simple-header">
+                    <div class="calc-landing-tag">ART. 87 LFT + SAT 2026</div>
+                    <h2 class="calc-simple-title">Calculadora de Aguinaldo</h2>
+                    <p class="calc-simple-desc">Calcula tu aguinaldo proporcional e ISR a retener. Exención: 30 UMA diarias (Art. 93 LISR).</p>
+                </div>
+                <div class="calc-simple-form" id="form-aguinaldo">
+                    <div class="calc-simple-field">
+                        <label for="ag-salario">Salario mensual bruto (MXN)</label>
+                        <input type="number" id="ag-salario" placeholder="18000" min="1" inputmode="decimal">
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="ag-inicio">Fecha de ingreso</label>
+                        <input type="date" id="ag-inicio">
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="ag-dias">Días de aguinaldo por contrato o ley (mín. 15)</label>
+                        <input type="number" id="ag-dias" value="15" min="15" max="90">
+                    </div>
+                    <div class="calc-simple-field">
+                        <label for="ag-pagado">Aguinaldo ya pagado este año (0 si no aplica)</label>
+                        <input type="number" id="ag-pagado" value="0" min="0" inputmode="decimal">
+                    </div>
+                    <button class="calc-simple-btn" id="btn-calcular-ag">Calcular →</button>
+                </div>
+                <div class="calc-simple-results" id="results-aguinaldo" hidden>
+                    <div class="calc-simple-results-inner" id="results-ag-inner"></div>
+                    <!-- ISR Table -->
+                    <div class="calc-isr-tabla" id="calc-isr-tabla">
+                        <h3 class="calc-isr-tabla-title">Tabla ISR mensual SAT 2026</h3>
+                        <div class="calc-marco-tabla-wrap">
+                            <table class="calc-marco-tabla">
+                                <thead><tr><th>Límite inferior</th><th>Límite superior</th><th>Cuota fija</th><th>% sobre excedente</th></tr></thead>
+                                <tbody>
+                                    <tr><td>$0.01</td><td>$8,952.49</td><td>$0.00</td><td>1.92%</td></tr>
+                                    <tr><td>$8,952.50</td><td>$75,984.55</td><td>$171.88</td><td>6.40%</td></tr>
+                                    <tr><td>$75,984.56</td><td>$133,536.07</td><td>$4,461.94</td><td>10.88%</td></tr>
+                                    <tr><td>$133,536.08</td><td>$155,229.80</td><td>$10,723.55</td><td>16.00%</td></tr>
+                                    <tr><td>$155,229.81</td><td>$185,852.57</td><td>$14,194.54</td><td>17.92%</td></tr>
+                                    <tr><td>$185,852.58</td><td>$374,837.88</td><td>$19,682.13</td><td>21.36%</td></tr>
+                                    <tr><td>$374,837.89</td><td>$590,795.99</td><td>$60,049.40</td><td>23.52%</td></tr>
+                                    <tr><td>$590,796.00</td><td>$1,127,926.84</td><td>$110,842.74</td><td>30.00%</td></tr>
+                                    <tr><td>$1,127,926.85</td><td>$1,503,902.46</td><td>$271,981.99</td><td>32.00%</td></tr>
+                                    <tr><td>$1,503,902.47</td><td>$4,511,707.37</td><td>$392,294.17</td><td>34.00%</td></tr>
+                                    <tr><td>$4,511,707.38</td><td>En adelante</td><td>$1,415,561.49</td><td>35.00%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="calc-marco-fuente">Tabla mensual SAT 2026 (Art. 96 LISR). Exención aguinaldo: 30 UMA diarias ($3,519.30 en 2026).</p>
+                    </div>
+                    <button class="calc-simple-reset" data-tool="aguinaldo">Calcular de nuevo</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    <!-- ═══ MARCO LEGAL ═══ -->
+    <div class="calc-marco" id="calc-marco-legal" role="dialog" aria-modal="true"
+         aria-labelledby="calc-marco-titulo" hidden>
+        <div class="calc-marco-panel" role="document">
+            <header class="calc-marco-head">
+                <div>
+                    <span class="calc-marco-eyebrow">Referencia</span>
+                    <h2 id="calc-marco-titulo">Marco legal</h2>
+                </div>
+                <button type="button" class="calc-marco-close" id="calc-marco-close" aria-label="Cerrar marco legal">&times;</button>
+            </header>
+
+            <div class="calc-marco-body">
+
+                <!-- Valores vigentes -->
+                <section class="calc-marco-sec">
+                    <h3>Valores vigentes 2026</h3>
+                    <div class="calc-marco-cifras" id="calcMarcoCifras"></div>
+                    <p class="calc-marco-fuente">Salarios mínimos: CONASAMI, vigentes desde el 1 de enero de 2026. UMA: INEGI, vigente desde el 1 de febrero de 2026.</p>
+                </section>
+
+                <!-- LFT -->
+                <section class="calc-marco-sec">
+                    <h3>Ley Federal del Trabajo — artículos fundamentales</h3>
+                    <p class="calc-marco-nota"><strong>Última reforma publicada en el DOF: 14 de mayo de 2026</strong> (en materia de reducción de la jornada laboral). Los cálculos de esta herramienta se basan en el texto vigente a esa fecha.</p>
+                    <dl class="calc-marco-arts">
+                        <dt>Art. 47</dt><dd>Causas de rescisión de la relación de trabajo <em>sin responsabilidad para el patrón</em>. Obliga a entregar aviso escrito de rescisión; si no se entrega, el despido se presume injustificado.</dd>
+                        <dt>Art. 48</dt><dd>Ante un despido injustificado, el trabajador puede optar entre la <em>reinstalación</em> o una indemnización de <em>tres meses de salario</em>, más salarios vencidos.</dd>
+                        <dt>Art. 50</dt><dd>Monto de las indemnizaciones. En contratos por tiempo indeterminado: <em>20 días de salario por cada año de servicios</em>.</dd>
+                        <dt>Art. 76</dt><dd>Vacaciones. Reforma de &ldquo;Vacaciones Dignas&rdquo; (DOF 27-dic-2022, vigente 1-ene-2023): 12 días el primer año y aumento progresivo.</dd>
+                        <dt>Art. 79</dt><dd>Las vacaciones no pueden compensarse con dinero; al terminar la relación laboral sí se pagan las proporcionales no disfrutadas.</dd>
+                        <dt>Art. 80</dt><dd>Prima vacacional: <em>25%</em> como mínimo sobre los salarios de vacaciones.</dd>
+                        <dt>Art. 84</dt><dd>Integración del salario: comprende pagos en efectivo por cuota diaria, gratificaciones, primas y demás prestaciones (base del SDI).</dd>
+                        <dt>Art. 87</dt><dd>Aguinaldo: mínimo <em>15 días</em> de salario, pagadero antes del 20 de diciembre; proporcional si no se cumplió el año.</dd>
+                        <dt>Art. 89</dt><dd>Salario base para el pago de indemnizaciones: el salario diario integrado.</dd>
+                        <dt>Art. 162</dt><dd>Prima de antigüedad: <em>12 días por año</em> de servicio. Procede en toda separación (justificada o no) y en renuncia voluntaria solo con <em>15 años o más</em> de antigüedad.</dd>
+                        <dt>Art. 485 y 486</dt><dd>Topes del salario base para indemnizaciones y prima de antigüedad.</dd>
+                        <dt>LISR Art. 93, fr. XIII</dt><dd>Exención del ISR sobre indemnizaciones hasta <em>90 UMA por cada año de servicio</em>.</dd>
+                    </dl>
+                </section>
+
+                <!-- Conceptos -->
+                <section class="calc-marco-sec">
+                    <h3>Conceptos del finiquito</h3>
+                    <p class="calc-marco-nota">El <strong>finiquito</strong> se paga en toda terminación, sea cual sea la causa. La <strong>liquidación</strong> solo procede cuando hay despido injustificado.</p>
+                    <ul class="calc-marco-lista">
+                        <li><strong>Salario devengado</strong> — días trabajados del último periodo que aún no se pagan.</li>
+                        <li><strong>Aguinaldo proporcional</strong> — 15 días al año, en proporción al tiempo laborado (Art. 87).</li>
+                        <li><strong>Vacaciones proporcionales</strong> — días que corresponden por antigüedad y no se disfrutaron (Art. 76 y 79).</li>
+                        <li><strong>Prima vacacional</strong> — 25% sobre el importe de esas vacaciones (Art. 80).</li>
+                        <li><strong>Prima de antigüedad</strong> — 12 días por año, con el tope de ley (Art. 162).</li>
+                        <li><strong>Indemnización constitucional</strong> — 90 días de SDI, solo en despido injustificado (Art. 48).</li>
+                        <li><strong>20 días por año</strong> — adicionales en despido injustificado (Art. 50, fr. III).</li>
+                    </ul>
+                </section>
+
+                <!-- Vacaciones -->
+                <section class="calc-marco-sec">
+                    <h3>Tabla de vacaciones por antigüedad (Art. 76)</h3>
+                    <div class="calc-marco-tabla-wrap">
+                        <table class="calc-marco-tabla">
+                            <thead><tr><th>Años de servicio</th><th>Días de vacaciones</th></tr></thead>
+                            <tbody>
+                                <tr><td>1 año</td><td>12</td></tr>
+                                <tr><td>2 años</td><td>14</td></tr>
+                                <tr><td>3 años</td><td>16</td></tr>
+                                <tr><td>4 años</td><td>18</td></tr>
+                                <tr><td>5 años</td><td>20</td></tr>
+                                <tr><td>6 a 10 años</td><td>22</td></tr>
+                                <tr><td>11 a 15 años</td><td>24</td></tr>
+                                <tr><td>16 a 20 años</td><td>26</td></tr>
+                                <tr><td>21 a 25 años</td><td>28</td></tr>
+                                <tr><td>26 a 30 años</td><td>30</td></tr>
+                                <tr><td>31 a 35 años</td><td>32</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="calc-marco-fuente">A partir del sexto año se suman 2 días por cada 5 años de servicio.</p>
+                </section>
+
+                <!-- Tipos de separación -->
+                <section class="calc-marco-sec">
+                    <h3>Tipos de separación laboral</h3>
+                    <div class="calc-marco-tabla-wrap">
+                        <table class="calc-marco-tabla">
+                            <thead>
+                                <tr><th>Tipo</th><th>Prima de antigüedad</th><th>Indemnización</th><th>Observaciones</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Renuncia voluntaria</td>
+                                    <td class="si-parcial">Solo con 15+ años</td>
+                                    <td class="no">No aplica</td>
+                                    <td>Conserva el finiquito completo: salario devengado, aguinaldo, vacaciones y prima vacacional proporcionales.</td>
+                                </tr>
+                                <tr>
+                                    <td>Despido injustificado</td>
+                                    <td class="si">Sí aplica</td>
+                                    <td class="si">90 días + 20 días por año</td>
+                                    <td>El trabajador puede optar por reinstalación o indemnización (Art. 48). No firmes hojas en blanco ni renuncias.</td>
+                                </tr>
+                                <tr>
+                                    <td>Despido justificado (Art. 47)</td>
+                                    <td class="si">Sí aplica</td>
+                                    <td class="no">No aplica</td>
+                                    <td>El patrón debe entregar aviso de rescisión por escrito; sin él, el despido se presume injustificado.</td>
+                                </tr>
+                                <tr>
+                                    <td>Fin de contrato temporal</td>
+                                    <td class="si-parcial">Solo con 15+ años</td>
+                                    <td class="no">No aplica</td>
+                                    <td>La relación concluye de forma natural al vencer el plazo o terminar la obra.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Metodología -->
+                <section class="calc-marco-sec">
+                    <h3>Metodología de cálculo</h3>
+                    <ol class="calc-marco-lista calc-marco-metodo">
+                        <li><strong>Salario diario (SD)</strong> — se normaliza tu sueldo a base diaria según la frecuencia con que lo cobras.</li>
+                        <li><strong>Salario diario integrado (SDI)</strong> — SD × factor de integración, que suma aguinaldo y prima vacacional: <code>1 + (15/365) + (días de vacaciones × 0.25 / 365)</code> (Art. 84).</li>
+                        <li><strong>Aguinaldo proporcional</strong> — <code>SD × 15 × (días trabajados en el año / 365)</code>, menos lo ya pagado en el ejercicio.</li>
+                        <li><strong>Vacaciones proporcionales</strong> — <code>(días por antigüedad / 365) × días trabajados − días ya disfrutados</code>, por SD.</li>
+                        <li><strong>Prima vacacional</strong> — 25% del importe anterior.</li>
+                        <li><strong>Indemnización</strong> — <code>90 × SDI</code> más <code>20 × SDI × años</code>, solo en despido injustificado.</li>
+                        <li><strong>Prima de antigüedad</strong> — <code>12 × años × salario base topado</code>.</li>
+                        <li><strong>ISR</strong> — se estima sobre la indemnización, aplicando la exención de 90 UMA por año de servicio.</li>
+                    </ol>
+                </section>
+
+                <p class="calc-marco-disclaimer">
+                    Esta información es orientativa y se basa en la Ley Federal del Trabajo vigente. No constituye asesoría
+                    jurídica vinculante ni sustituye el análisis de un abogado sobre tu caso concreto: los montos pueden variar
+                    según prestaciones superiores a la ley, convenios y particularidades de tu relación laboral.
+                </p>
+            </div>
+        </div>
     </div>
 
-    <script src="calculadora-engine.js"></script>
+    <script src="calculadora-engine.js?v=2"></script>
     <script src="script.js?v=7"></script>
     <script src="analytics.js"></script>
     <script>
@@ -290,7 +720,7 @@
                 case 2: // Salario
                     wrap.innerHTML = `
                         <div class="calc-question-number">PREGUNTA 03</div>
-                        <h2 class="calc-question-text">¿Cuál es el salario mensual bruto?</h2>
+                        <h2 class="calc-question-text">¿Cuál es tu salario bruto?</h2>
                         <div class="calc-input-group">
                             <label class="calc-input-label" for="calc-frecuencia">¿Cada cuánto te pagan?</label>
                             <select class="calc-input" id="calc-frecuencia">
@@ -768,6 +1198,64 @@
             });
         }
 
+        // ═══ MARCO LEGAL + VALORES VIGENTES ═══
+        (function () {
+            // Los valores salen del propio motor: una sola fuente de verdad.
+            const anio = new Date().getFullYear();
+            const cfg  = (typeof CONFIG !== 'undefined' && (CONFIG[anio] || CONFIG[2026])) || null;
+
+            if (cfg) {
+                const mxn = n => '$' + n.toLocaleString('es-MX', {minimumFractionDigits:2, maximumFractionDigits:2});
+
+                const franja = document.getElementById('calcMinimos');
+                if (franja) {
+                    franja.innerHTML =
+                        `<span class="cm-etiqueta">Vigente ${anio}</span>` +
+                        `<span>Salario mínimo <b>${mxn(cfg.salarioMinimoDiario)}</b></span>` +
+                        `<span>Frontera norte <b>${mxn(cfg.salarioMinimoFrontera)}</b></span>` +
+                        `<span>UMA <b>${mxn(cfg.umaDiario)}</b></span>`;
+                }
+
+                const cifras = document.getElementById('calcMarcoCifras');
+                if (cifras) {
+                    cifras.innerHTML =
+                        `<div class="cm-cifra"><span>Salario mínimo general</span><strong>${mxn(cfg.salarioMinimoDiario)}</strong></div>` +
+                        `<div class="cm-cifra"><span>Zona Libre Frontera Norte</span><strong>${mxn(cfg.salarioMinimoFrontera)}</strong></div>` +
+                        `<div class="cm-cifra"><span>UMA diaria</span><strong>${mxn(cfg.umaDiario)}</strong></div>` +
+                        `<div class="cm-cifra"><span>Aguinaldo mínimo</span><strong>${cfg.diasAguinaldo} días</strong></div>`;
+                }
+            }
+
+            const modal   = document.getElementById('calc-marco-legal');
+            const abrir   = document.getElementById('calc-btn-marco');
+            const cerrar  = document.getElementById('calc-marco-close');
+            if (!modal || !abrir) return;
+
+            let ultimoFoco = null;
+
+            const abrirModal = () => {
+                ultimoFoco = document.activeElement;
+                modal.hidden = false;
+                document.body.style.overflow = 'hidden';
+                abrir.setAttribute('aria-expanded', 'true');
+                cerrar.focus();
+            };
+            const cerrarModal = () => {
+                modal.hidden = true;
+                document.body.style.overflow = '';
+                abrir.setAttribute('aria-expanded', 'false');
+                if (ultimoFoco) ultimoFoco.focus();
+            };
+
+            abrir.addEventListener('click', abrirModal);
+            cerrar.addEventListener('click', cerrarModal);
+            // Clic en el fondo (fuera del panel) cierra
+            modal.addEventListener('click', (e) => { if (e.target === modal) cerrarModal(); });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.hidden) cerrarModal();
+            });
+        })();
+
         // ═══ UTILITIES ═══
         function formatDateES(d) {
             const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
@@ -797,6 +1285,296 @@
         </div>
     </section>
     -->
+
+</body>
+</html>
+
+    <!-- ═══ HUB + SIMPLE CALCULATORS JS ═══ -->
+    <script>
+    (function() {
+        'use strict';
+
+        // ─── UTILITIES ───
+        const $ = id => document.getElementById(id);
+        const fmt = n => n.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 2 });
+
+        // ISR 2026 mensual tablas (Art. 96 LISR)
+        const ISR_TABLA_MENSUAL = [
+            { li: 0.01,       ls: 8952.49,      cuota: 0,          tasa: 0.0192 },
+            { li: 8952.50,    ls: 75984.55,     cuota: 171.88,     tasa: 0.0640 },
+            { li: 75984.56,   ls: 133536.07,    cuota: 4461.94,    tasa: 0.1088 },
+            { li: 133536.08,  ls: 155229.80,    cuota: 10723.55,   tasa: 0.1600 },
+            { li: 155229.81,  ls: 185852.57,    cuota: 14194.54,   tasa: 0.1792 },
+            { li: 185852.58,  ls: 374837.88,    cuota: 19682.13,   tasa: 0.2136 },
+            { li: 374837.89,  ls: 590795.99,    cuota: 60049.40,   tasa: 0.2352 },
+            { li: 590796.00,  ls: 1127926.84,   cuota: 110842.74,  tasa: 0.3000 },
+            { li: 1127926.85, ls: 1503902.46,   cuota: 271981.99,  tasa: 0.3200 },
+            { li: 1503902.47, ls: 4511707.37,   cuota: 392294.17,  tasa: 0.3400 },
+            { li: 4511707.38, ls: Infinity,     cuota: 1415561.49, tasa: 0.3500 },
+        ];
+
+        // Subsidio al empleo mensual 2026
+        const SUBSIDIO_TABLA = [
+            { ls: 1768.96,  sub: 407.02 },
+            { ls: 2653.38,  sub: 406.83 },
+            { ls: 3472.84,  sub: 406.62 },
+            { ls: 3537.87,  sub: 392.77 },
+            { ls: 4446.15,  sub: 382.46 },
+            { ls: 4717.18,  sub: 354.23 },
+            { ls: 5335.42,  sub: 324.87 },
+            { ls: 6224.67,  sub: 294.63 },
+            { ls: 7113.90,  sub: 253.54 },
+            { ls: 7382.33,  sub: 217.61 },
+            { ls: Infinity, sub: 0 },
+        ];
+
+        const UMA_DIARIA = 117.31; // 2026
+
+        function calcISR(baseAnual) {
+            const baseMensual = baseAnual / 12;
+            const renglon = ISR_TABLA_MENSUAL.find(r => baseMensual >= r.li && baseMensual <= r.ls);
+            if (!renglon) return 0;
+            const mensual = renglon.cuota + (baseMensual - renglon.li) * renglon.tasa;
+            return mensual * 12;
+        }
+
+        function calcISRMensual(baseMensual) {
+            const r = ISR_TABLA_MENSUAL.find(r => baseMensual >= r.li && baseMensual <= r.ls);
+            if (!r) return 0;
+            return r.cuota + (baseMensual - r.li) * r.tasa;
+        }
+
+        function calcSubsidio(baseMensual) {
+            const r = SUBSIDIO_TABLA.find(r => baseMensual <= r.ls);
+            return r ? r.sub : 0;
+        }
+
+        // IMSS cuotas obrero 2026
+        function calcIMSS(salarioDiario) {
+            const sdbc = Math.min(salarioDiario, UMA_DIARIA * 25);
+            const mensual = salarioDiario * 30.4;
+            const sdbc_mensual = sdbc * 30.4;
+            const enfermedadMaternidad = sdbc_mensual * 0.01125;
+            const invalidezVida = sdbc_mensual * 0.00625;
+            const cesantia = sdbc_mensual * 0.01125;
+            const guarderia = 0;
+            const total = enfermedadMaternidad + invalidezVida + cesantia;
+            return { total, detalle: { enfermedadMaternidad, invalidezVida, cesantia } };
+        }
+
+        function rowHTML(label, value, cls) {
+            return `<div class="cs-row ${cls||''}"><span class="cs-label">${label}</span><span class="cs-value">${value}</span></div>`;
+        }
+
+        // ─── HUB NAVIGATION ───
+        function showScreen(id) {
+            document.querySelectorAll('.calc-hub-screen, .calc-tool-screen').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) { target.classList.add('active'); window.scrollTo(0,0); }
+        }
+
+        // Card clicks → open tool
+        document.querySelectorAll('.calc-hub-card').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tool = btn.dataset.tool;
+                showScreen('tool-' + tool);
+            });
+        });
+
+        // Back buttons
+        document.querySelectorAll('.calc-back-hub-btn').forEach(btn => {
+            btn.addEventListener('click', () => showScreen(btn.dataset.target || 'calc-hub'));
+        });
+
+        // Reset buttons (show form again)
+        document.querySelectorAll('.calc-simple-reset').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tool = btn.dataset.tool;
+                const resultsId = 'results-' + tool;
+                const formId = 'form-' + tool;
+                const r = document.getElementById(resultsId);
+                const f = document.getElementById(formId);
+                if (r) r.hidden = true;
+                if (f) { f.style.display = ''; f.querySelectorAll('input[type=number]').forEach(i => { if (!i.defaultValue) i.value = ''; }); }
+            });
+        });
+
+        // ─── CALCULADORA 1: HORAS EXTRAS ───
+        document.getElementById('btn-calcular-he').addEventListener('click', () => {
+            const salMensual = parseFloat(document.getElementById('he-salario').value);
+            const freq = document.getElementById('he-frecuencia').value;
+            const horas = parseFloat(document.getElementById('he-horas').value);
+            const jornada = document.getElementById('he-jornada').value;
+
+            if (!salMensual || salMensual <= 0 || !horas || horas <= 0) { alert('Por favor ingresa valores válidos.'); return; }
+
+            const multFrecuencia = { mensual: 1, quincenal: 2, semanal: 4.33, diario: 30 };
+            const salarioMensual = salMensual * (multFrecuencia[freq] || 1);
+            const salarioDiario = salarioMensual / 30;
+            const jornadaHoras = { diurna: 8, nocturna: 7, mixta: 7.5 }[jornada] || 8;
+            const salarioHoraOrdinaria = salarioDiario / jornadaHoras;
+
+            // LFT Art. 68: hasta 9 h extra/semana al doble, el resto al triple
+            const horasDoble = Math.min(horas, 9);
+            const horasTriple = Math.max(0, horas - 9);
+
+            const pagoDoble = horasDoble * salarioHoraOrdinaria * 2;
+            const pagoTriple = horasTriple * salarioHoraOrdinaria * 3;
+            const totalExtras = pagoDoble + pagoTriple;
+
+            let html = `
+                ${rowHTML('Salario mensual (normalizado)', fmt(salarioMensual))}
+                ${rowHTML('Salario por hora ordinaria', fmt(salarioHoraOrdinaria))}
+                ${rowHTML(`Horas extra al doble (${horasDoble} h × ${fmt(salarioHoraOrdinaria*2)})`, fmt(pagoDoble))}
+                ${horasTriple > 0 ? rowHTML(`Horas extra al triple (${horasTriple} h × ${fmt(salarioHoraOrdinaria*3)})`, fmt(pagoTriple), 'deduction') : ''}
+                ${rowHTML('Total a pagar por horas extras', fmt(totalExtras), 'highlight')}
+                <p class="cs-note">Art. 68 LFT: máx. 3 h extra/día y 9 h/semana al doble. Las que excedan el límite semanal se pagan al triple.</p>
+            `;
+
+            document.getElementById('results-he-inner').innerHTML = html;
+            document.getElementById('results-horas-extras').hidden = false;
+            document.getElementById('form-horas-extras').style.display = 'none';
+        });
+
+        // ─── CALCULADORA 2: NÓMINA ───
+        document.getElementById('btn-calcular-nomina').addEventListener('click', () => {
+            const salMensual = parseFloat(document.getElementById('nom-salario').value);
+            const periodo = document.getElementById('nom-periodo').value;
+            const extras = parseFloat(document.getElementById('nom-extras').value) || 0;
+
+            if (!salMensual || salMensual <= 0) { alert('Por favor ingresa tu salario.'); return; }
+
+            const percepciones = salMensual + extras;
+            const salarioDiario = salMensual / 30;
+            const imss = calcIMSS(salarioDiario);
+            const isrMensual = calcISRMensual(percepciones);
+            const subsidio = calcSubsidio(percepciones);
+            const isrNeto = Math.max(0, isrMensual - subsidio);
+            const totalDeducciones = imss.total + isrNeto;
+            const neto = percepciones - totalDeducciones;
+
+            const divisor = periodo === 'quincenal' ? 2 : 1;
+            const label = periodo === 'quincenal' ? ' (quincenal)' : ' (mensual)';
+
+            let html = `
+                ${rowHTML('Percepciones totales' + label, fmt(percepciones / divisor))}
+                ${rowHTML('IMSS Obrero (aprox.)' + label, `−${fmt(imss.total / divisor)}`, 'deduction')}
+                ${rowHTML('ISR estimado' + label, `−${fmt(isrMensual / divisor)}`, 'deduction')}
+                ${subsidio > 0 ? rowHTML('Subsidio al empleo' + label, `+${fmt(subsidio / divisor)}`) : ''}
+                ${rowHTML('Total deducciones' + label, `−${fmt(totalDeducciones / divisor)}`, 'deduction')}
+                ${rowHTML('Neto a recibir' + label, fmt(neto / divisor), 'highlight')}
+                <p class="cs-note">IMSS: cuotas obreras 2026 (enf/mat, inv/vida, cesantía). ISR calculado con tabla mensual SAT 2026 + subsidio al empleo. Estimación; el cálculo exacto puede variar según el mes y otras variables.</p>
+            `;
+
+            document.getElementById('results-nomina-inner').innerHTML = html;
+            document.getElementById('results-nomina').hidden = false;
+            document.getElementById('form-nomina').style.display = 'none';
+        });
+
+        // ─── CALCULADORA 3: SUELDO BRUTO / NETO ───
+        let sbModo = 'bruto-neto';
+        document.getElementById('toggle-bruto-a-neto').addEventListener('click', function() {
+            sbModo = 'bruto-neto';
+            this.classList.add('active');
+            document.getElementById('toggle-neto-a-bruto').classList.remove('active');
+            document.getElementById('sb-monto-label').textContent = 'Sueldo mensual bruto (MXN)';
+            document.getElementById('sb-monto').placeholder = '25000';
+        });
+        document.getElementById('toggle-neto-a-bruto').addEventListener('click', function() {
+            sbModo = 'neto-bruto';
+            this.classList.add('active');
+            document.getElementById('toggle-bruto-a-neto').classList.remove('active');
+            document.getElementById('sb-monto-label').textContent = 'Sueldo mensual neto deseado (MXN)';
+            document.getElementById('sb-monto').placeholder = '18000';
+        });
+
+        document.getElementById('btn-calcular-sb').addEventListener('click', () => {
+            const monto = parseFloat(document.getElementById('sb-monto').value);
+            const periodo = document.getElementById('sb-periodo').value;
+            if (!monto || monto <= 0) { alert('Por favor ingresa un monto válido.'); return; }
+
+            const divisor = { mensual: 1, quincenal: 2, anual: 1/12 }[periodo] || 1;
+            const brutoMensual = sbModo === 'bruto-neto' ? monto / divisor : monto / divisor / 0.78; // aprox inverso
+
+            const salarioDiario = brutoMensual / 30;
+            const imss = calcIMSS(salarioDiario);
+            const isrMensual = calcISRMensual(brutoMensual);
+            const subsidio = calcSubsidio(brutoMensual);
+            const isrNeto = Math.max(0, isrMensual - subsidio);
+            const deducciones = imss.total + isrNeto;
+            const netoMensual = brutoMensual - deducciones;
+            const tasaEfectiva = ((deducciones / brutoMensual) * 100).toFixed(1);
+
+            const periodoLabel = { mensual: 'mensual', quincenal: 'quincenal', anual: 'mensual (de anual)' }[periodo];
+
+            let html = `
+                ${rowHTML('Sueldo bruto ' + periodoLabel, fmt(brutoMensual / divisor))}
+                ${rowHTML('IMSS obrero estimado', `−${fmt(imss.total / divisor)}`, 'deduction')}
+                ${rowHTML('ISR estimado', `−${fmt(isrMensual / divisor)}`, 'deduction')}
+                ${subsidio > 0 ? rowHTML('Subsidio al empleo', `+${fmt(subsidio / divisor)}`) : ''}
+                ${rowHTML('Tasa de deducción efectiva', tasaEfectiva + '%')}
+                ${rowHTML('Sueldo neto ' + periodoLabel, fmt(netoMensual / divisor), 'highlight')}
+                <p class="cs-note">Cálculo con tablas ISR SAT 2026 y cuotas IMSS obrero vigentes. ${sbModo === 'neto-bruto' ? 'Conversión neto→bruto es aproximada.' : ''}</p>
+            `;
+
+            document.getElementById('results-sb-inner').innerHTML = html;
+            document.getElementById('results-sueldo-bruto').hidden = false;
+            document.getElementById('form-sueldo-bruto').style.display = 'none';
+        });
+
+        // ─── CALCULADORA 4: AGUINALDO + ISR ───
+        document.getElementById('btn-calcular-ag').addEventListener('click', () => {
+            const salMensual = parseFloat(document.getElementById('ag-salario').value);
+            const fechaInicio = document.getElementById('ag-inicio').value;
+            const diasAguinaldo = parseInt(document.getElementById('ag-dias').value) || 15;
+            const yaPagado = parseFloat(document.getElementById('ag-pagado').value) || 0;
+
+            if (!salMensual || salMensual <= 0 || !fechaInicio) { alert('Por favor completa todos los campos.'); return; }
+
+            const inicio = new Date(fechaInicio);
+            const hoy = new Date();
+            const anioActual = hoy.getFullYear();
+            const inicioAnio = new Date(anioActual, 0, 1);
+            const diaAnio = inicio > inicioAnio ? inicio : inicioAnio;
+            const diasTrabajados = Math.min(365, Math.max(0, Math.floor((hoy - diaAnio) / 86400000)));
+
+            const salarioDiario = salMensual / 30;
+
+            // Aguinaldo proporcional Art. 87 LFT
+            const aguinaldoBruto = (salarioDiario * diasAguinaldo * diasTrabajados) / 365;
+            const aguinaldoNeto = Math.max(0, aguinaldoBruto - yaPagado);
+
+            // ISR aguinaldo: exención 30 UMA diarias (Art. 93 LISR)
+            const exencionDiaria = UMA_DIARIA * 30;
+            const exencionTotal = exencionDiaria * diasAguinaldo;
+            const baseGravable = Math.max(0, aguinaldoNeto - exencionTotal);
+
+            // ISR sobre base gravable: tasa promedio mensual * fracción del año (método simplificado)
+            const isrAnual = calcISR(baseGravable * 12);
+            const isrAguinaldo = Math.min(aguinaldoNeto, isrAnual / 12);
+            const aguinaldoFinal = Math.max(0, aguinaldoNeto - isrAguinaldo);
+
+            let html = `
+                ${rowHTML('Salario diario', fmt(salarioDiario))}
+                ${rowHTML('Días trabajados en ' + anioActual, diasTrabajados + ' días')}
+                ${rowHTML('Aguinaldo proporcional bruto', fmt(aguinaldoBruto))}
+                ${yaPagado > 0 ? rowHTML('Aguinaldo ya pagado', `−${fmt(yaPagado)}`, 'deduction') : ''}
+                ${rowHTML('Aguinaldo a calcular', fmt(aguinaldoNeto))}
+                ${rowHTML('Exención ISR (30 UMA × ' + diasAguinaldo + ' días)', fmt(Math.min(exencionTotal, aguinaldoNeto)))}
+                ${rowHTML('Base gravable ISR', fmt(baseGravable))}
+                ${rowHTML('ISR estimado a retener', `−${fmt(isrAguinaldo)}`, 'deduction')}
+                ${rowHTML('Aguinaldo neto aproximado', fmt(aguinaldoFinal), 'highlight')}
+                <p class="cs-note">Art. 87 LFT: el aguinaldo debe pagarse antes del 20 de diciembre. Exención Art. 93 LISR: 30 UMA diarias = ${fmt(exencionDiaria)} por día. UMA 2026: $${UMA_DIARIA}/día.</p>
+            `;
+
+            document.getElementById('results-ag-inner').innerHTML = html;
+            document.getElementById('results-aguinaldo').hidden = false;
+            document.getElementById('form-aguinaldo').style.display = 'none';
+            document.getElementById('calc-isr-tabla').style.display = '';
+        });
+
+    })();
+    </script>
 
 </body>
 </html>

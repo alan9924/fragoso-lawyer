@@ -6,15 +6,15 @@
 
 const CONFIG = {
     2026: {
-        salarioMinimoDiario: 315.04,       // Zona general
-        salarioMinimoFrontera: 474.00,     // Zona libre frontera norte (estimado)
-        umaDiario: 117.31,
+        salarioMinimoDiario: 315.04,       // Zona general (CONASAMI, vigente 01-ene-2026)
+        salarioMinimoFrontera: 440.87,     // Zona Libre Frontera Norte (CONASAMI, vigente 01-ene-2026)
+        umaDiario: 117.31,                 // INEGI, vigente 01-feb-2026
         diasAguinaldo: 15,                 // Mínimo de ley
     },
     2025: {
-        salarioMinimoDiario: 278.80,
-        salarioMinimoFrontera: 419.88,
-        umaDiario: 113.14,
+        salarioMinimoDiario: 278.80,       // CONASAMI 2025
+        salarioMinimoFrontera: 419.88,     // CONASAMI 2025
+        umaDiario: 113.14,                 // INEGI 2025
         diasAguinaldo: 15,
     }
 };
