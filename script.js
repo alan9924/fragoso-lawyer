@@ -752,4 +752,87 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- TIMELINE DE CÓMO FUNCIONA ---
+    (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.classList.add('is-visible', 'is-active');
+            });
+            const progress = document.querySelector('.timeline-progress');
+            if (progress) progress.style.height = '100%';
+            return;
+        }
+
+        const items = document.querySelectorAll('.timeline-item');
+        if (items.length === 0) return;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -10% 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        items.forEach(item => observer.observe(item));
+
+        const section = document.getElementById('como-funciona-timeline');
+        const track = document.querySelector('.timeline-track');
+        const progress = document.querySelector('.timeline-progress');
+
+        if (!section || !track || !progress) return;
+
+        let isScrolling = false;
+
+        function updateTimeline() {
+            const sectionRect = section.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            
+            const startPoint = viewportHeight / 2;
+            const totalHeight = sectionRect.height;
+            const currentPosition = startPoint - sectionRect.top;
+
+            let percentage = (currentPosition / totalHeight) * 100;
+            percentage = Math.max(0, Math.min(100, percentage));
+
+            progress.style.height = `${percentage}%`;
+
+            items.forEach(item => {
+                const numberNode = item.querySelector('.timeline-number');
+                if (!numberNode) return;
+                
+                const numRect = numberNode.getBoundingClientRect();
+                const numCenterY = numRect.top + (numRect.height / 2);
+                
+                if (numCenterY <= viewportHeight / 2) {
+                    item.classList.add('is-active');
+                } else {
+                    item.classList.remove('is-active');
+                }
+            });
+
+            isScrolling = false;
+        }
+
+        window.addEventListener('scroll', function () {
+            if (!isScrolling) {
+                window.requestAnimationFrame(updateTimeline);
+                isScrolling = true;
+            }
+        }, { passive: true });
+
+        window.addEventListener('resize', function () {
+            window.requestAnimationFrame(updateTimeline);
+        });
+
+        updateTimeline();
+    })();
+
 });
