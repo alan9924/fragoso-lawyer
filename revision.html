@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Revisión de Contrato | FERRO FRAGOSO</title>
     <meta name="description" content="Evita firmar cláusulas abusivas. Un análisis legal experto antes de comprometer tu firma.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -36,7 +36,7 @@
             -webkit-backdrop-filter: none !important;
         }
         #navbar.transparent-nav .logo-text,
-        #navbar.transparent-nav .nav-links a,
+        #navbar.transparent-nav .nav-links a, #navbar.transparent-nav .nav-group-btn, #navbar.transparent-nav .nav-socios-link,
         #navbar.transparent-nav .nav-cta-btn {
             color: #fff !important;
         }
@@ -54,7 +54,7 @@
            over this page's dark hero. The full-screen mobile menu it opens has
            a light background — left white-on-white it's unreadable. Reset to
            dark whenever the menu is open (body.nav-open, toggled in script.js). */
-        body.nav-open #navbar.transparent-nav .nav-links a {
+        body.nav-open #navbar.transparent-nav .nav-links a, body.nav-open #navbar.transparent-nav .nav-group-btn, body.nav-open #navbar.transparent-nav .nav-socios-link {
             color: var(--carbon) !important;
         }
         body.nav-open #navbar.transparent-nav .mobile-menu-btn span {
@@ -313,22 +313,45 @@
                 <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
             </div>
             
-            <div class="nav-menu">
+            <div class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="marcas.html">MARCAS</a></li>
-                    <li><a href="derechos-autor.html">DERECHOS DE AUTOR</a></li>
-                    <li><a href="revision.html">REVISIÓN</a></li>
-                    <li><a href="consulta.html">CONSULTA</a></li>
-                    <li><a href="contratos.html">CONTRATOS</a></li>
-                    <li><a href="finiquito.html">CALCULADORA</a></li>
-                    <li><a href="radar/index.html">RADAR LEGAL</a></li>
-                    <li><a href="nosotros.html">NOSOTROS</a></li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="marcas.html">Registrar mi marca</a></li>
+                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="contratos.html">Crear un contrato</a></li>
+                            <li><a href="revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-he">
+                            Herramientas gratis<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-he">
+                            <li><a href="finiquito.html">Calcular mi finiquito</a></li>
+                            <li><a href="radar/index.html">Leer el Radar Legal</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
-                <button class="mobile-menu-btn" aria-label="Menú" id="mobileMenuBtn">
+                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -366,7 +389,7 @@
         <div class="dark-price-card" data-precio-normal="490" data-precio-expres="790" data-nombre="Revisión Simple">
             <h3>Revisión Simple</h3>
             <div class="price"><span class="price-amount">$490</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
-            <p>Análisis de contratos estándar de hasta 10 páginas. Entrega de reporte de riesgos vía WhatsApp en 24–48 hrs hábiles.</p>
+            <p>Contratos estándar de hasta 10 páginas. Reporte de riesgos y cláusulas clave, con una ronda de ajustes. Entrega en 24–48 hrs hábiles.</p>
             <label class="express-toggle">
                 <input type="checkbox" class="express-checkbox"> Exprés (+$300, entrega en 24h) <i class="fas fa-bolt"></i>
             </label>
@@ -374,25 +397,36 @@
                target="_blank" rel="noopener" class="dark-btn"
                data-mp-link="PENDIENTE:revision-simple-490" data-producto="Revisión simple">Solicitar Revisión</a>
         </div>
-        <div class="dark-price-card" style="border-color:#fff;" data-precio-normal="890" data-precio-expres="1190" data-nombre="Revisión Compleja">
-            <h3>Revisión Compleja</h3>
-            <div class="price"><span class="price-amount">$890</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
-            <p>Contratos de más de 10 páginas, redactados en inglés, o de alta complejidad corporativa. Mismo tiempo de respuesta excepcional.</p>
+        <div class="dark-price-card" style="border-color:#fff;" data-precio-normal="990" data-precio-expres="1290" data-nombre="Revisión Intermedia">
+            <h3>Revisión Intermedia</h3>
+            <div class="price"><span style="font-size:0.42em; color:#999; letter-spacing:1px;">DESDE </span><span class="price-amount">$990</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
+            <p>Contratos de 11 a 25 páginas o con anexos. Análisis cláusula por cláusula y recomendaciones priorizadas.</p>
             <label class="express-toggle">
                 <input type="checkbox" class="express-checkbox"> Exprés (+$300, entrega en 24h) <i class="fas fa-bolt"></i>
             </label>
-            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20revisi%C3%B3n%20compleja%20de%20mi%20contrato%20(%24890%20MXN)."
+            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20revisi%C3%B3n%20intermedia%20de%20mi%20contrato%20(desde%20%24990%20MXN)."
                target="_blank" rel="noopener" class="dark-btn"
-               data-mp-link="PENDIENTE:revision-compleja-890" data-producto="Revisión compleja">Solicitar Revisión</a>
+               data-mp-link="PENDIENTE:revision-intermedia-990" data-producto="Revisión intermedia">Solicitar Revisión</a>
         </div>
-        <div class="dark-price-card" data-precio-normal="2490" data-nombre="Redacción a Medida">
+        <div class="dark-price-card" data-precio-normal="1990" data-precio-expres="2290" data-nombre="Revisión Estratégica">
+            <h3>Revisión Estratégica</h3>
+            <div class="price"><span style="font-size:0.42em; color:#999; letter-spacing:1px;">DESDE </span><span class="price-amount">$1,990</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
+            <p>Alta complejidad corporativa, contratos en inglés u operaciones con riesgo relevante. Incluye postura de negociación.</p>
+            <label class="express-toggle">
+                <input type="checkbox" class="express-checkbox"> Exprés (+$300, entrega en 24h) <i class="fas fa-bolt"></i>
+            </label>
+            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20revisi%C3%B3n%20estrat%C3%A9gica%20de%20mi%20contrato%20(desde%20%241%2C990%20MXN)."
+               target="_blank" rel="noopener" class="dark-btn"
+               data-mp-link="PENDIENTE:revision-estrategica-1990" data-producto="Revisión estratégica">Solicitar Revisión</a>
+        </div>
+        <div class="dark-price-card" data-precio-normal="1990" data-nombre="Redacción a Medida">
             <h3>Redacción a Medida</h3>
-            <div class="price"><span class="price-amount">$2,490</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
+            <div class="price"><span style="font-size:0.42em; color:#999; letter-spacing:1px;">DESDE </span><span class="price-amount">$1,990</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
             <p>Redactamos tu contrato desde cero a la medida de tu operación: cláusulas negociadas, anexos y versión lista para firma. Entrega en 3–5 días hábiles.</p>
             <div style="height: 1.5rem; margin: 1rem 0;"></div>
-            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20redacci%C3%B3n%20a%20medida%20de%20un%20contrato%20(%242%2C490%20MXN)."
+            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20redacci%C3%B3n%20a%20medida%20de%20un%20contrato%20(desde%20%241%2C990%20MXN)."
                target="_blank" rel="noopener" class="dark-btn"
-               data-mp-link="PENDIENTE:redaccion-medida-2490" data-producto="Redacción a medida">Iniciar Proyecto</a>
+               data-mp-link="PENDIENTE:redaccion-medida-1990" data-producto="Redacción a medida">Iniciar Proyecto</a>
         </div>
     </section>
 
@@ -452,11 +486,11 @@
         </details>
         <details class="faq-item">
             <summary>¿Revisan contratos en inglés?</summary>
-            <p>Sí. Los contratos redactados en inglés se cotizan dentro de la revisión compleja ($890 MXN), dado el tiempo adicional que requiere el análisis bilingüe.</p>
+            <p>Sí. Los contratos redactados en inglés se cotizan dentro de la revisión estratégica (desde $1,990 MXN), dado el tiempo adicional que requiere el análisis bilingüe.</p>
         </details>
         <details class="faq-item">
             <summary>¿Qué pasa si necesito cambios después de la entrega?</summary>
-            <p>El reporte incluye una ronda de dudas por WhatsApp sobre los hallazgos entregados. Si necesitas que redactemos las cláusulas modificadas o un contrato completamente nuevo, la redacción de cláusulas o contratos nuevos se cotiza como "Redacción a medida ($2,490)".</p>
+            <p>El reporte incluye una ronda de dudas por WhatsApp sobre los hallazgos entregados. Si necesitas que redactemos las cláusulas modificadas o un contrato completamente nuevo, la redacción de cláusulas o contratos nuevos se cotiza como "Redacción a medida (desde $1,990)".</p>
         </details>
     </section>
 
@@ -470,8 +504,8 @@
                     { "@type": "Question", "name": "¿Qué diferencia hay entre revisión simple y compleja?", "acceptedAnswer": { "@type": "Answer", "text": "La revisión simple cubre contratos estándar de hasta 10 páginas en español. La compleja aplica a contratos de más de 10 páginas, redactados en inglés, o de alta complejidad corporativa." } },
                     { "@type": "Question", "name": "¿Cuál es el tiempo de entrega?", "acceptedAnswer": { "@type": "Answer", "text": "El servicio estándar se entrega en 24–48 horas hábiles. La opción exprés reduce el tiempo de entrega a 24 horas por $300 MXN adicionales." } },
                     { "@type": "Question", "name": "¿Qué recibo al final de la revisión?", "acceptedAnswer": { "@type": "Answer", "text": "Un reporte con las cláusulas de riesgo identificadas, su explicación en lenguaje claro, y recomendaciones sobre qué negociar antes de firmar." } },
-                    { "@type": "Question", "name": "¿Revisan contratos en inglés?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, los contratos en inglés se cotizan dentro de la revisión compleja ($890 MXN)." } },
-                    { "@type": "Question", "name": "¿Qué pasa si necesito cambios después de la entrega?", "acceptedAnswer": { "@type": "Answer", "text": "El reporte incluye una ronda de dudas por WhatsApp. La redacción de cláusulas o contratos nuevos se cotiza como Redacción a medida ($2,490)." } }
+                    { "@type": "Question", "name": "¿Revisan contratos en inglés?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, los contratos en inglés se cotizan dentro de la revisión estratégica (desde $1,990 MXN)." } },
+                    { "@type": "Question", "name": "¿Qué pasa si necesito cambios después de la entrega?", "acceptedAnswer": { "@type": "Answer", "text": "El reporte incluye una ronda de dudas por WhatsApp. La redacción de cláusulas o contratos nuevos se cotiza como Redacción a medida (desde $1,990)." } }
                 ]
             },
             {
@@ -486,14 +520,14 @@
                 "name": "Revisión compleja de contrato",
                 "description": "Análisis de contratos de más de 10 páginas, en inglés o de alta complejidad corporativa.",
                 "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
-                "offers": { "@type": "Offer", "price": "890", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/revision.html" }
+                "offers": { "@type": "Offer", "price": "990", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/revision.html" }
             },
             {
                 "@type": "Product",
                 "name": "Redacción a medida de contrato",
                 "description": "Redactamos tu contrato desde cero a la medida de tu operación: cláusulas negociadas, anexos y versión lista para firma.",
                 "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
-                "offers": { "@type": "Offer", "price": "2490", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/revision.html" }
+                "offers": { "@type": "Offer", "price": "1990", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/revision.html" }
             }
         ]
     }
@@ -504,7 +538,7 @@
         &copy; 2026 FERRO FRAGOSO. <a href="terminos.html" style="color:#999; text-decoration:none; margin-left:1rem;">Términos</a> <a href="privacidad.html" style="color:#999; text-decoration:none; margin-left:1rem;">Privacidad</a>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=7"></script>
     <script src="analytics.js"></script>
 
     <!-- ══ Cursor editorial: escribe frases sobre revisión contractual ══ -->

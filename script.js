@@ -363,74 +363,148 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ════════════════════════════════════
-       MOBILE MENU
+       NAVEGACIÓN — menú móvil, desplegables y anclas
+       Fuente única de verdad: setMenu(abierto).
+       Un solo listener delegado gestiona TODOS los enlaces (sin duplicados).
     ════════════════════════════════════ */
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    const navMenu   = document.querySelector('.nav-menu');
+    if (!window.__ffNavInit) {          // evita listeners duplicados si el script se ejecuta dos veces
+        window.__ffNavInit = true;
 
-    /* Grupos desplegables del nav (Propiedad intelectual / Contratos / Herramientas) */
-    const navGroupBtns = document.querySelectorAll('.nav-group-btn');
+        const mobileBtn   = document.getElementById('mobileMenuBtn');
+        const navMenu     = document.getElementById('navMenu') || document.querySelector('.nav-menu');
+        const navGroupBtns = document.querySelectorAll('.nav-group-btn');
+        const desktopMQ   = window.matchMedia('(min-width: 1201px)');
 
-    const closeAllNavGroups = (except) => {
-        navGroupBtns.forEach(b => {
-            if (b !== except) b.setAttribute('aria-expanded', 'false');
-        });
-    };
+        let menuAbierto = false;   // ← estado único
+        let scrollGuardado = 0;
 
-    const closeMobilePanel = () => {
-        if (!navMenu || !navMenu.classList.contains('open')) return;
-        navMenu.classList.remove('open');
-        if (mobileBtn) {
-            mobileBtn.classList.remove('open');
-            mobileBtn.setAttribute('aria-expanded', 'false');
-            mobileBtn.setAttribute('aria-label', 'Abrir menú');
+        const cerrarGrupos = (excepto) => {
+            navGroupBtns.forEach(b => { if (b !== excepto) b.setAttribute('aria-expanded', 'false'); });
+        };
+
+        /* Bloqueo/desbloqueo de scroll (position:fixed, seguro en iOS) */
+        const bloquearScroll = () => {
+            scrollGuardado = window.scrollY || window.pageYOffset || 0;
+            document.body.style.top = `-${scrollGuardado}px`;
+            document.body.classList.add('menu-locked');
+        };
+        const desbloquearScroll = () => {
+            if (!document.body.classList.contains('menu-locked')) return;
+            document.body.classList.remove('menu-locked');
+            document.body.style.top = '';
+            // 'instant' evita que el scroll-behavior:smooth del html anime este salto
+            window.scrollTo({ top: scrollGuardado, left: 0, behavior: 'instant' });
+        };
+
+        /* ÚNICA función que cambia el estado del menú */
+        const setMenu = (abrir) => {
+            if (!navMenu) return;
+            abrir = !!abrir;
+            if (abrir === menuAbierto) return;      // idempotente
+            menuAbierto = abrir;
+
+            navMenu.classList.toggle('open', abrir);
+            document.body.classList.toggle('nav-open', abrir);
+
+            if (mobileBtn) {
+                mobileBtn.classList.toggle('open', abrir);
+                mobileBtn.setAttribute('aria-expanded', String(abrir));
+                mobileBtn.setAttribute('aria-label', abrir ? 'Cerrar menú' : 'Abrir menú');
+            }
+
+            if (abrir) {
+                bloquearScroll();
+            } else {
+                desbloquearScroll();
+                cerrarGrupos();
+            }
+        };
+
+        if (mobileBtn && navMenu) {
+            mobileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                setMenu(!menuAbierto);
+            });
         }
-        document.body.style.overflow = '';
-        document.body.classList.remove('nav-open');
-        closeAllNavGroups();
-    };
 
-    if (mobileBtn && navMenu) {
-        mobileBtn.addEventListener('click', () => {
-            const isOpen = navMenu.classList.toggle('open');
-            mobileBtn.classList.toggle('open');
-            mobileBtn.setAttribute('aria-expanded', isOpen);
-            mobileBtn.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
-            document.body.style.overflow = isOpen ? 'hidden' : '';
-            document.body.classList.toggle('nav-open', isOpen);
-            if (!isOpen) closeAllNavGroups();
+        /* Desplegables del nav */
+        navGroupBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const abierto = btn.getAttribute('aria-expanded') === 'true';
+                cerrarGrupos(btn);
+                btn.setAttribute('aria-expanded', String(!abierto));
+            });
+        });
+
+        /* Tocar el fondo del panel (no un enlace) lo cierra */
+        if (navMenu) {
+            navMenu.addEventListener('click', (e) => {
+                if (e.target === navMenu) setMenu(false);
+            });
+        }
+
+        /* Clic fuera: cierra los desplegables abiertos */
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-group')) cerrarGrupos();
+        });
+
+        /* Escape: cierra y devuelve el foco */
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            cerrarGrupos();
+            if (menuAbierto) {
+                setMenu(false);
+                if (mobileBtn) mobileBtn.focus();
+            }
+        });
+
+        /* Al pasar a escritorio, el panel debe cerrarse SIEMPRE:
+           la hamburguesa se oculta y el usuario quedaría sin forma de
+           desbloquear el scroll (causa del congelamiento). */
+        const alCambiarBreakpoint = (ev) => { if (ev.matches) setMenu(false); };
+        if (desktopMQ.addEventListener) desktopMQ.addEventListener('change', alCambiarBreakpoint);
+        else desktopMQ.addListener(alCambiarBreakpoint);            // Safari antiguo
+
+        /* Red de seguridad: si algo deja el scroll bloqueado sin menú abierto */
+        window.addEventListener('pageshow', () => {
+            if (!menuAbierto) desbloquearScroll();
+        });
+
+        /* ── Enlaces: UN SOLO listener delegado para todo el documento ──
+           Sustituye a los dos bucles previos (.nav-menu a y a[href^="#"]),
+           que registraban dos handlers sobre el mismo enlace. */
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[href]');
+            if (!link || e.defaultPrevented) return;
+            if (link.target === '_blank' || link.hasAttribute('download')) return;
+
+            const href = link.getAttribute('href') || '';
+            const enPanel = !!link.closest('.nav-menu');
+
+            // 1) Cerrar el panel y devolver el scroll ANTES de navegar
+            if (enPanel) setMenu(false);
+
+            // 2) Solo interceptamos anclas de esta misma página
+            if (!href.startsWith('#') || href.length < 2) return;
+
+            let destino = null;
+            try { destino = document.querySelector(href); } catch (err) { return; }
+            if (!destino) return;
+
+            e.preventDefault();
+
+            // 3) Esperar un frame: el desbloqueo ya restauró la posición y el
+            //    layout está estable, así que el cálculo del destino es correcto.
+            requestAnimationFrame(() => {
+                const nav = document.getElementById('navbar');
+                const offset = (nav && getComputedStyle(nav).position === 'fixed' ? nav.offsetHeight : 0) + 16;
+                const top = destino.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+                if (history.replaceState) history.replaceState(null, '', href);
+            });
         });
     }
-
-    navGroupBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = btn.getAttribute('aria-expanded') === 'true';
-            closeAllNavGroups(btn);
-            btn.setAttribute('aria-expanded', String(!isOpen));
-        });
-    });
-
-    /* Clic fuera cierra los desplegables abiertos */
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav-group')) closeAllNavGroups();
-    });
-
-    /* Escape cierra desplegables y el panel móvil, devolviendo el foco */
-    document.addEventListener('keydown', (e) => {
-        if (e.key !== 'Escape') return;
-        const anyOpen = [...navGroupBtns].some(b => b.getAttribute('aria-expanded') === 'true');
-        if (anyOpen) closeAllNavGroups();
-        if (navMenu && navMenu.classList.contains('open')) {
-            closeMobilePanel();
-            if (mobileBtn) mobileBtn.focus();
-        }
-    });
-
-    /* Al navegar a un enlace del panel móvil, ciérralo */
-    document.querySelectorAll('.nav-menu a').forEach(a => {
-        a.addEventListener('click', () => closeMobilePanel());
-    });
 
     /* ════════════════════════════════════
        BLUR FADE — equivalente nativo de <BlurFade inView/>
@@ -492,27 +566,209 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ════════════════════════════════════
-       SMOOTH SCROLLING
+       TEXT REVEAL — entrada tipo <TextRotate/> (sin rotación)
+       Parte el texto en palabras o caracteres y los sube escalonados.
     ════════════════════════════════════ */
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            const target = document.querySelector(targetId);
-            if (!target) return;
-            e.preventDefault();
-            const offset = navbar.offsetHeight + 16;
-            window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' });
+    const trEls = document.querySelectorAll('.tr-reveal');
 
-            if (navMenu && navMenu.classList.contains('open')) {
-                navMenu.classList.remove('open');
-                mobileBtn.classList.remove('open');
-                mobileBtn.setAttribute('aria-expanded', false);
-                document.body.style.overflow = '';
-                document.body.classList.remove('nav-open');
+    if (trEls.length) {
+        const trReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Soporta unicode/emoji igual que splitIntoCharacters del componente
+        const splitChars = (txt) => {
+            if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
+                const seg = new Intl.Segmenter('es', { granularity: 'grapheme' });
+                return Array.from(seg.segment(txt), s => s.segment);
             }
+            return Array.from(txt);
+        };
+
+        trEls.forEach(el => {
+            if (el.dataset.trReady) return;
+
+            const modo = el.dataset.trSplit === 'characters' ? 'characters' : 'words';
+            const textoPlano = el.textContent.replace(/\s+/g, ' ').trim();
+            let i = 0;
+
+            // Reconstruye el contenido conservando etiquetas inline (<b>, <em>, <a>…)
+            const procesar = (nodo) => {
+                const salida = document.createDocumentFragment();
+                nodo.childNodes.forEach(hijo => {
+                    if (hijo.nodeType === Node.TEXT_NODE) {
+                        const partes = hijo.textContent.split(/(\s+)/);
+                        partes.forEach(parte => {
+                            if (!parte) return;
+                            if (/^\s+$/.test(parte)) { salida.appendChild(document.createTextNode(' ')); return; }
+                            const w = document.createElement('span');
+                            w.className = 'tr-word';
+                            const trozos = modo === 'characters' ? splitChars(parte) : [parte];
+                            trozos.forEach(t => {
+                                const c = document.createElement('span');
+                                c.className = 'tr-char';
+                                c.style.setProperty('--tr-i', i++);
+                                c.textContent = t;
+                                w.appendChild(c);
+                            });
+                            salida.appendChild(w);
+                        });
+                    } else if (hijo.nodeType === Node.ELEMENT_NODE) {
+                        const clon = hijo.cloneNode(false);
+                        clon.appendChild(procesar(hijo));
+                        salida.appendChild(clon);
+                    }
+                });
+                return salida;
+            };
+
+            const animado = document.createElement('span');
+            animado.setAttribute('aria-hidden', 'true');
+            animado.appendChild(procesar(el));
+
+            const sr = document.createElement('span');
+            sr.className = 'tr-sr';
+            sr.textContent = textoPlano;
+
+            el.textContent = '';
+            el.appendChild(sr);
+            el.appendChild(animado);
+            el.dataset.trReady = '1';
         });
-    });
+
+        if (trReduce) {
+            trEls.forEach(el => el.classList.add('is-visible'));
+        } else {
+            const trObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+                });
+            }, { rootMargin: '-50px' });
+            trEls.forEach(el => trObserver.observe(el));
+        }
+    }
+
+    /* ════════════════════════════════════
+       TESTIMONIOS — carrusel deslizable (solo móvil)
+       En escritorio la rejilla queda intacta y el carrusel se apaga.
+    ════════════════════════════════════ */
+    (function () {
+        const pista = document.querySelector('.testimonios-grid');
+        const dots  = document.getElementById('tstDots');
+        if (!pista || !dots) return;
+
+        const tarjetas = [...pista.querySelectorAll('.testimonio-card')];
+        if (tarjetas.length < 2) return;
+
+        const movilMQ  = window.matchMedia('(max-width: 860px)');
+        const menosMov = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        let activo = 0, autoplay = null, observer = null, pausado = false;
+
+        let tween = null;
+
+        /* Desplazamiento animado con requestAnimationFrame en vez de
+           scrollTo({behavior:'smooth'}): así la duración y la curva son las
+           mismas en todos los motores y no dependen del scroll-behavior
+           heredado del documento (el html usa smooth, y sobre contenedores
+           con scroll-snap el comportamiento nativo varía entre Safari y
+           Chrome). Si el usuario prefiere menos movimiento, salta directo. */
+        const irA = (i, suave = true) => {
+            const t = tarjetas[i];
+            if (!t) return;
+            const destino = Math.max(0, Math.min(
+                t.offsetLeft - pista.offsetLeft - (pista.clientWidth - t.clientWidth) / 2,
+                pista.scrollWidth - pista.clientWidth
+            ));
+
+            if (tween) cancelAnimationFrame(tween);
+            if (!suave || menosMov.matches) { pista.scrollLeft = destino; return; }
+
+            const inicio = pista.scrollLeft;
+            const delta  = destino - inicio;
+            if (Math.abs(delta) < 1) return;
+            const DUR = 460;
+            const t0 = performance.now();
+            const easeOutCubic = (p) => 1 - Math.pow(1 - p, 3);
+
+            const paso = (ahora) => {
+                const p = Math.min(1, (ahora - t0) / DUR);
+                pista.scrollLeft = inicio + delta * easeOutCubic(p);
+                if (p < 1) tween = requestAnimationFrame(paso);
+                else tween = null;
+            };
+            tween = requestAnimationFrame(paso);
+        };
+
+        const marcar = (i) => {
+            activo = i;
+            [...dots.children].forEach((d, k) => d.setAttribute('aria-current', String(k === i)));
+            // La tarjeta centrada toma el foco visual (ver .is-active en styles.css)
+            tarjetas.forEach((t, k) => t.classList.toggle('is-active', k === i));
+        };
+
+        const pararAuto = () => { clearInterval(autoplay); autoplay = null; };
+        const iniciarAuto = () => {
+            pararAuto();
+            if (menosMov.matches || pausado) return;
+            autoplay = setInterval(() => {
+                irA((activo + 1) % tarjetas.length);
+            }, 5000);
+        };
+
+        const activar = () => {
+            if (observer) return;                       // ya activo
+
+            dots.innerHTML = '';
+            tarjetas.forEach((_, i) => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'tst-dot';
+                b.setAttribute('role', 'tab');
+                b.setAttribute('aria-label', `Ver testimonio ${i + 1} de ${tarjetas.length}`);
+                b.setAttribute('aria-current', String(i === 0));
+                b.addEventListener('click', () => {
+                    pausado = true; pararAuto();        // el usuario manda: se detiene el automático
+                    irA(i);
+                });
+                dots.appendChild(b);
+            });
+
+            // El punto activo lo dicta la tarjeta más visible dentro de la pista
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting && e.intersectionRatio > 0.6) {
+                        marcar(tarjetas.indexOf(e.target));
+                    }
+                });
+            }, { root: pista, threshold: [0.6] });
+            tarjetas.forEach(t => observer.observe(t));
+            marcar(0);   // estado inicial antes del primer disparo del observer
+
+            // Cualquier gesto del usuario cancela el avance automático
+            ['pointerdown', 'touchstart', 'wheel'].forEach(ev =>
+                pista.addEventListener(ev, () => { pausado = true; pararAuto(); }, { passive: true })
+            );
+
+            iniciarAuto();
+        };
+
+        const desactivar = () => {
+            pararAuto();
+            if (observer) { observer.disconnect(); observer = null; }
+            dots.innerHTML = '';
+            tarjetas.forEach(t => t.classList.remove('is-active'));
+            pista.scrollLeft = 0;                        // deja la rejilla en su sitio
+        };
+
+        const evaluar = () => { movilMQ.matches ? activar() : desactivar(); };
+        evaluar();
+        if (movilMQ.addEventListener) movilMQ.addEventListener('change', evaluar);
+        else movilMQ.addListener(evaluar);
+    })();
+
+    /* SMOOTH SCROLLING — unificado en el listener delegado de NAVEGACIÓN.
+       Antes existía aquí un segundo bucle sobre a[href^="#"] que registraba
+       un handler adicional en los mismos enlaces del menú: dos rutas de
+       cierre distintas compitiendo, con lógica de desbloqueo duplicada. */
 
     /* ════════════════════════════════════
        ACTIVE NAV LINK TRACKING

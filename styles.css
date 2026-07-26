@@ -4267,3 +4267,306 @@ body.nav-open #navbar.transparent-nav .nav-links .nav-submenu a {
 #navbar.transparent-nav .nav-group-btn[aria-expanded="true"] {
     opacity: 1;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   BLUR FADE — port a JS nativo del componente <BlurFade/>
+   (framer-motion). Equivalencias exactas:
+     hidden  -> { y: yOffset(6px),  opacity: 0, filter: blur(6px) }
+     visible -> { y: -yOffset(-6px), opacity: 1, filter: blur(0px) }
+     transition -> { duration: .4s, ease: easeOut, delay: .04 + delay }
+     inView -> IntersectionObserver { once: true, margin: "-50px" }
+   El desplazamiento final es -6px (no 0), igual que en el original.
+   ═══════════════════════════════════════════════════════════════ */
+.blur-fade {
+    /* Versión marcada: recorrido y desenfoque mayores para que se perciba */
+    --bf-y: 24px;
+    --bf-blur: 10px;
+    --bf-duration: 0.7s;
+
+    /* estado "hidden" */
+    opacity: 0;
+    transform: translateY(var(--bf-y));
+    filter: blur(var(--bf-blur));
+    /* El reinicio al salir de pantalla es instantáneo: no se ve "irse",
+       solo vuelve a entrar la próxima vez que aparece. */
+    transition: none;
+    /* Sin will-change: mantener la capa de composición promovida de forma
+       permanente hace que el navegador rasterice el texto y se vea suave
+       incluso con blur(0). */
+}
+
+.blur-fade.is-visible {
+    /* estado "visible" — termina en su posición natural (0) en lugar del
+       -yOffset del componente original: con 24px ese desfase permanente
+       levantaría visiblemente los títulos respecto del resto del bloque. */
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+    transition-property: opacity, transform, filter;
+    transition-duration: var(--bf-duration);
+    /* easeOut de framer-motion */
+    transition-timing-function: cubic-bezier(0, 0, 0.58, 1);
+    transition-delay: calc(0.04s + var(--bf-delay, 0s));
+}
+
+/* Escalonado por defecto dentro de un mismo encabezado (eyebrow -> título -> texto) */
+.blur-fade[data-bf-delay="1"] { --bf-delay: 0.25s; }
+.blur-fade[data-bf-delay="2"] { --bf-delay: 0.50s; }
+.blur-fade[data-bf-delay="3"] { --bf-delay: 0.75s; }
+
+/* El título de "Cómo funciona" está posicionado en absoluto: el translateY del
+   efecto no debe pelearse con su anclaje (top/right ya lo posicionan). */
+.how-it-works-infographic > h2.blur-fade { will-change: opacity, filter; }
+
+@media (prefers-reduced-motion: reduce) {
+    .blur-fade,
+    .blur-fade.is-visible {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATED GROUP — port a JS nativo de <AnimatedGroup/> (framer-motion)
+   Contenedor: staggerChildren 0.1s  ->  transition-delay escalonado por hijo
+   El preset se elige con data-ag-preset="..." en el contenedor:
+   fade · slide · scale · blur · blur-slide · zoom · flip · bounce · rotate · swing
+   ═══════════════════════════════════════════════════════════════ */
+.animated-group > * {
+    opacity: 0;
+    transition: none;                 /* reinicio instantáneo al salir de vista */
+}
+
+/* ── Estados "hidden" por preset ── */
+.animated-group[data-ag-preset="fade"]       > * { }
+.animated-group[data-ag-preset="slide"]      > * { transform: translateY(20px); }
+.animated-group[data-ag-preset="scale"]      > * { transform: scale(0.8); }
+.animated-group[data-ag-preset="blur"]       > * { filter: blur(4px); }
+.animated-group[data-ag-preset="blur-slide"] > * { filter: blur(4px); transform: translateY(20px); }
+.animated-group[data-ag-preset="zoom"]       > * { transform: scale(0.5); }
+.animated-group[data-ag-preset="flip"]       > * { transform: perspective(1000px) rotateX(-90deg); }
+.animated-group[data-ag-preset="bounce"]     > * { transform: translateY(-50px); }
+.animated-group[data-ag-preset="rotate"]     > * { transform: rotate(-180deg); }
+.animated-group[data-ag-preset="swing"]      > * { transform: rotate(-10deg); }
+
+/* Los presets con type:"spring" se aproximan con curvas de rebote.
+   (stiffness/damping altos -> rebote corto; damping bajo -> rebote largo) */
+.animated-group[data-ag-preset="zoom"],
+.animated-group[data-ag-preset="flip"]   { --ag-ease: cubic-bezier(0.34, 1.56, 0.64, 1); --ag-duration: 0.8s; }
+.animated-group[data-ag-preset="rotate"] { --ag-ease: cubic-bezier(0.34, 1.56, 0.64, 1); --ag-duration: 0.9s; }
+.animated-group[data-ag-preset="bounce"],
+.animated-group[data-ag-preset="swing"]  { --ag-ease: cubic-bezier(0.68, -0.6, 0.32, 1.6); --ag-duration: 0.9s; }
+
+/* El flip necesita perspectiva en el contenedor para verse tridimensional */
+.animated-group[data-ag-preset="flip"] { perspective: 1000px; }
+
+/* ── Estado "visible" ──
+   Va DESPUÉS de los presets y con especificidad mayor ([data-ag-preset] suma):
+   si no, las reglas hidden de cada preset (misma especificidad, declaradas más
+   abajo) ganaban y las tarjetas se quedaban congeladas en blur(4px). */
+.animated-group.is-visible[data-ag-preset] > *,
+.animated-group.is-visible > * {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition-property: opacity, transform, filter;
+    transition-duration: var(--ag-duration, 0.6s);
+    transition-timing-function: var(--ag-ease, cubic-bezier(0, 0, 0.58, 1));
+    /* staggerChildren: 0.1 */
+    transition-delay: calc(var(--ag-i, 0) * var(--ag-stagger, 0.1s));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animated-group > *,
+    .animated-group.is-visible > * {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEXT REVEAL — port del estilo de entrada de <TextRotate/>
+   Equivalencias:
+     initial   -> { y: "100%", opacity: 0 }
+     animate   -> { y: 0, opacity: 1 }
+     transition-> spring(damping 25, stiffness 300) ≈ curva con leve rebote
+     staggerDuration / staggerFrom:"first" -> retardo por índice de fragmento
+   El texto se parte en palabras (o caracteres) y cada fragmento sube desde
+   detrás de una máscara, igual que el componente original.
+   ═══════════════════════════════════════════════════════════════ */
+.tr-reveal .tr-word {
+    display: inline-block;
+    overflow: hidden;              /* la máscara que oculta el fragmento abajo */
+    vertical-align: top;
+    /* evita que la máscara recorte las colas de g, j, p, q, y */
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+}
+.tr-reveal .tr-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    transition-property: transform, opacity;
+    transition-duration: var(--tr-duration, 0.55s);
+    transition-timing-function: var(--tr-ease, cubic-bezier(0.34, 1.28, 0.64, 1));
+    transition-delay: calc(var(--tr-i, 0) * var(--tr-stagger, 0.03s));
+}
+.tr-reveal.is-visible .tr-char {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Partido por caracteres: stagger más fino, como splitBy="characters" */
+.tr-reveal[data-tr-split="characters"] { --tr-stagger: 0.015s; }
+
+/* Texto accesible: el original completo queda para lectores de pantalla,
+   los fragmentos van aria-hidden (mismo enfoque que el componente). */
+.tr-sr {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tr-reveal .tr-char,
+    .tr-reveal.is-visible .tr-char {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BLOQUEO DE SCROLL DEL MENÚ — a prueba de iOS
+   `overflow:hidden` en body NO bloquea el scroll en Safari iOS: la página
+   sigue desplazándose detrás del panel y al cerrar se pierde la posición.
+   El patrón fiable es position:fixed + top negativo, restaurando el scroll
+   al desbloquear (lo hace setMenu() en script.js).
+   ═══════════════════════════════════════════════════════════════ */
+body.menu-locked {
+    position: fixed;
+    top: 0;                 /* script.js sobrescribe con -scrollY */
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TESTIMONIOS — carrusel deslizable SOLO en móvil
+   En escritorio se conserva la rejilla de 3 columnas intacta.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Puntos indicadores: ocultos por defecto (solo existen en el carrusel) */
+.tst-dots {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.6rem;
+}
+.tst-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--stone-300, #d5ccbf);
+    cursor: pointer;
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.35s ease;
+}
+.tst-dot[aria-current="true"] {
+    width: 22px;
+    border-radius: 4px;
+    background: var(--bronze, #958463);
+}
+
+@media (max-width: 860px) {
+    /* La rejilla pasa a ser una pista deslizable con anclaje por tarjeta */
+    .testimonios-grid {
+        display: flex;
+        grid-template-columns: none;
+        gap: 1rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        /* impide que el gesto se propague a la página o dispare
+           el "volver atrás" por deslizamiento en iOS */
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        /* sangra hasta los bordes de la pantalla sin romper el padding */
+        margin: 0 -1.5rem;
+        padding: 0.5rem 1.5rem 1rem;
+        scroll-padding-left: 1.5rem;
+        scrollbar-width: none;              /* Firefox */
+        -ms-overflow-style: none;
+    }
+    .testimonios-grid::-webkit-scrollbar { display: none; }
+
+    .testimonio-card {
+        flex: 0 0 86%;                      /* deja asomar la siguiente tarjeta */
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        margin: 0;
+    }
+
+    .tst-dots { display: flex; }
+}
+
+/* Sin animación: el carrusel sigue siendo deslizable, solo se quita el
+   desplazamiento suave y el avance automático (este último lo corta el JS). */
+@media (prefers-reduced-motion: reduce) {
+    .testimonios-grid { scroll-behavior: auto; }
+    .tst-dot { transition: none; }
+}
+
+/* ═══ Testimonio activo del carrusel (móvil) ═══
+   La tarjeta centrada toma el foco: escala completa, opacidad plena y
+   sombra; las vecinas ceden. Va después del bloque .animated-group y con
+   igual o mayor especificidad, porque aquel fija transform/opacity en los
+   hijos y si no, ganaría él y las tarjetas quedarían planas. */
+@media (max-width: 860px) {
+    .testimonios-grid.is-visible > .testimonio-card {
+        transform: scale(0.93);
+        opacity: 0.55;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.45s ease,
+                    box-shadow 0.45s ease;
+    }
+    .testimonios-grid.is-visible > .testimonio-card.is-active {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 18px 40px rgba(46, 44, 42, 0.16);
+    }
+}
+
+@media (max-width: 860px) and (prefers-reduced-motion: reduce) {
+    .testimonios-grid.is-visible > .testimonio-card,
+    .testimonios-grid.is-visible > .testimonio-card.is-active {
+        transform: none;
+        opacity: 1;
+        transition: none;
+    }
+}
+
+/* Las palabras de .word-fade-in reciben opacity:0 y translateY inline desde
+   script.js. La regla de reduced-motion existente apunta al contenedor, no a
+   los <span>, así que la animación seguía ejecutándose. Un !important de hoja
+   de estilos sí gana a una declaración inline normal. */
+@media (prefers-reduced-motion: reduce) {
+    .word-fade-span {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
