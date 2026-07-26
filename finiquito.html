@@ -49,16 +49,8 @@
                             <li><a href="revision.html">Revisar mi contrato</a></li>
                         </ul>
                     </li>
-
-                    <li class="nav-group">
-                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-he">
-                            Herramientas gratis<span class="nav-chevron" aria-hidden="true"></span>
-                        </button>
-                        <ul class="nav-submenu" id="nav-sub-he">
-                            <li><a href="finiquito.html">Calcular mi finiquito</a></li>
-                            <li><a href="radar/index.html">Leer el Radar Legal</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="finiquito.html" class="nav-top-link">Calculadora Laboral</a></li>
+                    <li><a href="radar/index.html" class="nav-top-link">Radar Legal</a></li>
                     <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
@@ -104,8 +96,10 @@
                         <div class="calc-progress-dot" data-q="3"></div>
                         <div class="calc-progress-dot" data-q="4"></div>
                         <div class="calc-progress-dot" data-q="5"></div>
+                        <div class="calc-progress-dot" data-q="6"></div>
+                        <div class="calc-progress-dot" data-q="7"></div>
                     </div>
-                    <span class="calc-wizard-step-label" id="calc-step-counter">1 / 6</span>
+                    <span class="calc-wizard-step-label" id="calc-step-counter">1 / 8</span>
                     <button class="calc-wizard-close" id="calc-wizard-close-btn">
                         <i class="fas fa-times"></i>
                     </button>
@@ -149,9 +143,14 @@
             motivo: null,
             fechaIngreso: null,
             fechaSalida: null,
-            salarioMensual: null,
+            frecuencia: 'mensual',      // diario | semanal | quincenal | mensual
+            salarioCapturado: null,     // monto tal como lo escribió el usuario
+            salarioMensual: null,       // normalizado a base mensual para el motor
             prestaciones: 0,
             zona: 'general',
+            diasVacGozados: 0,
+            diasPendientesPago: null,   // días trabajados aún no pagados
+            aguinaldoPagado: 0,         // aguinaldo ya cubierto en el año
         };
 
         // ═══ DOM REFS ═══
@@ -194,7 +193,7 @@
 
         btnNext.addEventListener('click', () => {
             if (!validateCurrentQuestion()) return;
-            if (currentQuestion < 5) {
+            if (currentQuestion < 7) {
                 currentQuestion++;
                 renderQuestion(currentQuestion);
             } else {
@@ -220,7 +219,7 @@
             updateProgress(idx);
             btnNext.disabled = false;
             btnNext.textContent = idx === 5 ? 'Calcular' : 'Continuar';
-            btnNext.innerHTML = idx === 5
+            btnNext.innerHTML = idx === 7
                 ? 'Calcular <i class="fas fa-calculator"></i>'
                 : 'Continuar <i class="fas fa-arrow-right"></i>';
 
@@ -293,20 +292,54 @@
                         <div class="calc-question-number">PREGUNTA 03</div>
                         <h2 class="calc-question-text">¿Cuál es el salario mensual bruto?</h2>
                         <div class="calc-input-group">
-                            <label class="calc-input-label">Monto mensual (MXN)</label>
-                            <input type="number" class="calc-input" id="calc-salario" 
+                            <label class="calc-input-label" for="calc-frecuencia">¿Cada cuánto te pagan?</label>
+                            <select class="calc-input" id="calc-frecuencia">
+                                <option value="mensual">Mensual</option>
+                                <option value="quincenal">Quincenal</option>
+                                <option value="semanal">Semanal</option>
+                                <option value="diario">Diario</option>
+                            </select>
+                        </div>
+                        <div class="calc-input-group" style="margin-top:1rem;">
+                            <label class="calc-input-label" for="calc-salario">
+                                Monto bruto <span id="calc-frec-sufijo">mensual</span> (MXN)
+                            </label>
+                            <input type="number" class="calc-input" id="calc-salario"
                                    placeholder="$18,000" min="1" step="100"
-                                   value="${answers.salarioMensual || ''}">
+                                   value="${answers.salarioCapturado || ''}">
+                            <p class="calc-input-hint" id="calc-sd-hint"></p>
                         </div>
                     `;
                     questionArea.appendChild(wrap);
-                    const salInput = document.getElementById('calc-salario');
-                    salInput.addEventListener('input', () => {
+                    const salInput  = document.getElementById('calc-salario');
+                    const frecSel   = document.getElementById('calc-frecuencia');
+                    const frecSuf   = document.getElementById('calc-frec-sufijo');
+                    const sdHint    = document.getElementById('calc-sd-hint');
+                    frecSel.value = answers.frecuencia || 'mensual';
+
+                    // La LFT calcula todo sobre el salario DIARIO: se normaliza aquí.
+                    const DIVISOR = { diario: 1, semanal: 7, quincenal: 15, mensual: 30 };
+
+                    const recalcularSalario = () => {
                         const v = parseFloat(salInput.value);
-                        answers.salarioMensual = v > 0 ? v : null;
+                        answers.frecuencia = frecSel.value;
+                        answers.salarioCapturado = v > 0 ? v : null;
+                        frecSuf.textContent = { diario:'diario', semanal:'semanal',
+                                                quincenal:'quincenal', mensual:'mensual' }[frecSel.value];
+                        if (v > 0) {
+                            const sd = v / DIVISOR[frecSel.value];
+                            answers.salarioMensual = sd * 30;   // el motor recibe base mensual
+                            sdHint.textContent = `Equivale a $${sd.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})} de salario diario.`;
+                        } else {
+                            answers.salarioMensual = null;
+                            sdHint.textContent = '';
+                        }
                         btnNext.disabled = !answers.salarioMensual;
-                    });
-                    btnNext.disabled = !answers.salarioMensual;
+                    };
+
+                    salInput.addEventListener('input', recalcularSalario);
+                    frecSel.addEventListener('change', recalcularSalario);
+                    recalcularSalario();
                     salInput.focus();
                     break;
 
@@ -378,6 +411,55 @@
                     });
                     btnNext.disabled = false; // default is 'general'
                     break;
+
+                case 6: // Días pendientes de pago (equivalente al campo del CCL Jalisco)
+                    wrap.innerHTML = `
+                        <div class="calc-question-number">PREGUNTA 07</div>
+                        <h2 class="calc-question-text">¿Cuántos días trabajados aún no te han pagado?</h2>
+                        <div class="calc-input-group">
+                            <label class="calc-input-label" for="calc-dias-pendientes">Días pendientes de pago</label>
+                            <input type="number" class="calc-input" id="calc-dias-pendientes"
+                                   min="0" max="31" step="1"
+                                   value="${answers.diasPendientesPago !== null && answers.diasPendientesPago !== undefined ? answers.diasPendientesPago : ''}">
+                            <p class="calc-input-hint">Son los días que alcanzaste a trabajar en tu último periodo de nómina y que todavía no te depositan. Si ya te pagaron todo hasta tu último día, escribe 0.</p>
+                        </div>
+                    `;
+                    questionArea.appendChild(wrap);
+                    const diasPendInput = document.getElementById('calc-dias-pendientes');
+                    // Sugerencia inicial: el día del mes de la salida (corte mensual)
+                    if (diasPendInput.value === '' && answers.fechaSalida) {
+                        diasPendInput.value = new Date(answers.fechaSalida + 'T00:00:00').getDate();
+                        answers.diasPendientesPago = parseInt(diasPendInput.value);
+                    }
+                    diasPendInput.addEventListener('input', () => {
+                        const v = parseInt(diasPendInput.value);
+                        answers.diasPendientesPago = isNaN(v) ? null : Math.max(0, v);
+                    });
+                    btnNext.disabled = false;
+                    diasPendInput.focus();
+                    break;
+
+                case 7: // Aguinaldo ya pagado este año (Art. 87 LFT)
+                    wrap.innerHTML = `
+                        <div class="calc-question-number">PREGUNTA 08</div>
+                        <h2 class="calc-question-text">¿Ya te pagaron aguinaldo este año?</h2>
+                        <div class="calc-input-group">
+                            <label class="calc-input-label" for="calc-aguinaldo-pagado">Monto de aguinaldo recibido este año (MXN)</label>
+                            <input type="number" class="calc-input" id="calc-aguinaldo-pagado"
+                                   placeholder="$0 (si no te han pagado)" min="0" step="100"
+                                   value="${answers.aguinaldoPagado || ''}">
+                            <p class="calc-input-hint">El aguinaldo se cubre antes del 20 de diciembre. Si ya lo recibiste por el año en que sales, se descuenta del proporcional para no contarlo dos veces.</p>
+                        </div>
+                    `;
+                    questionArea.appendChild(wrap);
+                    const aguiInput = document.getElementById('calc-aguinaldo-pagado');
+                    aguiInput.addEventListener('input', () => {
+                        const v = parseFloat(aguiInput.value);
+                        answers.aguinaldoPagado = v > 0 ? v : 0;
+                    });
+                    btnNext.disabled = false;
+                    aguiInput.focus();
+                    break;
             }
         }
 
@@ -387,7 +469,7 @@
                 if (i < idx) dot.classList.add('done');
                 if (i === idx) dot.classList.add('active');
             });
-            stepCounter.textContent = `${idx + 1} / 6`;
+            stepCounter.textContent = `${idx + 1} / 8`;
         }
 
         function validateCurrentQuestion() {
@@ -398,6 +480,8 @@
                 case 3: return true;
                 case 4: return true;
                 case 5: return !!answers.zona;
+                case 6: return true;
+                case 7: return true;
             }
             return false;
         }
@@ -412,6 +496,8 @@
                 prestaciones: answers.prestaciones || 0,
                 zona: answers.zona,
                 diasVacGozados: answers.diasVacGozados || 0,
+                diasPendientesPago: answers.diasPendientesPago,
+                aguinaldoPagado: answers.aguinaldoPagado || 0,
             };
 
             const result = calcularFiniquitoLiquidacion(datos);
@@ -652,6 +738,8 @@
                 answers.salarioMensual = null;
                 answers.prestaciones = 0;
                 answers.diasVacGozados = 0;
+            answers.diasPendientesPago = null;
+            answers.aguinaldoPagado = 0;
                 answers.zona = 'general';
                 showStep(0);
             });

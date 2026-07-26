@@ -88,11 +88,18 @@ function calcularSalarioDevengado(salarioDiario, diasTrabajadosUltimoPeriodo) {
  * Aguinaldo proporcional
  * (salarioDiario × diasAguinaldo) / 365 × diasTrabajadosEnElAnio
  */
-function calcularAguinaldoProporcional(salarioDiario, diasTrabajadosEnAnio, diasAguinaldo) {
-    const monto = (salarioDiario * diasAguinaldo * diasTrabajadosEnAnio) / 365;
+function calcularAguinaldoProporcional(salarioDiario, diasTrabajadosEnAnio, diasAguinaldo, aguinaldoYaPagado = 0) {
+    const bruto = (salarioDiario * diasAguinaldo * diasTrabajadosEnAnio) / 365;
+    // Si el patrón ya cubrió aguinaldo de este mismo ejercicio (se paga antes del
+    // 20 de diciembre, Art. 87 LFT), se descuenta para no contarlo dos veces.
+    const pagado = Math.max(0, Number(aguinaldoYaPagado) || 0);
+    const monto = Math.max(0, bruto - pagado);
     return {
         concepto: 'Aguinaldo proporcional',
         detalle: `$${formatNum(salarioDiario)} × ${diasAguinaldo} días × ${diasTrabajadosEnAnio}/365`,
+        detalleExtra: pagado > 0
+            ? `(proporcional $${formatNum(bruto)} − $${formatNum(pagado)} ya pagado este año)`
+            : undefined,
         monto: redondear(monto),
     };
 }
@@ -216,6 +223,8 @@ function calcularFiniquitoLiquidacion(datos) {
         prestaciones,     // Number
         zona,             // 'general' | 'frontera'
         diasVacGozados,   // Number (default 0)
+        diasPendientesPago, // Number — días trabajados aún no pagados (opcional)
+        aguinaldoPagado,    // Number — aguinaldo ya cubierto en el año (opcional)
     } = datos;
 
     const anioFiscal = fechaSalida.getFullYear();
@@ -233,8 +242,11 @@ function calcularFiniquitoLiquidacion(datos) {
     const diasEnAnio = Math.floor((fechaSalida - fechaRef) / (1000 * 60 * 60 * 24)) + 1;
 
     // Días trabajados en el último mes (para salario devengado)
-    const inicioMes = new Date(fechaSalida.getFullYear(), fechaSalida.getMonth(), 1);
-    const diasUltimoPeriodo = fechaSalida.getDate();
+    // Si el usuario declara los días que le deben, se respeta ese dato; si no,
+    // se estima con el día del mes (supone corte de nómina mensual).
+    const diasUltimoPeriodo = (diasPendientesPago === undefined || diasPendientesPago === null || diasPendientesPago === '')
+        ? fechaSalida.getDate()
+        : Math.max(0, Number(diasPendientesPago) || 0);
 
     // ── Salarios ──
     const salarios = calcularSalarios(salarioMensual, prestaciones, aniosCompletos, anioFiscal);
@@ -242,7 +254,7 @@ function calcularFiniquitoLiquidacion(datos) {
     // ═══ FINIQUITO (siempre aplica) ═══
     const finiquito = [];
     finiquito.push(calcularSalarioDevengado(salarios.salarioDiario, diasUltimoPeriodo));
-    finiquito.push(calcularAguinaldoProporcional(salarios.salarioDiario, diasEnAnio, salarios.diasAguinaldo));
+    finiquito.push(calcularAguinaldoProporcional(salarios.salarioDiario, diasEnAnio, salarios.diasAguinaldo, aguinaldoPagado));
 
     const vacResult = calcularVacacionesProporcionales(
         salarios.salarioDiario, aniosCompletos, diasEnAnio, diasVacGozados || 0

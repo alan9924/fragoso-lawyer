@@ -1894,3 +1894,24 @@ body:has(#calc-step-2.active) {
         font-size: 2rem;
     }
 }
+
+/* Texto de ayuda bajo los campos del cuestionario */
+.calc-input-hint {
+    font-family: var(--font-body, inherit);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #8a8580;
+    margin: 0.6rem 0 0;
+}
+/* El <select> de frecuencia hereda el estilo de .calc-input pero necesita
+   la flecha nativa y algo de espacio a la derecha */
+select.calc-input {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23555' stroke-width='1.5' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.4rem center;
+    background-size: 12px;
+    padding-right: 3.2rem;
+    cursor: pointer;
+}
