@@ -876,7 +876,7 @@
 
 /* --- NUEVA SECCION: CÓMO FUNCIONA TIMELINE --- */
 :root {
-    --tl-bg: #f6f5f3;
+    --tl-bg: #ffffff;
     --tl-text-main: #1a1917;
     --tl-text-muted: #54534f;
     --tl-track-bg: #d5ccbf;
@@ -1172,7 +1172,9 @@
     .timeline-icon {
         width: 80px;
         height: 80px;
-        transform: none !important;
+        /* Solo se reduce el tamaño. El transform NO se anula: es lo que anima
+           el icono al activarse el paso (scale 0.95 -> 1.05), igual que en
+           escritorio. */
     }
     .timeline-item.is-active .timeline-number {
         transform: translate(-50%, -50%); 
@@ -1212,4 +1214,83 @@
 .timeline-item.is-active .timeline-sketch-img {
     filter: opacity(1) contrast(1.1);
     transform: scale(1.05);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PARIDAD DE ANIMACIONES EN MÓVIL
+   El sitio perdía efectos en pantallas pequeñas por tres motivos:
+   1) el "deck" 3D de los planes estaba tras @media (min-width: 821px);
+   2) los estados :hover no existen en táctil;
+   3) algunos transform quedaban anulados con !important.
+   Aquí se restituye el equivalente para móvil.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. Deck de planes: versión vertical para una sola columna ──
+   En escritorio las tarjetas se abanican en el eje X (translateX + rotateY).
+   Apiladas en móvil ese giro no tiene sentido, así que la jerarquía se
+   traslada al eje Y: la destacada se eleva y las otras ceden escala.
+   Se usa scale < 1 en las laterales (nunca > 1) para no provocar
+   desbordamiento horizontal en pantallas estrechas. */
+@media (max-width: 820px) {
+    .home-solutions .grid.is-visible .plan {
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.6s ease;
+    }
+    .home-solutions .grid.is-visible .plan:not(.feat) {
+        transform: scale(0.975) !important;
+        opacity: 0.92;
+    }
+    .home-solutions .grid.is-visible .plan.feat {
+        transform: translateY(-10px) !important;
+        box-shadow: 0 22px 44px rgba(0, 0, 0, 0.22);
+        z-index: 10;
+    }
+}
+
+/* ── 2. Equivalente táctil de los :hover ──
+   (hover: none) aísla los dispositivos sin puntero: el gesto de tocar
+   reproduce el mismo movimiento que en escritorio da pasar el cursor. */
+@media (hover: none) {
+    .home-solutions .plan:active,
+    .pricing-plan-card:active,
+    .testimonio-card:active,
+    .solution-card:active {
+        transform: scale(0.985);
+        transition: transform 0.18s ease-out;
+    }
+    .home-solutions .btn-brass:active,
+    .home-solutions .btn-ink:active,
+    .home-solutions .btn-line:active,
+    .timeline-cta-btn:active,
+    .radar-hero-submit:active,
+    .final-cta-btn:active,
+    .solution-btn:active,
+    .btn-primary:active,
+    .plan-btn:active {
+        transform: scale(0.96);
+        transition: transform 0.15s ease-out;
+    }
+    /* El botón destacado conserva su elevación al pulsarlo */
+    .home-solutions .plan.feat:active {
+        transform: translateY(-10px) scale(0.985);
+    }
+}
+
+/* ── 3. Rendimiento en móvil ──
+   Las animaciones sí se conservan, pero se acotan las capas caras:
+   los desenfoques grandes en scroll son lo que provoca jank en gama media. */
+@media (max-width: 820px) {
+    .blur-fade { --bf-blur: 6px; --bf-y: 16px; }   /* mismo efecto, menos radio */
+    .animated-group[data-ag-preset="blur-slide"] > * { filter: blur(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-solutions .grid.is-visible .plan,
+    .home-solutions .grid.is-visible .plan:not(.feat),
+    .home-solutions .grid.is-visible .plan.feat {
+        transform: none !important;
+        opacity: 1 !important;
+        transition: none !important;
+    }
 }
