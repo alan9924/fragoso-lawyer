@@ -2019,88 +2019,87 @@ select.calc-input {
     box-shadow: 0 30px 70px rgba(0,0,0,0.3);
     animation: calcMarcoPanelIn 0.35s cubic-bezier(0.16,1,0.3,1);
 }
-@keyframes calcMarcoPanelIn { from { transform: translateY(18px); } to { transform: translateY(0); } }
+@keyframes calcMarcoPanelIn { from { transform: translateY(18px); } to { transform: translateY(/* Grid Layout */
+.calc-marco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
 
-.calc-marco-head {
+/* Card Styling */
+.calc-marco-card {
+    border-radius: 16px;
+    padding: 1.5rem;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 2rem 2.2rem 1.2rem;
-    border-bottom: 1px solid #e8e1d5;
-    position: sticky;
-    top: 0;
-    background: #fdfcf9;
-    border-radius: 18px 18px 0 0;
-    z-index: 2;
+    flex-direction: column;
 }
-.calc-marco-eyebrow {
-    font-size: 0.64rem; font-weight: 700; letter-spacing: 3px;
-    text-transform: uppercase; color: #b0392f;
+.calc-marco-card h3 {
+    font-family: var(--font-heading), 'Cormorant Garamond', serif;
+    font-size: 1.35rem; 
+    font-weight: 400; 
+    margin: 0 0 1rem;
+    color: inherit;
+    border-bottom: none;
+    padding-bottom: 0;
 }
-.calc-marco-head h2 {
-    font-family: var(--font-heading, Georgia, serif);
-    font-size: 1.8rem; font-weight: 400; margin: 0.3rem 0 0; color: #1a1a1a;
-}
-.calc-marco-close {
-    width: 38px; height: 38px; flex-shrink: 0;
-    border: none; border-radius: 50%;
-    background: #1a1a1a; color: #fff;
-    font-size: 1.5rem; line-height: 1; cursor: pointer;
-    transition: transform 0.2s;
-}
-.calc-marco-close:hover { transform: scale(1.08); }
 
-.calc-marco-body { padding: 1.6rem 2.2rem 2.4rem; }
-.calc-marco-sec { margin-bottom: 2.4rem; }
-.calc-marco-sec:last-of-type { margin-bottom: 1.5rem; }
-.calc-marco-sec h3 {
-    font-family: var(--font-heading, Georgia, serif);
-    font-size: 1.22rem; font-weight: 500; color: #1a1a1a;
-    margin: 0 0 0.9rem; padding-bottom: 0.5rem;
-    border-bottom: 1px solid #efeae0;
-}
+/* Color Palette (Brand Book Inspired) */
+.bg-butter { background-color: #fdf6c6; color: #1a1a1a; }
+.bg-charcoal { background-color: #2b2b2b; color: #f5f5f5; }
+.bg-mist { background-color: #e5e5e3; color: #1a1a1a; }
+.bg-oat { background-color: #e4e2d7; color: #1a1a1a; }
+.bg-sage { background-color: #d1dacb; color: #1a1a1a; }
+.bg-cream { background-color: #fcfbfa; border: 1px solid #efeae0; color: #1a1a1a; }
+
+/* Overrides for text inside charcoal */
+.bg-charcoal h3 { color: #ffffff; }
+.bg-charcoal .calc-marco-nota, .bg-charcoal .calc-marco-fuente { color: #cccccc; }
+.bg-charcoal .calc-marco-arts dt { color: #fdf6c6; /* butter accent */ }
+.bg-charcoal .calc-marco-arts dd { color: #f5f5f5; }
+.bg-charcoal .calc-marco-arts dd em { color: #ffffff; }
+
 .calc-marco-nota, .calc-marco-fuente {
-    font-size: 0.82rem; line-height: 1.6; color: #6b6660; margin: 0 0 1rem;
+    font-size: 0.82rem; line-height: 1.6; color: inherit; opacity: 0.8; margin: 0 0 1rem;
 }
-.calc-marco-fuente { font-size: 0.74rem; color: #8a8580; margin-top: 0.7rem; }
+.calc-marco-fuente { font-size: 0.74rem; opacity: 0.7; margin-top: auto; padding-top: 1rem; }
 
 /* Cifras vigentes */
-.calc-marco-cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 0.8rem; }
-.cm-cifra { background: #f4f1ea; border-radius: 10px; padding: 0.9rem 1rem; }
-.cm-cifra span { display: block; font-size: 0.66rem; letter-spacing: 1.4px; text-transform: uppercase; color: #8a8580; }
-.cm-cifra strong { display: block; font-size: 1.32rem; color: #1a1a1a; margin-top: 0.25rem; font-variant-numeric: tabular-nums; }
+.calc-marco-cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 0.8rem; margin-bottom: 1rem; }
+.cm-cifra { background: rgba(0,0,0,0.03); border-radius: 12px; padding: 1rem; }
+.cm-cifra span { display: block; font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; color: inherit; opacity: 0.7; }
+.cm-cifra strong { display: block; font-size: 1.4rem; color: inherit; margin-top: 0.25rem; font-variant-numeric: tabular-nums; }
 
 /* Artículos */
 .calc-marco-arts { margin: 0; }
 .calc-marco-arts dt {
-    font-weight: 700; font-size: 0.82rem; color: #b0392f;
-    letter-spacing: 0.4px; margin-top: 0.9rem;
+    font-weight: 600; font-size: 0.85rem; color: inherit;
+    letter-spacing: 0.5px; margin-top: 1rem;
 }
 .calc-marco-arts dd {
-    margin: 0.2rem 0 0; font-size: 0.87rem; line-height: 1.6; color: #4a4640;
+    margin: 0.2rem 0 0; font-size: 0.85rem; line-height: 1.6; color: inherit; opacity: 0.9;
 }
-.calc-marco-arts dd em { font-style: normal; font-weight: 600; color: #1a1a1a; }
+.calc-marco-arts dd em { font-style: normal; font-weight: 600; color: inherit; }
 
-.calc-marco-lista { margin: 0; padding-left: 1.1rem; }
-.calc-marco-lista li { font-size: 0.87rem; line-height: 1.65; color: #4a4640; margin-bottom: 0.55rem; }
+/* Listas y Tablas en Cards */
+.calc-marco-lista { margin: 0; padding-left: 1.2rem; }
+.calc-marco-lista li { font-size: 0.85rem; line-height: 1.65; color: inherit; opacity: 0.9; margin-bottom: 0.6rem; }
+.calc-marco-lista strong { color: inherit; opacity: 1; }
 .calc-marco-metodo code {
-    background: #f0ece4; border-radius: 4px; padding: 0.1rem 0.35rem;
-    font-size: 0.82rem; color: #1a1a1a;
+    background: rgba(0,0,0,0.05); color: inherit; 
+    padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.8rem;
 }
 
-/* Tablas */
-.calc-marco-tabla-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.calc-marco-tabla { width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 460px; }
+.calc-marco-tabla-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 1rem; }
+.calc-marco-tabla { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 400px; }
 .calc-marco-tabla th, .calc-marco-tabla td {
-    text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid #eee8dc; vertical-align: top;
+    padding: 0.75rem 0.5rem; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .calc-marco-tabla th {
-    font-size: 0.68rem; letter-spacing: 1.2px; text-transform: uppercase;
-    color: #8a8580; font-weight: 700; background: #f7f4ee;
+    font-weight: 600; color: inherit; letter-spacing: 0.5px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.7; background: transparent;
 }
-.calc-marco-tabla td { color: #4a4640; line-height: 1.5; }
-.calc-marco-tabla td:first-child { font-weight: 600; color: #1a1a1a; white-space: nowrap; }
+.calc-marco-tabla td { color: inherit; line-height: 1.5; opacity: 0.9; }
+.calc-marco-tabla td:first-child { font-weight: 600; opacity: 1; white-space: nowrap; }
 .calc-marco-tabla .si         { color: #2E5E3A; font-weight: 600; }
 .calc-marco-tabla .si-parcial { color: #8a6d2f; font-weight: 600; }
 .calc-marco-tabla .no         { color: #9a5b45; font-weight: 600; }
