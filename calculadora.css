@@ -2176,19 +2176,19 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    background: #ffffff;
-    border: 1.5px solid #e8e2d8;
+    background: #1a1a1a;
+    border: none;
     border-radius: 16px;
     padding: 1.4rem 1.8rem;
     cursor: pointer;
     text-align: left;
-    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
     width: 100%;
 }
 .calc-hub-card:hover {
-    border-color: #1a1a1a;
+    background: #000000;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
 }
 .calc-hub-card-icon {
     flex-shrink: 0;
@@ -2197,7 +2197,7 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #1a1a1a;
+    color: #ffffff;
 }
 .calc-hub-card-icon svg { width: 100%; height: 100%; }
 .calc-hub-card-body {
@@ -2210,21 +2210,21 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
     font-family: var(--font-body), 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #ffffff;
 }
 .calc-hub-card-desc {
     font-size: 0.85rem;
-    color: #8a8580;
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.4;
 }
 .calc-hub-card-arrow {
     font-size: 1.3rem;
-    color: #c5bba8;
+    color: rgba(255, 255, 255, 0.4);
     flex-shrink: 0;
     transition: color 0.2s, transform 0.2s;
 }
 .calc-hub-card:hover .calc-hub-card-arrow {
-    color: #1a1a1a;
+    color: #ffffff;
     transform: translateX(4px);
 }
 .calc-hub-disclaimer {
@@ -2238,7 +2238,10 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
 
 /* ── BACK BAR ── */
 .calc-tool-back-bar {
-    padding: 1.5rem 2rem 0;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1000;
 }
 .calc-back-hub-btn {
     background: none;
@@ -2249,13 +2252,22 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
     font-weight: 600;
     letter-spacing: 0.5px;
     color: #8a8580;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     transition: color 0.2s;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
 }
 .calc-back-hub-btn:hover { color: #1a1a1a; }
+@media (max-width: 900px) {
+    .calc-tool-back-bar {
+        position: relative;
+        top: 0;
+        left: 0;
+        padding: 1.5rem 1.5rem 0;
+        margin-bottom: 1rem;
+    }
+}
 
 /* ── SIMPLE CALCULATOR FORMS ── */
 .calc-simple-wrapper {
