@@ -143,92 +143,139 @@
   }
   
   
-  /* Premium System Section */
+    /* Premium System Section - SaaS Editorial */
   .premium-system-section {
-    padding: 140px 0;
+    padding: 160px 0;
     background: transparent;
   }
   .premium-system-container {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 5%;
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 80px;
   }
-  .premium-system-header p {
+  
+  .premium-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: var(--taupe-dark, #544e4b);
-    max-width: 380px;
+  }
+  .eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    background: #a9b5f9; /* Light purple/blue dot from reference */
+  }
+  
+  .premium-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--carbon);
+    margin: 24px 0;
+  }
+  
+  .premium-system-header p {
+    font-family: var(--font-body);
+    color: var(--taupe-dark, #544e4b);
+    max-width: 480px;
     font-size: 1.15rem;
-    line-height: 1.7;
-    margin-top: 24px;
+    line-height: 1.6;
     font-weight: 300;
   }
+  
   .premium-system-list {
+    position: relative;
     list-style: none;
     padding: 0;
     margin: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
   }
-  .premium-system-list li {
+  
+  .premium-item {
     display: flex;
-    gap: 48px;
-    padding: 48px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 80px;
+    opacity: 0.25;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(20px);
   }
+  .premium-item:last-child {
+    padding-bottom: 0;
+  }
+  .premium-item.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
   .premium-system-num {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--taupe-dark, #544e4b);
+    margin-bottom: 8px;
+  }
+  
+  .premium-item-title {
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--carbon);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  
+  .premium-item-desc {
     font-family: var(--font-body);
     font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 2px;
-    color: var(--warm-gray, #9c9489);
-    flex-shrink: 0;
-    width: 40px;
-  }
-  .premium-system-content {
-    flex-grow: 1;
-    max-width: 600px;
-  }
-  .premium-system-content h3 {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 400;
-    color: var(--carbon);
-    margin: 0 0 16px 0;
-    line-height: 1.1;
-  }
-  .premium-system-content p {
-    font-family: var(--font-body);
-    font-size: 1.05rem;
-    line-height: 1.8;
+    line-height: 1.6;
     font-weight: 300;
     color: var(--taupe-dark, #544e4b);
     margin: 0;
   }
-  
+
   @media (min-width: 1024px) {
     .premium-system-container {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
+      grid-template-columns: 1fr 1fr;
       gap: 120px;
+      align-items: flex-start;
     }
     .premium-system-header {
       position: sticky;
-      top: 160px;
-      flex-shrink: 0;
-      width: 35%;
+      top: 180px;
     }
     .premium-system-list {
-      flex-grow: 1;
+      padding-left: 80px;
+    }
+    /* The static background line */
+    .premium-system-list::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      background: rgba(0,0,0,0.1);
+    }
+    /* The active progress line */
+    .premium-system-list::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: var(--progress, 0%);
+      background: var(--carbon);
+      transition: height 0.1s linear;
     }
   }
-  @media (max-width: 768px) {
-    .premium-system-list li {
-      flex-direction: column;
-      gap: 20px;
-      padding: 40px 0;
-    }
   }
 
   </style>
@@ -338,42 +385,75 @@
 <section class="premium-system-section">
   <div class="premium-system-container">
     <div class="premium-system-header">
-      <h2 class="sec">Por qué<br><em>este sistema</em><br>funciona?</h2>
+      <span class="premium-eyebrow"><span class="eyebrow-dot"></span>NUESTRO ENFOQUE</span>
+      <h2 class="premium-title">El sistema que<br>protege todo.</h2>
       <p>Cuatro frentes que blindan tu operación durante todo el año — no cuando ya hay un problema encima.</p>
     </div>
     
-    <ol class="premium-system-list">
-      <li>
+    <ol class="premium-system-list" id="premiumScrollList">
+      <li class="premium-item active">
         <span class="premium-system-num">01</span>
-        <article class="premium-system-content">
-          <h3>Redacción y revisión</h3>
-          <p>Estructuramos, redactamos y analizamos tus contratos y acuerdos. Nada se firma sin que un abogado lo haya revisado rigurosamente primero.</p>
-        </article>
+        <h3 class="premium-item-title">Redacción y revisión.</h3>
+        <p class="premium-item-desc">Estructuramos, redactamos y analizamos tus contratos y acuerdos. Nada se firma sin que un abogado lo haya revisado rigurosamente primero.</p>
       </li>
-      <li>
+      <li class="premium-item">
         <span class="premium-system-num">02</span>
-        <article class="premium-system-content">
-          <h3>Monitoreo continuo</h3>
-          <p>Tus plantillas y acuerdos estándar, siempre vigentes. Cuando la ley cambia, tus documentos clave ya están actualizados automáticamente.</p>
-        </article>
+        <h3 class="premium-item-title">Monitoreo continuo.</h3>
+        <p class="premium-item-desc">Tus plantillas y acuerdos estándar, siempre vigentes. Cuando la ley cambia, tus documentos clave ya están actualizados automáticamente.</p>
       </li>
-      <li>
+      <li class="premium-item">
         <span class="premium-system-num">03</span>
-        <article class="premium-system-content">
-          <h3>Reporte de riesgo</h3>
-          <p>Auditamos tus contratos vigentes y te comunicamos, por escrito, exactamente dónde estás expuesto y qué debes corregir de forma prioritaria.</p>
-        </article>
+        <h3 class="premium-item-title">Reporte de riesgo.</h3>
+        <p class="premium-item-desc">Auditamos tus contratos vigentes y te comunicamos, por escrito, exactamente dónde estás expuesto y qué debes corregir de forma prioritaria.</p>
       </li>
-      <li>
+      <li class="premium-item">
         <span class="premium-system-num">04</span>
-        <article class="premium-system-content">
-          <h3>Alertas regulatorias</h3>
-          <p>Los cambios legislativos que afectan tu industria, analizados a tiempo. Te enteras y te preparas mucho antes de que se vuelvan un problema.</p>
-        </article>
+        <h3 class="premium-item-title">Alertas regulatorias.</h3>
+        <p class="premium-item-desc">Los cambios legislativos que afectan tu industria, analizados a tiempo. Te enteras y te preparas mucho antes de que se vuelvan un problema.</p>
       </li>
     </ol>
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const list = document.getElementById('premiumScrollList');
+  if(!list) return;
+  const items = list.querySelectorAll('.premium-item');
+  
+  window.addEventListener('scroll', () => {
+    const rect = list.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    // Start progress when the top of the list reaches the middle of the screen
+    const startOffset = windowHeight * 0.6;
+    const progressStart = rect.top - startOffset;
+    
+    if (progressStart < 0) {
+      // Calculate percentage
+      let progress = (Math.abs(progressStart) / (rect.height * 0.8)) * 100;
+      progress = Math.min(100, Math.max(0, progress));
+      list.style.setProperty('--progress', progress + '%');
+    } else {
+      list.style.setProperty('--progress', '0%');
+    }
+    
+    // Highlight items based on their individual position
+    items.forEach((item) => {
+      const itemRect = item.getBoundingClientRect();
+      // If item's top passes the middle of screen (plus some margin)
+      if (itemRect.top < windowHeight * 0.65) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  });
+  
+  // Trigger once on load
+  window.dispatchEvent(new Event('scroll'));
+});
+</script>
 
 <!-- PLANES -->
 <section id="planes">
