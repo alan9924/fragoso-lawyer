@@ -2508,3 +2508,11 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
 .cm-cifra { background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); border-radius: 8px; padding: 0.8rem 1rem; }
 .cm-cifra span { display: block; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; color: #6b6560; line-height: 1.2; margin-bottom: 0.3rem;}
 .cm-cifra strong { display: block; font-size: 1.2rem; color: #1a1a1a; font-weight: 600; }
+
+/* Tablas en Marco Legal */
+.calc-marco-tabla-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.calc-marco-tabla { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 500px; }
+.calc-marco-tabla th, .calc-marco-tabla td { text-align: left; padding: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.calc-marco-tabla th { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #8a8580; }
+.calc-marco-tabla td { color: #4a4640; line-height: 1.4; }
+.calc-marco-tabla td:first-child { font-weight: 600; color: #1a1a1a; }
