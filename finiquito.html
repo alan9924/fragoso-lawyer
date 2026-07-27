@@ -67,41 +67,43 @@
     <!-- ═══ CALCULATOR HUB + FINIQUITO LANDING ═══ -->
     <div class="calc-wrapper">
 
-        <!-- MAIN SCREEN (Finiquito Hero + Tool Selector) -->
-        <div id="calc-hub" class="calc-hub-screen active">
-            
-            <!-- FINIQUITO LANDING HERO -->
-            <div id="calc-step-0" class="calc-step active">
-                <div class="calc-landing">
-                    <!-- Referencia vigente, siempre visible (CONASAMI / INEGI) -->
-                    <div class="calc-minimos" id="calcMinimos" aria-label="Valores de referencia vigentes"></div>
+        <!-- MAIN LANDING HERO -->
+        <div id="calc-step-0" class="calc-hub-screen active">
+            <div class="calc-landing">
+                <!-- Referencia vigente, siempre visible (CONASAMI / INEGI) -->
+                <div class="calc-minimos" id="calcMinimos" aria-label="Valores de referencia vigentes"></div>
 
-                    <div class="calc-landing-inner">
-                        <div class="calc-landing-text">
-                            <div class="calc-landing-tag">HERRAMIENTA GRATUITA</div>
-                            <h1 class="calc-landing-title">Calculadora de Finiquito y Liquidación</h1>
-                            <p class="calc-landing-subtitle">Estima lo que te corresponde conforme a la Ley Federal del Trabajo de México. Responde las preguntas y obtén tu desglose completo.</p>
-                            <button id="calc-btn-start" class="calc-landing-btn">Calcular ahora</button>
-                            <button id="calc-btn-marco" class="calc-landing-btn-alt" type="button"
-                                    aria-haspopup="dialog" aria-controls="calc-marco-legal">
-                                Marco legal
-                            </button>
-                        </div>
-                        <figure class="calc-landing-art">
-                            <img src="finiquito_portada.png" alt="Cálculo de finiquito y liquidación con monedas flotantes de curso legal" class="calc-landing-img">
-                        </figure>
+                <div class="calc-landing-inner">
+                    <div class="calc-landing-text">
+                        <div class="calc-landing-tag">HERRAMIENTA GRATUITA</div>
+                        <h1 class="calc-landing-title">Calculadora de Finiquito y Liquidación</h1>
+                        <p class="calc-landing-subtitle">Estima lo que te corresponde conforme a la Ley Federal del Trabajo de México. Responde las preguntas y obtén tu desglose completo.</p>
+                        <button id="calc-btn-go-hub" class="calc-landing-btn">Calcular ahora</button>
+                        <button id="calc-btn-marco" class="calc-landing-btn-alt" type="button"
+                                aria-haspopup="dialog" aria-controls="calc-marco-legal">
+                            Marco legal
+                        </button>
                     </div>
+                    <figure class="calc-landing-art">
+                        <img src="finiquito_portada.png" alt="Cálculo de finiquito y liquidación con monedas flotantes de curso legal" class="calc-landing-img">
+                    </figure>
                 </div>
             </div>
+        </div>
 
-            <!-- HUB: TOOL SELECTOR (Below Finiquito) -->
-            <div class="calc-hub-list-section" style="padding-bottom: 4rem;">
+        <!-- THE TOOL SELECTOR HUB (Hidden by default) -->
+        <div id="calc-hub" class="calc-tool-screen">
+            <div class="calc-tool-back-bar">
+                <button class="calc-back-hub-btn" data-target="calc-step-0">← Regresar</button>
+            </div>
+            
+            <div class="calc-hub-list-section" style="padding: 2rem 0 4rem;">
                 <p class="calc-hub-subtitle" style="text-align: center; margin: 0 auto 2rem; max-width: 600px; padding: 0 1.5rem;">
                     Todas las herramientas que necesitas para entender lo que te corresponde, conforme a la Ley Federal del Trabajo.
                 </p>
                 
                 <div class="calc-hub-grid">
-                    <button class="calc-hub-card" onclick="document.getElementById('calc-btn-start').click();" aria-label="Abrir Calculadora de Finiquito y Liquidación">
+                    <button class="calc-hub-card" id="calc-btn-start" aria-label="Abrir Calculadora de Finiquito y Liquidación">
                         <div class="calc-hub-card-icon">
                             <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="8" y="6" width="32" height="36" rx="3"/>
@@ -1376,14 +1378,19 @@
             if (target) { target.classList.add('active'); window.scrollTo(0,0); }
         }
 
-        // Bridge for Finiquito's 'Calcular ahora' button to also show its screen
+        // Bridge for the Hero's 'Calcular ahora' button to show the hub
+        document.getElementById('calc-btn-go-hub').addEventListener('click', () => {
+            showScreen('calc-hub');
+        });
+
+        // Bridge for Finiquito's Card to start the wizard
         document.getElementById('calc-btn-start').addEventListener('click', () => {
             showScreen('tool-finiquito');
         });
 
         // Card clicks → open tool
         document.querySelectorAll('.calc-hub-card').forEach(btn => {
-            if(btn.id === 'btn-start-finiquito-card') return; // Handled inline
+            if(btn.id === 'calc-btn-start') return; // Handled inline above
             btn.addEventListener('click', () => {
                 const tool = btn.dataset.tool;
                 if(tool) showScreen('tool-' + tool);
