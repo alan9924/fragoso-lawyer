@@ -2238,10 +2238,7 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
 
 /* ── BACK BAR ── */
 .calc-tool-back-bar {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    z-index: 1000;
+    padding: 8rem 2rem 0;
 }
 .calc-back-hub-btn {
     background: none;
@@ -2261,10 +2258,7 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
 .calc-back-hub-btn:hover { color: #1a1a1a; }
 @media (max-width: 900px) {
     .calc-tool-back-bar {
-        position: relative;
-        top: 0;
-        left: 0;
-        padding: 1.5rem 1.5rem 0;
+        padding: 6rem 1.5rem 0;
         margin-bottom: 1rem;
     }
 }
