@@ -2011,115 +2011,167 @@ select.calc-input {
 }
 @keyframes calcMarcoIn { from { opacity: 0; } to { opacity: 1; } }
 
+
 .calc-marco-panel {
-    background: #fdfcf9;
-    border-radius: 18px;
+    background: #fdfdfc;
+    border-radius: 16px;
     width: 100%;
-    max-width: 760px;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+    max-width: 1100px;
+    height: 85vh;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.2);
     animation: calcMarcoPanelIn 0.35s cubic-bezier(0.16,1,0.3,1);
-}
-@keyframes calcMarcoPanelIn { from { transform: translateY(18px); } to { transform: translateY(/* Grid Layout */
-.calc-marco-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
 }
 
-/* Card Styling */
-.calc-marco-card {
-    border-radius: 16px;
-    padding: 1.5rem;
+.calc-marco-layout {
+    display: flex;
+    gap: 3rem;
+    height: 100%;
+    overflow: hidden;
+    padding: 3rem;
+}
+
+/* SIDEBAR (Left) */
+.calc-marco-sidebar {
+    width: 280px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
 }
-.calc-marco-card h3 {
+
+.calc-marco-eyebrow {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #8a8580;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.calc-marco-title {
+    font-size: 2.5rem;
     font-family: var(--font-heading), 'Cormorant Garamond', serif;
-    font-size: 1.35rem; 
-    font-weight: 400; 
-    margin: 0 0 1rem;
-    color: inherit;
-    border-bottom: none;
-    padding-bottom: 0;
+    font-weight: 400;
+    letter-spacing: -1px;
+    color: #1a1a1a;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.1;
 }
 
-/* Color Palette (Brand Book Inspired) */
-.bg-butter { background-color: #fdf6c6; color: #1a1a1a; }
-.bg-charcoal { background-color: #2b2b2b; color: #f5f5f5; }
-.bg-mist { background-color: #e5e5e3; color: #1a1a1a; }
-.bg-oat { background-color: #e4e2d7; color: #1a1a1a; }
-.bg-sage { background-color: #d1dacb; color: #1a1a1a; }
-.bg-cream { background-color: #fcfbfa; border: 1px solid #efeae0; color: #1a1a1a; }
-
-/* Overrides for text inside charcoal */
-.bg-charcoal h3 { color: #ffffff; }
-.bg-charcoal .calc-marco-nota, .bg-charcoal .calc-marco-fuente { color: #cccccc; }
-.bg-charcoal .calc-marco-arts dt { color: #fdf6c6; /* butter accent */ }
-.bg-charcoal .calc-marco-arts dd { color: #f5f5f5; }
-.bg-charcoal .calc-marco-arts dd em { color: #ffffff; }
-
-.calc-marco-nota, .calc-marco-fuente {
-    font-size: 0.82rem; line-height: 1.6; color: inherit; opacity: 0.8; margin: 0 0 1rem;
-}
-.calc-marco-fuente { font-size: 0.74rem; opacity: 0.7; margin-top: auto; padding-top: 1rem; }
-
-/* Cifras vigentes */
-.calc-marco-cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 0.8rem; margin-bottom: 1rem; }
-.cm-cifra { background: rgba(0,0,0,0.03); border-radius: 12px; padding: 1rem; }
-.cm-cifra span { display: block; font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; color: inherit; opacity: 0.7; }
-.cm-cifra strong { display: block; font-size: 1.4rem; color: inherit; margin-top: 0.25rem; font-variant-numeric: tabular-nums; }
-
-/* Artículos */
-.calc-marco-arts { margin: 0; }
-.calc-marco-arts dt {
-    font-weight: 600; font-size: 0.85rem; color: inherit;
-    letter-spacing: 0.5px; margin-top: 1rem;
-}
-.calc-marco-arts dd {
-    margin: 0.2rem 0 0; font-size: 0.85rem; line-height: 1.6; color: inherit; opacity: 0.9;
-}
-.calc-marco-arts dd em { font-style: normal; font-weight: 600; color: inherit; }
-
-/* Listas y Tablas en Cards */
-.calc-marco-lista { margin: 0; padding-left: 1.2rem; }
-.calc-marco-lista li { font-size: 0.85rem; line-height: 1.65; color: inherit; opacity: 0.9; margin-bottom: 0.6rem; }
-.calc-marco-lista strong { color: inherit; opacity: 1; }
-.calc-marco-metodo code {
-    background: rgba(0,0,0,0.05); color: inherit; 
-    padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.8rem;
+.calc-marco-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #4a4640;
 }
 
-.calc-marco-tabla-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 1rem; }
-.calc-marco-tabla { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 400px; }
-.calc-marco-tabla th, .calc-marco-tabla td {
-    padding: 0.75rem 0.5rem; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-.calc-marco-tabla th {
-    font-weight: 600; color: inherit; letter-spacing: 0.5px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.7; background: transparent;
-}
-.calc-marco-tabla td { color: inherit; line-height: 1.5; opacity: 0.9; }
-.calc-marco-tabla td:first-child { font-weight: 600; opacity: 1; white-space: nowrap; }
-.calc-marco-tabla .si         { color: #2E5E3A; font-weight: 600; }
-.calc-marco-tabla .si-parcial { color: #8a6d2f; font-weight: 600; }
-.calc-marco-tabla .no         { color: #9a5b45; font-weight: 600; }
-
-.calc-marco-disclaimer {
-    font-size: 0.76rem; line-height: 1.6; color: #8a8580;
-    border-top: 1px solid #e8e1d5; padding-top: 1.2rem; margin: 0;
+/* GRID (Right) */
+.calc-marco-grid-wrap {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 1rem;
 }
 
-@media (max-width: 600px) {
-    .calc-marco { padding: 0; }
-    .calc-marco-panel { border-radius: 0; min-height: 100%; }
-    .calc-marco-head { border-radius: 0; padding: 1.5rem 1.25rem 1rem; }
-    .calc-marco-body { padding: 1.25rem 1.25rem 2rem; }
-    .calc-landing-btn-alt { width: 100%; }
+/* Scrollbar minimalista */
+.calc-marco-grid-wrap::-webkit-scrollbar { width: 5px; }
+.calc-marco-grid-wrap::-webkit-scrollbar-track { background: transparent; }
+.calc-marco-grid-wrap::-webkit-scrollbar-thumb { background: #d8d2c8; border-radius: 4px; }
+
+.calc-marco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+    align-content: start;
+}
+
+/* CARDS */
+.calc-marco-card {
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+}
+.calc-marco-card h3 {
+    font-size: 1.2rem;
+    font-family: var(--font-heading, Georgia, serif);
+    font-weight: 400;
+    color: #1a1a1a;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+}
+.calc-marco-card-body {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #333;
+    flex-grow: 1;
+}
+.calc-marco-card-body p { margin: 0 0 0.8rem; }
+.calc-marco-card-body p:last-child { margin: 0; }
+.calc-marco-card-body strong { font-weight: 600; color: #1a1a1a; }
+.calc-marco-card-body ul { margin: 0; padding-left: 1.1rem; }
+.calc-marco-card-body li { margin-bottom: 0.4rem; }
+
+/* PASTEL PALETTE */
+.card-butter { background-color: #fdf5d3; }
+.card-lemon  { background-color: #f7eea1; }
+.card-mint   { background-color: #e5f4e1; }
+.card-sage   { background-color: #d8e2d9; }
+.card-oat    { background-color: #e4dfd5; }
+.card-mist   { background-color: #e8e8e6; }
+.card-cream  { background-color: #f6f4ee; }
+
+.card-charcoal { background-color: #2e2c2a; }
+.card-charcoal h3 { color: #fff; }
+.card-charcoal .calc-marco-card-body { color: #d0caca; }
+.card-charcoal .calc-marco-card-body strong { color: #fff; }
+
+.calc-marco-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #f4f2ee;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #8a8580;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calc-marco-close:hover { background: #1a1a1a; color: #fff; transform: scale(1.05); }
+
+/* MOBILE */
+@media (max-width: 900px) {
+    .calc-marco-panel {
+        height: 100vh;
+        max-width: 100%;
+        border-radius: 0;
+        top: 0; right: 0; bottom: 0; left: 0;
+    }
+    .calc-marco-layout {
+        flex-direction: column;
+        padding: 4rem 1.5rem 2rem;
+        gap: 2rem;
+        overflow-y: auto;
+    }
+    .calc-marco-sidebar { width: 100%; }
+    .calc-marco-close { top: 1rem; right: 1rem; }
+    .calc-marco-grid-wrap { overflow: visible; padding-right: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .calc-marco, .calc-marco-panel { animation: none; }
 }
+
 
 /* ═══════════════════════════════════════════════
    CALCULADORA HUB — Multi-tool selector
@@ -2450,3 +2502,9 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
     .calc-simple-toggle-row { flex-direction: column; }
     .calc-simple-results-inner .cs-row { flex-direction: column; gap: 0.2rem; }
 }
+
+/* Cifras vigentes (dentro de la grid) */
+.calc-marco-cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 0.8rem; margin-top: 0.8rem; }
+.cm-cifra { background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); border-radius: 8px; padding: 0.8rem 1rem; }
+.cm-cifra span { display: block; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; color: #6b6560; line-height: 1.2; margin-bottom: 0.3rem;}
+.cm-cifra strong { display: block; font-size: 1.2rem; color: #1a1a1a; font-weight: 600; }

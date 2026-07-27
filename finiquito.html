@@ -454,144 +454,111 @@
 
 
     <!-- ═══ MARCO LEGAL ═══ -->
-    <div class="calc-marco" id="calc-marco-legal" role="dialog" aria-modal="true"
-         aria-labelledby="calc-marco-titulo" hidden>
+    <div class="calc-marco" id="calc-marco-legal" role="dialog" aria-modal="true" aria-labelledby="calc-marco-titulo" hidden>
         <div class="calc-marco-panel" role="document">
-            <header class="calc-marco-head">
-                <div>
+            
+            <button type="button" class="calc-marco-close" id="calc-marco-close" aria-label="Cerrar marco legal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="calc-marco-layout">
+                <!-- SIDEBAR -->
+                <aside class="calc-marco-sidebar">
                     <span class="calc-marco-eyebrow">Referencia</span>
-                    <h2 id="calc-marco-titulo">Marco legal</h2>
-                </div>
-                <button type="button" class="calc-marco-close" id="calc-marco-close" aria-label="Cerrar marco legal">&times;</button>
-            </header>
+                    <h2 class="calc-marco-title" id="calc-marco-titulo">Marco<br>Legal</h2>
+                    <p class="calc-marco-desc">Cálculos fundamentados en la Ley Federal del Trabajo de México. La última reforma publicada en el DOF aplica para la reducción de la jornada laboral.</p>
+                </aside>
 
-            <div class="calc-marco-body">
-
-                <div class="calc-marco-grid">
-                    <!-- Valores vigentes -->
-                    <section class="calc-marco-card bg-butter">
-                        <div class="card-inner">
-                            <h3>Valores vigentes 2026</h3>
-                            <div class="calc-marco-cifras" id="calcMarcoCifras"></div>
-                            <p class="calc-marco-fuente">Salarios mínimos: CONASAMI, vigentes desde el 1 de enero de 2026. UMA: INEGI, vigente desde el 1 de febrero de 2026.</p>
-                        </div>
-                    </section>
-
-                    <!-- LFT -->
-                    <section class="calc-marco-card bg-charcoal">
-                        <div class="card-inner">
-                            <h3>Ley Federal del Trabajo</h3>
-                            <p class="calc-marco-nota"><strong>Última reforma publicada en el DOF: 14 de mayo de 2026</strong>. Los cálculos se basan en el texto vigente.</p>
-                            <dl class="calc-marco-arts">
-                                <dt>Art. 47</dt><dd>Causas de rescisión <em>sin responsabilidad para el patrón</em>. Obliga a entregar aviso escrito.</dd>
-                                <dt>Art. 48</dt><dd>Ante despido injustificado: <em>reinstalación</em> o indemnización de <em>3 meses</em>, más salarios vencidos.</dd>
-                                <dt>Art. 50</dt><dd>Monto de indemnizaciones: <em>20 días de salario por cada año</em>.</dd>
-                                <dt>Art. 76</dt><dd>Vacaciones Dignas: 12 días el primer año y aumento progresivo.</dd>
-                                <dt>Art. 79</dt><dd>No pueden compensarse con dinero; se pagan las proporcionales al terminar.</dd>
-                                <dt>Art. 80</dt><dd>Prima vacacional: mínimo <em>25%</em>.</dd>
-                                <dt>Art. 87</dt><dd>Aguinaldo: mínimo <em>15 días</em>.</dd>
-                                <dt>Art. 162</dt><dd>Prima de antigüedad: <em>12 días por año</em>. Procede en renuncia solo con <em>15+ años</em>.</dd>
-                                <dt>LISR Art. 93</dt><dd>Exención del ISR sobre indemnizaciones hasta <em>90 UMA por cada año de servicio</em>.</dd>
-                            </dl>
-                        </div>
-                    </section>
-
-                    <!-- Conceptos -->
-                    <section class="calc-marco-card bg-mist">
-                        <div class="card-inner">
-                            <h3>Conceptos del finiquito</h3>
-                            <p class="calc-marco-nota">El <strong>finiquito</strong> se paga en toda terminación. La <strong>liquidación</strong> solo en despido injustificado.</p>
-                            <ul class="calc-marco-lista">
-                                <li><strong>Salario devengado</strong> — días trabajados del último periodo.</li>
-                                <li><strong>Aguinaldo proporcional</strong> — 15 días al año proporcionales (Art. 87).</li>
-                                <li><strong>Vacaciones proporcionales</strong> — días por antigüedad no disfrutados (Art. 76).</li>
-                                <li><strong>Prima vacacional</strong> — 25% sobre esas vacaciones (Art. 80).</li>
-                                <li><strong>Prima de antigüedad</strong> — 12 días por año, con tope de ley (Art. 162).</li>
-                                <li><strong>Indemnización</strong> — 90 días de SDI + 20 días por año (Art. 48/50).</li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <!-- Vacaciones -->
-                    <section class="calc-marco-card bg-oat">
-                        <div class="card-inner">
-                            <h3>Tabla de vacaciones (Art. 76)</h3>
-                            <div class="calc-marco-tabla-wrap">
-                                <table class="calc-marco-tabla">
-                                    <thead><tr><th>Años</th><th>Días</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>1 año</td><td>12</td></tr>
-                                        <tr><td>2 años</td><td>14</td></tr>
-                                        <tr><td>3 años</td><td>16</td></tr>
-                                        <tr><td>4 años</td><td>18</td></tr>
-                                        <tr><td>5 años</td><td>20</td></tr>
-                                        <tr><td>6 a 10</td><td>22</td></tr>
-                                        <tr><td>11 a 15</td><td>24</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="calc-marco-fuente">A partir del sexto año se suman 2 días por cada 5 años de servicio.</p>
-                        </div>
-                    </section>
-
-                    <!-- Tipos de separación -->
-                    <section class="calc-marco-card bg-sage">
-                        <div class="card-inner">
-                            <h3>Tipos de separación</h3>
-                            <div class="calc-marco-tabla-wrap">
-                                <table class="calc-marco-tabla">
-                                    <thead>
-                                        <tr><th>Tipo</th><th>Prima de Antigüedad</th><th>Indemnización</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Renuncia</td>
-                                            <td class="si-parcial">Con 15+ años</td>
-                                            <td class="no">No</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Despido injustificado</td>
-                                            <td class="si">Sí</td>
-                                            <td class="si">90 días + 20/año</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Despido justificado</td>
-                                            <td class="si">Sí</td>
-                                            <td class="no">No</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fin de contrato</td>
-                                            <td class="si-parcial">Con 15+ años</td>
-                                            <td class="no">No</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                <!-- GRID DE TARJETAS -->
+                <div class="calc-marco-grid-wrap">
+                    <div class="calc-marco-grid">
+                        
+                        <!-- Tarjeta: Valores -->
+                        <div class="calc-marco-card card-butter" style="grid-column: 1 / -1;">
+                            <h3>Valores 2026</h3>
+                            <div class="calc-marco-card-body">
+                                <div id="calcMarcoCifras" class="calc-marco-cifras"></div>
+                                <p style="font-size: 0.7rem; color: #888; margin-top: 1rem;">Salarios: CONASAMI (1 ene). UMA: INEGI (1 feb).</p>
                             </div>
                         </div>
-                    </section>
 
-                    <!-- Metodología -->
-                    <section class="calc-marco-card bg-cream">
-                        <div class="card-inner">
-                            <h3>Metodología de cálculo</h3>
-                            <ol class="calc-marco-lista calc-marco-metodo">
-                                <li><strong>SDI</strong> = SD × (1 + 15/365 + (vacaciones × 0.25 / 365))</li>
-                                <li><strong>Aguinaldo</strong> = SD × 15 × (días trabajados / 365)</li>
-                                <li><strong>Vacaciones</strong> = (días antigüedad / 365) × trabajados − disfrutados</li>
-                                <li><strong>Prima vacacional</strong> = 25% de vacaciones</li>
-                                <li><strong>Indemnización</strong> = 90 × SDI + (20 × SDI × años)</li>
-                                <li><strong>Prima antigüedad</strong> = 12 × años × salario topado</li>
-                                <li><strong>ISR</strong> aplica exención de 90 UMA por año.</li>
-                            </ol>
+                        <!-- Tarjeta: Finiquito vs Liquidación -->
+                        <div class="calc-marco-card card-charcoal" style="grid-column: span 2;">
+                            <h3>Finiquito y Liquidación</h3>
+                            <div class="calc-marco-card-body">
+                                <p>El <strong>finiquito</strong> se paga siempre en cualquier terminación. Incluye salario devengado, aguinaldo, vacaciones y prima proporcionales.</p>
+                                <p>La <strong>liquidación</strong> solo procede en despido injustificado (Art. 48, 50).</p>
+                            </div>
                         </div>
-                    </section>
+
+                        <!-- Tarjeta: Renuncia -->
+                        <div class="calc-marco-card card-mist">
+                            <h3>Renuncia Voluntaria</h3>
+                            <div class="calc-marco-card-body">
+                                <p><strong>Finiquito completo.</strong></p>
+                                <p>La Prima de Antigüedad solo se paga si tienes <strong>15 años o más</strong> laborando (Art. 162).</p>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta: Despido Injustificado -->
+                        <div class="calc-marco-card card-lemon">
+                            <h3>Despido Injustificado</h3>
+                            <div class="calc-marco-card-body">
+                                <p><strong>Constitucional:</strong> 90 días de SDI (Art. 48).</p>
+                                <p><strong>20 días x año:</strong> Aplica general (Art. 50).</p>
+                                <p>Se suma el pago de Prima de Antigüedad.</p>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta: Despido Justificado -->
+                        <div class="calc-marco-card card-cream">
+                            <h3>Despido Justificado</h3>
+                            <div class="calc-marco-card-body">
+                                <p><strong>Art. 47:</strong> El patrón debe entregar aviso indicando causas.</p>
+                                <p>Sin aviso, el despido se presume injustificado. No hay indemnizaciones, pero sí Finiquito.</p>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta: Vacaciones -->
+                        <div class="calc-marco-card card-mint">
+                            <h3>Vacaciones (Art. 76)</h3>
+                            <div class="calc-marco-card-body">
+                                <p>Reforma "Vacaciones Dignas".</p>
+                                <ul>
+                                    <li>Año 1: 12 días</li>
+                                    <li>Año 2: 14 días</li>
+                                    <li>Año 3: 16 días</li>
+                                    <li>Año 4: 18 días</li>
+                                </ul>
+                                <p>Sube 2 días por año hasta el 5to, y luego 2 días cada 5 años.</p>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta: Aguinaldo & Primas -->
+                        <div class="calc-marco-card card-sage">
+                            <h3>Prestaciones Adicionales</h3>
+                            <div class="calc-marco-card-body">
+                                <p><strong>Aguinaldo (Art. 87):</strong> Mín. 15 días, proporcional al tiempo.</p>
+                                <p><strong>Prima Vac. (Art. 80):</strong> 25% del salario de vacaciones.</p>
+                                <p><strong>Prima Ant. (Art. 162):</strong> 12 días por año (tope salarial).</p>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta: ISR -->
+                        <div class="calc-marco-card card-oat">
+                            <h3>Exenciones (ISR)</h3>
+                            <div class="calc-marco-card-body">
+                                <p>Exención sobre indemnizaciones hasta <strong>90 UMA por año de servicio</strong> (Art. 93 fr. XIII LISR).</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <p class="calc-marco-desc" style="margin-top: 2rem; border-top: 1px solid #e8e1d5; padding-top: 1rem; color: #8a8580; font-size: 0.75rem;">
+                        Esta información es orientativa y se basa en la Ley Federal del Trabajo vigente. No constituye asesoría jurídica vinculante ni sustituye el análisis de un abogado.
+                    </p>
                 </div>
 
-                <p class="calc-marco-disclaimer">
-                    Esta información es orientativa y se basa en la Ley Federal del Trabajo vigente. No constituye asesoría
-                    jurídica vinculante ni sustituye el análisis de un abogado sobre tu caso concreto: los montos pueden variar
-                    según prestaciones superiores a la ley, convenios y particularidades de tu relación laboral.
-                </p>
             </div>
         </div>
     </div>
