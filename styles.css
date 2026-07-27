@@ -138,51 +138,56 @@ html.lenis, html.lenis body {
 /* ─── NAVIGATION ─── */
 nav {
     position: fixed;
-    top: 0;
-    width: 100%;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 90vw;
     z-index: 1000;
-    padding: 1.6rem 0;
-    transition: transform 0.6s var(--ease-premium), background 0.4s ease, padding 0.4s ease, opacity 0.6s ease;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+    padding: 0;
+    transition: transform 0.6s var(--ease-premium), opacity 0.6s ease;
 }
 
 /* Specific class to hide it while in Hero */
 nav.hidden-top {
-    transform: translateY(-100%);
+    transform: translate(-50%, -150%);
     opacity: 0;
     pointer-events: none;
 }
 
 nav.scrolled {
-    transform: translateY(0);
+    transform: translate(-50%, 0);
     opacity: 1;
     pointer-events: auto;
-    background: rgba(253, 252, 249, 0.96);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--stone-200);
-    padding: 1rem 0;
+    background: #ffffff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0;
 }
 
 .nav-container {
-    max-width: 1500px; /* Increased from var(--container) to fit all links */
-    margin: 0 auto;
-    padding: 1.2rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem; /* Reduced gap */
+    gap: 2.5rem;
+    padding: 0.6rem 0.6rem 0.6rem 1.2rem;
 }
 
 /* Brand */
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
     flex-shrink: 0;
 }
 
 .nav-logo-img {
-    height: 67px;
+    height: 32px;
     width: auto;
     object-fit: contain;
     flex-shrink: 0;
@@ -193,10 +198,10 @@ nav.scrolled {
 .nav-logo-img:hover { opacity: 0.75; }
 
 .logo-text {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-family: var(--font-body);
+    font-size: 1.15rem;
     font-weight: 500;
-    letter-spacing: 4px;
+    letter-spacing: -0.02em;
     color: var(--carbon);
     text-decoration: none;
     white-space: nowrap;
@@ -209,7 +214,7 @@ nav.scrolled {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 1.25rem; /* Reduced gap from 2.5rem to fit all buttons */
+    gap: 1.6rem;
     align-items: center;
 }
 
@@ -217,27 +222,18 @@ nav.scrolled {
 
 .nav-links a {
     font-family: var(--font-body);
-    font-size: 0.68rem;
+    font-size: 0.92rem;
     font-weight: 400;
-    letter-spacing: 2.5px;
-    color: var(--text-secondary);
+    letter-spacing: 0;
+    color: var(--carbon);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.2s;
     position: relative;
     white-space: nowrap;
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0;
-    width: 0; height: 1px;
-    background: var(--accent);
-    transition: width 0.4s var(--ease-out-quart);
-}
-
-.nav-links a:hover, .nav-links a.active-link { color: var(--carbon); }
-.nav-links a:hover::after, .nav-links a.active-link::after { width: 100%; }
+.nav-links a::after { display: none; }
+.nav-links a:hover, .nav-links a.active-link { color: var(--accent); }
 
 /* Botón Especial de Contratos (White Pill iOS Style) */
 .blue-pill-btn {
@@ -267,7 +263,7 @@ nav.scrolled {
     display: none !important; /* Evitar la línea blanca debajo del link de nav normal */
 }
 
-/* Nav CTA - Estilo Píldora (Pill Button) */
+/* Nav CTA */
 .nav-actions {
     display: flex;
     align-items: center;
@@ -277,23 +273,23 @@ nav.scrolled {
 
 .nav-cta-btn {
     font-family: var(--font-body);
-    font-size: 0.75rem; 
+    font-size: 0.85rem; 
     font-weight: 500;
-    letter-spacing: 1px;
-    background: var(--carbon);
-    color: var(--ivory);
+    letter-spacing: 0;
+    background: #000000;
+    color: #ffffff !important;
     border: none;
-    border-radius: 50px; /* Forma de píldora redonda */
-    padding: 0.5rem 1.6rem;
+    border-radius: 8px;
+    padding: 0.7rem 1.2rem;
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background 0.2s ease;
+    box-shadow: none;
 }
 
 .nav-cta-btn:hover {
-    background: #000000;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    background: #222222;
+    transform: none;
+    box-shadow: none;
 }
 
 /* Mobile hamburger */
