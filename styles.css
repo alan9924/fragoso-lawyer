@@ -141,7 +141,7 @@ nav {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: fit-content;
+    width: max-content;
     max-width: calc(100vw - 40px);
     z-index: 1000;
     background: #ffffff;
@@ -1509,7 +1509,7 @@ section { position: relative; }
 }
 
 .porque-container {
-    max-width: 1200px;
+    max-width: 1360px;
     margin: 0 auto;
     position: relative;
 }
@@ -2140,7 +2140,7 @@ section { position: relative; }
 
 .pricing-section {
     padding: 5rem 2rem 6rem;
-    max-width: 1200px;
+    max-width: 1360px;
     margin: 0 auto;
 }
 
@@ -2148,7 +2148,7 @@ section { position: relative; }
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 1360px;
     margin: 0 auto;
     align-items: start;
 }
@@ -2825,7 +2825,7 @@ footer {
 
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 1200px) {
+@media (max-width: 1360px) {
     .nav-menu {
         position: fixed;
         top: 0;
@@ -3559,7 +3559,7 @@ footer {
 }
 
 /* ── Desplegable (escritorio) ── */
-@media (min-width: 1201px) {
+@media (min-width: 1361px) {
     .nav-group { position: relative; }
 
     .nav-submenu {
@@ -3638,7 +3638,7 @@ footer {
 .nav-socios-link:hover { color: var(--carbon); }
 
 /* ── Panel móvil a pantalla completa (≤1200px) ── */
-@media (max-width: 1200px) {
+@media (max-width: 1360px) {
     .nav-socios-link { display: none; }
 
     .nav-menu {
@@ -3704,7 +3704,7 @@ footer {
     .nav-links > li:last-child { border-bottom: none; }
 
     /* En móvil el CTA del header se oculta: ya vive dentro del panel */
-    .nav-actions .nav-cta-btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: #000000; color: #ffffff !important; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; text-decoration: none; transition: background 0.2s ease; box-shadow: none; white-space: nowrap; line-height: 1; }
+    .nav-actions .nav-cta-btn { display: none !important; }
 }
 
 /* ── Accesibilidad: foco siempre visible ── */
@@ -4135,7 +4135,7 @@ body.nav-open #navbar {
 
 /* 2) En móvil la navegación no puede depender del scroll: logo + hamburguesa
       siempre visibles, con fondo sólido que garantiza contraste sobre el hero. */
-@media (max-width: 1200px) {
+@media (max-width: 1360px) {
     nav#navbar.hidden-top {
         transform: none;
         opacity: 1;
@@ -4172,7 +4172,7 @@ body.nav-open #navbar.transparent-nav .nav-links .nav-submenu a {
 
 /* Panel más definido: fondo sólido, borde y sombra con más presencia para que
    recorte contra fondos negros. */
-@media (min-width: 1201px) {
+@media (min-width: 1361px) {
     .nav-submenu {
         background: #ffffff;
         border-color: rgba(0, 0, 0, 0.10);
