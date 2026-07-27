@@ -2249,18 +2249,19 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
     background: none;
     border: none;
     cursor: pointer;
-    font-family: var(--font-body), 'Montserrat', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
     color: #8a8580;
     padding: 0.5rem;
-    transition: color 0.2s;
+    border-radius: 50%;
+    transition: color 0.2s, transform 0.2s, background-color 0.2s;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    justify-content: center;
 }
-.calc-back-hub-btn:hover { color: #1a1a1a; }
+.calc-back-hub-btn:hover {
+    color: #1a1a1a;
+    background-color: #f4f2ee;
+    transform: translateX(-4px);
+}
 @media (max-width: 900px) {
     .calc-tool-back-bar {
         padding: 6rem 1.5rem 0;
