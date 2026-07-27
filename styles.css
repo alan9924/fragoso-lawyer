@@ -170,13 +170,7 @@ nav.scrolled {
     padding: 0;
 }
 
-.nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 0.5rem 0.5rem 0.5rem 1.2rem;
-}
+.nav-container { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 0.5rem 0.75rem 0.5rem 1.5rem; }
 
 /* Brand */
 .nav-brand {
@@ -186,27 +180,11 @@ nav.scrolled {
     flex-shrink: 0;
 }
 
-.nav-logo-img {
-    height: 44px;
-    width: auto;
-    object-fit: contain;
-    flex-shrink: 0;
-    mix-blend-mode: multiply;
-    transition: opacity 0.3s;
-}
+.nav-logo-img { height: 48px; width: auto; object-fit: contain; flex-shrink: 0; mix-blend-mode: multiply; transition: opacity 0.3s; }
 
 .nav-logo-img:hover { opacity: 0.75; }
 
-.logo-text {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: var(--carbon);
-    text-decoration: none;
-    white-space: nowrap;
-    transition: color 0.3s;
-}
+.logo-text { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--carbon); text-decoration: none; white-space: nowrap; transition: color 0.3s; }
 
 .logo-text:hover { color: var(--accent); }
 
@@ -220,17 +198,7 @@ nav.scrolled {
 
 .mobile-only-li { display: none; }
 
-.nav-links a {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 500;
-    letter-spacing: 0;
-    color: var(--carbon);
-    text-decoration: none;
-    transition: color 0.2s;
-    position: relative;
-    white-space: nowrap;
-}
+.nav-links a { font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--carbon); text-decoration: none; transition: color 0.2s; position: relative; white-space: nowrap; }
 
 .nav-links a::after { display: none; }
 .nav-links a:hover, .nav-links a.active-link { color: var(--accent); }
@@ -271,21 +239,7 @@ nav.scrolled {
     flex-shrink: 0;
 }
 
-.nav-cta-btn {
-    font-family: var(--font-body);
-    font-size: 0.95rem; 
-    font-weight: 500;
-    letter-spacing: 0;
-    background: #000000;
-    color: #ffffff !important;
-    border: none;
-    border-radius: 10px;
-    padding: 0.65rem 1.3rem;
-    text-decoration: none;
-    transition: background 0.2s ease;
-    box-shadow: none;
-    white-space: nowrap;
-}
+.nav-cta-btn { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: #000000; color: #ffffff !important; border: none; border-radius: 8px; padding: 0.6rem 1.4rem; text-decoration: none; transition: background 0.2s ease; box-shadow: none; white-space: nowrap; }
 
 .nav-cta-btn:hover {
     background: #222222;
@@ -2903,10 +2857,7 @@ footer {
 
     .mobile-only-li { display: block; }
 
-    .nav-links a {
-        font-size: 1.2rem;
-        letter-spacing: 4px;
-    }
+    .nav-links a { font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--carbon); text-decoration: none; transition: color 0.2s; position: relative; white-space: nowrap; }
 
     .nav-actions {
         z-index: 100; /* keep btn above menu */
@@ -3043,8 +2994,8 @@ footer {
     .pilar { border-bottom: 1px solid var(--stone-200); padding-bottom: 3rem; margin-bottom: 3rem; }
     .pilar:last-child { border-bottom: none; }
 
-    .nav-container { padding: 0 1.5rem; }
-    .nav-cta-btn { display: none; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 0.5rem 0.5rem 0.5rem 1.5rem; }
+    .nav-cta-btn { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: #000000; color: #ffffff !important; border: none; border-radius: 8px; padding: 0.6rem 1.4rem; text-decoration: none; transition: background 0.2s ease; box-shadow: none; white-space: nowrap; }
 
     /* Fixed WhatsApp/Email sidebar: the desktop version is a pair of
        45x140px vertical tabs pinned at right:0/top:50%. Left as-is on
@@ -3586,23 +3537,7 @@ footer {
    ═══════════════════════════════════════════════════════════════ */
 
 /* Botón de grupo: hereda el mismo lenguaje visual que los enlaces del nav */
-.nav-group-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    font-family: var(--font-body);
-    font-size: 0.68rem;
-    font-weight: 400;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    white-space: nowrap;
-    transition: color 0.3s;
-}
+.nav-group-btn { display: inline-flex; align-items: center; gap: 0.45rem; background: none; border: none; padding: 0; cursor: pointer; font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--carbon); white-space: nowrap; transition: color 0.3s; }
 .nav-top-link { text-transform: uppercase; }
 
 .nav-group-btn:hover,
@@ -3726,16 +3661,7 @@ footer {
     .nav-links > li { border-bottom: 1px solid var(--stone-200, #e8e1d5); }
 
     .nav-group-btn,
-    .nav-links > li > .nav-top-link {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        padding: 1.15rem 0;
-        font-size: 0.95rem;
-        letter-spacing: 2px;
-        color: var(--carbon);
-    }
+    .nav-links > li > .nav-top-link { text-transform: uppercase; }
 
     /* Acordeón: cerrado por defecto, se abre con el botón */
     .nav-submenu {
@@ -3778,7 +3704,7 @@ footer {
     .nav-links > li:last-child { border-bottom: none; }
 
     /* En móvil el CTA del header se oculta: ya vive dentro del panel */
-    .nav-actions .nav-cta-btn { display: none; }
+    .nav-actions .nav-cta-btn { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: #000000; color: #ffffff !important; border: none; border-radius: 8px; padding: 0.6rem 1.4rem; text-decoration: none; transition: background 0.2s ease; box-shadow: none; white-space: nowrap; }
 }
 
 /* ── Accesibilidad: foco siempre visible ── */
@@ -4219,13 +4145,13 @@ body.nav-open #navbar {
         backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--stone-200, #e8e1d5);
     }
-    nav#navbar.hidden-top .logo-text { color: var(--carbon, #2e2c2a); }
+    nav#navbar.hidden-top .logo-text { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--carbon); text-decoration: none; white-space: nowrap; transition: color 0.3s; }
     nav#navbar.hidden-top .mobile-menu-btn span { background: var(--carbon, #2e2c2a); }
 }
 
 /* ═══ Legibilidad del desplegable sobre páginas de tema oscuro ═══
    Los submenús viven dentro de ul.nav-links, así que las reglas de página
-   ".transparent-nav .nav-links a { color:#fff }" (algunas con !important)
+   ".transparent-nav .nav-links a { font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--carbon); text-decoration: none; transition: color 0.2s; position: relative; white-space: nowrap; }" (algunas con !important)
    también pintaban de blanco los hijos — y el panel del desplegable es
    marfil: texto blanco sobre fondo claro = ilegible.
    El panel es SIEMPRE claro, así que su texto es SIEMPRE oscuro. */
