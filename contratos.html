@@ -172,49 +172,11 @@
             </div>
         </section>
 
-        <!-- STEP 2B: EMAIL + RADAR LEGAL (antes de empezar el formulario) -->
-        <section id="step-2b" class="step-container">
-            <div class="wizard-overlay">
-                <div class="wizard-top-bar">
-                    <button class="wizard-close-btn" id="btn-back-to-step2-from-2b" aria-label="Volver">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                    </button>
-                    <div class="wizard-brand">
-                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img">
-                        <span class="wizard-logo-text">FERRO FRAGOSO</span>
-                    </div>
-                </div>
-
-                <div class="wizard-modal step2-ficha">
-                    <h1 class="step2-modal-title">¿A dónde te enviamos tu contrato?</h1>
-                    <p style="color: #666; margin-bottom: 2rem; max-width: 480px;">Te enviamos una copia a tu correo por si cierras la pestaña antes de terminar. No compartimos tu información con nadie.</p>
-
-                    <div style="max-width: 420px;">
-                        <label style="display: block; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: #888; margin-bottom: 0.5rem;">Correo electrónico</label>
-                        <input type="email" id="step2b-email" required placeholder="tu@correo.com"
-                               style="width: 100%; padding: 0.9rem 1.1rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; margin-bottom: 0.5rem; box-sizing: border-box;">
-                        <p id="step2b-email-error" style="color: #b02a2a; font-size: 0.8rem; min-height: 1.2em; margin: 0 0 1rem;"></p>
-
-                        <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.85rem; color: #555; margin-bottom: 2rem;">
-                            <input type="checkbox" id="step2b-radar" checked style="margin-top: 0.2rem;">
-                            <span>Quiero recibir Radar Legal, correos breves con la actualidad jurídica que afecta a mi negocio (puedo cancelar cuando quiera).</span>
-                        </label>
-
-                        <div class="wizard-footer step2-footer">
-                            <button class="wizard-nav-btn wizard-next" id="btn-continue-from-2b">Continuar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- STEP 2C: JURISDICCIÓN Y NORMATIVA APLICABLE -->
         <section id="step-2c" class="step-container">
             <div class="wizard-overlay">
                 <div class="wizard-top-bar">
-                    <button class="wizard-close-btn" id="btn-back-to-2b-from-2c" aria-label="Volver">
+                    <button class="wizard-close-btn" id="btn-back-to-step2-from-2c" aria-label="Volver">
                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
@@ -512,7 +474,6 @@
             const step0 = document.getElementById('step-0');
             const step1 = document.getElementById('step-1');
             const step2 = document.getElementById('step-2');
-            const step2b = document.getElementById('step-2b');
             const step2c = document.getElementById('step-2c');
             const step3 = document.getElementById('step-3');
 
@@ -542,7 +503,6 @@
                 step0.classList.remove('active');
                 step1.classList.remove('active');
                 step2.classList.remove('active');
-                step2b.classList.remove('active');
                 step2c.classList.remove('active');
                 step3.classList.remove('active');
                 document.getElementById(`step-${num}`).classList.add('active');
@@ -615,39 +575,10 @@
             document.getElementById('btn-back-to-step1-from-step2').addEventListener('click', () => showStep(1));
             
             document.getElementById('btn-start-wizard').addEventListener('click', () => {
-                showStep('2b');
-            });
-
-            document.getElementById('btn-back-to-step2-from-2b').addEventListener('click', () => showStep(2));
-
-            document.getElementById('btn-continue-from-2b').addEventListener('click', () => {
-                const emailInput = document.getElementById('step2b-email');
-                const errorEl = document.getElementById('step2b-email-error');
-                const email = emailInput.value.trim();
-                const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-                if (!emailValido) {
-                    errorEl.textContent = 'Ingresa un correo válido para continuar.';
-                    emailInput.focus();
-                    return;
-                }
-                errorEl.textContent = '';
-                const quiereRadar = document.getElementById('step2b-radar').checked;
-                if (typeof trackEvent === 'function') {
-                    trackEvent('generador_email', { radar: quiereRadar, contrato: selectedDoc ? selectedDoc.id : null });
-                    // NOTA PARA PRODUCCIÓN: si quiereRadar es true, dar de alta el correo en
-                    // Brevo/MailerLite con la etiqueta 'generador' (doble opt-in), una vez
-                    // exista la cuenta y el formulario real.
-                    if (quiereRadar) trackEvent('radar_alta', { etiqueta: 'generador' });
-                }
-                // Guardar email temporalmente y pasar a jurisdicción
-                window.__tempEmail = email;
-                window.__tempRadar = quiereRadar;
-
                 // Pre-seleccionar materia según el contrato elegido
                 if (selectedDoc && MATERIA_POR_CONTRATO[selectedDoc.id]) {
                     document.getElementById('jur-materia').value = MATERIA_POR_CONTRATO[selectedDoc.id];
                 }
-
                 showStep('2c');
             });
 
@@ -693,8 +624,8 @@
             document.getElementById('jur-distinta-si').addEventListener('click', evaluarRevisionHumana);
             document.getElementById('jur-distinta-no').addEventListener('click', evaluarRevisionHumana);
 
-            // Botón atrás: 2C → 2B
-            document.getElementById('btn-back-to-2b-from-2c').addEventListener('click', () => showStep('2b'));
+            // Botón atrás: 2C → 2
+            document.getElementById('btn-back-to-2b-from-2c').addEventListener('click', () => showStep(2));
 
             // Botón continuar: 2C → 3
             document.getElementById('btn-continue-from-2c').addEventListener('click', () => {
