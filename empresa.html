@@ -142,6 +142,95 @@
     .empresa-body .row { flex-wrap:wrap; }
   }
   
+  
+  /* Premium System Section */
+  .premium-system-section {
+    padding: 140px 0;
+    background: transparent;
+  }
+  .premium-system-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+  .premium-system-header p {
+    color: var(--taupe-dark, #544e4b);
+    max-width: 380px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-top: 24px;
+    font-weight: 300;
+  }
+  .premium-system-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+  }
+  .premium-system-list li {
+    display: flex;
+    gap: 48px;
+    padding: 48px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .premium-system-num {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--warm-gray, #9c9489);
+    flex-shrink: 0;
+    width: 40px;
+  }
+  .premium-system-content {
+    flex-grow: 1;
+    max-width: 600px;
+  }
+  .premium-system-content h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--carbon);
+    margin: 0 0 16px 0;
+    line-height: 1.1;
+  }
+  .premium-system-content p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-weight: 300;
+    color: var(--taupe-dark, #544e4b);
+    margin: 0;
+  }
+  
+  @media (min-width: 1024px) {
+    .premium-system-container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 120px;
+    }
+    .premium-system-header {
+      position: sticky;
+      top: 160px;
+      flex-shrink: 0;
+      width: 35%;
+    }
+    .premium-system-list {
+      flex-grow: 1;
+    }
+  }
+  @media (max-width: 768px) {
+    .premium-system-list li {
+      flex-direction: column;
+      gap: 20px;
+      padding: 40px 0;
+    }
+  }
+
   </style>
 </head>
 <body class="empresa-body" style="background: var(--paper);">
@@ -246,36 +335,43 @@
 </section>
 
 <!-- SISTEMA -->
-<section>
-  <div class="wrap">
-    <div class="system-split">
-      <div class="system-head">
-        <h2 class="sec" style="margin-bottom:24px;">Por qué<br><em>este sistema</em><br>funciona?</h2>
-        <p style="color:var(--slate); max-width:320px;">Cuatro frentes que blindan tu operación durante todo el año — no cuando ya hay problema.</p>
-      </div>
-      <div class="pillars">
-        <div class="pillar">
-          <div class="pnum">1</div>
-          <h4>Redacción y revisión</h4>
-          <p>Estructuramos, redactamos y analizamos tus contratos y acuerdos. Nada se firma sin que un abogado lo haya leído primero.</p>
-        </div>
-        <div class="pillar">
-          <div class="pnum">2</div>
-          <h4>Monitoreo continuo</h4>
-          <p>Tus plantillas y acuerdos estándar, siempre vigentes. Cuando la ley cambia, tus documentos ya están actualizados automáticamente.</p>
-        </div>
-        <div class="pillar">
-          <div class="pnum">3</div>
-          <h4>Reporte de riesgo</h4>
-          <p>Auditamos tus contratos vigentes y te decimos, por escrito, dónde estás expuesto y qué debes corregir de forma prioritaria.</p>
-        </div>
-        <div class="pillar">
-          <div class="pnum">4</div>
-          <h4>Alertas regulatorias</h4>
-          <p>Los cambios legislativos que afectan tu giro, traducidos y a tiempo. Te enteras mucho antes de que se vuelvan un problema.</p>
-        </div>
-      </div>
+<section class="premium-system-section">
+  <div class="premium-system-container">
+    <div class="premium-system-header">
+      <h2 class="sec">Por qué<br><em>este sistema</em><br>funciona?</h2>
+      <p>Cuatro frentes que blindan tu operación durante todo el año — no cuando ya hay un problema encima.</p>
     </div>
+    
+    <ol class="premium-system-list">
+      <li>
+        <span class="premium-system-num">01</span>
+        <article class="premium-system-content">
+          <h3>Redacción y revisión</h3>
+          <p>Estructuramos, redactamos y analizamos tus contratos y acuerdos. Nada se firma sin que un abogado lo haya revisado rigurosamente primero.</p>
+        </article>
+      </li>
+      <li>
+        <span class="premium-system-num">02</span>
+        <article class="premium-system-content">
+          <h3>Monitoreo continuo</h3>
+          <p>Tus plantillas y acuerdos estándar, siempre vigentes. Cuando la ley cambia, tus documentos clave ya están actualizados automáticamente.</p>
+        </article>
+      </li>
+      <li>
+        <span class="premium-system-num">03</span>
+        <article class="premium-system-content">
+          <h3>Reporte de riesgo</h3>
+          <p>Auditamos tus contratos vigentes y te comunicamos, por escrito, exactamente dónde estás expuesto y qué debes corregir de forma prioritaria.</p>
+        </article>
+      </li>
+      <li>
+        <span class="premium-system-num">04</span>
+        <article class="premium-system-content">
+          <h3>Alertas regulatorias</h3>
+          <p>Los cambios legislativos que afectan tu industria, analizados a tiempo. Te enteras y te preparas mucho antes de que se vuelvan un problema.</p>
+        </article>
+      </li>
+    </ol>
   </div>
 </section>
 
