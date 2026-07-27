@@ -43,6 +43,9 @@
   .empresa-body .hero { padding:calc(var(--nav-real-h, 138px) + 72px) 0 96px; position:relative; overflow:hidden; }
   .empresa-body .hero::after { content:""; position:absolute; inset:0; background:radial-gradient(120% 80% at 88% -10%,rgba(194,144,63,.08),transparent 60%), linear-gradient(180deg, transparent 60%, var(--paper) 100%); pointer-events:none; }
   .empresa-body .hero .wrap { position:relative; z-index:1; }
+  /* Sombra muy leve: da borde al texto donde el patrón queda justo detrás. */
+  .empresa-body .hero h1,
+  .empresa-body .hero p { text-shadow:0 1px 12px rgba(10,9,8,.45); }
   .empresa-body .hero h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.5rem,6.2vw,4.3rem); line-height:1.03; letter-spacing:-.01em; margin:18px 0 0; max-width:820px; color: var(--paper); }
   .empresa-body .hero h1 em { font-style:italic; color:var(--brass); }
   .empresa-body .hero p { font-family:var(--serif); font-size:clamp(1.08rem,2.2vw,1.3rem); color:#c6cfd8; max-width:600px; margin:22px 0 0; font-weight:500; }
@@ -52,9 +55,11 @@
      Arranca por debajo del navbar fijo para que la barra de menú siga
      legible, y cubre el resto del hero a sangre. El velo degradado deja
      ver las cláusulas a la derecha y protege el contraste del texto. */
+  /* El fondo cubre el hero completo: la barra de menú es una píldora blanca
+     opaca, así que se lee sobre el arte y no hace falta reservarle una franja
+     (esa reserva era justo lo que dejaba la banda negra arriba). */
   .empresa-body .hero-bg {
-    position:absolute; left:0; right:0; bottom:0;
-    top:var(--nav-real-h, 138px);
+    position:absolute; inset:0;
     z-index:0; overflow:hidden;
   }
   .empresa-body .hero-bg video {
@@ -64,13 +69,21 @@
   }
   .empresa-body .hero-bg::after {
     content:""; position:absolute; inset:0; pointer-events:none;
+    /* 72% donde vive el texto: es el mínimo medido que hace pasar al párrafo
+       (5.49) y al titular (7.67) sobre las zonas crema del arte. Se abre hacia
+       la derecha para que las cláusulas sigan a la vista. */
     background:
-      linear-gradient(90deg, rgba(10,9,8,.47) 26%, rgba(10,9,8,.31) 62%, rgba(10,9,8,.21) 100%);
+      linear-gradient(90deg,
+        rgba(10,9,8,.74) 0%,
+        rgba(10,9,8,.72) 34%,
+        rgba(10,9,8,.45) 66%,
+        rgba(10,9,8,.24) 100%);
   }
   @media (max-width:820px){
     .empresa-body .hero-bg::after {
+      /* en móvil el texto ocupa todo el ancho: el velo protege de arriba abajo */
       background:
-        linear-gradient(180deg, rgba(10,9,8,.45) 42%, rgba(10,9,8,.31) 100%);
+        linear-gradient(180deg, rgba(10,9,8,.76) 55%, rgba(10,9,8,.42) 100%);
     }
   }
 

@@ -460,8 +460,8 @@
     <script src="analytics.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="contratos.js"></script>
-    <script src="contratos-meta.js"></script>
+    <script src="contratos.js?v=2"></script>
+    <script src="contratos-meta.js?v=2"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const FIELD_RE = /\{\{([^}]+)\}\}/g;
@@ -497,6 +497,7 @@
                 '13_carta_poder': 'Civil',
                 '14_poder_general': 'Civil',
                 '15_declaracion_protesta': 'Civil',
+                '19_nota_pago_venta': 'Civil',
             };
 
             function showStep(num) {
