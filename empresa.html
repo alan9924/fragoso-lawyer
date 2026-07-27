@@ -120,16 +120,27 @@
   .empresa-body .plan .btn-c { width:100%; margin-top:auto; background:#000; color:#fff; border-radius:0; border:none; padding:16px; }
   .empresa-body .plan .btn-c:hover { background:var(--brass); color:#000; }
 
-  /* a la carta */
+  /* a la carta (Accordion) */
   .empresa-body .carte-head { max-width:600px; margin-bottom:8px; }
   .empresa-body .carte-head p { color:rgba(0,0,0,0.7); margin-top:12px; font-size:1.05rem; }
-  .empresa-body .cgroup { margin-top:48px; }
-  .empresa-body .cgroup .gt { font-family:var(--sans); font-size:.85rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate); padding-bottom:12px; border-bottom:1px solid rgba(0,0,0,0.15); margin-bottom:8px; }
-  .empresa-body .row { display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.08); margin-bottom: 0; }
-  .empresa-body .row .n { font-family:var(--serif); font-weight:500; font-size:1.35rem; color:#000; letter-spacing:-0.01em; }
-  .empresa-body .row .d { font-family:var(--sans); font-size:.9rem; color:rgba(0,0,0,0.7); margin-top:6px; max-width:560px; line-height:1.5; }
-  .empresa-body .row .p { font-family:var(--sans); font-size:1.15rem; font-weight:600; color:#000; white-space:nowrap; }
-  .empresa-body .row .p small { font-family:var(--mono); font-size:.7rem; color:rgba(0,0,0,0.5); display:block; text-align:right; letter-spacing:.02em; font-weight:400; margin-top:4px; }
+  .empresa-body .cgroup { margin-top:48px; border: 1px solid rgba(0,0,0,0.1); border-radius: 12px; overflow: hidden; background: #fff; }
+  .empresa-body .cgroup-title { font-family:var(--sans); font-size:.85rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate); padding:16px 24px; background: rgba(0,0,0,0.03); border-bottom:1px solid rgba(0,0,0,0.1); margin: 0; }
+  .empresa-body .acc-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .empresa-body .acc-item:last-child { border-bottom: none; }
+  .empresa-body .acc-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: transparent; border: none; cursor: pointer; text-align: left; transition: background 0.2s; }
+  .empresa-body .acc-btn:hover { background: rgba(0,0,0,0.02); }
+  .empresa-body .acc-title-col { flex: 1; padding-right: 16px; }
+  .empresa-body .acc-btn .n { font-family:var(--serif); font-weight:500; font-size:1.35rem; color:#000; letter-spacing:-.01em; display:block; }
+  .empresa-body .acc-price-col { display: flex; align-items: center; gap: 20px; }
+  .empresa-body .acc-btn .p { font-family:var(--sans); font-size:1.15rem; font-weight:600; color:#000; white-space:nowrap; text-align:right; }
+  .empresa-body .acc-btn .p small { font-family:var(--mono); font-size:.7rem; color:rgba(0,0,0,0.5); display:block; letter-spacing:.02em; font-weight:400; margin-top:4px; }
+  .empresa-body .acc-icon { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; transition: transform 0.3s ease; color: var(--slate); }
+  .empresa-body .acc-item.is-open .acc-icon { transform: rotate(180deg); }
+  
+  .empresa-body .acc-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .empresa-body .acc-item.is-open .acc-content { grid-template-rows: 1fr; }
+  .empresa-body .acc-inner { overflow: hidden; }
+  .empresa-body .acc-inner .d { font-family:var(--sans); font-size:.9rem; color:rgba(0,0,0,0.7); max-width:640px; line-height:1.6; padding: 0 24px 24px 24px; margin: 0; }
 
   /* confianza */
   .empresa-body .trust { display:grid; grid-template-columns:1.2fr .8fr; gap:44px; align-items:center; }
@@ -366,25 +377,125 @@
     </div>
 
     <div class="cgroup">
-      <div class="gt">Constitución y startups</div>
-      <div class="row"><div><div class="n">Constitución de empresa</div><div class="d">Tu S.A. o S. de R.L. lista para operar: estatutos, acta, RFC y trámites base. La puerta de entrada para nacer bien.</div></div><div class="p">desde $9,900<small>MXN</small></div></div>
-      <div class="row"><div><div class="n">Acuerdo de socios / fundadores</div><div class="d">Reparto de acciones, vesting y reglas claras entre socios. Evita el pleito antes de que exista.</div></div><div class="p">desde $6,990<small>MXN</small></div></div>
-      <div class="row"><div><div class="n">Revisión de SAFE / term sheet</div><div class="d">Antes de firmar con un inversionista, que alguien lo lea por ti. Protege tu control y tu dilución.</div></div><div class="p">desde $4,990<small>MXN</small></div></div>
+      <div class="cgroup-title">Constitución y startups</div>
+      
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Constitución de empresa</span></div>
+          <div class="acc-price-col">
+            <div class="p">desde $9,900<small>MXN</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Tu S.A. o S. de R.L. lista para operar: estatutos, acta, RFC y trámites base. La puerta de entrada para nacer bien.</p></div></div>
+      </div>
+      
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Acuerdo de socios / fundadores</span></div>
+          <div class="acc-price-col">
+            <div class="p">desde $6,990<small>MXN</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Reparto de acciones, vesting y reglas claras entre socios. Evita el pleito antes de que exista.</p></div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Revisión de SAFE / term sheet</span></div>
+          <div class="acc-price-col">
+            <div class="p">desde $4,990<small>MXN</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Antes de firmar con un inversionista, que alguien lo lea por ti. Protege tu control y tu dilución.</p></div></div>
+      </div>
     </div>
 
     <div class="cgroup">
-      <div class="gt">Contratos y propiedad intelectual</div>
-      <div class="row"><div><div class="n">Registro de marca ante IMPI</div><div class="d">Búsqueda, clasificación, solicitud y seguimiento hasta resolución. Precio por clase; si necesitas más de una, te orientamos antes.</div></div><div class="p">$6,990<small>MXN / CLASE</small></div></div>
-      <div class="row"><div><div class="n">Marca + Derecho de autor</div><div class="d">Blinda tu identidad completa: nombre (marca) + logo y contenido (autor), en un paquete.</div></div><div class="p">desde $8,990<small>MXN</small></div></div>
-      <div class="row"><div><div class="n">Revisión de contrato</div><div class="d">Simple $490 · intermedio (11–25 pp) desde $990 · estratégica/compleja desde $1,990.</div></div><div class="p">desde $490<small>MXN</small></div></div>
-      <div class="row"><div><div class="n">Contrato personalizado desde cero</div><div class="d">Cuestionario, redacción, revisión y una ronda de ajustes.</div></div><div class="p">desde $1,990<small>MXN</small></div></div>
-      <div class="row"><div><div class="n">Reporte de Riesgo Contractual</div><div class="d">Auditoría a fondo de tus contratos vigentes: dónde estás expuesto y qué corregir primero.</div></div><div class="p">desde $3,990<small>MXN</small></div></div>
+      <div class="cgroup-title">Contratos y propiedad intelectual</div>
+      
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Registro de marca ante IMPI</span></div>
+          <div class="acc-price-col">
+            <div class="p">$6,990<small>MXN / CLASE</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Búsqueda, clasificación, solicitud y seguimiento hasta resolución. Precio por clase; si necesitas más de una, te orientamos antes.</p></div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Marca + Derecho de autor</span></div>
+          <div class="acc-price-col">
+            <div class="p">desde $8,990<small>MXN</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Blinda tu identidad completa: nombre (marca) + logo y contenido (autor), en un paquete.</p></div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Revisión de contrato</span></div>
+          <div class="acc-price-col">
+            <div class="p">desde $490<small>MXN</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Simple $490 · intermedio (11–25 pp) desde $990 · estratégica/compleja desde $1,990.</p></div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Contrato personalizado desde cero</span></div>
+          <div class="acc-price-col">
+            <div class="p">desde $1,990<small>MXN</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Cuestionario, redacción, revisión y una ronda de ajustes.</p></div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Reporte de Riesgo Contractual</span></div>
+          <div class="acc-price-col">
+            <div class="p">desde $3,990<small>MXN</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Auditoría a fondo de tus contratos vigentes: dónde estás expuesto y qué corregir primero.</p></div></div>
+      </div>
     </div>
 
     <div class="cgroup">
-      <div class="gt">Tecnología, datos y cumplimiento</div>
-      <div class="row"><div><div class="n">Aviso de privacidad + LFPDPPP</div><div class="d">Aviso de privacidad y cumplimiento de protección de datos para tu sitio y tu app.</div></div><div class="p">desde $3,990<small>MXN</small></div></div>
-      <div class="row"><div><div class="n">Términos y condiciones de plataforma</div><div class="d">Para SaaS, marketplace o app: reglas de uso que te protegen frente al usuario.</div></div><div class="p">desde $3,990<small>MXN</small></div></div>
+      <div class="cgroup-title">Tecnología, datos y cumplimiento</div>
+      
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Aviso de privacidad + LFPDPPP</span></div>
+          <div class="acc-price-col">
+            <div class="p">desde $3,990<small>MXN</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Aviso de privacidad y cumplimiento de protección de datos para tu sitio y tu app.</p></div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <div class="acc-title-col"><span class="n">Términos y condiciones de plataforma</span></div>
+          <div class="acc-price-col">
+            <div class="p">desde $3,990<small>MXN</small></div>
+            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Para SaaS, marketplace o app: reglas de uso que te protegen frente al usuario.</p></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -446,6 +557,32 @@
   /* --nav-h vale 6.5rem pero el navbar real mide más (logo + padding).
      Medimos su altura efectiva para que el fondo del hero arranque justo
      debajo y la barra de menú nunca quede tapada. */
+  
+  // Accordion Logic for Empresa page
+  document.querySelectorAll(".acc-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".acc-item");
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      
+      // Close all others (optional accordion behavior)
+      // Uncomment to make it behave like an exclusive accordion
+      // document.querySelectorAll(".acc-item").forEach(otherItem => {
+      //   if(otherItem !== item) {
+      //     otherItem.classList.remove("is-open");
+      //     otherItem.querySelector(".acc-btn").setAttribute("aria-expanded", "false");
+      //   }
+      // });
+
+      if(isExpanded) {
+        btn.setAttribute("aria-expanded", "false");
+        item.classList.remove("is-open");
+      } else {
+        btn.setAttribute("aria-expanded", "true");
+        item.classList.add("is-open");
+      }
+    });
+  });
+
   (function () {
     const nav = document.getElementById('navbar');
     if (!nav) return;
