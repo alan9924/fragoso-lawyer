@@ -2516,3 +2516,5 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
 .calc-marco-tabla th { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #8a8580; }
 .calc-marco-tabla td { color: #4a4640; line-height: 1.4; }
 .calc-marco-tabla td:first-child { font-weight: 600; color: #1a1a1a; }
+
+.card-charcoal code { background: rgba(255,255,255,0.1); color: #fff; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.2); }
