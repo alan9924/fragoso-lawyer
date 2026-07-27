@@ -239,7 +239,7 @@ nav.scrolled {
     flex-shrink: 0;
 }
 
-.nav-cta-btn { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: #000000; color: #ffffff !important; border: none; border-radius: 8px; padding: 0.6rem 1.4rem; text-decoration: none; transition: background 0.2s ease; box-shadow: none; white-space: nowrap; }
+.nav-cta-btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: #000000; color: #ffffff !important; border: none; border-radius: 8px; padding: 0.7rem 1.4rem; text-decoration: none; transition: background 0.2s ease; box-shadow: none; white-space: nowrap; line-height: 1; }
 
 .nav-cta-btn:hover {
     background: #222222;
@@ -3704,7 +3704,7 @@ footer {
     .nav-links > li:last-child { border-bottom: none; }
 
     /* En móvil el CTA del header se oculta: ya vive dentro del panel */
-    .nav-actions .nav-cta-btn { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: #000000; color: #ffffff !important; border: none; border-radius: 8px; padding: 0.6rem 1.4rem; text-decoration: none; transition: background 0.2s ease; box-shadow: none; white-space: nowrap; }
+    .nav-actions .nav-cta-btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: #000000; color: #ffffff !important; border: none; border-radius: 8px; padding: 0.7rem 1.4rem; text-decoration: none; transition: background 0.2s ease; box-shadow: none; white-space: nowrap; line-height: 1; }
 }
 
 /* ── Accesibilidad: foco siempre visible ── */
