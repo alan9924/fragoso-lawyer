@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
     <link rel="stylesheet" href="home-new.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,39 +107,6 @@
     </section>
 
     
-
-    <!-- ═══ SERVICIOS (PASTEL CARDS) ═══ -->
-    <section class="services-section" style="padding: 100px 0;">
-        <div class="wrap" style="max-width: 1080px; margin: 0 auto; padding: 0 24px;">
-            <header class="sec-head fade-in-up">
-                <span class="sec-eyebrow blur-fade">Nuestras áreas</span>
-                <h2 class="sec-title blur-fade" data-bf-delay="1">Un despacho enfocado en <em>proteger tu empresa y tus creaciones</em>.</h2>
-            </header>
-            
-            <div class="pastel-grid fade-in-up">
-                <a href="marcas.html" class="pastel-card bg-sand">
-                    <img src="icon_ip.png" alt="Propiedad Intelectual" class="icon-img" />
-                    <h3>Propiedad Intelectual<br>y Derechos de Autor</h3>
-                </a>
-                
-                <a href="contratos.html" class="pastel-card bg-sage">
-                    <img src="icon_contracts.png" alt="Contratos" class="icon-img" />
-                    <h3>Contratos Claros<br>y Estrategia Legal</h3>
-                </a>
-                
-                <a href="empresa.html" class="pastel-card bg-lilac">
-                    <img src="icon_empresa.png" alt="Corporate" class="icon-img" />
-                    <h3>Consultoría Corporativa<br>y Blindaje de Negocios</h3>
-                </a>
-
-                <a href="radar/index.html" class="pastel-card bg-sky">
-                    <img src="icon_radar.png" alt="Radar Legal" class="icon-img" />
-                    <h3>Radar Legal:<br>Actualizaciones y Alertas</h3>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- ═══ HOW IT WORKS (INFOGRAPHIC) ═══ -->
     <section class="process-section" id="como-funciona-timeline">
         <header class="process-header sec-head fade-in-up">
@@ -148,27 +115,64 @@
             <p class="process-subtitle blur-fade" data-bf-delay="2" style="margin-top: 1.5rem;">Sin cotizaciones a puerta cerrada, sin llamadas para ‘ver cuánto sale’. Precio cerrado desde el clic.</p>
         </header>
 
-        
-        <div class="serious-list fade-in-up">
-            <article class="serious-list-item">
-                <div class="serious-list-num">1</div>
-                <div class="serious-list-title">Elige y paga</div>
-                <div class="serious-list-desc">Escoge tu servicio y paga en el momento, con precio cerrado. Sin cotizaciones a puerta cerrada, sin llamadas para ‘ver cuánto sale’. Precio transparente desde el clic.</div>
-            </article>
+        <div class="timeline-container">
+            <div class="timeline-track" aria-hidden="true">
+                <div class="timeline-progress"></div>
+            </div>
 
-            <article class="serious-list-item">
-                <div class="serious-list-num">2</div>
-                <div class="serious-list-title">Cuéntanos tu caso</div>
-                <div class="serious-list-desc">Respondes unas preguntas simples, subes lo que aplique o eliges tu horario. Todo a tu ritmo, sin fricciones.</div>
-            </article>
+            <div class="timeline-list">
+                <!-- Paso 1 -->
+                <article class="timeline-item" id="step-1">
+                    <div class="timeline-number" aria-hidden="true">1</div>
+                    <div class="timeline-side timeline-left">
+                        <div class="timeline-icon">
+                            <img src="paso_1.png" alt="Icono Elige y Paga" class="timeline-sketch-img" />
+                        </div>
+                    </div>
+                    <div class="timeline-side timeline-right">
+                        <div class="timeline-content">
+                            <span class="step-tag">En línea · Seguro</span>
+                            <h3 class="step-title">Elige y paga</h3>
+                            <p class="step-desc">Escoge tu servicio y paga en el momento, con precio cerrado.</p>
+                        </div>
+                    </div>
+                </article>
 
-            <article class="serious-list-item">
-                <div class="serious-list-num">3</div>
-                <div class="serious-list-title">Un abogado entrega</div>
-                <div class="serious-list-desc">Un abogado con cédula toma tu caso y te entrega la solución — documento, trámite, análisis o estrategia. Nunca un bot. Típicamente en 24-48 horas.</div>
-            </article>
+                <!-- Paso 2 -->
+                <article class="timeline-item" id="step-2">
+                    <div class="timeline-number" aria-hidden="true">2</div>
+                    <div class="timeline-side timeline-left">
+                        <div class="timeline-content">
+                            <span class="step-tag">Cuestionario breve</span>
+                            <h3 class="step-title">Cuéntanos tu caso</h3>
+                            <p class="step-desc">Respondes unas preguntas simples, subes lo que aplique o eliges tu horario. A tu ritmo.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-side timeline-right">
+                        <div class="timeline-icon">
+                            <img src="paso_2.png" alt="Icono Cuestionario" class="timeline-sketch-img" />
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Paso 3 -->
+                <article class="timeline-item" id="step-3">
+                    <div class="timeline-number" aria-hidden="true">3</div>
+                    <div class="timeline-side timeline-left">
+                        <div class="timeline-icon">
+                            <img src="paso_3.png" alt="Icono Abogado Entrega" class="timeline-sketch-img" />
+                        </div>
+                    </div>
+                    <div class="timeline-side timeline-right">
+                        <div class="timeline-content">
+                            <span class="step-tag">24–48 h hábiles</span>
+                            <h3 class="step-title">Un abogado entrega</h3>
+                            <p class="step-desc">Un abogado con cédula toma tu caso y te entrega la solución — documento, trámite, análisis o estrategia. Nunca un bot.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
-
 
         <div class="timeline-guarantee">
             <div class="guarantee-capsule">
@@ -343,15 +347,9 @@
                 </p>
             </div>
 
-            <!-- Hero animado (Higgsfield): las cláusulas se extienden y revisan
-                 en tiempo real. El PNG hace de poster y de respaldo sin JS. -->
-            <figure class="empresas-art fade-in-up delay-1" aria-hidden="true">
-                <video class="empresas-art-video" muted loop playsinline preload="metadata"
-                       poster="empresas_hero.png">
-                    <source src="empresas_hero.mp4" type="video/mp4">
-                    <img src="empresas_hero.png" alt="">
-                </video>
-            </figure>
+            <div class="empresas-art fade-in-up delay-1" aria-hidden="true">
+                <img src="b2b_banner.png" alt="">
+            </div>
         </div>
     </section>
 
@@ -577,7 +575,7 @@
     </script>
 
     <!-- Scripts -->
-    <script src="script.js?v=9"></script>
+    <script src="script.js?v=7"></script>
     <script src="analytics.js"></script>
 </body>
 </html>
