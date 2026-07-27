@@ -170,7 +170,7 @@ nav.scrolled {
     padding: 0;
 }
 
-.nav-container { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 0.5rem 0.75rem 0.5rem 1.5rem; }
+.nav-container { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 0.8rem 0.8rem 0.8rem 1.8rem; }
 
 /* Brand */
 .nav-brand {
