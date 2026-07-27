@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Para Empresas | FERRO FRAGOSO</title>
+    <meta name="description" content="Tu área legal, sin cargarla a la nómina. Contratos revisados, riesgos vigilados y un socio detrás de cada decisión.">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="home-new.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+<style>
+  :root{
+    --ink:#141d27;--ink-2:#1c2732;--ink-3:#27333f;
+    --paper:#f4f1e9;--paper-2:#e9e4d7;
+    --brass:#c2903f;--brass-deep:#a9762f;--seal:#8a2b34;
+    --fog:#8b98a5;--slate:#54626f;
+    --line-d:rgba(244,241,233,.12);--line-l:rgba(20,29,39,.12);
+    --serif: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+    --sans: var(--font-body, 'Montserrat', system-ui, sans-serif);
+    --mono:'IBM Plex Mono',monospace;
+  }
+  .empresa-body { font-family:var(--sans); background:var(--ink); color:var(--paper); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .empresa-body .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  .empresa-body .eyebrow { font-family:var(--mono); font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); }
+  .empresa-body a { color:inherit; text-decoration:none; }
+  .empresa-body .btn-c { display:inline-flex; justify-content:center; align-items:center; gap:8px; font-family:var(--sans); font-weight:500; font-size:.92rem; padding:13px 24px; border-radius:999px; cursor:pointer; border:1px solid transparent; transition:.18s; }
+  .empresa-body .btn-brass { background:var(--brass); color:#1a130a; } .empresa-body .btn-brass:hover { background:var(--brass-deep); }
+  .empresa-body .btn-ghost { background:transparent; border-color:var(--line-d); color:var(--paper); } .empresa-body .btn-ghost:hover { border-color:var(--brass); color:var(--brass); }
+  .empresa-body section { padding:74px 0; border-top:1px solid var(--line-d); }
+  .empresa-body h2.sec { font-family:var(--serif); font-weight:400; font-size:clamp(1.9rem,4vw,2.7rem); line-height:1.08; letter-spacing:-.01em; margin-bottom: 0; }
+  .empresa-body h2.sec em { font-style:italic; color:var(--brass); }
+
+  /* hero */
+  .empresa-body .hero { padding:84px 0 70px; position:relative; overflow:hidden; padding-top: 150px; }
+  .empresa-body .hero::after { content:""; position:absolute; inset:0; background:radial-gradient(120% 80% at 88% -10%,rgba(194,144,63,.13),transparent 60%); pointer-events:none; }
+  .empresa-body .hero .wrap { position:relative; z-index:1; }
+  .empresa-body .hero h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.5rem,6.2vw,4.3rem); line-height:1.03; letter-spacing:-.01em; margin:18px 0 0; max-width:820px; color: var(--paper); }
+  .empresa-body .hero h1 em { font-style:italic; color:var(--brass); }
+  .empresa-body .hero p { font-family:var(--serif); font-size:clamp(1.08rem,2.2vw,1.3rem); color:#c6cfd8; max-width:600px; margin:22px 0 0; }
+  .empresa-body .hero .cta { display:flex; gap:14px; flex-wrap:wrap; margin-top:34px; }
+
+  /* problema */
+  .empresa-body .problema h2 { max-width:640px; }
+  .empresa-body .problema .cols { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:34px; align-items:start; }
+  .empresa-body .problema p { color:#c6cfd8; font-size:1.05rem; margin-bottom: 0; }
+  .empresa-body .problema .punch { font-family:var(--serif); font-style:italic; font-size:1.5rem; color:var(--paper); line-height:1.35; }
+  .empresa-body .problema .punch b { color:var(--brass); font-style:normal; font-weight:500; }
+
+  /* segmentos */
+  .empresa-body .seg-head { max-width:600px; margin-bottom:38px; }
+  .empresa-body .seg-head p { color:var(--slate); margin-top:12px; color:#c6cfd8; }
+  .empresa-body .segs { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .empresa-body .seg { background:var(--ink-2); border:1px solid var(--line-d); border-radius:16px; padding:28px 26px; transition:.2s; }
+  .empresa-body .seg:hover { border-color:var(--brass); transform:translateY(-3px); }
+  .empresa-body .seg .k { font-family:var(--mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--brass); }
+  .empresa-body .seg h3 { font-family:var(--serif); font-weight:500; font-size:1.55rem; margin:12px 0 10px; letter-spacing:-.01em; color: var(--paper); }
+  .empresa-body .seg p { color:#b7c1cb; font-size:.94rem; margin-bottom: 0; }
+
+  /* sistema */
+  .empresa-body .system-head { text-align:center; max-width:620px; margin:0 auto 36px; }
+  .empresa-body .system-head p { color:#c6cfd8; margin-top:12px; }
+  .empresa-body .pillars { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .empresa-body .pillar { background:var(--ink-2); border:1px solid var(--line-d); border-radius:14px; padding:24px 26px; }
+  .empresa-body .pillar .pnum { font-family:var(--mono); font-size:.72rem; color:var(--brass); letter-spacing:.12em; }
+  .empresa-body .pillar h4 { font-family:var(--serif); font-weight:500; font-size:1.22rem; margin:8px 0 6px; color: var(--paper); }
+  .empresa-body .pillar p { font-size:.87rem; color:#b7c1cb; margin-bottom: 0; }
+
+  /* planes */
+  .empresa-body .planes-head { text-align:center; max-width:560px; margin:0 auto 40px; }
+  .empresa-body .planes-head p { color:#c6cfd8; margin-top:12px; }
+  .empresa-body .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:stretch; }
+  .empresa-body .plan { background:#fff; color:var(--ink); border:1px solid var(--line-l); border-radius:18px; padding:30px 26px; display:flex; flex-direction:column; position:relative; }
+  .empresa-body .plan.feat { border:2px solid var(--brass); box-shadow:0 22px 50px rgba(0,0,0,.35); transform:translateY(-8px); }
+  .empresa-body .ribbon { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--brass); color:#1a130a; font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; padding:5px 14px; border-radius:999px; white-space:nowrap; }
+  .empresa-body .plan .pname { font-family:var(--serif); font-weight:500; font-size:1.4rem; letter-spacing:-.01em; color: var(--ink); margin-bottom: 0;}
+  .empresa-body .plan .ptag { font-family:var(--mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--slate); margin-top:4px; }
+  .empresa-body .plan .price { margin:18px 0 2px; font-family:var(--serif); font-size:2.3rem; line-height:1; letter-spacing:-.02em; color: var(--ink);}
+  .empresa-body .plan .price small { font-family:var(--mono); font-size:.7rem; color:var(--slate); letter-spacing:.04em; }
+  .empresa-body .plan ul { list-style:none; margin:20px 0 24px; flex:1; padding-left: 0;}
+  .empresa-body .plan li { font-size:.9rem; color:var(--slate); padding:8px 0 8px 26px; position:relative; border-bottom:1px solid rgba(20,29,39,.06); }
+  .empresa-body .plan li:last-child { border-bottom:0; } .empresa-body .plan li b { color:var(--ink); font-weight:600; }
+  .empresa-body .plan li::before { content:""; position:absolute; left:3px; top:14px; width:8px; height:8px; border-right:1.6px solid var(--brass); border-bottom:1.6px solid var(--brass); transform:rotate(-45deg); }
+  .empresa-body .plan .btn-c { width:100%; margin-top: auto; }
+  .empresa-body .btn-ink { background:var(--ink); color:var(--paper); } .empresa-body .btn-ink:hover { background:var(--ink-2); }
+  .empresa-body .btn-line { background:transparent; border-color:var(--line-l); color:var(--ink); } .empresa-body .btn-line:hover { border-color:var(--ink); }
+
+  /* a la carta */
+  .empresa-body .carte-head { max-width:600px; margin-bottom:8px; }
+  .empresa-body .carte-head p { color:#c6cfd8; margin-top:12px; }
+  .empresa-body .cgroup { margin-top:36px; }
+  .empresa-body .cgroup .gt { font-family:var(--mono); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--brass); padding-bottom:10px; border-bottom:1px solid var(--brass); margin-bottom:4px; }
+  .empresa-body .row { display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:16px 0; border-bottom:1px solid var(--line-d); margin-bottom: 0; }
+  .empresa-body .row .n { font-weight:500; font-size:1rem; color:var(--paper); }
+  .empresa-body .row .d { font-size:.84rem; color:var(--fog); margin-top:3px; max-width:560px; }
+  .empresa-body .row .p { font-family:var(--serif); font-size:1.3rem; color:var(--brass); white-space:nowrap; }
+  .empresa-body .row .p small { font-family:var(--mono); font-size:.64rem; color:var(--fog); display:block; text-align:right; letter-spacing:.04em; }
+
+  /* confianza */
+  .empresa-body .trust { display:grid; grid-template-columns:1.2fr .8fr; gap:44px; align-items:center; }
+  .empresa-body .trust h2 { max-width:440px; }
+  .empresa-body .trust p { color:#c6cfd8; margin-top:16px; }
+  .empresa-body .trust .ver { margin-top:18px; font-family:var(--mono); font-size:.8rem; color:var(--fog); }
+  .empresa-body .trust .ver a { color:var(--brass); border-bottom:1px solid rgba(194,144,63,.4); }
+  .empresa-body .trust-card { background:var(--ink-2); border:1px solid var(--line-d); border-radius:16px; padding:28px; display:flex; gap:18px; align-items:flex-start; }
+  .empresa-body .trust-card .ph { width:70px; height:70px; flex:none; border-radius:12px; background:var(--ink); color:var(--brass); display:grid; place-items:center; font-family:var(--serif); font-size:1.4rem; border:1px solid var(--line-d); }
+  .empresa-body .trust-card .role { font-family:var(--mono); font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:var(--brass); }
+  .empresa-body .trust-card h4 { font-family:var(--serif); font-weight:500; font-size:1.2rem; margin:5px 0 6px; color: var(--paper); }
+  .empresa-body .trust-card .meta { font-size:.82rem; color:#b7c1cb; line-height:1.6; }
+
+  /* cierre */
+  .empresa-body .cierre { text-align:center; border-top:1px solid var(--line-d); }
+  .empresa-body .cierre .wrap { max-width:640px; }
+  .empresa-body .cierre h2 { font-size:clamp(2rem,4.4vw,3rem); }
+  .empresa-body .cierre p { color:#c6cfd8; font-size:1.1rem; margin:16px auto 0; max-width:480px; }
+  .empresa-body .cierre .btn-c { margin-top:28px; }
+  .empresa-body .cierre .fine { font-family:var(--mono); font-size:.72rem; color:var(--fog); margin-top:16px; letter-spacing:.04em; }
+
+  @media(max-width:820px){
+    .empresa-body .problema .cols, .empresa-body .segs, .empresa-body .pillars, .empresa-body .grid, .empresa-body .trust { grid-template-columns:1fr; }
+    .empresa-body .plan.feat { transform:none; order:-1; }
+    .empresa-body section { padding:54px 0; }
+    .empresa-body .row { flex-wrap:wrap; }
+  }
+  
+  /* Navbar dark overrides to ensure it's readable over the dark ink bg */
+  .transparent-nav { background: rgba(20, 29, 39, 0.9) !important; backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .transparent-nav .logo-text, .transparent-nav .nav-top-link, .transparent-nav .nav-group-btn { color: var(--paper) !important; }
+  .transparent-nav .nav-chevron { filter: invert(1); }
+  .transparent-nav .nav-cta-btn { background: var(--brass) !important; color: #1a130a !important; }
+</style>
+</head>
+<body class="empresa-body" style="background: var(--ink);">
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="navbar" class="transparent-nav scrolled">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
+                <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="marcas.html">Registrar mi marca</a></li>
+                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="contratos.html">Crear un contrato</a></li>
+                            <li><a href="revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="finiquito.html" class="nav-top-link">Calculadora Laboral</a></li>
+                    <li><a href="radar/index.html" class="nav-top-link">Radar Legal</a></li>
+                    <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
+                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membresía</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-actions">
+                <a href="empresas.html" class="nav-cta-btn">Membresía</a>
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
+                    <span style="background: var(--paper);"></span><span style="background: var(--paper);"></span><span style="background: var(--paper);"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Para empresas</span>
+    <h1>Tu área legal, <em>sin cargarla a la nómina.</em></h1>
+    <p>Contratos revisados, riesgos vigilados y un socio detrás de cada decisión — por una cuota fija al mes. El respaldo de un abogado interno, sin el sueldo de uno.</p>
+    <div class="cta">
+      <a class="btn-c btn-brass" href="#planes">Ver planes</a>
+      <a class="btn-c btn-ghost" href="#cierre">Agendar diagnóstico</a>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section class="problema">
+  <div class="wrap">
+    <span class="eyebrow">El costo de firmar a ciegas</span>
+    <h2 class="sec" style="margin-top:14px">Tu empresa firma todos los meses. <em>¿Alguien la lee?</em></h2>
+    <div class="cols">
+      <p>Cada contrato que firmas sin revisar es un riesgo que no ves hasta que es tarde: una cláusula de penalización, un plazo que se te fue, una responsabilidad que aceptaste sin querer.</p>
+      <p class="punch">Un abogado de planta cuesta un sueldo. Un despacho por hora es impredecible. Firmar a ciegas sale más caro que los dos. <b>Hay un punto medio — y es esto.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTOS -->
+<section>
+  <div class="wrap">
+    <div class="seg-head">
+      <span class="eyebrow">¿En qué etapa estás?</span>
+      <h2 class="sec" style="margin-top:14px">Te acompañamos según <em>dónde está tu empresa</em>.</h2>
+      <p>No vendemos trámites sueltos. Entramos en tu operación según lo que necesitas hoy — y crecemos contigo.</p>
+    </div>
+    <div class="segs">
+      <div class="seg">
+        <div class="k">Etapa temprana</div>
+        <h3>Fundadores y startups</h3>
+        <p>De la constitución de tu empresa a tu primera ronda: acuerdo de socios, SAFE, term sheets. Blinda tu cap table antes de crecer.</p>
+      </div>
+      <div class="seg">
+        <div class="k">En crecimiento</div>
+        <h3>PyMEs en marcha</h3>
+        <p>Contratos, laboral, cumplimiento y prevención de riesgos, siempre al día. Tu dirección jurídica sin contratar un equipo.</p>
+      </div>
+      <div class="seg">
+        <div class="k">Consolidadas</div>
+        <h3>Empresas establecidas</h3>
+        <p>Volumen de contratos, propiedad intelectual, protección de datos y estrategia legal continua, con un socio de cabecera.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SISTEMA -->
+<section>
+  <div class="wrap">
+    <div class="system-head">
+      <span class="eyebrow">El sistema Ferro Fragoso</span>
+      <h2 class="sec" style="margin-top:12px">Analista de <em>Cumplimiento Contractual</em></h2>
+      <p>Cuatro frentes que blindan tu operación durante todo el año — no cuando ya hay problema.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><div class="pnum">01</div><h4>Redacción y revisión</h4><p>Estructuramos, redactamos y analizamos tus contratos y acuerdos. Nada se firma sin que un abogado lo haya leído primero.</p></div>
+      <div class="pillar"><div class="pnum">02</div><h4>Monitoreo y mantenimiento</h4><p>Tus plantillas y acuerdos estándar, siempre vigentes. Cuando la ley cambia, tus documentos ya están actualizados — sin que lo pidas.</p></div>
+      <div class="pillar"><div class="pnum">03</div><h4>Reporte de Riesgo Contractual</h4><p>Auditamos tus contratos vigentes y te decimos, por escrito, dónde estás expuesto y qué corregir primero.</p></div>
+      <div class="pillar"><div class="pnum">04</div><h4>Alertas regulatorias</h4><p>Los cambios legislativos que afectan tu giro, traducidos y a tiempo. Te enteras antes de que te alcancen.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section id="planes">
+  <div class="wrap">
+    <div class="planes-head">
+      <span class="eyebrow">Membresía · Dirección Jurídica</span>
+      <h2 class="sec" style="margin-top:12px">Elige cuánto <em>respaldo</em> necesitas.</h2>
+      <p>Precio cerrado, topes claros, sin "ilimitado" de humo. Empieza donde te queda y sube cuando crezcas.</p>
+    </div>
+    <div class="grid">
+      <div class="plan">
+        <div class="pname">Contratos Esenciales</div>
+        <div class="ptag">Negocio en marcha</div>
+        <div class="price">$1,990 <small>MXN / MES</small></div>
+        <ul>
+          <li>1 revisión de contrato simple al mes</li>
+          <li>1 consulta breve al mes</li>
+          <li>Plantillas y su mantenimiento</li>
+          <li>Respuesta en hasta 48 h hábiles</li>
+        </ul>
+        <a class="btn-c btn-line" href="#">Empezar</a>
+      </div>
+      <div class="plan feat">
+        <div class="ribbon">★ Más elegido</div>
+        <div class="pname">Dirección Ligera</div>
+        <div class="ptag">PyME que firma seguido</div>
+        <div class="price">$3,990 <small>MXN / MES</small></div>
+        <ul>
+          <li>Hasta 3 revisiones simples <b>o</b> 1 contrato intermedio</li>
+          <li>Videollamada mensual con un socio</li>
+          <li>Canal prioritario</li>
+          <li>Alertas legislativas de tu giro</li>
+        </ul>
+        <a class="btn-c btn-brass" href="#">Elegir plan</a>
+      </div>
+      <div class="plan">
+        <div class="pname">Dirección Externa</div>
+        <div class="ptag">Empresa consolidada</div>
+        <div class="price">desde $6,990 <small>MXN / MES</small></div>
+        <ul>
+          <li>Hasta 5 revisiones simples al mes</li>
+          <li>Hasta 2 documentos nuevos o ajustes</li>
+          <li>2 sesiones mensuales + acompañamiento</li>
+          <li>Estrategia jurídica continua</li>
+        </ul>
+        <a class="btn-c btn-line" href="#">Agendar diagnóstico</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A LA CARTA -->
+<section>
+  <div class="wrap">
+    <div class="carte-head">
+      <span class="eyebrow">Servicios a la carta</span>
+      <h2 class="sec" style="margin-top:12px">¿Una necesidad puntual? <em>También por separado.</em></h2>
+      <p>Precio público, sin cotizaciones a puerta cerrada. Y si luego te suscribes, empiezas con ventaja.</p>
+    </div>
+
+    <div class="cgroup">
+      <div class="gt">Constitución y startups</div>
+      <div class="row"><div><div class="n">Constitución de empresa</div><div class="d">Tu S.A. o S. de R.L. lista para operar: estatutos, acta, RFC y trámites base. La puerta de entrada para nacer bien.</div></div><div class="p">desde $9,900<small>MXN</small></div></div>
+      <div class="row"><div><div class="n">Acuerdo de socios / fundadores</div><div class="d">Reparto de acciones, vesting y reglas claras entre socios. Evita el pleito antes de que exista.</div></div><div class="p">desde $6,990<small>MXN</small></div></div>
+      <div class="row"><div><div class="n">Revisión de SAFE / term sheet</div><div class="d">Antes de firmar con un inversionista, que alguien lo lea por ti. Protege tu control y tu dilución.</div></div><div class="p">desde $4,990<small>MXN</small></div></div>
+    </div>
+
+    <div class="cgroup">
+      <div class="gt">Contratos y propiedad intelectual</div>
+      <div class="row"><div><div class="n">Registro de marca ante IMPI</div><div class="d">Búsqueda, clasificación, solicitud y seguimiento hasta resolución. Precio por clase; si necesitas más de una, te orientamos antes.</div></div><div class="p">$6,990<small>MXN / CLASE</small></div></div>
+      <div class="row"><div><div class="n">Marca + Derecho de autor</div><div class="d">Blinda tu identidad completa: nombre (marca) + logo y contenido (autor), en un paquete.</div></div><div class="p">desde $8,990<small>MXN</small></div></div>
+      <div class="row"><div><div class="n">Revisión de contrato</div><div class="d">Simple $490 · intermedio (11–25 pp) desde $990 · estratégica/compleja desde $1,990.</div></div><div class="p">desde $490<small>MXN</small></div></div>
+      <div class="row"><div><div class="n">Contrato personalizado desde cero</div><div class="d">Cuestionario, redacción, revisión y una ronda de ajustes.</div></div><div class="p">desde $1,990<small>MXN</small></div></div>
+      <div class="row"><div><div class="n">Reporte de Riesgo Contractual</div><div class="d">Auditoría a fondo de tus contratos vigentes: dónde estás expuesto y qué corregir primero.</div></div><div class="p">desde $3,990<small>MXN</small></div></div>
+    </div>
+
+    <div class="cgroup">
+      <div class="gt">Tecnología, datos y cumplimiento</div>
+      <div class="row"><div><div class="n">Aviso de privacidad + LFPDPPP</div><div class="d">Aviso de privacidad y cumplimiento de protección de datos para tu sitio y tu app.</div></div><div class="p">desde $3,990<small>MXN</small></div></div>
+      <div class="row"><div><div class="n">Términos y condiciones de plataforma</div><div class="d">Para SaaS, marketplace o app: reglas de uso que te protegen frente al usuario.</div></div><div class="p">desde $3,990<small>MXN</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIANZA -->
+<section>
+  <div class="wrap trust">
+    <div>
+      <span class="eyebrow">Quién responde por tu empresa</span>
+      <h2 class="sec" style="margin-top:14px">Un despacho tiene nombre. <em>El tuyo tendrá cara.</em></h2>
+      <p>Cada asunto lo revisa un socio con cédula profesional. No tercerizamos tu operación a un becario ni a un algoritmo. Cuando llames, sabes con quién hablas.</p>
+      <div class="ver">Verifica cualquier cédula en el <a href="https://www.cedulaprofesional.sep.gob.mx/" target="_blank" rel="noopener">registro de la SEP</a>.</div>
+    </div>
+    <div class="trust-card">
+      <div class="ph">AF</div>
+      <div>
+        <div class="role">Socio fundador</div>
+        <h4>Alan Fragoso Rivera</h4>
+        <div class="meta">Especialidad: corporativo y marcas<br>Formación: Universidad Autónoma de Querétaro<br>Céd. prof. 1234567</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="cierre" id="cierre">
+  <div class="wrap">
+    <span class="eyebrow">Empieza aquí</span>
+    <h2 class="sec" style="margin-top:14px">Deja de firmar <em>a ciegas</em>.</h2>
+    <p>Empieza con un diagnóstico. Te decimos dónde estás parado y qué necesitas — sin compromiso de contratar.</p>
+    <a class="btn-c btn-brass" href="#">Agendar diagnóstico</a>
+    <div class="fine">// respuesta el mismo día hábil</div>
+  </div>
+</section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="site-footer" style="background: var(--ink-3); border-top: none;">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img">
+                <span class="footer-brand-name">FERRO FRAGOSO</span>
+            </div>
+            <p class="footer-tagline">Estudio Jurídico — Blindaje legal con propósito.</p>
+            <div class="footer-links" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
+                <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
+                <a href="radar/index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Radar Legal</a>
+                <a href="https://wa.me/524191239646" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">WhatsApp</a>
+            </div>
+            <p class="footer-copy" style="margin-top: 2rem;">&copy; 2026 Ferro Fragoso, Estudio Jurídico.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts locales -->
+    <script src="script.js?v=7"></script>
+    <script src="analytics.js"></script>
+</body>
+</html>
