@@ -19,27 +19,40 @@ const CONFIG = {
     }
 };
 
-// ─── Tabla progresiva Art. 76 LFT (reformado 2023) ───
-// Retorna días de vacaciones correspondientes según años de antigüedad
-function diasVacacionesPorAntiguedad(aniosCompletos) {
-    if (aniosCompletos <= 0) return 0;
-    if (aniosCompletos === 1) return 12;
-    if (aniosCompletos === 2) return 14;
-    if (aniosCompletos === 3) return 16;
-    if (aniosCompletos === 4) return 18;
-    if (aniosCompletos === 5) return 20;
-    // A partir del 6.º año: +2 días cada 5 años de servicio
-    const bloque = Math.floor((aniosCompletos - 1) / 5); // bloques de 5 años
-    return 20 + (bloque - 0) * 2; // 6-10→22, 11-15→24, 16-20→26...
+/* ─── Base del tope de la prima de antigüedad (Art. 162 fracc. II LFT) ───
+   El artículo topa el salario base en "dos veces el salario mínimo". Antes este
+   motor usaba la UMA, lo que subestimaba la prestación de forma importante
+   (con valores 2026: $234.62 contra $630.08 de tope diario).
+
+   El criterio dominante es que la UMA sustituye al salario mínimo solo cuando
+   éste opera como unidad de cuenta en materia fiscal o administrativa, no
+   cuando es la base de cuantificación de una prestación laboral. Por eso el
+   default es 'salario_minimo'.
+
+   Si el despacho concluye lo contrario para un caso, basta cambiar a 'uma':
+   es el único punto del motor donde se decide esta base. */
+const TOPE_PRIMA_ANTIGUEDAD_BASE = 'salario_minimo'; // 'salario_minimo' | 'uma'
+
+/**
+ * Resuelve el importe diario que sirve de tope, según la base configurada y
+ * el área geográfica (el salario mínimo de la Zona Libre Frontera Norte es
+ * distinto al general, y el Art. 162 habla del salario mínimo "del área").
+ */
+function topeDiarioPrimaAntiguedad(config, zona) {
+    if (TOPE_PRIMA_ANTIGUEDAD_BASE === 'uma') return config.umaDiario;
+    return zona === 'frontera' ? config.salarioMinimoFrontera : config.salarioMinimoDiario;
 }
-// Corrección: recalcular con la fórmula correcta
+
+/**
+ * Tabla progresiva de vacaciones — Art. 76 LFT (reforma "Vacaciones Dignas", 2023).
+ * Años 1-5: 12, 14, 16, 18, 20. A partir del 6.º: +2 días por cada 5 años
+ * (6-10 → 22, 11-15 → 24, 16-20 → 26, …).
+ */
 function diasVacacionesArt76(aniosCompletos) {
     if (aniosCompletos <= 0) return 0;
-    // Años 1-5: 12, 14, 16, 18, 20
     if (aniosCompletos <= 5) return 10 + (aniosCompletos * 2);
-    // A partir del año 6: se incrementan 2 días por cada 5 años
-    const bloquesExtra = Math.floor((aniosCompletos - 1) / 5) - 0;
-    return 20 + (bloquesExtra) * 2;
+    const bloquesExtra = Math.floor((aniosCompletos - 1) / 5);
+    return 20 + bloquesExtra * 2;
 }
 
 // ─── FUNCIONES PURAS DE CÁLCULO ───
@@ -57,10 +70,16 @@ function calcularSalarios(salarioMensualBruto, prestacionesMensuales, aniosAntig
     const primaVac = 0.25;
 
     const factorIntegracion = 1 + (diasAguinaldo / 365) + (diasVac * primaVac / 365);
-    const sdi = salarioDiario * factorIntegracion;
 
-    // Prestaciones diarias adicionales
-    const prestacionesDiarias = prestacionesMensuales / 30;
+    // Prestaciones fijas adicionales (bonos, despensa, transporte) llevadas a valor diario.
+    const prestacionesDiarias = Math.max(0, Number(prestacionesMensuales) || 0) / 30;
+
+    // Art. 84 LFT: el salario integrado incluye "cualquier otra cantidad o prestación
+    // que se entregue al trabajador por su trabajo". El aguinaldo y la prima vacacional
+    // se calculan sobre la cuota diaria (de ahí el factor), y las prestaciones fijas se
+    // suman por su valor diario. Antes se calculaban y se descartaban: el dato que pedía
+    // el cuestionario no afectaba ningún resultado.
+    const sdi = (salarioDiario * factorIntegracion) + prestacionesDiarias;
 
     return {
         salarioDiario: redondear(salarioDiario),
@@ -147,37 +166,50 @@ function calcularIndemnizacion90Dias(sdi) {
 }
 
 /**
- * 20 días por año trabajado (Art. 50 fracc. II LFT)
+ * 20 días por año trabajado (Art. 50 fracc. II LFT).
+ * Las fracciones de año se pagan en proporción al tiempo servido.
  */
 function calcular20DiasPorAnio(sdi, aniosTrabajados) {
     const monto = sdi * 20 * aniosTrabajados;
     return {
         concepto: '20 días por año de servicio',
-        detalle: `$${formatNum(sdi)} SDI × 20 × ${aniosTrabajados} años`,
+        detalle: `$${formatNum(sdi)} SDI × 20 × ${formatAnios(aniosTrabajados)} años`,
         monto: redondear(monto),
     };
 }
 
 /**
- * Prima de antigüedad: 12 días por año, tope doble UMA (Art. 162 LFT)
+ * Prima de antigüedad: 12 días por año, tope de dos veces el salario mínimo
+ * del área geográfica (Art. 162 fracc. II LFT).
+ *
+ * @param {number} salarioDiario   Cuota diaria del trabajador
+ * @param {number} aniosTrabajados Años de servicio (admite fracción)
+ * @param {number} topeDiarioBase  Salario mínimo diario del área geográfica
  */
-function calcularPrimaAntiguedad(salarioDiario, aniosTrabajados, umaDiario) {
-    const topeDobleUMA = umaDiario * 2;
-    const salarioBase = Math.min(salarioDiario, topeDobleUMA);
+function calcularPrimaAntiguedad(salarioDiario, aniosTrabajados, topeDiarioBase) {
+    const tope = topeDiarioBase * 2;
+    const salarioBase = Math.min(salarioDiario, tope);
     const monto = salarioBase * 12 * aniosTrabajados;
-    const topado = salarioDiario > topeDobleUMA;
+    const topado = salarioDiario > tope;
+    const etiquetaTope = TOPE_PRIMA_ANTIGUEDAD_BASE === 'uma' ? '2×UMA' : '2×SM';
     return {
         concepto: 'Prima de antigüedad',
-        detalle: `$${formatNum(salarioBase)}${topado ? ' (topado 2×UMA)' : ''} × 12 × ${aniosTrabajados} años`,
+        detalle: `$${formatNum(salarioBase)}${topado ? ` (topado ${etiquetaTope})` : ''} × 12 × ${formatAnios(aniosTrabajados)} años`,
         monto: redondear(monto),
         topado,
     };
 }
 
 /**
- * ISR sobre indemnización (Art. 93 LISR)
- * Exención: 90 × UMA diario × 365 (anualizado) × años de servicio
- * En la práctica: 90 veces el salario mínimo del área geográfica por año
+ * ISR sobre indemnización (Art. 93 fracc. XIII LISR).
+ * Exención: 90 × UMA diario × años de servicio.
+ *
+ * Aquí la UMA sí es la base correcta: la exención es una medida fiscal, y en
+ * materia fiscal la UMA sustituye al salario mínimo desde la reforma de 2016.
+ * (Distinto del tope de la prima de antigüedad — ver TOPE_PRIMA_ANTIGUEDAD_BASE.)
+ *
+ * @param {number} aniosServicio Años ya redondeados conforme al Art. 93 LISR:
+ *                               toda fracción mayor a 6 meses cuenta como año completo.
  */
 function calcularISRIndemnizacion(montoLiquidacion, aniosServicio, umaDiario) {
     const exencionAnual = 90 * umaDiario;
@@ -234,7 +266,21 @@ function calcularFiniquitoLiquidacion(datos) {
     const diffMs = fechaSalida - fechaIngreso;
     const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     const aniosCompletos = Math.floor(diffDias / 365.25);
-    const aniosTrabajados = Math.max(1, aniosCompletos); // Mínimo 1 año para cálculos
+
+    /* Años de servicio con fracción. Antes esto era Math.max(1, aniosCompletos),
+       un piso artificial que inflaba toda liquidación de menos de un año: a quien
+       llevaba 4 meses se le pagaban 20 días y 12 días de prima como si hubiera
+       cumplido el año. Las fracciones se pagan en proporción, así que se usa el
+       tiempo realmente servido. */
+    const aniosServicio = diffDias / 365.25;
+
+    /* Excepción: el Art. 93 LISR manda redondear los años de servicio para la
+       exención — toda fracción mayor a 6 meses cuenta como año completo, y nunca
+       menos de 1. Es una regla fiscal distinta de la laboral de arriba. */
+    const aniosServicioISR = Math.max(1, Math.round(aniosServicio));
+
+    // Salario mínimo (o UMA, según configuración) que topa la prima de antigüedad.
+    const topePrima = topeDiarioPrimaAntiguedad(config, zona);
 
     // Días trabajados en el año de salida
     const inicioAnio = new Date(fechaSalida.getFullYear(), 0, 1);
@@ -272,30 +318,33 @@ function calcularFiniquitoLiquidacion(datos) {
     const incluyeLiquidacion = motivo === 'despido_injustificado';
 
     if (incluyeLiquidacion) {
+        // La indemnización constitucional son 90 días fijos, no proporcionales
+        // a la antigüedad (Art. 48 LFT): no lleva años de servicio.
         liquidacion.push(calcularIndemnizacion90Dias(salarios.sdi));
-        liquidacion.push(calcular20DiasPorAnio(salarios.sdi, aniosTrabajados));
+        liquidacion.push(calcular20DiasPorAnio(salarios.sdi, aniosServicio));
         liquidacion.push(calcularPrimaAntiguedad(
-            salarios.salarioDiario, aniosTrabajados, config.umaDiario
+            salarios.salarioDiario, aniosServicio, topePrima
         ));
 
         totalLiquidacion = liquidacion.reduce((sum, item) => sum + item.monto, 0);
 
-        // ISR sobre indemnización
-        isrResult = calcularISRIndemnizacion(totalLiquidacion, aniosTrabajados, config.umaDiario);
+        // ISR sobre indemnización (usa el redondeo fiscal, no la fracción laboral)
+        isrResult = calcularISRIndemnizacion(totalLiquidacion, aniosServicioISR, config.umaDiario);
     } else if (motivo === 'despido_justificado') {
         // Art. 162 LFT: el despido con causa NO da derecho a indemnización constitucional
         // ni a los 20 días por año, pero SÍ conserva la prima de antigüedad,
         // sin requisito de años mínimos de servicio.
         const prima = calcularPrimaAntiguedad(
-            salarios.salarioDiario, aniosTrabajados, config.umaDiario
+            salarios.salarioDiario, aniosServicio, topePrima
         );
         liquidacion.push(prima);
         totalLiquidacion = prima.monto;
     } else if ((motivo === 'renuncia' || motivo === 'fin_contrato') && aniosCompletos >= 15) {
         // Art. 162 LFT: la separación voluntaria (o el término natural del contrato)
-        // solo genera prima de antigüedad si el trabajador cumplió 15 años o más de servicio.
+        // solo genera prima de antigüedad si el trabajador cumplió 15 años o más de
+        // servicio. El umbral se mide en años cumplidos; el pago sí lleva la fracción.
         const prima = calcularPrimaAntiguedad(
-            salarios.salarioDiario, aniosTrabajados, config.umaDiario
+            salarios.salarioDiario, aniosServicio, topePrima
         );
         liquidacion.push(prima);
         totalLiquidacion = prima.monto;
@@ -311,10 +360,15 @@ function calcularFiniquitoLiquidacion(datos) {
         motivo,
         fechaIngreso,
         fechaSalida,
-        antiguedad: { anios: aniosCompletos, diasTotales: diffDias },
+        antiguedad: {
+            anios: aniosCompletos,          // años cumplidos (umbrales, texto legal)
+            aniosServicio: redondear(aniosServicio, 4), // con fracción (cuantificación)
+            diasTotales: diffDias,
+        },
         salarios,
         config,
         zona,
+        topePrimaAntiguedad: { base: TOPE_PRIMA_ANTIGUEDAD_BASE, diario: topePrima },
 
         // Desglose
         finiquito,
@@ -340,6 +394,16 @@ function redondear(num, decimales = 2) {
 
 function formatNum(num) {
     return num.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+/**
+ * Años de servicio para mostrar en el desglose. Ahora que se manejan fracciones,
+ * "6.5" debe leerse como 6.5 y no como "6.5000000001"; los años exactos se
+ * muestran enteros para no ensuciar el dictamen.
+ */
+function formatAnios(anios) {
+    const redondeado = redondear(anios, 2);
+    return Number.isInteger(redondeado) ? String(redondeado) : redondeado.toFixed(2);
 }
 
 function formatMoneda(num) {
