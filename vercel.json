@@ -1,6 +1,13 @@
 {
   "redirects": [
     { "source": "/blog", "destination": "/radar/", "permanent": true },
-    { "source": "/blog/:path*", "destination": "/radar/", "permanent": true }
+    { "source": "/blog/:path*", "destination": "/radar/", "permanent": true },
+
+    { "source": "/planes.html", "destination": "/plan.html", "permanent": true },
+    { "source": "/planes", "destination": "/plan.html", "permanent": true },
+
+    { "source": "/criterio.html", "destination": "/radar/", "permanent": true },
+    { "source": "/criterio", "destination": "/radar/", "permanent": true },
+    { "source": "/criterio/:path*", "destination": "/radar/", "permanent": true }
   ]
 }
