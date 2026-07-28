@@ -4,14 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Formatos Legales | FERRO FRAGOSO</title>
+    <link rel="canonical" href="https://ferrofragoso.com/contratos.html">
+    <!-- Open Graph / redes: sin esto, al compartir el link en WhatsApp o LinkedIn
+         aparece solo la URL, sin imagen ni descripción. -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ferrofragoso.com/contratos.html">
+    <meta property="og:title" content="Formatos Legales | FERRO FRAGOSO">
+    <meta property="og:description" content="Genera borradores de contratos y documentos legales en tiempo real. Herramienta interactiva para empresas y particulares.">
+    <meta property="og:image" content="https://ferrofragoso.com/signature_on_dark.png">
+    <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
+    <meta property="og:locale" content="es_MX">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Formatos Legales | FERRO FRAGOSO">
+    <meta name="twitter:description" content="Genera borradores de contratos y documentos legales en tiempo real. Herramienta interactiva para empresas y particulares.">
+    <meta name="twitter:image" content="https://ferrofragoso.com/signature_on_dark.png">
     <meta name="description" content="Genera borradores de contratos y documentos legales en tiempo real. Herramienta interactiva para empresas y particulares.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=10">
-    <link rel="stylesheet" href="home-new.css">
-    <link rel="stylesheet" href="formatos.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="home-new.css?v=11">
+    <link rel="stylesheet" href="formatos.css?v=12">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -116,7 +130,7 @@
                         </svg>
                     </button>
                     <div class="wizard-brand">
-                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img">
+                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img" loading="lazy" decoding="async">
                         <span class="wizard-logo-text">FERRO FRAGOSO</span>
                     </div>
                 </div>
@@ -182,128 +196,70 @@
                         </svg>
                     </button>
                     <div class="wizard-brand">
-                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img">
+                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img" loading="lazy" decoding="async">
                         <span class="wizard-logo-text">FERRO FRAGOSO</span>
                     </div>
                 </div>
 
-                <div class="wizard-modal step2-ficha">
-                    <h1 class="step2-modal-title">Jurisdicción y normativa aplicable</h1>
-                    <p style="color: #666; margin-bottom: 2.5rem; max-width: 520px;">Antes de generar tu documento, necesitamos saber dónde surtirá sus efectos para aplicar la legislación correcta.</p>
+                <!-- Mismo shell que el wizard de llenado (#step-3): cabecera con progreso
+                     y píldora, cuerpo de una pregunta por pantalla, y pie con navegación. -->
+                <div class="wizard-modal">
+                    <div class="wizard-header">
+                        <div class="wizard-progress-text" id="jur-progress-text">Paso 1 de 4</div>
+                        <div class="wizard-progress-bar-bg">
+                            <div class="wizard-progress-bar-fill" id="jur-progress-fill"></div>
+                        </div>
+                        <div class="wizard-tag" id="jur-tag">JURISDICCIÓN APLICABLE</div>
+                    </div>
 
-                    <div class="jurisdiccion-form">
+                    <div class="wizard-body" id="jur-body">
 
-                        <!-- P1: Entidad Federativa -->
-                        <div class="jurisdiccion-field">
-                            <label class="jurisdiccion-label" for="jur-entidad">1. Entidad federativa donde se celebra o ejecuta el contrato <span class="jurisdiccion-required">*</span></label>
-                            <select id="jur-entidad" class="jurisdiccion-select" required>
+                        <!-- 1. Entidad federativa -->
+                        <div class="wizard-step-container jur-step" data-jur-step="entidad">
+                            <h2 class="wizard-question">¿En qué entidad federativa se celebra o ejecuta el documento?</h2>
+                            <p class="wizard-hint">Determina la legislación local aplicable.</p>
+                            <select id="jur-entidad" class="wizard-select" required>
                                 <option value="" disabled selected>Selecciona una entidad</option>
-                                <option value="Aguascalientes">Aguascalientes</option>
-                                <option value="Baja California">Baja California</option>
-                                <option value="Baja California Sur">Baja California Sur</option>
-                                <option value="Campeche">Campeche</option>
-                                <option value="Chiapas">Chiapas</option>
-                                <option value="Chihuahua">Chihuahua</option>
-                                <option value="Ciudad de México">Ciudad de México</option>
-                                <option value="Coahuila">Coahuila</option>
-                                <option value="Colima">Colima</option>
-                                <option value="Durango">Durango</option>
-                                <option value="Estado de México">Estado de México</option>
-                                <option value="Guanajuato">Guanajuato</option>
-                                <option value="Guerrero">Guerrero</option>
-                                <option value="Hidalgo">Hidalgo</option>
-                                <option value="Jalisco">Jalisco</option>
-                                <option value="Michoacán">Michoacán</option>
-                                <option value="Morelos">Morelos</option>
-                                <option value="Nayarit">Nayarit</option>
-                                <option value="Nuevo León">Nuevo León</option>
-                                <option value="Oaxaca">Oaxaca</option>
-                                <option value="Puebla">Puebla</option>
-                                <option value="Querétaro">Querétaro</option>
-                                <option value="Quintana Roo">Quintana Roo</option>
-                                <option value="San Luis Potosí">San Luis Potosí</option>
-                                <option value="Sinaloa">Sinaloa</option>
-                                <option value="Sonora">Sonora</option>
-                                <option value="Tabasco">Tabasco</option>
-                                <option value="Tamaulipas">Tamaulipas</option>
-                                <option value="Tlaxcala">Tlaxcala</option>
-                                <option value="Veracruz">Veracruz</option>
-                                <option value="Yucatán">Yucatán</option>
-                                <option value="Zacatecas">Zacatecas</option>
                             </select>
-                            <p id="jur-entidad-error" class="jurisdiccion-error"></p>
+                            <p id="jur-entidad-error" class="wizard-error"></p>
                         </div>
 
-                        <!-- P2: Municipio / Alcaldía -->
-                        <div class="jurisdiccion-field" id="jur-municipio-block">
-                            <label class="jurisdiccion-label" for="jur-municipio">2. Municipio o alcaldía <span class="jurisdiccion-optional">(cuando aplique)</span></label>
-                            <input type="text" id="jur-municipio" class="jurisdiccion-input" placeholder="Ej: Benito Juárez, Monterrey, Guadalajara…">
-                            <p class="jurisdiccion-hint">Requerido para materias inmobiliarias, arrendamiento, licencias o uso de suelo.</p>
+                        <!-- 2. Municipio o alcaldía -->
+                        <div class="wizard-step-container jur-step" data-jur-step="municipio" id="jur-municipio-block">
+                            <h2 class="wizard-question">¿Municipio o alcaldía?</h2>
+                            <p class="wizard-hint">Opcional. Requerido para materias inmobiliarias, arrendamiento, licencias o uso de suelo.</p>
+                            <input type="text" id="jur-municipio" class="wizard-input" placeholder="Ej: Benito Juárez, Monterrey, Guadalajara…">
                         </div>
 
-                        <!-- P3: Jurisdicción distinta -->
-                        <div class="jurisdiccion-field jurisdiccion-full-width">
-                            <label class="jurisdiccion-label">3. ¿Las partes desean someterse a los tribunales de una entidad federativa distinta?</label>
-                            <div class="jurisdiccion-toggle-group">
-                                <button type="button" class="jurisdiccion-toggle-btn active" data-value="no" id="jur-distinta-no">No</button>
-                                <button type="button" class="jurisdiccion-toggle-btn" data-value="si" id="jur-distinta-si">Sí</button>
+                        <!-- 3. ¿Tribunales de otra entidad? -->
+                        <div class="wizard-step-container jur-step" data-jur-step="distinta">
+                            <h2 class="wizard-question">¿Las partes se someterán a los tribunales de otra entidad?</h2>
+                            <p class="wizard-hint">Solo si quieren litigar en un estado distinto al de celebración.</p>
+                            <div class="wizard-option-row selected" id="jur-distinta-no" data-value="no" role="button" tabindex="0">
+                                <span class="wizard-option-text">No, los del estado donde se celebra</span>
+                                <span class="wizard-option-check"></span>
+                            </div>
+                            <div class="wizard-option-row" id="jur-distinta-si" data-value="si" role="button" tabindex="0">
+                                <span class="wizard-option-text">Sí, los de otra entidad</span>
+                                <span class="wizard-option-check"></span>
                             </div>
                         </div>
 
-                        <!-- P3 Condicional -->
-                        <div class="jurisdiccion-conditional" id="jur-distinta-fields" style="display: none;">
-                            <div class="jurisdiccion-field">
-                                <label class="jurisdiccion-label" for="jur-distinta-entidad">Entidad federativa para jurisdicción <span class="jurisdiccion-required">*</span></label>
-                                <select id="jur-distinta-entidad" class="jurisdiccion-select">
-                                    <option value="" disabled selected>Selecciona una entidad</option>
-                                    <option value="Aguascalientes">Aguascalientes</option>
-                                    <option value="Baja California">Baja California</option>
-                                    <option value="Baja California Sur">Baja California Sur</option>
-                                    <option value="Campeche">Campeche</option>
-                                    <option value="Chiapas">Chiapas</option>
-                                    <option value="Chihuahua">Chihuahua</option>
-                                    <option value="Ciudad de México">Ciudad de México</option>
-                                    <option value="Coahuila">Coahuila</option>
-                                    <option value="Colima">Colima</option>
-                                    <option value="Durango">Durango</option>
-                                    <option value="Estado de México">Estado de México</option>
-                                    <option value="Guanajuato">Guanajuato</option>
-                                    <option value="Guerrero">Guerrero</option>
-                                    <option value="Hidalgo">Hidalgo</option>
-                                    <option value="Jalisco">Jalisco</option>
-                                    <option value="Michoacán">Michoacán</option>
-                                    <option value="Morelos">Morelos</option>
-                                    <option value="Nayarit">Nayarit</option>
-                                    <option value="Nuevo León">Nuevo León</option>
-                                    <option value="Oaxaca">Oaxaca</option>
-                                    <option value="Puebla">Puebla</option>
-                                    <option value="Querétaro">Querétaro</option>
-                                    <option value="Quintana Roo">Quintana Roo</option>
-                                    <option value="San Luis Potosí">San Luis Potosí</option>
-                                    <option value="Sinaloa">Sinaloa</option>
-                                    <option value="Sonora">Sonora</option>
-                                    <option value="Tabasco">Tabasco</option>
-                                    <option value="Tamaulipas">Tamaulipas</option>
-                                    <option value="Tlaxcala">Tlaxcala</option>
-                                    <option value="Veracruz">Veracruz</option>
-                                    <option value="Yucatán">Yucatán</option>
-                                    <option value="Zacatecas">Zacatecas</option>
-                                </select>
-                            </div>
-                            <div class="jurisdiccion-field">
-                                <label class="jurisdiccion-label" for="jur-distinta-municipio">Municipio o alcaldía (opcional)</label>
-                                <input type="text" id="jur-distinta-municipio" class="jurisdiccion-input" placeholder="Ej: Benito Juárez">
-                            </div>
-                            <div class="jurisdiccion-field jurisdiccion-full-width">
-                                <label class="jurisdiccion-label" for="jur-distinta-justificacion">Justificación breve</label>
-                                <textarea id="jur-distinta-justificacion" class="jurisdiccion-textarea" rows="2" placeholder="Ej: El domicilio fiscal de ambas partes se encuentra en esa entidad."></textarea>
-                            </div>
+                        <!-- 3b. Datos de la jurisdicción distinta (solo si respondió Sí) -->
+                        <div class="wizard-step-container jur-step" data-jur-step="distinta-datos" id="jur-distinta-fields">
+                            <h2 class="wizard-question">¿A qué tribunales se someterán?</h2>
+                            <select id="jur-distinta-entidad" class="wizard-select">
+                                <option value="" disabled selected>Selecciona una entidad</option>
+                            </select>
+                            <input type="text" id="jur-distinta-municipio" class="wizard-input" placeholder="Municipio o alcaldía (opcional)">
+                            <textarea id="jur-distinta-justificacion" class="wizard-input wizard-textarea" rows="2" placeholder="Justificación breve. Ej: el domicilio fiscal de ambas partes está en esa entidad."></textarea>
                         </div>
 
-                        <!-- P4: Materia principal -->
-                        <div class="jurisdiccion-field jurisdiccion-full-width">
-                            <label class="jurisdiccion-label" for="jur-materia">4. Materia principal del documento <span class="jurisdiccion-required">*</span></label>
-                            <select id="jur-materia" class="jurisdiccion-select" required>
+                        <!-- 4. Materia principal -->
+                        <div class="wizard-step-container jur-step" data-jur-step="materia">
+                            <h2 class="wizard-question">¿Cuál es la materia principal del documento?</h2>
+                            <p class="wizard-hint">Define el marco normativo que se cita en el documento.</p>
+                            <select id="jur-materia" class="wizard-select" required>
                                 <option value="" disabled selected>Selecciona la materia</option>
                                 <option value="Civil">Civil</option>
                                 <option value="Mercantil">Mercantil</option>
@@ -316,18 +272,19 @@
                                 <option value="Inmobiliaria">Inmobiliaria</option>
                                 <option value="Otra">Otra</option>
                             </select>
-                            <p id="jur-materia-error" class="jurisdiccion-error"></p>
-                        </div>
-
-                        <!-- Warning badge -->
-                        <div class="jurisdiccion-warning" id="jur-warning" style="display: none;">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                            <span id="jur-warning-text">Revisión humana obligatoria</span>
+                            <p id="jur-materia-error" class="wizard-error"></p>
+                            <div class="jurisdiccion-warning" id="jur-warning" style="display: none;">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                <span id="jur-warning-text">Revisión humana obligatoria</span>
+                            </div>
                         </div>
 
                     </div>
 
-                    <div class="wizard-footer step2-footer" style="margin-top: 2rem;">
+                    <div class="wizard-footer">
+                        <button class="wizard-nav-btn wizard-prev" id="jur-btn-prev" aria-label="Anterior">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
                         <button class="wizard-nav-btn wizard-next" id="btn-continue-from-2c">Continuar</button>
                     </div>
                 </div>
@@ -345,7 +302,7 @@
                         </svg>
                     </button>
                     <div class="wizard-brand">
-                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img">
+                        <img src="logo_ff.png" alt="Ferro Fragoso" class="wizard-logo-img" loading="lazy" decoding="async">
                         <span class="wizard-logo-text">FERRO FRAGOSO</span>
                     </div>
                 </div>
@@ -441,7 +398,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20agendar%20una%20Consulta%20Estrat%C3%A9gica%20por%20Zoom%20de%2060%20min%20(%241%2C290%20MXN)." target="_blank" class="pricing-card-btn">
+                            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20agendar%20una%20Consulta%20Estrat%C3%A9gica%20por%20Zoom%20de%2060%20min%20(%241%2C290%20MXN)." target="_blank" class="pricing-card-btn" rel="noopener">
                                 <span>Agendar Consulta</span>
                                 <div class="pricing-btn-icon"><i class="fas fa-chevron-right"></i></div>
                             </a>
@@ -456,12 +413,12 @@
 
     </div>
 
-    <script src="script.js?v=9"></script>
-    <script src="analytics.js"></script>
+    <script src="script.js?v=11"></script>
+    <script src="analytics.js?v=11"></script>
     <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="contratos.js?v=2"></script>
-    <script src="contratos-meta.js?v=2"></script>
+    <script src="contratos.js?v=12"></script>
+    <script src="contratos-meta.js?v=12"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const FIELD_RE = /\{\{([^}]+)\}\}/g;
@@ -497,6 +454,9 @@
                 '13_carta_poder': 'Civil',
                 '14_poder_general': 'Civil',
                 '15_declaracion_protesta': 'Civil',
+                '16_reconocimiento_adeudo': 'Civil',
+                '17_recibo_renta': 'Arrendamiento inmobiliario',
+                '18_viaje_menores': 'Civil',
                 '19_nota_pago_venta': 'Civil',
             };
 
@@ -510,7 +470,27 @@
                 window.scrollTo(0, 0);
             }
 
-            document.getElementById('btn-start').addEventListener('click', () => {
+            /* ── Conexión segura de listeners ──────────────────────────────────
+               `document.getElementById(x).addEventListener(...)` revienta con
+               TypeError si el id no existe, y como todo esto vive en un solo
+               script inline, un id mal escrito detiene la ejecución y deja el
+               generador inservible a partir de ese punto. Ya pasó dos veces en
+               este archivo (btn-fill-example/btn-clear-form y luego
+               btn-back-to-2b-from-2c). Este helper aísla el fallo: avisa en
+               consola y sigue conectando el resto. */
+            function onClick(id, fn, evento = 'click') {
+                const el = document.getElementById(id);
+                if (!el) {
+                    console.warn(`[generador] No existe #${id}: ese control quedará inerte.`);
+                    return null;
+                }
+                el.addEventListener(evento, fn);
+                return el;
+            }
+
+            const onClickEv = (id, ev, fn) => onClick(id, fn, ev);
+
+            onClick('btn-start', () => {
                 if (typeof trackEvent === 'function') trackEvent('generador_inicio', {});
                 const content = document.querySelector('.step0-content');
                 content.classList.add('exit-animation');
@@ -519,7 +499,7 @@
                     content.classList.remove('exit-animation');
                 }, 500);
             });
-            document.getElementById('btn-back-to-step0').addEventListener('click', () => showStep(0));
+            onClick('btn-back-to-step0', () => showStep(0));
 
             /* ============================ STEP 1: LISTA ============================ */
             const step1List = document.getElementById('step1-list');
@@ -539,16 +519,28 @@
                     btn.addEventListener('click', () => {
                         selectedDoc = c;
                         
+                        // Metadatos complementarios (qué es / cuándo se usa / validez) —
+                        // vienen de contratos-meta.js.
+                        const meta = (window.CONTRATOS_META || {})[c.id];
+
+                        /* 16 de los 19 documentos tenían en `que_es` el mismo texto de
+                           relleno ("Documento legal que formaliza las obligaciones y
+                           derechos entre las partes…"), que no dice nada del documento
+                           concreto. contratos-meta.js sí trae una descripción específica
+                           y correcta de cada uno, así que esa tiene prioridad. */
+                        const GENERICO_QUE_ES = 'Documento legal que formaliza las obligaciones y derechos entre las partes respecto a este acto jurídico.';
+                        const queEs = (c.que_es && c.que_es !== GENERICO_QUE_ES ? c.que_es : null)
+                            || (meta && meta.queEs)
+                            || c.que_es
+                            || 'Documento legal que formaliza obligaciones.';
+
                         // Poblar la ficha técnica (Step 2)
                         document.getElementById('step2-title').textContent = c.titulo;
-                        document.getElementById('step2-que-es').textContent = c.que_es || "Documento legal que formaliza obligaciones.";
+                        document.getElementById('step2-que-es').textContent = queEs;
                         document.getElementById('step2-para-que').textContent = c.para_que_sirve || "Prevenir malentendidos y futuras controversias.";
                         document.getElementById('step2-alcance').textContent = c.alcance_legal || "Obligaciones exigibles ante la ley.";
                         document.getElementById('step2-fundamento').textContent = c.base || "Legislación aplicable.";
 
-                        // Metadatos complementarios (cuándo se usa / validez) — vienen de
-                        // contratos-meta.js, que hasta ahora se cargaba pero no se usaba.
-                        const meta = (window.CONTRATOS_META || {})[c.id];
                         const cuandoBlock = document.getElementById('step2-cuando-block');
                         const validezBlock = document.getElementById('step2-validez-block');
                         if (meta && meta.cuandoSeUsa) {
@@ -573,34 +565,70 @@
             renderStep1('');
 
             // Navegación adicional
-            document.getElementById('btn-back-to-step1-from-step2').addEventListener('click', () => showStep(1));
+            onClick('btn-back-to-step1-from-step2', () => showStep(1));
             
-            document.getElementById('btn-start-wizard').addEventListener('click', () => {
+            onClick('btn-start-wizard', () => {
                 // Pre-seleccionar materia según el contrato elegido
                 if (selectedDoc && MATERIA_POR_CONTRATO[selectedDoc.id]) {
                     document.getElementById('jur-materia').value = MATERIA_POR_CONTRATO[selectedDoc.id];
+                    evaluarRevisionHumana();
                 }
+                // La píldora muestra el documento en curso, igual que en el wizard de llenado.
+                if (selectedDoc) document.getElementById('jur-tag').textContent = selectedDoc.titulo.toUpperCase();
+                initJurisdiccion();
                 showStep('2c');
             });
 
-            /* ============================ STEP 2C: JURISDICCIÓN ============================ */
+            /* ============================ STEP 2C: JURISDICCIÓN ============================
+               Esta pantalla era un formulario largo con etiquetas numeradas y cajas con
+               borde, visualmente ajeno al resto del flujo. Ahora es un mini-wizard que
+               reutiliza el mismo shell y las mismas clases que el llenado del documento
+               (.wizard-question / .wizard-input / .wizard-select / .wizard-option-row):
+               una pregunta por pantalla, con su barra de progreso y su botón Continuar. */
 
-            // Toggle Sí/No para jurisdicción distinta
-            document.getElementById('jur-distinta-no').addEventListener('click', () => {
-                document.getElementById('jur-distinta-no').classList.add('active');
-                document.getElementById('jur-distinta-si').classList.remove('active');
-                document.getElementById('jur-distinta-fields').style.display = 'none';
+            // Las 32 entidades se generan una sola vez y se reutilizan en los dos selects,
+            // en vez de repetir 32 <option> por duplicado en el markup.
+            const ENTIDADES = ['Aguascalientes','Baja California','Baja California Sur','Campeche',
+                'Chiapas','Chihuahua','Ciudad de México','Coahuila','Colima','Durango',
+                'Estado de México','Guanajuato','Guerrero','Hidalgo','Jalisco','Michoacán',
+                'Morelos','Nayarit','Nuevo León','Oaxaca','Puebla','Querétaro','Quintana Roo',
+                'San Luis Potosí','Sinaloa','Sonora','Tabasco','Tamaulipas','Tlaxcala',
+                'Veracruz','Yucatán','Zacatecas'];
+
+            ['jur-entidad', 'jur-distinta-entidad'].forEach((id) => {
+                const sel = document.getElementById(id);
+                if (!sel) return;
+                ENTIDADES.forEach((e) => {
+                    const o = document.createElement('option');
+                    o.value = e; o.textContent = e;
+                    sel.appendChild(o);
+                });
             });
-            document.getElementById('jur-distinta-si').addEventListener('click', () => {
-                document.getElementById('jur-distinta-si').classList.add('active');
-                document.getElementById('jur-distinta-no').classList.remove('active');
-                document.getElementById('jur-distinta-fields').style.display = '';
+
+            // Selección Sí/No con apariencia de .wizard-option-row (comportamiento de radio)
+            function setJurDistinta(esDistinta) {
+                const si = document.getElementById('jur-distinta-si');
+                const no = document.getElementById('jur-distinta-no');
+                si.classList.toggle('selected', esDistinta);
+                no.classList.toggle('selected', !esDistinta);
+                evaluarRevisionHumana();
+                renderJurPaso(); // el sub-paso de datos aparece o desaparece
+            }
+            onClick('jur-distinta-si', () => setJurDistinta(true));
+            onClick('jur-distinta-no', () => setJurDistinta(false));
+            // Accesibilidad: las filas son divs con role="button", deben responder a teclado
+            ['jur-distinta-si', 'jur-distinta-no'].forEach((id) => {
+                onClickEv(id, 'keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); }
+                });
             });
+
+            const jurDistintaActiva = () => document.getElementById('jur-distinta-si').classList.contains('selected');
 
             // Función para evaluar si requiere revisión humana
             function evaluarRevisionHumana() {
                 const materia = document.getElementById('jur-materia').value;
-                const distintoJur = document.getElementById('jur-distinta-si').classList.contains('active');
+                const distintoJur = jurDistintaActiva();
                 const warning = document.getElementById('jur-warning');
                 const warningText = document.getElementById('jur-warning-text');
                 let msg = '';
@@ -621,42 +649,121 @@
                 }
             }
 
-            document.getElementById('jur-materia').addEventListener('change', evaluarRevisionHumana);
-            document.getElementById('jur-distinta-si').addEventListener('click', evaluarRevisionHumana);
-            document.getElementById('jur-distinta-no').addEventListener('click', evaluarRevisionHumana);
+            onClickEv('jur-materia', 'change', evaluarRevisionHumana);
+
+            /* ── Navegación del mini-wizard de jurisdicción ────────────────────
+               Mismo comportamiento que el wizard de llenado: un paso visible a la
+               vez, progreso arriba, y el botón de atrás oculto en el primer paso.
+               El sub-paso "distinta-datos" solo entra en la secuencia si el usuario
+               contestó que sí quiere otra jurisdicción. */
+            let jurPaso = 0;
+            const jurProgressText = document.getElementById('jur-progress-text');
+            const jurProgressFill = document.getElementById('jur-progress-fill');
+            const jurBtnPrev = document.getElementById('jur-btn-prev');
+            const jurBtnNext = document.getElementById('btn-continue-from-2c');
+
+            function jurPasosActivos() {
+                const todos = ['entidad', 'municipio', 'distinta', 'distinta-datos', 'materia'];
+                return todos.filter((p) => p !== 'distinta-datos' || jurDistintaActiva());
+            }
+
+            function renderJurPaso() {
+                const pasos = jurPasosActivos();
+                if (jurPaso > pasos.length - 1) jurPaso = pasos.length - 1;
+                if (jurPaso < 0) jurPaso = 0;
+                const actual = pasos[jurPaso];
+
+                document.querySelectorAll('#jur-body .jur-step').forEach((el) => {
+                    el.classList.toggle('active', el.dataset.jurStep === actual);
+                });
+
+                jurProgressText.textContent = `Paso ${jurPaso + 1} de ${pasos.length}`;
+                jurProgressFill.style.width = `${((jurPaso + 1) / pasos.length) * 100}%`;
+                jurBtnPrev.style.visibility = jurPaso === 0 ? 'hidden' : 'visible';
+                jurBtnNext.textContent = jurPaso === pasos.length - 1 ? 'Continuar' : 'Siguiente';
+
+                const foco = document.querySelector('#jur-body .jur-step.active select, #jur-body .jur-step.active input');
+                if (foco) setTimeout(() => foco.focus(), 100);
+            }
+
+            /* Valida solo lo que corresponde al paso visible: pedir todo de golpe al
+               final obligaría al usuario a retroceder para descubrir qué faltó. */
+            function jurPasoValido() {
+                const actual = jurPasosActivos()[jurPaso];
+                const errEntidad = document.getElementById('jur-entidad-error');
+                const errMateria = document.getElementById('jur-materia-error');
+                errEntidad.textContent = '';
+                errMateria.textContent = '';
+
+                if (actual === 'entidad' && !document.getElementById('jur-entidad').value) {
+                    errEntidad.textContent = 'Selecciona una entidad federativa.';
+                    return false;
+                }
+                if (actual === 'distinta-datos' && !document.getElementById('jur-distinta-entidad').value) {
+                    errEntidad.textContent = '';
+                    document.getElementById('jur-distinta-entidad').focus();
+                    return false;
+                }
+                if (actual === 'materia' && !document.getElementById('jur-materia').value) {
+                    errMateria.textContent = 'Selecciona la materia principal.';
+                    return false;
+                }
+                return true;
+            }
+
+            onClick('jur-btn-prev', () => { jurPaso--; renderJurPaso(); });
+
+            // Se llama al entrar a la pantalla para dejarla en el primer paso.
+            function initJurisdiccion() {
+                jurPaso = 0;
+                renderJurPaso();
+            }
 
             // Botón atrás: 2C → 2
-            document.getElementById('btn-back-to-2b-from-2c').addEventListener('click', () => showStep(2));
+            // El id real del botón es btn-back-to-step2-from-2c (ver el markup de #step-2c).
+            // Con el id equivocado, getElementById devolvía null y el addEventListener
+            // lanzaba un TypeError que detenía TODO el script a partir de aquí: el botón
+            // "Continuar" de la jurisdicción nunca quedaba conectado y no se podía generar
+            // ningún documento.
+            onClick('btn-back-to-step2-from-2c', () => showStep(2));
 
-            // Botón continuar: 2C → 3
-            document.getElementById('btn-continue-from-2c').addEventListener('click', () => {
+            /* Botón principal: avanza dentro del mini-wizard y, en el último paso,
+               valida todo y salta al generador (2C → 3). */
+            onClick('btn-continue-from-2c', () => {
+                if (!jurPasoValido()) return;
+
+                const pasos = jurPasosActivos();
+                if (jurPaso < pasos.length - 1) {
+                    jurPaso++;
+                    renderJurPaso();
+                    return;
+                }
+
+                // Último paso: revalidar el conjunto antes de pasar al documento.
                 const entidad = document.getElementById('jur-entidad').value;
                 const materia = document.getElementById('jur-materia').value;
                 const entidadError = document.getElementById('jur-entidad-error');
                 const materiaError = document.getElementById('jur-materia-error');
-                let valid = true;
+                const distintoJur = jurDistintaActiva();
 
                 if (!entidad) {
+                    // Puede ocurrir si se retrocedió y se vació el campo: se regresa al paso.
+                    jurPaso = pasos.indexOf('entidad');
+                    renderJurPaso();
                     entidadError.textContent = 'Selecciona una entidad federativa.';
-                    valid = false;
-                } else {
-                    entidadError.textContent = '';
+                    return;
                 }
-
+                if (distintoJur && !document.getElementById('jur-distinta-entidad').value) {
+                    jurPaso = pasos.indexOf('distinta-datos');
+                    renderJurPaso();
+                    return;
+                }
                 if (!materia) {
                     materiaError.textContent = 'Selecciona la materia principal.';
-                    valid = false;
-                } else {
-                    materiaError.textContent = '';
+                    return;
                 }
-
-                const distintoJur = document.getElementById('jur-distinta-si').classList.contains('active');
-                if (distintoJur && !document.getElementById('jur-distinta-entidad').value) {
-                    entidadError.textContent = 'Si eliges jurisdicción distinta, selecciona la entidad.';
-                    valid = false;
-                }
-
-                if (!valid) return;
+                entidadError.textContent = '';
+                materiaError.textContent = '';
 
                 // Guardar datos de jurisdicción
                 jurisdiccion.entidad = entidad;
@@ -680,6 +787,12 @@
                 valores['Ciudad y estado de jurisdicción'] = ciudadJur;
                 valores['Ciudad de firma'] = (jurisdiccion.municipio ? jurisdiccion.municipio + ', ' : '') + jurisdiccion.entidad;
 
+                /* initGenerator() ya pintó la vista previa antes de que existieran estos
+                   dos valores, así que hay que repintarla. Sin esto, la jurisdicción
+                   aparecía como [Ciudad y estado de jurisdicción] hasta que el usuario
+                   escribía en cualquier campo y disparaba un render por accidente. */
+                renderPreview();
+
                 if (typeof trackEvent === 'function') {
                     trackEvent('generador_jurisdiccion', { entidad, materia, distintoJur });
                 }
@@ -687,7 +800,7 @@
                 showStep(3);
             });
 
-            document.getElementById('btn-back-to-step1').addEventListener('click', () => {
+            onClick('btn-back-to-step1', () => {
                 // Este botón ("Cerrar") regresa a la lista de contratos y descarta
                 // todo lo que el usuario ya llenó (valores, firma). Sin confirmación,
                 // un toque accidental en la esquina —muy fácil en móvil— borra todo
@@ -746,6 +859,14 @@
             const esOpcional = (b) => b.t !== 'sign' && b.x && b.x.trim().startsWith('[CLÁUSULA OPCIONAL]');
             const limpiaOpc = (txt) => txt.replace(/^\s*\[CLÁUSULA OPCIONAL\]\s*/, '');
 
+            /* ── Firma autógrafa: dónde procede ──────────────────────────────
+               Un bloque `sign` puede llevar la firma dibujada por el usuario salvo
+               que esté marcado con `sinFirmaAuto` (p. ej. el recuadro de testigos
+               de la carta poder: son terceros, estampar ahí la firma del otorgante
+               sería fabricar la firma de otra persona). */
+            const bloqueAceptaFirma = (b) => b.t === 'sign' && !b.sinFirmaAuto;
+            const documentoAceptaFirma = (c) => !!c && Array.isArray(c.bloques) && c.bloques.some(bloqueAceptaFirma);
+
             function campoVisible(c, campo) {
                 let apareceEnActivo = false, apareceEnOpcionalOff = false;
                 c.bloques.forEach((b, i) => {
@@ -787,8 +908,16 @@
                 if (opts.length > 0) {
                     wizardSteps.push({ type: 'options', opts: opts });
                 }
-                
-                wizardSteps.push({ type: 'signature' });
+
+                /* El paso de firma solo tiene sentido si el documento realmente lleva
+                   un espacio de firma donde estamparla. El aviso de privacidad y los
+                   términos y condiciones son documentos unilaterales que se publican
+                   en un sitio web: no los firman las partes y no tienen bloque `sign`.
+                   Antes se les pedía la firma igual y se descartaba en silencio, porque
+                   solo se dibuja dentro de un bloque `sign`. */
+                if (documentoAceptaFirma(c)) {
+                    wizardSteps.push({ type: 'signature' });
+                }
                 wizardSteps.push({ type: 'preview' });
                 
                 currentWizardStep = 0;
@@ -801,11 +930,11 @@
                 const step = wizardSteps[currentWizardStep];
                 const total = wizardSteps.length;
                 
-                wizardProgressText.textContent = `Step ${currentWizardStep + 1} of ${total}`;
+                wizardProgressText.textContent = `Paso ${currentWizardStep + 1} de ${total}`;
                 wizardProgressFill.style.width = `${((currentWizardStep + 1) / total) * 100}%`;
-                
+
                 wizardBtnPrev.style.visibility = currentWizardStep === 0 ? 'hidden' : 'visible';
-                wizardBtnNext.textContent = currentWizardStep === total - 1 ? 'Terminar' : 'Continue';
+                wizardBtnNext.textContent = currentWizardStep === total - 1 ? 'Terminar' : 'Continuar';
                 
                 const container = document.createElement('div');
                 container.className = 'wizard-step-container active';
@@ -863,14 +992,28 @@
                     });
                 }
                 else if (step.type === 'signature') {
+                    /* La firma dibujada se estampa siempre en la columna izquierda del
+                       primer bloque firmable. En un contrato de dos partes esa columna
+                       es una en concreto (p. ej. "EL CLIENTE"), así que se nombra aquí:
+                       si quien genera el documento es la contraparte, debe saber que
+                       este recuadro no es su línea y puede dejarlo en blanco. */
+                    const bloqueFirma = selectedDoc.bloques.find(bloqueAceptaFirma);
+                    const rolFirmante = bloqueFirma && bloqueFirma.a && bloqueFirma.a[0]
+                        ? fill(bloqueFirma.a[0], false).trim()
+                        : '';
+
                     const h2 = document.createElement('h2');
                     h2.className = 'wizard-question';
-                    h2.textContent = 'Firma en la pantalla';
-                    
+                    h2.textContent = rolFirmante
+                        ? `Firma como ${rolFirmante}`
+                        : 'Firma en la pantalla';
+
                     const hint = document.createElement('p');
                     hint.className = 'wizard-hint';
-                    hint.textContent = 'Usa tu dedo o stylus para firmar en el recuadro.';
-                    
+                    hint.textContent = rolFirmante
+                        ? `Usa tu dedo o stylus para firmar. La firma se colocará en la línea de ${rolFirmante}. Si tú no eres esa parte, puedes dejarlo en blanco y firmar el documento impreso.`
+                        : 'Usa tu dedo o stylus para firmar en el recuadro. Es opcional: puedes dejarlo en blanco y firmar el documento impreso.';
+
                     const canvasWrapper = document.createElement('div');
                     canvasWrapper.className = 'wizard-signature-wrapper';
                     
@@ -1061,19 +1204,22 @@
             }
 
             function signHTML(b) {
-                const col = (arr, isFirst) => {
+                const col = (arr, llevaFirma) => {
                     if (!arr || !arr[0]) return '<div class="sign"></div>';
-                    
+
                     let signImgHtml = '';
-                    if (isFirst && valores['__firma__']) {
-                        signImgHtml = `<img src="${valores['__firma__']}" style="max-height: 80px; display: block; margin: -40px auto 10px auto;">`;
+                    if (llevaFirma && valores['__firma__']) {
+                        signImgHtml = `<img src="${valores['__firma__']}" alt="Firma autógrafa" style="max-height: 80px; display: block; margin: -40px auto 10px auto;">`;
                     }
-                    
+
                     return '<div class="sign">' + signImgHtml + '<div class="line"></div>' +
                         '<div class="role">' + fill(arr[0], true) + '</div>' +
                         (arr[1] ? '<div class="who">' + fill(arr[1], true) + '</div>' : '') + '</div>';
                 };
-                return '<div class="signs">' + col(b.a, true) + col(b.b, false) + '</div>';
+                // Solo la columna izquierda del bloque firmable recibe la firma dibujada:
+                // la columna derecha es siempre la contraparte, y un bloque marcado con
+                // `sinFirmaAuto` (testigos) no debe recibirla en ninguna columna.
+                return '<div class="signs">' + col(b.a, bloqueAceptaFirma(b)) + col(b.b, false) + '</div>';
             }
 
             function renderPreview() {
@@ -1203,11 +1349,12 @@
 
                 const signTable = (b) => {
                     const none = { style: BorderStyle.NONE };
-                    const cell = (arr, isFirst) => {
+                    const cell = (arr, llevaFirma) => {
                         const lines = [];
-                        
-                        // Añadir la firma si existe y es la primera columna
-                        if (isFirst && valores['__firma__']) {
+
+                        // La firma dibujada solo va en la columna del firmante, y nunca
+                        // en un bloque marcado con `sinFirmaAuto` (testigos).
+                        if (llevaFirma && valores['__firma__']) {
                             const buffer = base64DataURLToArrayBuffer(valores['__firma__']);
                             if (buffer) {
                                 lines.push(new Paragraph({ 
@@ -1230,7 +1377,7 @@
                     return new Table({
                         width: { size: 9360, type: WidthType.DXA }, columnWidths: [4680, 4680],
                         borders: { top: none, bottom: none, left: none, right: none, insideHorizontal: none, insideVertical: none },
-                        rows: [new TableRow({ children: [cell(b.a, true), cell(b.b, false)] })]
+                        rows: [new TableRow({ children: [cell(b.a, bloqueAceptaFirma(b)), cell(b.b, false)] })]
                     });
                 };
 

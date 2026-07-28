@@ -2095,3 +2095,78 @@ body:has(.step-container.active:not(#step-0)) .formatos-wrapper {
         margin-bottom: 0;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PASO DE JURISDICCIÓN — controles con el mismo lenguaje visual
+   que el wizard de llenado (.wizard-question / .wizard-input).
+   Antes esta pantalla usaba su propio set (.jurisdiccion-*) con
+   cajas con borde y etiquetas numeradas, y desentonaba con el
+   resto del flujo.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Select con el mismo tratamiento que .wizard-input: sin caja,
+   solo línea inferior, tipografía grande. */
+.wizard-select {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    padding: 0.8rem 2rem 0.8rem 0;
+    font-size: 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #000;
+    background-color: transparent;
+    /* Chevron propio: los select nativos no se pueden estilar de forma consistente */
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.4rem center;
+    transition: border-color 0.2s;
+    outline: none;
+    cursor: pointer;
+}
+.wizard-select:focus { border-bottom-color: #000; }
+.wizard-select:invalid,
+.wizard-select option[value=""] { color: #9a9a9a; }
+
+.wizard-textarea {
+    resize: vertical;
+    min-height: 3.2rem;
+    line-height: 1.4;
+    font-size: 1.1rem;
+}
+
+/* Mensaje de validación, en el mismo tono que .wizard-hint pero en rojo */
+.wizard-error {
+    font-size: 0.85rem;
+    color: #b3261e;
+    margin-top: -1.2rem;
+    min-height: 1.1em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.wizard-error:empty { margin-top: -1.6rem; }
+
+/* Las opciones Sí/No reutilizan .wizard-option-row, pero aquí el
+   comportamiento es de radio: solo una activa a la vez. */
+.jur-step .wizard-option-row { margin-bottom: 0.8rem; }
+.jur-step .wizard-option-row:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+
+/* Un solo paso visible a la vez, igual que en el wizard */
+.jur-step { display: none; }
+.jur-step.active {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* El aviso de revisión humana, alineado al nuevo layout */
+.jur-step .jurisdiccion-warning { margin-top: -0.8rem; }
+
+@media (max-width: 640px) {
+    .wizard-select { font-size: 1.15rem; }
+    .wizard-textarea { font-size: 1rem; }
+}
