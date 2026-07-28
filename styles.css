@@ -2589,241 +2589,6 @@ footer {
 }
 
 
-/* ─── CRITERIO (EDITORIAL) ─── */
-.criterio-section {
-    padding: var(--section-gap) 2rem;
-    background: var(--bg-base);
-}
-
-.criterio-container {
-    max-width: var(--container);
-    margin: 0 auto;
-}
-
-.criterio-header {
-    text-align: center;
-    margin-bottom: 5rem;
-}
-
-.criterio-eyebrow {
-    font-family: var(--font-body);
-    font-size: 0.62rem;
-    font-weight: 400;
-    letter-spacing: 5px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    display: block;
-}
-
-.criterio-title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3.5vw, 3rem);
-    font-weight: 400;
-    color: var(--text-primary);
-    letter-spacing: 5px;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.criterio-rule {
-    width: 48px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.6;
-    margin: 0 auto 3rem;
-}
-
-.criterio-subtitle {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: var(--text-secondary);
-    max-width: 60ch;
-    margin: 0 auto;
-    line-height: 1.8;
-}
-
-.criterio-categories {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-}
-
-.criterio-cat-btn {
-    background: none;
-    border: 1px solid var(--stone-300);
-    color: var(--text-secondary);
-    font-family: var(--font-body);
-    font-size: 0.65rem;
-    font-weight: 400;
-    letter-spacing: 2px;
-    padding: 0.6rem 1.5rem;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.criterio-cat-btn:hover, .criterio-cat-btn.active {
-    background: var(--carbon);
-    color: var(--ivory);
-    border-color: var(--carbon);
-}
-
-.criterio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-bottom: 5rem;
-}
-
-.criterio-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--stone-200);
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 480px;
-    transition: var(--transition);
-    overflow: hidden;
-}
-
-.criterio-card-img-wrap {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    position: relative;
-    border-bottom: 1px solid var(--stone-200);
-}
-
-.criterio-card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%) brightness(0.95);
-    transition: transform 0.8s var(--ease-premium);
-}
-
-.criterio-card:hover {
-    background: var(--bg-surface-elevated);
-    border-color: var(--stone-300);
-    transform: translateY(-4px);
-}
-
-.criterio-card:hover .criterio-card-img {
-    transform: scale(1.06);
-}
-
-.criterio-card-content {
-    padding: 2rem 2rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-}
-
-.criterio-card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    font-size: 0.65rem;
-    font-family: var(--font-body);
-    letter-spacing: 1px;
-}
-
-.criterio-tag {
-    color: var(--accent);
-    font-weight: 500;
-}
-
-.criterio-card-meta time {
-    color: var(--text-muted);
-}
-
-.criterio-card-title {
-    font-family: var(--font-heading);
-    font-size: 1.45rem;
-    line-height: 1.35;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-}
-
-.criterio-card-title a {
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.criterio-card-title a:hover {
-    color: var(--accent);
-}
-
-.criterio-card-excerpt {
-    font-family: var(--font-body);
-    font-size: 0.88rem;
-    font-weight: 300;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    flex-grow: 1;
-}
-
-.criterio-card-link {
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    color: var(--carbon);
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.3s;
-}
-
-.criterio-card-link svg {
-    transition: transform 0.3s var(--ease-premium);
-}
-
-.criterio-card-link:hover {
-    color: var(--accent);
-}
-
-.criterio-card-link:hover svg {
-    transform: translateX(4px);
-}
-
-.criterio-footer {
-    text-align: center;
-}
-
-.criterio-btn {
-    display: inline-block;
-    padding: 1rem 3rem;
-    border: 1px solid var(--carbon);
-    color: var(--carbon);
-    font-family: var(--font-body);
-    font-size: 0.68rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: var(--transition);
-}
-
-.criterio-btn:hover {
-    background: var(--carbon);
-    color: var(--ivory);
-    border-color: var(--carbon);
-    transform: translateY(-2px);
-}
-
-
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1360px) {
     .nav-menu {
@@ -4491,5 +4256,349 @@ body.menu-locked {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MÓVIL / TABLET — BARRA DE NAVEGACIÓN Y HERO
+   Se coloca al final a propósito: corrige reglas anteriores del mismo archivo.
+
+   Qué estaba roto (≤1360px, o sea móvil, tablet y laptop chico):
+   · La base `nav` centra un pill con `left:50% + translateX(-50%)`. Una media
+     query posterior ponía `transform:none` para convertirlo en barra completa
+     pero NO reponía `left`, así que la barra se quedaba anclada al 50% y se
+     salía 118px por la derecha. La hamburguesa caía fuera de la pantalla
+     (x=454 en un viewport de 375): en móvil no se podía abrir el menú.
+   · El `backdrop-filter` del nav lo convierte en bloque contenedor de sus
+     descendientes `position:fixed`, así que el menú de pantalla completa se
+     recortaba al ancho del propio nav en lugar del viewport.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1360px) {
+
+    /* Barra de ancho completo anclada arriba, no un pill centrado. */
+    nav#navbar {
+        top: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        max-width: none;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+        border-radius: 0;
+        background: #ffffff;
+        /* Sin backdrop-filter: crea un containing block que rompe el overlay del menú. */
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        box-shadow: 0 1px 12px rgba(0, 0, 0, 0.05);
+        /* Respeta la muesca / barra de estado en iPhone */
+        padding-top: env(safe-area-inset-top, 0px);
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform 0.35s var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1)),
+                    opacity 0.25s ease;
+    }
+
+    /* Sobre el hero de la home la barra se retira, y reaparece al pasarlo.
+       En páginas sin hero el JS nunca aplica .hidden-top, así que ahí queda fija. */
+    nav#navbar.hidden-top {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        box-shadow: none;
+    }
+    nav#navbar.scrolled {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-container {
+        width: 100%;
+        max-width: none;
+        padding: 0 1rem 0 1.1rem;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    /* El overlay del menú vuelve a medirse contra el viewport.
+       Se centra verticalmente y reserva arriba la altura de la barra para que
+       el primer enlace no quede a la altura del botón de cerrar. */
+    .nav-menu {
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100dvh; /* evita el salto por la barra de URL en móvil */
+        padding: calc(76px + env(safe-area-inset-top, 0px)) 1.5rem
+                 calc(2rem + env(safe-area-inset-bottom, 0px));
+        overflow-y: auto;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Si el contenido no cabe, que empiece arriba en vez de recortarse por ambos lados */
+    .nav-menu > .nav-links {
+        margin: auto 0;
+        width: 100%;
+        max-width: 420px;
+    }
+
+    /* Objetivo táctil de la hamburguesa: medía 30×21. Mínimo recomendado 44×44. */
+    .mobile-menu-btn {
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-right: -0.35rem; /* alinea el icono con el borde óptico */
+    }
+
+    /* Enlaces del menú: de 17px de alto a un área cómoda de pulsación */
+    .nav-links > li > a,
+    .nav-links .nav-group-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0.35rem 0.5rem;
+    }
+    .nav-submenu a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 40px;
+    }
+
+    .nav-brand { min-width: 0; }
+    .nav-brand .logo-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* El hero medía 1.02 pantallas y su parte baja se amontonaba:
+       el bloque "Soy persona · Tengo un negocio" caía encima de la
+       flecha "SOLUCIONES", y el botón flotante de WhatsApp tapaba
+       el borde derecho del CTA principal. */
+    .hero-content {
+        padding-bottom: 2.5rem;
+    }
+
+    /* La pista de scroll competía por el mismo espacio que el CTA y es
+       redundante en móvil, donde deslizar es el gesto natural. */
+    .hero-scroll-hint {
+        display: none;
+    }
+
+    .hero-cta-group {
+        width: 100%;
+        /* Deja libre la esquina donde viven los botones flotantes */
+        padding-right: 3.5rem;
+    }
+    .hero-cta-group .nav-cta-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        min-height: 52px;
+        line-height: 1.4;
+    }
+    .hero-cta-links {
+        flex-wrap: wrap;
+        row-gap: 0.35rem;
+    }
+    .hero-cta-links a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* Botones flotantes: más compactos y pegados a la esquina inferior,
+       fuera del recorrido de lectura y del CTA. */
+    .fixed-sidebar-contact {
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        right: 0.85rem;
+        gap: 0.6rem;
+    }
+    .fixed-sidebar-contact .sidebar-btn {
+        width: 46px;
+        height: 46px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* ── Objetivos táctiles ──────────────────────────────────────────────
+       Quedaban controles reales por debajo del mínimo cómodo de 44px.
+       Se excluyen a propósito los enlaces dentro de un párrafo: en texto
+       corrido el estándar no exige área ampliada y romperían el interlineado. */
+
+    /* Conmutador "Para mí / Para mi empresa" de la sección de planes */
+    .home-solutions .toggle button {
+        min-height: 44px;
+        padding-inline: 1.1rem;
+    }
+
+    /* Iconos de contacto de cada socio (WhatsApp / correo) */
+    .socio-card-contacto a {
+        width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Marca del navbar: el texto era el único punto pulsable */
+    .nav-brand .logo-text {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+
+    /* El video del hero sobresalía 9px de su contenedor */
+    .hero-img-wrap { overflow: hidden; }
+    .hero-bg-video { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+    /* Indicadores del carrusel de testimonios: el punto mide 7px, pero el área
+       pulsable debe ser mayor. Se amplía con padding sin agrandar el punto. */
+    .tst-dots button,
+    .tst-dots [role="tab"] {
+        padding: 19px 10px;
+        background-clip: content-box;
+        box-sizing: content-box;
+    }
+    .tst-dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+    }
+
+    /* Enlaces del pie: 24px de alto es incómodo con el pulgar */
+    .footer-links a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding-inline: 0.25rem;
+    }
+    .footer-social-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Casilla del aviso de privacidad en el formulario del Radar */
+    .radar-hero-form + p + label input[type="checkbox"],
+    #radar-privacidad {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+/* ── Velo del hero: legibilidad del texto sobre el video ──────────────────
+   Venía como style inline con un degradado horizontal (opaco a la izquierda,
+   transparente a la derecha). Funciona en escritorio, donde el texto vive en
+   la mitad izquierda; en móvil el texto ocupa todo el ancho y el 47% caía
+   sobre la zona transparente: texto casi negro sobre video oscuro. */
+.hero-img-veil {
+    background: linear-gradient(to right,
+        rgba(250, 248, 245, 0.90) 0%,
+        rgba(250, 248, 245, 0.40) 50%,
+        rgba(250, 248, 245, 0) 100%);
+}
+
+@media (max-width: 900px) {
+    /* Vertical y con más cuerpo: el texto se lee sobre cualquier fotograma
+       del video, y la parte baja queda algo más densa para el CTA. */
+    .hero-img-veil {
+        background: linear-gradient(to bottom,
+            rgba(250, 248, 245, 0.86) 0%,
+            rgba(250, 248, 245, 0.80) 45%,
+            rgba(250, 248, 245, 0.88) 100%);
+    }
+
+    /* Había un `opacity: 0.28` sobre el contenedor del video con el comentario
+       "para mejorar la legibilidad en móvil". Se contradecía: .hero tiene fondo
+       casi negro (#0a0908), así que atenuar el video no aclaraba nada — revelaba
+       el negro de abajo. El resultado era texto casi negro sobre fondo casi negro,
+       y además multiplicaba el velo (0.86 × 0.28 ≈ 0.24), dejándolo inservible.
+       El aclarado lo hace ahora el velo, que es quien debe hacerlo. */
+    .hero-img-wrap {
+        opacity: 1;
+    }
+    /* Fondo de respaldo claro: si el video no carga, el texto sigue legible
+       en lugar de quedar negro sobre negro. */
+    .hero {
+        background-color: var(--stone-100, #f2ede4);
+    }
+}
+
+@media (max-width: 768px) {
+    /* ── Objetivos táctiles restantes (segunda pasada) ────────────────────
+       Controles reales que seguían por debajo del área cómoda de pulsación.
+       Se amplía el área sin cambiar la tipografía ni el peso visual. */
+
+    /* CTA de las tarjetas de servicio (consulta.html) */
+    .solution-btn {
+        min-height: 48px;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Iconos de contacto de los socios (nosotros.html): eran 40×40 */
+    .pilar-icon-btn {
+        width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Precios pulsables de la tabla comparativa (empresas.html / plan.html) */
+    .carte .row .p > a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+
+    /* Enlace "Usar herramientas gratis" de la tarjeta de entrada */
+    .home-solutions .magnet > a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+
+    /* Enlaces del pie minimalista (revision.html y similares): 14px de alto */
+    footer a {
+        display: inline-block;
+        min-height: 44px;
+        line-height: 44px;
+    }
+
+    /* Ancho mínimo en enlaces de una sola palabra ("Blog") */
+    .footer-links a { min-width: 44px; justify-content: center; }
+
+    /* Los puntos del carrusel ya tienen 45px de alto; se iguala el ancho */
+    .tst-dots .tst-dot { min-width: 44px; }
+}
+
+@media (max-width: 768px) {
+    /* Enlace de retorno de las páginas de error y de post-pago */
+    .volver-inicio {
+        min-height: 44px;
+        line-height: 44px;
+        padding-inline: 0.25rem;
+    }
+    /* Flecha de retroceso de corporativo.html: medía 40px de ancho */
+    .corp-arrow-back {
+        min-width: 44px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
 }

@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Evaluación Estratégica | Ferro Fragoso</title>
+    <link rel="canonical" href="https://ferrofragoso.com/evaluacion.html">
+    <!-- Open Graph / redes: sin esto, al compartir el link en WhatsApp o LinkedIn
+         aparece solo la URL, sin imagen ni descripción. -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ferrofragoso.com/evaluacion.html">
+    <meta property="og:title" content="Evaluación Estratégica | Ferro Fragoso">
+    <meta property="og:description" content="Inicia tu evaluación legal estratégica con Ferro Fragoso Estudio Jurídico.">
+    <meta property="og:image" content="https://ferrofragoso.com/signature_on_dark.png">
+    <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
+    <meta property="og:locale" content="es_MX">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Evaluación Estratégica | Ferro Fragoso">
+    <meta name="twitter:description" content="Inicia tu evaluación legal estratégica con Ferro Fragoso Estudio Jurídico.">
+    <meta name="twitter:image" content="https://ferrofragoso.com/signature_on_dark.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
@@ -631,6 +645,25 @@
             .option-grid.cols-2 { grid-template-columns: 1fr; }
             .step-label { display: none; }
         }
+
+        /* ── Objetivos táctiles en móvil ──────────────────────────────────
+           Esta página tiene su CSS embebido y no carga styles.css, así que
+           las reglas globales de accesibilidad no la alcanzaban. */
+        @media (max-width: 768px) {
+            .btn-prev,
+            .btn-next {
+                min-height: 48px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .back-home,
+            a[href="index.html"] {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1065,6 +1098,6 @@
             document.querySelector('.progress-wrap').style.opacity = '0.3';
         }
     </script>
-    <script src="analytics.js"></script>
+    <script src="analytics.js?v=11"></script>
 </body>
 </html>

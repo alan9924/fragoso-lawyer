@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ── Always start at top (Hero) ── */
-
-    /* ── Always start at top (Hero) ── */
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
 
@@ -12,12 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ════════════════════════════════════
        INTRO LOADER + HERO CASCADE
     ════════════════════════════════════ */
+    /* Los selectores .hero-tagline y .hero-cta-oval ya no existían en el markup
+       (se renombraron a .hero-tagline-primary / -secondary), así que el
+       .filter(Boolean) los descartaba en silencio y los taglines quedaban fuera
+       de la cascada de entrada.
+       El CTA no se incluye a propósito: .hero-cta-group ya se anima por CSS con
+       .blur-fade, y meterlo aquí haría que JS y CSS se peleen la opacidad. */
     const heroItems = [
         document.querySelector('.hero-eyebrow'),
         document.querySelector('.hero-title'),
         document.querySelector('.hero-rule'),
-        document.querySelector('.hero-tagline'),
-        document.querySelector('.hero-cta-oval'),
+        document.querySelector('.hero-tagline-primary'),
+        document.querySelector('.hero-tagline-secondary'),
     ].filter(Boolean);
 
     heroItems.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'none'; });

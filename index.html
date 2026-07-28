@@ -8,13 +8,27 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
     <title>FERRO FRAGOSO | Estudio Jurídico Transaccional</title>
+    <link rel="canonical" href="https://ferrofragoso.com/">
+    <!-- Open Graph / redes: sin esto, al compartir el link en WhatsApp o LinkedIn
+         aparece solo la URL, sin imagen ni descripción. -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ferrofragoso.com/">
+    <meta property="og:title" content="FERRO FRAGOSO | Estudio Jurídico Transaccional">
+    <meta property="og:description" content="Ferro Fragoso, Estudio Jurídico. Servicios legales con precios transparentes y atención expedita.">
+    <meta property="og:image" content="https://ferrofragoso.com/signature_on_dark.png">
+    <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
+    <meta property="og:locale" content="es_MX">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FERRO FRAGOSO | Estudio Jurídico Transaccional">
+    <meta name="twitter:description" content="Ferro Fragoso, Estudio Jurídico. Servicios legales con precios transparentes y atención expedita.">
+    <meta name="twitter:image" content="https://ferrofragoso.com/signature_on_dark.png">
     <meta name="description" content="Ferro Fragoso, Estudio Jurídico. Servicios legales con precios transparentes y atención expedita.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=10">
-    <link rel="stylesheet" href="home-new.css">
+    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="home-new.css?v=11">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -86,7 +100,11 @@
             <video class="hero-bg-video" autoplay muted loop playsinline poster="corridor_columns.png">
                 <source src="hero_video_ink.mp4" type="video/mp4">
             </video>
-            <div class="hero-img-veil" style="background: linear-gradient(to right, rgba(250, 248, 245, 0.9) 0%, rgba(250, 248, 245, 0.4) 50%, transparent 100%);"></div>
+            <!-- El velo se define en styles.css: en escritorio es un degradado
+                 horizontal (el texto vive a la izquierda) y en móvil uno vertical,
+                 porque ahí el texto ocupa todo el ancho. Estaba en un style inline,
+                 lo que impedía adaptarlo por breakpoint. -->
+            <div class="hero-img-veil"></div>
         </div>
 
         <div class="hero-content">
@@ -159,7 +177,7 @@
                     </div>
                     <div class="timeline-side timeline-right">
                         <div class="timeline-icon">
-                            <img src="paso_2.png" alt="Icono Cuestionario" class="timeline-sketch-img" />
+                            <img src="paso_2.png" alt="Icono Cuestionario" class="timeline-sketch-img" / loading="lazy" decoding="async">
                         </div>
                     </div>
                 </article>
@@ -169,7 +187,7 @@
                     <div class="timeline-number" aria-hidden="true">3</div>
                     <div class="timeline-side timeline-left">
                         <div class="timeline-icon">
-                            <img src="paso_3.png" alt="Icono Abogado Entrega" class="timeline-sketch-img" />
+                            <img src="paso_3.png" alt="Icono Abogado Entrega" class="timeline-sketch-img" / loading="lazy" decoding="async">
                         </div>
                     </div>
                     <div class="timeline-side timeline-right">
@@ -357,7 +375,7 @@
             </div>
 
             <div class="empresas-art fade-in-up delay-1" aria-hidden="true">
-                <img src="b2b_banner.png" alt="">
+                <img src="b2b_banner.png" alt="" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
@@ -375,7 +393,7 @@
 
             <div class="socios-home-grid">
                 <article class="socio-card fade-in-up">
-                    <img src="socio_alan.png" alt="Alan Obed Fragoso Rivera, socio fundador" class="socio-card-foto">
+                    <img src="socio_alan.png" alt="Alan Obed Fragoso Rivera, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
                     <h3 class="socio-card-nombre word-fade-in">Alan Obed Fragoso Rivera</h3>
                     <p class="socio-card-cargo word-fade-in">Socio fundador &middot; Abogado</p>
                     <p class="socio-card-univ word-fade-in">Universidad Autónoma de Querétaro</p>
@@ -390,7 +408,7 @@
                 </article>
 
                 <article class="socio-card fade-in-up delay-1">
-                    <img src="socio_daniel.png" alt="Daniel Ferro Gutiérrez, socio fundador" class="socio-card-foto">
+                    <img src="socio_daniel.png" alt="Daniel Ferro Gutiérrez, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
                     <h3 class="socio-card-nombre word-fade-in">Daniel Ferro Gutiérrez</h3>
                     <p class="socio-card-cargo word-fade-in">Socio fundador &middot; Abogado</p>
                     <p class="socio-card-univ word-fade-in">Universidad Autónoma de Querétaro</p>
@@ -477,10 +495,14 @@
             </p>
             <!-- Firma animada (Higgsfield): la caligrafía se escribe en tiempo real. -->
             <div class="promesa-signature-wrap">
-                <video class="promesa-signature-video" muted playsinline preload="auto"
+                <!-- preload="none": son 9.2 MB al final de la página. No hay autoplay;
+                     el IntersectionObserver de script.js lo reproduce al entrar en vista,
+                     y hasta entonces se ve el poster. Con preload="auto" se descargaba
+                     entero en cada visita aunque nadie llegara hasta aquí. -->
+                <video class="promesa-signature-video" muted playsinline preload="none"
                        poster="signature_on_dark.png" aria-label="Firma Ferro Fragoso escribiéndose">
                     <source src="signature_write.mp4" type="video/mp4">
-                    <img src="signature_logo.png" alt="Ferro Fragoso Caligrafía" class="promesa-signature-img">
+                    <img src="signature_logo.png" alt="Ferro Fragoso Caligrafía" class="promesa-signature-img" loading="lazy" decoding="async">
                 </video>
             </div>
             <p class="promesa-firma">— Ferro Fragoso, Estudio Jurídico</p>
@@ -518,7 +540,7 @@
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img" loading="lazy" decoding="async">
                 <span class="footer-brand-name">FERRO FRAGOSO</span>
             </div>
             <p class="footer-tagline">Estudio Jurídico — Blindaje legal con propósito.</p>
@@ -547,7 +569,7 @@
 
     <!-- ═══ BOTONES FLOTANTES LATERALES ═══ -->
     <div class="fixed-sidebar-contact">
-        <a href="https://wa.me/524191239646" class="sidebar-btn sidebar-wa" target="_blank" aria-label="WhatsApp"><span>WhatsApp</span></a>
+        <a href="https://wa.me/524191239646" class="sidebar-btn sidebar-wa" target="_blank" aria-label="WhatsApp" rel="noopener"><span>WhatsApp</span></a>
         <a href="mailto:contacto@ferrofragoso.com" class="sidebar-btn sidebar-email" aria-label="Enviar Correo"><span>Email</span></a>
     </div>
 
@@ -584,7 +606,7 @@
     </script>
 
     <!-- Scripts -->
-    <script src="script.js?v=7"></script>
-    <script src="analytics.js"></script>
+    <script src="script.js?v=11"></script>
+    <script src="analytics.js?v=11"></script>
 </body>
 </html>
