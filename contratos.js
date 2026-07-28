@@ -475,7 +475,9 @@ const CONTRATOS = [
       { t: "i", x: "{{Descripción del acto o gestión}}." },
       { t: "p", x: "El presente poder se otorga únicamente para el acto descrito y se extingue una vez realizado o en la fecha {{Fecha de vigencia}}." },
       { t: "sign", a: ["EL OTORGANTE", "{{Nombre del otorgante}}"], b: ["EL APODERADO (acepta)", "{{Nombre del apoderado}}"] },
-      { t: "sign", a: ["TESTIGO 1", "{{Nombre del testigo 1}}"], b: ["TESTIGO 2", "{{Nombre del testigo 2}}"] },
+      // sinFirmaAuto: los testigos son terceros. La firma que dibuja el otorgante
+      // en el generador NO debe estamparse aquí; cada testigo firma de su puño.
+      { t: "sign", sinFirmaAuto: true, a: ["TESTIGO 1", "{{Nombre del testigo 1}}"], b: ["TESTIGO 2", "{{Nombre del testigo 2}}"] },
     ],
     fns: [
       "La carta poder simple es válida para actos que no requieran escritura pública. Para trámites menores, gestiones administrativas o cobro de cheques, la carta poder con dos testigos es suficiente (art. 2555 CCF).",
@@ -630,6 +632,9 @@ const CONTRATOS = [
   },
   {
     id: "19_nota_pago_venta",
+    que_es: "Es un comprobante privado que deja constancia de una venta o de un pago recibido, con el detalle de los bienes o servicios, el importe y los datos de quien vende y quien compra.",
+    para_que_sirve: "Para documentar operaciones de mostrador, entregas de mercancía o pagos entre particulares cuando no se emite factura, y para tener un respaldo escrito de lo cobrado y lo entregado.",
+    alcance_legal: "Acredita la operación entre las partes y sirve como prueba en caso de reclamación, pero no es un comprobante fiscal: no ampara deducciones ni acreditamiento de impuestos. Para efectos fiscales se requiere el CFDI correspondiente.",
     titulo: "Nota de pago / Nota de venta",
     categoria: "Documentos complementarios",
     base: "Comprobante simple de venta y pago (no fiscal)",

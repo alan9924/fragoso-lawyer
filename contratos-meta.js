@@ -95,6 +95,11 @@ const CONTRATOS_META = {
     queEs: "Documento (proyecto para notaría o autoridad migratoria) mediante el cual quienes ejercen la patria potestad o tutela de un menor autorizan su viaje, solo o acompañado, dentro o fuera del país.",
     cuandoSeUsa: "Cuando un menor de edad viajará sin ambos padres o tutores presentes —por ejemplo, con uno solo de ellos, con un familiar o con un grupo escolar—, especialmente en viajes internacionales.",
     validez: "Este formato es un proyecto: para viajes internacionales, el Instituto Nacional de Migración exige el Formato SAM oficial o la autorización ratificada ante notario o autoridad consular. Verifique los requisitos vigentes del INM antes de viajar."
+  },
+  "19_nota_pago_venta": {
+    queEs: "Comprobante privado de uso comercial que documenta una venta o un pago recibido, detallando los bienes o servicios entregados, el importe cobrado y los datos de ambas partes.",
+    cuandoSeUsa: "En ventas de mostrador, entregas de mercancía, anticipos o pagos entre particulares en los que no se emite factura y aun así se quiere dejar constancia escrita de lo cobrado y lo entregado.",
+    validez: "Vale como prueba de la operación entre las partes desde que se firma. No es un comprobante fiscal: no ampara deducciones ni acreditamiento de IVA o ISR. Cuando la operación deba facturarse, hay que emitir además el CFDI correspondiente."
   }
 };
 
