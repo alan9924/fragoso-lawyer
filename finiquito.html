@@ -4,14 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Calculadora Laboral | FERRO FRAGOSO</title>
+    <link rel="canonical" href="https://ferrofragoso.com/finiquito.html">
+    <!-- Open Graph / redes: sin esto, al compartir el link en WhatsApp o LinkedIn
+         aparece solo la URL, sin imagen ni descripción. -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ferrofragoso.com/finiquito.html">
+    <meta property="og:title" content="Calculadora Laboral | FERRO FRAGOSO">
+    <meta property="og:description" content="Calcula tu finiquito y liquidación laboral en México. Estimación basada en la Ley Federal del Trabajo.">
+    <meta property="og:image" content="https://ferrofragoso.com/finiquito_portada.png">
+    <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
+    <meta property="og:locale" content="es_MX">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora Laboral | FERRO FRAGOSO">
+    <meta name="twitter:description" content="Calcula tu finiquito y liquidación laboral en México. Estimación basada en la Ley Federal del Trabajo.">
+    <meta name="twitter:image" content="https://ferrofragoso.com/finiquito_portada.png">
     <meta name="description" content="Calcula tu finiquito y liquidación laboral en México. Estimación basada en la Ley Federal del Trabajo.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=10">
-    <link rel="stylesheet" href="home-new.css">
-    <link rel="stylesheet" href="calculadora.css">
+    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="home-new.css?v=11">
+    <link rel="stylesheet" href="calculadora.css?v=11">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
@@ -673,9 +687,9 @@
         </div>
     </div>
 
-    <script src="calculadora-engine.js?v=2"></script>
-    <script src="script.js?v=9"></script>
-    <script src="analytics.js"></script>
+    <script src="calculadora-engine.js?v=11"></script>
+    <script src="script.js?v=11"></script>
+    <script src="analytics.js?v=11"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -1097,16 +1111,25 @@
             if (r.motivo === 'despido_injustificado') {
                 valorLiquidacion = r.totalNeto;
             } else {
-                // Approximate liquidacion scenario for comparison
+                /* Escenario comparativo: cuánto habría tocado si el despido hubiera
+                   sido injustificado. Antes esto reimplementaba la aritmética a mano
+                   —con la UMA hardcodeada en 108.57 y el mismo piso de 1 año que se
+                   corrigió en el motor—, así que el comparativo iba derivando respecto
+                   del cálculo real. Ahora reutiliza las mismas funciones del motor:
+                   una sola fuente de verdad, imposible que se desincronicen. */
                 const sdi = r.salarios.sdi || r.salarios.salarioDiario;
-                const sDiario = r.salarios.salarioDiario;
-                const anios = r.antiguedad.anios || 1;
-                const uma = 108.57;
-                const primaAntiguedad = Math.min(sDiario, 2 * uma) * 12 * anios;
-                const indemnizacion90 = sdi * 90;
-                const veinteDias = sdi * 20 * anios;
+                const anios = r.antiguedad.aniosServicio;
+                const tope = r.topePrimaAntiguedad.diario;
+
+                const indemnizacion90 = calcularIndemnizacion90Dias(sdi).monto;
+                const veinteDias = calcular20DiasPorAnio(sdi, anios).monto;
+                const primaAntiguedad = calcularPrimaAntiguedad(r.salarios.salarioDiario, anios, tope).monto;
+
                 const brutoLiq = valorFiniquito + indemnizacion90 + veinteDias + primaAntiguedad;
-                const isrEst = isrMonto || (indemnizacion90 * 0.1);
+                const aniosISR = Math.max(1, Math.round(anios));
+                const isrEst = calcularISRIndemnizacion(
+                    indemnizacion90 + veinteDias + primaAntiguedad, aniosISR, r.config.umaDiario
+                ).monto;
                 valorLiquidacion = brutoLiq - isrEst;
             }
 
@@ -1242,7 +1265,7 @@
                     <!-- Radar Legal FF -->
                     <div class="dictamen-radar" style="max-width: 480px; margin: 1.5rem auto 0; padding: 2rem; background: #ffffff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
                         <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem;">
-                            <img src="sello_ff.png" alt="" style="width: 44px; height: 44px; object-fit: contain; opacity: 0.15; filter: grayscale(100%); flex-shrink: 0;">
+                            <img src="sello_ff.png" alt="" style="width: 44px; height: 44px; object-fit: contain; opacity: 0.15; filter: grayscale(100%); flex-shrink: 0;" loading="lazy" decoding="async">
                             <div>
                                 <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880);">RADAR LEGAL FF</span>
                                 <p style="font-family: var(--font-body); font-size: 0.88rem; line-height: 1.5; margin: 0.3rem 0 0; color: var(--text-muted, #9c9489);">&iquest;Quieres saber cuando la ley laboral cambia y te afecta? Cada martes, en 3 minutos.</p>

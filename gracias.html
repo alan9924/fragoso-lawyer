@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Gracias por tu pago | FERRO FRAGOSO</title>
+    <meta name="robots" content="noindex, follow">
+    <!-- Sin canonical ni Open Graph: esta página no debe indexarse ni compartirse. -->
     <meta name="description" content="Confirmación de pago y siguientes pasos.">
     <meta name="robots" content="noindex">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=10">
-    <link rel="stylesheet" href="home-new.css">
+    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="home-new.css?v=11">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -83,7 +85,7 @@
         <p style="margin-top: 2.5rem; font-size: .85rem; color: var(--text-muted);">
             ¿Algo salió mal con tu pago o no recibiste confirmación? Escríbenos y lo resolvemos de inmediato.
         </p>
-        <a href="index.html" style="display: inline-block; margin-top: 1rem; color: var(--bronze); text-decoration: underline; font-size: .9rem;">← Volver al inicio</a>
+        <a href="index.html" class="volver-inicio" style="display: inline-block; margin-top: 1rem; color: var(--bronze); text-decoration: underline; font-size: .9rem;">← Volver al inicio</a>
     </section>
 
     <footer class="site-footer">
@@ -102,8 +104,8 @@
             <p class="footer-copy" style="margin-top: 2rem;">&copy; 2026 Ferro Fragoso, Estudio Jurídico.</p>
         </div>
     </footer>
-    <script src="script.js?v=9"></script>
-    <script src="analytics.js"></script>
+    <script src="script.js?v=11"></script>
+    <script src="analytics.js?v=11"></script>
     <script>
         (function () {
             // Lee ?ref=producto de la URL (convención definida en §7.1 del spec) para

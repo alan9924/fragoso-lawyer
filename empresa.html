@@ -4,13 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Para Empresas | FERRO FRAGOSO</title>
+    <link rel="canonical" href="https://ferrofragoso.com/empresa.html">
+    <!-- Open Graph / redes: sin esto, al compartir el link en WhatsApp o LinkedIn
+         aparece solo la URL, sin imagen ni descripción. -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ferrofragoso.com/empresa.html">
+    <meta property="og:title" content="Para Empresas | FERRO FRAGOSO">
+    <meta property="og:description" content="Tu área legal, sin cargarla a la nómina. Contratos revisados, riesgos vigilados y un socio detrás de cada decisión.">
+    <meta property="og:image" content="https://ferrofragoso.com/b2b_banner.png">
+    <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
+    <meta property="og:locale" content="es_MX">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Para Empresas | FERRO FRAGOSO">
+    <meta name="twitter:description" content="Tu área legal, sin cargarla a la nómina. Contratos revisados, riesgos vigilados y un socio detrás de cada decisión.">
+    <meta name="twitter:image" content="https://ferrofragoso.com/b2b_banner.png">
     <meta name="description" content="Tu área legal, sin cargarla a la nómina. Contratos revisados, riesgos vigilados y un socio detrás de cada decisión.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=10">
-    <link rel="stylesheet" href="home-new.css">
+    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="home-new.css?v=11">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -367,7 +381,7 @@
   <!-- Fondo animado del hero (Higgsfield): cláusulas contractuales que se
        redactan y revisan en tiempo real. -->
   <div class="hero-bg" aria-hidden="true">
-    <video class="empresas-art-video" muted loop playsinline preload="metadata"
+    <video class="empresas-art-video" autoplay muted loop playsinline preload="auto"
            poster="empresas_hero.png">
       <source src="empresas_hero_v2.mp4" type="video/mp4">
     </video>
@@ -412,12 +426,12 @@
         <p>De la constitución de tu empresa a tu primera ronda: acuerdo de socios, SAFE, term sheets. Blinda tu cap table.</p>
       </div>
       <div class="seg seg-2">
-        <img src="icon_crecimiento.png" alt="En crecimiento" class="seg-icon">
+        <img src="icon_crecimiento.png" alt="En crecimiento" class="seg-icon" loading="lazy" decoding="async">
         <h3>En crecimiento</h3>
         <p>Contratos, laboral y prevención de riesgos al día. Tu dirección jurídica interna sin contratar un equipo completo.</p>
       </div>
       <div class="seg seg-3">
-        <img src="icon_consolidada.png" alt="Consolidadas" class="seg-icon">
+        <img src="icon_consolidada.png" alt="Consolidadas" class="seg-icon" loading="lazy" decoding="async">
         <h3>Consolidadas</h3>
         <p>Volumen de contratos, propiedad intelectual y estrategia legal continua con un socio de cabecera respaldando tus decisiones.</p>
       </div>
@@ -717,7 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img" loading="lazy" decoding="async">
                 <span class="footer-brand-name">FERRO FRAGOSO</span>
             </div>
             <p class="footer-tagline">Estudio Jurídico — Blindaje legal con propósito.</p>
@@ -732,8 +746,8 @@ document.addEventListener('DOMContentLoaded', () => {
     </footer>
 
     <!-- Scripts locales -->
-    <script src="script.js?v=9"></script>
-    <script src="analytics.js"></script>
+    <script src="script.js?v=11"></script>
+    <script src="analytics.js?v=11"></script>
 
 
 <script>
@@ -752,6 +766,30 @@ document.addEventListener('DOMContentLoaded', () => {
     sincronizar();
     window.addEventListener('resize', sincronizar, { passive: true });
     window.addEventListener('load', sincronizar);
+  })();
+
+  /* Reproducción del fondo del hero. El atributo autoplay ya lo arranca;
+     esto solo lo pausa fuera de pantalla para no gastar CPU ni batería, y
+     reintenta el play si el navegador lo bloqueó. Vive aquí y no en
+     script.js para que la página no dependa de un archivo compartido. */
+  (function () {
+    const v = document.querySelector('.hero-bg video');
+    if (!v) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.removeAttribute('autoplay');
+      v.removeAttribute('loop');
+      v.pause();
+      return;
+    }
+
+    const arrancar = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    arrancar();
+    v.addEventListener('canplay', arrancar, { once: true });
+
+    new IntersectionObserver((entradas) => {
+      entradas.forEach(e => e.isIntersecting ? arrancar() : v.pause());
+    }, { threshold: 0.1 }).observe(v);
   })();
 </script>
 </body>
