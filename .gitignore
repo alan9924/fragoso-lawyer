@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+.AppleDouble
+._*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Dependencias (por si más adelante se añade tooling)
+node_modules/
+
+# Salidas locales de Vercel
+.vercel
