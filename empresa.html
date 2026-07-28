@@ -163,6 +163,23 @@
   .empresa-body .acc-inner { overflow: hidden; }
   .empresa-body .acc-inner .d { font-family:var(--sans); font-size:.9rem; color:rgba(0,0,0,0.7); max-width:640px; line-height:1.6; padding: 0 24px 24px 24px; margin: 0; }
 
+  /* CTA dentro de cada panel del acordeón */
+  .empresa-body .acc-cta { margin: 0 24px 24px; background:#000; color:#fff; font-size:.86rem; padding:11px 20px; }
+  .empresa-body .acc-cta:hover { background:var(--brass); color:#000; }
+  .empresa-body .acc-cta svg { transition: transform .18s; }
+  .empresa-body .acc-cta:hover svg { transform: translateX(3px); }
+  .empresa-body .acc-inner .d { padding-bottom: 14px; }
+
+  /* Cierre de la sección a la carta */
+  .empresa-body .carte-cierre { margin-top:40px; padding:32px 28px; border:1px solid var(--line-l); border-radius:14px; background:rgba(0,0,0,0.015); display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .empresa-body .carte-cierre-txt { font-family:var(--sans); font-size:.98rem; color:rgba(0,0,0,0.72); max-width:520px; margin:0; line-height:1.55; }
+  .empresa-body .carte-cierre-btn { flex-shrink:0; }
+  @media (max-width: 720px) {
+    .empresa-body .carte-cierre { flex-direction:column; align-items:stretch; text-align:left; padding:24px 20px; }
+    .empresa-body .carte-cierre-btn { width:100%; min-height:48px; }
+    .empresa-body .acc-cta { width: calc(100% - 48px); min-height:48px; }
+  }
+
   /* confianza */
   .empresa-body .trust { display:grid; grid-template-columns:1.2fr .8fr; gap:44px; align-items:center; }
   .empresa-body .trust h2 { max-width:440px; }
@@ -579,7 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Tu S.A. o S. de R.L. lista para operar: estatutos, acta, RFC y trámites base. La puerta de entrada para nacer bien.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Tu S.A. o S. de R.L. lista para operar: estatutos, acta, RFC y trámites base. La puerta de entrada para nacer bien.</p><a class="btn-c acc-cta" href="https://wa.me/524191239646?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20Constituci%C3%B3n%20de%20empresa." target="_blank" rel="noopener" data-track-pago="Constitución de empresa" data-producto="Constitución de empresa">Empezar por WhatsApp<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
       
       <div class="acc-item">
@@ -590,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Reparto de acciones, vesting y reglas claras entre socios. Evita el pleito antes de que exista.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Reparto de acciones, vesting y reglas claras entre socios. Evita el pleito antes de que exista.</p><a class="btn-c acc-cta" href="https://wa.me/524191239646?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20Acuerdo%20de%20socios." target="_blank" rel="noopener" data-track-pago="Acuerdo de socios" data-producto="Acuerdo de socios">Empezar por WhatsApp<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
 
       <div class="acc-item">
@@ -601,7 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Antes de firmar con un inversionista, que alguien lo lea por ti. Protege tu control y tu dilución.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Antes de firmar con un inversionista, que alguien lo lea por ti. Protege tu control y tu dilución.</p><a class="btn-c acc-cta" href="https://wa.me/524191239646?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20Revisi%C3%B3n%20de%20SAFE%20o%20term%20sheet." target="_blank" rel="noopener" data-track-pago="Revisión de SAFE" data-producto="Revisión de SAFE">Empezar por WhatsApp<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
     </div>
 
@@ -616,7 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Búsqueda, clasificación, solicitud y seguimiento hasta resolución. Precio por clase; si necesitas más de una, te orientamos antes.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Búsqueda, clasificación, solicitud y seguimiento hasta resolución. Precio por clase; si necesitas más de una, te orientamos antes.</p><a class="btn-c acc-cta" href="marcas.html" data-track-pago="Registro de marca" data-producto="Registro de marca">Empezar registro<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
 
       <div class="acc-item">
@@ -627,7 +644,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Blinda tu identidad completa: nombre (marca) + logo y contenido (autor), en un paquete.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Blinda tu identidad completa: nombre (marca) + logo y contenido (autor), en un paquete.</p><a class="btn-c acc-cta" href="derechos-autor.html" data-track-pago="Marca + Derecho de autor" data-producto="Marca + Derecho de autor">Empezar registro<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
     </div>
 
@@ -642,7 +659,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Simple $490 · intermedio (11–25 pp) desde $990 · estratégica/compleja desde $1,990.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Simple $490 · intermedio (11–25 pp) desde $990 · estratégica/compleja desde $1,990.</p><a class="btn-c acc-cta" href="revision.html" data-track-pago="Revisión de contrato" data-producto="Revisión de contrato">Enviar mi contrato<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
 
       <div class="acc-item">
@@ -653,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Cuestionario, redacción, revisión y una ronda de ajustes.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Cuestionario, redacción, revisión y una ronda de ajustes.</p><a class="btn-c acc-cta" href="contratos.html" data-track-pago="Contrato personalizado" data-producto="Contrato personalizado">Empezar contrato<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
 
       <div class="acc-item">
@@ -664,7 +681,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Auditoría a fondo de tus contratos vigentes: dónde estás expuesto y qué corregir primero.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Auditoría a fondo de tus contratos vigentes: dónde estás expuesto y qué corregir primero.</p><a class="btn-c acc-cta" href="empresas.html#reporte" data-track-pago="Reporte de Riesgo Contractual" data-producto="Reporte de Riesgo Contractual">Ver el reporte<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
     </div>
 
@@ -679,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Aviso de privacidad y cumplimiento de protección de datos para tu sitio y tu app.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Aviso de privacidad y cumplimiento de protección de datos para tu sitio y tu app.</p><a class="btn-c acc-cta" href="https://wa.me/524191239646?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20Aviso%20de%20privacidad%20y%20cumplimiento%20LFPDPPP." target="_blank" rel="noopener" data-track-pago="Aviso de privacidad" data-producto="Aviso de privacidad">Empezar por WhatsApp<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
 
       <div class="acc-item">
@@ -690,8 +707,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Para SaaS, marketplace o app: reglas de uso que te protegen frente al usuario.</p></div></div>
+        <div class="acc-content"><div class="acc-inner"><p class="d">Para SaaS, marketplace o app: reglas de uso que te protegen frente al usuario.</p><a class="btn-c acc-cta" href="https://wa.me/524191239646?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20T%C3%A9rminos%20y%20condiciones%20de%20plataforma." target="_blank" rel="noopener" data-track-pago="Términos y condiciones" data-producto="Términos y condiciones">Empezar por WhatsApp<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
       </div>
+    </div>
+
+    <div class="carte-cierre">
+      <p class="carte-cierre-txt">¿Buscas algo más específico? Lo vemos en una llamada y te decimos si aplica, cuánto cuesta y en cuánto tiempo.</p>
+      <a class="btn-c btn-brass carte-cierre-btn" href="consulta.html" data-track-pago="Agenda desde servicios a la carta" data-producto="Agenda">
+        Agendar una llamada
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -751,6 +776,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
+  /* ── Acordeón de servicios a la carta ──────────────────────────────────
+     El CSS del acordeón ya existía (.acc-item.is-open .acc-content pasa de
+     grid-template-rows 0fr a 1fr), pero no había JavaScript que aplicara la
+     clase: al hacer clic no ocurría nada y la descripción y el precio de cada
+     servicio nunca llegaban a verse. */
+  (function () {
+    const items = document.querySelectorAll('.acc-item');
+    if (!items.length) return;
+
+    const cerrar = (item) => {
+      item.classList.remove('is-open');
+      const btn = item.querySelector('.acc-btn');
+      const panel = item.querySelector('.acc-content');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+      /* Se oculta a lectores de pantalla y se saca del orden de tabulación:
+         de lo contrario el CTA de un panel cerrado seguiría siendo enfocable. */
+      if (panel) panel.setAttribute('aria-hidden', 'true');
+    };
+
+    const abrir = (item) => {
+      item.classList.add('is-open');
+      const btn = item.querySelector('.acc-btn');
+      const panel = item.querySelector('.acc-content');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+      if (panel) panel.removeAttribute('aria-hidden');
+    };
+
+    items.forEach((item, i) => {
+      const btn = item.querySelector('.acc-btn');
+      const panel = item.querySelector('.acc-content');
+      if (!btn || !panel) return;
+
+      // Enlazar botón y panel para lectores de pantalla
+      const id = 'acc-panel-' + i;
+      panel.id = id;
+      btn.setAttribute('aria-controls', id);
+      btn.setAttribute('type', 'button');
+      cerrar(item);
+
+      btn.addEventListener('click', () => {
+        const abierto = item.classList.contains('is-open');
+        // Un solo panel abierto a la vez: la lista es larga y así no se pierde el hilo.
+        items.forEach(cerrar);
+        if (!abierto) abrir(item);
+      });
+    });
+  })();
+
   /* --nav-h vale 6.5rem pero el navbar real mide más (logo + padding).
      Medimos su altura efectiva para que el fondo del hero arranque justo
      debajo y la barra de menú nunca quede tapada. */
