@@ -39,6 +39,43 @@
 
 const FF_MONEDA = 'MXN';
 
+/* ── Tarifas oficiales de terceros ───────────────────────────────────────
+   ⚠ PENDIENTE DE CONFIRMAR ANTES DE PUBLICAR ⚠
+   El IMPI publica su tarifario en el DOF cada enero. Esta cifra es una
+   ESTIMACIÓN y debe verificarse contra el tarifario vigente antes de
+   desplegar: publicar una tarifa gubernamental equivocada en el sitio de un
+   despacho expone a un reclamo, tanto si se queda corta (el cliente paga más
+   de lo anunciado) como si se pasa (parece que se infla un cobro de gobierno).
+
+   Se separa del honorario a propósito. Con el precio "todo incluido" cada
+   aumento del IMPI se comía el margen en silencio y no se podía subir el
+   precio sin que pareciera un aumento de honorarios. Desglosado, la tarifa es
+   un tercero: sube cuando sube el DOF y el cliente lo entiende.            */
+const FF_TARIFAS_OFICIALES = {
+  impi_marca_por_clase: {
+    importe: 3200,          // ← VERIFICAR contra el tarifario DOF vigente
+    concepto: 'Tarifa oficial IMPI · estudio de solicitud, por clase',
+    verificado: false,      // poner en true cuando se confirme
+    fuente: 'Tarifario IMPI publicado en el DOF (se actualiza en enero)',
+  },
+};
+
+/* Honorario = precio al cliente − tarifa oficial. Nunca escrito a mano, para
+   que al ajustar la tarifa el desglose siga cuadrando con el total. */
+function ffDesglose(idServicio) {
+  const s = FF_SERVICIOS[idServicio];
+  if (!s || !s.tarifaOficial) return null;
+  const t = FF_TARIFAS_OFICIALES[s.tarifaOficial];
+  if (!t) return null;
+  return {
+    total: s.precio,
+    honorarios: s.precio - t.importe,
+    oficiales: t.importe,
+    concepto: t.concepto,
+    verificado: t.verificado,
+  };
+}
+
 /* ── Servicios a la carta ─────────────────────────────────────────────────
    Un servicio = una entrada. Si aparece en tres páginas, sigue siendo una
    entrada: son las páginas las que lo referencian por `id`.                */
@@ -112,7 +149,13 @@ const FF_SERVICIOS = {
   registro_marca: {
     nombre: 'Registro de marca ante IMPI',
     precio: 6990, unidad: 'MXN / CLASE', desde: false, publico: 'ambos',
-    nota: 'Búsqueda, clasificación, solicitud, derechos oficiales y seguimiento.',
+    /* Desglosado: del total, una parte es tarifa de gobierno. Ver ffDesglose(). */
+    tarifaOficial: 'impi_marca_por_clase',
+    nota: 'Búsqueda, clasificación, solicitud, tarifa oficial y seguimiento hasta la resolución del IMPI.',
+    /* Fuera del precio a propósito. Contestar una citación de anterioridades o
+       defender una oposición es trabajo argumentativo real; regalarlo dejaba el
+       expediente contestado en pérdida. Se cotiza aparte y se avisa antes. */
+    excluye: 'Respuesta a oficios de anterioridades y defensa de oposiciones de tercero se cotizan aparte.',
     pago: '',
   },
   derecho_autor: {
@@ -124,10 +167,16 @@ const FF_SERVICIOS = {
   marca_autor: {
     /* Precio PLANO: cubre una clase de marca más el registro de obra.
        plan.html lo publicaba "/ CLASE", lo cual no aplica: el derecho de
-       autor no se registra por clases de Niza. Corregido. */
+       autor no se registra por clases de Niza. Corregido.
+
+       Precio: 8,050 = 15% de descuento sobre comprar los dos por separado
+       (6,990 + 2,490 = 9,480). Antes estaba en 8,990, un descuento de $490
+       —5%— demasiado pequeño para que alguien cambiara de decisión: se dejaba
+       dinero sobre la mesa sin comprar nada con él. */
     nombre: 'Marca + Derecho de autor',
-    precio: 8990, unidad: 'MXN', desde: true, publico: 'ambos',
+    precio: 8050, unidad: 'MXN', desde: true, publico: 'ambos',
     nota: 'Paquete: una clase de marca ante IMPI + registro de obra. Clases adicionales se cotizan aparte.',
+    excluye: 'Respuesta a oficios de anterioridades y defensa de oposiciones de tercero se cotizan aparte.',
     pago: '',
   },
   obra_cesion: {
@@ -246,6 +295,23 @@ function ffValidarPrecios({ verboso = false } = {}) {
     importes.add(ffAnual(k));
   });
 
+  /* Importes DERIVADOS que sí son legítimos aunque no sean el precio de ningún
+     servicio: el desglose honorarios/tarifa oficial y, en los paquetes, el
+     precio de comprar por separado y el ahorro. Sin esto el validador los
+     marcaba como datos viejos y el ruido lo habría vuelto inservible: un
+     validador que da falsas alarmas se acaba ignorando. */
+  Object.keys(FF_TARIFAS_OFICIALES).forEach((k) => importes.add(FF_TARIFAS_OFICIALES[k].importe));
+  Object.keys(catalogo).forEach((id) => {
+    const d = ffDesglose(id);
+    if (d) { importes.add(d.honorarios); importes.add(d.oficiales); }
+  });
+  /* Paquete marca+autor: suma de los componentes y diferencia anunciada. */
+  if (FF_SERVICIOS.registro_marca && FF_SERVICIOS.derecho_autor && FF_SERVICIOS.marca_autor) {
+    const suelto = FF_SERVICIOS.registro_marca.precio + FF_SERVICIOS.derecho_autor.precio;
+    importes.add(suelto);
+    importes.add(suelto - FF_SERVICIOS.marca_autor.precio);
+  }
+
   /* textContent, NO innerText: innerText solo devuelve lo que está renderizado.
      En marcas.html daba 1.785 caracteres contra 9.340 reales — el validador
      quedaba ciego al 80% de la página (acordeones cerrados, secciones fuera
@@ -286,14 +352,14 @@ if (typeof document !== 'undefined') {
 
 if (typeof window !== 'undefined') {
   Object.assign(window, {
-    FF_MONEDA, FF_SERVICIOS, FF_MEMBRESIAS, FF_MESES_ANUAL,
-    ffAnual, ffPrecio, ffEtiqueta, ffLinkPago, ffCobrables, ffValidarPrecios,
+    FF_MONEDA, FF_SERVICIOS, FF_MEMBRESIAS, FF_MESES_ANUAL, FF_TARIFAS_OFICIALES,
+    ffAnual, ffPrecio, ffEtiqueta, ffLinkPago, ffCobrables, ffDesglose, ffValidarPrecios,
   });
 }
 
 if (typeof module !== 'undefined') {
   module.exports = {
-    FF_MONEDA, FF_SERVICIOS, FF_MEMBRESIAS, FF_MESES_ANUAL,
-    ffAnual, ffPrecio, ffEtiqueta, ffLinkPago, ffCobrables,
+    FF_MONEDA, FF_SERVICIOS, FF_MEMBRESIAS, FF_MESES_ANUAL, FF_TARIFAS_OFICIALES,
+    ffAnual, ffPrecio, ffEtiqueta, ffLinkPago, ffCobrables, ffDesglose,
   };
 }

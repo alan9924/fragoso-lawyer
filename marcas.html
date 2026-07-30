@@ -10,15 +10,15 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ferrofragoso.com/marcas.html">
     <meta property="og:title" content="Registro de Marca | FERRO FRAGOSO">
-    <meta property="og:description" content="Protege tu marca con nuestro servicio de registro ante IMPI todo incluido.">
+    <meta property="og:description" content="Registro de marca ante el IMPI con precio público y desglosado: honorarios y tarifa oficial por separado. Búsqueda de anterioridades y dictamen de clase incluidos.">
     <meta property="og:image" content="https://ferrofragoso.com/signature_on_dark.png">
     <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
     <meta property="og:locale" content="es_MX">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Registro de Marca | FERRO FRAGOSO">
-    <meta name="twitter:description" content="Protege tu marca con nuestro servicio de registro ante IMPI todo incluido.">
+    <meta name="twitter:description" content="Registro de marca ante el IMPI con precio público y desglosado: honorarios y tarifa oficial por separado. Búsqueda de anterioridades y dictamen de clase incluidos.">
     <meta name="twitter:image" content="https://ferrofragoso.com/signature_on_dark.png">
-    <meta name="description" content="Protege tu marca con nuestro servicio de registro ante IMPI todo incluido.">
+    <meta name="description" content="Registro de marca ante el IMPI con precio público y desglosado: honorarios y tarifa oficial por separado. Búsqueda de anterioridades y dictamen de clase incluidos.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
@@ -242,6 +242,36 @@
                 padding: 100px 1.5rem 3rem 1.5rem;
             }
         }
+
+        /* Desglose honorarios / tarifa oficial y nota de alcance.
+           El desglose separa visualmente lo que cobra el despacho de lo que
+           cobra el gobierno: refuerza el precio transparente y protege el
+           margen cuando el IMPI actualiza su tarifario. */
+        .ed-desglose {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            line-height: 1.9;
+            color: #444;
+            border-top: 1px solid rgba(0,0,0,.12);
+            border-bottom: 1px solid rgba(0,0,0,.12);
+            padding: 0.7rem 0;
+            margin: 0 0 1rem;
+        }
+        .ed-desglose span { display: inline-block; min-width: 62%; }
+        .ed-desglose b { color: #111; font-weight: 600; }
+
+        .ed-alcance {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            line-height: 1.6;
+            color: #6b6862;
+            border-left: 2px solid rgba(0,0,0,.14);
+            padding-left: 0.7rem;
+            margin: 0 0 1rem;
+        }
+        @media (max-width: 720px) {
+            .ed-desglose span { min-width: 55%; }
+        }
     </style>
 </head>
 <body class="editorial-body">
@@ -326,20 +356,41 @@
                    data-mp-link="PENDIENTE:busqueda-fonetica-490" data-producto="Búsqueda fonética">Solicitar Búsqueda</a>
             </div>
             <div class="ed-col">
-                <div class="ed-price">$6,990 <span style="font-size:0.5em;">MXN</span></div>
-                <p style="font-weight: 600; color:#111;">REGISTRO TODO INCLUIDO</p>
-                <p>Honorarios, tarifas oficiales del IMPI y seguimiento ininterrumpido de tu expediente de principio a fin, hasta la obtención de tu título.</p>
-                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20iniciar%20el%20registro%20de%20mi%20marca%2C%20todo%20incluido%20(%246%2C990%20MXN)."
+                <div class="ed-price">$6,990 <span style="font-size:0.5em;">MXN / CLASE</span></div>
+                <p style="font-weight: 600; color:#111;">REGISTRO DE MARCA</p>
+                <!-- Desglose honorarios / tarifa oficial: con el "todo incluido" cada
+                     aumento del IMPI se comía el margen en silencio y no se podía
+                     ajustar el precio sin que pareciera un aumento de honorarios.
+                     ⚠ La cifra de tarifa oficial debe confirmarse contra el tarifario
+                     DOF vigente antes de publicar (ver FF_TARIFAS_OFICIALES). -->
+                <p class="ed-desglose">
+                    <span>Honorarios profesionales</span><b>$3,790</b><br>
+                    <span>Tarifa oficial IMPI, por clase</span><b>$3,200</b>
+                </p>
+                <p>Búsqueda de anterioridades, dictamen de clase, presentación y seguimiento del expediente hasta la resolución del IMPI.</p>
+                <!-- Antes decía "hasta la obtención de tu título": era una promesa de
+                     resultado sobre un acto que decide la autoridad, no el despacho. -->
+                <p class="ed-alcance">Incluye una respuesta a requerimientos de forma. La contestación de objeciones de fondo y la defensa frente a oposiciones de tercero son procedimientos independientes que se cotizan aparte, con tarifa preferente. Te avisamos antes de que ocurra.</p>
+                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20iniciar%20el%20registro%20de%20mi%20marca%20(%246%2C990%20MXN%20por%20clase)."
                    target="_blank" rel="noopener" class="ed-btn"
                    data-mp-link="PENDIENTE:registro-marca-6990" data-producto="Registro de marca">Iniciar Registro</a>
             </div>
             <div class="ed-col">
-                <div class="ed-price">$8,990 <span style="font-size:0.5em;">MXN</span></div>
+                <!-- $8,050 = 15% menos que contratarlos por separado ($9,480).
+                     Estaba en $8,050, es decir $490 de descuento (5%): demasiado
+                     pequeño para mover una decisión, y dinero dejado sobre la mesa
+                     sin comprar nada con él. -->
+                <div class="ed-price">$8,050 <span style="font-size:0.5em;">MXN</span></div>
                 <p style="font-weight: 600; color:#111;">PAQUETE PROTECCIÓN TOTAL</p>
-                <p>Registro de marca ante el IMPI y registro de <a href="derechos-autor.html" style="color: inherit; text-decoration: underline;">derechos de autor</a> de tu obra en un solo paquete, con seguimiento unificado de ambos expedientes. Ahorra frente a contratarlos por separado.</p>
-                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Paquete%20Protecci%C3%B3n%20Total%20(marca%20%2B%20derechos%20de%20autor%2C%20%248%2C990%20MXN)."
+                <p>Registro de marca ante el IMPI (una clase) y registro de <a href="derechos-autor.html" style="color: inherit; text-decoration: underline;">derechos de autor</a> de tu obra, con seguimiento unificado de ambos expedientes.</p>
+                <p class="ed-desglose">
+                    <span>Por separado</span><b style="font-weight:400; text-decoration:line-through; opacity:.6;">$9,480</b><br>
+                    <span>En paquete</span><b>$8,050 · ahorras $1,430</b>
+                </p>
+                <p class="ed-alcance">Aplica a una clase de marca. Clases adicionales, respuesta a oficios y oposiciones se cotizan aparte.</p>
+                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Paquete%20Protecci%C3%B3n%20Total%20(marca%20%2B%20derechos%20de%20autor%2C%20%248%2C050%20MXN)."
                    target="_blank" rel="noopener" class="ed-btn"
-                   data-mp-link="PENDIENTE:proteccion-total-8990" data-producto="Protección Total">Solicitar Paquete</a>
+                   data-mp-link="PENDIENTE:proteccion-total-8050" data-producto="Protección Total">Solicitar Paquete</a>
             </div>
         </div>
     </main>
@@ -363,7 +414,7 @@
         </details>
         <details class="faq-item">
             <summary>¿Qué pasa si mi marca es rechazada u objetada?</summary>
-            <p>El paquete todo incluido cubre el seguimiento del expediente y una respuesta a requerimientos de forma del IMPI. La contestación de objeciones de fondo u oposiciones de terceros es un procedimiento independiente que se cotiza por separado, con tarifa preferente para clientes del paquete.</p>
+            <p>El paquete de registro cubre el seguimiento del expediente y una respuesta a requerimientos de forma del IMPI. La contestación de objeciones de fondo u oposiciones de terceros es un procedimiento independiente que se cotiza por separado, con tarifa preferente para clientes del paquete.</p>
         </details>
         <details class="faq-item">
             <summary>¿La búsqueda fonética garantiza que mi marca será aprobada?</summary>
@@ -394,7 +445,7 @@
             {
                 "@type": "Question",
                 "name": "¿Qué pasa si mi marca es rechazada u objetada?",
-                "acceptedAnswer": { "@type": "Answer", "text": "El paquete todo incluido cubre el seguimiento del expediente y una respuesta a requerimientos de forma del IMPI. La contestación de objeciones de fondo u oposiciones de terceros es un procedimiento independiente que se cotiza por separado, con tarifa preferente para clientes del paquete." }
+                "acceptedAnswer": { "@type": "Answer", "text": "El paquete de registro cubre el seguimiento del expediente y una respuesta a requerimientos de forma del IMPI. La contestación de objeciones de fondo u oposiciones de terceros es un procedimiento independiente que se cotiza por separado, con tarifa preferente para clientes del paquete." }
             },
             {
                 "@type": "Question",
@@ -419,7 +470,7 @@
             {
                 "@type": "Product",
                 "name": "Registro de marca ante el IMPI",
-                "description": "Registro de marca todo incluido: honorarios, tarifas oficiales del IMPI y seguimiento del expediente hasta la obtención del título.",
+                "description": "Registro de marca ante el IMPI por clase: honorarios profesionales, tarifa oficial, búsqueda de anterioridades, dictamen de clase y seguimiento del expediente hasta la resolución del IMPI. La respuesta a objeciones de fondo y las oposiciones de tercero se cotizan por separado.",
                 "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
                 "offers": { "@type": "Offer", "price": "6990", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
             },
@@ -435,7 +486,7 @@
                 "name": "Paquete Protección Total (marca + derechos de autor)",
                 "description": "Registro de marca ante el IMPI y registro de derechos de autor de tu obra en un solo paquete con seguimiento unificado.",
                 "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
-                "offers": { "@type": "Offer", "price": "8990", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
+                "offers": { "@type": "Offer", "price": "8050", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
             }
         ]
     }
@@ -463,7 +514,7 @@
     -->
 
     <script src="script.js?v=11"></script>
-    <script src="precios.js?v=2"></script>
+    <script src="precios.js?v=4"></script>
     <script src="analytics.js?v=11"></script>
 </body>
 </html>
