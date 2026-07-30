@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="home-new.css?v=11">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Editorial Layout specific to Marcas */
@@ -272,6 +272,255 @@
         @media (max-width: 720px) {
             .ed-desglose span { min-width: 55%; }
         }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           REDISEÑO EDITORIAL OSCURO — página de marca
+           Referencia: lookbook de marca de ropa. La fuerza visual no viene de
+           fotos sino de dos cosas: tipografía condensada gigante y el símbolo
+           ®. Ese ® es justo el producto que se vende aquí, así que el fondo
+           cicla wordmarks FICTICIOS con ® en vez de marcas reales: poner logos
+           ajenos en el sitio de un despacho de propiedad industrial sería
+           cometer la infracción que el cliente paga por evitar.
+           ═══════════════════════════════════════════════════════════════════ */
+
+        body.editorial-body { background-color: #0a0a0a; color: #e8e6e1; }
+
+        .ed-hero {
+            position: relative;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+            padding: calc(var(--nav-real-h, 96px) + 3rem) 2rem 3rem;
+            background: #0a0a0a;
+        }
+
+        /* ── Fondo: wordmarks ficticios en deriva vertical ──
+           Dos columnas que suben a distinta velocidad. Tipografía pura: cero
+           peso de imágenes. */
+        .ed-marquee {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            gap: 6vw;
+            justify-content: center;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 72%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 72%, transparent);
+        }
+        .ed-marquee-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+            animation: edDeriva 46s linear infinite;
+            will-change: transform;
+        }
+        .ed-marquee-col:nth-child(2) { animation-duration: 64s; animation-direction: reverse; }
+        .ed-marquee-col:nth-child(3) { animation-duration: 54s; }
+        @keyframes edDeriva {
+            from { transform: translateY(0); }
+            to   { transform: translateY(-50%); }
+        }
+        .ed-wordmark {
+            font-family: 'Anton', 'Montserrat', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 5rem);
+            line-height: .92;
+            letter-spacing: -.02em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(232, 230, 225, .16);
+        }
+        /* Uno de cada tres va relleno: da ritmo y evita que se lea como patrón */
+        .ed-wordmark:nth-child(3n) {
+            color: rgba(232, 230, 225, .07);
+            -webkit-text-stroke: 0;
+        }
+        .ed-wordmark sup {
+            font-size: .38em;
+            vertical-align: super;
+            -webkit-text-stroke: 0;
+            color: rgba(232, 230, 225, .3);
+        }
+
+        /* ── Bloque manifiesto: el texto corrido con numeración inline ──
+           No es una lista: es un párrafo continuo que fluye, como la
+           referencia. La numeración va inline y pequeña. */
+        .ed-manifesto {
+            position: relative;
+            z-index: 3;
+            font-family: 'Anton', 'Montserrat', sans-serif;
+            font-size: clamp(1.9rem, 6.4vw, 4.6rem);
+            line-height: .96;
+            letter-spacing: -.018em;
+            text-transform: uppercase;
+            color: #e8e6e1;
+            max-width: 20ch;
+            margin: 0 0 2.5rem;
+            text-wrap: balance;
+        }
+        .ed-manifesto .n {
+            font-family: var(--font-body);
+            font-size: .27em;
+            font-weight: 600;
+            letter-spacing: .06em;
+            vertical-align: super;
+            color: #8f8a80;
+            margin-right: .12em;
+        }
+        .ed-manifesto em {
+            font-style: normal;
+            color: transparent;
+            -webkit-text-stroke: 1.2px #e8e6e1;
+        }
+
+        .ed-eyebrow-dark {
+            position: relative;
+            z-index: 3;
+            font-family: var(--font-body);
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .26em;
+            text-transform: uppercase;
+            color: #8f8a80;
+            margin: 0 0 1.4rem;
+        }
+        .ed-hero-pie {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(232,230,225,.14);
+            padding-top: 1.4rem;
+        }
+        .ed-hero-pie p {
+            font-family: var(--font-body);
+            font-size: .82rem;
+            line-height: 1.6;
+            color: #a8a39a;
+            max-width: 46ch;
+            margin: 0;
+        }
+        .ed-hero-pie .aviso {
+            font-size: .68rem;
+            color: #6d685f;
+            letter-spacing: .04em;
+        }
+        .ed-r-gigante {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            font-family: var(--font-heading);
+            font-size: clamp(9rem, 26vw, 22rem);
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(232,230,225,.2);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Las esquinas de metadatos, en clave oscura */
+        body.editorial-body .ed-meta { color: #6d685f; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ed-marquee-col { animation: none; }
+        }
+        @media (max-width: 860px) {
+            .ed-hero { padding: calc(var(--nav-real-h, 84px) + 2rem) 1.25rem 2rem; }
+            .ed-manifesto { max-width: 100%; margin-bottom: 1.8rem; }
+            .ed-r-gigante { right: -1rem; top: 32%; opacity: .7; }
+            .ed-marquee { gap: 10vw; }
+            .ed-marquee-col:nth-child(3) { display: none; }
+        }
+
+        /* ── Tarjetas de precio en clave oscura ──
+           El contenido no cambia (desglose honorarios/tarifa oficial y nota de
+           alcance); solo se adapta el color para que convivan con el hero. */
+        body.editorial-body .ed-bottom-content { padding-top: 0; }
+        body.editorial-body .ed-col {
+            color: #a8a39a;
+            border: 1px solid rgba(232,230,225,.14);
+            border-radius: 14px;
+            padding: 1.9rem 1.6rem;
+            background: rgba(255,255,255,.02);
+            display: flex;
+            flex-direction: column;
+        }
+        body.editorial-body .ed-price { color: #e8e6e1; }
+        body.editorial-body .ed-col p[style*="font-weight"] { color: #e8e6e1 !important; }
+        body.editorial-body .ed-desglose {
+            color: #a8a39a;
+            border-top-color: rgba(232,230,225,.16);
+            border-bottom-color: rgba(232,230,225,.16);
+        }
+        body.editorial-body .ed-desglose b { color: #e8e6e1; }
+        body.editorial-body .ed-alcance {
+            color: #8f8a80;
+            border-left-color: rgba(232,230,225,.2);
+        }
+        body.editorial-body .ed-col a[style*="inherit"] { color: #e8e6e1 !important; }
+        body.editorial-body .ed-btn {
+            margin-top: auto;
+            background: #e8e6e1;
+            color: #0a0a0a;
+            align-self: flex-start;
+        }
+        body.editorial-body .ed-btn:hover { background: #fff; }
+
+        /* La FAQ también vive en oscuro */
+        body.editorial-body .faq-section { background: #0a0a0a; }
+        body.editorial-body .faq-section h2,
+        body.editorial-body .faq-section h3 { color: #e8e6e1; }
+        body.editorial-body .faq-section p { color: #a8a39a; }
+
+        /* ── Velo de legibilidad ──
+           Medido: 10 wordmarks pasaban justo detrás del manifiesto y lo volvían
+           ilegible. Un degradado desde la izquierda apoya el texto sobre negro
+           mientras el fondo sigue viéndose a la derecha, que es como funciona
+           la referencia. Va por encima del marquee (z2) y debajo del texto (z3). */
+        .ed-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                linear-gradient(100deg,
+                    rgba(10,10,10,.97) 0%,
+                    rgba(10,10,10,.92) 34%,
+                    rgba(10,10,10,.55) 58%,
+                    rgba(10,10,10,.15) 100%),
+                linear-gradient(to top, rgba(10,10,10,.95) 0%, transparent 34%);
+        }
+        /* El ® gigante debe quedar por encima del velo, es elemento de diseño */
+        .ed-r-gigante { z-index: 3; }
+
+        /* Las esquinas quedaban a 5px del eyebrow: se separan */
+        body.editorial-body .ed-hero .ed-meta { z-index: 4; }
+        body.editorial-body .ed-hero .ed-meta.top-left,
+        body.editorial-body .ed-hero .ed-meta.top-right {
+            top: calc(var(--nav-real-h, 96px) + .6rem);
+        }
+        body.editorial-body .ed-hero .ed-meta.top-left { left: 2rem; }
+        body.editorial-body .ed-hero .ed-meta.top-right { right: 2rem; }
+
+        @media (max-width: 860px) {
+            /* En móvil el texto ocupa todo el ancho: el velo protege de arriba abajo */
+            .ed-hero::before {
+                background:
+                    linear-gradient(to bottom, rgba(10,10,10,.88) 0%, rgba(10,10,10,.72) 46%, rgba(10,10,10,.96) 100%);
+            }
+            body.editorial-body .ed-hero .ed-meta.top-left { left: 1.25rem; }
+            body.editorial-body .ed-hero .ed-meta.top-right { right: 1.25rem; }
+        }
     </style>
 </head>
 <body class="editorial-body">
@@ -323,22 +572,94 @@
     </nav>
 
     <!-- ═══ EDITORIAL LAYOUT ═══ -->
-    <main class="editorial-container">
-        
-        <!-- Corners -->
-        <div class="ed-meta top-left">FERRO FRAGOSO / EST. 2024</div>
-        <div class="ed-meta top-right">MÉXICO / 01</div>
-        <div class="ed-meta bottom-left">PROPIEDAD INTELECTUAL</div>
-        <div class="ed-meta bottom-right">IMPI / 02</div>
+    <main class="ed-hero">
 
-        <!-- Giant Title -->
-        <div class="ed-giant-title">
-            PROPIEDAD<br>INTELECTUAL
+        <!-- Fondo: wordmarks FICTICIOS con ®. No se usan marcas reales a
+             propósito: en el sitio de un despacho de propiedad industrial,
+             exhibir marca ajena sería cometer la infracción que el cliente
+             paga por evitar. Estos nombres son acuñados y se declara que lo
+             son en el pie del hero. -->
+        <div class="ed-marquee">
+                <div class="ed-marquee-col" aria-hidden="true">
+                    <div class="ed-wordmark">NOVAREN<sup>®</sup></div>
+                    <div class="ed-wordmark">VÉRTICE<sup>®</sup></div>
+                    <div class="ed-wordmark">ONIXA<sup>®</sup></div>
+                    <div class="ed-wordmark">TALLER SUR<sup>®</sup></div>
+                    <div class="ed-wordmark">KAORU<sup>®</sup></div>
+                    <div class="ed-wordmark">PRISMA NORTE<sup>®</sup></div>
+                    <div class="ed-wordmark">CÓDICE<sup>®</sup></div>
+                    <div class="ed-wordmark">LUMBRARA<sup>®</sup></div>
+                    <div class="ed-wordmark">NOVAREN<sup>®</sup></div>
+                    <div class="ed-wordmark">VÉRTICE<sup>®</sup></div>
+                    <div class="ed-wordmark">ONIXA<sup>®</sup></div>
+                    <div class="ed-wordmark">TALLER SUR<sup>®</sup></div>
+                    <div class="ed-wordmark">KAORU<sup>®</sup></div>
+                    <div class="ed-wordmark">PRISMA NORTE<sup>®</sup></div>
+                    <div class="ed-wordmark">CÓDICE<sup>®</sup></div>
+                    <div class="ed-wordmark">LUMBRARA<sup>®</sup></div>
+                </div>
+                <div class="ed-marquee-col" aria-hidden="true">
+                    <div class="ed-wordmark">ARBOLEDA<sup>®</sup></div>
+                    <div class="ed-wordmark">SIETE PIEDRAS<sup>®</sup></div>
+                    <div class="ed-wordmark">MERIDIA<sup>®</sup></div>
+                    <div class="ed-wordmark">ÁMBAR ESTUDIO<sup>®</sup></div>
+                    <div class="ed-wordmark">QUINTA LUZ<sup>®</sup></div>
+                    <div class="ed-wordmark">NÓMADA<sup>®</sup></div>
+                    <div class="ed-wordmark">ZAFRA<sup>®</sup></div>
+                    <div class="ed-wordmark">ORIGEN 9<sup>®</sup></div>
+                    <div class="ed-wordmark">ARBOLEDA<sup>®</sup></div>
+                    <div class="ed-wordmark">SIETE PIEDRAS<sup>®</sup></div>
+                    <div class="ed-wordmark">MERIDIA<sup>®</sup></div>
+                    <div class="ed-wordmark">ÁMBAR ESTUDIO<sup>®</sup></div>
+                    <div class="ed-wordmark">QUINTA LUZ<sup>®</sup></div>
+                    <div class="ed-wordmark">NÓMADA<sup>®</sup></div>
+                    <div class="ed-wordmark">ZAFRA<sup>®</sup></div>
+                    <div class="ed-wordmark">ORIGEN 9<sup>®</sup></div>
+                </div>
+                <div class="ed-marquee-col" aria-hidden="true">
+                    <div class="ed-wordmark">TEJIDO<sup>®</sup></div>
+                    <div class="ed-wordmark">ALMENARA<sup>®</sup></div>
+                    <div class="ed-wordmark">RUTA CERO<sup>®</sup></div>
+                    <div class="ed-wordmark">VELARIA<sup>®</sup></div>
+                    <div class="ed-wordmark">CUARZO<sup>®</sup></div>
+                    <div class="ed-wordmark">MANTA<sup>®</sup></div>
+                    <div class="ed-wordmark">SOLERA<sup>®</sup></div>
+                    <div class="ed-wordmark">ÍNDIGO SUR<sup>®</sup></div>
+                    <div class="ed-wordmark">TEJIDO<sup>®</sup></div>
+                    <div class="ed-wordmark">ALMENARA<sup>®</sup></div>
+                    <div class="ed-wordmark">RUTA CERO<sup>®</sup></div>
+                    <div class="ed-wordmark">VELARIA<sup>®</sup></div>
+                    <div class="ed-wordmark">CUARZO<sup>®</sup></div>
+                    <div class="ed-wordmark">MANTA<sup>®</sup></div>
+                    <div class="ed-wordmark">SOLERA<sup>®</sup></div>
+                    <div class="ed-wordmark">ÍNDIGO SUR<sup>®</sup></div>
+                </div>
         </div>
 
-        <!-- Center Art -->
-        <div class="ed-center-art" style="font-family: var(--font-heading); font-size: clamp(10rem, 25vw, 18rem); color: #111; text-align: center; line-height: 1; mix-blend-mode: normal; filter: none; width: auto; height: auto;">®</div>
+        <div class="ed-r-gigante" aria-hidden="true">®</div>
 
+        <div class="ed-meta top-left">FERRO FRAGOSO / EST. 2024</div>
+        <div class="ed-meta top-right">MÉXICO / IMPI</div>
+
+        <p class="ed-eyebrow-dark">Registro de marca · 01</p>
+
+        <!-- Texto corrido con numeración inline, no una lista: así fluye y
+             envuelve igual que en la referencia. -->
+        <h1 class="ed-manifesto">
+            <span class="n">01.</span>Búsqueda de anterioridades
+            <span class="n">02.</span><em>Dictamen de clase</em>
+            <span class="n">03.</span>Presentación ante IMPI
+            <span class="n">04.</span><em>Seguimiento del expediente</em>
+            <span class="n">05.</span>Declaración de uso
+        </h1>
+
+        <div class="ed-hero-pie">
+            <p>Lo que va incluido en el registro. La clase la dictaminamos antes de presentar: registrar en la clase equivocada da un título que no protege lo que vendes, y la tarifa oficial no se devuelve.</p>
+            <p class="aviso">Los nombres del fondo son ficticios,<br>usados solo como ejemplo.</p>
+        </div>
+    </main>
+
+    <main class="editorial-container" style="min-height:auto; padding-top:4rem;">
         <!-- Columns at Bottom -->
         <div class="ed-bottom-content">
             <div class="ed-col">
