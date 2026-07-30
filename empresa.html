@@ -34,6 +34,9 @@
   :root{
     --ink:#141d27;--ink-2:#1c2732;--ink-3:#27333f;
     --paper:#f4f1e9;--paper-2:#e9e4d7;
+    /* crema del arte del hero: los PNG traen este relleno dentro de las hojas,
+       así que el fondo del hero debe ser exactamente el mismo tono. */
+    --paper-art:#f3ecda;
     --brass:#c2903f;--brass-deep:#a9762f;--seal:#8a2b34;
     --fog:#8b98a5;--slate:#54626f;
     --line-d:rgba(244,241,233,.12);--line-l:rgba(20,29,39,.12);
@@ -53,52 +56,104 @@
   .empresa-body h2.sec { font-family:var(--serif); font-weight:400; font-size:clamp(1.9rem,4vw,2.7rem); line-height:1.08; letter-spacing:-.01em; margin-bottom: 0; }
   .empresa-body h2.sec em { font-style:italic; color:var(--brass); }
 
-  /* hero */
-  .empresa-body .hero { padding:calc(var(--nav-real-h, 138px) + 72px) 0 96px; position:relative; overflow:hidden; }
-  .empresa-body .hero::after { content:""; position:absolute; inset:0; background:radial-gradient(120% 80% at 88% -10%,rgba(194,144,63,.08),transparent 60%), linear-gradient(180deg, transparent 60%, var(--paper) 100%); pointer-events:none; }
-  .empresa-body .hero .wrap { position:relative; z-index:1; }
-  /* Sombra muy leve: da borde al texto donde el patrón queda justo detrás. */
-  .empresa-body .hero h1,
-  .empresa-body .hero p { text-shadow:0 1px 12px rgba(10,9,8,.45); }
-  .empresa-body .hero h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.5rem,6.2vw,4.3rem); line-height:1.03; letter-spacing:-.01em; margin:18px 0 0; max-width:820px; color: var(--paper); }
-  .empresa-body .hero h1 em { font-style:italic; color:var(--brass); }
-  .empresa-body .hero p { font-family:var(--serif); font-size:clamp(1.08rem,2.2vw,1.3rem); color:#c6cfd8; max-width:600px; margin:22px 0 0; font-weight:500; }
-  .empresa-body .hero .cta { display:flex; gap:14px; flex-wrap:wrap; margin-top:34px; }
+  /* ── hero editorial sobre crema ──
+     El arte (pilas de expedientes en line-art) se ancla a los dos bordes y el
+     texto vive en el hueco central, así que la composición aguanta cualquier
+     ancho sin que una pila se meta debajo del titular. */
+  .empresa-body .hero {
+    padding:calc(var(--nav-real-h, 138px) + 64px) 0 96px;
+    position:relative; overflow:hidden;
+    /* crema exacta del arte: los rellenos internos de las hojas son opacos y
+       solo empatan si el fondo del hero es este mismo tono. */
+    background:var(--paper-art);
+  }
+  /* La crema del arte y la del sitio no son el mismo tono: sin este velo se ve
+     una línea dura al terminar el hero. De paso desvanece los tallos de las
+     pilas en lugar de cortarlos a ras. */
+  .empresa-body .hero::after {
+    content:""; position:absolute; left:0; right:0; bottom:0; height:140px;
+    z-index:1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(244,241,233,0) 0%, var(--paper) 82%);
+  }
+  .empresa-body .hero .wrap { position:relative; z-index:2; text-align:center; }
+  .empresa-body .hero .eyebrow { color:var(--brass-deep); }
+  .empresa-body .hero h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.5rem,6.2vw,4.3rem); line-height:1.03; letter-spacing:-.01em; margin:18px auto 0; max-width:760px; color:var(--ink); }
+  .empresa-body .hero h1 em { font-style:italic; color:var(--brass-deep); }
+  .empresa-body .hero p { font-family:var(--serif); font-size:clamp(1.08rem,2.2vw,1.3rem); color:var(--slate); max-width:560px; margin:22px auto 0; font-weight:500; }
+  .empresa-body .hero .cta { display:flex; gap:14px; flex-wrap:wrap; margin-top:34px; justify-content:center; }
+  /* sobre crema el botón fantasma necesita borde de tinta, no de papel */
+  .empresa-body .hero .btn-ghost { border-color:var(--ink); color:var(--ink); }
+  .empresa-body .hero .btn-ghost:hover { background:var(--ink); border-color:var(--ink); color:var(--paper); }
 
-  /* ── Fondo animado del hero (Higgsfield) ──
-     Arranca por debajo del navbar fijo para que la barra de menú siga
-     legible, y cubre el resto del hero a sangre. El velo degradado deja
-     ver las cláusulas a la derecha y protege el contraste del texto. */
-  /* El fondo cubre el hero completo: la barra de menú es una píldora blanca
-     opaca, así que se lee sobre el arte y no hace falta reservarle una franja
-     (esa reserva era justo lo que dejaba la banda negra arriba). */
-  .empresa-body .hero-bg {
-    position:absolute; inset:0;
-    z-index:0; overflow:hidden;
+  /* ── Arte del hero (Higgsfield) ──
+     Dos piezas PNG con fondo transparente pegadas a los bordes inferiores.
+     Se dimensionan por altura (no por ancho) para que el hueco central crezca
+     con el viewport en lugar de encogerse. */
+  .empresa-body .hero-art { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .empresa-body .hero-art .pila {
+    position:absolute; bottom:0; height:74%; width:auto;
+    /* Doble tope a propósito: en pantallas anchas manda la altura (el arte se
+       ve completo) y en pantallas medias manda el ancho, que es lo que impide
+       que una pila se meta debajo del titular centrado. */
+    max-width:16%;
+    object-fit:contain; object-position:bottom;
   }
-  .empresa-body .hero-bg video {
-    width:100%; height:100%;
-    object-fit:cover; object-position:left center;
-    display:block; border-radius:0;
+  .empresa-body .hero-art .pila-izq { left:clamp(-56px, -2.5vw, -8px); }
+  .empresa-body .hero-art .pila-der { right:clamp(-56px, -2.5vw, -8px); height:80%; }
+
+  /* ── Hojas volando ──
+     Cada hoja combina dos animaciones anidadas de duración distinta: el <span>
+     deriva y el <svg> gira. Al no ser múltiplos entre sí, el ciclo aparente
+     tarda muchísimo en repetirse y el vuelo se lee orgánico, no metronómico.
+     Solo se animan transforms, así que todo corre en compositor. */
+  .empresa-body .hero-hojas { position:absolute; inset:0; z-index:1; pointer-events:none; }
+  .empresa-body .hoja {
+    position:absolute; left:var(--l); top:var(--t); width:var(--sz,54px);
+    will-change:transform;
+    animation:hoja-deriva var(--dur,14s) ease-in-out var(--dly,0s) infinite;
   }
-  .empresa-body .hero-bg::after {
-    content:""; position:absolute; inset:0; pointer-events:none;
-    /* 72% donde vive el texto: es el mínimo medido que hace pasar al párrafo
-       (5.49) y al titular (7.67) sobre las zonas crema del arte. Se abre hacia
-       la derecha para que las cláusulas sigan a la vista. */
-    background:
-      linear-gradient(90deg,
-        rgba(10,9,8,.74) 0%,
-        rgba(10,9,8,.72) 34%,
-        rgba(10,9,8,.45) 66%,
-        rgba(10,9,8,.24) 100%);
+  .empresa-body .hoja svg {
+    display:block; width:100%; height:auto; color:var(--ink);
+    animation:hoja-giro calc(var(--dur,14s) * 1.37) ease-in-out var(--dly,0s) infinite;
   }
-  @media (max-width:820px){
-    .empresa-body .hero-bg::after {
-      /* en móvil el texto ocupa todo el ancho: el velo protege de arriba abajo */
-      background:
-        linear-gradient(180deg, rgba(10,9,8,.76) 55%, rgba(10,9,8,.42) 100%);
-    }
+  @keyframes hoja-deriva {
+    0%   { transform:translate3d(0,0,0); }
+    25%  { transform:translate3d(calc(var(--dx) * .55), calc(var(--dy) * -1), 0); }
+    50%  { transform:translate3d(var(--dx), calc(var(--dy) * -.3), 0); }
+    75%  { transform:translate3d(calc(var(--dx) * .3), calc(var(--dy) * .55), 0); }
+    100% { transform:translate3d(0,0,0); }
+  }
+  @keyframes hoja-giro {
+    0%   { transform:rotate(var(--rot,0deg)); }
+    50%  { transform:rotate(calc(var(--rot,0deg) + var(--spin,14deg))); }
+    100% { transform:rotate(var(--rot,0deg)); }
+  }
+  /* Accesibilidad: quien pide menos movimiento ve la misma escena, quieta. */
+  @media (prefers-reduced-motion: reduce) {
+    .empresa-body .hoja,
+    .empresa-body .hoja svg { animation:none; }
+    .empresa-body .hoja svg { transform:rotate(var(--rot,0deg)); }
+  }
+  /* Banda intermedia: ya no cabe el titular a 760px entre las dos pilas, así
+     que se estrecha el texto en vez de encoger el arte hasta lo ridículo. */
+  @media (max-width:1280px){
+    .empresa-body .hero h1 { max-width:620px; }
+    .empresa-body .hero p { max-width:520px; }
+    .empresa-body .hero-art .pila { height:62%; }
+    .empresa-body .hero-art .pila-der { height:66%; }
+  }
+  @media (max-width:1024px){
+    /* En móvil el texto ocupa todo el ancho, así que el arte se retira: las
+       pilas bajan al pie del hero —con aire extra para no cruzar los botones—
+       y solo sobreviven las hojas que vuelan por encima del titular. */
+    .empresa-body .hero { padding-bottom:270px; }
+    .empresa-body .hero-art .pila { height:29%; opacity:.42; }
+    .empresa-body .hero-art .pila-der { height:32%; }
+    .empresa-body .hero::after { height:200px; }
+    .empresa-body .hoja { width:calc(var(--sz,54px) * .66); }
+    /* Las del centro chocan con el titular y las bajas con el párrafo. */
+    .empresa-body .hoja-centro,
+    .empresa-body .hoja-baja { display:none; }
   }
 
   /* problema */
@@ -396,13 +451,45 @@
 
 <!-- HERO -->
 <div class="hero">
-  <!-- Fondo animado del hero (Higgsfield): cláusulas contractuales que se
-       redactan y revisan en tiempo real. -->
-  <div class="hero-bg" aria-hidden="true">
-    <video class="empresas-art-video" autoplay muted loop playsinline preload="auto"
-           poster="empresas_hero.png">
-      <source src="empresas_hero_v2.mp4" type="video/mp4">
-    </video>
+  <!-- Arte del hero (Higgsfield): las dos pilas de expedientes, en line-art
+       sobre crema. Van como PNG con alfa, ancladas a los bordes. -->
+  <div class="hero-art" aria-hidden="true">
+    <img class="pila pila-izq" src="empresa_hero_pila_izq.png" alt="" width="228" height="644" fetchpriority="high" decoding="async">
+    <img class="pila pila-der" src="empresa_hero_pila_der.png" alt="" width="284" height="699" fetchpriority="high" decoding="async">
+  </div>
+
+  <!-- Hojas volando. Son SVG, no imágenes: así se animan y escalan sin peso
+       extra. Cada una lleva su propia deriva, giro, tamaño y desfase para que
+       ninguna se mueva igual que otra. -->
+  <div class="hero-hojas" aria-hidden="true">
+    <svg width="0" height="0" style="position:absolute" focusable="false">
+      <defs>
+        <!-- hoja con bloque de firma -->
+        <symbol id="hoja-a" viewBox="0 0 80 62">
+          <g transform="translate(9 9) skewY(-11) skewX(-7)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="0" y="0" width="58" height="44" fill="var(--paper-art)"/>
+            <rect x="5" y="5" width="15" height="12" fill="currentColor" stroke="none"/>
+            <path d="M26 8h26M26 14h22M5 25h48M5 31h48M5 37h31"/>
+          </g>
+        </symbol>
+        <!-- hoja solo de texto, con esquina doblada -->
+        <symbol id="hoja-b" viewBox="0 0 80 62">
+          <g transform="translate(9 9) skewY(-11) skewX(-7)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M0 0h47l11 11v33H0Z" fill="var(--paper-art)" stroke-linejoin="round"/>
+            <path d="M47 0v11h11"/>
+            <path d="M5 20h48M5 26h48M5 32h48M5 38h28"/>
+          </g>
+        </symbol>
+      </defs>
+    </svg>
+
+    <span class="hoja" style="--l:6%;--t:20%;--sz:58px;--rot:-16deg;--spin:22deg;--dx:44px;--dy:34px;--dur:15s;--dly:-2s"><svg viewBox="0 0 80 62"><use href="#hoja-a"/></svg></span>
+    <span class="hoja hoja-baja" style="--l:14%;--t:44%;--sz:44px;--rot:12deg;--spin:-18deg;--dx:-32px;--dy:40px;--dur:19s;--dly:-7s"><svg viewBox="0 0 80 62"><use href="#hoja-b"/></svg></span>
+    <span class="hoja hoja-centro" style="--l:30%;--t:12%;--sz:40px;--rot:-8deg;--spin:26deg;--dx:38px;--dy:26px;--dur:22s;--dly:-11s"><svg viewBox="0 0 80 62"><use href="#hoja-b"/></svg></span>
+    <span class="hoja hoja-centro" style="--l:52%;--t:9%;--sz:50px;--rot:18deg;--spin:-20deg;--dx:-40px;--dy:30px;--dur:17s;--dly:-4s"><svg viewBox="0 0 80 62"><use href="#hoja-a"/></svg></span>
+    <span class="hoja hoja-baja" style="--l:74%;--t:26%;--sz:46px;--rot:-22deg;--spin:16deg;--dx:36px;--dy:44px;--dur:21s;--dly:-9s"><svg viewBox="0 0 80 62"><use href="#hoja-b"/></svg></span>
+    <span class="hoja" style="--l:86%;--t:14%;--sz:62px;--rot:9deg;--spin:-24deg;--dx:-30px;--dy:36px;--dur:16s;--dly:-13s"><svg viewBox="0 0 80 62"><use href="#hoja-a"/></svg></span>
+    <span class="hoja hoja-baja" style="--l:91%;--t:52%;--sz:38px;--rot:-13deg;--spin:20deg;--dx:26px;--dy:30px;--dur:24s;--dly:-6s"><svg viewBox="0 0 80 62"><use href="#hoja-b"/></svg></span>
   </div>
 
   <div class="wrap">
@@ -843,28 +930,22 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', sincronizar);
   })();
 
-  /* Reproducción del fondo del hero. El atributo autoplay ya lo arranca;
-     esto solo lo pausa fuera de pantalla para no gastar CPU ni batería, y
-     reintenta el play si el navegador lo bloqueó. Vive aquí y no en
-     script.js para que la página no dependa de un archivo compartido. */
+  /* Las hojas del hero se animan con CSS, pero seguir componiendo transforms
+     fuera de pantalla es gasto puro de batería. Al salir el hero del viewport
+     se les corta la animación y al volver se reanuda. */
   (function () {
-    const v = document.querySelector('.hero-bg video');
-    if (!v) return;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      v.removeAttribute('autoplay');
-      v.removeAttribute('loop');
-      v.pause();
-      return;
-    }
-
-    const arrancar = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
-    arrancar();
-    v.addEventListener('canplay', arrancar, { once: true });
+    const hero = document.querySelector('.hero');
+    const hojas = document.querySelector('.hero-hojas');
+    if (!hero || !hojas) return;
 
     new IntersectionObserver((entradas) => {
-      entradas.forEach(e => e.isIntersecting ? arrancar() : v.pause());
-    }, { threshold: 0.1 }).observe(v);
+      entradas.forEach((e) => {
+        hojas.style.animationPlayState = e.isIntersecting ? '' : 'paused';
+        hojas.querySelectorAll('.hoja, .hoja svg').forEach((n) => {
+          n.style.animationPlayState = e.isIntersecting ? '' : 'paused';
+        });
+      });
+    }, { threshold: 0 }).observe(hero);
   })();
 </script>
 </body>
