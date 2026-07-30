@@ -186,6 +186,49 @@ const FF_SERVICIOS = {
     pago: '',
   },
 
+  /* — Monetización de marca (nivel 03) ────────────────────────────────────
+     Escalera: proteger → ordenar → monetizar. Este bloque no existía; era el
+     hueco de mayor valor del catálogo y la razón por la que el registro de
+     marca competía por precio contra gestores.
+
+     ⚠ PRECIOS PROPUESTOS, PENDIENTES DE VALIDAR ⚠
+     Se publican como referencia de mercado, no como cotización cerrada. El
+     despacho no ha estructurado franquicias todavía, así que el proyecto
+     completo va condicionado a diagnóstico previo: es la única forma honesta
+     de venderlo sin comprometer un alcance que aún no se ha medido en horas.
+     El diagnóstico sí es entregable hoy: es análisis jurídico.               */
+
+  diagnostico_franquicia: {
+    nombre: 'Diagnóstico de franquiciabilidad',
+    precio: 4990, unidad: 'MXN', desde: false, publico: 'negocios',
+    nota: 'Dictamen de si tu negocio puede franquiciarse: estado de la marca, replicabilidad, qué falta y qué costaría. Se acredita al proyecto si decides continuar.',
+    pago: '',
+  },
+  licencia_marca: {
+    nombre: 'Licencia de uso de marca',
+    precio: 12990, unidad: 'MXN', desde: true, publico: 'negocios',
+    nota: 'Contrato de licencia e inscripción ante el IMPI, para que un tercero use tu marca y tú cobres por ello.',
+    requiere: 'registro_marca',
+    pago: '',
+  },
+  cesion_marca: {
+    nombre: 'Cesión o venta de marca',
+    precio: 6990, unidad: 'MXN', desde: true, publico: 'negocios',
+    nota: 'Transmisión de derechos con inscripción ante el IMPI: vender la marca como el activo que es.',
+    requiere: 'registro_marca',
+    pago: '',
+  },
+  franquicia: {
+    nombre: 'Estructura de franquicia',
+    precio: 59900, unidad: 'MXN', desde: true, publico: 'negocios',
+    /* En México no se puede franquiciar sin marca registrada, y la Circular de
+       Oferta de Franquicia debe entregarse 30 días antes de firmar. */
+    nota: 'Circular de Oferta de Franquicia, contrato de franquicia y licencia de marca. Requiere diagnóstico previo.',
+    requiere: 'registro_marca',
+    requiereDiagnostico: true,
+    pago: '',
+  },
+
   /* — Empresa y cumplimiento — */
   reporte_riesgo: {
     nombre: 'Reporte de Riesgo Contractual',
@@ -323,17 +366,39 @@ function ffValidarPrecios({ verboso = false } = {}) {
 
   const huerfanos = [...new Set(encontrados)].filter((n) => !importes.has(n));
 
-  /* Nombre canónico presente pero con otro importe cerca */
+  /* ── Sobre la comprobación que NO está aquí ──────────────────────────────
+     Se intentó detectar "nombre canónico junto a un importe equivocado" con
+     tres heurísticas de proximidad: hacia adelante, en ventana simétrica, y
+     recorriendo ancestros del DOM. Las tres se descartaron porque fallaban en
+     ambas direcciones a la vez:
+
+       · FALSOS POSITIVOS: en derechos-autor.html el nombre "Registro de marca
+         ante IMPI" aparece como componente de un paquete de $8,050. Ninguna
+         heurística de cercanía puede distinguir "producto mal cotizado" de
+         "componente de un paquete", porque estructuralmente son idénticos.
+
+       · FALSO NEGATIVO en su caso de uso: al sustituir $6,990 por $490 —un
+         importe válido del catálogo pero de otro producto— no se detectaba,
+         porque $490 también estaba cerca legítimamente.
+
+     Una comprobación que avisa cuando no debe y calla cuando debe es peor que
+     no tenerla: enseña a ignorar las alertas. Se elimina.
+
+     LO QUE SÍ CUBRE ESTE VALIDADOR
+     `huerfanos` detecta cualquier importe de la página que no exista en el
+     catálogo. Eso atrapa todo precio viejo o mal escrito, que es el fallo real
+     y frecuente (fue el origen de las siete incoherencias corregidas).
+
+     HUECO CONOCIDO
+     Si un precio se sustituye por OTRO importe que sí está en el catálogo
+     (poner $490 donde va $6,990), no se detecta automáticamente.
+
+     CÓMO CERRARLO CUANDO VALGA LA PENA
+     Con enlace explícito en lugar de adivinanza: marcar en el HTML
+     data-servicio="registro_marca" junto al precio, y validar ese par. Es
+     fiable porque no infiere nada, pero exige anotar los ~40 precios del sitio.
+     ------------------------------------------------------------------------ */
   const desalineados = [];
-  Object.entries(catalogo).forEach(([id, s]) => {
-    const i = texto.indexOf(s.nombre);
-    if (i === -1) return;
-    const cerca = texto.slice(i, i + 220);
-    const m = cerca.match(/\$\s?([0-9]{1,3}(?:,[0-9]{3})+|[0-9]{3,6})/);
-    if (m && Number(m[1].replace(/,/g, '')) !== s.precio) {
-      desalineados.push(`${id}: la página dice $${m[1]}, el catálogo dice ${ffPrecio(s.precio)}`);
-    }
-  });
 
   const informe = { pagina: location.pathname, huerfanos, desalineados };
   if (huerfanos.length || desalineados.length) {
