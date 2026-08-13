@@ -162,11 +162,11 @@
     color: var(--accent, #958463);
 }
 
-/* tier grid with 3D Stack/Perspective Effect */
+/* tier grid for 4 plans */
 .home-solutions .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
     margin-top: 40px;
     align-items: center;
     perspective: 1200px;
@@ -185,34 +185,32 @@
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* 3D stack placement on desktop */
-@media (min-width: 821px) {
-    /* Plan 0 (Left) */
-    .home-solutions .grid .plan:nth-child(1) {
-        transform-origin: right center;
+/* 4 plans placement on desktop */
+@media (min-width: 1024px) {
+    .home-solutions .grid .plan {
+        transform-origin: center center;
         z-index: 1;
     }
-    .home-solutions .grid.is-visible .plan:nth-child(1) {
-        transform: scale(0.94) translateX(24px) rotateY(5deg) !important;
+    .home-solutions .grid.is-visible .plan:not(.feat) {
+        transform: scale(0.95) !important;
     }
     
-    /* Plan 1 (Center/Feat/Popular) */
-    .home-solutions .grid .plan:nth-child(2) {
+    .home-solutions .grid .plan.feat {
         z-index: 10;
         border: 2px solid var(--accent, #958463);
         box-shadow: 0 25px 50px rgba(0,0,0,0.25);
     }
-    .home-solutions .grid.is-visible .plan:nth-child(2) {
-        transform: scale(1.0) translateY(-16px) !important;
+    .home-solutions .grid.is-visible .plan.feat {
+        transform: scale(1.02) translateY(-10px) !important;
     }
-    
-    /* Plan 2 (Right) */
-    .home-solutions .grid .plan:nth-child(3) {
-        transform-origin: left center;
-        z-index: 1;
+}
+@media (min-width: 821px) and (max-width: 1023px) {
+    .home-solutions .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
-    .home-solutions .grid.is-visible .plan:nth-child(3) {
-        transform: scale(0.94) translateX(-24px) rotateY(-5deg) !important;
+    .home-solutions .grid .plan.feat {
+        border: 2px solid var(--accent, #958463);
     }
 }
 
