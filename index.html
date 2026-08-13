@@ -465,31 +465,35 @@
                 display: block;
                 text-decoration: none;
                 color: inherit;
-                border: 1px solid rgba(0,0,0,0.08);
-                border-radius: 12px;
+                border: 1px solid rgba(0,0,0,0.03);
+                border-radius: 16px;
                 position: relative;
-                transition: all 0.25s ease;
-                background-color: rgba(255, 255, 255, 0.4);
-                box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02);
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                background-color: rgba(255, 255, 255, 0.6);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                box-shadow: 0 4px 24px -6px rgba(0,0,0,0.02);
                 overflow: hidden;
             }
             .consulta-fila-contenido {
-                padding: 1.25rem 0.75rem;
+                padding: 1.5rem 1.25rem;
                 position: relative;
                 z-index: 2;
             }
             .consulta-fila--recomendada {
-                background-color: rgba(255, 255, 255, 0.85);
-                border-color: rgba(220, 38, 38, 0.2);
+                background-color: rgba(255, 255, 255, 0.95);
+                border: 1px solid rgba(255, 113, 18, 0.2);
+                box-shadow: 0 8px 30px -8px rgba(255, 113, 18, 0.08);
             }
             .consulta-fila-linea-roja {
                 position: absolute;
                 left: 0;
                 top: 0;
                 bottom: 0;
-                width: 3px;
-                background-color: #dc2626;
+                width: 4px;
+                background: linear-gradient(to bottom, #FF7112, #dc2626);
                 z-index: 3;
+                opacity: 0.8;
             }
             .consulta-fila-header {
                 display: flex;
@@ -511,14 +515,15 @@
             }
             .consulta-fila-badge {
                 font-family: var(--font-body, system-ui, sans-serif);
-                font-size: 0.65rem;
+                font-size: 0.6rem;
                 font-weight: 700;
-                letter-spacing: 0.05em;
-                background-color: #111;
-                color: #fff;
-                padding: 3px 8px;
-                border-radius: 4px;
+                letter-spacing: 0.1em;
+                background-color: rgba(255, 113, 18, 0.1);
+                color: #e65c00;
+                padding: 4px 10px;
+                border-radius: 20px;
                 text-transform: uppercase;
+                border: 1px solid rgba(255, 113, 18, 0.2);
             }
             .consulta-fila-meta {
                 display: flex;
@@ -528,7 +533,7 @@
             }
             .consulta-fila-duracion {
                 font-size: 0.85rem;
-                color: #666;
+                color: #888;
                 font-weight: 500;
             }
             .consulta-fila-precio {
@@ -537,8 +542,8 @@
                 color: #333;
             }
             .consulta-fila-precio--destacado {
-                color: #dc2626;
-                font-weight: 700;
+                color: #e65c00;
+                font-weight: 600;
             }
             .consulta-fila-desc {
                 font-family: var(--font-body, system-ui, sans-serif);
@@ -565,10 +570,14 @@
             
             @media (hover: hover) {
                 .consulta-fila:hover {
-                    background-color: rgba(255, 255, 255, 0.95);
-                    transform: translateY(-3px);
-                    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
-                    border-color: rgba(0,0,0,0.12);
+                    background-color: rgba(255, 255, 255, 1);
+                    transform: translateY(-4px);
+                    box-shadow: 0 16px 40px -10px rgba(0,0,0,0.06);
+                    border-color: rgba(0,0,0,0.06);
+                }
+                .consulta-fila--recomendada:hover {
+                    border-color: rgba(255, 113, 18, 0.3);
+                    box-shadow: 0 16px 40px -10px rgba(255, 113, 18, 0.12);
                 }
                 .consulta-fila:hover .consulta-fila-cta-wrap {
                     opacity: 1;
@@ -593,7 +602,7 @@
             
             @media (max-width: 768px) {
                 .consulta-fila-contenido {
-                    padding: 1rem 0.5rem;
+                    padding: 1.25rem 1rem;
                 }
                 .consulta-fila-titulo {
                     font-size: 1.4rem;
