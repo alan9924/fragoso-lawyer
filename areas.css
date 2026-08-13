@@ -1,0 +1,537 @@
+/* ════════════════════════════════════════════════════════════════════════
+   ÁREAS DE PRÁCTICA — civil.html, familiar.html, inmobiliario.html
+   ------------------------------------------------------------------------
+   Las tres páginas son la misma plantilla con distinto contenido, así que
+   los estilos viven aquí y no repetidos en un <style> por página. Si una
+   necesita algo propio, se distingue por la clase del <body>
+   (.area-civil / .area-familiar / .area-inmobiliario).
+
+   Reutiliza los tokens de styles.css (--font-heading, --font-body, --carbon…).
+   ════════════════════════════════════════════════════════════════════════ */
+
+.area-body {
+    background: #ffffff;
+    color: var(--carbon-deep, #1a1917);
+}
+
+.area-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ── Portada ── */
+.area-hero {
+    padding: clamp(8rem, 16vh, 11rem) 0 clamp(3rem, 7vh, 5rem);
+}
+
+.area-eyebrow {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--accent, #958463);
+    margin: 0 0 1.25rem;
+}
+
+.area-title {
+    font-family: var(--font-heading, Georgia, serif);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5.6vw, 4rem);
+    line-height: 1.06;
+    letter-spacing: -.015em;
+    margin: 0 0 1.5rem;
+    max-width: 18ch;
+}
+.area-title em { font-style: italic; color: var(--accent, #958463); }
+
+.area-dek {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    line-height: 1.7;
+    color: var(--slate, #54626f);
+    max-width: 56ch;
+    margin: 0 0 2.25rem;
+}
+
+/* ── Botones ── */
+.area-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+}
+
+.area-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #111;
+    color: #fff;
+    padding: 1.1rem 2.2rem;
+    border-radius: 4px;
+    transition: background .25s ease, transform .25s ease;
+}
+.area-btn:hover { background: #000; transform: translateY(-2px); }
+
+.area-btn-ghost {
+    background: transparent;
+    color: #111;
+    border: 1px solid rgba(17,17,17,.25);
+}
+.area-btn-ghost:hover { background: #111; color: #fff; border-color: #111; }
+
+/* ── Secciones ── */
+.area-seccion { padding: clamp(3.5rem, 8vh, 6rem) 0; }
+.area-seccion--tinta { background: #f7f6f3; }
+
+.area-h2 {
+    font-family: var(--font-heading, Georgia, serif);
+    font-weight: 400;
+    font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    margin: 0 0 1rem;
+    max-width: 22ch;
+}
+.area-h2 em { font-style: italic; color: var(--accent, #958463); }
+
+.area-p {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--slate, #54626f);
+    max-width: 62ch;
+    margin: 0 0 1rem;
+}
+
+/* Encabezado interno de un bloque de producto ("Lo que podemos hacer por ti").
+   Va en la sans y no en la serif de los h2 para que se lea como rótulo de
+   lista y no compita con el título de la sección. */
+.area-sub {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--carbon-deep, #1a1917);
+    margin: 2.5rem 0 0;
+}
+
+/* ── Rejilla de tarjetas ── */
+.area-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+}
+
+.area-card {
+    background: #fff;
+    border: 1px solid rgba(17,17,17,.1);
+    border-radius: 14px;
+    padding: 1.75rem 1.5rem;
+}
+.area-seccion--tinta .area-card { border-color: rgba(17,17,17,.08); }
+
+.area-card h3 {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 .6rem;
+    color: var(--carbon-deep, #1a1917);
+}
+.area-card p {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .9rem;
+    line-height: 1.65;
+    color: var(--slate, #54626f);
+    margin: 0;
+}
+
+/* ── Lista de señales / pasos ── */
+.area-lista { list-style: none; margin: 2rem 0 0; padding: 0; max-width: 62ch; }
+.area-lista li {
+    position: relative;
+    padding: 1rem 0 1rem 2.25rem;
+    border-top: 1px solid rgba(17,17,17,.1);
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .98rem;
+    line-height: 1.6;
+    color: var(--slate, #54626f);
+}
+.area-lista li:last-child { border-bottom: 1px solid rgba(17,17,17,.1); }
+/* El contador va en el ::before para no depender de list-style, que no se
+   puede tipografiar con el resto del sistema. */
+.area-lista { counter-reset: senal; }
+.area-lista li::before {
+    counter-increment: senal;
+    content: counter(senal, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 1.05rem;
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--accent, #958463);
+}
+.area-lista b { color: var(--carbon-deep, #1a1917); font-weight: 600; }
+
+/* ── Precios ──
+   Los importes salen del catálogo canónico de precios.js. No añadir cifras
+   aquí que no existan allí: el validador las marca como incoherentes. */
+.area-precios { margin-top: 2.5rem; }
+.area-precio-fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .5rem 1.5rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid rgba(17,17,17,.12);
+}
+.area-precio-fila:last-child { border-bottom: 1px solid rgba(17,17,17,.12); }
+.area-precio-nombre {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .98rem;
+    color: var(--carbon-deep, #1a1917);
+}
+.area-precio-nombre small {
+    display: block;
+    font-size: .82rem;
+    color: var(--slate, #54626f);
+    margin-top: .2rem;
+}
+.area-precio-monto {
+    font-family: var(--font-heading, Georgia, serif);
+    font-size: 1.4rem;
+    color: var(--carbon-deep, #1a1917);
+    white-space: nowrap;
+}
+.area-precio-monto span {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--slate, #54626f);
+    margin-left: .35rem;
+}
+
+/* ── Aviso de alcance ──
+   No es letra pequeña de relleno: acota qué es y qué no es el servicio. Va
+   visible y legible a propósito. */
+.area-nota {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(17,17,17,.04);
+    border-left: 3px solid var(--accent, #958463);
+    border-radius: 0 8px 8px 0;
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .88rem;
+    line-height: 1.65;
+    color: var(--slate, #54626f);
+    max-width: 62ch;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MÓDULO «QUE HABLE TU ABOGADO»
+   ═══════════════════════════════════════════════════════════════════════
+
+   POR QUÉ EXISTE
+   Civil, familiar, inmobiliario y reclamación vendían el mismo producto
+   —que un abogado se dirija formalmente a la otra parte— con cuatro
+   maquetas, cuatro nombres y cuatro precios. Cada página traía su propio
+   bloque <style> redefiniendo .product-card, .pc-hook y .pc-price con
+   valores distintos: .pc-hook medía 2rem en reclamación y clamp(2.5rem,
+   5vw, 3rem) en civil. El mismo servicio se veía como tres despachos.
+
+   Este módulo es la maqueta única. Lo que cambia entre áreas es el
+   contenido —los ejemplos de gestión— y nada más. Los importes salen del
+   catálogo de precios.js; no escribir aquí cifras que no existan allí.
+
+   LA ESCALERA ES EL ARGUMENTO
+   Los cuatro peldaños van juntos y en orden porque el orden es la oferta:
+   la entrada no cuesta nada, el precio cerrado aparece antes de que te
+   pidan un dato, y la membresía se lee como la salida natural de quien va
+   a necesitarlo más de una vez. Separarlos en tarjetas sueltas —como
+   estaba— obligaba a comparar de memoria.                                */
+
+.escalera { margin-top: 2.5rem; }
+
+.escalera-peldano {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .5rem 1.5rem;
+    padding: 1.15rem 0;
+    border-top: 1px solid rgba(17,17,17,.12);
+}
+.escalera-peldano:last-child { border-bottom: 1px solid rgba(17,17,17,.12); }
+
+.escalera-nombre {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .98rem;
+    color: var(--carbon-deep, #1a1917);
+}
+.escalera-nombre small {
+    display: block;
+    font-size: .82rem;
+    color: var(--slate, #54626f);
+    margin-top: .2rem;
+    max-width: 46ch;
+}
+.escalera-monto {
+    font-family: var(--font-heading, Georgia, serif);
+    font-size: 1.4rem;
+    color: var(--carbon-deep, #1a1917);
+    white-space: nowrap;
+}
+.escalera-monto span {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--slate, #54626f);
+    margin-left: .35rem;
+}
+
+/* El peldaño de la gestión es el producto que se cobra: se ancla para que
+   la vista caiga ahí y no en la consulta, que es solo el paso previo. */
+.escalera-peldano--eje {
+    background: rgba(17,17,17,.035);
+    margin: 0 -1.25rem;
+    padding: 1.35rem 1.25rem;
+    border-radius: 6px;
+    border-top-color: transparent;
+}
+.escalera-peldano--eje .escalera-nombre { font-weight: 600; }
+.escalera-peldano--eje .escalera-monto { font-size: 1.75rem; }
+
+/* El modificador cuelga de su peldaño: es un "+", no otro producto. Que
+   se lea como servicio aparte fue lo que produjo dos reclamaciones con
+   nombres distintos ($749 y $990) en vez de una con envío opcional. */
+.escalera-peldano--suma { padding-top: .5rem; border-top: none; }
+.escalera-peldano--suma .escalera-nombre,
+.escalera-peldano--suma .escalera-monto {
+    font-size: .88rem;
+    color: var(--slate, #54626f);
+    font-family: var(--font-body, system-ui, sans-serif);
+}
+.escalera-peldano--suma .escalera-nombre::before {
+    content: '+ ';
+    color: var(--accent, #958463);
+    font-weight: 700;
+}
+
+/* Precio de miembro junto al público: es la única comparación que hace
+   que la membresía se entienda sin ir a otra página. */
+.escalera-miembro {
+    display: block;
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .72rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--accent, #958463);
+    margin-top: .3rem;
+    font-weight: 600;
+}
+
+/* ── Alcance: qué sí hace y qué no ──
+   Trasplantado de reclamación, que era la única página que lo decía. Un
+   despacho que publica por adelantado lo que su servicio NO consigue se
+   lee como más fiable, no como menos: el cliente que se entera después
+   es el que reclama. Va antes del CTA a propósito. */
+.alcance {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    margin-top: 2.5rem;
+    padding: 1.75rem;
+    border: 1px solid rgba(17,17,17,.1);
+    border-radius: 10px;
+}
+@media (min-width: 720px) { .alcance { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
+
+.alcance h4 {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .78rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 0 .7rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.alcance p {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .94rem;
+    line-height: 1.6;
+    color: var(--slate, #54626f);
+    margin: 0;
+}
+.alcance-si h4 { color: #0f6f4c; }
+.alcance-no h4 { color: #a33; }
+
+/* ── Remate ── */
+.area-cierre {
+    padding: clamp(4rem, 9vh, 6.5rem) 0;
+    background: #1a1917;
+    color: #f6f4ee;
+    text-align: center;
+}
+.area-cierre .area-h2 { color: #f6f4ee; margin-left: auto; margin-right: auto; }
+.area-cierre .area-p { color: rgba(246,244,238,.75); margin-left: auto; margin-right: auto; }
+.area-cierre .area-cta-row { justify-content: center; margin-top: 2rem; }
+.area-cierre .area-btn { background: #f6f4ee; color: #1a1917; }
+.area-cierre .area-btn:hover { background: #fff; }
+.area-cierre .area-btn-ghost {
+    background: transparent;
+    color: #f6f4ee;
+    border-color: rgba(246,244,238,.35);
+}
+.area-cierre .area-btn-ghost:hover { background: #f6f4ee; color: #1a1917; }
+
+@media (max-width: 640px) {
+    .area-title { max-width: none; }
+    .area-precio-fila { flex-direction: column; align-items: flex-start; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   HERO EDITORIAL — cartel de portada (.hero-ed)
+   ------------------------------------------------------------------------
+   Lo usan inmobiliario.html y familiar.html; civil conserva el .area-hero
+   común. Cada página pone su propia estampa al pie (.hero-ed-arte).
+   Tres decisiones sostienen el look de la referencia:
+
+     · papel crema en vez de blanco, que es lo que hace que el negro se lea
+       como tinta impresa y no como pantalla;
+     · titular centrado con el tracking muy cerrado y la interlínea por
+       debajo de 1 — las líneas se tocan casi y el bloque se lee como una
+       estampa, no como tres renglones;
+     · las casas en negro plano con sombra larga, al modo del linograbado.
+
+   La textura granulada del referente se resuelve con un SVG de ruido en
+   ::after: un PNG de grano costaría cientos de KB por un efecto de fondo.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.hero-ed {
+    position: relative;
+    background: #EFEDE8;
+    padding: clamp(7rem, 15vh, 10rem) 0 clamp(3rem, 7vh, 4.5rem);
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Grano. `mix-blend-mode: multiply` lo asienta sobre el crema en vez de
+   dejarlo flotando como una capa gris.
+   Va POR ENCIMA del contenido (z-index 2): si se queda debajo, una imagen de
+   mapa de bits como la de familiar sale lisa contra un fondo texturado y se
+   recorta su rectángulo. Con el grano encima, papel e imagen comparten textura.
+   Sobre el texto no se nota: multiplicar por negro sigue dando negro. */
+.hero-ed::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: .5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+}
+
+.hero-ed > * { position: relative; z-index: 1; }
+
+.hero-ed .area-wrap { max-width: 760px; }
+
+.hero-ed .area-eyebrow {
+    color: #8a8579;
+    margin-bottom: clamp(1.75rem, 4vh, 2.75rem);
+}
+
+.hero-ed-title {
+    font-family: var(--font-heading, Georgia, serif);
+    font-weight: 600;
+    font-size: clamp(2.6rem, 7.4vw, 5.2rem);
+    /* Por debajo de 1 y con el tracking cerrado: es lo que junta el bloque. */
+    line-height: .9;
+    letter-spacing: -.035em;
+    color: #14110E;
+    margin: 0 0 clamp(1.5rem, 4vh, 2.25rem);
+    text-wrap: balance;
+}
+
+.hero-ed-dek {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: clamp(.9rem, 1.15vw, 1rem);
+    line-height: 1.65;
+    color: #4a463e;
+    /* Estrecho a propósito: en la referencia el apoyo ocupa la mitad del
+       ancho del titular, y ese contraste de medida es parte del gesto. */
+    max-width: 44ch;
+    margin: 0 auto;
+}
+
+/* ── Flecha ──
+   En la referencia el CTA es sólo una flecha. Se conserva el gesto pero con
+   su texto: una flecha suelta no dice a dónde lleva, y este es el enlace
+   principal de la página. */
+.hero-ed-cta {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .9rem;
+    margin-top: clamp(2.5rem, 6vh, 4rem);
+    text-decoration: none;
+    color: #1B4DFF;
+}
+.hero-ed-cta-txt {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+.hero-ed-cta svg { display: block; overflow: visible; }
+.hero-ed-cta svg line, .hero-ed-cta svg polyline {
+    transition: transform .3s cubic-bezier(.3,.74,.35,1);
+}
+.hero-ed-cta:hover svg line { transform: translateX(-4px); }
+.hero-ed-cta:hover svg polyline { transform: translateX(4px); }
+
+/* ── La estampa ──
+   Va al final, bajo el texto, como pie del cartel. Cada página trae la suya:
+   casas en inmobiliario, manos en familiar. */
+.hero-ed-arte, .hero-ed-casas {
+    display: block;
+    width: min(560px, 84vw);
+    margin: clamp(2.5rem, 6vh, 4rem) auto 0;
+    height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-ed-cta svg line, .hero-ed-cta svg polyline { transition: none; }
+}
+
+/* Las manos son casi cuadradas (420×380), así que piden menos ancho que la
+   fila de casas de inmobiliario (560×150) para no comerse el alto del hero. */
+.hero-ed-arte--manos {
+    width: min(340px, 68vw);
+    margin-top: clamp(2rem, 5vh, 3rem);
+}
+
+/* El PNG de las manos trae su propio papel, rgb(239,235,226), un punto más
+   cálido que el crema del hero. Sin igualarlos se recorta el rectángulo de la
+   imagen contra el fondo. Se ajusta sólo en familiar para no mover el de
+   inmobiliario, que no lleva imagen de mapa de bits. */
+.area-familiar .hero-ed { background: #EFEBE2; }

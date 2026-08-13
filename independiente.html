@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Para Independientes | FERRO FRAGOSO</title>
+    <link rel="canonical" href="https://ferrofragoso.com/independiente.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ferrofragoso.com/independiente.html">
+    <meta property="og:title" content="Para Independientes | FERRO FRAGOSO">
+    <meta property="og:description" content="Protege tus contratos, cobros y derechos sobre tu trabajo. Servicios claros para freelancers, consultores y prestadores de servicios.">
+    <meta property="og:image" content="https://ferrofragoso.com/signature_on_dark.png">
+    <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
+    <meta property="og:locale" content="es_MX">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Para Independientes | FERRO FRAGOSO">
+    <meta name="twitter:description" content="Protege tus contratos, cobros y derechos sobre tu trabajo. Servicios claros para freelancers, consultores y prestadores de servicios.">
+    <meta name="twitter:image" content="https://ferrofragoso.com/signature_on_dark.png">
+    <meta name="description" content="Protege tus contratos, cobros y derechos sobre tu trabajo. Servicios claros para freelancers, consultores y prestadores de servicios.">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="home-new.css?v=11">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="empresa.css?v=2">
+
+    <style>
+        /* ── Hero ── */
+        .ind-hero {
+            background-color: #ffffff;
+            padding: 10rem 5vw 7rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-height: 82vh;
+        }
+
+        /* Texto gigante de fondo, estilo Notaut */
+        .ind-bg-word {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(9rem, 26vw, 34rem);
+            font-weight: 700;
+            font-style: italic;
+            color: #f2f0e8;
+            z-index: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            user-select: none;
+        }
+
+        .ind-hero-inner {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .ind-text {
+            flex: 1 1 340px;
+            max-width: 580px;
+        }
+
+        .ind-eyebrow {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #3b50df;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            animation: indFadeUp 0.8s cubic-bezier(0.2,0.8,0.2,1) both;
+        }
+
+        .ind-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+            line-height: 1.05;
+            font-weight: 500;
+            color: #111;
+            letter-spacing: -0.02em;
+            margin: 0 0 1.5rem 0;
+            animation: indFadeUp 0.8s cubic-bezier(0.2,0.8,0.2,1) 0.1s both;
+        }
+
+        .ind-title em {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: #3b50df;
+        }
+
+        .ind-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.7;
+            font-weight: 400;
+            color: #555;
+            margin: 0;
+            animation: indFadeUp 0.8s cubic-bezier(0.2,0.8,0.2,1) 0.2s both;
+        }
+
+
+
+        @keyframes indFadeUp {
+            from { opacity: 0; transform: translateY(32px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="empresa-body" style="background: #ffffff;">
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="navbar" class="scrolled">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
+                <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="propiedad-intelectual.html">Ver todo</a></li>
+                            <li><a href="marcas.html">Registro de marca</a></li>
+                            <li><a href="derechos-autor.html">Derechos de autor</a></li>
+                            <li><a href="secreto-industrial.html">Secreto industrial</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="contratos.html">Crear un contrato</a></li>
+                            <li><a href="revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
+                    <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
+                    <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="ind-hero">
+        <div class="ind-bg-word">freelance</div>
+
+        <div class="ind-hero-inner">
+            <!-- Lado izquierdo: texto -->
+            <div class="ind-text">
+                <span class="ind-eyebrow">Trabajo por mi cuenta</span>
+                <h1 class="ind-title">
+                    Claridad y protección<br><em>proyecto por proyecto.</em>
+                </h1>
+                <p class="ind-sub">
+                    Protege tus contratos, cobros y derechos sobre tu trabajo. Servicios claros para freelancers, consultores, creativos y prestadores de servicios independientes.
+                </p>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- ═══ PRODUCTOS PUNTUALES ═══ -->
+    <section style="padding: 6rem 5vw; background-color: #ffffff;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #3b50df; font-weight: 600; display: block; margin-bottom: 1rem;">Servicios</span>
+                <h2 style="font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); color: #111; font-weight: 500; letter-spacing: -0.02em; margin: 0;">El freelancer compra claridad y protección <em style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; color: #3b50df;">por proyecto.</em></h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; text-align: left;">
+
+                <!-- Paquete Profesional — ancho completo -->
+                <div style="background-color: #eef1ff; padding: 3rem 2.5rem; border-radius: 12px; display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; position: relative; border: 1px solid #dce2f2; grid-column: 1 / -1;">
+                    <div style="position: absolute; top: -13px; left: 2.5rem; background: #111; color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px;">MÁS COMPLETO</div>
+                    <div style="flex: 1; min-width: 260px;">
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 600; color: #111; margin-bottom: 0.6rem; letter-spacing: -0.01em;">Paquete Profesional Independiente</h3>
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 1.5rem;">Contrato de servicios a la medida&ensp;+&ensp;NDA o cláusula de Propiedad Intelectual&ensp;+&ensp;Sesión estratégica de implementación con un socio del estudio.</p>
+                        <a href="https://wa.me/524191239646?text=Me%20interesa%20el%20Paquete%20Profesional%20Independiente" target="_blank" rel="noopener" style="background-color: #3b50df; color: #fff; border-radius: 100px; padding: 0.85rem 2rem; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-block; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#2a3eb1';" onmouseout="this.style.backgroundColor='#3b50df';">Solicitar paquete</a>
+                    </div>
+                    <div style="text-align: right; min-width: 150px;">
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: #777; font-weight: 500; display: block;">Desde</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 700; color: #111; line-height: 1; letter-spacing: -1px;">$3,990</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #888; display: block;">MXN + IVA</span>
+                    </div>
+                </div>
+
+                <!-- Producto 1 -->
+                <div style="background-color: #f9f9f9; padding: 2.5rem 2rem; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid #eaeaea;">
+                    <div style="flex-grow: 1;">
+                        <div style="width: 44px; height: 44px; background: #eef1ff; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.4rem;">
+                            <i class="fa-solid fa-file-signature" style="font-size: 1.2rem; color: #3b50df;"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 600; color: #111; margin-bottom: 0.7rem; letter-spacing: -0.01em;">Contrato de prestación de servicios</h3>
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #666; line-height: 1.65; margin-bottom: 2rem;">Redacción de un contrato claro y robusto para tus clientes. Cubre entregables, plazos, pagos y protección de tu trabajo.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #eaeaea; padding-top: 1.2rem; margin-bottom: 1.2rem;">
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #999;">Desde</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #111;">$2,490 <span style="font-size: 0.75rem; font-weight: 500; color: #aaa;">MXN</span></span>
+                    </div>
+                    <a href="https://wa.me/524191239646?text=Quiero%20solicitar%20un%20contrato%20de%20prestación%20de%20servicios" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.75rem 1.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; text-decoration: none; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#333';" onmouseout="this.style.backgroundColor='#111';">Solicitar</a>
+                </div>
+
+                <!-- Producto 2 -->
+                <div style="background-color: #f9f9f9; padding: 2.5rem 2rem; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid #eaeaea;">
+                    <div style="flex-grow: 1;">
+                        <div style="width: 44px; height: 44px; background: #eef1ff; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.4rem;">
+                            <i class="fa-solid fa-magnifying-glass-chart" style="font-size: 1.2rem; color: #3b50df;"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 600; color: #111; margin-bottom: 0.7rem; letter-spacing: -0.01em;">Revisión de contrato estándar</h3>
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #666; line-height: 1.65; margin-bottom: 2rem;">¿Te enviaron un contrato para firmar? Lo leemos por ti y te explicamos los riesgos antes de que pongas tu firma.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #eaeaea; padding-top: 1.2rem; margin-bottom: 1.2rem;">
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #999;">Precio</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #111;">$890 <span style="font-size: 0.75rem; font-weight: 500; color: #aaa;">MXN</span></span>
+                    </div>
+                    <a href="https://wa.me/524191239646?text=Quiero%20solicitar%20la%20revisión%20de%20un%20contrato" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.75rem 1.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; text-decoration: none; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#333';" onmouseout="this.style.backgroundColor='#111';">Solicitar</a>
+                </div>
+
+                <!-- Producto 3 -->
+                <div style="background-color: #f9f9f9; padding: 2.5rem 2rem; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid #eaeaea;">
+                    <div style="flex-grow: 1;">
+                        <div style="width: 44px; height: 44px; background: #eef1ff; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.4rem;">
+                            <i class="fa-solid fa-comments" style="font-size: 1.2rem; color: #3b50df;"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 600; color: #111; margin-bottom: 0.7rem; letter-spacing: -0.01em;">Consulta estratégica</h3>
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #666; line-height: 1.65; margin-bottom: 2rem;">Resolución de dudas específicas sobre un proyecto, un problema con un cliente o cómo estructurar tu negocio.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #eaeaea; padding-top: 1.2rem; margin-bottom: 1.2rem;">
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #999;">Precio</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #111;">$1,290 <span style="font-size: 0.75rem; font-weight: 500; color: #aaa;">MXN</span></span>
+                    </div>
+                    <a href="https://wa.me/524191239646?text=Quiero%20agendar%20una%20consulta%20estratégica" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.75rem 1.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; text-decoration: none; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#333';" onmouseout="this.style.backgroundColor='#111';">Agendar</a>
+                </div>
+
+                <!-- Producto 4 -->
+                <div style="background-color: #f9f9f9; padding: 2.5rem 2rem; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid #eaeaea;">
+                    <div style="flex-grow: 1;">
+                        <div style="width: 44px; height: 44px; background: #eef1ff; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.4rem;">
+                            <i class="fa-solid fa-envelope-open-text" style="font-size: 1.2rem; color: #3b50df;"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 600; color: #111; margin-bottom: 0.7rem; letter-spacing: -0.01em;">Carta o gestión de cobro</h3>
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #666; line-height: 1.65; margin-bottom: 2rem;">¿Un cliente no te paga? Enviamos un requerimiento formal en representación del estudio jurídico.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #eaeaea; padding-top: 1.2rem; margin-bottom: 1.2rem;">
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #999;">Desde</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #111;">$890 <span style="font-size: 0.75rem; font-weight: 500; color: #aaa;">MXN</span></span>
+                    </div>
+                    <a href="https://wa.me/524191239646?text=Necesito%20ayuda%20con%20una%20gestión%20de%20cobro" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.75rem 1.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; text-decoration: none; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#333';" onmouseout="this.style.backgroundColor='#111';">Solicitar</a>
+                </div>
+
+                <!-- Producto 5 -->
+                <div style="background-color: #f9f9f9; padding: 2.5rem 2rem; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid #eaeaea;">
+                    <div style="flex-grow: 1;">
+                        <div style="width: 44px; height: 44px; background: #eef1ff; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.4rem;">
+                            <i class="fa-solid fa-copyright" style="font-size: 1.2rem; color: #3b50df;"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 600; color: #111; margin-bottom: 0.7rem; letter-spacing: -0.01em;">Registro de obra o software</h3>
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #666; line-height: 1.65; margin-bottom: 2rem;">Protegemos tus creaciones, código, contenido o diseños ante el INDAUTOR para evitar plagios o usos indebidos.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #eaeaea; padding-top: 1.2rem; margin-bottom: 1.2rem;">
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #999;">Desde</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #111;">$2,490 <span style="font-size: 0.75rem; font-weight: 500; color: #aaa;">MXN</span></span>
+                    </div>
+                    <a href="https://wa.me/524191239646?text=Quiero%20registrar%20una%20obra%20o%20software" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.75rem 1.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; text-decoration: none; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#333';" onmouseout="this.style.backgroundColor='#111';">Solicitar</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img" loading="lazy" decoding="async">
+                <span class="footer-brand-name">FERRO FRAGOSO</span>
+            </div>
+            <p class="footer-tagline">Estudio Jurídico — Blindaje legal con propósito.</p>
+            <div class="footer-links" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
+                <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
+                <a href="radar/index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Blog</a>
+                <a href="https://wa.me/524191239646" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">WhatsApp</a>
+            </div>
+            <p class="footer-copy" style="margin-top: 2rem;">&copy; 2026 Ferro Fragoso, Estudio Jurídico.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=12"></script>
+    <script src="precios.js?v=8"></script>
+    <script src="analytics.js?v=11"></script>
+</body>
+</html>

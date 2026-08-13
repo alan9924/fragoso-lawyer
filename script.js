@@ -140,7 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.scrollY > triggerHeight) {
             navbar.classList.add('scrolled');
             navbar.classList.remove('hidden-top');
+            /* El riel de secciones entra con el menú: durante el hero la
+               columna es protagonista y no debe competir con nada. */
+            document.body.classList.add('columna-navegando');
         } else {
+            document.body.classList.remove('columna-navegando');
             navbar.classList.remove('scrolled');
             // Only hide it completely if it's the home page with a Hero
             if (heroSection) {
@@ -810,6 +814,41 @@ document.addEventListener('DOMContentLoaded', () => {
         firmaObserver.observe(firmaVideo);
     }
 
+    /* ── Marcatextos de los tres miedos ──
+       El trazo se pinta al entrar en vista, no al cargar: si se dispara antes
+       de que nadie lo vea, el usuario llega y ya está subrayado. Se desconecta
+       tras marcarlo porque es un gesto de una sola vez, no un bucle. */
+    const marcados = document.querySelectorAll('.marca-texto');
+    if (marcados.length) {
+        const marcaObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-marcado');
+                obs.unobserve(entry.target);
+            });
+        }, { threshold: 0.9 });
+        marcados.forEach(el => marcaObserver.observe(el));
+    }
+
+    /* El vídeo de la carpeta va en bucle, así que —a diferencia de la firma—
+       no se rebobina al reentrar: cortarlo a la mitad para reiniciarlo se nota
+       más que dejarlo seguir. Se pausa al salir de vista para no decodificar
+       fuera de pantalla. */
+    const carpetaVideo = document.querySelector('.empresas-video');
+    if (carpetaVideo) {
+        const carpetaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const p = carpetaVideo.play();
+                    if (p && p.catch) p.catch(() => {});
+                } else {
+                    carpetaVideo.pause();
+                }
+            });
+        }, { threshold: 0.3 });
+        carpetaObserver.observe(carpetaVideo);
+    }
+
     /* ════════════════════════════════════
        VALOR CARD — subtle scale on hover via JS (touch fallback)
     ════════════════════════════════════ */
@@ -1094,5 +1133,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateTimeline();
     })();
+
+    /* ════════════════════════════════════
+       ASOMA (Chat Widget) Scroll Observer
+    ════════════════════════════════════ */
+    const asomaEl = document.querySelector('.asoma');
+    if (asomaEl) {
+        const asomaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.3 });
+        asomaObserver.observe(asomaEl);
+    }
 
 });

@@ -30,7 +30,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body style="background: var(--bg-base);">
+<body style="background: #ffffff;">
+    <style>
+        /* Light mode overrides for plan.html */
+        .home-solutions { background: #ffffff !important; color: #111 !important; }
+        .home-solutions .top h1 { color: #111 !important; }
+        .home-solutions .top p { color: #555 !important; }
+        .home-solutions .toggle { background: rgba(0,0,0,0.05) !important; }
+        .home-solutions .toggle button { color: #555 !important; }
+        .home-solutions .toggle button.active { background: #fff !important; color: #111 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; }
+        .home-solutions .tier-label h2 { color: #111 !important; }
+        .home-solutions .plan { background: #f7f6f3 !important; border: 1px solid #eee !important; }
+        .home-solutions .plan .pname { color: #111 !important; }
+        .home-solutions .plan .ptag { color: #555 !important; background: rgba(0,0,0,0.05) !important; }
+        .home-solutions .plan .price { color: #111 !important; }
+        .home-solutions .plan .price small { color: #555 !important; }
+        .home-solutions .plan .annual { color: #777 !important; }
+        .home-solutions .plan ul li { color: #444 !important; }
+        .home-solutions .plan ul li b { color: #111 !important; }
+        .home-solutions .system-head h2 { color: #111 !important; }
+        .home-solutions .system-head p { color: #555 !important; }
+        .home-solutions .pillar { background: #f7f6f3 !important; }
+        .home-solutions .pillar .pnum { color: #888 !important; }
+        .home-solutions .pillar h3 { color: #111 !important; }
+        .home-solutions .pillar p { color: #555 !important; }
+        .home-solutions .note { color: #666 !important; }
+        .home-solutions .note b { color: #111 !important; }
+        .home-solutions .carte h3 { color: #111 !important; }
+        .home-solutions .carte .sub { color: #555 !important; }
+        .home-solutions .btn-line { border-color: #111 !important; color: #111 !important; }
+        .home-solutions .btn-line:hover { background: #111 !important; color: #fff !important; }
+    </style>
 
     <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar" class="scrolled">
@@ -48,9 +78,10 @@
                             Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
                         </button>
                         <ul class="nav-submenu" id="nav-sub-pi">
-                            <li><a href="marcas.html">Registrar mi marca</a></li>
-                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
-                            <li><a href="franquicias.html">Franquiciar o licenciar</a></li>
+                            <li><a href="propiedad-intelectual.html">Ver todo</a></li>
+                            <li><a href="marcas.html">Registro de marca</a></li>
+                            <li><a href="derechos-autor.html">Derechos de autor</a></li>
+                            <li><a href="secreto-industrial.html">Secreto industrial</a></li>
                         </ul>
                     </li>
 
@@ -66,12 +97,10 @@
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
                     <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
-                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
                 <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
@@ -98,11 +127,6 @@
         <div class="lane active" id="personas">
             <div class="wrap">
 
-                <div class="magnet">
-                    <span class="free">$0</span>
-                    <div class="txt"><b>Empieza sin pagar.</b> Calculadora de finiquito, plantillas básicas y alertas legales del Radar. Sin registro, sin tarjeta.</div>
-                    <a href="finiquito.html">Usar herramientas gratis →</a>
-                </div>
 
                 <div class="tier-label">
                     <span class="eyebrow">Membresía</span>
@@ -159,33 +183,58 @@
                     <h3>¿Prefieres pagar <em>solo por esta vez?</em></h3>
                     <p class="sub">Sin membresía. Precio cerrado, sin sorpresas. Si luego te haces miembro, tu consulta se te acredita.</p>
 
-                    <div class="row">
-                        <div>
-                            <div class="n">Consulta estratégica · 60 min por Zoom</div>
-                            <div class="d">Cara a cara con un socio. Sales con un plan por escrito, no con más dudas.</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; text-align: center; margin-top: 3rem;">
+                        <!-- Service 1 -->
+                        <div style="background-color: #f7f6f3; padding: 3rem 2rem; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                            <i class="fa-solid fa-video" style="font-size: 1.8rem; color: #333; margin-bottom: 1.5rem;"></i>
+                            <h3 style="font-family: var(--font-body); font-size: 1.3rem; font-weight: 700; color: #111; margin-bottom: 1rem;">Consulta estratégica · 60 min</h3>
+                            <p style="font-family: var(--font-body); font-size: 0.95rem; color: #777; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1;">
+                                Cara a cara con un socio. Sales con un plan por escrito, no con más dudas.
+                            </p>
+                            <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
+                                <a href="consulta.html" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Solicitar</a>
+                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">$1,290 MXN</span>
+                            </div>
                         </div>
-                        <div class="p"><a href="consulta.html" style="border-bottom:1px dashed var(--accent)">$1,290<small>MXN</small></a></div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <div class="n">Revisión de contrato simple</div>
-                            <div class="d">Hasta 10 páginas. Riesgos, cláusulas clave y una ronda de ajustes. 48 h.</div>
+                        
+                        <!-- Service 2 -->
+                        <div style="background-color: #f7f6f3; padding: 3rem 2rem; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                            <i class="fa-solid fa-file-signature" style="font-size: 1.8rem; color: #333; margin-bottom: 1.5rem;"></i>
+                            <h3 style="font-family: var(--font-body); font-size: 1.3rem; font-weight: 700; color: #111; margin-bottom: 1rem;">Revisión de contrato simple</h3>
+                            <p style="font-family: var(--font-body); font-size: 0.95rem; color: #777; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1;">
+                                Hasta 10 páginas. Riesgos, cláusulas clave y una ronda de ajustes. 48 h.
+                            </p>
+                            <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
+                                <a href="revision.html" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Solicitar</a>
+                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">$490 MXN</span>
+                            </div>
                         </div>
-                        <div class="p"><a href="revision.html" style="border-bottom:1px dashed var(--accent)">$490<small>MXN</small></a></div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <div class="n">Contrato a tu medida</div>
-                            <div class="d">Testamento, contrato de renta, convenio. Redacción desde cero.</div>
+
+                        <!-- Service 3 -->
+                        <div style="background-color: #f7f6f3; padding: 3rem 2rem; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                            <i class="fa-solid fa-pen-nib" style="font-size: 1.8rem; color: #333; margin-bottom: 1.5rem;"></i>
+                            <h3 style="font-family: var(--font-body); font-size: 1.3rem; font-weight: 700; color: #111; margin-bottom: 1rem;">Contrato a tu medida</h3>
+                            <p style="font-family: var(--font-body); font-size: 0.95rem; color: #777; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1;">
+                                Testamento, contrato de renta, convenio. Redacción desde cero.
+                            </p>
+                            <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
+                                <a href="contratos.html" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Solicitar</a>
+                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">desde $1,990</span>
+                            </div>
                         </div>
-                        <div class="p"><a href="contratos.html" style="border-bottom:1px dashed var(--accent)">desde $1,990<small>MXN</small></a></div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <div class="n">Llamada de filtro · 10–15 min</div>
-                            <div class="d">¿No sabes qué necesitas? Te orientamos y te decimos el camino.</div>
+
+                        <!-- Service 4 -->
+                        <div style="background-color: #f7f6f3; padding: 3rem 2rem; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                            <i class="fa-solid fa-phone" style="font-size: 1.8rem; color: #333; margin-bottom: 1.5rem;"></i>
+                            <h3 style="font-family: var(--font-body); font-size: 1.3rem; font-weight: 700; color: #111; margin-bottom: 1rem;">Llamada de filtro</h3>
+                            <p style="font-family: var(--font-body); font-size: 0.95rem; color: #777; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1;">
+                                ¿No sabes qué necesitas? Te orientamos y te decimos el camino (10-15 min).
+                            </p>
+                            <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
+                                <a href="https://wa.me/524191239646?text=Hola,%20me%20gustaría%20agendar%20una%20llamada%20de%20filtro" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Agendar</a>
+                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">Gratis</span>
+                            </div>
                         </div>
-                        <div class="p"><a href="https://wa.me/524191239646?text=Hola,%20me%20gustaría%20agendar%20una%20llamada%20de%20filtro" target="_blank" rel="noopener" style="border-bottom:1px dashed var(--accent)">Gratis<small>SIN COSTO</small></a></div>
                     </div>
                 </div>
 
@@ -197,11 +246,6 @@
         <div class="lane" id="negocios">
             <div class="wrap">
 
-                <div class="magnet">
-                    <span class="free">$0</span>
-                    <div class="txt"><b>Empieza sin pagar.</b> Plantillas de contratos, diagnóstico exprés y alertas legislativas del Radar por área de tu giro.</div>
-                    <a href="contratos.html">Ver herramientas gratis →</a>
-                </div>
 
                 <div class="system">
                     <div class="system-head">
@@ -292,22 +336,32 @@
                     <h3>Servicios <em>a la carta</em></h3>
                     <p class="sub">Sin membresía. Ideales para una necesidad puntual — o para probarnos antes de suscribirte.</p>
 
-                    <div class="row">
-                        <div>
-                            <div class="n">Registro de marca ante IMPI</div>
-                            <div class="d">Búsqueda, clasificación, solicitud, derechos oficiales y seguimiento hasta resolución.</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; text-align: center; margin-top: 3rem; margin-bottom: 3rem;">
+                        <!-- Service 1 -->
+                        <div style="background-color: #f7f6f3; padding: 3rem 2rem; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                            <i class="fa-solid fa-registered" style="font-size: 1.8rem; color: #333; margin-bottom: 1.5rem;"></i>
+                            <h3 style="font-family: var(--font-body); font-size: 1.3rem; font-weight: 700; color: #111; margin-bottom: 1rem;">Registro de marca ante IMPI</h3>
+                            <p style="font-family: var(--font-body); font-size: 0.95rem; color: #777; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1;">
+                                Búsqueda, clasificación, solicitud, derechos oficiales y seguimiento hasta resolución.
+                            </p>
+                            <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
+                                <a href="marcas.html" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Solicitar</a>
+                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center; text-align: center;">$6,990 <span style="font-size: 0.65rem; margin-left: 2px;">MXN / CLASE</span></span>
+                            </div>
                         </div>
-                        <div class="p"><a href="marcas.html" style="border-bottom:1px dashed var(--accent)">$6,990<small>MXN / CLASE</small></a></div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <div class="n">Marca + Derecho de autor</div>
-                            <div class="d">Paquete de protección total: una clase de marca ante el IMPI y tu logo o contenido ante el INDAUTOR. Clases adicionales se cotizan aparte.</div>
+
+                        <!-- Service 2 -->
+                        <div style="background-color: #f7f6f3; padding: 3rem 2rem; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                            <i class="fa-solid fa-shield-halved" style="font-size: 1.8rem; color: #333; margin-bottom: 1.5rem;"></i>
+                            <h3 style="font-family: var(--font-body); font-size: 1.3rem; font-weight: 700; color: #111; margin-bottom: 1rem;">Marca + Derecho de autor</h3>
+                            <p style="font-family: var(--font-body); font-size: 0.95rem; color: #777; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1;">
+                                Paquete de protección total: una clase de marca ante el IMPI y tu logo o contenido ante el INDAUTOR. Clases adicionales se cotizan aparte.
+                            </p>
+                            <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
+                                <a href="marcas.html" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Solicitar</a>
+                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">desde $8,050</span>
+                            </div>
                         </div>
-                        <!-- Precio PLANO, no por clase: el derecho de autor no se registra
-                             por clases de Niza, así que "/ CLASE" no aplica a este paquete.
-                             Las otras cuatro páginas ya lo publicaban plano. -->
-                        <div class="p"><a href="marcas.html" style="border-bottom:1px dashed var(--accent)">desde $8,050<small>MXN</small></a></div>
                     </div>
                     <p class="note"><b>Sin "ilimitado" de humo:</b> cada plan trae topes claros bajo política de uso razonable. Litigios, trámites y operaciones extraordinarias se cotizan por separado, siempre con precio cerrado antes de arrancar.</p>
             </div>

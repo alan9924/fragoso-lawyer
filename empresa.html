@@ -11,13 +11,13 @@
     <meta property="og:url" content="https://ferrofragoso.com/empresa.html">
     <meta property="og:title" content="Para Empresas | FERRO FRAGOSO">
     <meta property="og:description" content="Tu área legal, sin cargarla a la nómina. Contratos revisados, riesgos vigilados y un socio detrás de cada decisión.">
-    <meta property="og:image" content="https://ferrofragoso.com/b2b_banner.png">
+    <meta property="og:image" content="https://ferrofragoso.com/signature_on_dark.png">
     <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
     <meta property="og:locale" content="es_MX">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Para Empresas | FERRO FRAGOSO">
     <meta name="twitter:description" content="Tu área legal, sin cargarla a la nómina. Contratos revisados, riesgos vigilados y un socio detrás de cada decisión.">
-    <meta name="twitter:image" content="https://ferrofragoso.com/b2b_banner.png">
+    <meta name="twitter:image" content="https://ferrofragoso.com/signature_on_dark.png">
     <meta name="description" content="Tu área legal, sin cargarla a la nómina. Contratos revisados, riesgos vigilados y un socio detrás de cada decisión.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -29,378 +29,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="empresa.css?v=2">
+    <!-- Sin JS, el estado inicial de .blur-fade dejaría los títulos invisibles -->
+    <noscript>
+        <style>
+            .blur-fade { opacity: 1 !important; transform: none !important; filter: none !important; }
+        </style>
+    </noscript>
     
-<style>
-  :root{
-    --ink:#141d27;--ink-2:#1c2732;--ink-3:#27333f;
-    --paper:#f4f1e9;--paper-2:#e9e4d7;
-    /* crema del arte del hero: los PNG traen este relleno dentro de las hojas,
-       así que el fondo del hero debe ser exactamente el mismo tono. */
-    --paper-art:#f3ecda;
-    --brass:#c2903f;--brass-deep:#a9762f;--seal:#8a2b34;
-    --fog:#8b98a5;--slate:#54626f;
-    --line-d:rgba(244,241,233,.12);--line-l:rgba(20,29,39,.12);
-    --serif: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
-    --sans: var(--font-body, 'Montserrat', system-ui, sans-serif);
-    --mono:'IBM Plex Mono',monospace;
-  }
-  .empresa-body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
-  .empresa-body .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
-  .empresa-body .eyebrow { font-family:var(--mono); font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); }
-  .empresa-body a { color:inherit; text-decoration:none; }
-  .empresa-body .nav-cta-btn { background:#000; color:#fff !important; }
-  .empresa-body .btn-c { display:inline-flex; justify-content:center; align-items:center; gap:8px; font-family:var(--sans); font-weight:500; font-size:.92rem; padding:13px 24px; border-radius:999px; cursor:pointer; border:1px solid transparent; transition:.18s; }
-  .empresa-body .btn-brass { background:var(--brass); color:#1a130a; } .empresa-body .btn-brass:hover { background:var(--brass-deep); }
-  .empresa-body .btn-ghost { background:transparent; border-color:var(--paper); color:var(--paper); font-weight:500; border-width: 1.5px; } .empresa-body .btn-ghost:hover { background:var(--brass); border-color:var(--brass); color:#1a130a; }
-  .empresa-body section { padding:74px 0; border-top:1px solid var(--line-l); }
-  .empresa-body h2.sec { font-family:var(--serif); font-weight:400; font-size:clamp(1.9rem,4vw,2.7rem); line-height:1.08; letter-spacing:-.01em; margin-bottom: 0; }
-  .empresa-body h2.sec em { font-style:italic; color:var(--brass); }
 
-  /* ── hero editorial sobre crema ──
-     El arte (pilas de expedientes en line-art) se ancla a los dos bordes y el
-     texto vive en el hueco central, así que la composición aguanta cualquier
-     ancho sin que una pila se meta debajo del titular. */
-  .empresa-body .hero {
-    padding:calc(var(--nav-real-h, 138px) + 64px) 0 96px;
-    position:relative; overflow:hidden;
-    /* crema exacta del arte: los rellenos internos de las hojas son opacos y
-       solo empatan si el fondo del hero es este mismo tono. */
-    background:var(--paper-art);
-  }
-  /* La crema del arte y la del sitio no son el mismo tono: sin este velo se ve
-     una línea dura al terminar el hero. De paso desvanece los tallos de las
-     pilas en lugar de cortarlos a ras. */
-  .empresa-body .hero::after {
-    content:""; position:absolute; left:0; right:0; bottom:0; height:140px;
-    z-index:1; pointer-events:none;
-    background:linear-gradient(180deg, rgba(244,241,233,0) 0%, var(--paper) 82%);
-  }
-  .empresa-body .hero .wrap { position:relative; z-index:2; text-align:center; }
-  .empresa-body .hero .eyebrow { color:var(--brass-deep); }
-  .empresa-body .hero h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.5rem,6.2vw,4.3rem); line-height:1.03; letter-spacing:-.01em; margin:18px auto 0; max-width:760px; color:var(--ink); }
-  .empresa-body .hero h1 em { font-style:italic; color:var(--brass-deep); }
-  .empresa-body .hero p { font-family:var(--serif); font-size:clamp(1.08rem,2.2vw,1.3rem); color:var(--slate); max-width:560px; margin:22px auto 0; font-weight:500; }
-  .empresa-body .hero .cta { display:flex; gap:14px; flex-wrap:wrap; margin-top:34px; justify-content:center; }
-  /* sobre crema el botón fantasma necesita borde de tinta, no de papel */
-  .empresa-body .hero .btn-ghost { border-color:var(--ink); color:var(--ink); }
-  .empresa-body .hero .btn-ghost:hover { background:var(--ink); border-color:var(--ink); color:var(--paper); }
-
-  /* ── Arte del hero (Higgsfield) ──
-     Dos piezas PNG con fondo transparente pegadas a los bordes inferiores.
-     Se dimensionan por altura (no por ancho) para que el hueco central crezca
-     con el viewport en lugar de encogerse. */
-  .empresa-body .hero-art { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
-  .empresa-body .hero-art .pila {
-    position:absolute; bottom:0; height:74%; width:auto;
-    /* Doble tope a propósito: en pantallas anchas manda la altura (el arte se
-       ve completo) y en pantallas medias manda el ancho, que es lo que impide
-       que una pila se meta debajo del titular centrado. */
-    max-width:16%;
-    object-fit:contain; object-position:bottom;
-  }
-  .empresa-body .hero-art .pila-izq { left:clamp(-56px, -2.5vw, -8px); }
-  .empresa-body .hero-art .pila-der { right:clamp(-56px, -2.5vw, -8px); height:80%; }
-
-  /* ── Hojas volando ──
-     Cada hoja combina dos animaciones anidadas de duración distinta: el <span>
-     deriva y el <svg> gira. Al no ser múltiplos entre sí, el ciclo aparente
-     tarda muchísimo en repetirse y el vuelo se lee orgánico, no metronómico.
-     Solo se animan transforms, así que todo corre en compositor. */
-  .empresa-body .hero-hojas { position:absolute; inset:0; z-index:1; pointer-events:none; }
-  .empresa-body .hoja {
-    position:absolute; left:var(--l); top:var(--t); width:var(--sz,54px);
-    will-change:transform;
-    animation:hoja-deriva var(--dur,14s) ease-in-out var(--dly,0s) infinite;
-  }
-  .empresa-body .hoja svg {
-    display:block; width:100%; height:auto; color:var(--ink);
-    animation:hoja-giro calc(var(--dur,14s) * 1.37) ease-in-out var(--dly,0s) infinite;
-  }
-  @keyframes hoja-deriva {
-    0%   { transform:translate3d(0,0,0); }
-    25%  { transform:translate3d(calc(var(--dx) * .55), calc(var(--dy) * -1), 0); }
-    50%  { transform:translate3d(var(--dx), calc(var(--dy) * -.3), 0); }
-    75%  { transform:translate3d(calc(var(--dx) * .3), calc(var(--dy) * .55), 0); }
-    100% { transform:translate3d(0,0,0); }
-  }
-  @keyframes hoja-giro {
-    0%   { transform:rotate(var(--rot,0deg)); }
-    50%  { transform:rotate(calc(var(--rot,0deg) + var(--spin,14deg))); }
-    100% { transform:rotate(var(--rot,0deg)); }
-  }
-  /* Accesibilidad: quien pide menos movimiento ve la misma escena, quieta. */
-  @media (prefers-reduced-motion: reduce) {
-    .empresa-body .hoja,
-    .empresa-body .hoja svg { animation:none; }
-    .empresa-body .hoja svg { transform:rotate(var(--rot,0deg)); }
-  }
-  /* Banda intermedia: ya no cabe el titular a 760px entre las dos pilas, así
-     que se estrecha el texto en vez de encoger el arte hasta lo ridículo. */
-  @media (max-width:1280px){
-    .empresa-body .hero h1 { max-width:620px; }
-    .empresa-body .hero p { max-width:520px; }
-    .empresa-body .hero-art .pila { height:62%; }
-    .empresa-body .hero-art .pila-der { height:66%; }
-  }
-  @media (max-width:1024px){
-    /* En móvil el texto ocupa todo el ancho, así que el arte se retira: las
-       pilas bajan al pie del hero —con aire extra para no cruzar los botones—
-       y solo sobreviven las hojas que vuelan por encima del titular. */
-    .empresa-body .hero { padding-bottom:270px; }
-    .empresa-body .hero-art .pila { height:29%; opacity:.42; }
-    .empresa-body .hero-art .pila-der { height:32%; }
-    .empresa-body .hero::after { height:200px; }
-    .empresa-body .hoja { width:calc(var(--sz,54px) * .66); }
-    /* Las del centro chocan con el titular y las bajas con el párrafo. */
-    .empresa-body .hoja-centro,
-    .empresa-body .hoja-baja { display:none; }
-  }
-
-  /* problema */
-  .empresa-body .problema h2 { max-width:640px; }
-  .empresa-body .problema .cols { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:34px; align-items:start; }
-  .empresa-body .problema p { color:var(--slate); font-size:1.05rem; margin-bottom: 0; }
-  .empresa-body .problema .punch { font-family:var(--serif); font-style:italic; font-size:1.5rem; color:var(--ink); line-height:1.35; }
-  .empresa-body .problema .punch b { color:var(--brass); font-style:normal; font-weight:500; }
-
-  
-  /* segmentos (Pastel Cards) */
-  .empresa-body .segs { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:40px; }
-  .empresa-body .seg { border-radius:12px; padding:32px 28px; text-align:center; display:flex; flex-direction:column; align-items:center; }
-  .empresa-body .seg-1 { background:#eadecf; } /* beige */
-  .empresa-body .seg-2 { background:#cad8c8; } /* mint */
-  .empresa-body .seg-3 { background:#d5d4df; } /* lavender */
-  .empresa-body .seg-icon { width:140px; height:140px; object-fit:contain; margin-bottom:16px; mix-blend-mode:multiply; }
-  .empresa-body .seg h3 { font-family:var(--sans); font-size:1.1rem; font-weight:600; color:#000; margin-bottom:12px; line-height:1.3; }
-  .empresa-body .seg p { color:rgba(0,0,0,0.8); font-size:.9rem; line-height:1.5; font-weight:500; }
-
-  /* sistema (Editorial List) */
-  .empresa-body .system-split { display:grid; grid-template-columns:1fr 1.5fr; gap:60px; margin-top:40px; align-items:start; }
-  .empresa-body .system-head { position:sticky; top:120px; }
-  .empresa-body .pillars { display:flex; flex-direction:column; }
-  .empresa-body .pillar { display:grid; grid-template-columns:auto 1fr 1fr; gap:32px; padding:32px 0; border-top:1px solid rgba(0,0,0,0.1); }
-  .empresa-body .pillar:last-child { border-bottom:1px solid rgba(0,0,0,0.1); }
-  .empresa-body .pillar .pnum { font-family:var(--sans); font-size:1.4rem; font-weight:600; color:#000; }
-  .empresa-body .pillar h4 { font-family:var(--sans); font-size:1.2rem; font-weight:600; color:#000; margin:0; }
-  .empresa-body .pillar p { font-size:.9rem; color:rgba(0,0,0,0.7); margin:0; line-height:1.5; }
-
-  /* planes (Impact Numbers) */
-  .empresa-body .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:34px; align-items:start; }
-  .empresa-body .plan { background:#d4d6f5; color:#000; padding:40px 32px; border-radius:0; display:flex; flex-direction:column; height: 100%; }
-  .empresa-body .price { font-family:var(--sans); font-size:3.5rem; font-weight:600; line-height:1; margin-bottom:16px; letter-spacing:-0.03em; }
-  .empresa-body .price small { font-size:1rem; font-weight:500; opacity:0.8; letter-spacing:0; margin-left:4px; }
-  .empresa-body .pname { font-family:var(--sans); font-size:1.2rem; margin-bottom:20px; font-weight:600; opacity:0.9; }
-  .empresa-body .plan ul { list-style:none; padding:0; margin:0 0 40px; flex:1; }
-  .empresa-body .plan li { font-size:.85rem; color:rgba(0,0,0,0.8); padding:8px 0; display:flex; gap:10px; font-weight:500; }
-  .empresa-body .plan li::before { content:"—"; color:rgba(0,0,0,0.4); font-weight:600; }
-  .empresa-body .plan .btn-c { width:100%; margin-top:auto; background:#000; color:#fff; border-radius:0; border:none; padding:16px; }
-  .empresa-body .plan .btn-c:hover { background:var(--brass); color:#000; }
-
-  /* a la carta (Accordion) */
-  .empresa-body .carte-head { max-width:600px; margin-bottom:8px; }
-  .empresa-body .carte-head p { color:rgba(0,0,0,0.7); margin-top:12px; font-size:1.05rem; }
-  .empresa-body .cgroup { margin-top:48px; border: 1px solid rgba(0,0,0,0.1); border-radius: 12px; overflow: hidden; background: #fff; }
-  .empresa-body .cgroup-title { font-family:var(--sans); font-size:.85rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate); padding:16px 24px; background: rgba(0,0,0,0.03); border-bottom:1px solid rgba(0,0,0,0.1); margin: 0; }
-  .empresa-body .acc-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
-  .empresa-body .acc-item:last-child { border-bottom: none; }
-  .empresa-body .acc-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: transparent; border: none; cursor: pointer; text-align: left; transition: background 0.2s; }
-  .empresa-body .acc-btn:hover { background: rgba(0,0,0,0.02); }
-  .empresa-body .acc-title-col { flex: 1; padding-right: 16px; }
-  .empresa-body .acc-btn .n { font-family:var(--serif); font-weight:500; font-size:1.35rem; color:#000; letter-spacing:-.01em; display:block; }
-  .empresa-body .acc-price-col { display: flex; align-items: center; gap: 20px; }
-  .empresa-body .acc-btn .p { font-family:var(--sans); font-size:1.15rem; font-weight:600; color:#000; white-space:nowrap; text-align:right; }
-  .empresa-body .acc-btn .p small { font-family:var(--mono); font-size:.7rem; color:rgba(0,0,0,0.5); display:block; letter-spacing:.02em; font-weight:400; margin-top:4px; }
-  .empresa-body .acc-icon { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; transition: transform 0.3s ease; color: var(--slate); }
-  .empresa-body .acc-item.is-open .acc-icon { transform: rotate(180deg); }
-  
-  .empresa-body .acc-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-  .empresa-body .acc-item.is-open .acc-content { grid-template-rows: 1fr; }
-  .empresa-body .acc-inner { overflow: hidden; }
-  .empresa-body .acc-inner .d { font-family:var(--sans); font-size:.9rem; color:rgba(0,0,0,0.7); max-width:640px; line-height:1.6; padding: 0 24px 24px 24px; margin: 0; }
-
-  /* CTA dentro de cada panel del acordeón */
-  .empresa-body .acc-cta { margin: 0 24px 24px; background:#000; color:#fff; font-size:.86rem; padding:11px 20px; }
-  .empresa-body .acc-cta:hover { background:var(--brass); color:#000; }
-  .empresa-body .acc-cta svg { transition: transform .18s; }
-  .empresa-body .acc-cta:hover svg { transform: translateX(3px); }
-  .empresa-body .acc-inner .d { padding-bottom: 14px; }
-
-  /* Cierre de la sección a la carta */
-  .empresa-body .carte-cierre { margin-top:40px; padding:32px 28px; border:1px solid var(--line-l); border-radius:14px; background:rgba(0,0,0,0.015); display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
-  .empresa-body .carte-cierre-txt { font-family:var(--sans); font-size:.98rem; color:rgba(0,0,0,0.72); max-width:520px; margin:0; line-height:1.55; }
-  .empresa-body .carte-cierre-btn { flex-shrink:0; }
-  @media (max-width: 720px) {
-    .empresa-body .carte-cierre { flex-direction:column; align-items:stretch; text-align:left; padding:24px 20px; }
-    .empresa-body .carte-cierre-btn { width:100%; min-height:48px; }
-    .empresa-body .acc-cta { width: calc(100% - 48px); min-height:48px; }
-  }
-
-  /* confianza */
-  .empresa-body .trust { display:grid; grid-template-columns:1.2fr .8fr; gap:44px; align-items:center; }
-  .empresa-body .trust h2 { max-width:440px; }
-  .empresa-body .trust p { color:var(--slate); margin-top:16px; }
-  .empresa-body .trust .ver { margin-top:18px; font-family:var(--mono); font-size:.8rem; color:var(--fog); }
-  .empresa-body .trust .ver a { color:var(--brass); border-bottom:1px solid rgba(194,144,63,.4); }
-  .empresa-body .trust-card { background:#fff; border:1px solid var(--line-l); border-radius:16px; padding:28px; display:flex; gap:18px; align-items:flex-start; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
-  .empresa-body .trust-card .ph { width:70px; height:70px; flex:none; border-radius:12px; background:var(--paper); color:var(--brass); display:grid; place-items:center; font-family:var(--serif); font-size:1.4rem; border:1px solid var(--line-l); }
-  .empresa-body .trust-card .role { font-family:var(--mono); font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:var(--brass); }
-  .empresa-body .trust-card h4 { font-family:var(--serif); font-weight:500; font-size:1.2rem; margin:5px 0 6px; color: var(--ink); }
-  .empresa-body .trust-card .meta { font-size:.82rem; color:var(--slate); line-height:1.6; }
-
-  /* cierre */
-  .empresa-body .cierre { text-align:center; border-top:1px solid var(--line-l); }
-  .empresa-body .cierre .wrap { max-width:640px; }
-  .empresa-body .cierre h2 { font-size:clamp(2rem,4.4vw,3rem); }
-  .empresa-body .cierre p { color:var(--slate); font-size:1.1rem; margin:16px auto 0; max-width:480px; }
-  .empresa-body .cierre .btn-c { margin-top:28px; }
-  .empresa-body .cierre .fine { font-family:var(--mono); font-size:.72rem; color:var(--fog); margin-top:16px; letter-spacing:.04em; }
-
-  @media(max-width:820px){
-    .empresa-body .problema .cols, .empresa-body .segs, .empresa-body .system-split, .empresa-body .grid, .empresa-body .trust { grid-template-columns:1fr; }
-    .empresa-body .pillar { grid-template-columns:1fr; gap:12px; }
-    .empresa-body .plan.feat { transform:none; order:-1; }
-    .empresa-body section { padding:54px 0; }
-    .empresa-body .row { flex-wrap:wrap; }
-  }
-  
-  
-    /* Premium System Section - SaaS Editorial */
-  .premium-system-section {
-    padding: 160px 0;
-    background: transparent;
-  }
-  .premium-system-container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 5%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 80px;
-  }
-  
-  .premium-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-family: monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--taupe-dark, #544e4b);
-  }
-  .eyebrow-dot {
-    width: 6px;
-    height: 6px;
-    background: #a9b5f9; /* Light purple/blue dot from reference */
-  }
-  
-  .premium-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 1.05;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--carbon);
-    margin: 24px 0;
-  }
-  
-  .premium-system-header p {
-    font-family: var(--font-body);
-    color: var(--taupe-dark, #544e4b);
-    max-width: 480px;
-    font-size: 1.15rem;
-    line-height: 1.6;
-    font-weight: 300;
-  }
-  
-  .premium-system-list {
-    position: relative;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .premium-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-bottom: 80px;
-    opacity: 0.25;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    transform: translateY(20px);
-  }
-  .premium-item:last-child {
-    padding-bottom: 0;
-  }
-  .premium-item.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .premium-system-num {
-    font-family: monospace;
-    font-size: 0.85rem;
-    color: var(--taupe-dark, #544e4b);
-    margin-bottom: 8px;
-  }
-  
-  .premium-item-title {
-    font-family: var(--font-body);
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--carbon);
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
-  
-  .premium-item-desc {
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    font-weight: 300;
-    color: var(--taupe-dark, #544e4b);
-    margin: 0;
-  }
-
-  @media (min-width: 1024px) {
-    .premium-system-container {
-      grid-template-columns: 1fr 1fr;
-      gap: 120px;
-      align-items: flex-start;
-    }
-    .premium-system-header {
-      position: sticky;
-      top: 180px;
-    }
-    .premium-system-list {
-      padding-left: 80px;
-    }
-    /* The static background line */
-    .premium-system-list::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 1px;
-      background: rgba(0,0,0,0.1);
-    }
-    /* The active progress line */
-    .premium-system-list::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 1px;
-      height: var(--progress, 0%);
-      background: var(--carbon);
-      transition: height 0.1s linear;
-    }
-  }
-
-  </style>
 </head>
-<body class="empresa-body" style="background: var(--paper);">
+<body class="empresa-body" style="background: #ffffff;">
 
     <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar" class="scrolled">
@@ -418,9 +57,10 @@
                             Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
                         </button>
                         <ul class="nav-submenu" id="nav-sub-pi">
-                            <li><a href="marcas.html">Registrar mi marca</a></li>
-                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
-                            <li><a href="franquicias.html">Franquiciar o licenciar</a></li>
+                            <li><a href="propiedad-intelectual.html">Ver todo</a></li>
+                            <li><a href="marcas.html">Registro de marca</a></li>
+                            <li><a href="derechos-autor.html">Derechos de autor</a></li>
+                            <li><a href="secreto-industrial.html">Secreto industrial</a></li>
                         </ul>
                     </li>
 
@@ -436,12 +76,10 @@
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
                     <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
-                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
                 <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
@@ -449,396 +87,111 @@
         </div>
     </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <!-- Arte del hero (Higgsfield): las dos pilas de expedientes, en line-art
-       sobre crema. Van como PNG con alfa, ancladas a los bordes. -->
-  <div class="hero-art" aria-hidden="true">
-    <img class="pila pila-izq" src="empresa_hero_pila_izq.png" alt="" width="228" height="644" fetchpriority="high" decoding="async">
-    <img class="pila pila-der" src="empresa_hero_pila_der.png" alt="" width="284" height="699" fetchpriority="high" decoding="async">
+<!-- HERO — cinta
+     Blanco, titular en peso normal y azul marino, y una cinta que barre la
+     mitad inferior. El volumen no es un efecto: son tres capas —canto oscuro
+     detrás, cuerpo con degradado, y un filo claro arriba— que es como se
+     construye una forma con relieve sin recurrir a un render. -->
+<div class="hero hero-emp">
+
+  <div class="hero-emp-wrap">
+    <h1 class="hero-emp-title blur-fade" data-bf-delay="1">Tu empresa<br>en orden.</h1>
+    <p class="hero-emp-dek blur-fade" data-bf-delay="2">No solo constituirla. Todo lo que viene después.</p>
+
+    <!-- Los dos accesos suben al hero: son la bifurcación de la página —crear
+         o ya tengo— y decidirla antes de hacer scroll es medio embudo ganado.
+         Van compactas a propósito: son un atajo, no el contenido. -->
+    <div class="pi-cards-grid blur-fade" data-bf-delay="3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 2.75rem; text-align: left; max-width: 720px; margin-left: auto; margin-right: auto;">
+
+            <!-- CARD 1: Crear Empresa -->
+            <a href="consulta.html" class="pi-card" style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 1.6rem 1.5rem; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; position: relative;">
+                <div class="pi-card-icon" style="width: 38px; height: 38px; border-radius: 8px; background-color: #e3f2fd; display: flex; align-items: center; justify-content: center; font-size: .95rem; color: #0d47a1; margin-bottom: 1rem;"><i class="fa-solid fa-building"></i></div>
+                <h3 style="font-size: 1.12rem; font-weight: 600; color: #111; margin-bottom: .55rem; font-family: var(--sans); letter-spacing: -0.5px; line-height: 1.2;">Crear empresa</h3>
+                <p style="font-size: .85rem; color: #555; line-height: 1.55; margin-bottom: 0; padding-right: 1.6rem;">Inicia el proceso para constituir tu sociedad. Te acompañamos desde el acta constitutiva hasta tu alta oficial.</p>
+                <i class="fa-solid fa-arrow-right" style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: .9rem; color: #0d47a1;"></i>
+            </a>
+
+            <!-- CARD 2: Tengo una empresa -->
+            <a href="empresa-operacion.html" class="pi-card" style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 1.6rem 1.5rem; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; position: relative;">
+                <div class="pi-card-icon" style="width: 38px; height: 38px; border-radius: 8px; background-color: #e3f2fd; display: flex; align-items: center; justify-content: center; font-size: .95rem; color: #0d47a1; margin-bottom: 1rem;"><i class="fa-solid fa-briefcase"></i></div>
+                <h3 style="font-size: 1.12rem; font-weight: 600; color: #111; margin-bottom: .55rem; font-family: var(--sans); letter-spacing: -0.5px; line-height: 1.2;">Tengo una empresa</h3>
+                <p style="font-size: .85rem; color: #555; line-height: 1.55; margin-bottom: 0; padding-right: 1.6rem;">Protege tu operación actual. Revisión de contratos, actas de asamblea y blindaje legal con nuestra membresía.</p>
+                <i class="fa-solid fa-arrow-right" style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: .9rem; color: #0d47a1;"></i>
+            </a>
+
+        </div>
+        
+        <!-- BANNER ESPECIFICO -->
+        <div class="blur-fade" data-bf-delay="4" style="max-width: 720px; margin: 1rem auto 0; background-color: #fafafa; border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; position: relative; z-index: 10;">
+
+            <!-- Fila 1: Llamada -->
+            <div style="padding: 1.25rem 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; text-align: left;">
+                <p style="font-family: var(--font-body); font-size: .92rem; color: #555; line-height: 1.5; margin: 0; flex: 1; min-width: 280px; letter-spacing: -0.01em;">
+                    ¿Buscas algo más específico? Lo vemos en una llamada y te decimos si aplica, cuánto cuesta y en cuánto tiempo.
+                </p>
+                <a href="https://cal.com/PENDIENTE" target="_blank" rel="noopener" style="background-color: #c49a52; color: #111; padding: 0.75rem 1.5rem; border-radius: 100px; font-weight: 600; font-family: var(--font-body); font-size: .85rem; text-decoration: none; transition: transform 0.2s, background-color 0.2s; white-space: nowrap; box-shadow: 0 4px 10px rgba(196, 154, 82, 0.2);" onmouseover="this.style.backgroundColor='#b38a45'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#c49a52'; this.style.transform='translateY(0)';">
+                    Agendar una llamada <i class="fa-solid fa-arrow-right" style="margin-left: 0.4rem; font-size: 0.8rem;"></i>
+                </a>
+            </div>
+
+            <!-- Fila 2: Acceso para independientes -->
+            <div style="border-top: 1px solid #e5e5e5; padding: 1rem 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; text-align: left;">
+                <div style="flex: 1; min-width: 220px;">
+                    <p style="font-family: var(--font-body); font-size: .88rem; font-weight: 600; color: #111; margin: 0 0 0.2rem 0; letter-spacing: -0.01em;">¿Eres freelance o trabajas por proyecto?</p>
+                    <p style="font-family: var(--font-body); font-size: .83rem; color: #777; margin: 0; line-height: 1.45;">Protege tus servicios, contratos, pagos y derechos sobre tu trabajo.</p>
+                </div>
+                <a href="independiente.html" style="font-family: var(--font-body); font-size: .83rem; font-weight: 600; color: #3b50df; text-decoration: none; white-space: nowrap; display: flex; align-items: center; gap: 0.35rem; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7';" onmouseout="this.style.opacity='1';">
+                    Ver soluciones para independientes <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem;"></i>
+                </a>
+            </div>
+
+        </div>
+        <style>
+            .pi-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(13, 71, 161, 0.08) !important; border-color: #bbdefb !important; }
+        </style>
   </div>
 
-  <!-- Hojas volando. Son SVG, no imágenes: así se animan y escalan sin peso
-       extra. Cada una lleva su propia deriva, giro, tamaño y desfase para que
-       ninguna se mueva igual que otra. -->
-  <div class="hero-hojas" aria-hidden="true">
-    <svg width="0" height="0" style="position:absolute" focusable="false">
-      <defs>
-        <!-- hoja con bloque de firma -->
-        <symbol id="hoja-a" viewBox="0 0 80 62">
-          <g transform="translate(9 9) skewY(-11) skewX(-7)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <rect x="0" y="0" width="58" height="44" fill="var(--paper-art)"/>
-            <rect x="5" y="5" width="15" height="12" fill="currentColor" stroke="none"/>
-            <path d="M26 8h26M26 14h22M5 25h48M5 31h48M5 37h31"/>
-          </g>
-        </symbol>
-        <!-- hoja solo de texto, con esquina doblada -->
-        <symbol id="hoja-b" viewBox="0 0 80 62">
-          <g transform="translate(9 9) skewY(-11) skewX(-7)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M0 0h47l11 11v33H0Z" fill="var(--paper-art)" stroke-linejoin="round"/>
-            <path d="M47 0v11h11"/>
-            <path d="M5 20h48M5 26h48M5 32h48M5 38h28"/>
-          </g>
-        </symbol>
-      </defs>
-    </svg>
+  <svg class="hero-emp-cinta" viewBox="0 0 1200 430" fill="none" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <!-- El degradado va en diagonal: una rampa horizontal se lee como fondo,
+           no como una superficie curva. -->
+      <linearGradient id="cintaCuerpo" x1="80" y1="430" x2="980" y2="200" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#1B2FA8"/>
+        <stop offset=".5" stop-color="#2545E8"/>
+        <stop offset="1" stop-color="#1E36C4"/>
+      </linearGradient>
+      <linearGradient id="cintaFilo" x1="0" y1="380" x2="1000" y2="215" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#93A9FF"/>
+        <stop offset=".55" stop-color="#7590FB"/>
+        <stop offset="1" stop-color="#5872EC"/>
+      </linearGradient>
+      <linearGradient id="cintaCanto" x1="900" y1="215" x2="1200" y2="430" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#414E96"/>
+        <stop offset="1" stop-color="#28315E"/>
+      </linearGradient>
+    </defs>
 
-    <span class="hoja" style="--l:6%;--t:20%;--sz:58px;--rot:-16deg;--spin:22deg;--dx:44px;--dy:34px;--dur:15s;--dly:-2s"><svg viewBox="0 0 80 62"><use href="#hoja-a"/></svg></span>
-    <span class="hoja hoja-baja" style="--l:14%;--t:44%;--sz:44px;--rot:12deg;--spin:-18deg;--dx:-32px;--dy:40px;--dur:19s;--dly:-7s"><svg viewBox="0 0 80 62"><use href="#hoja-b"/></svg></span>
-    <span class="hoja hoja-centro" style="--l:30%;--t:12%;--sz:40px;--rot:-8deg;--spin:26deg;--dx:38px;--dy:26px;--dur:22s;--dly:-11s"><svg viewBox="0 0 80 62"><use href="#hoja-b"/></svg></span>
-    <span class="hoja hoja-centro" style="--l:52%;--t:9%;--sz:50px;--rot:18deg;--spin:-20deg;--dx:-40px;--dy:30px;--dur:17s;--dly:-4s"><svg viewBox="0 0 80 62"><use href="#hoja-a"/></svg></span>
-    <span class="hoja hoja-baja" style="--l:74%;--t:26%;--sz:46px;--rot:-22deg;--spin:16deg;--dx:36px;--dy:44px;--dur:21s;--dly:-9s"><svg viewBox="0 0 80 62"><use href="#hoja-b"/></svg></span>
-    <span class="hoja" style="--l:86%;--t:14%;--sz:62px;--rot:9deg;--spin:-24deg;--dx:-30px;--dy:36px;--dur:16s;--dly:-13s"><svg viewBox="0 0 80 62"><use href="#hoja-a"/></svg></span>
-    <span class="hoja hoja-baja" style="--l:91%;--t:52%;--sz:38px;--rot:-13deg;--spin:20deg;--dx:26px;--dy:30px;--dur:24s;--dly:-6s"><svg viewBox="0 0 80 62"><use href="#hoja-b"/></svg></span>
-  </div>
+    <!-- 1. La cara interior del doblez: nace donde la cinta gira y baja hacia
+         la derecha. Va detrás de todo, así que su borde tiene que quedar por
+         encima del filo —no sólo del cuerpo— para asomar: el filo ocupa una
+         franja de 28 px sobre la curva y se lo tragaba entero. -->
+    <path fill="url(#cintaCanto)"
+          d="M806 74c112 26 214 88 306 164 24 20 46 34 68 44v148H660c34-124 84-244 146-356Z"/>
 
-  <div class="wrap">
-    <span class="eyebrow">Para empresas</span>
-    <h1>Tu área legal, <em>sin cargarla a la nómina.</em></h1>
-    <p>Contratos revisados, riesgos vigilados y un socio detrás de cada decisión — por una cuota fija al mes. El respaldo de un abogado interno, sin el sueldo de uno.</p>
-    <div class="cta">
-      <a class="btn-c btn-brass" href="#planes">Ver planes</a>
-      <a class="btn-c btn-ghost" href="#cierre">Agendar diagnóstico</a>
-    </div>
+    <!-- 2. El cuerpo. El arco sube hasta y=118 —muy por encima de la mitad del
+         lienzo— y cierra fuerte a los lados: es lo que le da la curvatura
+         marcada en vez de una loma suave. -->
+    <path fill="url(#cintaCuerpo)"
+          d="M0 430V396C140 320 322 122 626 118c220-3 372 92 474 176 40 33 68 52 100 62v74H0Z"/>
 
-  </div>
+    <!-- 3. El filo claro sobre el borde superior: es lo que da el relieve.
+         Sigue la misma curva que el cuerpo, desplazada unos 28 px. -->
+    <path fill="url(#cintaFilo)"
+          d="M0 396C140 320 322 122 626 118c220-3 372 92 474 176 40 33 68 52 100 62v-28c-26-9-50-26-86-56-106-88-262-186-488-182C312 92 136 292 0 368v28Z"/>
+  </svg>
+
 </div>
 
-<!-- PROBLEMA -->
-<section class="problema">
-  <div class="wrap">
-    <span class="eyebrow">El costo de firmar a ciegas</span>
-    <h2 class="sec" style="margin-top:14px">Tu empresa firma todos los meses. <em>¿Alguien la lee?</em></h2>
-    <div class="cols">
-      <p>Cada contrato que firmas sin revisar es un riesgo que no ves hasta que es tarde: una cláusula de penalización, un plazo que se te fue, una responsabilidad que aceptaste sin querer.</p>
-      <p class="punch">Un abogado de planta cuesta un sueldo. Un despacho por hora es impredecible. Firmar a ciegas sale más caro que los dos. <b>Hay un punto medio — y es esto.</b></p>
-    </div>
-  </div>
-</section>
-
-<!-- SEGMENTOS -->
-<section>
-  <div class="wrap">
-    <div class="seg-head">
-      <span class="eyebrow">¿En qué etapa estás?</span>
-      <h2 class="sec" style="margin-top:14px">Te acompañamos según <em>dónde está tu empresa</em>.</h2>
-      <p>No vendemos trámites sueltos. Entramos en tu operación según lo que necesitas hoy — y crecemos contigo.</p>
-    </div>
-    <div class="segs">
-      <div class="seg seg-1">
-        <img src="icon_etapa.png" alt="Etapa temprana" class="seg-icon">
-        <h3>Etapa temprana</h3>
-        <p>De la constitución de tu empresa a tu primera ronda: acuerdo de socios, SAFE, term sheets. Blinda tu cap table.</p>
-      </div>
-      <div class="seg seg-2">
-        <img src="icon_crecimiento.png" alt="En crecimiento" class="seg-icon" loading="lazy" decoding="async">
-        <h3>En crecimiento</h3>
-        <p>Contratos, laboral y prevención de riesgos al día. Tu dirección jurídica interna sin contratar un equipo completo.</p>
-      </div>
-      <div class="seg seg-3">
-        <img src="icon_consolidada.png" alt="Consolidadas" class="seg-icon" loading="lazy" decoding="async">
-        <h3>Consolidadas</h3>
-        <p>Volumen de contratos, propiedad intelectual y estrategia legal continua con un socio de cabecera respaldando tus decisiones.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SISTEMA -->
-<section class="premium-system-section">
-  <div class="premium-system-container">
-    <div class="premium-system-header">
-      <span class="premium-eyebrow"><span class="eyebrow-dot"></span>NUESTRO ENFOQUE</span>
-      <h2 class="premium-title">El sistema que<br>protege todo.</h2>
-      <p>Cuatro frentes que blindan tu operación durante todo el año — no cuando ya hay un problema encima.</p>
-    </div>
-    
-    <ol class="premium-system-list" id="premiumScrollList">
-      <li class="premium-item active">
-        <span class="premium-system-num">01</span>
-        <h3 class="premium-item-title">Redacción y revisión.</h3>
-        <p class="premium-item-desc">Estructuramos, redactamos y analizamos tus contratos y acuerdos. Nada se firma sin que un abogado lo haya revisado rigurosamente primero.</p>
-      </li>
-      <li class="premium-item">
-        <span class="premium-system-num">02</span>
-        <h3 class="premium-item-title">Monitoreo continuo.</h3>
-        <p class="premium-item-desc">Tus plantillas y acuerdos estándar, siempre vigentes. Cuando la ley cambia, tus documentos clave ya están actualizados automáticamente.</p>
-      </li>
-      <li class="premium-item">
-        <span class="premium-system-num">03</span>
-        <h3 class="premium-item-title">Reporte de riesgo.</h3>
-        <p class="premium-item-desc">Auditamos tus contratos vigentes y te comunicamos, por escrito, exactamente dónde estás expuesto y qué debes corregir de forma prioritaria.</p>
-      </li>
-      <li class="premium-item">
-        <span class="premium-system-num">04</span>
-        <h3 class="premium-item-title">Alertas regulatorias.</h3>
-        <p class="premium-item-desc">Los cambios legislativos que afectan tu industria, analizados a tiempo. Te enteras y te preparas mucho antes de que se vuelvan un problema.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const list = document.getElementById('premiumScrollList');
-  if(!list) return;
-  const items = list.querySelectorAll('.premium-item');
-  
-  window.addEventListener('scroll', () => {
-    const rect = list.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    
-    // Start progress when the top of the list reaches the middle of the screen
-    const startOffset = windowHeight * 0.6;
-    const progressStart = rect.top - startOffset;
-    
-    if (progressStart < 0) {
-      // Calculate percentage
-      let progress = (Math.abs(progressStart) / (rect.height * 0.8)) * 100;
-      progress = Math.min(100, Math.max(0, progress));
-      list.style.setProperty('--progress', progress + '%');
-    } else {
-      list.style.setProperty('--progress', '0%');
-    }
-    
-    // Highlight items based on their individual position
-    items.forEach((item) => {
-      const itemRect = item.getBoundingClientRect();
-      // If item's top passes the middle of screen (plus some margin)
-      if (itemRect.top < windowHeight * 0.65) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
-  });
-  
-  // Trigger once on load
-  window.dispatchEvent(new Event('scroll'));
-});
-</script>
-
-<!-- PLANES -->
-<section id="planes">
-  <div class="wrap">
-    <div class="planes-head">
-      <span class="eyebrow">Membresía · Dirección Jurídica</span>
-      <h2 class="sec" style="margin-top:12px">Elige cuánto <em>respaldo</em> necesitas.</h2>
-      <p>Precio cerrado, topes claros, sin "ilimitado" de humo. Empieza donde te queda y sube cuando crezcas.</p>
-    </div>
-    <div class="grid">
-      <div class="plan">
-        <div class="price">$1,990<small>MXN</small></div>
-        <div class="pname">Contratos Esenciales</div>
-        <ul>
-          <li>1 revisión de contrato simple/mes</li>
-          <li>1 consulta breve al mes</li>
-          <li>Plantillas y su mantenimiento</li>
-          <li>Respuesta en hasta 48 h hábiles</li>
-        </ul>
-        <a class="btn-c" href="#">Empezar</a>
-      </div>
-      <div class="plan" style="background:#ced0fc;">
-        <div class="price">$3,990<small>MXN</small></div>
-        <div class="pname">Dirección Ligera</div>
-        <ul>
-          <li>Hasta 3 revisiones simples <b>o</b> 1 contrato intermedio</li>
-          <li>Videollamada mensual con socio</li>
-          <li>Canal prioritario</li>
-          <li>Alertas legislativas de tu giro</li>
-        </ul>
-        <a class="btn-c" href="#">Elegir plan</a>
-      </div>
-      <div class="plan">
-        <div class="price">$6,990<small>MXN</small></div>
-        <div class="pname">Dirección Externa</div>
-        <ul>
-          <li>Hasta 5 revisiones simples/mes</li>
-          <li>Hasta 2 documentos nuevos o ajustes</li>
-          <li>2 sesiones mensuales y acompañamiento</li>
-          <li>Estrategia jurídica continua</li>
-        </ul>
-        <a class="btn-c" href="#">Agendar diagnóstico</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- A LA CARTA -->
-<section>
-  <div class="wrap">
-    <div class="carte-head">
-      <span class="eyebrow">Servicios a la carta</span>
-      <h2 class="sec" style="margin-top:12px">¿Una necesidad puntual? <em>También por separado.</em></h2>
-      <p>Precio público, sin cotizaciones a puerta cerrada. Y si luego te suscribes, empiezas con ventaja.</p>
-    </div>
-
-    <div class="cgroup">
-      <div class="cgroup-title">Constitución y startups</div>
-      
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Constitución de empresa</span></div>
-          <div class="acc-price-col">
-            <div class="p">desde $9,900<small>MXN</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Tu S.A. o S. de R.L. lista para operar: estatutos, acta, RFC y trámites base. La puerta de entrada para nacer bien.</p><a class="btn-c acc-cta" href="consulta.html" data-track-pago="Constitución de empresa" data-producto="Constitución de empresa">Solicitar este servicio<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-      
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Acuerdo de socios / fundadores</span></div>
-          <div class="acc-price-col">
-            <div class="p">desde $6,990<small>MXN</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Reparto de acciones, vesting y reglas claras entre socios. Evita el pleito antes de que exista.</p><a class="btn-c acc-cta" href="consulta.html" data-track-pago="Acuerdo de socios" data-producto="Acuerdo de socios">Solicitar este servicio<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Revisión de SAFE / term sheet</span></div>
-          <div class="acc-price-col">
-            <div class="p">desde $4,990<small>MXN</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Antes de firmar con un inversionista, que alguien lo lea por ti. Protege tu control y tu dilución.</p><a class="btn-c acc-cta" href="consulta.html" data-track-pago="Revisión de SAFE" data-producto="Revisión de SAFE">Solicitar este servicio<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-    </div>
-
-    <div class="cgroup">
-      <div class="cgroup-title">Propiedad intelectual</div>
-      
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Registro de marca ante IMPI</span></div>
-          <div class="acc-price-col">
-            <div class="p">$6,990<small>MXN / CLASE</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Búsqueda, clasificación, solicitud y seguimiento hasta resolución. Precio por clase; si necesitas más de una, te orientamos antes.</p><a class="btn-c acc-cta" href="marcas.html" data-track-pago="Registro de marca" data-producto="Registro de marca">Empezar registro<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Marca + Derecho de autor</span></div>
-          <div class="acc-price-col">
-            <div class="p">desde $8,050<small>MXN</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Blinda tu identidad completa: nombre (marca) + logo y contenido (autor), en un paquete.</p><a class="btn-c acc-cta" href="derechos-autor.html" data-track-pago="Marca + Derecho de autor" data-producto="Marca + Derecho de autor">Empezar registro<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-    </div>
-
-    <div class="cgroup">
-      <div class="cgroup-title">Contratos</div>
-
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Revisión de contrato</span></div>
-          <div class="acc-price-col">
-            <div class="p">desde $490<small>MXN</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Simple $490 · intermedio (11–25 pp) desde $990 · estratégica/compleja desde $1,990.</p><a class="btn-c acc-cta" href="revision.html" data-track-pago="Revisión de contrato" data-producto="Revisión de contrato">Enviar mi contrato<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Contrato a tu medida</span></div>
-          <div class="acc-price-col">
-            <div class="p">desde $1,990<small>MXN</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Cuestionario, redacción, revisión y una ronda de ajustes.</p><a class="btn-c acc-cta" href="contratos.html" data-track-pago="Contrato personalizado" data-producto="Contrato personalizado">Empezar contrato<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Reporte de Riesgo Contractual</span></div>
-          <div class="acc-price-col">
-            <div class="p">desde $3,990<small>MXN</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Auditoría a fondo de tus contratos vigentes: dónde estás expuesto y qué corregir primero.</p><a class="btn-c acc-cta" href="empresas.html#reporte" data-track-pago="Reporte de Riesgo Contractual" data-producto="Reporte de Riesgo Contractual">Ver el reporte<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-    </div>
-
-    <div class="cgroup">
-      <div class="cgroup-title">Tecnología, datos y cumplimiento</div>
-      
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Aviso de privacidad + LFPDPPP</span></div>
-          <div class="acc-price-col">
-            <div class="p">desde $3,990<small>MXN</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Aviso de privacidad y cumplimiento de protección de datos para tu sitio y tu app.</p><a class="btn-c acc-cta" href="consulta.html" data-track-pago="Aviso de privacidad" data-producto="Aviso de privacidad">Solicitar este servicio<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-btn" aria-expanded="false">
-          <div class="acc-title-col"><span class="n">Términos y condiciones de plataforma</span></div>
-          <div class="acc-price-col">
-            <div class="p">desde $3,990<small>MXN</small></div>
-            <svg class="acc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </button>
-        <div class="acc-content"><div class="acc-inner"><p class="d">Para SaaS, marketplace o app: reglas de uso que te protegen frente al usuario.</p><a class="btn-c acc-cta" href="consulta.html" data-track-pago="Términos y condiciones" data-producto="Términos y condiciones">Solicitar este servicio<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-    </div>
-
-    <div class="carte-cierre">
-      <p class="carte-cierre-txt">¿Buscas algo más específico? Lo vemos en una llamada y te decimos si aplica, cuánto cuesta y en cuánto tiempo.</p>
-      <a class="btn-c btn-brass carte-cierre-btn" href="consulta.html" data-track-pago="Agenda desde servicios a la carta" data-producto="Agenda">
-        Agendar una llamada
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- CONFIANZA -->
-<section>
-  <div class="wrap trust">
-    <div>
-      <span class="eyebrow">Quién responde por tu empresa</span>
-      <h2 class="sec" style="margin-top:14px">Un despacho tiene nombre. <em>El tuyo tendrá cara.</em></h2>
-      <p>Cada asunto lo revisa un socio con cédula profesional. No tercerizamos tu operación a un becario ni a un algoritmo. Cuando llames, sabes con quién hablas.</p>
-      <div class="ver">Verifica cualquier cédula en el <a href="https://www.cedulaprofesional.sep.gob.mx/" target="_blank" rel="noopener">registro de la SEP</a>.</div>
-    </div>
-    <div class="trust-card">
-      <div class="ph">AF</div>
-      <div>
-        <div class="role">Socio fundador</div>
-        <h4>Alan Fragoso Rivera</h4>
-        <div class="meta">Especialidad: corporativo y marcas<br>Formación: Universidad Autónoma de Querétaro<br>Céd. prof. 1234567</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CIERRE -->
-<section class="cierre" id="cierre">
-  <div class="wrap">
-    <span class="eyebrow">Empieza aquí</span>
-    <h2 class="sec" style="margin-top:14px">Deja de firmar <em>a ciegas</em>.</h2>
-    <p>Empieza con un diagnóstico. Te decimos dónde estás parado y qué necesitas — sin compromiso de contratar.</p>
-    <a class="btn-c btn-brass" href="#">Agendar diagnóstico</a>
-    <div class="fine">// respuesta el mismo día hábil</div>
-  </div>
-</section>
 
     <!-- ═══ FOOTER ═══ -->
     <footer class="site-footer">
@@ -859,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </footer>
 
     <!-- Scripts locales -->
-    <script src="script.js?v=11"></script>
+    <script src="script.js?v=12"></script>
     <script src="precios.js?v=8"></script>
     <script src="analytics.js?v=11"></script>
 
@@ -946,6 +299,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     }, { threshold: 0 }).observe(hero);
+  })();
+
+  /* ── Dispersión de la pila con el scroll ──
+     Escribe --p (0 a 1) en el contenedor; el CSS hace el resto. Se activa
+     solo cuando la animación de entrada terminó, para que su `forwards` no
+     pise los transforms. */
+  (function () {
+    var caja = document.querySelector('.hero-center-img');
+    if (!caja) return;
+    var hero = caja.closest('.hero');
+    var franjas = caja.querySelectorAll('.pila-franja');
+    if (!franjas.length) return;
+
+    /* La última franja en entrar marca el fin de la coreografía de armado. */
+    var ultima = franjas[franjas.length - 1];
+    var listo = false;
+    var armar = function () {
+      if (listo) return;
+      listo = true;
+      caja.classList.add('pila-armada');
+      medir();
+    };
+    ultima.addEventListener('animationend', armar, { once: true });
+    /* Red de seguridad: si la animación no corre (reduced-motion, pestaña en
+       segundo plano al cargar) el evento nunca llega y la pila se quedaría
+       sin dispersarse. */
+    setTimeout(armar, 1800);
+
+    var pedido = 0;
+    function medir() {
+      var alto = hero ? hero.offsetHeight : window.innerHeight;
+      /* Se consume en el primer 55% del hero: si se estira más, el usuario ya
+         está leyendo otra cosa y la pila sigue ahí a media disolución. */
+      var p = Math.min(1, Math.max(0, window.scrollY / (alto * 0.55)));
+      caja.style.setProperty('--p', p.toFixed(3));
+    }
+    function alScroll() {
+      if (!listo || pedido) return;
+      pedido = requestAnimationFrame(function () { pedido = 0; medir(); });
+    }
+    window.addEventListener('scroll', alScroll, { passive: true });
+    window.addEventListener('resize', alScroll, { passive: true });
   })();
 </script>
 </body>

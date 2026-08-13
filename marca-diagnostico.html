@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Diagnóstico de Marca | FERRO FRAGOSO</title>
+    <link rel="canonical" href="https://ferrofragoso.com/marca-diagnostico.html">
+    <meta name="description" content="Contesta tres preguntas y te decimos qué tan sólida nace tu marca antes de registrarla ante el IMPI. Orientación gratuita en dos minutos.">
+    <!-- Página de embudo: no debe competir con marcas.html en el índice. -->
+    <meta name="robots" content="noindex, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ferrofragoso.com/marca-diagnostico.html">
+    <meta property="og:title" content="Diagnóstico de Marca | FERRO FRAGOSO">
+    <meta property="og:description" content="Contesta tres preguntas y te decimos qué tan sólida nace tu marca antes de registrarla ante el IMPI.">
+    <meta property="og:image" content="https://ferrofragoso.com/signature_on_dark.png">
+    <meta property="og:locale" content="es_MX">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#141d27;--ink-2:#1c2732;
+    --paper:#f4f1e9;--paper-2:#e9e4d7;--panel:#fbf9f4;
+    --brass:#c2903f;--brass-deep:#a9762f;--seal:#8a2b34;
+    --slate:#54626f;--fog:#8b98a5;
+    --line:rgba(20,29,39,.13);--line-2:rgba(20,29,39,.28);
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Montserrat',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body.dx{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6}
+
+  /* ── chrome mínimo: es página de embudo, no debe haber a dónde escaparse ── */
+  .dx-top{
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:1rem clamp(1rem,4vw,2.5rem);border-bottom:1px solid var(--line);
+    background:var(--panel);position:sticky;top:0;z-index:20;
+  }
+  /* El glifo es vertical (801×957): solo funciona acompañado del logotipo
+     tipográfico, como en el nav del resto del sitio. */
+  .dx-marca{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+  .dx-marca img{height:34px;width:auto;display:block}
+  .dx-marca b{font-family:var(--sans);font-size:.82rem;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+  .dx-top a{color:var(--slate);text-decoration:none;font-size:.8rem;letter-spacing:.06em}
+  .dx-top a:hover{color:var(--ink)}
+  .dx-top .dx-marca:hover b{color:var(--brass-deep)}
+
+  .dx-wrap{max-width:1120px;margin:0 auto;padding:clamp(1.5rem,4vw,3rem) clamp(1rem,4vw,2.5rem) 5rem;
+    display:grid;gap:clamp(1.75rem,4vw,3.25rem)}
+  /* En móvil la pregunta va primero: el carril explica, pero si va arriba
+     empuja el formulario fuera de pantalla y se pierde la mitad de la gente. */
+  .dx-card{order:1}
+  .dx-rail{order:2}
+  @media(min-width:900px){
+    .dx-wrap{grid-template-columns:300px 1fr;align-items:start}
+    .dx-card{order:2}
+    .dx-rail{order:1}
+  }
+
+  /* ── carril "cómo funciona": vende mientras el usuario llena ── */
+  .dx-rail{font-size:.85rem}
+  @media(min-width:900px){.dx-rail{position:sticky;top:88px}}
+  .dx-rail h2{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--slate);margin:0 0 1.25rem;font-weight:500}
+  .dx-steps{list-style:none;margin:0;padding:0;display:grid;gap:1.1rem}
+  .dx-steps li{display:grid;grid-template-columns:26px 1fr;gap:.75rem;color:var(--slate)}
+  .dx-steps .n{font-family:var(--mono);font-size:.7rem;color:var(--brass-deep);padding-top:.18rem}
+  .dx-steps b{display:block;color:var(--ink);font-weight:600;font-size:.85rem;margin-bottom:.15rem}
+  .dx-steps p{margin:0;font-size:.8rem;line-height:1.5}
+  .dx-rail .promesa{margin-top:1.5rem;padding:.9rem 1rem;background:var(--panel);
+    border-left:3px solid var(--brass);font-size:.8rem;color:var(--slate)}
+  .dx-rail .promesa b{color:var(--ink);display:block;margin-bottom:.2rem;font-size:.82rem}
+
+  /* ── tarjeta del formulario ── */
+  .dx-card{background:var(--panel);border:1px solid var(--line);padding:clamp(1.25rem,3.5vw,2.25rem)}
+  .dx-meta{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+  .dx-bar{height:3px;background:var(--paper-2);margin:.7rem 0 1.75rem;overflow:hidden}
+  .dx-bar i{display:block;height:100%;width:0;background:var(--brass);transition:width .45s cubic-bezier(.4,0,.2,1)}
+
+  .dx-paso{display:none}
+  .dx-paso.on{display:block;animation:dx-in .32s ease both}
+  @keyframes dx-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){
+    .dx-paso.on{animation:none}
+    .dx-bar i{transition:none}
+  }
+
+  .dx-paso h1,.dx-paso h2.q{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,4vw,2.3rem);
+    line-height:1.14;letter-spacing:-.01em;margin:0 0 .6rem;color:var(--ink)}
+  .dx-paso .ayuda{color:var(--slate);font-size:.9rem;margin:0 0 1.5rem;max-width:52ch}
+
+  .dx-campo{display:block;margin-bottom:1.25rem}
+  .dx-campo>span{display:block;font-size:.78rem;font-weight:600;letter-spacing:.04em;margin-bottom:.45rem}
+  .dx-campo input,.dx-campo textarea{
+    width:100%;font-family:var(--sans);font-size:1rem;color:var(--ink);
+    background:#fff;border:1px solid var(--line-2);border-radius:0;padding:.85rem .9rem;
+  }
+  .dx-campo textarea{min-height:110px;resize:vertical;line-height:1.55}
+  .dx-campo input:focus,.dx-campo textarea:focus{outline:2px solid var(--brass);outline-offset:1px;border-color:transparent}
+  .dx-cuenta{font-family:var(--mono);font-size:.68rem;color:var(--fog);text-align:right;margin-top:.3rem}
+
+  .dx-ops{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.25rem}
+  .dx-op{
+    font-family:var(--sans);font-size:.88rem;padding:.7rem 1.15rem;cursor:pointer;
+    background:#fff;border:1px solid var(--line-2);color:var(--ink);transition:all .16s ease;
+  }
+  .dx-op:hover{border-color:var(--brass)}
+  .dx-op[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .dx-op:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+
+  .dx-nav{display:flex;gap:.75rem;align-items:center;margin-top:1.75rem;flex-wrap:wrap}
+  .dx-btn{
+    font-family:var(--sans);font-size:.85rem;font-weight:600;letter-spacing:.05em;
+    padding:.85rem 1.9rem;cursor:pointer;border:1px solid transparent;transition:all .18s ease;
+    background:var(--brass);color:#fff;
+  }
+  .dx-btn:hover{background:var(--brass-deep)}
+  .dx-btn:disabled{opacity:.4;cursor:not-allowed}
+  .dx-btn.ghost{background:transparent;border-color:var(--line-2);color:var(--slate);padding:.85rem 1.3rem}
+  .dx-btn.ghost:hover{border-color:var(--ink);color:var(--ink)}
+  .dx-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .dx-err{color:var(--seal);font-size:.8rem;margin:.5rem 0 0;min-height:1.1em}
+
+  /* ── resultado ── */
+  .dx-señal{border:1px solid var(--line);background:#fff;padding:1rem 1.15rem;margin-bottom:.85rem}
+  .dx-señal .et{font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
+    display:block;margin-bottom:.35rem}
+  .dx-señal.alerta{border-left:3px solid var(--seal)}
+  .dx-señal.alerta .et{color:var(--seal)}
+  .dx-señal.ok{border-left:3px solid var(--brass)}
+  .dx-señal.ok .et{color:var(--brass-deep)}
+  .dx-señal p{margin:0;font-size:.87rem;color:var(--slate)}
+  .dx-señal p b{color:var(--ink)}
+
+  .dx-resumen{font-family:var(--mono);font-size:.78rem;background:var(--paper-2);
+    padding:.9rem 1rem;margin:1.25rem 0;color:var(--ink);word-break:break-word}
+  .dx-resumen span{color:var(--slate)}
+
+  .dx-aviso{font-size:.76rem;color:var(--slate);border-top:1px solid var(--line);
+    padding-top:1rem;margin-top:1.75rem;line-height:1.55}
+  .dx-aviso b{color:var(--ink)}
+
+  .dx-precio{display:flex;align-items:baseline;gap:.5rem;margin:.4rem 0 1rem}
+  .dx-precio .n{font-family:var(--mono);font-size:1.5rem;color:var(--brass-deep);font-weight:500}
+  .dx-precio .u{font-size:.75rem;color:var(--slate)}
+</style>
+</head>
+<body class="dx">
+
+<div class="dx-top">
+  <a class="dx-marca" href="index.html" aria-label="Ferro Fragoso, inicio"><img src="logo_ff.png" alt=""><b>Ferro Fragoso</b></a>
+  <a href="marcas.html">&larr; Volver a precios</a>
+</div>
+
+<div class="dx-wrap">
+
+  <!-- Carril fijo: el usuario ve a dónde va todo esto mientras contesta. -->
+  <aside class="dx-rail">
+    <h2>Cómo funciona</h2>
+    <ol class="dx-steps">
+      <li><span class="n">01</span><div><b>Contestas tres preguntas</b><p>Dos minutos. No pedimos datos de tu empresa todavía.</p></div></li>
+      <li><span class="n">02</span><div><b>Ves las señales de tu marca</b><p>Te decimos, al momento, qué puede debilitarla ante el IMPI.</p></div></li>
+      <li><span class="n">03</span><div><b>Un abogado la revisa</b><p>Recibes la clase que te corresponde y el riesgo real. Sin costo.</p></div></li>
+      <li><span class="n">04</span><div><b>Decides si registras</b><p>Con precio cerrado y desglosado. Sin sorpresas.</p></div></li>
+    </ol>
+    <div class="promesa">
+      <b>Nadie sabe su clase, y está bien.</b>
+      Tú describe a qué te dedicas en tus palabras. Clasificar es nuestro trabajo, no el tuyo.
+    </div>
+  </aside>
+
+  <main class="dx-card">
+    <div class="dx-meta">
+      <span id="dxPasoNum">Paso 1 de 4</span>
+      <span>2 minutos</span>
+    </div>
+    <div class="dx-bar"><i id="dxBar"></i></div>
+
+    <!-- PASO 1 -->
+    <section class="dx-paso on" data-paso="1">
+      <h1>¿Cómo se llama tu marca?</h1>
+      <p class="ayuda">Escríbela tal cual la usas o la piensas usar: el nombre que va en el letrero, en el empaque o en la app.</p>
+      <label class="dx-campo">
+        <span>Nombre de la marca</span>
+        <input type="text" id="dxNombre" maxlength="80" autocomplete="off" placeholder="Ej. Casa Verde" enterkeyhint="next">
+      </label>
+      <p class="dx-err" id="dxErr1" role="alert"></p>
+      <div class="dx-nav"><button class="dx-btn" type="button" data-ir="2">Siguiente</button></div>
+    </section>
+
+    <!-- PASO 2 -->
+    <section class="dx-paso" data-paso="2">
+      <h2 class="q">¿A qué se dedica tu negocio?</h2>
+      <p class="ayuda">Con tus palabras. Entre más concreto, mejor: qué vendes, a quién y cómo. De aquí sale la clase que te corresponde.</p>
+      <label class="dx-campo">
+        <span>Actividades que realizas</span>
+        <textarea id="dxGiro" maxlength="250" placeholder="Ej. Vendemos café de especialidad en grano y tenemos una cafetería en Querétaro."></textarea>
+        <span class="dx-cuenta"><span id="dxCuenta">0</span> / 250</span>
+      </label>
+      <p class="dx-err" id="dxErr2" role="alert"></p>
+      <div class="dx-nav">
+        <button class="dx-btn ghost" type="button" data-ir="1">Atrás</button>
+        <button class="dx-btn" type="button" data-ir="3">Siguiente</button>
+      </div>
+    </section>
+
+    <!-- PASO 3 -->
+    <section class="dx-paso" data-paso="3">
+      <h2 class="q">Dos detalles más</h2>
+      <p class="ayuda">Cambian qué tipo de marca conviene solicitar y cuántas clases necesitas.</p>
+
+      <div class="dx-campo">
+        <span>¿Tienes logotipo?</span>
+        <div class="dx-ops" role="group" aria-label="¿Tienes logotipo?">
+          <button class="dx-op" type="button" data-g="logo" data-v="Sí, ya tengo logotipo" aria-pressed="false">Sí tengo</button>
+          <button class="dx-op" type="button" data-g="logo" data-v="Todavía no tengo logotipo" aria-pressed="false">No tengo</button>
+        </div>
+      </div>
+
+      <div class="dx-campo">
+        <span>¿Ya la estás usando en el mercado?</span>
+        <div class="dx-ops" role="group" aria-label="¿Ya la usas?">
+          <button class="dx-op" type="button" data-g="uso" data-v="Ya la uso en el mercado" aria-pressed="false">Ya la uso</button>
+          <button class="dx-op" type="button" data-g="uso" data-v="Aún no la lanzo" aria-pressed="false">Aún no la lanzo</button>
+        </div>
+      </div>
+
+      <p class="dx-err" id="dxErr3" role="alert"></p>
+      <div class="dx-nav">
+        <button class="dx-btn ghost" type="button" data-ir="2">Atrás</button>
+        <button class="dx-btn" type="button" data-ir="4">Ver mis señales</button>
+      </div>
+    </section>
+
+    <!-- PASO 4 · RESULTADO -->
+    <section class="dx-paso" data-paso="4">
+      <h2 class="q">Esto es lo que vemos en <em id="dxEco">tu marca</em></h2>
+      <p class="ayuda">Señales que se revisan antes de gastar en el trámite. No sustituyen la búsqueda de anterioridades — para eso hace falta consultar el padrón del IMPI.</p>
+
+      <div id="dxSenales"></div>
+
+      <div class="dx-resumen" id="dxResumen"></div>
+
+      <p style="font-size:.92rem;color:var(--slate);margin:0 0 .2rem">
+        El siguiente paso es que un abogado revise tu caso y te diga <b style="color:var(--ink)">la clase que te corresponde y el riesgo real</b>. Eso no te cuesta nada.
+      </p>
+      <div class="dx-precio">
+        <span class="n">$0</span><span class="u">MXN &middot; revisión inicial</span>
+      </div>
+
+      <div class="dx-nav">
+        <button class="dx-btn" type="button" id="dxEnviar">Enviar a un abogado por WhatsApp</button>
+        <button class="dx-btn ghost" type="button" data-ir="1">Empezar de nuevo</button>
+      </div>
+
+      <p class="dx-aviso">
+        <b>Esto es una orientación preliminar, no un dictamen legal.</b> Las señales de arriba se basan en lo que nos contaste y en los supuestos de irregistrabilidad de la Ley Federal de Protección a la Propiedad Industrial. Saber si tu marca ya está ocupada exige una búsqueda de anterioridades en el padrón del IMPI, que es un servicio distinto y sí tiene costo.
+      </p>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var WA = '524191239646';
+  var LS = 'ff_dx_marca';
+  var TOTAL = 4;
+  var estado = { nombre:'', giro:'', logo:'', uso:'', paso:1 };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var pasos = [].slice.call(document.querySelectorAll('.dx-paso'));
+
+  /* Rescata un intento a medias: la mayoría abandona en el paso 2 y vuelve
+     desde otro dispositivo o más tarde. */
+  try {
+    var g = localStorage.getItem(LS);
+    if (g) {
+      var p = JSON.parse(g);
+      ['nombre','giro','logo','uso'].forEach(function(k){ if (p[k]) estado[k] = p[k]; });
+    }
+  } catch(e){}
+
+  function guardar(){
+    try { localStorage.setItem(LS, JSON.stringify(estado)); } catch(e){}
+  }
+
+  function evento(nombre, extra){
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', nombre, extra || {});
+    }
+  }
+
+  function pintar(){
+    pasos.forEach(function(s){
+      s.classList.toggle('on', Number(s.dataset.paso) === estado.paso);
+    });
+    $('dxBar').style.width = Math.round(estado.paso / TOTAL * 100) + '%';
+    $('dxPasoNum').textContent = 'Paso ' + estado.paso + ' de ' + TOTAL;
+    var foco = pasos[estado.paso-1].querySelector('input, textarea, .dx-op, .dx-btn');
+    if (foco && estado.paso > 1) { try { foco.focus({preventScroll:true}); } catch(e){} }
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  function limpiarError(n){ var e = $('dxErr'+n); if (e) e.textContent = ''; }
+
+  function validar(desde){
+    if (desde === 1) {
+      estado.nombre = $('dxNombre').value.trim();
+      if (estado.nombre.length < 2) { $('dxErr1').textContent = 'Escribe el nombre de tu marca para continuar.'; return false; }
+    }
+    if (desde === 2) {
+      estado.giro = $('dxGiro').value.trim();
+      if (estado.giro.length < 12) { $('dxErr2').textContent = 'Cuéntanos un poco más: con una frase completa basta.'; return false; }
+    }
+    if (desde === 3) {
+      if (!estado.logo || !estado.uso) { $('dxErr3').textContent = 'Elige una opción en cada pregunta.'; return false; }
+    }
+    return true;
+  }
+
+  /* ── Señales de registrabilidad ──
+     Solo marcamos lo que se puede sostener con lo que el usuario escribió:
+     descriptividad, genericidad, nombres geográficos y marcas demasiado
+     cortas. Nunca afirmamos disponibilidad: eso exige consultar el padrón. */
+  var GEO = ['méxico','mexico','guadalajara','monterrey','querétaro','queretaro','puebla','cancún','cancun','oaxaca','mérida','merida','tijuana','toluca','león','leon','jalisco','yucatán','yucatan','sonora','chiapas','veracruz','sinaloa','michoacán','michoacan','durango','chihuahua','morelos','nayarit','tabasco','campeche','colima','tlaxcala','zacatecas','hidalgo','guanajuato','coahuila','tamaulipas','aguascalientes','baja','california','cdmx','polanco','condesa','roma'];
+  var VACIAS = ['de','la','el','los','las','y','en','del','para','con','a','un','una','tu','su','mi'];
+
+  function normaliza(t){
+    return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+
+  /* Parte el texto conservando la palabra tal cual la escribió el usuario
+     junto a su versión normalizada: se compara con la normalizada, pero se
+     le muestra la suya —con sus acentos y mayúsculas—, no la nuestra. */
+  function fichas(t){
+    return t.split(/[^\p{L}\p{N}]+/u).filter(Boolean).map(function(w){
+      return { o:w, n:normaliza(w) };
+    });
+  }
+
+  function analizar(){
+    var out = [];
+    var nom = estado.nombre;
+    var nomN = normaliza(nom);
+    var fichasNom = fichas(nom).filter(function(f){ return VACIAS.indexOf(f.n) === -1; });
+    var giroN = fichas(estado.giro).filter(function(f){ return f.n.length > 3; }).map(function(f){ return f.n; });
+
+    var muestra = function(fs){
+      return fs.map(function(f){ return esc(f.o); }).join(', ');
+    };
+
+    /* Descriptividad: el nombre repite las palabras del propio giro. */
+    var repetidas = fichasNom.filter(function(f){ return f.n.length > 3 && giroN.indexOf(f.n) !== -1; });
+    if (repetidas.length) {
+      out.push(['alerta','Puede leerse como descriptiva',
+        'Tu marca usa <b>' + muestra(repetidas) + '</b>, que es justo lo que vendes. El IMPI suele negar los signos que solo describen el producto o servicio, porque ningún competidor puede quedarse con la palabra común del giro. Tiene arreglo: se acompaña de un elemento distintivo o se registra como marca mixta.']);
+    }
+
+    /* Nombre geográfico. */
+    var geo = fichasNom.filter(function(f){ return GEO.indexOf(f.n) !== -1; });
+    if (geo.length) {
+      out.push(['alerta','Contiene una referencia geográfica',
+        '<b>' + muestra(geo) + '</b> es un lugar. Las indicaciones de procedencia geográfica tienen restricciones para registrarse solas, sobre todo si el producto viene de ahí. Normalmente se resuelve con el conjunto, no descartando el nombre.']);
+    }
+
+    /* Marca muy corta o de una sola letra o número. */
+    if (nomN.replace(/[^a-z0-9]/g,'').length <= 2) {
+      out.push(['alerta','Es muy corta',
+        'Las marcas de una o dos letras o números aisladas son de las más difíciles de registrar, porque se consideran poco distintivas. Casi siempre hay que solicitarlas con un diseño particular.']);
+    }
+
+    /* Marca denominativa sin logo: no es un problema, es una decisión. */
+    if (estado.logo.indexOf('Todavía no') === 0) {
+      out.push(['ok','Sin logotipo, por ahora',
+        'Se puede registrar solo el nombre (marca denominativa), y muchas veces conviene: protege la palabra la escribas como la escribas. Cuando tengas logo, se registra aparte y quedas cubierto por los dos lados.']);
+    } else if (estado.logo) {
+      out.push(['ok','Tienes logotipo',
+        'Vale la pena decidir si se solicita el nombre, el diseño, o los dos. Son registros distintos y protegen cosas distintas — te decimos cuál te conviene según tu presupuesto.']);
+    }
+
+    /* Uso previo: relevante para prelación y para la declaración de uso. */
+    if (estado.uso.indexOf('Ya la uso') === 0) {
+      out.push(['ok','Ya la usas en el mercado',
+        'Eso juega a tu favor: la fecha de primer uso se declara en la solicitud y puede ayudarte frente a terceros. También es la razón para no demorar el trámite — <b>quien registra primero tiene la ventaja</b>, aunque tú la hayas usado antes.']);
+    } else if (estado.uso) {
+      out.push(['ok','Aún no la lanzas',
+        'Es el mejor momento. Si algo sale mal en el estudio, cambiar el nombre ahora cuesta un correo; hacerlo con letreros, empaque y clientes encima cuesta mucho más.']);
+    }
+
+    if (!out.length || !out.some(function(s){ return s[0] === 'alerta'; })) {
+      out.unshift(['ok','No vemos banderas rojas evidentes',
+        'Por su estructura, tu marca no cae en los supuestos más comunes de negativa. Falta lo importante: <b>confirmar que nadie más la tenga registrada</b> en tu clase.']);
+    }
+    return out;
+  }
+
+  function resultado(){
+    $('dxEco').textContent = estado.nombre;
+
+    var cont = $('dxSenales');
+    cont.innerHTML = '';
+    analizar().forEach(function(s){
+      var d = document.createElement('div');
+      d.className = 'dx-señal ' + s[0];
+      d.innerHTML = '<span class="et">' + s[1] + '</span><p>' + s[2] + '</p>';
+      cont.appendChild(d);
+    });
+
+    $('dxResumen').innerHTML =
+      '<span>Marca:</span> ' + esc(estado.nombre) + '<br>' +
+      '<span>Giro:</span> ' + esc(estado.giro) + '<br>' +
+      '<span>Logotipo:</span> ' + esc(estado.logo) + '<br>' +
+      '<span>Uso:</span> ' + esc(estado.uso);
+  }
+
+  function esc(t){
+    return String(t).replace(/[&<>"]/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];
+    });
+  }
+
+  /* El handoff: el cliente ya hizo la entrevista, el despacho recibe un lead
+     estructurado en vez de un "hola, información". */
+  function enviar(){
+    var msg =
+      'Hola, hice el diagnóstico de marca en el sitio y quiero que un abogado lo revise.\n\n' +
+      '• Marca: ' + estado.nombre + '\n' +
+      '• A qué me dedico: ' + estado.giro + '\n' +
+      '• Logotipo: ' + estado.logo + '\n' +
+      '• Uso actual: ' + estado.uso;
+    evento('diagnostico_marca_enviado', { marca: estado.nombre });
+    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  }
+
+  function ir(destino){
+    if (destino > estado.paso && !validar(estado.paso)) return;
+    guardar();
+    estado.paso = destino;
+    if (destino === 4) { resultado(); evento('diagnostico_marca_resultado'); }
+    else { evento('diagnostico_marca_paso', { paso: destino }); }
+    pintar();
+  }
+
+  /* ── enlaces de eventos ── */
+  document.querySelectorAll('[data-ir]').forEach(function(b){
+    b.addEventListener('click', function(){ ir(Number(b.dataset.ir)); });
+  });
+
+  document.querySelectorAll('.dx-op').forEach(function(b){
+    b.addEventListener('click', function(){
+      var grupo = b.dataset.g;
+      document.querySelectorAll('.dx-op[data-g="' + grupo + '"]').forEach(function(o){
+        o.setAttribute('aria-pressed', String(o === b));
+      });
+      estado[grupo] = b.dataset.v;
+      limpiarError(3);
+      guardar();
+    });
+  });
+
+  $('dxNombre').addEventListener('input', function(){ limpiarError(1); });
+  $('dxGiro').addEventListener('input', function(){
+    $('dxCuenta').textContent = $('dxGiro').value.length;
+    limpiarError(2);
+  });
+  $('dxEnviar').addEventListener('click', enviar);
+
+  /* Enter avanza en los campos de texto: en móvil evita buscar el botón. */
+  $('dxNombre').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') { e.preventDefault(); ir(2); }
+  });
+
+  /* Restaura lo ya contestado. */
+  if (estado.nombre) $('dxNombre').value = estado.nombre;
+  if (estado.giro) { $('dxGiro').value = estado.giro; $('dxCuenta').textContent = estado.giro.length; }
+  ['logo','uso'].forEach(function(g){
+    if (!estado[g]) return;
+    document.querySelectorAll('.dx-op[data-g="' + g + '"]').forEach(function(o){
+      o.setAttribute('aria-pressed', String(o.dataset.v === estado[g]));
+    });
+  });
+
+  pintar();
+  evento('diagnostico_marca_inicio');
+})();
+</script>
+</body>
+</html>

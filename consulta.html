@@ -32,23 +32,51 @@
     <style>
         /* Editorial Consulta Specific Layout */
         body.consulta-body {
-            background-color: #f6f5f3; /* Light beige for bottom section */
+            background-color: #ffffff; /* White background for the entire page */
             margin: 0;
             padding: 0;
             color: #111;
         }
 
         /* Dark Hero Section */
+        /* El hero pasa de negro a la piedra gris azul de la fotografía: el
+           edificio se ancla abajo y el cielo queda arriba, que es donde va el
+           texto. El color de respaldo es el mismo del cielo (rgb 204 222 234),
+           así que mientras la imagen carga no hay salto de tono ni franja
+           oscura. */
         .consulta-hero {
-            background-color: #1a1a1a;
-            color: #e5e5e5;
+            background-color: #CCDEEA;
+            background-image: url("acta_hero.jpg");
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            color: #223344;
             min-height: 85vh;
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             padding: 120px 2rem 4rem 2rem;
             overflow: hidden;
+        }
+
+        /* Velo de legibilidad. El texto llega hasta el 74% del alto del hero y
+           ahí el edificio ya es hormigón oscuro: sin esto, la bajada y la línea
+           de tipos de sociedad quedaban ilegibles. Es un degradado del mismo
+           color del cielo, opaco arriba y transparente pasado el 84%, así que
+           aclara la zona del texto sin lavar la arquitectura de abajo. */
+        .consulta-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: linear-gradient(to bottom,
+                rgba(204,222,234,.97) 0%,
+                rgba(204,222,234,.93) 42%,
+                rgba(204,222,234,.85) 62%,
+                rgba(204,222,234,.62) 78%,
+                rgba(204,222,234,0) 92%);
         }
 
         .consulta-hero-content {
@@ -65,14 +93,14 @@
             line-height: 1.1;
             letter-spacing: -1px;
             margin-bottom: 2.5rem;
-            color: #d8d8d8;
+            color: #1F2E3D;
         }
 
         .consulta-headline em {
             font-family: var(--font-heading); /* Serif italic */
             font-weight: 500;
             font-style: italic;
-            color: #ffffff;
+            color: #0F1D2B;
             font-size: 1.1em;
             letter-spacing: 0;
         }
@@ -83,7 +111,7 @@
             font-size: 1.1rem;
             line-height: 1.7;
             max-width: 600px;
-            color: #a0a0a0;
+            color: #3C4E60;
             margin-left: auto; /* Push slightly to right for staggered editorial look */
             margin-right: 0;
             text-align: left;
@@ -92,14 +120,14 @@
         /* Geometric pattern overlay at bottom of dark section */
         .consulta-pattern {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
             width: 100%;
             height: 250px;
-            background-image: repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(255,255,255,0.03) 19px, rgba(255,255,255,0.03) 20px),
-                              repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255,255,255,0.03) 19px, rgba(255,255,255,0.03) 20px);
-            mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            background-image: repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(31,46,61,0.05) 19px, rgba(31,46,61,0.05) 20px),
+                              repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(31,46,61,0.05) 19px, rgba(31,46,61,0.05) 20px);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
             pointer-events: none;
         }
 
@@ -116,9 +144,12 @@
 
         .consulta-info h2 {
             font-family: var(--font-heading);
-            font-size: 2.5rem;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
             margin-bottom: 1.5rem;
-            color: #111;
+            color: #0f1c3f;
         }
 
         .consulta-info p {
@@ -176,9 +207,10 @@
                             Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
                         </button>
                         <ul class="nav-submenu" id="nav-sub-pi">
-                            <li><a href="marcas.html">Registrar mi marca</a></li>
-                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
-                            <li><a href="franquicias.html">Franquiciar o licenciar</a></li>
+                            <li><a href="propiedad-intelectual.html">Ver todo</a></li>
+                            <li><a href="marcas.html">Registro de marca</a></li>
+                            <li><a href="derechos-autor.html">Derechos de autor</a></li>
+                            <li><a href="secreto-industrial.html">Secreto industrial</a></li>
                         </ul>
                     </li>
 
@@ -194,12 +226,10 @@
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
                     <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
-                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
                 <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
@@ -207,83 +237,704 @@
         </div>
     </nav>
 
-    <!-- ═══ DARK HERO SECTION ═══ -->
-    <header class="consulta-hero">
-        <div class="consulta-pattern"></div>
-        <div class="consulta-hero-content fade-in-up">
-            <h1 class="consulta-headline">Resolución directa,<br>visión <em>Estratégica</em></h1>
-            <p class="consulta-subtext">A través de una evaluación minuciosa y la aplicación de nuestra experiencia en el campo, transformamos la complejidad legal en una hoja de ruta clara, brindando certidumbre a tu toma de decisiones.</p>
+    <!-- ═══ LIGHT HERO SECTION ═══ -->
+    <style>
+        .consulta-hero-new {
+            background-color: #ffffff;
+            padding: 150px 2rem 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .consulta-hero-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .consulta-hero-text {
+            text-align: left;
+        }
+        .consulta-hero-actions {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+        @media (max-width: 850px) {
+            .consulta-hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .consulta-hero-text {
+                text-align: center;
+            }
+            .consulta-hero-actions {
+                align-items: center;
+            }
+            .consulta-hero-image {
+                order: -1;
+            }
+        }
+    </style>
+    <header class="consulta-hero-new">
+        <div class="consulta-hero-grid fade-in-up">
+            <div class="consulta-hero-text">
+                <h1 class="consulta-headline" style="margin-bottom: 0.5rem; color: #111;">Acta Constitutiva,<br>de tu <em>empresa</em></h1>
+                <p style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 500; color: #111; margin-bottom: 1.5rem; line-height: 1.2;">Tu empresa nace una sola vez. Que nazca bien.</p>
+                <p class="consulta-subtext" style="color: #444;">Constituye tu sociedad de manera formal y segura. Te llevamos de la mano desde la elección del nombre hasta la inscripción en el Registro Público, con asesoría en cada paso.</p>
+                
+                <div class="consulta-hero-actions">
+                    <a href="https://wa.me/524191239646?text=Hola,%20quiero%20crear%20mi%20empresa" style="background-color: #111; color: #ffffff; padding: 1rem 2.5rem; border-radius: 100px; font-weight: 700; font-family: var(--font-body); font-size: 1.15rem; letter-spacing: 0.5px; text-decoration: none; display: inline-block; box-shadow: 0 6px 18px rgba(17,17,17,0.28); transition: transform 0.2s ease, opacity 0.2s ease;" onmouseover="this.style.opacity='0.9'; this.style.transform='scale(1.02)';" onmouseout="this.style.opacity='1'; this.style.transform='scale(1)';">
+                        Crear empresa
+                    </a>
+                    <div style="display: flex; align-items: center; gap: 0.6rem; color: #2A3B4D; font-family: var(--font-body); font-size: 1.1rem; letter-spacing: -0.01em;">
+                        <i class="far fa-check-circle" style="color: #111; font-size: 1.4rem; font-weight: 600;"></i>
+                        <span>SA de CV, SAPI de CV, S de RL</span>
+                    </div>
+                </div>
+            </div>
+            <div class="consulta-hero-image">
+                <img src="acta_hero.png" alt="Acta Constitutiva" style="width: 100%; max-width: 600px; height: auto; display: block; margin: 0 auto;">
+            </div>
         </div>
     </header>
 
-    <!-- ═══ LIGHT DETAILS SECTION ═══ -->
-    <section class="consulta-details" style="display: flex; flex-direction: column; gap: 40px; padding: 4rem 1.5rem;">
-        <div class="consulta-info fade-in-up" style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <h2>Hablemos de tu caso.</h2>
-            <p>Sabemos que enfrentas decisiones cruciales donde el margen de error es mínimo. Una sesión estratégica no es una simple charla; es una inmersión profunda en tu situación jurídica para entregarte una hoja de ruta clara.</p>
-        </div>
-        
-        <div class="consulta-cards-grid fade-in-up delay-1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 900px; margin: 0 auto; width: 100%;">
-            <!-- CARD 1: PERSONAS -->
-            <div class="solution-card" style="margin: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; height: 100%; border-radius: 12px; padding: 2rem;">
-                <div>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.3rem; color:#111; font-weight: 500;">Consulta Estratégica</h3>
-                    <span style="font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); font-weight: 600; display: inline-block; margin-bottom: 1rem;">Para Particulares</span>
-                    <p class="price-tag" style="font-size: 2.2rem; margin-top: 0.5rem; font-weight: 700; color: #111;">$1,290 <span style="font-size: 0.9rem; color:#666; font-weight: 400;">MXN</span></p>
-                    <p style="color: #555; margin-bottom: 2rem; font-size: 0.92rem; line-height: 1.5;">Sesión por Zoom (60 min) uno-a-uno con un socio de la firma. Evaluaremos tu escenario civil, familiar, de arrendamiento o laboral y trazaremos la ruta óptima a seguir.</p>
+    <!-- ═══ PLANES DE CONSTITUCIÓN ═══ -->
+    <style>
+        .product-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .product-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1100px) {
+            .product-cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            position: relative;
+        }
+        .pc-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #48e5e5;
+            color: #111;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .pc-top {
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .pc-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .pc-hook {
+            font-family: var(--font-body);
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin: 0;
+        }
+        .pc-price-box {
+            margin-top: 2rem;
+        }
+        .pc-price {
+            font-family: var(--font-body);
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .pc-price span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+        }
+        .area-btn-card {
+            background-color: #fff;
+            color: #111;
+            border: 1px solid rgba(0,0,0,0.1);
+            width: 100%;
+            justify-content: center;
+            margin-top: auto;
+            font-weight: 600;
+            padding: 1rem;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            display: flex;
+        }
+        .area-btn-card:hover {
+            background-color: #f0f0f0;
+            color: #111;
+        }
+        .pc-bottom {
+            padding: 0 2rem;
+            background: #fdfcf9;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        .acc-content {
+            padding: 1.5rem 0 2rem 0;
+        }
+        .pc-list {
+            padding-left: 1.2rem;
+            margin: 0;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: #444;
+        }
+        .pc-list li { margin-bottom: 0.75rem; }
+    </style>
+
+    <section style="background-color: #fcfcfc; padding: 5rem 5vw;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 3.5rem); color: #111; line-height: 1.1; margin-bottom: 1rem;">Elige tu plan de constitución</h2>
+                <p style="font-family: var(--font-body); color: #555; max-width: 600px; margin: 0 auto;">Diseñados para que empieces a operar sin sorpresas legales.</p>
+            </div>
+
+            <div class="product-cards-grid">
+                <!-- Esencial -->
+                <div class="product-card">
+                    <div class="pc-top" style="background: #f6f5f3; color: #111;">
+                        <h3 class="pc-hook">Constitución Esencial</h3>
+                        <div class="pc-price-box">
+                            <div class="pc-price">$6,900 <span>MXN + gastos de fedatario</span></div>
+                        </div>
+                        <a href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20Constitución%20Esencial" target="_blank" class="area-btn-card" style="margin-top: 2rem;">Empezar</a>
+                    </div>
+                    <div class="pc-bottom">
+                        <div class="acc-content">
+                            <ul class="pc-list">
+                                <li>Elección y viabilidad de la denominación social.</li>
+                                <li>Redacción de estatutos básicos (SA o SRL).</li>
+                                <li>Acompañamiento en firma notarial / correduría.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20agendar%20una%20Consulta%20Estrat%C3%A9gica%20por%20Zoom%20de%2060%20min%20(%241%2C290%20MXN)."
-                       target="_blank" rel="noopener" class="solution-btn" style="width: 100%; text-align: center; display: block;"
-                       data-mp-link="PENDIENTE:consulta-1290" data-cal-link="PENDIENTE:evento-consulta-60min" data-producto="Consulta Estratégica">Agendar Sesión</a>
-                    <p style="font-size: 0.72rem; color: #999; margin-top: 0.75rem; text-align: center;">El pago confirma tu horario; recibirás el link de Zoom y recordatorios automáticos.</p>
+
+                <!-- Blindaje -->
+                <div class="product-card">
+                    <div class="pc-badge">Más elegido</div>
+                    <div class="pc-top" style="background: #0f1c3f; color: #fff;">
+                        <h3 class="pc-hook">Constitución + Blindaje</h3>
+                        <div class="pc-price-box">
+                            <div class="pc-price">$9,900 <span>MXN + gastos de fedatario</span></div>
+                        </div>
+                        <a href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20Constitución%20+%20Blindaje" target="_blank" class="area-btn-card" style="margin-top: 2rem;">Empezar</a>
+                    </div>
+                    <div class="pc-bottom">
+                        <div class="acc-content">
+                            <ul class="pc-list">
+                                <li><b>Todo lo del plan Esencial.</b></li>
+                                <li>Cláusulas de salida de socios y vesting (acciones).</li>
+                                <li>Cláusulas de no competencia y confidencialidad.</li>
+                                <li>Gobierno corporativo a la medida.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arranque Fiscal -->
+                <div class="product-card">
+                    <div class="pc-top" style="background: #111; color: #fff;">
+                        <h3 class="pc-hook">Constitución + Arranque Fiscal</h3>
+                        <div class="pc-price-box">
+                            <div class="pc-price">$12,900 <span>MXN + gastos de fedatario</span></div>
+                        </div>
+                        <a href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20Constitución%20+%20Arranque%20Fiscal" target="_blank" class="area-btn-card" style="margin-top: 2rem;">Empezar</a>
+                    </div>
+                    <div class="pc-bottom">
+                        <div class="acc-content">
+                            <ul class="pc-list">
+                                <li><b>Todo lo del plan Blindaje.</b></li>
+                                <li>Alta de la empresa ante el SAT.</li>
+                                <li>Tramitación de Firma Electrónica (FIEL).</li>
+                                <li>Preparación de poderes bancarios.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- CARD 2: NEGOCIOS -->
-            <div class="solution-card" style="margin: 0; box-shadow: 0 15px 45px rgba(0,0,0,0.08); border: 2px solid var(--accent); display: flex; flex-direction: column; justify-content: space-between; height: 100%; position: relative; border-radius: 12px; padding: 2rem;">
-                <div style="position: absolute; top: -12px; right: 20px; background: var(--accent); color: #fff; font-size: 0.65rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;">Empresarial</div>
-                <div>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.3rem; color:#111; font-weight: 500;">Diagnóstico Legal</h3>
-                    <span style="font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); font-weight: 600; display: inline-block; margin-bottom: 1rem;">Para Negocios y PyMEs</span>
-                    <p class="price-tag" style="font-size: 2.2rem; margin-top: 0.5rem; font-weight: 700; color: #111;">$1,490 <span style="font-size: 0.9rem; color:#666; font-weight: 400;">MXN</span></p>
-                    <p style="color: #555; margin-bottom: 2rem; font-size: 0.92rem; line-height: 1.5;">Sesión por Zoom (30 min) + matriz de riesgos de tu negocio. Evaluaremos tus contratos, riesgos laborales y obligaciones corporativas urgentes.</p>
-                </div>
-                <div>
-                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20un%20Diagn%C3%B3stico%20Legal%20Empresarial%20(%241%2C490%20MXN)."
-                       target="_blank" rel="noopener" class="solution-btn" style="width: 100%; text-align: center; display: block; background: var(--accent); color: #fff;"
-                       data-mp-link="PENDIENTE:diagnostico-1490" data-cal-link="PENDIENTE:evento-diagnostico-30min" data-producto="Diagnóstico Legal Empresarial">Agendar Diagnóstico</a>
-                    <p style="font-size: 0.72rem; color: #999; margin-top: 0.75rem; text-align: center;">El pago confirma tu horario; recibirás el link de Zoom y recordatorios automáticos.</p>
-                </div>
-            </div>
+            <p style="text-align: center; font-family: var(--font-body); font-size: 0.85rem; color: rgba(0,0,0,0.6); max-width: 800px; margin: 0 auto;">
+                * Los honorarios del corredor/notario público y los derechos de inscripción en el Registro Público de Comercio se cotizan por separado, según la entidad federativa.
+            </p>
         </div>
     </section>
 
-    <!-- ═══ FAQ ═══ -->
-    <section class="faq-section" style="background: #f6f5f3;">
-        <span class="faq-eyebrow">Preguntas frecuentes</span>
-        <h2 class="faq-title">Consulta estratégica</h2>
+    <!-- ═══ LIGHT DETAILS SECTION ═══ -->
+    <section class="consulta-details" style="display: flex; flex-direction: column; gap: 40px; padding: 5rem 5vw; background-color: #ffffff; align-items: center;">
+        <div class="consulta-info fade-in-up" style="max-width: 800px; text-align: center; margin-bottom: 2rem;">
+            <h2>¿Qué incluye nuestro servicio?</h2>
+            <p>Un proceso estructurado para dar vida legal a tu empresa, respaldado por profesionales en cada etapa.</p>
+        </div>
+        
+        <div class="acta-layout" style="display: flex; flex-direction: column; align-items: center; gap: 3rem; max-width: 1100px; width: 100%;">
+            
+            <!-- RADIAL DIAL COMPONENT -->
+            <div class="dial-container fade-in-up delay-1" style="display:flex; flex-direction:column; align-items:center; width:100%; position:relative; overflow:visible; padding-top: 1rem;">
+                
+                <!-- Center Pointer & Icon -->
+                <div style="position: absolute; top: -1rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 2; pointer-events: none; gap: 0.5rem;">
+                    <i id="dialIcon" class="fas fa-comments" style="font-size: 1.8rem; color: #233e73; transition: opacity 0.2s;"></i>
+                    <div style="width: 1px; height: 160px; background: linear-gradient(to bottom, #233e73, transparent);"></div>
+                </div>
 
-        <details class="faq-item">
-            <summary>¿Qué debo preparar antes de la sesión?</summary>
-            <p>Idealmente, los documentos relevantes de tu caso (contratos, correos, notificaciones) y un resumen breve de la situación que quieres resolver. Esto nos permite aprovechar al máximo los 60 minutos y llegar con una dirección concreta, no solo diagnóstico.</p>
-        </details>
-        <details class="faq-item">
-            <summary>¿La consulta sustituye la contratación de un servicio?</summary>
-            <p>No necesariamente. La consulta te da claridad y una ruta de acción; si tu caso requiere un contrato, registro o representación formal, ese trabajo se cotiza aparte. Muchos clientes usan la consulta precisamente para decidir qué servicio necesitan.</p>
-        </details>
-        <details class="faq-item">
-            <summary>¿Puedo grabar la sesión?</summary>
-            <p>Sí, puedes grabar la sesión para tu propio uso y consulta posterior. Solo te pedimos avisarnos al inicio de la llamada.</p>
-        </details>
-        <details class="faq-item">
-            <summary>¿Qué pasa si necesito reprogramar?</summary>
-            <p>Puedes reprogramar tu sesión sin costo hasta 24 horas antes del horario agendado, escribiéndonos por WhatsApp o a través del enlace de tu confirmación.</p>
-        </details>
-        <details class="faq-item">
-            <summary>¿La consulta es con un socio o con cualquier abogado?</summary>
-            <p>Siempre con uno de los socios fundadores de la firma, Alan o Daniel, nunca con un asociado junior.</p>
-        </details>
+                <!-- Dial Wheel -->
+                <div style="width: 100%; height: 280px; position: relative; overflow: hidden; display: flex; justify-content: center; margin-top: 1.5rem; user-select: none;">
+                    <div id="radialDial" style="width: 1200px; height: 1200px; border-radius: 50%; border: 1px dashed rgba(184,147,85,0.4); position: absolute; top: 80px; display: flex; justify-content: center; align-items: center; cursor: grab; touch-action: none; background: radial-gradient(circle at top, rgba(184,147,85,0.06) 0%, transparent 40%); z-index: 10;">
+                        <!-- Items injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Dynamic Description -->
+                <div id="dialDescription" style="margin-top: 1.5rem; text-align: center; max-width: 100%; min-height: 120px; z-index: 2; position: relative; padding: 0 1rem;">
+                    <h3 style="font-family: var(--font-body); font-size: 1.5rem; font-weight: 600; color: #111; margin-bottom: 0.75rem; letter-spacing: -0.01em;" id="dialTitle"></h3>
+                    <p style="font-family: var(--font-body); font-size: 1.05rem; color: #555; line-height: 1.6;" id="dialText"></p>
+                </div>
+
+                <style>
+                    .dial-item {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform-origin: center;
+                        font-family: var(--font-body);
+                        font-size: 1.05rem;
+                        font-weight: 400;
+                        color: #a0a0a0;
+                        white-space: nowrap;
+                        transition: color 0.4s, font-weight 0.4s, transform 0.1s, font-size 0.4s;
+                        cursor: pointer;
+                        padding: 10px;
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                        letter-spacing: 0.02em;
+                    }
+                    .dial-item::before {
+                        content: '';
+                        display: block;
+                        width: 4px;
+                        height: 4px;
+                        background-color: #c0c0c0;
+                        border-radius: 50%;
+                        transition: transform 0.4s, background-color 0.4s;
+                    }
+                    .dial-item.active {
+                        color: #111;
+                        font-weight: 600;
+                        font-size: 1.3rem;
+                    }
+                    .dial-item.active::before {
+                        background-color: #b89355;
+                        transform: scale(1.5);
+                    }
+                    @media (max-width: 768px) {
+                        #radialDial {
+                            width: 900px;
+                            height: 900px;
+                        }
+                    }
+                </style>
+
+                <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const steps = [
+                        { title: "Asesoría", icon: "fa-comments", desc: "Cuando realices el pago, te asignaremos un asesor personalizado, podrás programar una videollamada o pedir asesoría por WhatsApp." },
+                        { title: "Nombre", icon: "fa-id-badge", desc: "Solicitaremos autorización para nombrar tu empresa ante Secretaría de Economía y asegurarnos que no exista otra igual." },
+                        { title: "Formalización", icon: "fa-file-signature", desc: "Formalizamos tu Acta Constitutiva y haremos llegar el expediente digital a cada socio para firmar en línea y tomar la videollamada con el corredor." },
+                        { title: "Títulos", icon: "fa-certificate", desc: "Podrás adquirir los títulos accionarios a un precio accesible; un documento que acredita la propiedad de cada socio en la empresa." }
+                    ];
+
+                    const dial = document.getElementById('radialDial');
+                    const dialTitle = document.getElementById('dialTitle');
+                    const dialText = document.getElementById('dialText');
+                    
+                    // The radius is half the container width minus some padding
+                    // Since container width is defined via CSS (600px usually), radius is 300px.
+                    // We'll calculate radius dynamically based on the element to support the mobile media query.
+                    
+                    const angleStep = 20; // degrees between items (flatter curve)
+                    const startAngle = -((steps.length - 1) * angleStep) / 2;
+
+                    let currentRotation = 0;
+                    let activeIndex = -1;
+                    
+                    // Create items
+                    steps.forEach((step, i) => {
+                        const el = document.createElement('div');
+                        el.className = 'dial-item';
+                        el.innerText = step.title;
+                        
+                        const itemAngle = startAngle + (i * angleStep);
+                        el.dataset.angle = itemAngle;
+                        el.dataset.index = i;
+                        
+                        dial.appendChild(el);
+                    });
+
+                    function positionItems() {
+                        const r = dial.offsetWidth / 2 - 40; // 40px padding from edge
+                        const items = dial.querySelectorAll('.dial-item');
+                        items.forEach((el) => {
+                            const itemAngle = parseFloat(el.dataset.angle);
+                            // Tangential positioning: move to center, rotate, move UP by radius, then center text
+                            el.style.transform = `translate(-50%, -50%) rotate(${itemAngle}deg) translateY(${-r}px)`;
+                        });
+                    }
+
+                    // Initial positioning and handle resize
+                    positionItems();
+                    window.addEventListener('resize', () => {
+                        positionItems();
+                    });
+
+                    // Interaction logic
+                    let isDragging = false;
+                    let startMouseAngle = 0;
+                    let startRot = 0;
+                    
+                    function getAngle(clientX, clientY) {
+                        const rect = dial.getBoundingClientRect();
+                        const cx = rect.left + rect.width / 2;
+                        const cy = rect.top + rect.height / 2;
+                        return Math.atan2(clientY - cy, clientX - cx) * 180 / Math.PI;
+                    }
+
+                    dial.addEventListener('pointerdown', (e) => {
+                        if(e.target.classList.contains('dial-item')) return; // let click handle it
+                        isDragging = true;
+                        dial.style.cursor = 'grabbing';
+                        dial.style.transition = 'none';
+                        startMouseAngle = getAngle(e.clientX, e.clientY);
+                        startRot = currentRotation;
+                        e.preventDefault();
+                    });
+
+                    window.addEventListener('pointermove', (e) => {
+                        if (!isDragging) return;
+                        const currentMouseAngle = getAngle(e.clientX, e.clientY);
+                        let deltaAngle = currentMouseAngle - startMouseAngle;
+                        
+                        // Handle wrap around for atan2 (-180 to 180)
+                        if (deltaAngle > 180) deltaAngle -= 360;
+                        if (deltaAngle < -180) deltaAngle += 360;
+                        
+                        currentRotation = startRot + deltaAngle;
+                        
+                        // Limit rotation
+                        const maxRot = Math.abs(startAngle) + 10;
+                        if (currentRotation > maxRot) currentRotation = maxRot;
+                        if (currentRotation < -maxRot) currentRotation = -maxRot;
+                        
+                        updateDial();
+                    });
+
+                    window.addEventListener('pointerup', () => {
+                        if (!isDragging) return;
+                        isDragging = false;
+                        dial.style.cursor = 'grab';
+                        snapToClosest();
+                    });
+
+                    function snapToClosest() {
+                        let closestIndex = 0;
+                        let minDiff = Infinity;
+                        
+                        steps.forEach((_, i) => {
+                            const itemAngle = startAngle + (i * angleStep);
+                            const absoluteAngle = itemAngle + currentRotation;
+                            const diff = Math.abs(absoluteAngle);
+                            if (diff < minDiff) {
+                                minDiff = diff;
+                                closestIndex = i;
+                            }
+                        });
+                        
+                        currentRotation = -(startAngle + (closestIndex * angleStep));
+                        dial.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.3, 1)';
+                        updateDial();
+                        setActiveItem(closestIndex);
+                    }
+                    
+                    function updateDial() {
+                        dial.style.transform = `rotate(${currentRotation}deg)`;
+                        const items = dial.querySelectorAll('.dial-item');
+                        items.forEach((item) => {
+                            const itemAngle = parseFloat(item.dataset.angle);
+                            const absoluteAngle = itemAngle + currentRotation;
+                            if (Math.abs(absoluteAngle) < 5) {
+                                item.classList.add('active');
+                            } else {
+                                item.classList.remove('active');
+                            }
+                        });
+                    }
+
+                    function setActiveItem(index) {
+                        if (activeIndex === index) return;
+                        activeIndex = index;
+                        
+                        dialText.style.opacity = 0;
+                        dialTitle.style.opacity = 0;
+                        const dialIconObj = document.getElementById('dialIcon');
+                        if (dialIconObj) dialIconObj.style.opacity = 0;
+                        
+                        setTimeout(() => {
+                            dialTitle.innerText = `${index + 1}. ${steps[index].title}`;
+                            dialText.innerText = steps[index].desc;
+                            if (dialIconObj) dialIconObj.className = `fas ${steps[index].icon}`;
+                            
+                            dialTitle.style.opacity = 1;
+                            dialText.style.opacity = 1;
+                            if (dialIconObj) dialIconObj.style.opacity = 1;
+                        }, 200);
+                    }
+
+                    dial.addEventListener('click', (e) => {
+                        const target = e.target.closest('.dial-item');
+                        if (target) {
+                            const index = parseInt(target.dataset.index);
+                            currentRotation = -(startAngle + (index * angleStep));
+                            dial.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.3, 1)';
+                            updateDial();
+                            setActiveItem(index);
+                        }
+                    });
+                    
+                    dialTitle.style.transition = 'opacity 0.2s';
+                    dialText.style.transition = 'opacity 0.2s';
+
+                    // Auto-rotate logic
+                    let autoRotateInterval;
+                    
+                    function startAutoRotate() {
+                        stopAutoRotate();
+                        autoRotateInterval = setInterval(() => {
+                            if (isDragging) return;
+                            let nextIndex = activeIndex + 1;
+                            if (nextIndex >= steps.length) nextIndex = 0; // Loop back
+                            
+                            currentRotation = -(startAngle + (nextIndex * angleStep));
+                            dial.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.3, 1)';
+                            updateDial();
+                            setActiveItem(nextIndex);
+                        }, 3500); // Rotate every 3.5 seconds
+                    }
+                    
+                    function stopAutoRotate() {
+                        if (autoRotateInterval) clearInterval(autoRotateInterval);
+                    }
+                    
+                    // Stop auto-rotate on any manual interaction
+                    dial.addEventListener('pointerdown', stopAutoRotate);
+                    dial.addEventListener('click', stopAutoRotate);
+
+                    // Initialize
+                    setTimeout(() => {
+                        snapToClosest();
+                        startAutoRotate();
+                    }, 100);
+                });
+                </script>
+            </div>
+
+            <!-- REQUISITOS GRID -->
+            <div class="acta-requirements-grid fade-in-up delay-2" style="width: 100%; margin-top: 3rem;">
+                <h3 style="font-family: var(--font-body); font-size: 1.8rem; font-weight: 700; margin-bottom: 2rem; text-align: center; color: #111;">Requisitos y documentos</h3>
+                
+                <style>
+                    .req-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                        gap: 1.5rem;
+                    }
+                    .req-card {
+                        position: relative;
+                        aspect-ratio: 1/1;
+                        padding: 2.5rem;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        overflow: hidden;
+                        text-align: left;
+                        border-radius: 0;
+                    }
+                    .req-card.light {
+                        background-color: #f6f5f3;
+                        color: #0f1c3f;
+                    }
+                    .req-card.dark {
+                        background-color: #0f1c3f;
+                        color: #ffffff;
+                    }
+                    /* Geometric accents */
+                    .req-card .accent-circle {
+                        position: absolute;
+                        border-radius: 50%;
+                        pointer-events: none;
+                    }
+                    .req-card.light .accent-circle.thin {
+                        border: 1px solid #0f1c3f;
+                        opacity: 0.15;
+                    }
+                    .req-card.dark .accent-circle.thin {
+                        border: 1px solid #48e5e5;
+                        opacity: 0.4;
+                    }
+                    .req-card.light .accent-circle.solid {
+                        background-color: #0f1c3f;
+                        opacity: 0.05;
+                    }
+                    .req-card.dark .accent-circle.solid {
+                        background-color: #48e5e5;
+                        opacity: 0.1;
+                    }
+                    
+                    .req-card .req-num {
+                        font-family: var(--font-body);
+                        font-weight: 800;
+                        font-size: 3.5rem;
+                        line-height: 1;
+                        margin-bottom: 1rem;
+                        z-index: 2;
+                        letter-spacing: -0.05em;
+                    }
+                    .req-card.dark .req-num { color: #48e5e5; }
+                    .req-card.light .req-num { color: #0f1c3f; }
+                    
+                    .req-card h4 {
+                        font-family: var(--font-body);
+                        font-size: 1.5rem;
+                        font-weight: 800;
+                        line-height: 1.1;
+                        margin-bottom: 0.8rem;
+                        z-index: 2;
+                        letter-spacing: -0.02em;
+                    }
+                    .req-card p {
+                        font-family: var(--font-body);
+                        font-size: 0.95rem;
+                        font-weight: 400;
+                        line-height: 1.4;
+                        z-index: 2;
+                        opacity: 0.85;
+                        margin: 0;
+                    }
+                    .req-content {
+                        position: relative;
+                        z-index: 5;
+                    }
+                </style>
+
+                <div class="req-grid">
+                    
+                    <!-- Card 1 -->
+                    <div class="req-card light">
+                        <div class="accent-circle solid" style="width: 250px; height: 250px; top: -50px; left: -50px;"></div>
+                        <div class="req-content">
+                            <div class="req-num">01</div>
+                            <h4>Dos personas mínimo</h4>
+                            <p>Se requiere un mínimo de dos personas físicas para conformar la sociedad.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="req-card dark">
+                        <div class="accent-circle thin" style="width: 400px; height: 400px; bottom: -150px; right: -150px;"></div>
+                        <div class="accent-circle thin" style="width: 200px; height: 200px; bottom: -50px; right: -50px;"></div>
+                        <div class="req-content">
+                            <div class="req-num">02</div>
+                            <h4>Identificación oficial</h4>
+                            <p>INE, pasaporte o cédula profesional vigente de cada uno de los socios.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="req-card dark">
+                        <div class="accent-circle solid" style="width: 150px; height: 150px; bottom: 20px; left: -75px;"></div>
+                        <div class="req-content">
+                            <div class="req-num">03</div>
+                            <h4>Acta de nacimiento</h4>
+                            <p>Copia del acta de nacimiento de todos los involucrados en la sociedad.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="req-card light">
+                        <div class="accent-circle thin" style="width: 300px; height: 300px; top: -100px; right: -100px;"></div>
+                        <div class="accent-circle thin" style="width: 150px; height: 150px; top: -25px; right: -25px;"></div>
+                        <div class="req-content">
+                            <div class="req-num">04</div>
+                            <h4>Comprobante de domicilio</h4>
+                            <p>No mayor a 3 meses. Puede ser recibo de agua, luz o teléfono.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="req-card light">
+                        <div class="accent-circle solid" style="width: 300px; height: 300px; bottom: -150px; left: 50%; transform: translateX(-50%);"></div>
+                        <div class="req-content">
+                            <div class="req-num">05</div>
+                            <h4>CURP y RFC</h4>
+                            <p>Constancia de situación fiscal actualizada de todos los socios.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="req-card dark">
+                        <div class="accent-circle thin" style="width: 350px; height: 350px; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+                        <div class="req-content">
+                            <div class="req-num">06</div>
+                            <h4>e.firma vigente</h4>
+                            <p>Firma electrónica avanzada (SAT) vigente para realizar el proceso en línea.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/524191239646?text=Hola,%20quiero%20más%20información%20sobre%20el%20Acta%20Constitutiva" target="_blank" rel="noopener" class="solution-btn" style="width: 100%; max-width: 400px; text-align: center; display: block; margin: 3rem auto 0; background: var(--accent); color: #fff; border: none; padding: 1rem; font-weight: 600; border-radius: 6px;">Constituir mi empresa bien, desde el inicio</a>
+            </div>
+        </div>
+        <!-- Layout style adjusted inline -->
     </section>
 
     <script type="application/ld+json">

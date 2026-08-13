@@ -7,7 +7,7 @@
 
 /* ─── PAGE BASE ─── */
 body.calculadora-page {
-    background-color: #f4f3ef !important;
+    background-color: #ffffff !important;
     color: #1a1a1a;
     padding-top: 0;
     min-height: 100vh;
@@ -16,7 +16,7 @@ body.calculadora-page {
 }
 
 body.calculadora-page nav.scrolled {
-    background: rgba(244, 243, 239, 0.95) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
 }
 body.calculadora-page nav {
@@ -55,6 +55,11 @@ body.calculadora-page .circular-back-btn:hover {
 body:has(#calc-step-1.active) #navbar,
 body:has(#calc-step-2.active) #navbar {
     display: none !important;
+}
+
+/* El resultado se presenta como un dictamen editorial sobre papel marfil. */
+body:has(#calc-step-2.active) {
+    background-color: #f6f3ee !important;
 }
 
 /* ─── CALCULATOR WRAPPER ─── */
@@ -464,8 +469,8 @@ body:has(#calc-step-2.active) #navbar {
 
 /* ─── RESULTS (STEP 2) ─── */
 .calc-results {
-    padding: 6rem 2rem 4rem;
-    max-width: 700px;
+    padding: 5rem 2rem 4rem;
+    max-width: 1160px;
     margin: 0 auto;
 }
 
@@ -1413,7 +1418,7 @@ body:has(#calc-step-2.active) {
    paleta de marca (ivory / carbon / bronze) y jerarquía clara.
    ═══════════════════════════════════════════════════════════════ */
 .dictamen {
-    max-width: 640px;
+    max-width: 1080px;
     margin: 0 auto;
     padding-top: 1.5rem;
 }
@@ -1421,10 +1426,10 @@ body:has(#calc-step-2.active) {
 .dictamen-card {
     position: relative;
     background: #fdfcf9;
-    border: 1px solid var(--stone-200, #e8e1d5);
-    border-radius: 22px;
-    padding: 3rem 2.75rem 2.5rem;
-    box-shadow: 0 20px 55px rgba(46, 44, 42, 0.10);
+    border: 1px solid #e7e1d7;
+    border-radius: 20px;
+    padding: clamp(2rem, 4vw, 3.4rem);
+    box-shadow: 0 24px 60px rgba(46, 44, 42, 0.08);
     overflow: hidden;
 }
 
@@ -1475,11 +1480,12 @@ body:has(#calc-step-2.active) {
 }
 .dictamen-title {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: clamp(1.85rem, 3vw, 2.45rem);
     font-weight: 500;
+    letter-spacing: -0.02em;
     color: var(--carbon, #2e2c2a);
     margin: 0;
-    line-height: 1.1;
+    line-height: 1.05;
 }
 .dictamen-motivo {
     flex-shrink: 0;
@@ -1569,7 +1575,7 @@ body:has(#calc-step-2.active) {
 }
 .dictamen-meta-item strong {
     font-family: var(--font-heading);
-    font-size: 1.15rem;
+    font-size: 1.22rem;
     font-weight: 500;
     color: var(--carbon, #2e2c2a);
     font-variant-numeric: tabular-nums;
@@ -1581,13 +1587,13 @@ body:has(#calc-step-2.active) {
 .dictamen-group:last-child { margin-bottom: 0; }
 .dictamen-group-title {
     font-family: var(--font-body);
-    font-size: 0.62rem;
+    font-size: 0.64rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 2.6px;
     text-transform: uppercase;
-    color: var(--bronze, #958463);
-    margin: 0 0 0.3rem;
-    padding-bottom: 0.5rem;
+    color: #8d7f68;
+    margin: 0 0 0.35rem;
+    padding-bottom: 0.55rem;
     border-bottom: 1px solid var(--stone-200, #e8e1d5);
 }
 .dictamen-row {
@@ -1595,8 +1601,8 @@ body:has(#calc-step-2.active) {
     justify-content: space-between;
     align-items: baseline;
     gap: 1rem;
-    padding: 0.62rem 0;
-    border-bottom: 1px dotted var(--stone-300, #d5ccbf);
+    padding: 0.78rem 0;
+    border-bottom: 1px dotted #d8d0c3;
 }
 .dictamen-row:last-child { border-bottom: none; }
 .dictamen-row-concept {
@@ -1606,9 +1612,10 @@ body:has(#calc-step-2.active) {
     line-height: 1.4;
 }
 .dictamen-row-amount {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-family: var(--font-heading);
+    font-size: 1.02rem;
     font-weight: 600;
+    letter-spacing: -0.01em;
     color: var(--carbon, #2e2c2a);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
@@ -1624,10 +1631,10 @@ body:has(#calc-step-2.active) {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    padding: 1.3rem 1.5rem;
-    margin-bottom: 2rem;
-    background: var(--carbon, #2e2c2a);
-    border-radius: 14px;
+    padding: 1.45rem 1.6rem;
+    margin: 1.8rem 0 2rem;
+    background: #211f1d;
+    border-radius: 12px;
 }
 .dictamen-total-label {
     font-family: var(--font-body);
@@ -1639,8 +1646,9 @@ body:has(#calc-step-2.active) {
 }
 .dictamen-total-amount {
     font-family: var(--font-heading);
-    font-size: 1.9rem;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 500;
+    letter-spacing: -0.02em;
     color: #fff;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
@@ -1736,13 +1744,13 @@ body:has(#calc-step-2.active) {
    desglose itemizado, total neto y nota legal a la derecha.
    En móvil/tablet se mantiene el apilado natural en una columna. */
 @media (min-width: 860px) {
-    .dictamen { max-width: 980px; }
-    .dictamen-card { padding: 3rem 3.25rem 2.75rem; }
+    .dictamen { max-width: 1080px; }
+    .dictamen-card { padding: clamp(2.4rem, 4vw, 3.5rem); }
 
     .dictamen-body {
         display: grid;
-        grid-template-columns: 0.9fr 1fr;
-        column-gap: 3rem;
+        grid-template-columns: minmax(320px, 0.86fr) minmax(0, 1fr);
+        column-gap: clamp(2rem, 4vw, 3.4rem);
         align-items: start;
     }
     /* border-box: que el padding/borde queden DENTRO del track del grid
@@ -1754,10 +1762,11 @@ body:has(#calc-step-2.active) {
     }
     .dictamen-detail {
         border-left: 1px solid var(--stone-200, #e8e1d5);
-        padding-left: 3rem;
+        padding-left: clamp(2rem, 4vw, 3.4rem);
     }
 
     /* Columna resumen (izquierda) */
+    .dictamen-summary { margin-bottom: 0 !important; min-height: 100%; }
     .dictamen-summary .dictamen-hero { padding-top: 1.25rem; }
     .dictamen-summary .dictamen-hero-amount { font-size: clamp(2.4rem, 4.5vw, 3.4rem); }
     .dictamen-summary .dictamen-meta { margin-bottom: 0; }
@@ -1769,13 +1778,14 @@ body:has(#calc-step-2.active) {
 
 /* ── Dictamen Summary Card — Editorial premium redesign ── */
 .dictamen-summary {
-    background: #f7f5f0 !important;
-    border-radius: 16px !important;
-    padding: 2rem 2rem 1.75rem !important;
+    background: #f7f4ee !important;
+    border-radius: 18px !important;
+    padding: clamp(1.8rem, 3vw, 2.4rem) !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 1.75rem !important;
-    border: 1px solid #e4dfd6 !important;
+    justify-content: space-between !important;
+    gap: 2rem !important;
+    border: 1px solid #e5dfd4 !important;
     box-shadow: none !important;
     position: relative !important;
     margin-bottom: 2rem !important;
@@ -1810,12 +1820,13 @@ body:has(#calc-step-2.active) {
 
 .dictamen-summary-amount {
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 400;
+    font-size: clamp(2.35rem, 4.8vw, 3.65rem);
+    font-weight: 500;
     color: #1a1917;
-    line-height: 1.05;
-    letter-spacing: -1px;
-    margin: 0.15rem 0;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin: 0.2rem 0;
+    font-variant-numeric: tabular-nums;
 }
 
 .dictamen-summary-sub {
@@ -1825,6 +1836,17 @@ body:has(#calc-step-2.active) {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: #9c9489;
+}
+
+/* Cifras del dictamen: serif editorial + cifras tabulares para que las
+   columnas de montos se lean como documento financiero y no como UI genérica. */
+.dictamen-summary-amount,
+.dictamen-meta-item strong,
+.dictamen-bar-value,
+.dictamen-row-amount,
+.dictamen-total-amount {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
 }
 
 /* Horizontal bar comparison */
@@ -2089,20 +2111,70 @@ select.calc-input {
 
 /* CARDS */
 .calc-marco-card {
-    border-radius: 12px;
-    padding: 1.5rem;
+    border-radius: 50px;
+    padding: 0.8rem 1.5rem;
     display: flex;
     flex-direction: column;
-    min-height: 200px;
+    min-height: auto;
+    transition: border-radius 0.3s ease, padding 0.3s ease;
 }
 .calc-marco-card h3 {
-    font-size: 1.2rem;
-    font-family: var(--font-heading, Georgia, serif);
-    font-weight: 400;
+    font-size: 1.1rem;
+    font-family: var(--font-body, -apple-system, sans-serif);
+    font-weight: 500;
     color: #1a1a1a;
-    margin: 0 0 1rem 0;
+    margin: 0;
     line-height: 1.2;
 }
+
+/* Detalles / Accordion */
+details.calc-marco-card[open] {
+    border-radius: 24px;
+    padding: 1.5rem;
+}
+details.calc-marco-card summary {
+    cursor: pointer;
+    list-style: none;
+    outline: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+details.calc-marco-card summary::-webkit-details-marker {
+    display: none;
+}
+details.calc-marco-card summary::after {
+    content: '\f063'; /* FontAwesome arrow-down */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: inherit;
+    transition: transform 0.3s ease;
+    width: 32px;
+    height: 32px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+details.calc-marco-card[open] summary::after {
+    transform: rotate(180deg);
+}
+details.calc-marco-card summary h3 {
+    margin: 0;
+}
+details.calc-marco-card[open] summary {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+.card-charcoal[open] summary {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
 .calc-marco-card-body {
     font-size: 0.78rem;
     line-height: 1.5;
@@ -2115,18 +2187,44 @@ select.calc-input {
 .calc-marco-card-body ul { margin: 0; padding-left: 1.1rem; }
 .calc-marco-card-body li { margin-bottom: 0.4rem; }
 
-/* PASTEL PALETTE */
-.card-butter { background-color: #fdf5d3; }
-.card-lemon  { background-color: #f7eea1; }
-.card-mint   { background-color: #e5f4e1; }
-.card-sage   { background-color: #d8e2d9; }
-.card-oat    { background-color: #e4dfd5; }
-.card-mist   { background-color: #e8e8e6; }
-.card-cream  { background-color: #f6f4ee; }
+/* NEW THEME PALETTE */
+.card-butter { background-color: #f4c153; }
+.card-butter h3 { color: #3b3e39; }
 
-.card-charcoal { background-color: #2e2c2a; }
-.card-charcoal h3 { color: #fff; }
+.card-lemon  { background-color: #f6db91; }
+.card-lemon h3 { color: #3b3e39; }
+
+.card-mint   { background-color: #fff; border: 1px solid #c2c9c5; }
+.card-mint h3 { color: #405748; }
+
+.card-sage   { background-color: #1b2f2d; }
+.card-sage h3 { color: #b2cda4; }
+details.calc-marco-card.card-sage summary::after { color: #fff; border-color: rgba(255,255,255,0.2); }
+
+.card-oat    { background-color: #f4e9da; }
+.card-oat h3 { color: #345942; }
+
+.card-mist   { background-color: #1d1e1e; }
+.card-mist h3 { color: #d9dad9; }
+details.calc-marco-card.card-mist summary::after { color: #fff; border-color: rgba(255,255,255,0.2); }
+
+.card-cream  { background-color: #10350d; }
+.card-cream h3 { color: #d7a353; }
+details.calc-marco-card.card-cream summary::after { color: #fff; border-color: rgba(255,255,255,0.2); }
+
+.card-charcoal { background-color: #1d1e1e; }
+.card-charcoal h3 { color: #d9dad9; }
+details.calc-marco-card.card-charcoal summary::after { color: #fff; border-color: rgba(255,255,255,0.2); }
+
+/* Text colors for dark background cards */
+.card-sage .calc-marco-card-body,
+.card-mist .calc-marco-card-body,
+.card-cream .calc-marco-card-body,
 .card-charcoal .calc-marco-card-body { color: #d0caca; }
+
+.card-sage .calc-marco-card-body strong,
+.card-mist .calc-marco-card-body strong,
+.card-cream .calc-marco-card-body strong,
 .card-charcoal .calc-marco-card-body strong { color: #fff; }
 
 .calc-marco-close {
@@ -2185,6 +2283,9 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
 .calc-tool-screen { display: none; width: 100%; min-height: 100vh; }
 .calc-hub-screen.active,
 .calc-tool-screen.active { display: block; }
+
+/* El atributo hidden debe ganar incluso frente a los estados .active. */
+.calc-wrapper [hidden] { display: none !important; }
 
 /* ── HUB HERO ── */
 .calc-hub-hero {
@@ -2505,7 +2606,7 @@ body:has(#calc-step-2.active) #navbar { display: none !important; }
 
 /* Cifras vigentes (dentro de la grid) */
 .calc-marco-cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 0.8rem; margin-top: 0.8rem; }
-.cm-cifra { background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); border-radius: 8px; padding: 0.8rem 1rem; }
+.cm-cifra { background: transparent; border: none; border-radius: 0; padding: 0.2rem 0; }
 .cm-cifra span { display: block; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; color: #6b6560; line-height: 1.2; margin-bottom: 0.3rem;}
 .cm-cifra strong { display: block; font-size: 1.2rem; color: #1a1a1a; font-weight: 600; }
 

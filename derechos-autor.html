@@ -31,8 +31,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body.editorial-body {
-            background-color: #000000;
-            color: #fdfdfc;
+            background-color: #ffffff;
+            color: #2e2c2a;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
@@ -287,7 +287,7 @@
         .ed-price {
             font-family: var(--font-heading);
             font-size: 2rem;
-            color: #ffffff;
+            color: #2e2c2a;
             margin-bottom: 0.5rem;
             line-height: 1;
         }
@@ -372,13 +372,13 @@
             font-family: var(--font-heading);
             font-size: clamp(1.7rem, 3vw, 2.4rem);
             font-weight: 400;
-            color: #ffffff;
+            color: #2e2c2a;
             margin: 0 0 1.5rem;
             line-height: 1.2;
         }
 
         /* Intro: qué es + qué se registra */
-        .da-intro { padding: 4rem 0; border-top: 1px solid #1e1e1e; }
+        .da-intro { padding: 4rem 0; }
         .da-intro-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -389,17 +389,15 @@
             font-family: var(--font-body);
             font-size: 0.95rem;
             line-height: 1.75;
-            color: #b3b0aa;
+            color: #5c5856;
             margin: 0 0 1rem;
         }
         .da-intro-col p:last-child { margin-bottom: 0; }
-        .da-intro-col strong { color: #ffffff; }
+        .da-intro-col strong { color: #1a1918; }
         .da-intro-col img {
             width: 100%;
-            border-radius: 12px;
             margin-bottom: 1.4rem;
             display: block;
-            border: 1px solid #333;
         }
         .da-chips {
             display: flex;
@@ -412,15 +410,15 @@
         .da-chips li {
             font-family: var(--font-body);
             font-size: 0.72rem;
-            color: #cfccc5;
-            background: #161616;
-            border: 1px solid #2c2c2c;
+            color: #4a4745;
+            background: #fdfcfb;
+            border: 1px solid #e8e1d5;
             border-radius: 30px;
             padding: 0.35rem 0.85rem;
         }
 
         /* Pricing: 2 tarjetas ordenadas */
-        .da-pricing { padding: 4rem 0 5rem; border-top: 1px solid #1e1e1e; }
+        .da-pricing { padding: 4rem 0 5rem; border-top: 1px solid #eaeaea; }
         .da-pricing-head { text-align: center; margin-bottom: 2.5rem; }
         .da-pricing-grid {
             display: grid;
@@ -431,17 +429,17 @@
             align-items: stretch;
         }
         .da-card {
-            background: #0e0e0e;
-            border: 1px solid #2a2a2a;
+            background: #ffffff;
+            border: 1px solid #eaeaea;
             border-radius: 18px;
             padding: 2.2rem;
             display: flex;
             flex-direction: column;
         }
         .da-card.highlight {
-            background: #141210;
+            background: #faf8f5;
             border-color: var(--bronze, #c5a880);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
         }
         .da-card .ed-price { margin-bottom: 0.4rem; }
         .da-card-label {
@@ -450,14 +448,14 @@
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #ffffff;
+            color: #2e2c2a;
             margin: 0 0 0.9rem;
         }
         .da-card p.da-card-desc {
             font-family: var(--font-body);
             font-size: 0.9rem;
             line-height: 1.6;
-            color: #a8a49d;
+            color: #5c5856;
             margin: 0 0 1.4rem;
         }
         .da-card ul {
@@ -473,7 +471,7 @@
             font-family: var(--font-body);
             font-size: 0.86rem;
             line-height: 1.5;
-            color: #c4c0b9;
+            color: #4a4745;
             padding-left: 1.4rem;
             position: relative;
         }
@@ -542,6 +540,295 @@
                mantener la vista limpia */
             .schematic-hud { display: none; }
         }
+
+        /* NUEVO HERO ESTILO CONTINUOUS LINE */
+        .da-hero-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ffffff; /* Fondo blanco para mantener la consistencia */
+            padding: 130px 5% 5rem 5%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .da-hero-left {
+            flex: 1;
+            max-width: 50%;
+            z-index: 2;
+            padding-left: 5%;
+        }
+
+        .da-hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 4vw, 4.5rem);
+            font-weight: 400;
+            color: #383533;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .da-hero-desc {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: #7a7673;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            max-width: 85%;
+        }
+
+        .da-hero-btn {
+            display: inline-block;
+            background-color: #242221;
+            color: #FFFFFF;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .da-hero-btn:hover {
+            background-color: #11100f;
+        }
+
+        .da-hero-right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            position: relative;
+            z-index: 1;
+        }
+
+        .da-hero-img {
+            max-width: 140%;
+            width: 130%;
+            height: auto;
+            object-fit: contain;
+            transform: translateX(10%);
+        }
+
+        @media (max-width: 1024px) {
+            .da-hero-container {
+                flex-direction: column;
+                padding-top: 120px;
+                text-align: center;
+            }
+            .da-hero-left {
+                max-width: 100%;
+                padding: 0 1rem;
+                margin-bottom: 3rem;
+            }
+            .da-hero-desc {
+                max-width: 100%;
+                margin: 0 auto 2rem auto;
+            }
+            .da-hero-right {
+                width: 100%;
+                justify-content: center;
+            }
+            .da-hero-img {
+                max-width: 100%;
+                width: 100%;
+                transform: none;
+            }
+        }
+        /* CATEGORY SELECTOR */
+        .da-category-selector {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            font-family: var(--font-body);
+        }
+        .da-cat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        /* CAROUSEL */
+        .da-carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            height: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+            overflow: visible;
+        }
+        .da-carousel-track {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .da-cat-card {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: center center;
+            width: 150px;
+            height: 150px;
+            margin-left: -75px;
+            margin-top: -75px;
+            background-color: #fff;
+            border-radius: 12px 16px 10px 14px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #111;
+            /* Rough doodle border */
+            border: 2.5px solid #111;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            user-select: none;
+            transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .da-cat-card:hover {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .da-cat-card.active {
+            border: 4px solid #111;
+            background-color: #fdfdfd;
+        }
+        /* Center content (Button) */
+        .da-carousel-center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 100;
+        }
+        .da-carousel-center .da-hero-btn {
+            pointer-events: auto;
+            padding: 1rem 3rem;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            /* Move button down slightly from absolute center */
+            transform: translateY(20px);
+        }
+        .da-carousel-center .da-hero-btn:hover {
+            background-color: #000;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+            transform: translateY(18px); /* Slight lift effect */
+        }
+        .da-carousel-controls {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            z-index: 101;
+            width: 100%;
+        }
+        .da-carousel-arrow {
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #111;
+            transition: all 0.2s;
+            padding: 0.5rem;
+        }
+        .da-carousel-arrow:hover {
+            color: #000;
+            transform: scale(1.1);
+        }
+        .da-carousel-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .da-carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ccc;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+        .da-carousel-dot.active {
+            width: 24px;
+            background-color: #111;
+            border-radius: 4px;
+        }
+        .da-cat-img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            mix-blend-mode: multiply; /* ensures white background from image blends well */
+        }
+        .da-cat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: transparent;
+            -webkit-text-stroke: 2.5px #111; /* Bold doodle lines */
+            position: relative;
+            z-index: 2;
+        }
+        /* Organic yellow accent blob for FontAwesome fallback */
+        .da-cat-icon::after {
+            content: '';
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            background-color: #ffea00; /* Bright yellow */
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            transform: translate(-30%, -60%) rotate(-15deg);
+        }
+        .da-cat-label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #111;
+            letter-spacing: -0.5px;
+        }
+        .da-cat-radio {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 2px solid #111;
+            box-sizing: border-box;
+            transition: all 0.2s;
+        }
+        .da-cat-card.active .da-cat-radio {
+            border: 6px solid #111;
+            background-color: #ffea00;
+        }
     </style>
 </head>
 <body class="editorial-body">
@@ -562,9 +849,10 @@
                             Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
                         </button>
                         <ul class="nav-submenu" id="nav-sub-pi">
-                            <li><a href="marcas.html">Registrar mi marca</a></li>
-                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
-                            <li><a href="franquicias.html">Franquiciar o licenciar</a></li>
+                            <li><a href="propiedad-intelectual.html">Ver todo</a></li>
+                            <li><a href="marcas.html">Registro de marca</a></li>
+                            <li><a href="derechos-autor.html">Derechos de autor</a></li>
+                            <li><a href="secreto-industrial.html">Secreto industrial</a></li>
                         </ul>
                     </li>
 
@@ -580,12 +868,10 @@
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
                     <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
-                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
                 <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
@@ -594,71 +880,223 @@
     </nav>
 
     <!-- ═══ EDITORIAL LAYOUT ═══ -->
-    <main class="editorial-container">
-
-        <!-- Corners -->
-        <div class="ed-meta top-left">FERRO FRAGOSO / EST. 2024</div>
-        <div class="ed-meta top-right">MÉXICO / 02</div>
-        <div class="ed-meta bottom-left">PROPIEDAD INTELECTUAL</div>
-        <div class="ed-meta bottom-right">INDAUTOR / 03</div>
-
-        <!-- Giant Title -->
-        <div class="ed-giant-title">
-            DERECHOS<br>DE AUTOR
+    <main class="da-hero-container">
+        <div class="da-hero-left">
+            <h1 class="da-hero-title">Protege la expresión original de tu trabajo.</h1>
+            <p class="da-hero-desc">Código, contenido, diseños, fotografía, música y materiales digitales. Registramos tu obra ante el INDAUTOR y revisamos que la titularidad esté donde debe estar: en ti o en tu empresa.</p>
+            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20proteger%20mi%20obra%20y%20registrar%20mis%20derechos%20de%20autor" class="da-hero-btn">PROTEGER MI OBRA</a>
         </div>
+        <div class="da-hero-right">
+            <img src="lamp_document_line_art.png" alt="Lámpara iluminando documento en arte lineal" class="da-hero-img">
+        </div>
+    </main>
 
-        <!-- Center Art — exploded schematic diagram animado (generado con Higgsfield) -->
-        <div class="schematic-stage">
-            <div class="schematic-float">
-                <video class="schematic-img" autoplay muted loop playsinline
-                       poster="copyright_exploded.png"
-                       aria-label="Diagrama técnico explosionado de una obra protegida por derechos de autor">
-                    <source src="copyright_exploded.mp4" type="video/mp4">
-                </video>
-                <svg class="schematic-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                    <!-- Crop marks (corners) -->
-                    <line class="draw-line d1" x1="0" y1="6" x2="0" y2="0"/>
-                    <line class="draw-line d1" x1="0" y1="0" x2="5" y2="0"/>
-                    <line class="draw-line d2" x1="95" y1="0" x2="100" y2="0"/>
-                    <line class="draw-line d2" x1="100" y1="0" x2="100" y2="6"/>
-                    <line class="draw-line d3" x1="100" y1="94" x2="100" y2="100"/>
-                    <line class="draw-line d3" x1="100" y1="100" x2="95" y2="100"/>
-                    <line class="draw-line d4" x1="5" y1="100" x2="0" y2="100"/>
-                    <line class="draw-line d4" x1="0" y1="100" x2="0" y2="94"/>
-                    <!-- Blinking registration ticks -->
-                    <circle class="blink-tick" cx="8" cy="30" r="1.4"/>
-                    <rect class="blink-tick b2" x="88" y="55" width="3" height="3"/>
-                    <circle class="blink-tick b3" cx="14" cy="78" r="1.4"/>
-                </svg>
-                <div class="scan-line"></div>
-                <span class="schematic-hud h1">Fig. 01 — Obra original</span>
-                <span class="schematic-hud h2">Reg. INDAUTOR / MX</span>
-                <span class="schematic-hud h3">Titularidad © 2026</span>
+    <!-- ═══ SELECCIÓN DE CATEGORÍA ═══ -->
+    <section class="da-category-selector">
+        <header class="quick-actions-header blur-fade" style="margin-bottom: 8rem;">
+            <h2>Selecciona una <em>categoría</em></h2>
+        </header>
+        <div class="da-carousel-container" id="categoryCarousel" tabindex="0">
+            <!-- Carousel track for cards -->
+            <div class="da-carousel-track" id="categoryTrack">
+                <div class="da-cat-card active" role="option" data-target="card-obra">
+                    <div class="da-cat-radio"></div>
+                    <img src="cat_doodle_literatura_1785471538947.png" alt="Literatura" class="da-cat-img">
+                    <span class="da-cat-label">Literatura</span>
+                </div>
+                <div class="da-cat-card" role="option" data-target="card-obra">
+                    <div class="da-cat-radio"></div>
+                    <img src="cat_doodle_musica_1785471547048.png" alt="Música" class="da-cat-img">
+                    <span class="da-cat-label">Música</span>
+                </div>
+                <div class="da-cat-card" role="option" data-target="card-obra">
+                    <div class="da-cat-radio"></div>
+                    <img src="cat_doodle_arte_1785471555372.png" alt="Arte" class="da-cat-img">
+                    <span class="da-cat-label">Arte</span>
+                </div>
+                <div class="da-cat-card" role="option" data-target="card-obra">
+                    <div class="da-cat-radio"></div>
+                    <img src="cat_doodle_diseno_1785471562710.png" alt="Diseño" class="da-cat-img">
+                    <span class="da-cat-label">Diseño</span>
+                </div>
+                <div class="da-cat-card" role="option" data-target="card-obra">
+                    <div class="da-cat-radio"></div>
+                    <img src="cat_doodle_audiovisual_1785471569011.png" alt="Audiovisual" class="da-cat-img">
+                    <span class="da-cat-label">Audiovisual</span>
+                </div>
+                <div class="da-cat-card" role="option" data-target="card-coleccion">
+                    <div class="da-cat-radio"></div>
+                    <img src="cat_doodle_fotografia_1785471584019.png" alt="Fotografía" class="da-cat-img">
+                    <span class="da-cat-label">Fotografía</span>
+                </div>
+                <div class="da-cat-card" role="option" data-target="card-codigo">
+                    <div class="da-cat-radio"></div>
+                    <i class="fa-solid fa-code da-cat-icon"></i>
+                    <span class="da-cat-label">Código</span>
+                </div>
+            </div>
+
+            <!-- Center Content (Button) -->
+            <div class="da-carousel-center">
+                <a href="#" class="da-hero-btn" id="btn-empezar-carousel">Empezar</a>
+            </div>
+
+            <!-- Controls (prev, next, dots) -->
+            <div class="da-carousel-controls">
+                <button class="da-carousel-arrow" id="carouselPrev" aria-label="Anterior">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="da-carousel-dots" id="carouselDots" role="tablist"></div>
+                <button class="da-carousel-arrow" id="carouselNext" aria-label="Siguiente">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
         </div>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const items = Array.from(document.querySelectorAll('.da-cat-card'));
+                const dotsContainer = document.getElementById('carouselDots');
+                const btnPrev = document.getElementById('carouselPrev');
+                const btnNext = document.getElementById('carouselNext');
+                const carouselContainer = document.getElementById('categoryCarousel');
 
-        <!-- Tagline del hero -->
-        <p class="ed-hero-tagline">Registra tu obra ante el INDAUTOR y obtén la prueba oficial de que es tuya.</p>
-    </main>
+                let activeIndex = 0;
+                const total = items.length;
+                const VISIBLE_COUNT = 5;
+                const RADIUS_X = 260; // Horizontal radius
+                const RADIUS_Y = 110; // Vertical radius
+
+                function updateCarousel() {
+                    items.forEach((item, i) => {
+                        const offset = i - activeIndex;
+                        const half = Math.floor(VISIBLE_COUNT / 2);
+                        let adjustedOffset = offset;
+                        
+                        // Circular logic
+                        if (offset > half) adjustedOffset = offset - total;
+                        if (offset < -half) adjustedOffset = offset + total;
+                        
+                        if (Math.abs(adjustedOffset) > half * 2) {
+                            item.style.opacity = '0';
+                            item.style.pointerEvents = 'none';
+                            item.style.zIndex = '-1';
+                            item.style.transform = `translate(0px, 0px) scale(0.5)`;
+                            return;
+                        }
+                        
+                        item.style.pointerEvents = 'auto';
+                        
+                        // Elliptical math
+                        const angle = (adjustedOffset / VISIBLE_COUNT) * Math.PI;
+                        const x = Math.sin(angle) * RADIUS_X;
+                        const y = -Math.cos(angle) * RADIUS_Y;
+                        
+                        // Depth and scale calculation
+                        const distance = Math.abs(adjustedOffset);
+                        const maxDistance = half + 1;
+                        const scale = Math.max(0, 1 - (distance / maxDistance) * 0.35);
+                        const opacity = Math.max(0.3, 1 - (distance / maxDistance) * 0.8);
+                        const zIndex = VISIBLE_COUNT - distance;
+                        
+                        item.style.transform = `translate(${x}px, ${y - 30}px) scale(${scale})`;
+                        item.style.opacity = opacity;
+                        item.style.zIndex = zIndex;
+                        
+                        if (i === activeIndex) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+
+                    // Update dots
+                    Array.from(dotsContainer.children).forEach((dot, i) => {
+                        dot.classList.toggle('active', i === activeIndex);
+                        dot.setAttribute('aria-selected', i === activeIndex);
+                    });
+                }
+
+                function goTo(index) {
+                    activeIndex = ((index % total) + total) % total;
+                    updateCarousel();
+                }
+
+                btnNext.addEventListener('click', () => goTo(activeIndex + 1));
+                btnPrev.addEventListener('click', () => goTo(activeIndex - 1));
+
+                items.forEach((item, i) => {
+                    item.addEventListener('click', () => goTo(i));
+                });
+
+                // Create dots
+                items.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'da-carousel-dot';
+                    dot.setAttribute('role', 'tab');
+                    dot.setAttribute('aria-label', `Ir al elemento ${i + 1}`);
+                    dot.addEventListener('click', () => goTo(i));
+                    dotsContainer.appendChild(dot);
+                });
+
+                // Keyboard navigation
+                carouselContainer.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') goTo(activeIndex - 1);
+                    if (e.key === 'ArrowRight') goTo(activeIndex + 1);
+                });
+
+                // Initial render
+                updateCarousel();
+
+                const btnEmpezar = document.getElementById('btn-empezar-carousel');
+                if (btnEmpezar) {
+                    btnEmpezar.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (typeof stopAutoplay === 'function') stopAutoplay();
+                        const activeCard = document.querySelector('.da-cat-card.active');
+                        if (activeCard) {
+                            const targetId = activeCard.getAttribute('data-target');
+                            const targetEl = document.getElementById(targetId);
+                            if (targetEl) {
+                                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                document.querySelectorAll('.da-card').forEach(c => c.classList.remove('highlight'));
+                                targetEl.classList.add('highlight');
+                                targetEl.style.transition = 'all 0.5s ease';
+                            }
+                        }
+                    });
+                }
+
+                // Autoplay logic
+                let autoplayInterval;
+                const startAutoplay = () => {
+                    autoplayInterval = setInterval(() => {
+                        goTo(activeIndex + 1);
+                    }, 2500); // Rotates every 2.5 seconds
+                };
+                const stopAutoplay = () => clearInterval(autoplayInterval);
+
+                startAutoplay();
+
+                carouselContainer.addEventListener('mouseenter', stopAutoplay);
+                carouselContainer.addEventListener('mouseleave', startAutoplay);
+            });
+        </script>
+    </section>
 
     <!-- ═══ INTRO — QUÉ ES Y QUÉ SE REGISTRA ═══ -->
     <section class="da-intro">
         <div class="da-section-wrap">
             <div class="da-intro-grid">
 
-                <!-- Qué es -->
+                <!-- Izquierda: Importancia + Lista -->
                 <div class="da-intro-col">
-                    <span class="da-eyebrow">Por qué registrar</span>
-                    <h2 class="da-h2">La protección que sí vale ante un juez</h2>
-                    <p>El derecho de autor protege automáticamente toda obra original desde su creación. Pero la protección <strong>real</strong> —la que vale ante tribunales y en disputas comerciales— proviene del registro ante el <strong>Instituto Nacional del Derecho de Autor (INDAUTOR)</strong>.</p>
-                    <p>Un registro formaliza tu titularidad y genera el instrumento público que necesitas para actuar contra quienes copien, reproduzcan o usen tu obra sin permiso.</p>
-                </div>
-
-                <!-- Qué se registra -->
-                <div class="da-intro-col">
-                    <img src="software_copyright.png" alt="Registro de software y código">
-                    <span class="da-eyebrow">Qué se registra</span>
-                    <h2 class="da-h2">Si lo creaste, se puede proteger</h2>
+                    <span class="da-eyebrow">El valor de tu talento</span>
+                    <h2 class="da-h2">Por qué es vital proteger tu obra</h2>
+                    <p>Tus creaciones y desarrollos son el motor de tu negocio. El derecho de autor protege la <strong>expresión original</strong> de tu trabajo —código, diseño, contenido, fotografía, música, materiales digitales— no ideas abstractas ni métodos.</p>
+                    <p>El registro ante el INDAUTOR genera una presunción legal de autoría con fecha oficial y refuerza tu posición probatoria ante cualquier disputa. Además, revisamos que la titularidad esté correctamente asignada: en ti o en tu empresa.</p>
+                    
+                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: #2e2c2a; margin: 2.5rem 0 1rem; font-weight: 400;">Lo que protegemos:</h3>
                     <ul class="da-chips">
                         <li>Logotipos e identidad visual</li>
                         <li>Software y aplicaciones</li>
@@ -667,9 +1105,17 @@
                         <li>Música y composiciones</li>
                         <li>Diseño web y UX</li>
                         <li>Material pedagógico y cursos</li>
-                        <li>Obras arquitectónicas y planos</li>
                     </ul>
-                    <p style="margin-top: 1.2rem;">Si tiene originalidad expresiva, se puede registrar. Evaluamos <strong>sin costo</strong> si tu obra califica antes de proceder.</p>
+                </div>
+
+                <!-- Derecha: Imagen + Foco en Software -->
+                <div class="da-intro-col">
+                    <img src="hands_orb_inverted.png" alt="Manos sosteniendo una idea brillante" style="margin-bottom: 2rem; width: 100%;">
+                    
+                    <span class="da-eyebrow">El activo invisible</span>
+                    <h2 class="da-h2" style="font-size: 1.6rem; margin-bottom: 1rem;">El riesgo que las empresas en México ignoran</h2>
+                    <p>Se invierten meses de trabajo, capital y talento en desarrollar <strong>código de programación y software a la medida</strong>. Sin embargo, suele ser el activo más descuidado a nivel legal.</p>
+                    <p>Sin un registro ante el <strong>INDAUTOR</strong>, probar la titularidad del código —frente a un ex-empleado, freelancer o competidor— depende de evidencia indirecta. El registro refuerza tu posición desde el primer día. Revisamos también que la cesión esté documentada correctamente.</p>
                 </div>
 
             </div>
@@ -681,47 +1127,82 @@
         <div class="da-section-wrap">
             <div class="da-pricing-head">
                 <span class="da-eyebrow">Precios claros</span>
-                <h2 class="da-h2" style="margin-bottom: 0;">Todo incluido, sin sorpresas</h2>
+                <h2 class="da-h2" style="margin-bottom: 0;">Tres niveles. Una sola decisión.</h2>
             </div>
 
-            <div class="da-pricing-grid">
+            <div class="da-pricing-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 1100px;">
 
-                <!-- Registro de Obra -->
-                <div class="da-card">
-                    <div class="ed-price">desde $2,490 <span style="font-size:0.5em;">MXN</span></div>
-                    <p class="da-card-label">Registro de obra</p>
-                    <p class="da-card-desc">Todo incluido: honorarios, tramitación ante el INDAUTOR y acuse oficial de registro. Aplica para una obra o colección de obras del mismo autor.</p>
+                <!-- 1. Registro Esencial -->
+                <div class="da-card" id="card-obra">
+                    <div class="ed-price">$2,490 <span style="font-size:0.5em;">MXN</span></div>
+                    <p class="da-card-label">Registro Esencial</p>
+                    <p class="da-card-desc">Para autores, diseñadores, fotógrafos y creadores de contenido. Incluye derechos gubernamentales, honorarios, preparación y presentación del expediente, así como seguimiento hasta la emisión del acuse o requerimiento.</p>
                     <ul>
-                        <li>Evaluación de elegibilidad sin costo</li>
-                        <li>Preparación del expediente completo</li>
-                        <li>Seguimiento hasta el acuse oficial</li>
-                        <li>1 obra o colección de obras</li>
+                        <li>Diagnóstico de registrabilidad</li>
+                        <li>Integración de expediente</li>
+                        <li>Solicitud y pago oficial ante INDAUTOR</li>
+                        <li>Seguimiento hasta acuse</li>
+                        <li>1 obra individual</li>
                     </ul>
-                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20registrar%20los%20derechos%20de%20autor%20de%20mi%20obra%20(%242%2C490%20MXN)."
-                       target="_blank" rel="noopener" class="ed-btn"
-                       data-mp-link="PENDIENTE:derechos-autor-2490" data-producto="Derechos de autor">Registrar mi Obra</a>
+                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Registro%20Esencial%20de%20derechos%20de%20autor%20(%242%2C490%20MXN)."
+                       target="_blank" rel="noopener" class="ed-btn">Registrar Obra</a>
                 </div>
 
-                <!-- Paquete Protección Total -->
-                <div class="da-card highlight">
-                    <div class="ed-badge best">Recomendado</div>
-                    <div class="ed-price">$8,050 <span style="font-size:0.5em;">MXN</span></div>
-                    <p class="da-card-label">Paquete Protección Total</p>
-                    <p class="da-card-desc">Registro de marca ante el IMPI + registro de derechos de autor ante el INDAUTOR en un solo expediente coordinado. Protege tu nombre <em>y</em> tu obra al mismo tiempo.</p>
+                <!-- 2. Registro de Software -->
+                <div class="da-card" id="card-codigo">
+                    <div class="ed-price">$5,490 <span style="font-size:0.5em;">MXN</span></div>
+                    <p class="da-card-label">Registro de Software</p>
+                    <p class="da-card-desc">Para startups, agencias, SaaS y desarrolladores. Va más allá del trámite: revisamos titularidad, colaboradores y documentación de cesión.</p>
                     <ul>
-                        <li>Búsqueda fonética de marca incluida</li>
-                        <li>Registro de marca ante IMPI (una clase)</li>
-                        <li>Registro de obra ante INDAUTOR</li>
-                        <li>Seguimiento unificado de ambos expedientes</li>
-                        <li><strong style="color:#fff;">Ahorro vs. contratar por separado</strong></li>
+                        <li>Revisión preliminar de titularidad del software</li>
+                        <li>Guía para depósito del fragmento de código</li>
+                        <li>Registro ante INDAUTOR</li>
+                        <li>Recomendaciones sobre secretos empresariales y acceso a repositorios</li>
+                        <li>Revisión de un contrato de desarrollo o cesión existente (observaciones; elaboración aparte)</li>
                     </ul>
-                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Paquete%20Protecci%C3%B3n%20Total%20(marca%20%2B%20derechos%20de%20autor%2C%20%248%2C050%20MXN)."
-                       target="_blank" rel="noopener" class="ed-btn"
-                       data-mp-link="PENDIENTE:proteccion-total-8050" data-producto="Protección Total">Solicitar Paquete</a>
+                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Registro%20de%20Software%20(%245%2C490%20MXN)."
+                       target="_blank" rel="noopener" class="ed-btn">Blindar Código</a>
                 </div>
 
+                <!-- 3. Blindaje Digital -->
+                <div class="da-card highlight" id="card-blindaje">
+                    <span class="ed-badge best">Mayor valor</span>
+                    <div class="ed-price">$9,900 <span style="font-size:0.5em;">MXN</span></div>
+                    <p class="da-card-label">Blindaje Digital</p>
+                    <p class="da-card-desc">Para software, cursos, plataformas, agencias y negocios que ya venden activos digitales. Aseguramos que lo que tu negocio crea también le pertenezca legalmente.</p>
+                    <ul>
+                        <li>Auditoría de hasta 5 activos creativos o digitales</li>
+                        <li>Mapa de titularidad: fundador, empleados, proveedores y clientes</li>
+                        <li>Estrategia de registro priorizado</li>
+                        <li>Un registro de obra o software incluido</li>
+                        <li>Un contrato de cesión <em>o</em> licencia de uso</li>
+                        <li>Recomendaciones de NDA, controles de acceso y evidencia de creación</li>
+                        <li>Plan de acción de 90 días</li>
+                    </ul>
+                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Blindaje%20Digital%20(%249%2C900%20MXN)."
+                       target="_blank" rel="noopener" class="ed-btn">Iniciar Blindaje</a>
+                </div>
+
+            </div>
+
+            <!-- Portafolio Creativo: bajo cotización -->
+            <div style="max-width: 720px; margin: 2.5rem auto 0; padding: 1.8rem 2rem; background: #faf8f5; border: 1px solid #e8e1d5; border-radius: 16px; text-align: center;" id="card-coleccion">
+                <p class="da-card-label" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #2e2c2a; margin: 0 0 0.5rem;">Portafolio Creativo</p>
+                <p style="font-family: var(--font-heading); font-size: 1.8rem; color: #2e2c2a; margin: 0 0 0.6rem;">Desde $4,990 <span style="font-size:0.5em; font-family: var(--font-body);">MXN</span></p>
+                <p style="font-family: var(--font-body); font-size: 0.9rem; color: #5c5856; line-height: 1.6; margin: 0 0 0.8rem;">Hasta 10 piezas relacionadas y aptas para tramitarse como colección. Organización del material, expediente y derechos oficiales incluidos. Piezas adicionales: $350–$600 MXN por pieza según formato y complejidad.</p>
+                <p style="font-family: var(--font-body); font-size: 0.82rem; color: #888; font-style: italic; margin: 0 0 1.2rem;">La procedencia de registro como colección se confirma durante la evaluación inicial. No todas las obras independientes deben o pueden agruparse en un solo expediente.</p>
+                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20cotizar%20un%20Portafolio%20Creativo%20de%20derechos%20de%20autor."
+                   target="_blank" rel="noopener" class="ed-btn" style="display: inline-block; width: auto;">Solicitar cotización</a>
             </div>
         </div>
+    </section>
+
+    <!-- ═══ CIERRE ═══ -->
+    <section style="padding: 4rem 5vw 6rem; background-color: #fff; text-align: center;">
+        <h2 style="font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; color: #2e2c2a; max-width: 900px; margin: 0 auto; line-height: 1.3;">
+            Tu nombre de marca tiene su propia protección.<br>
+            <em style="color: var(--bronze, #c5a880);">Tu obra, tu código, tu creación — necesitan la suya.</em>
+        </h2>
     </section>
 
     <!-- ═══ FAQ ═══ -->
@@ -755,31 +1236,7 @@
         </details>
     </section>
 
-    <!-- ═══ RADAR LEGAL FF ═══ -->
-    <section class="radar-hero">
-        <h2 class="radar-hero-title blur-fade">
-            Actualidad jurídica<br><em>que sí vas a leer</em>
-        </h2>
-        <p class="radar-hero-desc">
-            Ferro Fragoso es el estudio bajo el cual se construyen y protegen negocios sólidos. Suscríbete para recibir los cambios legales que afectan tu patrimonio — cada martes, en 3 minutos.
-        </p>
-        
-        <form id="radar-da-form" action="#" method="POST" class="radar-hero-form">
-            <input type="hidden" name="etiqueta" value="derechos-autor">
-            <input type="email" id="radar-da-email" name="email" required placeholder="tu@correo.com" class="radar-hero-input">
-            <button type="submit" class="radar-hero-submit">Suscribirme &rarr;</button>
-        </form>
-        <p id="radar-da-msg" role="status" style="font-size: 0.85rem; margin-top: 1rem; min-height: 1.2em; color: var(--carbon, #2e2c2a); text-align: center;"></p>
-        
-        <label style="display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-body); font-size: 0.78rem; margin-top: 1.2rem; cursor: pointer; color: var(--text-muted, #9c9489);">
-            <input type="checkbox" id="radar-da-privacidad" required style="flex-shrink: 0;">
-            <span>He leído y acepto el <a href="privacidad.html" style="color: #161616; text-decoration: underline;">aviso de privacidad</a>.</span>
-        </label>
-        
-        <p style="font-family: var(--font-body); font-size: 0.82rem; margin: 1.5rem 0 0; text-align: center;">
-            <a href="radar/index.html" style="color: var(--bronze, #c5a880); text-decoration: underline;">Lee las ediciones anteriores →</a>
-        </p>
-    </section>
+
 
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -812,17 +1269,24 @@
         "@graph": [
             {
                 "@type": "Product",
-                "name": "Registro de derechos de autor",
-                "description": "Registro de obra (logotipo, software, contenido o material creativo) ante el Instituto Nacional del Derecho de Autor (INDAUTOR). Todo incluido.",
+                "name": "Registro Esencial de derechos de autor",
+                "description": "Registro de obra ante el INDAUTOR. Incluye diagnóstico de registrabilidad, integración de expediente, solicitud, pago oficial y seguimiento hasta acuse.",
                 "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
                 "offers": { "@type": "Offer", "price": "2490", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/derechos-autor.html" }
             },
             {
                 "@type": "Product",
-                "name": "Paquete Protección Total (marca + derechos de autor)",
-                "description": "Registro de marca ante el IMPI y registro de derechos de autor ante el INDAUTOR en un solo paquete con seguimiento unificado de ambos expedientes.",
+                "name": "Registro de Software",
+                "description": "Registro de software o código fuente ante el INDAUTOR con revisión de titularidad, guía de depósito de código y análisis de colaboradores.",
                 "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
-                "offers": { "@type": "Offer", "price": "8050", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/derechos-autor.html" }
+                "offers": { "@type": "Offer", "price": "5490", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/derechos-autor.html" }
+            },
+            {
+                "@type": "Product",
+                "name": "Blindaje Digital",
+                "description": "Auditoría de activos creativos, mapa de titularidad, estrategia de registro, un registro incluido, contrato de cesión o licencia y plan de acción de 90 días.",
+                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
+                "offers": { "@type": "Offer", "price": "9900", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/derechos-autor.html" }
             }
         ]
     }

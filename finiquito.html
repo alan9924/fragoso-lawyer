@@ -23,15 +23,22 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=14">
-    <link rel="stylesheet" href="home-new.css?v=11">
-    <link rel="stylesheet" href="calculadora.css?v=11">
+    <link rel="stylesheet" href="styles.css?v=15">
+    <link rel="stylesheet" href="home-new.css?v=12">
+    <link rel="stylesheet" href="calculadora.css?v=12">
+    <link rel="stylesheet" href="mobile-app.css?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Sin JS, el estado inicial de .blur-fade dejaría los elementos invisibles -->
+    <noscript>
+        <style>
+            .blur-fade { opacity: 1 !important; transform: none !important; filter: none !important; }
+        </style>
+    </noscript>
 </head>
-<body class="calculadora-page">
+<body class="calculadora-page" style="background-color: #ffffff;">
 
             <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar" class="scrolled">
@@ -49,9 +56,10 @@
                             Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
                         </button>
                         <ul class="nav-submenu" id="nav-sub-pi">
-                            <li><a href="marcas.html">Registrar mi marca</a></li>
-                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
-                            <li><a href="franquicias.html">Franquiciar o licenciar</a></li>
+                            <li><a href="propiedad-intelectual.html">Ver todo</a></li>
+                            <li><a href="marcas.html">Registro de marca</a></li>
+                            <li><a href="derechos-autor.html">Derechos de autor</a></li>
+                            <li><a href="secreto-industrial.html">Secreto industrial</a></li>
                         </ul>
                     </li>
 
@@ -67,12 +75,10 @@
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
                     <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
-                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
                 <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
@@ -88,7 +94,7 @@
             <div class="calc-landing">
 
                 <div class="calc-landing-inner">
-                    <div class="calc-landing-text">
+                    <div class="calc-landing-text blur-fade">
                         <!-- Referencia vigente, siempre visible (CONASAMI / INEGI) -->
                         <div class="calc-minimos" id="calcMinimos" aria-label="Valores de referencia vigentes" style="justify-content: flex-start; margin: 0 0 1.5rem;"></div>
                         <h1 class="calc-landing-title">Calculadora Laboral</h1>
@@ -99,7 +105,7 @@
                             Marco legal
                         </button>
                     </div>
-                    <figure class="calc-landing-art">
+                    <figure class="calc-landing-art blur-fade" data-bf-delay="1">
                         <img src="finiquito_portada.png" alt="Cálculo de finiquito y liquidación con monedas flotantes de curso legal" class="calc-landing-img">
                     </figure>
                 </div>
@@ -382,7 +388,7 @@
                         <button class="calc-toggle-btn" id="toggle-neto-a-bruto">De Neto → Bruto</button>
                     </div>
                     <div class="calc-simple-field">
-                        <label for="sb-monto" id="sb-monto-label">Sueldo mensual bruto (MXN)</label>
+                        <label for="sb-monto" id="sb-monto-label">Monto bruto (MXN)</label>
                         <input type="number" id="sb-monto" placeholder="25000" min="1" inputmode="decimal">
                     </div>
                     <div class="calc-simple-field">
@@ -480,7 +486,6 @@
             <div class="calc-marco-layout">
                 <!-- SIDEBAR -->
                 <aside class="calc-marco-sidebar">
-                    <span class="calc-marco-eyebrow">Referencia</span>
                     <h2 class="calc-marco-title" id="calc-marco-titulo">Marco<br>Legal</h2>
                     <p class="calc-marco-desc">Cálculos fundamentados en la Ley Federal del Trabajo de México. La última reforma publicada en el DOF aplica para la reducción de la jornada laboral.</p>
                 </aside>
@@ -489,36 +494,33 @@
                 <div class="calc-marco-grid-wrap">
                     <div class="calc-marco-grid">
                         
-                        <!-- Tarjeta: Valores -->
-                        <div class="calc-marco-card card-butter" style="grid-column: 1 / -1;">
-                            <h3>Valores 2026</h3>
-                            <div class="calc-marco-card-body">
-                                <div id="calcMarcoCifras" class="calc-marco-cifras"></div>
-                                <p style="font-size: 0.7rem; color: #888; margin-top: 1rem;">Salarios: CONASAMI (1 ene). UMA: INEGI (1 feb).</p>
-                            </div>
+                        <!-- Valores dinámicos -->
+                        <div style="grid-column: 1 / -1; margin-bottom: 0.5rem;">
+                            <div id="calcMarcoCifras" class="calc-marco-cifras"></div>
+                            <p id="calc-actualizado" style="font-size: 0.7rem; color: #888; margin-top: 1rem;"></p>
                         </div>
 
                         <!-- Tarjeta: Finiquito vs Liquidación -->
-                        <div class="calc-marco-card card-charcoal" style="grid-column: span 2;">
-                            <h3>Finiquito y Liquidación</h3>
+                        <details class="calc-marco-card card-charcoal" style="grid-column: span 2;">
+                            <summary><h3>Finiquito y Liquidación</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p>El <strong>finiquito</strong> se paga siempre en cualquier terminación. Incluye salario devengado, aguinaldo, vacaciones y prima proporcionales.</p>
                                 <p>La <strong>liquidación</strong> solo procede en despido injustificado (Art. 48, 50).</p>
                             </div>
-                        </div>
+                        </details>
 
                         <!-- Tarjeta: Renuncia -->
-                        <div class="calc-marco-card card-mist">
-                            <h3>Renuncia Voluntaria</h3>
+                        <details class="calc-marco-card card-mist">
+                            <summary><h3>Renuncia Voluntaria</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p><strong>Finiquito completo.</strong></p>
                                 <p>La Prima de Antigüedad solo se paga si tienes <strong>15 años o más</strong> laborando (Art. 162).</p>
                             </div>
-                        </div>
+                        </details>
 
                         <!-- Tarjeta: Despido Injustificado -->
-                        <div class="calc-marco-card card-lemon">
-                            <h3>Despido Injustificado</h3>
+                        <details class="calc-marco-card card-lemon">
+                            <summary><h3>Despido Injustificado</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p>Tienes derecho a una indemnización (liquidación) que incluye:</p>
                                 <ul style="margin-top: 0.5rem; padding-left: 1.1rem; line-height: 1.5;">
@@ -527,20 +529,20 @@
                                     <li><strong>Prima de Antigüedad</strong>, sin importar los años que lleves trabajando en la empresa.</li>
                                 </ul>
                             </div>
-                        </div>
+                        </details>
 
                         <!-- Tarjeta: Despido Justificado -->
-                        <div class="calc-marco-card card-cream">
-                            <h3>Despido Justificado</h3>
+                        <details class="calc-marco-card card-cream">
+                            <summary><h3>Despido Justificado</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p><strong>Art. 47:</strong> El patrón debe entregar aviso indicando causas.</p>
                                 <p>Sin aviso, el despido se presume injustificado. No hay indemnizaciones, pero sí Finiquito.</p>
                             </div>
-                        </div>
+                        </details>
 
                         <!-- Tarjeta: Vacaciones -->
-                        <div class="calc-marco-card card-mint">
-                            <h3>Vacaciones (Art. 76)</h3>
+                        <details class="calc-marco-card card-mint">
+                            <summary><h3>Vacaciones (Art. 76)</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p>Reforma "Vacaciones Dignas".</p>
                                 <ul>
@@ -551,31 +553,31 @@
                                 </ul>
                                 <p>Sube 2 días por año hasta el 5to, y luego 2 días cada 5 años.</p>
                             </div>
-                        </div>
+                        </details>
 
                         <!-- Tarjeta: Aguinaldo & Primas -->
-                        <div class="calc-marco-card card-sage">
-                            <h3>Prestaciones Adicionales</h3>
+                        <details class="calc-marco-card card-sage">
+                            <summary><h3>Prestaciones Adicionales</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p><strong>Aguinaldo (Art. 87):</strong> Mín. 15 días, proporcional al tiempo.</p>
                                 <p><strong>Prima Vac. (Art. 80):</strong> 25% del salario de vacaciones.</p>
                                 <p><strong>Prima Ant. (Art. 162):</strong> 12 días por año (tope salarial).</p>
                             </div>
-                        </div>
+                        </details>
 
                         <!-- Tarjeta: ISR -->
-                        <div class="calc-marco-card card-oat">
-                            <h3>Exenciones (ISR)</h3>
+                        <details class="calc-marco-card card-oat">
+                            <summary><h3>Exenciones (ISR)</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p>El dinero que recibes por indemnización o prima de antigüedad está <strong>libre de impuestos (ISR)</strong> hasta cierto tope establecido por la ley.</p>
                                 <p style="margin-top: 0.5rem;">Por cada año completo que hayas trabajado, tienes derecho a que no se te cobren impuestos por un monto equivalente a <strong>90 veces la UMA diaria</strong>.</p>
                                 <p style="margin-top: 0.5rem;">Si tu liquidación supera ese tope libre, solo pagarás impuestos por la cantidad sobrante.</p>
                             </div>
-                        </div>
+                        </details>
 
                         <!-- Tarjeta: Tipos de separación laboral -->
-                        <div class="calc-marco-card card-butter" style="grid-column: 1 / -1;">
-                            <h3>Tipos de separación laboral</h3>
+                        <details class="calc-marco-card card-butter" style="grid-column: 1 / -1;">
+                            <summary><h3>Tipos de separación laboral</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p>Criterios de aplicación según normatividad</p>
                                 <div class="calc-marco-tabla-wrap" style="margin-top: 1rem;">
@@ -641,11 +643,11 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </details>
 
                         <!-- Tarjeta: Fórmulas aplicadas -->
-                        <div class="calc-marco-card card-charcoal" style="grid-column: 1 / -1;">
-                            <h3>Fórmulas aplicadas</h3>
+                        <details class="calc-marco-card card-charcoal" style="grid-column: 1 / -1;">
+                            <summary><h3>Fórmulas aplicadas</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p style="margin-bottom: 1rem;">Fundamento en <strong>Art. 87</strong> (Aguinaldo mínimo 15 días) y <strong>Art. 162-163</strong> (Prima de antigüedad 12 días por año).</p>
                                 <div class="calc-marco-tabla-wrap">
@@ -675,7 +677,7 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </details>
 
                     </div>
                     
@@ -687,8 +689,9 @@
             </div>
         </div>
     </div>
+    </div><!-- /.calc-wrapper -->
 
-    <script src="calculadora-engine.js?v=11"></script>
+    <script src="calculadora-engine.js?v=12"></script>
     <script src="script.js?v=11"></script>
     <script src="analytics.js?v=11"></script>
     <script>
@@ -723,11 +726,47 @@
         const progressDots = document.querySelectorAll('.calc-progress-dot');
 
         // ═══ NAVIGATION ═══
-        function showStep(num) {
-            stepEls.forEach(el => el.classList.remove('active'));
-            stepEls[num].classList.add('active');
+        // Un único estado de pantalla para evitar que landing y hub queden visibles.
+        function setCalcScreen(id) {
+            document.querySelectorAll('.calc-hub-screen, .calc-tool-screen').forEach(el => {
+                el.classList.remove('active');
+                el.hidden = true;
+            });
+
+            const target = document.getElementById(id);
+            if (target) {
+                target.hidden = false;
+                target.classList.add('active');
+            }
+        }
+
+        // El segundo bloque de calculadoras reutiliza exactamente el mismo estado.
+        window.__setCalcScreen = setCalcScreen;
+
+        function irAlHub() {
+            setCalcScreen('calc-hub');
             window.scrollTo(0, 0);
         }
+
+        function showStep(num) {
+            stepEls.forEach(el => {
+                el.classList.remove('active');
+                el.hidden = true;
+            });
+
+            if (num === 0) {
+                setCalcScreen('calc-step-0');
+            } else {
+                // El wrapper tool-finiquito debe ser la única pantalla superior visible.
+                setCalcScreen('tool-finiquito');
+                stepEls[num].hidden = false;
+                stepEls[num].classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        // Normaliza el estado inicial aunque el navegador conserve una vista previa.
+        setCalcScreen('calc-step-0');
 
         document.getElementById('calc-btn-start').addEventListener('click', () => {
             showStep(1);
@@ -735,7 +774,7 @@
         });
 
         document.getElementById('calc-wizard-close-btn').addEventListener('click', () => {
-            showStep(0);
+            irAlHub();
             currentQuestion = 0;
         });
 
@@ -744,7 +783,9 @@
                 currentQuestion--;
                 renderQuestion(currentQuestion);
             } else {
-                showStep(0);
+                // Regresar al hub de herramientas (no al landing hero)
+                irAlHub();
+                currentQuestion = 0;
             }
         });
 
@@ -775,7 +816,6 @@
             questionArea.innerHTML = '';
             updateProgress(idx);
             btnNext.disabled = false;
-            btnNext.textContent = idx === 5 ? 'Calcular' : 'Continuar';
             btnNext.innerHTML = idx === 7
                 ? 'Calcular <i class="fas fa-calculator"></i>'
                 : 'Continuar <i class="fas fa-arrow-right"></i>';
@@ -1153,7 +1193,7 @@
                             <div class="dictamen-brand">
                                 <img src="logo_ff.png" alt="" class="dictamen-seal">
                                 <div>
-                                    <span class="dictamen-eyebrow">Estimacion conforme a la LFT</span>
+                                    <span class="dictamen-eyebrow">Estimación conforme a la LFT</span>
                                     <h2 class="dictamen-title">Dictamen de finiquito</h2>
                                 </div>
                             </div>
@@ -1302,12 +1342,13 @@
                 answers.fechaIngreso = null;
                 answers.fechaSalida = null;
                 answers.salarioMensual = null;
+                answers.salarioCapturado = null;
                 answers.prestaciones = 0;
                 answers.diasVacGozados = 0;
-            answers.diasPendientesPago = null;
-            answers.aguinaldoPagado = 0;
+                answers.diasPendientesPago = null;
+                answers.aguinaldoPagado = 0;
                 answers.zona = 'general';
-                showStep(0);
+                irAlHub();
             });
             document.getElementById('calc-btn-consultar').addEventListener('click', () => {
                 if (typeof trackEvent === 'function') {
@@ -1359,6 +1400,13 @@
                         `<div class="cm-cifra"><span>Zona Libre Frontera Norte</span><strong>${mxn(cfg.salarioMinimoFrontera)}</strong></div>` +
                         `<div class="cm-cifra"><span>UMA diaria</span><strong>${mxn(cfg.umaDiario)}</strong></div>` +
                         `<div class="cm-cifra"><span>Aguinaldo mínimo</span><strong>${cfg.diasAguinaldo} días</strong></div>`;
+                }
+
+                const actualizado = document.getElementById('calc-actualizado');
+                if (actualizado) {
+                    const hoy = new Date();
+                    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+                    actualizado.innerHTML = hoy.toLocaleDateString('es-MX', opciones) + '.';
                 }
             }
 
@@ -1421,9 +1469,6 @@
         </div>
     </section>
     -->
-
-</body>
-</html>
 
     <!-- ═══ HUB + SIMPLE CALCULATORS JS ═══ -->
     <script>
@@ -1504,9 +1549,20 @@
 
         // ─── HUB NAVIGATION ───
         function showScreen(id) {
-            document.querySelectorAll('.calc-hub-screen, .calc-tool-screen').forEach(el => el.classList.remove('active'));
-            const target = document.getElementById(id);
-            if (target) { target.classList.add('active'); window.scrollTo(0,0); }
+            if (typeof window.__setCalcScreen === 'function') {
+                window.__setCalcScreen(id);
+            } else {
+                document.querySelectorAll('.calc-hub-screen, .calc-tool-screen').forEach(el => {
+                    el.classList.remove('active');
+                    el.hidden = true;
+                });
+                const target = document.getElementById(id);
+                if (target) {
+                    target.hidden = false;
+                    target.classList.add('active');
+                }
+            }
+            window.scrollTo(0, 0);
         }
 
         // Bridge for the Hero's 'Calcular ahora' button to show the hub
@@ -1515,9 +1571,8 @@
         });
 
         // Bridge for Finiquito's Card to start the wizard
-        document.getElementById('calc-btn-start').addEventListener('click', () => {
-            showScreen('tool-finiquito');
-        });
+        // (el listener que llama showStep(1) + renderQuestion(0) ya está arriba;
+        //  showScreen('tool-finiquito') lo maneja showStep() internamente)
 
         // Card clicks → open tool
         document.querySelectorAll('.calc-hub-card').forEach(btn => {
@@ -1532,9 +1587,6 @@
         document.querySelectorAll('.calc-back-hub-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 showScreen(btn.dataset.target || 'calc-hub');
-                // Ensure the finiquito landing is also visible (script.js removes its active class)
-                const s0 = document.getElementById('calc-step-0');
-                if (s0) s0.classList.add('active');
             });
         });
 
@@ -1578,7 +1630,7 @@
                 ${rowHTML('Salario mensual (normalizado)', fmt(salarioMensual))}
                 ${rowHTML('Salario por hora ordinaria', fmt(salarioHoraOrdinaria))}
                 ${rowHTML(`Horas extra al doble (${horasDoble} h × ${fmt(salarioHoraOrdinaria*2)})`, fmt(pagoDoble))}
-                ${horasTriple > 0 ? rowHTML(`Horas extra al triple (${horasTriple} h × ${fmt(salarioHoraOrdinaria*3)})`, fmt(pagoTriple), 'deduction') : ''}
+                ${horasTriple > 0 ? rowHTML(`Horas extra al triple (${horasTriple} h × ${fmt(salarioHoraOrdinaria*3)})`, fmt(pagoTriple)) : ''}
                 ${rowHTML('Total a pagar por horas extras', fmt(totalExtras), 'highlight')}
                 <p class="cs-note">Art. 68 LFT: máx. 3 h extra/día y 9 h/semana al doble. Las que excedan el límite semanal se pagan al triple.</p>
             `;
@@ -1596,7 +1648,8 @@
 
             if (!salMensual || salMensual <= 0) { alert('Por favor ingresa tu salario.'); return; }
 
-            const percepciones = salMensual + extras;
+            const extrasMensual = periodo === 'quincenal' ? extras * 2 : extras;
+            const percepciones = salMensual + extrasMensual;
             const salarioDiario = salMensual / 30;
             const imss = calcIMSS(salarioDiario);
             const isrMensual = calcISRMensual(percepciones);
@@ -1629,14 +1682,14 @@
             sbModo = 'bruto-neto';
             this.classList.add('active');
             document.getElementById('toggle-neto-a-bruto').classList.remove('active');
-            document.getElementById('sb-monto-label').textContent = 'Sueldo mensual bruto (MXN)';
+            document.getElementById('sb-monto-label').textContent = 'Monto bruto (MXN)';
             document.getElementById('sb-monto').placeholder = '25000';
         });
         document.getElementById('toggle-neto-a-bruto').addEventListener('click', function() {
             sbModo = 'neto-bruto';
             this.classList.add('active');
             document.getElementById('toggle-bruto-a-neto').classList.remove('active');
-            document.getElementById('sb-monto-label').textContent = 'Sueldo mensual neto deseado (MXN)';
+            document.getElementById('sb-monto-label').textContent = 'Monto neto deseado (MXN)';
             document.getElementById('sb-monto').placeholder = '18000';
         });
 
@@ -1645,28 +1698,49 @@
             const periodo = document.getElementById('sb-periodo').value;
             if (!monto || monto <= 0) { alert('Por favor ingresa un monto válido.'); return; }
 
-            const divisor = { mensual: 1, quincenal: 2, anual: 1/12 }[periodo] || 1;
-            const brutoMensual = sbModo === 'bruto-neto' ? monto / divisor : monto / divisor / 0.78; // aprox inverso
+            // El monto se interpreta según el periodo elegido; internamente todo se calcula en base mensual.
+            const aMensual = { mensual: 1, quincenal: 2, anual: 1 / 12 }[periodo] || 1;
+            const aPeriodo = { mensual: 1, quincenal: 1 / 2, anual: 12 }[periodo] || 1;
+            const montoMensualObjetivo = monto * aMensual;
 
-            const salarioDiario = brutoMensual / 30;
-            const imss = calcIMSS(salarioDiario);
-            const isrMensual = calcISRMensual(brutoMensual);
-            const subsidio = calcSubsidio(brutoMensual);
-            const isrNeto = Math.max(0, isrMensual - subsidio);
-            const deducciones = imss.total + isrNeto;
-            const netoMensual = brutoMensual - deducciones;
-            const tasaEfectiva = ((deducciones / brutoMensual) * 100).toFixed(1);
+            const calcNetoMensual = (brutoMensual) => {
+                const salarioDiario = brutoMensual / 30;
+                const imss = calcIMSS(salarioDiario);
+                const isrMensual = calcISRMensual(brutoMensual);
+                const subsidio = calcSubsidio(brutoMensual);
+                const isrNeto = Math.max(0, isrMensual - subsidio);
+                const deducciones = imss.total + isrNeto;
+                return { imss, isrMensual, subsidio, isrNeto, deducciones, neto: brutoMensual - deducciones };
+            };
 
-            const periodoLabel = { mensual: 'mensual', quincenal: 'quincenal', anual: 'mensual (de anual)' }[periodo];
+            let brutoMensual = montoMensualObjetivo;
+            if (sbModo === 'neto-bruto') {
+                // Búsqueda binaria: evita la aproximación fija /0.78, que se desviaba
+                // según el tramo de ISR/subsidio.
+                let lo = montoMensualObjetivo;
+                let hi = Math.max(montoMensualObjetivo * 2, 1000);
+                while (calcNetoMensual(hi).neto < montoMensualObjetivo && hi < 10000000) hi *= 2;
+                for (let i = 0; i < 60; i++) {
+                    const mid = (lo + hi) / 2;
+                    if (calcNetoMensual(mid).neto < montoMensualObjetivo) lo = mid; else hi = mid;
+                }
+                brutoMensual = (lo + hi) / 2;
+            }
+
+            const calc = calcNetoMensual(brutoMensual);
+            const netoMensual = calc.neto;
+            const tasaEfectiva = ((calc.deducciones / brutoMensual) * 100).toFixed(1);
+
+            const periodoLabel = { mensual: 'mensual', quincenal: 'quincenal', anual: 'anual' }[periodo];
 
             let html = `
-                ${rowHTML('Sueldo bruto ' + periodoLabel, fmt(brutoMensual / divisor))}
-                ${rowHTML('IMSS obrero estimado', `−${fmt(imss.total / divisor)}`, 'deduction')}
-                ${rowHTML('ISR estimado', `−${fmt(isrMensual / divisor)}`, 'deduction')}
-                ${subsidio > 0 ? rowHTML('Subsidio al empleo', `+${fmt(subsidio / divisor)}`) : ''}
+                ${rowHTML('Sueldo bruto ' + periodoLabel, fmt(brutoMensual * aPeriodo))}
+                ${rowHTML('IMSS obrero estimado', `−${fmt(calc.imss.total * aPeriodo)}`, 'deduction')}
+                ${rowHTML('ISR estimado', `−${fmt(calc.isrMensual * aPeriodo)}`, 'deduction')}
+                ${calc.subsidio > 0 ? rowHTML('Subsidio al empleo', `+${fmt(calc.subsidio * aPeriodo)}`) : ''}
                 ${rowHTML('Tasa de deducción efectiva', tasaEfectiva + '%')}
-                ${rowHTML('Sueldo neto ' + periodoLabel, fmt(netoMensual / divisor), 'highlight')}
-                <p class="cs-note">Cálculo con tablas ISR SAT 2026 y cuotas IMSS obrero vigentes. ${sbModo === 'neto-bruto' ? 'Conversión neto→bruto es aproximada.' : ''}</p>
+                ${rowHTML('Sueldo neto ' + periodoLabel, fmt(netoMensual * aPeriodo), 'highlight')}
+                <p class="cs-note">Cálculo con tablas ISR SAT 2026 y cuotas IMSS obrero vigentes. ${sbModo === 'neto-bruto' ? 'Conversión neto→bruto por aproximación numérica.' : ''}</p>
             `;
 
             document.getElementById('results-sb-inner').innerHTML = html;
@@ -1688,7 +1762,7 @@
             const anioActual = hoy.getFullYear();
             const inicioAnio = new Date(anioActual, 0, 1);
             const diaAnio = inicio > inicioAnio ? inicio : inicioAnio;
-            const diasTrabajados = Math.min(365, Math.max(0, Math.floor((hoy - diaAnio) / 86400000)));
+            const diasTrabajados = Math.min(365, Math.max(0, Math.floor((hoy - diaAnio) / 86400000) + 1));
 
             const salarioDiario = salMensual / 30;
 
@@ -1696,9 +1770,8 @@
             const aguinaldoBruto = (salarioDiario * diasAguinaldo * diasTrabajados) / 365;
             const aguinaldoNeto = Math.max(0, aguinaldoBruto - yaPagado);
 
-            // ISR aguinaldo: exención 30 UMA diarias (Art. 93 LISR)
-            const exencionDiaria = UMA_DIARIA * 30;
-            const exencionTotal = exencionDiaria * diasAguinaldo;
+            // ISR aguinaldo: exención de 30 UMA en total (Art. 93 LISR), no 30 UMA por día de aguinaldo.
+            const exencionTotal = UMA_DIARIA * 30;
             const baseGravable = Math.max(0, aguinaldoNeto - exencionTotal);
 
             // ISR sobre base gravable: tasa promedio mensual * fracción del año (método simplificado)
@@ -1712,11 +1785,11 @@
                 ${rowHTML('Aguinaldo proporcional bruto', fmt(aguinaldoBruto))}
                 ${yaPagado > 0 ? rowHTML('Aguinaldo ya pagado', `−${fmt(yaPagado)}`, 'deduction') : ''}
                 ${rowHTML('Aguinaldo a calcular', fmt(aguinaldoNeto))}
-                ${rowHTML('Exención ISR (30 UMA × ' + diasAguinaldo + ' días)', fmt(Math.min(exencionTotal, aguinaldoNeto)))}
+                ${rowHTML('Exención ISR (30 UMA)', fmt(Math.min(exencionTotal, aguinaldoNeto)))}
                 ${rowHTML('Base gravable ISR', fmt(baseGravable))}
                 ${rowHTML('ISR estimado a retener', `−${fmt(isrAguinaldo)}`, 'deduction')}
                 ${rowHTML('Aguinaldo neto aproximado', fmt(aguinaldoFinal), 'highlight')}
-                <p class="cs-note">Art. 87 LFT: el aguinaldo debe pagarse antes del 20 de diciembre. Exención Art. 93 LISR: 30 UMA diarias = ${fmt(exencionDiaria)} por día. UMA 2026: $${UMA_DIARIA}/día.</p>
+                <p class="cs-note">Art. 87 LFT: el aguinaldo debe pagarse antes del 20 de diciembre. Exención Art. 93 LISR: 30 UMA en total (${fmt(exencionTotal)} en 2026). UMA 2026: $${UMA_DIARIA}/día.</p>
             `;
 
             document.getElementById('results-ag-inner').innerHTML = html;

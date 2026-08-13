@@ -26,7 +26,8 @@
     padding: 20px 0 40px;
 }
 
-.home-solutions .top h1 {
+.home-solutions .top h1,
+.home-solutions .top h2 {
     font-family: var(--font-heading);
     font-weight: 400;
     font-size: clamp(2.2rem, 5vw, 3.4rem);
@@ -36,7 +37,8 @@
     color: var(--ivory);
 }
 
-.home-solutions .top h1 em {
+.home-solutions .top h1 em,
+.home-solutions .top h2 em {
     font-style: italic;
     color: var(--accent, #958463);
 }
@@ -1072,17 +1074,15 @@
 .timeline-guarantee {
     display: flex;
     justify-content: center;
-    margin: 6rem 0 3rem 0;
+    margin: 1rem 0 3rem 0;
 }
 
 .guarantee-capsule {
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 12px;
-    background-color: var(--tl-primary-light);
-    padding: 0.85rem 1.6rem;
-    border-radius: 50px;
-    border: 1px solid rgba(37, 99, 235, 0.1);
 }
 
 .guarantee-icon {
@@ -1093,9 +1093,12 @@
 }
 
 .guarantee-text {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--tl-primary);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: var(--tl-text-muted);
+    font-weight: 500;
 }
 
 .timeline-cta-wrap {
@@ -1395,4 +1398,640 @@
     .quick-actions-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   UN ABOGADO EN TU BOLSILLO — fondo WebGL + contenido mínimo
+   ------------------------------------------------------------------------
+   Minimalista de verdad: cuatro elementos y mucho aire. El movimiento lo pone
+   el shader, así que el texto se queda quieto — dos cosas animándose a la vez
+   compiten y ninguna se lee.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.bolsillo-section {
+    position: relative;
+    isolation: isolate;
+    /* Color de respaldo: si WebGL no arranca, la sección se ve igual de bien,
+       solo que quieta. */
+    background: #03120E;
+    color: #F4FFC7;
+    padding: clamp(5rem, 12vw, 9rem) 0;
+    overflow: hidden;
+}
+
+.bolsillo-shader {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: -2;
+}
+
+/* El shader llega hasta #F4FFC7 (casi blanco). Sin velo, un blob claro pasando
+   bajo el titular lo borra. Con 0.72 de negro verdoso encima, el peor caso
+   —texto marfil sobre el tono más claro del shader— queda en 7.7:1. */
+.bolsillo-velo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(3, 18, 14, 0.72);
+    pointer-events: none;
+}
+
+.bolsillo-wrap {
+    position: relative;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ── Titular ── */
+.bolsillo-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #7CE577;
+    margin: 0 0 1.5rem;
+}
+.bolsillo-section h2 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(2.6rem, 8vw, 5.6rem);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    color: #F4FFC7;
+    margin: 0 0 1.5rem;
+    text-wrap: balance;
+}
+.bolsillo-section h2 em { font-style: italic; color: #7CE577; }
+
+.bolsillo-dek {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: rgba(244, 255, 199, 0.72);
+    margin: 0;
+    max-width: 42ch;
+}
+
+/* ── El antes / después ── */
+.bolsillo-giro {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+    display: grid;
+    gap: 2rem;
+}
+@media (min-width: 780px) {
+    .bolsillo-giro { grid-template-columns: 1fr 1fr; gap: 4rem; }
+}
+.bolsillo-giro-col { border-top: 1px solid rgba(244, 255, 199, 0.22); padding-top: 1.2rem; }
+.bolsillo-giro-col--fin { border-top-color: #7CE577; }
+.bolsillo-giro-et {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #7CE577;
+    margin-bottom: 0.9rem;
+}
+.bolsillo-giro-col p {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+    line-height: 1.4;
+    color: #F4FFC7;
+    margin: 0;
+}
+.bolsillo-giro-col p strong { font-weight: 400; font-style: italic; color: #7CE577; }
+
+/* ── Tres situaciones ── */
+.bolsillo-lista {
+    list-style: none;
+    margin: clamp(3.5rem, 8vw, 6rem) 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+}
+.bolsillo-lista li {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+    line-height: 1.4;
+    color: rgba(244, 255, 199, 0.88);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(244, 255, 199, 0.14);
+}
+.bolsillo-lista li:first-child { border-top: 1px solid rgba(244, 255, 199, 0.14); }
+
+/* ── Precio y acción ── */
+.bolsillo-cierre {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+    display: grid;
+    gap: 2.5rem;
+    align-items: start;
+}
+@media (min-width: 780px) {
+    .bolsillo-cierre { grid-template-columns: 1fr 1fr; gap: 4rem; }
+}
+.bolsillo-precio {
+    font-family: var(--font-heading);
+    margin: 0;
+    line-height: 1;
+    color: #F4FFC7;
+}
+.bolsillo-precio b {
+    font-weight: 300;
+    font-size: clamp(3rem, 8vw, 4.6rem);
+    letter-spacing: -0.02em;
+}
+.bolsillo-precio span {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(244, 255, 199, 0.6);
+    margin-left: 0.5rem;
+}
+.bolsillo-precio-alt {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: #7CE577;
+    margin: 1rem 0 0;
+}
+.bolsillo-precio-alt b { font-weight: 600; }
+
+.bolsillo-accion { display: flex; flex-direction: column; gap: 1.4rem; align-items: flex-start; }
+.bolsillo-btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #03120E;
+    background: #7CE577;
+    padding: 1.15rem 2.4rem;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.25s;
+}
+.bolsillo-btn:hover { background: #F4FFC7; transform: translateY(-2px); }
+.bolsillo-btn:focus-visible { outline: 2px solid #F4FFC7; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+    .bolsillo-btn { transition: background 0.25s; }
+    .bolsillo-btn:hover { transform: none; }
+}
+
+.bolsillo-honesto {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    line-height: 1.75;
+    color: rgba(244, 255, 199, 0.62);
+    margin: 0;
+    max-width: 46ch;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   LA FIGURA — sección "Lo legal no tiene por qué darte miedo"
+   ------------------------------------------------------------------------
+   El video viene con fondo blanco y sin canal alfa (el MP4 no lo soporta).
+   Se elimina con `multiply`: multiplicar por blanco deja el fondo intacto y
+   por negro lo deja negro, así que la silueta sobrevive y el recuadro
+   desaparece. Para que funcione, el elemento NO puede estar dentro de un
+   contexto de apilamiento intermedio — por eso vive fuera del envoltorio con
+   z-index; ver el comentario en index.html.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.mono {
+    /* Los márgenes verticales COLAPSAN con los del bloque de texto de arriba:
+       el hueco real es el mayor de los dos, no la suma. Por eso este valor y el
+       `margin-bottom` del bloque anterior tienen que moverse juntos. */
+    margin: clamp(.5rem, 1.5vw, .9rem) 0 clamp(2rem, 4vw, 2.75rem);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.mono-video {
+    width: min(165px, 36vw);
+    height: auto;
+    display: block;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    /* El blanco del video es rgb(250,249,249), no puro: multiplicado dejaría
+       un velo del 2% con forma de cuadro. `contrast` lo lleva a 255 sin tocar
+       el negro de la figura. */
+    filter: contrast(1.06);
+    mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mono-video { display: none; }
+    .mono::after {
+        content: "";
+        width: min(165px, 36vw);
+        aspect-ratio: 1 / 1;
+        background: url(mono_miedo.png) center/contain no-repeat;
+    }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   TITULAR BLOQUE — "Comienza tu trámite"
+   ------------------------------------------------------------------------
+   Grotesca en cursiva y minúsculas, apilada en dos líneas apretadas. El
+   énfasis no lo pone el tamaño sino el SALTO DE PESO: el arranque va en un
+   peso medio y el remate en negra, dentro de la misma línea tipográfica. La
+   cursiva le da la inclinación que hace que el par se lea como una sola
+   unidad en movimiento.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Lleva el `h2` porque `.quick-actions-header h2` empata en especificidad;
+   con la clase sola perdía y se quedaba en la serif de 2.6rem. */
+h2.titulo-bloque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    /* El contraste se saca BAJANDO el arranque, no subiendo el remate: la
+       familia colapsa 600/700/800/900 en la misma Bold, así que pedir 900 no
+       aporta nada. Medido a 57.6px, «trámite» ocupa 151px en 300 y 190px en
+       700 — un 26% de diferencia, que sí se lee. Con 500 eran 181 vs 190 y las
+       dos líneas parecían del mismo peso. */
+    font-weight: 300;
+    font-size: clamp(1.8rem, 5.2vw, 3.6rem);
+    line-height: .96;
+    letter-spacing: -.02em;
+    text-transform: none;
+    color: var(--carbon-deep, #1a1917);
+    margin: 0;
+}
+
+/* El remate: 700 es ya el tope real de la familia en cursiva. */
+.titulo-bloque .fuerte { font-weight: 700; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   MARCATEXTOS — las respuestas de los tres miedos
+   ------------------------------------------------------------------------
+   Cada palabra se subraya sola, una tras otra, como si alguien pasara el
+   marcador por encima. El trazo es un degradado de fondo que arranca en
+   ancho cero y crece: al ir en background-size sólo se anima esa propiedad
+   —nada de layout— y el texto no se mueve ni un píxel mientras se pinta.
+
+   La banda ocupa el 42% bajo de la línea, que es por donde pasa un marcador
+   de verdad; si sube más, tapa las letras.
+
+   Lo que hace que parezca rotulador y no una barra de color:
+     · el degradado va a 100deg, no a 90 — el trazo queda ligeramente
+       inclinado, como cuando se subraya a pulso;
+     · los extremos se desvanecen y el centro va más saturado, que es como
+       reparte la tinta un marcador (más presión al entrar, menos al salir);
+     · el trazo se pasa de largo y retrocede al asentarse, en vez de frenar
+       justo en el borde de la palabra.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.marca-texto span {
+    /* Azul un paso más saturado que el #93c5fd del halo de la sección: con el
+       mismo tono el trazo se camuflaba contra su propio fondo y no se leía. */
+    background-image: linear-gradient(
+        100deg,
+        rgba(96, 165, 250, 0)    .5%,
+        rgba(96, 165, 250, .40)   2%,
+        rgba(96, 165, 250, .85)  11%,
+        rgba(96, 165, 250, .80)  90%,
+        rgba(96, 165, 250, .38)  97%,
+        rgba(96, 165, 250, 0)    99.5%
+    );
+    background-repeat: no-repeat;
+    /* Anclado abajo: al crecer sólo se estira a lo ancho, no hacia el texto. */
+    background-position: 0 92%;
+    /* 56% y no 42%: por debajo de la mitad de la línea el trazo se lee como un
+       subrayado grueso, no como un marcador. */
+    background-size: 0 56%;
+    border-radius: 3px;
+    /* Un pelín de aire para que el trazo desborde la palabra, como el rotulador. */
+    padding: .05em .16em;
+    margin: 0 -.16em;
+    /* El gris de cuerpo (#666) se hunde en el azul; al marcarse la palabra pasa
+       a tinta para que siga leyéndose por encima del trazo. */
+    color: #666;
+    transition: color .45s ease;
+}
+.marca-texto.is-marcado span { color: #1a1917; }
+
+/* Va en @keyframes y no en transition porque una transición no puede pasarse
+   del valor final: el rebasar y volver es justo lo que quita el aire mecánico. */
+@keyframes marca-trazo {
+    from { background-size: 0 56%; }
+    72%  { background-size: 104% 56%; }
+    to   { background-size: 100% 56%; }
+}
+
+/* El escalonado entre palabras es lo que hace que se lea como un gesto y no
+   como un bloque que se enciende de golpe. */
+.marca-texto.is-marcado span {
+    animation: marca-trazo .55s cubic-bezier(.3, .74, .35, 1) forwards;
+}
+.marca-texto.is-marcado span:nth-child(1) { animation-delay: 0s; }
+.marca-texto.is-marcado span:nth-child(2) { animation-delay: .24s; }
+.marca-texto.is-marcado span:nth-child(3) { animation-delay: .48s; }
+.marca-texto.is-marcado span:nth-child(4) { animation-delay: .72s; }
+
+@media (prefers-reduced-motion: reduce) {
+    /* Sin animación el subrayado sigue estando: es información, no adorno. */
+    .marca-texto span { background-size: 100% 56%; }
+    .marca-texto.is-marcado span { animation: none; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   TITULAR SELECCIÓN — "Lo legal no tiene por qué darte miedo."
+   ------------------------------------------------------------------------
+   El titular imita un texto seleccionado dentro de un editor de diseño: la
+   última línea va resaltada como una selección real —fondo sólido, letra en
+   blanco e itálica— y el bloque entero lleva su marco con tiradores en las
+   esquinas.
+
+   El marco y los tiradores son dos pseudo-elementos, sin markup extra. El
+   truco está en que la caja de los tiradores es 7px más grande que la del
+   marco por cada lado, así que los círculos —de radio 7— caen centrados
+   justo encima de la línea en vez de quedar cortados por el borde.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Lleva el `h2` a propósito: la sección define `.bolsillo-section h2` (serif
+   clara, en verde pálido) y con la clase sola perdía por especificidad. Con el
+   elemento delante empatan, y esta regla gana por venir después. */
+h2.titulo-seleccion {
+    --sel: #1B4DFF;
+    --sel-marco: 14px;   /* separación entre el texto y el marco */
+    --sel-tirador: 7px;  /* radio de los círculos de las esquinas */
+
+    position: relative;
+    /* Ciñe el texto: sin esto el <h2> ocuparía los 800px del contenedor y el
+       marco quedaría flotando muy lejos de las líneas cortas. */
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5.4vw, 4.1rem);
+    line-height: 1.04;
+    letter-spacing: -.025em;
+    color: #111;
+    /* Deja sitio al marco, que se sale de la caja del elemento. */
+    margin: 0 0 3.25rem;
+}
+
+/* La línea resaltada: una selección de texto, no un subrayado. */
+.titulo-seleccion .sel {
+    background: var(--sel);
+    color: #fff;
+    font-style: italic;
+    padding: .04em .16em .1em;
+    /* Si alguna vez cae en dos líneas, ambas conservan el fondo en vez de
+       quedar una sola caja escalonada. */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+/* El marco. */
+.titulo-seleccion::before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--sel-marco) * -1);
+    border: 2px solid var(--sel);
+    pointer-events: none;
+}
+
+/* Los cuatro tiradores. La caja va un radio más afuera que el marco para que
+   los círculos quepan enteros y queden centrados sobre sus esquinas. */
+.titulo-seleccion::after {
+    content: "";
+    position: absolute;
+    inset: calc((var(--sel-marco) + var(--sel-tirador)) * -1);
+    pointer-events: none;
+    background:
+      radial-gradient(circle var(--sel-tirador) at var(--sel-tirador) var(--sel-tirador), var(--sel) 96%, transparent 0),
+      radial-gradient(circle var(--sel-tirador) at calc(100% - var(--sel-tirador)) var(--sel-tirador), var(--sel) 96%, transparent 0),
+      radial-gradient(circle var(--sel-tirador) at var(--sel-tirador) calc(100% - var(--sel-tirador)), var(--sel) 96%, transparent 0),
+      radial-gradient(circle var(--sel-tirador) at calc(100% - var(--sel-tirador)) calc(100% - var(--sel-tirador)), var(--sel) 96%, transparent 0);
+}
+
+/* El marco y sus tiradores se salen 21px de la caja del texto, y el padding
+   lateral de la sección en móvil (5vw) no da tanto: el tirador izquierdo se
+   cortaba contra el borde. Se encogen los dos en vez de mover el titular. */
+@media (max-width: 560px) {
+    h2.titulo-seleccion { --sel-marco: 9px; --sel-tirador: 5px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   TITULAR CARTEL — "Que hable mi abogado"
+   ------------------------------------------------------------------------
+   Grotesca pesada, líneas apretadas y alineación escalonada: cada línea se
+   pega a un borde distinto, y el escalón que queda entre ellas es el gesto.
+   Depende de tres cosas a la vez —peso, interlínea corta y tracking
+   negativo—; si se afloja cualquiera, el bloque deja de leerse como una
+   masa y vuelve a parecer un párrafo grande.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.titulo-cartel {
+    /* Grotesca neo, no la geométrica del cuerpo: la referencia se apoya en las
+       terminaciones horizontales de la Helvetica. Todas son de sistema, así
+       que no cuesta una descarga. */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    /* El tope lo manda la COLUMNA (~418px), no el viewport: la sección va en
+       un grid de dos columnas dentro de un contenedor de 900px, así que a
+       partir de cierto ancho el hueco ya no crece. Con 7vw el titular se
+       partía en cuatro líneas y se perdía el escalón. */
+    font-size: clamp(2.4rem, 6vw, 4.1rem);
+    /* Por debajo de 1 a propósito: las líneas casi se tocan y el bloque se lee
+       como un solo objeto. */
+    line-height: .9;
+    letter-spacing: -.035em;
+    color: #111;
+    background: #8FFFB0;
+    /* El texto llega casi al borde del bloque; ese aire corto es parte del
+       cartel. */
+    padding: clamp(1.4rem, 3vw, 2.2rem) clamp(1.2rem, 2.6vw, 2rem);
+    margin-bottom: 2rem;
+    text-transform: none;
+    font-style: normal;
+
+    /* Cada línea es un bloque propio para poder anclarla a un borde distinto. */
+    display: flex;
+    flex-direction: column;
+}
+/* Los saltos son los del markup y sólo esos: si el navegador añade los suyos,
+   el escalón se convierte en un bloque de cuatro líneas sin intención. */
+.titulo-cartel span { display: block; white-space: nowrap; }
+/* El escalón: la segunda línea se va al borde contrario. */
+.titulo-cartel .der { align-self: flex-end; text-align: right; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   EL TELÉFONO QUE SE ASOMA — sección "Que hable mi abogado"
+   ------------------------------------------------------------------------
+   Sube desde abajo, se queda un momento y se vuelve a esconder. El recorte
+   lo hace el contenedor con `overflow:hidden`: el teléfono siempre es más
+   alto que su marco, así que nunca se ve completo — solo se asoma.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.asoma {
+    /* El marco recorta: de aquí sale el efecto de asomarse. */
+    /* Alto calculado para que quepan la barra y los DOS mensajes: el segundo
+       es el remate y cortado no sirve de nada. */
+    /* El mínimo manda en móvil, donde 30vw se queda corto y los mensajes
+       ocupan más líneas por el ancho reducido. */
+    height: clamp(278px, 30vw, 296px);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    /* flex-start, no flex-end: el teléfono debe anclarse ARRIBA para que lo que
+       sobre se corte por abajo. Con flex-end se recortaba justo la parte que
+       tiene que verse. */
+    align-items: flex-start;
+    margin: clamp(1rem, 3vw, 2rem) 0 clamp(2rem, 5vw, 3rem);
+    pointer-events: none;
+}
+
+@media (max-width: 640px) {
+    .asoma { height: 320px; }
+    .asoma-mockup { width: min(280px, 84vw); }
+}
+
+/* El teléfono ya no se dibuja con bordes y radios: es phone_mockup.png. La
+   caja sólo aporta la proporción del marco (465×942 px) para que el hueco de
+   la pantalla caiga siempre en el mismo sitio, se escale como se escale. */
+.asoma-mockup {
+    position: relative;
+    width: min(320px, 78vw);
+    aspect-ratio: 465 / 942;
+    margin: 0 auto;
+    transform: translateY(100%);
+    transition: transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+
+.asoma.is-visible .asoma-mockup {
+    transform: translateY(6%);
+}
+
+/* El marco, por encima de la pantalla. Su hueco es transparente en el PNG, así
+   que recorta las esquinas del chat y dibuja el notch él solo: sin
+   border-radius, sin máscaras y sin overflow:hidden en el padre. */
+.asoma-marco {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* La pantalla, encajada en el hueco del marco.
+   Medidas tomadas del propio PNG: el hueco va de (27,26) a (438,915) sobre un
+   lienzo de 465×942, es decir 412×890 px, y el marco tiene 26 px de grosor.
+
+   SANGRADO: la pantalla no termina en el borde del hueco sino 10 px por fuera,
+   metiéndose bajo el marco. El contorno del hueco está suavizado (antialias),
+   así que sus píxeles son semitransparentes: cuando la pantalla acababa justo
+   ahí, por esa orla se colaba el fondo de la sección y se veía un filo claro
+   rodeando el chat. Con el sangrado, detrás de esos píxeles hay pantalla.
+   10 px de 26 dejan margen de sobra para que nada asome por fuera del marco.
+   No tocar sin volver a medir la imagen. */
+.asoma-tel {
+    position: absolute;
+    left: 3.656%;    /* (27-10)/465 */
+    top: 1.699%;     /* (26-10)/942 */
+    width: 92.903%;  /* (412+20)/465 */
+    height: 96.603%; /* (890+20)/942 */
+    background: #fbfbf9;
+    z-index: 10;
+    overflow: hidden;
+    /* La esquina del hueco no es circular: mide ~37 px en horizontal y ~52 en
+       vertical. Se deja algo por debajo del valor real a propósito —así la
+       pantalla sobresale y la tapa el marco, en vez de quedarse corta y abrir
+       hueco. */
+    border-radius: 9% / 5.5%;
+}
+
+/* ── Barra del chat ── */
+.asoma-barra {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    /* Zona segura del notch, como en una app de verdad: el verde sigue subiendo
+       hasta el borde de la pantalla, pero el avatar y el nombre arrancan por
+       debajo de la pestaña. Sin esto el nombre quedaba partido por ella.
+       La pestaña baja hasta y=60 del lienzo y la pantalla ahora empieza en
+       y=16 (por el sangrado), así que hay que salvar 44 px; el padding se
+       resuelve contra el ancho de .asoma-tel (432 px de lienzo), o sea 10.2%.
+       Se deja en 12.5% para que el texto no vaya pegado al canto. */
+    padding: 12.5% .95rem .85rem;
+    background: #134e4a;
+}
+.asoma-avatar {
+    width: 34px; height: 34px;
+    flex: none;
+    border-radius: 50%;
+    background: #8FFFB0;
+    color: #064e3b;
+    font-family: var(--font-body);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    display: flex; align-items: center; justify-content: center;
+}
+.asoma-quien { display: flex; flex-direction: column; line-height: 1.25; }
+.asoma-quien b {
+    font-family: var(--font-body);
+    font-size: .84rem;
+    font-weight: 600;
+    color: #fff;
+}
+.asoma-quien i {
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: .66rem;
+    color: #8FFFB0;
+}
+
+/* ── Mensajes ── */
+.asoma-chat { padding: 1rem .9rem; display: flex; flex-direction: column; gap: .55rem; }
+.asoma-burbuja {
+    max-width: 88%;
+    margin: 0;
+    padding: .7rem .85rem;
+    background: #fff;
+    border-radius: 4px 14px 14px 14px;
+    box-shadow: 0 1px 2px rgba(19,78,74,.14);
+    font-family: var(--font-body);
+    font-size: .8rem;
+    line-height: 1.5;
+    color: #2b3b39;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+/* La segunda entra después: se lee como dos mensajes que van llegando, no
+   como un bloque que aparece de golpe. */
+.asoma.is-visible .asoma-burbuja {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.6s;
+}
+.asoma.is-visible .asoma-burbuja--2 {
+    transition-delay: 1.1s;
+}
+
+/* Sin movimiento: el teléfono se queda asomado y quieto. */
+@media (prefers-reduced-motion: reduce) {
+    .asoma-mockup { transition: none; transform: translateY(6%); }
+    .asoma-burbuja { transition: none; opacity: 1; transform: none; }
 }

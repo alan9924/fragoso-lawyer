@@ -25,7 +25,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css?v=14">
     <link rel="stylesheet" href="home-new.css?v=11">
-    <link rel="stylesheet" href="formatos.css?v=12">
+    <link rel="stylesheet" href="formatos.css?v=13">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -50,9 +50,10 @@
                             Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
                         </button>
                         <ul class="nav-submenu" id="nav-sub-pi">
-                            <li><a href="marcas.html">Registrar mi marca</a></li>
-                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
-                            <li><a href="franquicias.html">Franquiciar o licenciar</a></li>
+                            <li><a href="propiedad-intelectual.html">Ver todo</a></li>
+                            <li><a href="marcas.html">Registro de marca</a></li>
+                            <li><a href="derechos-autor.html">Derechos de autor</a></li>
+                            <li><a href="secreto-industrial.html">Secreto industrial</a></li>
                         </ul>
                     </li>
 
@@ -68,12 +69,10 @@
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
                     <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
-                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
                 <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
@@ -419,8 +418,11 @@
     <script src="analytics.js?v=11"></script>
     <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="contratos.js?v=12"></script>
-    <script src="contratos-meta.js?v=12"></script>
+    <script src="contratos.js?v=13"></script>
+    <script src="contratos-meta.js?v=13"></script>
+    <!-- Tipo, explicación y agrupación de cada {{campo}}: convierte las
+         etiquetas crudas de las plantillas en preguntas contestables. -->
+    <script src="contratos-campos.js?v=4"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const FIELD_RE = /\{\{([^}]+)\}\}/g;
@@ -892,38 +894,312 @@
             const wizardBtnPrev = document.getElementById('wizard-btn-prev');
             const wizardBtnNext = document.getElementById('wizard-btn-next');
 
-            function initGenerator() {
+            /* Arma la secuencia de pasos según las cláusulas activas.
+               ------------------------------------------------------------------
+               Las opcionales van PRIMERO, y no por gusto: los campos que viven
+               dentro de una cláusula apagada no se insertan en el documento. Si
+               se preguntaban antes, el usuario tecleaba el "Importe adicional" o
+               el "IVA" y esos datos se descartaban en silencio. Eligiendo primero
+               qué cláusulas quiere, el formulario solo pide lo que sí va a salir
+               impreso. Por eso se reconstruye cada vez que cambian. */
+            function construirPasos() {
                 const c = selectedDoc;
-                valores = {};
-                opcionalesOn = {};
-                c.bloques.forEach((b, i) => { if (esOpcional(b)) opcionalesOn[i] = false; });
-
-                wizardTag.textContent = c.titulo.toUpperCase();
-                
                 wizardSteps = [];
-                const campos = camposDelContrato(c);
-                campos.forEach(f => {
-                    wizardSteps.push({ type: 'field', name: f });
-                });
-                
+
                 const opts = c.bloques.map((b, i) => ({ b, i })).filter((o) => esOpcional(o.b));
                 if (opts.length > 0) {
                     wizardSteps.push({ type: 'options', opts: opts });
                 }
 
-                /* El paso de firma solo tiene sentido si el documento realmente lleva
-                   un espacio de firma donde estamparla. El aviso de privacidad y los
-                   términos y condiciones son documentos unilaterales que se publican
-                   en un sitio web: no los firman las partes y no tienen bloque `sign`.
-                   Antes se les pedía la firma igual y se descartaba en silencio, porque
-                   solo se dibuja dentro de un bloque `sign`. */
+                /* Antes se empujaba un paso por campo: el permiso de viaje de
+                   menores daba 20 pantallas seguidas y la nota de venta 32, cada
+                   una con la etiqueta cruda como única pregunta. */
+                const visibles = camposDelDocumento.filter((f) => campoVisible(c, f));
+                CamposIA.agrupar(visibles).forEach((g) => {
+                    wizardSteps.push({ type: 'group', grupo: g });
+                });
+
+                /* La firma solo tiene sentido si el documento lleva un espacio
+                   donde estamparla. El aviso de privacidad y los términos y
+                   condiciones son unilaterales: no los firman las partes. */
                 if (documentoAceptaFirma(c)) {
                     wizardSteps.push({ type: 'signature' });
                 }
+                /* Revisión antes de generar: el único punto donde se ve todo junto
+                   y donde se avisa de los huecos. Sin él, un campo en blanco
+                   viajaba callado hasta el PDF como "[Domicilio del cliente]". */
+                wizardSteps.push({ type: 'review' });
                 wizardSteps.push({ type: 'preview' });
+            }
+
+            function initGenerator() {
+                const c = selectedDoc;
+                valores = {};
+                opcionalesOn = {};
+                camposAjustadosAMano = {};
+                c.bloques.forEach((b, i) => { if (esOpcional(b)) opcionalesOn[i] = false; });
+
+                wizardTag.textContent = c.titulo.toUpperCase();
                 
+                camposDelDocumento = camposDelContrato(c);
+                construirPasos();
                 currentWizardStep = 0;
                 renderPreview(); 
+                renderWizardStep();
+            }
+
+            /* Campos del documento en curso; lo necesita el cálculo del monto
+               con letra para saber de qué campo de dinero se alimenta. */
+            let camposDelDocumento = [];
+            /* Campo al que hay que ir al renderizar el siguiente paso de grupo
+               (lo fija irACampo desde la pantalla de revisión). */
+            let campoObjetivo = null;
+
+            /* Recalcula los campos derivados (hoy: "Monto con letra") a partir
+               de lo que el usuario ya escribió, y refresca su input si está en
+               pantalla. Nadie quiere teclear "cuatrocientos treinta y siete mil". */
+            /* Campos calculados que el usuario decidió escribir a mano: dejan de
+               recalcularse hasta que pida devolverlos al automático. */
+            let camposAjustadosAMano = {};
+
+            function recalcularDerivados() {
+                /* Primero la aritmética (Subtotal → IVA → Total), y después las
+                   cantidades con letra, que se alimentan del resultado. */
+                if (selectedDoc && CamposIA.tieneFormulas(selectedDoc.id)) {
+                    const cambiados = CamposIA.evaluarFormulas(
+                        selectedDoc.id,
+                        valores,
+                        (c) => campoVisible(selectedDoc, c),
+                        (c) => !!camposAjustadosAMano[c]
+                    );
+                    Object.keys(cambiados).forEach((c) => {
+                        const nodo = document.querySelector('[data-calculado="' + CSS.escape(c) + '"]');
+                        if (nodo) nodo.textContent = cambiados[c];
+                    });
+                }
+
+                camposDelDocumento.forEach((f) => {
+                    if (CamposIA.tipoDeCampo(f).tipo !== 'derivado-letras') return;
+                    const origen = CamposIA.campoOrigenDeLetras(f, camposDelDocumento);
+                    if (!origen) return;
+                    const letras = CamposIA.montoALetras(valores[origen]);
+                    if (letras) valores[f] = letras;
+                    const nodo = document.querySelector('[data-derivado="' + CSS.escape(f) + '"]');
+                    if (nodo) nodo.textContent = letras || '—';
+                });
+            }
+
+            /* Construye un campo completo: etiqueta, control del tipo correcto,
+               enlace de explicación plegado y zona de aviso de validación. */
+            function construirCampo(f) {
+                const cfg = CamposIA.tipoDeCampo(f);
+                const wrap = document.createElement('div');
+                wrap.className = 'campo campo--' + (cfg.ancho || 'largo');
+                wrap.dataset.campo = f;
+
+                const lab = document.createElement('label');
+                lab.className = 'campo-label';
+                lab.textContent = f;
+                lab.htmlFor = 'campo-' + btoa(unescape(encodeURIComponent(f))).replace(/=/g, '');
+                wrap.appendChild(lab);
+
+                /* Campo con fórmula (Subtotal, IVA, Total…): se muestra el
+                   resultado y se ofrece salida manual, porque siempre hay un
+                   caso —IVA al 0%, zona fronteriza, un ajuste pactado— que la
+                   fórmula no contempla. */
+                const formula = selectedDoc ? CamposIA.formulaDe(selectedDoc.id, f) : null;
+                if (formula && !camposAjustadosAMano[f]) {
+                    const out = document.createElement('div');
+                    out.className = 'campo-derivado';
+                    out.dataset.calculado = f;
+                    out.textContent = valores[f] || '0.00';
+                    wrap.appendChild(out);
+
+                    const pie = document.createElement('div');
+                    pie.className = 'campo-calc-pie';
+                    const nota = document.createElement('span');
+                    nota.className = 'campo-nota';
+                    nota.textContent = formula.nota;
+                    const alt = document.createElement('button');
+                    alt.type = 'button';
+                    alt.className = 'campo-ayuda-btn';
+                    alt.textContent = 'Ajustar a mano';
+                    alt.addEventListener('click', () => {
+                        camposAjustadosAMano[f] = true;
+                        wrap.replaceWith(construirCampo(f));
+                    });
+                    pie.appendChild(nota);
+                    pie.appendChild(alt);
+                    wrap.appendChild(pie);
+                    wrap.appendChild(bloqueAyuda(f));
+                    return wrap;
+                }
+
+                /* Campo calculado: se muestra el resultado, no un input vacío. */
+                if (cfg.input === 'derivado') {
+                    const out = document.createElement('div');
+                    out.className = 'campo-derivado';
+                    out.dataset.derivado = f;
+                    out.textContent = valores[f] || '—';
+                    wrap.appendChild(out);
+                    const nota = document.createElement('p');
+                    nota.className = 'campo-nota';
+                    nota.textContent = 'Se calcula solo con la cantidad que capturaste.';
+                    wrap.appendChild(nota);
+                    wrap.appendChild(bloqueAyuda(f));
+                    return wrap;
+                }
+
+                let ctrl;
+                if (cfg.input === 'textarea') {
+                    ctrl = document.createElement('textarea');
+                    ctrl.rows = 3;
+                } else if (cfg.input === 'select') {
+                    ctrl = document.createElement('select');
+                    const vacio = document.createElement('option');
+                    vacio.value = ''; vacio.textContent = 'Elige una opción';
+                    ctrl.appendChild(vacio);
+                    (cfg.opciones || []).forEach((o) => {
+                        const op = document.createElement('option');
+                        op.value = o; op.textContent = o;
+                        ctrl.appendChild(op);
+                    });
+                } else {
+                    ctrl = document.createElement('input');
+                    ctrl.type = cfg.input || 'text';
+                    if (cfg.inputmode) ctrl.inputMode = cfg.inputmode;
+                    if (cfg.maxlength) ctrl.maxLength = cfg.maxlength;
+                }
+                ctrl.id = lab.htmlFor;
+                ctrl.className = 'campo-input';
+                if (cfg.placeholder) ctrl.placeholder = cfg.placeholder;
+                ctrl.value = valores[f] || '';
+
+                const aviso = document.createElement('p');
+                aviso.className = 'campo-aviso';
+
+                const alCambiar = () => {
+                    let v = ctrl.value;
+                    if (cfg.transform === 'upper') {
+                        const pos = ctrl.selectionStart;
+                        v = v.toUpperCase();
+                        ctrl.value = v;
+                        if (pos !== null && ctrl.setSelectionRange) ctrl.setSelectionRange(pos, pos);
+                    }
+                    valores[f] = v;
+                    const r = CamposIA.validar(f, v);
+                    aviso.textContent = r.ok ? '' : r.msg;
+                    wrap.classList.toggle('campo--error', !r.ok);
+                    if (cfg.tipo === 'dinero') recalcularDerivados();
+                    renderPreview();
+                };
+                ctrl.addEventListener('input', alCambiar);
+                ctrl.addEventListener('change', alCambiar);
+
+                /* El prefijo $ y el sufijo % viven fuera del input para no
+                   contaminar el valor que se inserta en el contrato. */
+                if (cfg.prefijo || cfg.sufijo) {
+                    const box = document.createElement('div');
+                    box.className = 'campo-adorno';
+                    if (cfg.prefijo) {
+                        const s = document.createElement('span'); s.textContent = cfg.prefijo; box.appendChild(s);
+                    }
+                    box.appendChild(ctrl);
+                    if (cfg.sufijo) {
+                        const s = document.createElement('span'); s.textContent = cfg.sufijo; box.appendChild(s);
+                    }
+                    wrap.appendChild(box);
+                } else {
+                    wrap.appendChild(ctrl);
+                }
+
+                wrap.appendChild(aviso);
+
+                /* Si este campo tenía fórmula y se está editando a mano, hay que
+                   poder volver: de lo contrario un ajuste por error deja las
+                   cifras descuadradas para siempre. */
+                if (formula && camposAjustadosAMano[f]) {
+                    const pie = document.createElement('div');
+                    pie.className = 'campo-calc-pie';
+                    const marca = document.createElement('span');
+                    marca.className = 'campo-nota campo-nota--manual';
+                    marca.textContent = 'Ajustado a mano';
+                    const volver = document.createElement('button');
+                    volver.type = 'button';
+                    volver.className = 'campo-ayuda-btn';
+                    volver.textContent = 'Volver a calcular';
+                    volver.addEventListener('click', () => {
+                        delete camposAjustadosAMano[f];
+                        recalcularDerivados();
+                        wrap.replaceWith(construirCampo(f));
+                        renderPreview();
+                    });
+                    pie.appendChild(marca);
+                    pie.appendChild(volver);
+                    wrap.appendChild(pie);
+                }
+
+                wrap.appendChild(bloqueAyuda(f));
+                return wrap;
+            }
+
+            /* "No entiendo qué va aquí" — plegado, para no ensuciar el formulario
+               a quien sí sabe. */
+            function bloqueAyuda(f) {
+                const a = CamposIA.ayudaDeCampo(f);
+                const cont = document.createElement('div');
+                cont.className = 'campo-ayuda';
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'campo-ayuda-btn';
+                btn.setAttribute('aria-expanded', 'false');
+                btn.textContent = '¿Qué pongo aquí?';
+
+                const panel = document.createElement('div');
+                panel.className = 'campo-ayuda-panel';
+                panel.hidden = true;
+
+                const p1 = document.createElement('p');
+                p1.innerHTML = '<b>' + escapeHTML(a.que) + '</b>';
+                panel.appendChild(p1);
+                if (a.porque) {
+                    const p2 = document.createElement('p');
+                    p2.textContent = a.porque;
+                    panel.appendChild(p2);
+                }
+                if (a.ejemplo) {
+                    const p3 = document.createElement('p');
+                    p3.className = 'campo-ayuda-ej';
+                    p3.textContent = a.ejemplo;
+                    panel.appendChild(p3);
+                }
+
+                btn.addEventListener('click', () => {
+                    const abierto = !panel.hidden;
+                    panel.hidden = abierto;
+                    btn.setAttribute('aria-expanded', String(!abierto));
+                    btn.textContent = abierto ? '¿Qué pongo aquí?' : 'Ocultar explicación';
+                });
+
+                cont.appendChild(btn);
+                cont.appendChild(panel);
+                return cont;
+            }
+
+            /* Desde la revisión, saltar al paso que contiene ese campo y dejar
+               el cursor puesto en él. Sin esto, corregir un dato obligaba a
+               retroceder paso por paso. */
+            function irACampo(f) {
+                const idx = wizardSteps.findIndex(
+                    (s) => s.type === 'group' && s.grupo.campos.indexOf(f) !== -1
+                );
+                if (idx < 0) return;
+                currentWizardStep = idx;
+                /* El paso de grupo enfoca su primer campo al montarse. Si venimos
+                   a corregir uno concreto, ese enfoque automático nos lo robaba:
+                   se le avisa cuál es el objetivo antes de renderizar. */
+                campoObjetivo = f;
                 renderWizardStep();
             }
 
@@ -936,28 +1212,50 @@
                 wizardProgressFill.style.width = `${((currentWizardStep + 1) / total) * 100}%`;
 
                 wizardBtnPrev.style.visibility = currentWizardStep === 0 ? 'hidden' : 'visible';
-                wizardBtnNext.textContent = currentWizardStep === total - 1 ? 'Terminar' : 'Continuar';
+                /* El paso de revisión es el punto de no retorno percibido: el
+                   botón debe decir qué va a pasar, no "Continuar". */
+                wizardBtnNext.textContent =
+                    currentWizardStep === total - 1 ? 'Terminar'
+                    : (wizardSteps[currentWizardStep].type === 'review' ? 'Generar contrato' : 'Continuar');
                 
                 const container = document.createElement('div');
                 container.className = 'wizard-step-container active';
                 
-                if (step.type === 'field') {
-                    const f = step.name;
+                if (step.type === 'group') {
+                    const g = step.grupo;
                     const h2 = document.createElement('h2');
                     h2.className = 'wizard-question';
-                    h2.textContent = f; 
-                    
-                    const inp = document.createElement('input');
-                    inp.type = 'text';
-                    inp.className = 'wizard-input';
-                    inp.value = valores[f] || '';
-                    inp.placeholder = '...';
-                    inp.addEventListener('input', () => { valores[f] = inp.value; renderPreview(); });
-                    
+                    h2.textContent = g.titulo;
+
+                    const hint = document.createElement('p');
+                    hint.className = 'wizard-hint';
+                    hint.textContent = g.subtitulo;
+
                     container.appendChild(h2);
-                    container.appendChild(inp);
-                    setTimeout(() => inp.focus(), 100);
-                } 
+                    container.appendChild(hint);
+
+                    const grid = document.createElement('div');
+                    grid.className = 'campo-grid';
+                    g.campos.forEach((f) => grid.appendChild(construirCampo(f)));
+                    container.appendChild(grid);
+
+                    setTimeout(() => {
+                        /* Si llegamos aquí corrigiendo desde la revisión, el foco
+                           va al campo señalado y se resalta; si no, al primero. */
+                        const objetivo = campoObjetivo
+                            ? grid.querySelector('[data-campo="' + CSS.escape(campoObjetivo) + '"]')
+                            : null;
+                        campoObjetivo = null;
+                        const destino = objetivo || grid;
+                        const ctrl = destino.querySelector('input, textarea, select');
+                        if (ctrl) ctrl.focus();
+                        if (objetivo) {
+                            objetivo.classList.add('campo--resaltado');
+                            objetivo.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                            setTimeout(() => objetivo.classList.remove('campo--resaltado'), 1600);
+                        }
+                    }, 100);
+                }
                 else if (step.type === 'options') {
                     const h2 = document.createElement('h2');
                     h2.className = 'wizard-question';
@@ -987,7 +1285,19 @@
                         row.addEventListener('click', () => {
                             opcionalesOn[i] = !opcionalesOn[i];
                             row.classList.toggle('selected', opcionalesOn[i]);
+                            /* Activar o apagar una cláusula cambia qué campos hay
+                               que preguntar y, si es la del IVA o la del descuento,
+                               también el total. Se rehacen los pasos y las cuentas,
+                               conservando la posición actual. */
+                            const aqui = currentWizardStep;
+                            construirPasos();
+                            currentWizardStep = Math.min(aqui, wizardSteps.length - 1);
+                            recalcularDerivados();
                             renderPreview();
+                            wizardProgressText.textContent =
+                                `Paso ${currentWizardStep + 1} de ${wizardSteps.length}`;
+                            wizardProgressFill.style.width =
+                                `${((currentWizardStep + 1) / wizardSteps.length) * 100}%`;
                         });
                         
                         container.appendChild(row);
@@ -1095,6 +1405,124 @@
                             valores['__firma__'] = null;
                         });
                     }, 50);
+                }
+                else if (step.type === 'review') {
+                    const faltantes = camposDelDocumento.filter(
+                        (f) => campoVisible(selectedDoc, f) && !(valores[f] || '').trim()
+                    );
+
+                    const h2 = document.createElement('h2');
+                    h2.className = 'wizard-question';
+                    h2.textContent = 'Revisa antes de generar';
+                    container.appendChild(h2);
+
+                    const hint = document.createElement('p');
+                    hint.className = 'wizard-hint';
+                    hint.textContent = faltantes.length
+                        ? 'Hay datos sin llenar. Puedes generarlo así, pero esos huecos saldrán marcados en el documento.'
+                        : 'Todo está capturado. Verifica que los datos sean correctos: una vez firmado, corregirlo cuesta mucho más.';
+                    container.appendChild(hint);
+
+                    if (faltantes.length) {
+                        const alerta = document.createElement('div');
+                        alerta.className = 'review-alerta';
+                        const t = document.createElement('p');
+                        t.className = 'review-alerta-t';
+                        t.textContent = faltantes.length === 1
+                            ? 'Falta 1 dato'
+                            : 'Faltan ' + faltantes.length + ' datos';
+                        alerta.appendChild(t);
+                        const lista = document.createElement('div');
+                        lista.className = 'review-chips';
+                        faltantes.forEach((f) => {
+                            const chip = document.createElement('button');
+                            chip.type = 'button';
+                            chip.className = 'review-chip';
+                            chip.textContent = f;
+                            chip.addEventListener('click', () => irACampo(f));
+                            lista.appendChild(chip);
+                        });
+                        alerta.appendChild(lista);
+                        container.appendChild(alerta);
+                    }
+
+                    /* Resumen por secciones, con salto directo a corregir. */
+                    CamposIA.agrupar(camposDelDocumento).forEach((g) => {
+                        const visibles = g.campos.filter((f) => campoVisible(selectedDoc, f));
+                        if (!visibles.length) return;
+
+                        const sec = document.createElement('div');
+                        sec.className = 'review-sec';
+
+                        const cab = document.createElement('div');
+                        cab.className = 'review-sec-cab';
+                        const st = document.createElement('h3');
+                        st.textContent = g.titulo;
+                        const ed = document.createElement('button');
+                        ed.type = 'button';
+                        ed.className = 'review-editar';
+                        ed.textContent = 'Editar';
+                        ed.addEventListener('click', () => irACampo(visibles[0]));
+                        cab.appendChild(st);
+                        cab.appendChild(ed);
+                        sec.appendChild(cab);
+
+                        visibles.forEach((f) => {
+                            const fila = document.createElement('div');
+                            fila.className = 'review-fila';
+                            const k = document.createElement('span');
+                            k.className = 'review-k';
+                            k.textContent = f;
+                            const v = document.createElement('span');
+                            const bruto = (valores[f] || '').trim();
+                            if (bruto) {
+                                v.className = 'review-v';
+                                v.textContent = CamposIA.tipoDeCampo(f).tipo === 'fecha'
+                                    ? CamposIA.fechaALegible(bruto)
+                                    : bruto;
+                            } else {
+                                v.className = 'review-v review-v--vacio';
+                                v.textContent = 'Sin llenar';
+                            }
+                            fila.appendChild(k);
+                            fila.appendChild(v);
+                            sec.appendChild(fila);
+                        });
+
+                        container.appendChild(sec);
+                    });
+
+                    /* Cláusulas opcionales activadas: también son decisiones que
+                       conviene confirmar antes de imprimir. */
+                    const opcActivas = Object.keys(opcionalesOn).filter((i) => opcionalesOn[i]);
+                    if (Object.keys(opcionalesOn).length) {
+                        const sec = document.createElement('div');
+                        sec.className = 'review-sec';
+                        const cab = document.createElement('div');
+                        cab.className = 'review-sec-cab';
+                        const st = document.createElement('h3');
+                        st.textContent = 'Cláusulas opcionales';
+                        const ed = document.createElement('button');
+                        ed.type = 'button';
+                        ed.className = 'review-editar';
+                        ed.textContent = 'Editar';
+                        ed.addEventListener('click', () => {
+                            const idx = wizardSteps.findIndex((s) => s.type === 'options');
+                            if (idx >= 0) { currentWizardStep = idx; renderWizardStep(); }
+                        });
+                        cab.appendChild(st); cab.appendChild(ed);
+                        sec.appendChild(cab);
+                        const fila = document.createElement('div');
+                        fila.className = 'review-fila';
+                        const v = document.createElement('span');
+                        v.className = 'review-v';
+                        v.textContent = opcActivas.length
+                            ? opcActivas.length + ' incluida' + (opcActivas.length > 1 ? 's' : '')
+                            : 'Ninguna incluida';
+                        fila.appendChild(v);
+                        sec.appendChild(fila);
+                        container.appendChild(sec);
+                    }
                 }
                 else if (step.type === 'preview') {
                     if (typeof trackEvent === 'function') {

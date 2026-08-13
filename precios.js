@@ -53,10 +53,10 @@ const FF_MONEDA = 'MXN';
    un tercero: sube cuando sube el DOF y el cliente lo entiende.            */
 const FF_TARIFAS_OFICIALES = {
   impi_marca_por_clase: {
-    importe: 3200,          // ← VERIFICAR contra el tarifario DOF vigente
-    concepto: 'Tarifa oficial IMPI · estudio de solicitud, por clase',
-    verificado: false,      // poner en true cuando se confirme
-    fuente: 'Tarifario IMPI publicado en el DOF (se actualiza en enero)',
+    importe: 3126.40,       // Derechos IMPI por clase publicados para el trámite
+    concepto: 'Derechos IMPI · solicitud de registro de marca, por clase',
+    verificado: false,      // mantener vigilancia anual del tarifario DOF
+    fuente: 'gob.mx/IMPI · tarifario de derechos vigente',
   },
 };
 
@@ -139,6 +139,82 @@ const FF_SERVICIOS = {
     pago: '',
   },
 
+  /* — Gestión a tu nombre ─────────────────────────────────────────────────
+     EL PRODUCTO ATÓMICO DEL DESPACHO. Es el mismo servicio que las páginas
+     llamaban "Gestión a tu nombre" (civil), "A convenir" (familiar,
+     inmobiliario), "Reclamación extrajudicial WhatsApp + PDF" (reclamación) y
+     "Hablamos por ti" (membresía). Cuatro nombres y cuatro precios —$990,
+     $749 y dos "a convenir"— para una sola cosa: que un abogado se dirija
+     formalmente a la otra parte a tu nombre.
+
+     Un mismo producto con cuatro precios no lee como flexibilidad, lee como
+     que el precio se inventa. Se unifica en $990, que es el precio que ya
+     sostenía civil.html.
+
+     LO QUE ANTES ERA UN PRODUCTO APARTE, AHORA ES MODIFICADOR
+     La variante "WhatsApp + Paquetería" ($990 en reclamación) no era otro
+     servicio: era el mismo con envío físico encima. Se modela como
+     modificador, igual que `expres_24h`, para que el envío pueda subir de
+     precio cuando suba la paquetería sin tocar el honorario.              */
+  gestion_nombre: {
+    nombre: 'Gestión a tu nombre',
+    precio: 990, unidad: 'MXN', desde: false, publico: 'ambos',
+    /* El precio de miembro es la razón de existir de la membresía: convierte
+       el descuento en motivo de suscripción en vez de en una incoherencia
+       entre páginas. */
+    precioMiembro: 749,
+    nota: 'Carta o llamada formal a la otra parte, firmada por el despacho. Incluye la respuesta a lo que conteste la contraparte.',
+    excluye: 'No obliga a pagar ni garantiza respuesta: eso solo lo resuelve un juez. Negociación posterior y litigio se cotizan aparte.',
+    pago: '',
+  },
+  /* Producto distinto: gestión extrajudicial activa durante 15 días, con
+     evaluación, redacción, envío y seguimiento incluidos. */
+  presion_legal: {
+    nombre: 'Presión Legal · Gestión activa 15 días',
+    precio: 1450, unidad: 'MXN', desde: false, publico: 'personas',
+    nota: 'Evaluación, redacción, envío y seguimiento por un abogado con cédula profesional.',
+    excluye: 'No garantiza respuesta ni sustituye un juicio; una eventual negociación o litigio se cotiza aparte.',
+    pago: '',
+  },
+  envio_certificado: {
+    nombre: 'Envío físico certificado con acuse',
+    precio: 240, unidad: 'MXN', desde: false, publico: 'ambos',
+    modificador: true,
+    nota: 'Costo adicional sobre una gestión. Deja constancia de entrega como prueba documental.',
+    pago: '',
+  },
+
+  /* — Acompañamiento en juicio ────────────────────────────────────────────
+     POR EXPEDIENTE, NO ES MEMBRESÍA. La distinción no es cosmética: la
+     membresía declara que no cubre litigio, y estos planes son precisamente
+     para quien ya está en litigio. Mezclarlos ponía $690/mes de seguimiento
+     a competir contra $699/mes de Patrimonio, que incluye diez veces más.
+     Se cobran por expediente y terminan cuando termina el asunto.         */
+  juicio_seguimiento: {
+    nombre: 'Acompañamiento en juicio · Seguimiento',
+    precio: 690, unidad: 'MXN / MES POR EXPEDIENTE', desde: false, publico: 'personas',
+    porExpediente: true,
+    nota: 'Traducción del expediente y alertas de plazos, mientras dure el asunto.',
+    excluye: 'No sustituye a tu abogado litigante ni implica representación ante el juzgado.',
+    pago: '',
+  },
+  juicio_segunda_opinion: {
+    nombre: 'Acompañamiento en juicio · Segunda opinión',
+    precio: 1290, unidad: 'MXN / MES POR EXPEDIENTE', desde: false, publico: 'personas',
+    porExpediente: true,
+    nota: 'Todo lo de Seguimiento más una revisión estratégica mensual de la ruta del caso.',
+    excluye: 'No sustituye a tu abogado litigante ni implica representación ante el juzgado.',
+    pago: '',
+  },
+  juicio_prioritario: {
+    nombre: 'Acompañamiento en juicio · Prioritario',
+    precio: 1990, unidad: 'MXN / MES POR EXPEDIENTE', desde: false, publico: 'personas',
+    porExpediente: true,
+    nota: 'Todo lo anterior, respuesta en menos de 24 h y preparación de audiencias.',
+    excluye: 'No sustituye a tu abogado litigante ni implica representación ante el juzgado.',
+    pago: '',
+  },
+
   /* — Propiedad intelectual — */
   busqueda_fonetica: {
     nombre: 'Búsqueda fonética de marca',
@@ -149,13 +225,55 @@ const FF_SERVICIOS = {
   registro_marca: {
     nombre: 'Registro de marca ante IMPI',
     precio: 6990, unidad: 'MXN / CLASE', desde: false, publico: 'ambos',
-    /* Desglosado: del total, una parte es tarifa de gobierno. Ver ffDesglose(). */
+    /* Entrada legacy de catálogo: las páginas nuevas usan los tres paquetes de abajo. */
     tarifaOficial: 'impi_marca_por_clase',
     nota: 'Búsqueda, clasificación, solicitud, tarifa oficial y seguimiento hasta la resolución del IMPI.',
-    /* Fuera del precio a propósito. Contestar una citación de anterioridades o
-       defender una oposición es trabajo argumentativo real; regalarlo dejaba el
-       expediente contestado en pérdida. Se cotiza aparte y se avisa antes. */
     excluye: 'Respuesta a oficios de anterioridades y defensa de oposiciones de tercero se cotizan aparte.',
+    pago: '',
+  },
+  marca_esencial: {
+    nombre: 'Registro de marca · Esencial',
+    precio: 6916, unidad: 'MXN / CLASE', desde: false, publico: 'ambos',
+    nota: 'Dictamen básico (1 clase), presentación y seguimiento. Derechos IMPI incluidos.',
+    excluye: 'Respuesta a objeción de fondo y defensa de oposiciones se cotizan aparte.',
+    pago: '',
+  },
+  marca_protegida: {
+    nombre: 'Registro de marca · Protegido',
+    precio: 8916, unidad: 'MXN / CLASE', desde: false, publico: 'ambos',
+    nota: 'Dictamen estratégico (hasta 2 clases + 1 alternativa), seguimiento y 1 objeción de fondo incluida.',
+    excluye: 'Oposiciones de tercero y litigio se cotizan aparte.',
+    pago: '',
+  },
+  marca_360: {
+    nombre: 'Registro de marca · Marca 360',
+    precio: 11900, unidad: 'MXN / CLASE', desde: false, publico: 'ambos',
+    nota: 'Dictamen completo, plan de clases, identidad digital y vigilancia de marca por 12 meses.',
+    excluye: 'Oposiciones de tercero y litigio se cotizan aparte.',
+    pago: '',
+  },
+  marca_segunda_lectura: {
+    nombre: 'Segunda lectura de nombre',
+    precio: 690, unidad: 'MXN', desde: false, publico: 'ambos',
+    nota: 'Segunda opinión de hasta 3 alternativas; se acredita si registras con el despacho.',
+    pago: '',
+  },
+  marca_vigilancia: {
+    nombre: 'Vigilancia de marca',
+    precio: 890, unidad: 'MXN / AÑO', desde: false, publico: 'ambos',
+    nota: 'Monitoreo de solicitudes similares ante el IMPI durante 12 meses.',
+    pago: '',
+  },
+  marca_gestion_preferente: {
+    nombre: 'Gestión preferente de expediente',
+    precio: 1200, unidad: 'MXN', desde: false, publico: 'ambos', modificador: true,
+    nota: 'Preparación y presentación en 24 horas con seguimiento semanal; no acelera al IMPI.',
+    pago: '',
+  },
+  marca_identidad_digital: {
+    nombre: 'Verificación de identidad digital',
+    precio: 990, unidad: 'MXN', desde: false, publico: 'ambos',
+    nota: 'Disponibilidad de dominio .com/.mx y redes principales con reporte.',
     pago: '',
   },
   derecho_autor: {
@@ -274,11 +392,29 @@ const FF_SERVICIOS = {
    así que quien quería pagar el año no sabía cuánto era.                   */
 const FF_MESES_ANUAL = 10;
 
+/* ── Por qué el cupo de gestiones es ANUAL y no mensual ───────────────────
+   Los planes de personas prometían "1 gestión al trimestre", "1 al mes" y
+   "hasta 3 al mes". Con la gestión valorada en $990, eso significaba:
+
+     Tranquilidad  $2,388/año  →  4 gestiones  =  $3,960 de valor  (166%)
+     Familia       $4,788/año  → 12 gestiones  = $11,880 de valor  (248%)
+     Patrimonio    $8,388/año  → 36 gestiones  = $35,640 de valor  (425%)
+
+   Una membresía que entrega cuatro veces lo que cobra no es una membresía:
+   es un descuento del 90% que solo sobrevive mientras nadie la use. En
+   cuanto un solo miembro de Patrimonio agota su cupo, ese contrato pierde
+   dinero durante todo el año, y el que más la usa es justo el que más
+   problemas tiene.
+
+   Con cupo anual, el valor incluido queda en 41-47% de la cuota, que es el
+   rango donde un retainer se sostiene sin depender de que el cliente se
+   olvide de usarlo. Las gestiones adicionales no se niegan: se cobran al
+   precio de miembro ($749), que sigue siendo mejor que el público.        */
 const FF_MEMBRESIAS = {
   /* Personas */
-  tranquilidad:         { nombre: 'Tranquilidad',         mensual: 199,  publico: 'personas', pago: '', pagoAnual: '' },
-  familia:              { nombre: 'Familia',              mensual: 399,  publico: 'personas', pago: '', pagoAnual: '' },
-  patrimonio:           { nombre: 'Patrimonio',           mensual: 699,  publico: 'personas', pago: '', pagoAnual: '' },
+  tranquilidad:         { nombre: 'Tranquilidad',         mensual: 199,  publico: 'personas', gestionesAnuales: 1, descuento: 0.20, pago: '', pagoAnual: '' },
+  familia:              { nombre: 'Familia',              mensual: 399,  publico: 'personas', gestionesAnuales: 2, descuento: 0.20, pago: '', pagoAnual: '' },
+  patrimonio:           { nombre: 'Patrimonio',           mensual: 699,  publico: 'personas', gestionesAnuales: 4, descuento: 0.25, pago: '', pagoAnual: '' },
   /* Negocios */
   contratos_esenciales: { nombre: 'Contratos Esenciales', mensual: 1990, publico: 'negocios', pago: '', pagoAnual: '' },
   direccion_ligera:     { nombre: 'Dirección Ligera',     mensual: 3990, publico: 'negocios', pago: '', pagoAnual: '' },
@@ -289,6 +425,38 @@ const FF_MEMBRESIAS = {
 function ffAnual(idMembresia) {
   const m = FF_MEMBRESIAS[idMembresia];
   return m ? m.mensual * FF_MESES_ANUAL : null;
+}
+
+/* ── Sostenibilidad de la membresía ───────────────────────────────────────
+   Devuelve qué fracción de la cuota anual se entrega en gestiones si el
+   miembro agota su cupo. La regla de diseño que este catálogo impone: por
+   debajo de 0.60 el plan se sostiene; por encima, el plan pierde dinero con
+   los clientes que más lo usan.
+
+   Vive en código y no en un comentario a propósito: al ajustar una cuota o
+   un cupo, `ffAuditarMembresias()` dice en el acto si el plan sigue de pie.
+   Es la comprobación que faltaba cuando Patrimonio llegó a 425%.          */
+const FF_COBERTURA_MAX = 0.60;
+
+function ffCoberturaMembresia(idMembresia) {
+  const m = FF_MEMBRESIAS[idMembresia];
+  const g = FF_SERVICIOS.gestion_nombre;
+  if (!m || !g || !m.gestionesAnuales) return null;
+  const cuotaAnual = m.mensual * 12;          // el peor caso es el mensual, no el anual
+  const valorIncluido = m.gestionesAnuales * g.precio;
+  return {
+    plan: m.nombre,
+    cuotaAnual,
+    valorIncluido,
+    cobertura: valorIncluido / cuotaAnual,
+    sostenible: valorIncluido / cuotaAnual <= FF_COBERTURA_MAX,
+  };
+}
+
+function ffAuditarMembresias() {
+  return Object.keys(FF_MEMBRESIAS)
+    .map(ffCoberturaMembresia)
+    .filter(Boolean);
 }
 
 /* ── Formato ──────────────────────────────────────────────────────────────
@@ -344,6 +512,22 @@ function ffValidarPrecios({ verboso = false } = {}) {
      marcaba como datos viejos y el ruido lo habría vuelto inservible: un
      validador que da falsas alarmas se acaba ignorando. */
   Object.keys(FF_TARIFAS_OFICIALES).forEach((k) => importes.add(FF_TARIFAS_OFICIALES[k].importe));
+
+  /* Precio de miembro: es un importe publicable ($749 junto a $990), así que
+     el validador tiene que reconocerlo o marcaría como dato viejo justo el
+     número que sostiene la membresía. */
+  Object.values(catalogo).forEach((s) => { if (s.precioMiembro) importes.add(s.precioMiembro); });
+
+  /* Modificadores: el total con el modificador aplicado es legítimo en la
+     página ("$990 + $240 = $1,230"), aunque no sea el precio de ningún
+     servicio del catálogo. */
+  const modificadores = Object.values(catalogo).filter((s) => s.modificador);
+  Object.values(catalogo).filter((s) => !s.modificador && s.precio > 0).forEach((base) => {
+    modificadores.forEach((m) => {
+      importes.add(base.precio + m.precio);
+      if (base.precioMiembro) importes.add(base.precioMiembro + m.precio);
+    });
+  });
   Object.keys(catalogo).forEach((id) => {
     const d = ffDesglose(id);
     if (d) { importes.add(d.honorarios); importes.add(d.oficiales); }

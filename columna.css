@@ -1,0 +1,414 @@
+/* ============================================================================
+   LA COLUMNA — conector entre secciones
+   ----------------------------------------------------------------------------
+   Overlay fijo, fuera del flujo: no toca el layout de ninguna sección
+   existente. `pointer-events:none` en todo menos el riel, para que la columna
+   nunca se coma un clic del contenido.
+   ========================================================================== */
+
+:root {
+  --col-tinta: #123255;
+  --col-crema: #F8F6EB;
+  /* Lo escribe columna.js en cada frame; es el único valor que anima. */
+  --giro: 0;
+}
+
+/* ── El armazón ─────────────────────────────────────────────────────────── */
+#columna-spine {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Solo transiciona lo que cambia entre estados. Animar `left` o `width`
+     provoca reflow en cada frame; con transform y ancho fijo por estado el
+     navegador compone en GPU. */
+  transition: transform .9s cubic-bezier(.16,1,.3,1),
+              opacity .6s ease;
+  will-change: transform;
+}
+
+/* Estado 1 — HERO: protagonista, pero corrida a la derecha.
+   El titular del hero está alineado a la izquierda y no se toca: la columna
+   ocupa el aire que ya existía del lado del video. Centrada se comía el
+   "CERTEZA LEGAL". */
+#columna-spine.columna--hero {
+  left: 68%;
+  width: min(300px, 46vw);
+  transform: translateX(-50%);
+  opacity: 1;
+  /* Aire arriba para que el capitel no quede cortado por el borde ni por la
+     barra de menú cuando reaparece. */
+  padding-top: clamp(5rem, 12vh, 9rem);
+}
+@media (max-width: 900px) {
+  /* En móvil el texto ocupa todo el ancho: la columna pasa al fondo, tenue. */
+  #columna-spine.columna--hero {
+    left: 50%;
+    width: min(280px, 70vw);
+    opacity: .2;
+  }
+}
+
+/* Estado 3 — CONECTOR: se retira al margen y se vuelve una espina delgada,
+   para no pelearse con el contenido de las secciones que ya existen. */
+#columna-spine.columna--conector {
+  left: 50%;
+  width: min(340px, 62vw);
+  transform: translateX(-50%) translateX(min(-31vw, -260px)) scale(.42);
+  transform-origin: 50% 50%;
+  opacity: .16;
+}
+@media (max-width: 900px) {
+  /* En móvil no hay margen que alcance: se esconde en vez de estorbar. */
+  #columna-spine.columna--conector { opacity: 0; }
+}
+
+/* ── Capitel ───────────────────────────────────────────────────────────── */
+.columna-capitel {
+  width: 100%;
+  height: auto;
+  display: block;
+  flex: none;
+  /* La perspectiva hace que el rotateY se lea como un torno y no como una
+     hoja de papel volteándose. */
+  transform-style: preserve-3d;
+}
+.columna-capitel-caja {
+  width: 100%;
+  perspective: 900px;
+  flex: none;
+}
+
+/* En el hero gira solo, 360° continuos. */
+.columna--hero .columna-capitel {
+  animation: columna-torno 18s linear infinite;
+}
+/* Ya como conector, el ángulo lo manda el scroll. */
+.columna--conector .columna-capitel {
+  animation: none;
+  transform: rotateY(calc(var(--giro) * 1deg));
+  transition: transform .35s cubic-bezier(.16,1,.3,1);
+}
+.columna--sin-giro .columna-capitel {
+  animation: none;
+  transform: none;
+}
+@keyframes columna-torno {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+/* ── Fuste ─────────────────────────────────────────────────────────────────
+   Aquí está el truco. Tres capas apiladas:
+     1. sombreado cilíndrico  — FIJO. Es lo que da volumen y no gira nunca,
+                                porque la curvatura del cilindro no se mueve.
+     2. estrías               — MÓVIL. Girar la columna es desplazar esta capa.
+     3. crema base            — el relleno.
+   Una imagen no podría hacer esto: no daría giro infinito sin costura ni se
+   estiraría a cualquier altura. */
+.columna-fuste {
+  flex: 1 1 auto;
+  /* 55%: medido sobre el capitel, es la separación exacta entre sus dos patas.
+     Si se cambia el asset del capitel hay que volver a medirlo o el fuste
+     queda desalineado del dibujo. */
+  width: 55%;
+  min-height: 0;
+  margin-top: -2px;        /* mata la costura entre el trazo del capitel y el fuste */
+  border-left: 3px solid var(--col-tinta);
+  border-right: 3px solid var(--col-tinta);
+  background-color: transparent;
+  background-image:
+    /* Sombreado leve: el capitel es de línea pura, así que el fuste tampoco
+       puede tener volumen pintado o se ven de dos dibujos distintos. */
+    linear-gradient(90deg,
+      rgba(18,50,85,.16) 0%,
+      rgba(18,50,85,.05) 14%,
+      rgba(18,50,85,0)   32%,
+      rgba(18,50,85,0)   68%,
+      rgba(18,50,85,.05) 86%,
+      rgba(18,50,85,.16) 100%),
+    repeating-linear-gradient(90deg,
+      rgba(18,50,85,.85) 0px,
+      rgba(18,50,85,.85) 2px,
+      rgba(18,50,85,0)   2px,
+      rgba(18,50,85,0)   9px,
+      rgba(18,50,85,.16) 9px,
+      rgba(18,50,85,.16) 11px,
+      rgba(18,50,85,0)   11px,
+      rgba(18,50,85,0)   18px);
+  background-repeat: repeat;
+  /* El giro se traduce a desplazamiento del patrón: 18px de patrón = un
+     intercolumnio completo. 360° recorre 20 patrones. */
+  background-position:
+    0 0,
+    calc(var(--giro) * 1px) 0;
+  transition: background-position .35s cubic-bezier(.16,1,.3,1);
+}
+.columna--hero .columna-fuste {
+  animation: columna-fuste-torno 18s linear infinite;
+  transition: none;
+}
+@keyframes columna-fuste-torno {
+  from { background-position: 0 0,   0px 0; }
+  to   { background-position: 0 0, 360px 0; }
+}
+.columna--sin-giro .columna-fuste { animation: none; transition: none; }
+
+/* ── Base ──────────────────────────────────────────────────────────────── */
+.columna-base {
+  width: 88%;
+  height: auto;
+  display: block;
+  flex: none;
+}
+
+/* ── Riel de secciones ─────────────────────────────────────────────────────
+   La regla graduada del boceto. Es lo único de la columna que sí recibe
+   clics: sirve para navegar, no solo para mirar. */
+#columna-rail {
+  position: fixed;
+  right: clamp(.75rem, 2.5vw, 2rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  align-items: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .5s ease;
+}
+/* Aparece junto con el menú: después del hero. */
+body.columna-navegando #columna-rail {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (max-width: 700px) {
+  #columna-rail { display: none; }
+}
+
+.columna-marca {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: .28rem 0 .28rem .75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .6rem;
+}
+.columna-marca-linea {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--col-tinta);
+  opacity: .32;
+  transition: width .3s cubic-bezier(.16,1,.3,1), opacity .3s ease;
+}
+.columna-marca.is-activa .columna-marca-linea { width: 34px; opacity: 1; }
+.columna-marca:hover .columna-marca-linea { opacity: .75; }
+
+/* El nombre de la sección solo aparece al apuntar: el riel debe leerse como
+   una regla, no como un menú duplicado del que ya está arriba. */
+.columna-marca-txt {
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--col-tinta);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity .25s ease, transform .25s ease;
+  order: -1;
+}
+.columna-marca:hover .columna-marca-txt,
+.columna-marca:focus-visible .columna-marca-txt {
+  opacity: 1;
+  transform: none;
+}
+.columna-marca:focus-visible {
+  outline: 2px solid var(--col-tinta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #columna-spine,
+  .columna-fuste,
+  .columna--conector .columna-capitel { transition: none; }
+  .columna-capitel, .columna-fuste { animation: none !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   HERO — cartel: panel azul + templo que lo rompe
+   ------------------------------------------------------------------------
+   Proporciones tomadas del referente: el panel ocupa ~62% del ancho y ~60%
+   del alto, y el templo es MÁS ANCHO que el panel para salirse por ambos
+   lados. Ese desborde es lo que hace la composición; si el templo cabe
+   dentro, se pierde el gesto y queda una tarjeta con una foto.
+
+   ACTUALIZACIÓN: el templo se retiró. El cartel es ahora sólo el bloque azul
+   centrado sobre blanco —el contraste del rectángulo contra el papel es todo
+   el gesto—, así que el panel ya no reserva franja inferior y se centra en
+   vertical en lugar de colgar de arriba.
+   ════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --cartel-fondo: #FFFFFF;
+  --cartel-azul:  #1B2080;
+  --cartel-hueso: #F6F4EE;
+}
+
+.hero-cartel {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Sin templo que anclar abajo, el bloque se centra en el alto disponible. */
+  justify-content: center;
+  background: var(--cartel-fondo);
+  overflow: hidden;
+  padding: clamp(2rem, 6vh, 4rem) clamp(1rem, 4vw, 2.5rem);
+}
+
+/* ── El panel ── */
+.hero-cartel-panel {
+  position: relative;
+  z-index: 1;
+  width: min(820px, 88vw);
+  background: var(--cartel-azul);
+  color: var(--cartel-hueso);
+  /* Relleno parejo: el de abajo sólo cierra el bloque, ya no reserva sitio
+     para ninguna imagen. Un poco más generoso que el resto para que el
+     rectángulo no quede sentado sobre el texto. */
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4.5vw, 3.75rem)
+           clamp(3rem, 6vw, 4.75rem);
+  text-align: left;
+}
+
+/* ── El sello ──
+   Va anclado a la esquina superior derecha del panel. El PNG está recortado a
+   su contenido (sello_ff_esquina.png): el original traía un 46% de lienzo
+   vacío alrededor y, anclado por top/right, el sello quedaba flotando hacia
+   dentro en lugar de pegado a la esquina.
+   La lechada del lacre es crema, así que sobre el azul se lee sola — no lleva
+   recuadro ni sombra añadida (el PNG ya trae la suya). */
+.hero-cartel-sello {
+  position: absolute;
+  top: clamp(1.1rem, 2.4vw, 1.75rem);
+  right: clamp(1.1rem, 2.4vw, 1.75rem);
+  width: clamp(52px, 8vw, 88px);
+  height: auto;
+  display: block;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-cartel-eyebrow {
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--cartel-hueso);
+  opacity: .72;
+  margin: 0 0 1.5rem;
+}
+
+.hero-cartel-title {
+  font-family: var(--font-heading, Georgia, serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6.4vw, 4.9rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  color: var(--cartel-hueso);
+  margin: 0 0 1.4rem;
+  text-wrap: balance;
+}
+.hero-cartel-title em { font-style: italic; }
+
+.hero-cartel-dek {
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: .82rem;
+  line-height: 1.8;
+  color: var(--cartel-hueso);
+  opacity: .8;
+  max-width: 34rem;
+  margin: 0;
+}
+
+.hero-cartel-cta {
+  margin-top: 2.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.1rem 1.75rem;
+}
+.hero-cartel-btn {
+  display: inline-block;
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--cartel-azul);
+  background: var(--cartel-hueso);
+  padding: 1rem 2.3rem;
+  border-radius: 2px;
+  transition: background .25s ease;
+}
+.hero-cartel-btn:hover { background: #fff; }
+.hero-cartel-btn:focus-visible { outline: 2px solid var(--cartel-hueso); outline-offset: 3px; }
+
+.hero-cartel-links {
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: .68rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cartel-hueso);
+  margin: 0;
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+}
+.hero-cartel-links a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(246,244,238,.45);
+  padding-bottom: 2px;
+  transition: border-color .25s ease;
+}
+.hero-cartel-links a:hover { border-bottom-color: var(--cartel-hueso); }
+.hero-cartel-links span { opacity: .45; }
+
+.hero-cartel-nota {
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: .62rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--cartel-hueso);
+  opacity: .62;
+  margin: 1.6rem 0 0;
+}
+
+.hero-cartel .hero-scroll-hint {
+  color: var(--cartel-azul);
+  z-index: 3;
+}
+
+@media (max-width: 780px) {
+  .hero-cartel-panel { width: 100%; }
+}
+
+/* La columna fija del conector no compite con el cartel: entra después. */
+#columna-spine.columna--hero { opacity: 0; }

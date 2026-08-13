@@ -557,7 +557,10 @@ const CONTRATOS = [
       { t: "h", x: "PRIMERA. Reconocimiento de adeudo" },
       { t: "p", x: "EL DEUDOR reconoce expresamente adeudar a EL ACREEDOR la cantidad de ${{Monto del adeudo}}, cantidad líquida, cierta y exigible." },
       { t: "h", x: "SEGUNDA. Forma y calendario de pago" },
-      { t: "p", x: "EL DEUDOR se obliga a pagar mediante {{Número de pagos}} pagos de ${{Monto de cada pago}} cada uno, los días {{Fechas o periodicidad}}, en {{Lugar o cuenta de pago}}." },
+      /* "Fechas o periodicidad" pedía dos datos distintos en un solo hueco: cada
+         quién contestaba una cosa ("mensual" o "los días 5") y la cláusula salía
+         coja. Se separan para que siempre queden ambos. */
+      { t: "p", x: "EL DEUDOR se obliga a pagar mediante {{Número de pagos}} pagos de ${{Monto de cada pago}} cada uno, con periodicidad {{Periodicidad de los pagos}}, los días {{Día de pago}}, en {{Lugar o cuenta de pago}}." },
       { t: "h", x: "TERCERA. Intereses" },
       { t: "p", x: "[CLÁUSULA OPCIONAL] El saldo generará intereses ordinarios del {{Interés ordinario}}% mensual; en mora, moratorios del {{Interés moratorio}}% mensual." },
       { t: "h", x: "CUARTA. Vencimiento anticipado" },

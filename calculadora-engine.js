@@ -55,6 +55,21 @@ function diasVacacionesArt76(aniosCompletos) {
     return 20 + bloquesExtra * 2;
 }
 
+/**
+ * Años CUMPLIDOS por aniversario calendario. Antes se calculaban como
+ * floor(días / 365.25); ese promedio hacía que algunos aniversarios exactos
+ * quedaran un día abajo del umbral según cuántos 29 de febrero cayeran en el
+ * periodo (p. ej. 2024-07-01 → 2026-07-01 daba 1 año en vez de 2). Para
+ * umbrales legales (Art. 162, tabla de vacaciones) el año se cumple en la
+ * fecha de aniversario, no al promediar días bisiestos.
+ */
+function aniosCompletosEntre(fechaIngreso, fechaSalida) {
+    let anios = fechaSalida.getFullYear() - fechaIngreso.getFullYear();
+    const aniversario = new Date(fechaSalida.getFullYear(), fechaIngreso.getMonth(), fechaIngreso.getDate());
+    if (aniversario > fechaSalida) anios -= 1;
+    return Math.max(0, anios);
+}
+
 // ─── FUNCIONES PURAS DE CÁLCULO ───
 
 /**
@@ -265,7 +280,7 @@ function calcularFiniquitoLiquidacion(datos) {
     // ── Calcular antigüedad ──
     const diffMs = fechaSalida - fechaIngreso;
     const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    const aniosCompletos = Math.floor(diffDias / 365.25);
+    const aniosCompletos = aniosCompletosEntre(fechaIngreso, fechaSalida);
 
     /* Años de servicio con fracción. Antes esto era Math.max(1, aniosCompletos),
        un piso artificial que inflaba toda liquidación de menos de un año: a quien

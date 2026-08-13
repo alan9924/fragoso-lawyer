@@ -8,8 +8,8 @@
 /* ─── DESIGN TOKENS ─── */
 :root {
     /* Palette — Stone & Mineral */
-    --ivory:        #fdfcf9;
-    --ivory-2:      #f8f6f1;
+    --ivory:        #ffffff;
+    --ivory-2:      #fdfcf9;
     --stone-100:    #f2ede4;
     --stone-200:    #e8e1d5;
     --stone-300:    #d5ccbf;
@@ -50,6 +50,12 @@ img { display: block; max-width: 100%; }
 ul { list-style: none; }
 a { text-decoration: none; color: inherit; }
 
+/* El reset no debe eliminar la única señal visible para teclado. */
+:where(a, button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--accent, #958463);
+    outline-offset: 4px;
+}
+
 html, body {
     -webkit-tap-highlight-color: transparent; /* Remove blue highlight on tap */
     -webkit-font-smoothing: antialiased;
@@ -66,7 +72,7 @@ html, body {
 html {
     scroll-snap-type: y proximity;
     scroll-behavior: smooth;
-    scroll-padding-top: var(--nav-h);
+    scroll-padding-top: var(--nav-h, 6.5rem);
 }
 
 body {
@@ -3512,69 +3518,29 @@ summary:focus-visible,
     gap: 2.2rem;
 }
 .testimonio-card {
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 24px;
-    padding: 2.5rem 2.2rem;
+    background: #f3f5f9;
+    border: none;
+    border-radius: 16px;
+    padding: 2.2rem 2rem;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
+    gap: 1.5rem;
     position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015), 0 10px 40px rgba(0, 0, 0, 0.02);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: transform 0.3s ease;
 }
 .testimonio-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03), 0 15px 50px rgba(0, 0, 0, 0.04);
-}
-
-/* Glow effects inspired by reference image */
-.testimonio-card.glow-yellow::before {
-    content: '';
-    position: absolute;
-    bottom: -150px;
-    left: -50px;
-    right: -50px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(254, 240, 138, 0.45) 0%, rgba(254, 240, 138, 0) 70%);
-    pointer-events: none;
-    z-index: 1;
-}
-.testimonio-card.glow-blue::before {
-    content: '';
-    position: absolute;
-    bottom: -150px;
-    left: -50px;
-    right: -50px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(186, 230, 253, 0.45) 0%, rgba(186, 230, 253, 0) 70%);
-    pointer-events: none;
-    z-index: 1;
-}
-.testimonio-card.glow-coral::before {
-    content: '';
-    position: absolute;
-    bottom: -150px;
-    left: -50px;
-    right: -50px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(254, 226, 226, 0.45) 0%, rgba(254, 226, 226, 0) 70%);
-    pointer-events: none;
-    z-index: 1;
+    transform: translateY(-4px);
 }
 
 .testimonio-card blockquote {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 1.05rem;
-    font-weight: 450;
-    line-height: 1.65;
-    color: #2c2c2c;
+    font-size: 0.96rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #4a5568;
     position: relative;
     z-index: 2;
 }
@@ -3588,47 +3554,23 @@ summary:focus-visible,
 .testimonio-profile {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
 }
-.testimonio-avatar-letters {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: #fff;
-    flex-shrink: 0;
-}
-.glow-yellow .testimonio-avatar-letters {
-    background: #eab308; /* Yellow theme */
-}
-.glow-blue .testimonio-avatar-letters {
-    background: #0284c7; /* Blue theme */
-}
-.glow-coral .testimonio-avatar-letters {
-    background: #e11d48; /* Coral theme */
-}
-
 .testimonio-profile-info {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
+    gap: 0.1rem;
 }
 .testimonio-autor {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #1a1a1a;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111111;
 }
 .testimonio-meta {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 0.78rem;
-    color: #666662;
+    font-size: 0.72rem;
+    color: #718096;
 }
 
 /* ── 4. EMPRESAS ── */
@@ -3722,7 +3664,6 @@ summary:focus-visible,
     height: 132px;
     object-fit: cover;
     border-radius: 50%;
-    border: 1px solid var(--stone-200, #e8e1d5);
     margin-bottom: 1.4rem;
 }
 .socio-card-nombre {

@@ -27,16 +27,38 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=14">
-    <link rel="stylesheet" href="home-new.css?v=11">
+    <link rel="stylesheet" href="styles.css?v=15">
+    <link rel="stylesheet" href="home-new.css?v=44">
+    <link rel="stylesheet" href="columna.css?v=11">
+    <link rel="stylesheet" href="folder-tabs.css">
+    <link rel="stylesheet" href="mobile-app.css?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@200;300;400;500;600&family=Abril+Fatface&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Eliminar todas las líneas de separación entre secciones */
+        section {
+            border-top: none !important;
+            border-bottom: none !important;
+        }
+    </style>
     <!-- Sin JS, el estado inicial de .blur-fade dejaría los títulos invisibles -->
     <noscript>
         <style>
-            .blur-fade { opacity: 1 !important; transform: none !important; filter: none !important; }
+            .blur-fade,
+            .fade-in-up,
+            .fade-in-left,
+            .fade-in-right,
+            .fade-in,
+            .animated-group > *,
+            .word-fade-in,
+            .tr-reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+                clip-path: none !important;
+            }
         </style>
     </noscript>
 </head>
@@ -64,9 +86,10 @@
                             Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
                         </button>
                         <ul class="nav-submenu" id="nav-sub-pi">
-                            <li><a href="marcas.html">Registrar mi marca</a></li>
-                            <li><a href="derechos-autor.html">Registrar derechos de autor</a></li>
-                            <li><a href="franquicias.html">Franquiciar o licenciar</a></li>
+                            <li><a href="propiedad-intelectual.html">Ver todo</a></li>
+                            <li><a href="marcas.html">Registro de marca</a></li>
+                            <li><a href="derechos-autor.html">Derechos de autor</a></li>
+                            <li><a href="secreto-industrial.html">Secreto industrial</a></li>
                         </ul>
                     </li>
 
@@ -82,12 +105,10 @@
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
                     <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
-                    <li class="nav-mobile-only"><a href="empresas.html" class="nav-mobile-cta">Membres&iacute;a</a></li>
                 </ul>
             </div>
 
             <div class="nav-actions">
-                <a href="empresas.html" class="nav-cta-btn">Membres&iacute;a</a>
                 <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
                     <span></span><span></span><span></span>
                 </button>
@@ -95,76 +116,258 @@
         </div>
     </nav>
 
-    <!-- ═══ HERO ═══ -->
-    <section id="inicio" class="hero">
-        <div class="hero-img-wrap">
-            <video class="hero-bg-video" autoplay muted loop playsinline poster="corridor_columns.png">
-                <source src="hero_video_ink.mp4" type="video/mp4">
-            </video>
-            <!-- El velo se define en styles.css: en escritorio es un degradado
-                 horizontal (el texto vive a la izquierda) y en móvil uno vertical,
-                 porque ahí el texto ocupa todo el ancho. Estaba en un style inline,
-                 lo que impedía adaptarlo por breakpoint. -->
-            <div class="hero-img-veil"></div>
+    <!-- ═══ HERO CARTEL ═══
+         Un cuadro azul centrado sobre fondo blanco: el contraste del bloque
+         contra el papel es el gesto, y el sello de lacre en la esquina lo
+         firma. Los estilos viven en columna.css (.hero-cartel*). -->
+    <section id="inicio" class="hero-cartel">
+      <div class="hero-cartel-panel">
+        <!-- Sello de lacre en la esquina. El PNG va recortado a su contenido y
+             con alfa, así que se recorta solo contra el azul. -->
+        <img class="hero-cartel-sello" src="sello_ff_esquina.png" alt="" aria-hidden="true">
+
+        <p class="hero-cartel-eyebrow">Estudio jurídico</p>
+
+        <h1 class="hero-cartel-title">Protege hoy<br><em>lo que más te importa</em></h1>
+
+        <p class="hero-cartel-dek">Asesoría clara y precio público para personas, familias y negocios.</p>
+
+        <div class="hero-cartel-cta">
+          <a href="#abogado-de-bolsillo" class="hero-cartel-btn">Empezar</a>
+          <!-- Apuntaban a anclas (#civil, #familiar…) que no existían en la
+               página: los cinco enlaces no llevaban a ninguna parte. Ahora van
+               a la página de cada área. -->
+          <p class="hero-cartel-links" style="flex-wrap: wrap; justify-content: flex-start; gap: 1.5rem; flex: 1;">
+            <a href="civil.html">Civil</a>
+            <a href="familiar.html">Familiar</a>
+            <a href="empresa.html">Corporativo</a>
+            <a href="propiedad-intelectual.html">Propiedad Intelectual</a>
+            <a href="inmobiliario.html">Inmobiliario</a>
+          </p>
         </div>
 
-        <div class="hero-content">
-            <p class="hero-eyebrow">FERRO FRAGOSO — ESTUDIO JURÍDICO.</p>
-            <h1 class="hero-title">CERTEZA LEGAL<br><em>PARA LO QUE MÁS IMPORTA</em></h1>
-            <div class="hero-rule"></div>
-            <p class="hero-tagline-primary">Protegemos a personas, familias y negocios con asesoría clara para contratos, patrimonio, marcas y decisiones que no admiten errores.</p>
-            <p class="hero-tagline-secondary" style="margin-bottom: 2.5rem;">Precio fijo · Entrega clara · Abogados de tu lado</p>
-            
-            <div class="hero-cta-group blur-fade" style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; animation-delay: 2s;">
-                <a href="#como-funciona-timeline" class="nav-cta-btn" style="padding: 1rem 2.5rem; font-size: 0.85rem; letter-spacing: 1.5px; border-radius: 8px;">ENCONTRAR MI SOLUCIÓN</a>
-                <div class="hero-cta-links" style="font-family: var(--font-body); font-size: 0.8rem; color: var(--carbon); letter-spacing: 1px; text-transform: uppercase; display: flex; gap: 1rem; align-items: center;">
-                    <a href="plan.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.3); padding-bottom: 2px; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">Soy persona</a> 
-                    <span style="color: rgba(0,0,0,0.3);">&middot;</span> 
-                    <a href="empresa.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.3); padding-bottom: 2px; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">Tengo un negocio</a>
+        <p class="hero-cartel-nota">Precio público &middot; Sin letra pequeña</p>
+      </div>
+    </section>
+
+    <!-- ═══ UN ABOGADO EN TU BOLSILLO ═══
+         Va inmediatamente bajo el hero porque es la promesa que convierte
+         visitante en miembro. El héroe del mensaje NO es la consulta —eso lo
+         vende cualquiera y nadie paga mensual por consejos— sino la
+         intervención: que alguien dé la cara por ti. Por eso las situaciones
+         concretas van antes que la lista de beneficios. -->
+    <!-- ═══ UN ABOGADO EN TU BOLSILLO ═══
+         Fondo radial y vídeo + contenido mínimo encima.
+         Se recortó a la mitad: el bloque antes traía tres miedos, seis
+         situaciones, tres pasos y un remate. El mensaje se sostiene con el
+         antes/después, que dice lo mismo en dos columnas — todo lo demás
+         era repetirlo con otras palabras. -->
+    <section data-columna-seccion="Tu abogado" id="abogado-de-bolsillo" style="position: relative; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; padding: 5.5rem 5vw;">
+        <!-- Glowing background -->
+        <div style="position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5; mix-blend-mode: multiply; background-image: radial-gradient(50% 50% at 50% 50%, #93c5fd 0%, transparent 100%);"></div>
+
+        <!-- Sin z-index a propósito: al crear contexto de apilamiento anulaba el
+             `mix-blend-mode` del pictograma. Se pinta sobre el halo igual, por
+             orden del DOM. -->
+        <div style="position: relative; max-width: 1000px; margin: 0 auto; width: 100%;">
+            <div class="blur-fade" data-bf-delay="1" style="max-width: 800px; margin-bottom: 2.25rem;">
+                <!-- Los saltos van marcados a mano: el remate tiene que caer
+                     entero en la última línea para que la selección lo abarque
+                     completo. -->
+                <h2 class="titulo-seleccion">
+                    <span>Lo legal</span>
+                    <span>no tiene por qué</span>
+                    <span class="sel">darte miedo.</span>
+                </h2>
+                <p style="font-family: var(--font-body, system-ui, sans-serif); font-size: clamp(0.85rem, 1.5vw, 1.4rem); color: #222; line-height: 1.35; font-weight: 500; letter-spacing: -0.01em; margin-top: 1.5rem;">
+                    Un abogado en tu <span style="color: #405efc;">bolsillo</span>. No para ir a <span style="color: #405efc;">juicio</span> — para esa <span style="color: #405efc;">llamada</span> que llevas semanas sin hacer, ese <span style="color: #405efc;">papel</span> que no sabes si firmar, ese <span style="color: #405efc;">trámite</span> donde te dan largas.
+                </p>
+            </div>
+
+            <!-- El pictograma va aquí, entre la promesa y los tres miedos.
+                 No puede vivir dentro de un elemento con filter/transform/z-index:
+                 eso aísla el blend y le devuelve el fondo blanco. -->
+            <div class="mono" aria-hidden="true">
+                <video class="mono-video" autoplay muted loop playsinline preload="metadata" poster="mono_miedo.png">
+                    <source src="mono_miedo.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4rem;">
+                <div class="blur-fade" data-bf-delay="2">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: #111; margin-bottom: 1rem; font-weight: 500; letter-spacing: -0.5px;">“¿Y cuánto me va a cobrar?”</h3>
+                    <p class="marca-texto" style="font-family: var(--font-body); font-size: 1.05rem; color: #666; line-height: 1.7;"><span>Precio</span> <span>fijo.</span></p>
+                </div>
+                <div class="blur-fade" data-bf-delay="3">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: #111; margin-bottom: 1rem; font-weight: 500; letter-spacing: -0.5px;">“No le voy a entender.”</h3>
+                    <p class="marca-texto" style="font-family: var(--font-body); font-size: 1.05rem; color: #666; line-height: 1.7;"><span>Lenguaje</span> <span>claro.</span></p>
+                </div>
+                <div class="blur-fade" data-bf-delay="4">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: #111; margin-bottom: 1rem; font-weight: 500; letter-spacing: -0.5px;">“No es para tanto.”</h3>
+                    <p class="marca-texto" style="font-family: var(--font-body); font-size: 1.05rem; color: #666; line-height: 1.7;"><span>Mejor</span> <span>prevenir.</span></p>
                 </div>
             </div>
-        </div>
 
-        <button class="hero-scroll-hint" id="hero-scroll-btn" aria-label="Descubrir">
-            <span>SOLUCIONES</span>
-            <svg viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="12">
-                <line x1="6" y1="0" x2="6" y2="18" stroke="currentColor" stroke-width="0.8"/>
-                <polyline points="2,13 6,18 10,13" stroke="currentColor" stroke-width="0.8" fill="none"/>
-            </svg>
-        </button>
+        </div>
+    </section>
+
+    <!-- ═══ COMPARATIVA ABOGADO ═══ -->
+    <section id="comparativa-abogado" style="position: relative; background-color: #ffffff; padding: 8rem 5vw; overflow: hidden;">
+        <!-- Soft Green Glow -->
+        <div style="position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.4; mix-blend-mode: multiply; background-image: radial-gradient(50% 50% at 50% 50%, #8FFFB0 0%, transparent 100%);"></div>
+
+        <div style="position: relative; z-index: 10; max-width: 900px; margin: 0 auto; width: 100%;">
+            <!-- Comparison Columns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; margin-bottom: 3rem;">
+                <div class="blur-fade">
+                    <!-- Los saltos van marcados a mano: el escalón entre líneas es
+                         el diseño y no puede quedar a merced del ancho. Tres
+                         líneas y no dos porque «Que hable / mi abogado» quedaban
+                         casi del mismo largo y el escalón se reducía a 11px: sin
+                         contraste de longitud no hay gesto. Corta limpio por
+                         conjunción / verbo / sujeto. -->
+                    <h2 class="titulo-cartel">
+                        <span>Que</span>
+                        <span class="der">hable</span>
+                        <span>mi abogado</span>
+                    </h2>
+                    <p style="font-family: var(--sans, sans-serif); font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: #666; line-height: 1.3; font-weight: 300; letter-spacing: -0.5px; margin-top: 4rem;">
+                        Mandas mensajes que nadie contesta.<br>
+                        <strong style="font-weight: 700; color: #111;">No te falta razón, te falta peso.</strong>
+                    </p>
+                </div>
+                <div class="blur-fade" data-bf-delay="1" style="margin-top: 1rem;">
+                    <p style="font-family: var(--sans, sans-serif); font-size: clamp(1.8rem, 4vw, 3rem); color: #111; line-height: 1.2; font-weight: 700; letter-spacing: -1.5px; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;">
+                        <span>Ya no estás solo,</span>
+                        <span style="background-color: #c7f933; color: #111; padding: 0.1em 0.4em; border-radius: 12px; display: inline-flex; align-items: center; position: relative; white-space: nowrap;">
+                            y se nota.
+                            <svg style="position: absolute; top: -6px; right: -12px; width: 24px; height: 24px; transform: rotate(10deg);" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter">
+                                <line x1="6" y1="18" x2="18" y2="6"></line>
+                                <polyline points="8 6 18 6 18 16"></polyline>
+                            </svg>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- El teléfono que se asoma.
+                 El marco es un PNG real (phone_mockup.png) y el chat va vivo en
+                 HTML dentro del hueco de la pantalla: el texto sigue siendo
+                 texto —escala y se relee sin pixelarse— y la animación se
+                 controla por partes.
+                 A propósito NO lleva la insignia de cuenta oficial de WhatsApp:
+                 reproducirla aquí sería hacer pasar al despacho por una cuenta
+                 verificada de la plataforma. Se usa el mismo lenguaje de chat,
+                 con el remitente que sí corresponde. -->
+            <div class="asoma" aria-hidden="true">
+                <div class="asoma-mockup">
+                    <!-- La pantalla: va DEBAJO del marco y se asoma por su hueco. -->
+                    <div class="asoma-tel">
+                        <div class="asoma-barra">
+                            <span class="asoma-avatar">FF</span>
+                            <span class="asoma-quien">
+                                <b>Ferro Fragoso</b>
+                                <i>Abogados &middot; en línea</i>
+                            </span>
+                        </div>
+                        <div class="asoma-chat">
+                            <p class="asoma-burbuja">Listo. Ya le escribimos al arrendador con copia de tu contrato.</p>
+                            <p class="asoma-burbuja asoma-burbuja--2">Cualquier respuesta te la paso en cuanto llegue.</p>
+                        </div>
+                    </div>
+
+                    <!-- El marco va ENCIMA: su hueco de pantalla es transparente,
+                         así que recorta las esquinas del chat y dibuja el notch
+                         sin necesidad de border-radius ni máscaras. -->
+                    <img class="asoma-marco" src="phone_mockup.png" alt="" aria-hidden="true">
+                </div>
+            </div>
+
+            <!-- List items (Editorial Design) -->
+            <div class="blur-fade" data-bf-delay="2" style="margin-bottom: 4rem;">
+                <!-- Item 01 -->
+                <div style="display: flex; align-items: flex-start; padding: 1rem 0; gap: 2rem;">
+                    <div style="display: flex; flex-direction: column; width: 40px; flex-shrink: 0; padding-top: 0.5rem;">
+                        <div style="height: 1px; background-color: #111; width: 100%; margin-bottom: 0.8rem;"></div>
+                        <span style="font-size: 0.75rem; font-family: var(--mono, monospace); color: #111; font-weight: 500;">01</span>
+                    </div>
+                    <div style="font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 400; color: #111; line-height: 1.2; letter-spacing: -0.5px;">
+                        El casero no te devuelve el depósito.
+                    </div>
+                </div>
+                <!-- Item 02 -->
+                <div style="display: flex; align-items: flex-start; padding: 1rem 0; gap: 2rem;">
+                    <div style="display: flex; flex-direction: column; width: 40px; flex-shrink: 0; padding-top: 0.5rem;">
+                        <div style="height: 1px; background-color: #111; width: 100%; margin-bottom: 0.8rem;"></div>
+                        <span style="font-size: 0.75rem; font-family: var(--mono, monospace); color: #111; font-weight: 500;">02</span>
+                    </div>
+                    <div style="font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 400; color: #111; line-height: 1.2; letter-spacing: -0.5px;">
+                        Un cliente no te paga lo que trabajaste.
+                    </div>
+                </div>
+
+                <!-- Item 03 -->
+                <div style="display: flex; align-items: flex-start; padding: 1rem 0; gap: 2rem;">
+                    <div style="display: flex; flex-direction: column; width: 40px; flex-shrink: 0; padding-top: 0.5rem;">
+                        <div style="height: 1px; background-color: #111; width: 100%; margin-bottom: 0.8rem;"></div>
+                        <span style="font-size: 0.75rem; font-family: var(--mono, monospace); color: #111; font-weight: 500;">03</span>
+                    </div>
+                    <div style="font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 400; color: #111; line-height: 1.2; letter-spacing: -0.5px;">
+                        Tu ex-patrón te debe el finiquito.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing and Action -->
+            <div class="blur-fade" data-bf-delay="3" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 3rem;">
+                <div>
+                    <div style="font-family: var(--font-heading); font-size: clamp(3rem, 6vw, 4.5rem); color: #111; line-height: 1; font-weight: 300; letter-spacing: -2px; margin-bottom: 0.5rem;">
+                        $1,450 <span style="font-size: 1rem; font-family: var(--font-body); font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: #666; vertical-align: middle;">Pago Único</span>
+                    </div>
+
+                </div>
+                <div style="max-width: 400px;">
+                    <a href="reclamacion.html" style="display: inline-block; background-color: #8FFFB0; color: #064e3b; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 1.2rem 2.5rem; border-radius: 4px; text-decoration: none; transition: all 0.3s ease; margin-bottom: 1rem; box-shadow: 0 4px 14px rgba(143, 255, 176, 0.4);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(143, 255, 176, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 14px rgba(143, 255, 176, 0.4)'">Ver Presión Legal</a>
+                    <p style="font-family: var(--font-body); font-size: 0.8rem; color: #888; line-height: 1.5;">
+                        Gestión activa de 15 días por abogado con cédula profesional para evaluar, redactar, enviar y dar seguimiento a tu caso.
+                    </p>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <!-- ═══ QUICK ACTIONS ═══ -->
-    <section class="quick-actions-section">
+    <section class="quick-actions-section" data-columna-seccion="Trámites" style="background-color: #ffffff;">
         <div class="quick-actions-wrap">
             <header class="quick-actions-header blur-fade">
-                <h2>Comienza tu <em>trámite</em></h2>
+                <h2 class="sec-title" style="font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1.05;">Comienza tu<br><em>trámite</em></h2>
             </header>
             <div class="quick-actions-grid blur-fade" data-bf-delay="1">
                 <a href="marcas.html" class="qa-card">
-                    <div class="qa-card-img-wrapper">
+                    <div class="qa-card-img-wrapper" style="background-color: #0F766E;">
                         <img src="icon_trademark.png" alt="Registrar marca" class="qa-card-img" loading="lazy">
                     </div>
                     <h3>Registrar marca</h3>
                     <p>Protege tu nombre y logotipo comercial</p>
                 </a>
-                <a href="empresa.html" class="qa-card">
-                    <div class="qa-card-img-wrapper">
+                <a href="consulta.html" class="qa-card">
+                    <div class="qa-card-img-wrapper" style="background-color: #1D4ED8;">
                         <img src="icon_company.png" alt="Constituir empresa" class="qa-card-img" loading="lazy">
                     </div>
                     <h3>Constituir empresa</h3>
                     <p>Crea tu sociedad mercantil legalmente</p>
                 </a>
                 <a href="finiquito.html" class="qa-card">
-                    <div class="qa-card-img-wrapper">
+                    <div class="qa-card-img-wrapper" style="background-color: #D97706;">
                         <img src="icon_finiquito.png" alt="Calcular finiquito" class="qa-card-img" loading="lazy">
                     </div>
                     <h3>Calcula finiquito</h3>
                     <p>Liquida o renuncia conforme a la ley</p>
                 </a>
                 <a href="contratos.html" class="qa-card">
-                    <div class="qa-card-img-wrapper">
-                        <img src="icon_contracts.png" alt="Contratos" class="qa-card-img" loading="lazy">
+                    <div class="qa-card-img-wrapper" style="background-color: #334155;">
+                        <img src="icon_contracts_una_firma.png" alt="Contratos" class="qa-card-img" loading="lazy">
                     </div>
                     <h3>Contratos</h3>
                     <p>Crea y firma contratos con validez legal</p>
@@ -173,10 +376,155 @@
         </div>
     </section>
 
+    <!-- ═══ FOLDER TABS ═══ -->
+    <section class="folder-tabs-section">
+        <div class="folder-container" data-active="civil">
+            <div class="folder-tabs" role="tablist" aria-label="Áreas jurídicas">
+                <button class="folder-tab active" id="tab-civil" role="tab" aria-selected="true" aria-controls="panel-civil" tabindex="0" data-tab="civil"><span>Civil</span></button>
+                <button class="folder-tab" id="tab-familiar" role="tab" aria-selected="false" aria-controls="panel-familiar" tabindex="-1" data-tab="familiar"><span>Familiar</span></button>
+                <button class="folder-tab" id="tab-inmobiliario" role="tab" aria-selected="false" aria-controls="panel-inmobiliario" tabindex="-1" data-tab="inmobiliario"><span>Inmobiliario</span></button>
+            </div>
+            <div class="folder-content-area">
+                <div class="folder-panel active" id="panel-civil" role="tabpanel" aria-labelledby="tab-civil" tabindex="0" aria-hidden="false">
+                    <div class="panel-header">
+                        <span class="left">01</span>
+                        <span class="right">Ferro Fragoso Estudio Jurídico</span>
+                    </div>
+                    <h2 class="panel-title">¿Problemas con<br>arrendamientos<br>y contratos?</h2>
+                    <div class="panel-cta-wrap">
+                        <a href="civil.html" class="panel-cta">Empezar</a>
+                    </div>
+                </div>
+                <div class="folder-panel" id="panel-familiar" role="tabpanel" aria-labelledby="tab-familiar" tabindex="0" aria-hidden="true">
+                    <div class="panel-header">
+                        <span class="left">02</span>
+                        <span class="right">Ferro Fragoso Estudio Jurídico</span>
+                    </div>
+                    <h2 class="panel-title">Divorcios, pensiones<br>y sucesiones con<br>sensibilidad.</h2>
+                    <div class="panel-cta-wrap">
+                        <a href="familiar.html" class="panel-cta">Empezar</a>
+                    </div>
+                </div>
+                <div class="folder-panel" id="panel-inmobiliario" role="tabpanel" aria-labelledby="tab-inmobiliario" tabindex="0" aria-hidden="true">
+                    <div class="panel-header">
+                        <span class="left">03</span>
+                        <span class="right">Ferro Fragoso Estudio Jurídico</span>
+                    </div>
+                    <h2 class="panel-title" style="font-size: 2.2rem; line-height: 1.1; margin-bottom: 1rem;">El dinero se mueve antes que los papeles.<br>Nosotros lo cambiamos de orden.</h2>
+                    <p class="panel-subtitle" style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem;">Antes de comprar, rentar o firmar: alguien de tu lado revisa lo que nadie más te va a explicar.</p>
+
+                    <ul class="panel-preview-list" style="list-style: none; padding: 0; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; font-size: 1.05rem;">
+                        <li style="display: flex; gap: 0.75rem; align-items: baseline;">
+                            <i class="fas fa-check" style="font-size: 0.9rem; opacity: 0.7;"></i>
+                            <span><strong>¿Ya te dejaron de contestar?</strong> &rarr; Hablamos por ti.</span>
+                        </li>
+                        <li style="display: flex; gap: 0.75rem; align-items: baseline;">
+                            <i class="fas fa-check" style="font-size: 0.9rem; opacity: 0.7;"></i>
+                            <span><strong>¿No sabes si es real?</strong> &rarr; Lo investigamos antes de que pagues.</span>
+                        </li>
+                        <li style="display: flex; gap: 0.75rem; align-items: baseline;">
+                            <i class="fas fa-check" style="font-size: 0.9rem; opacity: 0.7;"></i>
+                            <span><strong>¿Ya te pasaron el contrato?</strong> &rarr; Lo leemos antes de que firmes.</span>
+                        </li>
+                    </ul>
+
+                    <div class="panel-price-anchor" style="font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">Llamada de filtro sin costo</div>
+
+                    <div class="panel-cta-wrap">
+                        <a href="inmobiliario.html" class="panel-cta">Ver cómo te protegemos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.folder-tab');
+            const panels = document.querySelectorAll('.folder-panel');
+
+            const activateTab = (tab) => {
+                const target = tab.getAttribute('data-tab');
+
+                tabs.forEach(t => {
+                    const selected = t === tab;
+                    t.classList.toggle('active', selected);
+                    t.setAttribute('aria-selected', String(selected));
+                    t.tabIndex = selected ? 0 : -1;
+                });
+
+                panels.forEach(panel => {
+                    const selected = panel.id === 'panel-' + target;
+                    panel.classList.toggle('active', selected);
+                    panel.setAttribute('aria-hidden', String(!selected));
+                });
+
+                const container = tab.closest('.folder-container');
+                if (container) container.setAttribute('data-active', target);
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => activateTab(tab));
+                tab.addEventListener('keydown', event => {
+                    const current = [...tabs].indexOf(tab);
+                    let next = current;
+                    if (event.key === 'ArrowRight') next = (current + 1) % tabs.length;
+                    if (event.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
+                    if (event.key === 'Home') next = 0;
+                    if (event.key === 'End') next = tabs.length - 1;
+                    if (next === current) return;
+                    event.preventDefault();
+                    tabs[next].focus();
+                    activateTab(tabs[next]);
+                });
+            });
+        });
+    </script>
+
+    <!-- ═══ 4. EMPRESAS ═══ -->
+    <section class="empresas-section" data-columna-seccion="Membresía" id="empresas" style="background-color: #ffffff;">
+        <div class="empresas-inner">
+            <div class="empresas-copy fade-in-up">
+
+                <h2 class="sec-title blur-fade" data-bf-delay="1">¿Tu empresa firma<br><em>contratos todos los meses?</em></h2>
+                <p class="empresas-text">
+                    Contratos en orden, sin contratar a un abogado de planta.<br>
+                    Revisión mensual de un contrato simple, una consulta legal breve y acceso a herramientas para mantener tus acuerdos claros y actualizados.
+                </p>
+
+                <!-- Una sola acción primaria -->
+                <a href="empresa-operacion.html" class="btn-primary">Empezar</a>
+
+                <!-- Reporte de Riesgo: enlace secundario, no compite -->
+                <p class="empresas-secundario">
+                    ¿Prefieres empezar con un diagnóstico?
+                    <a href="empresa-operacion.html#reporte">Reporte de Riesgo Contractual — desde $3,990</a>
+                </p>
+            </div>
+            <div class="empresas-img-wrap fade-in-up delay-1" style="display: flex; justify-content: center; align-items: center;">
+                <!-- preload="none" y sin autoplay: son 3 MB a mitad de página. El
+                     IntersectionObserver de script.js lo arranca al entrar en
+                     vista y hasta entonces se ve el poster, que es el primer
+                     fotograma. Sin esto se descargaba en cada visita aunque
+                     nadie bajara hasta aquí. -->
+                <video class="empresas-video" muted loop playsinline preload="none"
+                       poster="icon_folder_docs.png"
+                       aria-label="Un documento se asoma de una carpeta de contratos"
+                       style="max-width: 100%; border-radius: 12px;">
+                    <source src="folder_docs_anim.mp4" type="video/mp4">
+                    <!-- Sin vídeo (o con datos ahorrados) queda la ilustración fija. -->
+                    <img src="icon_folder_docs.png" alt="Carpeta con contratos" style="max-width: 100%; border-radius: 12px;" loading="lazy" decoding="async">
+                </video>
+            </div>
+
+        </div>
+    </section>
+
+
     <!-- ═══ HOW IT WORKS (INFOGRAPHIC) ═══ -->
-    <section class="process-section" id="como-funciona-timeline">
+    <section class="process-section" data-columna-seccion="Cómo funciona" id="como-funciona-timeline">
         <header class="process-header sec-head fade-in-up">
-            <span class="sec-eyebrow blur-fade">Cómo funciona</span>
+
             <h2 class="sec-title blur-fade" data-bf-delay="1">De la duda a la solución,<br><em>en tres pasos.</em></h2>
             <p class="process-subtitle blur-fade" data-bf-delay="2" style="margin-top: 1.5rem;">Sin cotizaciones a puerta cerrada, sin llamadas para ‘ver cuánto sale’. Precio cerrado desde el clic.</p>
         </header>
@@ -216,7 +564,7 @@
                     </div>
                     <div class="timeline-side timeline-right">
                         <div class="timeline-icon">
-                            <img src="paso_2.png" alt="Icono Cuestionario" class="timeline-sketch-img" / loading="lazy" decoding="async">
+                            <img src="paso_2.png" alt="Icono Cuestionario" class="timeline-sketch-img" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </article>
@@ -226,7 +574,7 @@
                     <div class="timeline-number" aria-hidden="true">3</div>
                     <div class="timeline-side timeline-left">
                         <div class="timeline-icon">
-                            <img src="paso_3.png" alt="Icono Abogado Entrega" class="timeline-sketch-img" / loading="lazy" decoding="async">
+                            <img src="paso_3.png" alt="Icono Abogado Entrega" class="timeline-sketch-img" loading="lazy" decoding="async">
                         </div>
                     </div>
                     <div class="timeline-side timeline-right">
@@ -242,11 +590,8 @@
 
         <div class="timeline-guarantee">
             <div class="guarantee-capsule">
-                <svg class="guarantee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    <polyline points="9 11 11 13 15 9" />
-                </svg>
-                <span class="guarantee-text tr-reveal" data-tr-split="words">Revisión en 48 h o te devolvemos tu dinero.</span>
+                <img src="icon_coffee_hand.png" alt="Relájate" class="guarantee-icon" style="width: 80px; height: 80px; object-fit: contain;">
+                <span class="guarantee-text tr-reveal" data-tr-split="words">Relájate mientras nos encargamos de todo.</span>
             </div>
         </div>
 
@@ -255,12 +600,189 @@
             <p class="timeline-cta-secondary tr-reveal" data-tr-split="words">Precios claros antes de pagar.</p>
         </div>
     </section>
+    <!-- ═══ 5. SOCIOS — pieza de confianza ═══ -->
+    <section id="socios" class="socios-home" data-columna-seccion="Socios" style="background-color: #ffffff;">
+        <div class="socios-home-inner">
+            <header class="sec-head fade-in-up">
 
+                <h2 class="sec-title blur-fade" data-bf-delay="1">Las personas detrás<br><em>de tu asunto.</em></h2>
+                <p class="socios-home-intro blur-fade" data-bf-delay="2">
+                    No hay call center ni asociados junior: tu caso lo analiza y lo firma uno de los dos socios fundadores.
+                </p>
+            </header>
+
+            <div class="socios-home-grid">
+                <article class="socio-card fade-in-up">
+                    <img src="socio_alan.png" alt="Alan Obed Fragoso Rivera, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
+                    <h3 class="socio-card-nombre word-fade-in">Alan Obed Fragoso Rivera</h3>
+                    <p class="socio-card-cargo word-fade-in">Socio fundador &middot; Abogado</p>
+                    <p class="socio-card-univ word-fade-in">Universidad Autónoma de Querétaro</p>
+                    <p class="socio-card-desc word-fade-in">
+                        Trayectoria en materia corporativa, administrativa y civil. Especialista en estrategia
+                        legal preventiva y blindaje de negocios.
+                    </p>
+                    <div class="socio-card-contacto">
+                        <a href="https://wa.me/524425827053" target="_blank" rel="noopener" aria-label="WhatsApp de Alan Fragoso"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="mailto:alan@ferrofragoso.com" aria-label="Correo de Alan Fragoso"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                </article>
+
+                <article class="socio-card fade-in-up delay-1">
+                    <img src="socio_daniel.png" alt="Daniel Ferro Gutiérrez, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
+                    <h3 class="socio-card-nombre word-fade-in">Daniel Ferro Gutiérrez</h3>
+                    <p class="socio-card-cargo word-fade-in">Socio fundador &middot; Abogado</p>
+                    <p class="socio-card-univ word-fade-in">Universidad Autónoma de Querétaro</p>
+                    <p class="socio-card-desc word-fade-in">
+                        Especializado en derecho constitucional, contratos y protección del patrimonio.
+                        Enfocado en consultoría empresarial y reestructuración de activos.
+                    </p>
+                    <div class="socio-card-contacto">
+                        <a href="https://wa.me/524425948978" target="_blank" rel="noopener" aria-label="WhatsApp de Daniel Ferro"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="mailto:daniel@ferrofragoso.com" aria-label="Correo de Daniel Ferro"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <p class="socios-home-quote fade-in-up">&ldquo;La mejor posición jurídica posible, construida con estrategia y honestidad.&rdquo;</p>
+            <div style="text-align: center; margin-top: 1.5rem;" class="fade-in-up">
+                <a href="consulta.html" class="btn-primary">Agendar Consulta</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ 3. TESTIMONIOS ═══ -->
+    <section class="testimonios-section" data-columna-seccion="Testimonios" id="testimonios" style="background-color: #ffffff;">
+        <div class="testimonios-inner">
+            <header class="sec-head fade-in-up">
+
+                <h2 class="sec-title blur-fade" data-bf-delay="1">Lo que dicen quienes<br><em>ya nos consultaron</em></h2>
+            </header>
+
+            <!-- AnimatedGroup: cambia data-ag-preset para probar otro efecto
+                 (fade · slide · scale · blur · blur-slide · zoom · flip · bounce · rotate · swing) -->
+            <div class="testimonios-grid animated-group" data-ag-preset="blur-slide">
+                <!-- Testimonio 1 -->
+                <figure class="testimonio-card">
+                    <!-- Stars -->
+                    <div style="display: flex; gap: 4px; margin-bottom: 0.5rem;">
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                    </div>
+                    <blockquote>“Excelente servicio para el registro de nuestra marca. Nos guiaron paso a paso en el proceso de viabilidad ante el IMPI y blindaron nuestros contratos con proveedores. Explicaciones claras y profesionales sin tecnicismos confusos.”</blockquote>
+                    <figcaption>
+                        <div class="testimonio-profile">
+                            <!-- Google G Logo SVG -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                            </svg>
+                            <div class="testimonio-profile-info">
+                                <span class="testimonio-autor">Fernanda Rivadeneyra</span>
+                                <span class="testimonio-meta">Vía Google Reviews</span>
+                            </div>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <!-- Testimonio 2 -->
+                <figure class="testimonio-card">
+                    <!-- Stars -->
+                    <div style="display: flex; gap: 4px; margin-bottom: 0.5rem;">
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                    </div>
+                    <blockquote>“El equipo de Ferro Fragoso rediseñó por completo los contratos de nuestra empresa y el acuerdo de confidencialidad para proteger nuestros secretos industriales. Lograron un balance perfecto: documentos sencillos de entender pero legalmente implacables.”</blockquote>
+                    <figcaption>
+                        <div class="testimonio-profile">
+                            <!-- Google G Logo SVG -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                            </svg>
+                            <div class="testimonio-profile-info">
+                                <span class="testimonio-autor">Juan Daniel Cordero</span>
+                                <span class="testimonio-meta">Vía Google Reviews</span>
+                            </div>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <!-- Testimonio 3 -->
+                <figure class="testimonio-card">
+                    <!-- Stars -->
+                    <div style="display: flex; gap: 4px; margin-bottom: 0.5rem;">
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
+                    </div>
+                    <blockquote>“Buscábamos proteger nuestra propiedad intelectual y las relaciones con creadores de contenido. Ferro Fragoso entendió nuestro modelo de negocio digital desde el inicio y estructuró toda nuestra estrategia contractual de manera impecable.”</blockquote>
+                    <figcaption>
+                        <div class="testimonio-profile">
+                            <!-- Google G Logo SVG -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                            </svg>
+                            <div class="testimonio-profile-info">
+                                <span class="testimonio-autor">Vooxfeed</span>
+                                <span class="testimonio-meta">Vía Google Reviews</span>
+                            </div>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <!-- Indicadores del carrusel (solo visibles en móvil vía CSS).
+                 Los rellena y sincroniza script.js; sin JS no estorban. -->
+            <div class="tst-dots" id="tstDots" role="tablist" aria-label="Navegación de testimonios"></div>
+        </div>
+    </section>
+
+
+    <!-- ═══ 6. NUESTRA PROMESA ═══ -->
+    <section id="promesa" class="promesa-section" data-columna-seccion="Promesa">
+        <div class="promesa-container fade-in-up">
+            <span class="promesa-eyebrow blur-fade">NUESTRA PROMESA</span>
+            <h2 class="promesa-title blur-fade" data-bf-delay="1">Un compromiso que<br><em>no tiene letra pequeña</em></h2>
+            <div class="promesa-rule reveal-line"></div>
+            <p class="promesa-text text-blur-in">
+                Operamos como plataforma: precios públicos, procesos claros y respuestas o entregas documentales en hasta 48 horas hábiles cuando el servicio lo permite. Algunos acompañamientos tienen una duración distinta y se especifican antes de contratar. Tecnología en el proceso, abogados en las decisiones.
+            </p>
+            <!-- Firma animada (Higgsfield): la caligrafía se escribe en tiempo real. -->
+            <div class="promesa-signature-wrap">
+                <!-- preload="none": son 9.2 MB al final de la página. No hay autoplay;
+                     el IntersectionObserver de script.js lo reproduce al entrar en vista,
+                     y hasta entonces se ve el poster. Con preload="auto" se descargaba
+                     entero en cada visita aunque nadie llegara hasta aquí. -->
+                <video class="promesa-signature-video" muted playsinline preload="none"
+                       poster="signature_on_dark.png" aria-label="Firma Ferro Fragoso escribiéndose">
+                    <source src="signature_write.mp4" type="video/mp4">
+                    <img src="signature_logo.png" alt="Ferro Fragoso Caligrafía" class="promesa-signature-img" loading="lazy" decoding="async">
+                </video>
+            </div>
+            <p class="promesa-firma">— Ferro Fragoso, Estudio Jurídico</p>
+
+        </div>
+    </section>
 
     <!-- ═══ HOME SOLUTIONS (PLANES Y PRECIOS) ═══ -->
-    <section class="home-solutions" id="soluciones">
+    <section class="home-solutions" data-columna-seccion="Soluciones" id="soluciones">
         <div class="wrap top">
-            <h1 class="blur-fade" data-bf-delay="1">Un abogado de tu lado,<br>por <em>una cuota fija</em>.</h1>
+            <h2 class="blur-fade" data-bf-delay="1">Un abogado de tu lado,<br>por <em>una cuota fija</em>.</h2>
             <p class="tr-reveal" data-tr-split="words">Empieza gratis. Paga solo lo que necesitas. O vuélvete miembro y trae al despacho incluido.</p>
 
             <div class="toggle">
@@ -386,194 +908,231 @@
         </div>
     </section>
 
-
-    <!-- ═══ 4. EMPRESAS ═══ -->
-    <section class="empresas-section" id="empresas">
-        <div class="empresas-inner">
-            <div class="empresas-copy fade-in-up">
-                <span class="sec-eyebrow blur-fade">Empresas</span>
-                <h2 class="sec-title blur-fade" data-bf-delay="1">¿Tu empresa firma<br><em>contratos todos los meses?</em></h2>
-                <p class="empresas-text">
-                    Contratos en orden, sin contratar a un abogado de planta.<br>
-                    Revisión mensual de un contrato simple, una consulta legal breve y acceso a herramientas para mantener tus acuerdos claros y actualizados.
-                </p>
-
-                <p class="empresas-precio">
-                    <span class="empresas-precio-monto">$1,990</span>
-                    <span class="empresas-precio-periodo">MXN / mes</span>
-                </p>
-
-                <!-- Una sola acción primaria -->
-                <a href="empresas.html" class="btn-primary">Ver planes de membresía</a>
-
-                <!-- Reporte de Riesgo: enlace secundario, no compite -->
-                <p class="empresas-secundario">
-                    ¿Prefieres empezar con un diagnóstico?
-                    <a href="empresas.html#reporte">Reporte de Riesgo Contractual — desde $3,990</a>
-                </p>
-            </div>
-
-            <div class="empresas-art fade-in-up delay-1" aria-hidden="true">
-                <img src="b2b_banner.png" alt="" loading="lazy" decoding="async">
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ 5. SOCIOS — pieza de confianza ═══ -->
-    <section id="socios" class="socios-home">
-        <div class="socios-home-inner">
-            <header class="sec-head fade-in-up">
-                <span class="sec-eyebrow blur-fade">Quiénes somos</span>
-                <h2 class="sec-title blur-fade" data-bf-delay="1">Las personas detrás<br><em>de tu asunto.</em></h2>
-                <p class="socios-home-intro blur-fade" data-bf-delay="2">
-                    No hay call center ni asociados junior: tu caso lo analiza y lo firma uno de los dos socios fundadores.
-                </p>
+    <!-- ═══ PREGUNTAS FRECUENTES ═══ -->
+    <section class="home-faq" data-columna-seccion="FAQ" id="preguntas-frecuentes">
+        <div class="home-faq__inner">
+            <header class="sec-head home-faq__head fade-in-up">
+                <span class="sec-eyebrow">Antes de empezar</span>
+                <h2 class="sec-title blur-fade">Preguntas<br><em>frecuentes</em></h2>
+                <p class="home-faq__intro blur-fade" data-bf-delay="1">Respuestas claras, sin letra pequeña. Si tu caso no aparece aquí, te orientamos antes de que pagues.</p>
             </header>
 
-            <div class="socios-home-grid">
-                <article class="socio-card fade-in-up">
-                    <img src="socio_alan.png" alt="Alan Obed Fragoso Rivera, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
-                    <h3 class="socio-card-nombre word-fade-in">Alan Obed Fragoso Rivera</h3>
-                    <p class="socio-card-cargo word-fade-in">Socio fundador &middot; Abogado</p>
-                    <p class="socio-card-univ word-fade-in">Universidad Autónoma de Querétaro</p>
-                    <p class="socio-card-desc word-fade-in">
-                        Trayectoria en materia corporativa, administrativa y civil. Especialista en estrategia
-                        legal preventiva y blindaje de negocios.
-                    </p>
-                    <div class="socio-card-contacto">
-                        <a href="https://wa.me/524425827053" target="_blank" rel="noopener" aria-label="WhatsApp de Alan Fragoso"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                        <a href="mailto:alan@ferrofragoso.com" aria-label="Correo de Alan Fragoso"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+            <div class="home-faq__list blur-fade" data-bf-delay="2">
+                <details class="home-faq__item">
+                    <summary class="home-faq__question">
+                        <span>¿Cuánto cuesta y cuándo pago?</span>
+                        <span class="home-faq__icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="home-faq__answer">
+                        <p>Cada servicio muestra su precio antes de pagar. En servicios por vez pagas al iniciar; en membresías el cargo es mensual y automático. Si tu asunto necesita algo fuera del alcance, te lo decimos con un presupuesto cerrado antes de avanzar.</p>
                     </div>
-                </article>
+                </details>
 
-                <article class="socio-card fade-in-up delay-1">
-                    <img src="socio_daniel.png" alt="Daniel Ferro Gutiérrez, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
-                    <h3 class="socio-card-nombre word-fade-in">Daniel Ferro Gutiérrez</h3>
-                    <p class="socio-card-cargo word-fade-in">Socio fundador &middot; Abogado</p>
-                    <p class="socio-card-univ word-fade-in">Universidad Autónoma de Querétaro</p>
-                    <p class="socio-card-desc word-fade-in">
-                        Especializado en derecho constitucional, contratos y protección del patrimonio.
-                        Enfocado en consultoría empresarial y reestructuración de activos.
-                    </p>
-                    <div class="socio-card-contacto">
-                        <a href="https://wa.me/524425948978" target="_blank" rel="noopener" aria-label="WhatsApp de Daniel Ferro"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                        <a href="mailto:daniel@ferrofragoso.com" aria-label="Correo de Daniel Ferro"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                <details class="home-faq__item">
+                    <summary class="home-faq__question">
+                        <span>¿Quién atiende mi caso?</span>
+                        <span class="home-faq__icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="home-faq__answer">
+                        <p>Lo atiende un socio fundador con cédula profesional. Usamos tecnología para quitar burocracia, pero la estrategia, la firma y las decisiones las toma un abogado — nunca un bot.</p>
                     </div>
-                </article>
+                </details>
+
+                <details class="home-faq__item">
+                    <summary class="home-faq__question">
+                        <span>¿En cuánto tiempo tengo una respuesta?</span>
+                        <span class="home-faq__icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="home-faq__answer">
+                        <p>La mayoría de los servicios se entregan en 24–48 horas hábiles una vez que tenemos tu información completa. Si falta algo, te lo pedimos desde el inicio para no frenar tu trámite.</p>
+                    </div>
+                </details>
+
+                <details class="home-faq__item">
+                    <summary class="home-faq__question">
+                        <span>¿Qué pasa si mi asunto no entra en el servicio?</span>
+                        <span class="home-faq__icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="home-faq__answer">
+                        <p>Te lo decimos de frente y te orientamos sobre la vía correcta. Si requiere litigio u otra gestión, se cotiza por separado con precio cerrado; nunca avanzamos sin tu autorización.</p>
+                    </div>
+                </details>
+
+                <details class="home-faq__item">
+                    <summary class="home-faq__question">
+                        <span>¿Cómo protegen mi información?</span>
+                        <span class="home-faq__icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="home-faq__answer">
+                        <p>Tu información está cubierta por secreto profesional abogado-cliente. Usamos canales seguros para recibir documentos y no compartimos tus datos con terceros.</p>
+                    </div>
+                </details>
             </div>
 
-            <p class="socios-home-quote fade-in-up">&ldquo;La mejor posición jurídica posible, construida con estrategia y honestidad.&rdquo;</p>
-            <div style="text-align: center; margin-top: 1.5rem;" class="fade-in-up">
-                <a href="consulta.html" class="btn-primary">Agendar Consulta</a>
+            <div class="home-faq__cta fade-in-up">
+                <p>¿Tienes una duda específica?</p>
+                <a href="https://wa.me/524191239646?text=Hola,%20tengo%20una%20duda%20antes%20de%20empezar" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
             </div>
         </div>
+
+        <style>
+            .home-faq {
+                position: relative;
+                background: var(--bg-surface);
+                padding: clamp(5rem, 9vw, 8rem) 5vw;
+                overflow: hidden;
+            }
+
+            .home-faq::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                background: radial-gradient(42% 32% at 50% 0%, rgba(149, 132, 99, 0.12), transparent 70%);
+            }
+
+            .home-faq__inner {
+                position: relative;
+                max-width: 880px;
+                margin: 0 auto;
+            }
+
+            .home-faq__head {
+                margin-bottom: clamp(2.5rem, 5vw, 4rem);
+                text-align: center;
+            }
+
+            .home-faq__intro {
+                max-width: 620px;
+                margin: 1.2rem auto 0;
+                font-family: var(--font-body);
+                font-size: clamp(1rem, 1.6vw, 1.12rem);
+                line-height: 1.65;
+                color: var(--text-secondary);
+            }
+
+            .home-faq__list {
+                display: grid;
+                gap: 0.85rem;
+            }
+
+            .home-faq__item {
+                background: rgba(255, 255, 255, 0.88);
+                border: 1px solid var(--stone-200);
+                border-radius: 16px;
+                box-shadow: 0 10px 30px rgba(26, 25, 23, 0.04);
+                overflow: hidden;
+                transition: border-color 0.3s var(--ease-premium), box-shadow 0.3s var(--ease-premium), transform 0.3s var(--ease-premium);
+            }
+
+            .home-faq__item:hover {
+                border-color: rgba(149, 132, 99, 0.45);
+                box-shadow: 0 16px 38px rgba(26, 25, 23, 0.07);
+                transform: translateY(-1px);
+            }
+
+            .home-faq__question {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1.25rem;
+                padding: 1.25rem 1.35rem;
+                cursor: pointer;
+                list-style: none;
+                font-family: var(--font-body);
+                font-size: clamp(1rem, 1.7vw, 1.1rem);
+                font-weight: 600;
+                line-height: 1.35;
+                color: var(--text-primary);
+                letter-spacing: -0.01em;
+            }
+
+            .home-faq__question::-webkit-details-marker { display: none; }
+
+            .home-faq__question:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: 3px;
+            }
+
+            .home-faq__icon {
+                flex: 0 0 auto;
+                width: 2rem;
+                height: 2rem;
+                border: 1px solid rgba(149, 132, 99, 0.35);
+                border-radius: 999px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--accent);
+                transition: transform 0.3s var(--ease-premium), background 0.3s var(--ease-premium), color 0.3s var(--ease-premium);
+            }
+
+            .home-faq__icon::before {
+                content: "+";
+                font-size: 1.25rem;
+                line-height: 1;
+            }
+
+            .home-faq__item[open] { border-color: rgba(149, 132, 99, 0.55); }
+
+            .home-faq__item[open] .home-faq__icon {
+                transform: rotate(45deg);
+                background: var(--accent);
+                color: var(--ivory);
+            }
+
+            .home-faq__answer { padding: 0 1.35rem 1.35rem; }
+
+            .home-faq__answer p {
+                margin: 0;
+                font-family: var(--font-body);
+                font-size: 0.96rem;
+                line-height: 1.75;
+                color: var(--text-secondary);
+            }
+
+            .home-faq__cta {
+                margin-top: 2.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.9rem;
+                flex-wrap: wrap;
+                text-align: center;
+                font-family: var(--font-body);
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+            }
+
+            .home-faq__cta p { margin: 0; }
+
+            .home-faq__cta a {
+                color: var(--accent);
+                font-weight: 600;
+                border-bottom: 1px solid rgba(149, 132, 99, 0.4);
+                padding-bottom: 2px;
+                transition: color 0.2s ease, border-color 0.2s ease;
+            }
+
+            .home-faq__cta a:hover {
+                color: var(--carbon);
+                border-bottom-color: var(--carbon);
+            }
+
+            @media (max-width: 640px) {
+                .home-faq__question { padding: 1.1rem 1rem; }
+                .home-faq__answer { padding: 0 1rem 1.1rem; }
+                .home-faq__icon { width: 1.8rem; height: 1.8rem; }
+            }
+        </style>
     </section>
 
-    <!-- ═══ 3. TESTIMONIOS ═══ -->
-    <section class="testimonios-section" id="testimonios">
-        <div class="testimonios-inner">
-            <header class="sec-head fade-in-up">
-                <span class="sec-eyebrow blur-fade">Testimonios</span>
-                <h2 class="sec-title blur-fade" data-bf-delay="1">Lo que dicen quienes<br><em>ya nos consultaron</em></h2>
-            </header>
 
-            <!-- AnimatedGroup: cambia data-ag-preset para probar otro efecto
-                 (fade · slide · scale · blur · blur-slide · zoom · flip · bounce · rotate · swing) -->
-            <div class="testimonios-grid animated-group" data-ag-preset="blur-slide">
-                <figure class="testimonio-card glow-yellow">
-                    <blockquote>“Teníamos dudas constantes sobre la validez de las firmas digitales en nuestros contratos de arrendamiento. Su asesoría no solo nos dio certeza legal, sino que rediseñaron los convenios para que fueran claros y directos.”</blockquote>
-                    <figcaption>
-                        <div class="testimonio-profile">
-                            <div class="testimonio-avatar-letters">SV</div>
-                            <div class="testimonio-profile-info">
-                                <span class="testimonio-autor">Sofía Valenzuela</span>
-                            </div>
-                        </div>
-                    </figcaption>
-                </figure>
 
-                <figure class="testimonio-card glow-blue">
-                    <blockquote>“Registrar nuestras marcas y blindar las relaciones con creadores de contenido era un dolor de cabeza. Ferro Fragoso lo hizo sencillo, explicándonos todo sin tecnicismos innecesarios. Se siente la diferencia de trabajar con profesionales.”</blockquote>
-                    <figcaption>
-                        <div class="testimonio-profile">
-                            <div class="testimonio-avatar-letters">AR</div>
-                            <div class="testimonio-profile-info">
-                                <span class="testimonio-autor">Alejandro Ruiz</span>
-                            </div>
-                        </div>
-                    </figcaption>
-                </figure>
 
-                <figure class="testimonio-card glow-coral">
-                    <blockquote>“El rediseño de nuestros contratos de trabajo y actas de asamblea fue impecable. Buscábamos claridad y protección sin saturar al personal con documentos eternos. Entendieron nuestro modelo de negocio desde el primer día.”</blockquote>
-                    <figcaption>
-                        <div class="testimonio-profile">
-                            <div class="testimonio-avatar-letters">ME</div>
-                            <div class="testimonio-profile-info">
-                                <span class="testimonio-autor">Mónica Elizondo</span>
-                            </div>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
 
-            <!-- Indicadores del carrusel (solo visibles en móvil vía CSS).
-                 Los rellena y sincroniza script.js; sin JS no estorban. -->
-            <div class="tst-dots" id="tstDots" role="tablist" aria-label="Navegación de testimonios"></div>
-        </div>
-    </section>
 
-    <!-- ═══ 6. NUESTRA PROMESA ═══ -->
-    <section id="promesa" class="promesa-section">
-        <div class="promesa-container fade-in-up">
-            <span class="promesa-eyebrow blur-fade">NUESTRA PROMESA</span>
-            <h2 class="promesa-title blur-fade" data-bf-delay="1">Un compromiso que<br><em>no tiene letra pequeña</em></h2>
-            <div class="promesa-rule reveal-line"></div>
-            <p class="promesa-text text-blur-in">
-                Operamos como plataforma: precios públicos, procesos claros y entregas en 48 horas. Pero decidimos como firma: cada asunto lo analiza un socio, con rigor y criterio. Tecnología en el proceso, abogados en las decisiones.
-            </p>
-            <!-- Firma animada (Higgsfield): la caligrafía se escribe en tiempo real. -->
-            <div class="promesa-signature-wrap">
-                <!-- preload="none": son 9.2 MB al final de la página. No hay autoplay;
-                     el IntersectionObserver de script.js lo reproduce al entrar en vista,
-                     y hasta entonces se ve el poster. Con preload="auto" se descargaba
-                     entero en cada visita aunque nadie llegara hasta aquí. -->
-                <video class="promesa-signature-video" muted playsinline preload="none"
-                       poster="signature_on_dark.png" aria-label="Firma Ferro Fragoso escribiéndose">
-                    <source src="signature_write.mp4" type="video/mp4">
-                    <img src="signature_logo.png" alt="Ferro Fragoso Caligrafía" class="promesa-signature-img" loading="lazy" decoding="async">
-                </video>
-            </div>
-            <p class="promesa-firma">— Ferro Fragoso, Estudio Jurídico</p>
 
-        </div>
-    </section>
-
-    <!-- ═══ RADAR LEGAL FF ═══ -->
-    <section class="radar-hero">
-        <h2 class="radar-hero-title blur-fade">
-            Actualidad jurídica<br><em>que sí vas a leer</em>
-        </h2>
-        <p class="radar-hero-desc tr-reveal" data-tr-split="words">
-            Ferro Fragoso es el estudio bajo el cual se construyen y protegen negocios sólidos. Suscríbete para recibir los cambios legales que afectan tu patrimonio — cada martes, en 3 minutos.
-        </p>
-        
-        <form id="radar-form" action="#" method="POST" class="radar-hero-form">
-            <input type="hidden" name="etiqueta" value="home">
-            <input type="email" id="radar-email" name="email" required placeholder="tu@correo.com" class="radar-hero-input">
-            <button type="submit" class="radar-hero-submit">Suscribirme &rarr;</button>
-        </form>
-        <p id="radar-mensaje" role="status" style="font-size: 0.85rem; margin-top: 1rem; min-height: 1.2em; color: var(--carbon, #2e2c2a); text-align: center;"></p>
-        
-        <label style="display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-body); font-size: 0.78rem; margin-top: 1.2rem; cursor: pointer; color: var(--text-muted, #9c9489);">
-            <input type="checkbox" id="radar-privacidad" required style="flex-shrink: 0;">
-            <span>He leído y acepto el <a href="privacidad.html" style="color: #161616; text-decoration: underline;">aviso de privacidad</a>.</span>
-        </label>
-        
-        <p style="font-family: var(--font-body); font-size: 0.82rem; margin: 1.5rem 0 0; text-align: center;">
-            <a href="radar/index.html" style="color: var(--bronze, #c5a880); text-decoration: underline;">Lee las ediciones anteriores →</a>
-        </p>
-    </section>
 
     <!-- ═══ FOOTER ═══ -->
     <footer class="site-footer">
@@ -645,8 +1204,7 @@
     </script>
 
     <!-- Scripts -->
-    <script src="script.js?v=11"></script>
-    <script src="precios.js?v=8"></script>
+    <script src="script.js?v=13"></script>
+    <script src="precios.js?v=10"></script>
     <script src="analytics.js?v=11"></script>
-</body>
-</html>
+</body></html>

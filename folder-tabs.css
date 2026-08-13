@@ -1,0 +1,218 @@
+/* ═══ FOLDER TABS SECTION ═══ */
+.folder-tabs-section {
+    background-color: #ffffff; 
+    padding: 6rem 5vw;
+    display: flex;
+    justify-content: center;
+}
+
+.folder-container {
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    font-family: var(--font-body, system-ui, sans-serif);
+    
+    --color-navy: #1a2942;
+    --color-orange: #e66430;
+    --color-beige: #e5dfd3;
+    
+    --active-bg: var(--color-navy);
+    --active-text: #ffffff;
+}
+
+.folder-container[data-active="civil"] { 
+    --active-bg: var(--color-navy); 
+    --active-text: #ffffff; 
+}
+.folder-container[data-active="familiar"] { 
+    --active-bg: var(--color-orange); 
+    --active-text: #111111;
+}
+.folder-container[data-active="inmobiliario"] { 
+    --active-bg: var(--color-beige); 
+    --active-text: #111111;
+}
+
+.folder-tabs {
+    display: flex;
+    gap: 0;
+    margin-left: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.folder-tab {
+    position: relative;
+    padding: 1.25rem 2.5rem 2.5rem; 
+    margin-bottom: -1.5rem; 
+    margin-left: -1rem; 
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    min-width: 200px;
+    text-align: center;
+    outline: none;
+    --tab-text: #111111;
+}
+
+.folder-tab:first-child {
+    margin-left: 0;
+    z-index: 3;
+}
+.folder-tab:nth-child(2) { z-index: 2; }
+.folder-tab:nth-child(3) { z-index: 1; }
+
+.folder-tab::before {
+    content: '';
+    position: absolute;
+    inset: 0 15px 0 0;
+    border-radius: 12px 0 0 0;
+    z-index: -1;
+    background-color: var(--tab-bg);
+    transition: transform 0.2s ease;
+}
+
+.folder-tab::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    border-radius: 0 12px 0 0;
+    transform: skewX(25deg);
+    transform-origin: bottom left;
+    z-index: -2;
+    background-color: var(--tab-bg);
+    transition: transform 0.2s ease;
+}
+
+.folder-tab[data-tab="civil"] { 
+    --tab-bg: var(--color-navy); 
+    --tab-text: #ffffff; 
+}
+.folder-tab[data-tab="familiar"] { 
+    --tab-bg: var(--color-orange); 
+}
+.folder-tab[data-tab="inmobiliario"] { 
+    --tab-bg: var(--color-beige); 
+}
+
+.folder-tab:not(.active):hover::before,
+.folder-tab:not(.active):hover::after {
+    filter: brightness(1.05);
+}
+
+.folder-tab.active { z-index: 10 !important; }
+
+.folder-tab span {
+    display: block;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--tab-text);
+    position: relative;
+    z-index: 2;
+}
+
+.folder-content-area {
+    background-color: var(--active-bg);
+    border-radius: 16px;
+    padding: 3rem 4rem 5rem;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    transition: background-color 0.4s ease;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.folder-panel {
+    display: none;
+    animation: folderFadeIn 0.4s ease-out;
+    flex-direction: column;
+    height: 100%;
+}
+.folder-panel.active {
+    display: flex;
+}
+
+@keyframes folderFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--active-text);
+    padding-bottom: 0.5rem;
+    margin-bottom: 4rem;
+    font-size: 1rem;
+    color: var(--active-text);
+    opacity: 0.8;
+}
+
+.panel-header .left {
+    font-weight: 400;
+}
+
+.panel-header .right {
+    font-weight: 500;
+}
+
+.panel-title {
+    font-family: var(--font-heading, 'Playfair Display', 'Cormorant Garamond', serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    color: var(--active-text);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    text-align: center;
+    margin: auto 0;
+    padding-bottom: 3rem;
+}
+
+.panel-cta-wrap {
+    text-align: center;
+    margin-top: auto;
+}
+
+.panel-cta {
+    display: inline-block;
+    background-color: #111111;
+    color: #ffffff;
+    /* Era un <span> decorativo; ahora es el enlace real a la página del área. */
+    text-decoration: none;
+    padding: 0.85rem 2.5rem;
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.panel-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .folder-tabs-section { padding: 4rem 1.5rem; }
+    .folder-tabs { flex-direction: column; margin-left: 0; }
+    .folder-tab { margin-left: 0 !important; margin-bottom: 0.25rem; padding: 1.25rem; border-radius: 12px; min-width: 100%; }
+    .folder-tab::before { border-radius: 12px; inset: 0; }
+    .folder-tab::after { display: none; }
+    .folder-tab.active { margin-bottom: 0; }
+    .folder-tab.active::before { border-radius: 12px 12px 0 0; }
+    .folder-content-area { padding: 2rem 1.5rem 3rem; border-radius: 0 0 16px 16px; min-height: 400px; }
+    .panel-title { font-size: 2.8rem; margin-bottom: 2rem; }
+    .panel-header { margin-bottom: 2rem; font-size: 0.85rem; }
+}
