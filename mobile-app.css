@@ -244,9 +244,9 @@
         transition: transform 0.1s var(--spring), background 0.15s !important;
     }
     .calc-hub-card:active { transform: scale(0.98); background: rgba(0,0,0,0.03) !important; }
-    .calc-hub-card-icon { width: 48px !important; height: 48px !important; border-radius: 12px !important; flex-shrink: 0; }
-    .calc-hub-card-name { font-size: 0.95rem !important; }
-    .calc-hub-card-desc { font-size: 0.78rem !important; line-height: 1.4 !important; }
+    .calc-hub-card-icon { width: 48px !important; height: 48px !important; border-radius: 12px !important; flex-shrink: 0; color: #111 !important; background: rgba(0,0,0,0.04); }
+    .calc-hub-card-name { font-size: 1.05rem !important; color: #111 !important; }
+    .calc-hub-card-desc { font-size: 0.85rem !important; line-height: 1.4 !important; color: #555 !important; }
     .calc-hub-card-arrow { display: flex !important; color: #c7c7cc; font-size: 1rem; flex-shrink: 0; }
     .calc-hub-disclaimer { margin: 1.5rem 1.25rem 0; font-size: 0.72rem; color: #aaa; text-align: left; }
 }

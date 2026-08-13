@@ -580,67 +580,74 @@
                             <summary><h3>Tipos de separación laboral</h3></summary>
                             <div class="calc-marco-card-body">
                                 <p>Criterios de aplicación según normatividad</p>
-                                <div class="calc-marco-tabla-wrap" style="margin-top: 1rem;">
-                                    <table class="calc-marco-tabla">
-                                        <thead>
-                                            <tr>
-                                                <th>Tipo</th>
-                                                <th>Prima Antigüedad</th>
-                                                <th>Indemnización</th>
-                                                <th>Observaciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Renuncia voluntaria</td>
-                                                <td>Sí aplica</td>
-                                                <td>No aplica</td>
-                                                <td>Prima de antigüedad conforme Art. 162 LFT</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Despido justificado</td>
-                                                <td>Sí aplica</td>
-                                                <td>No aplica</td>
-                                                <td>Prima de antigüedad conforme Art. 162 LFT</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Despido injustificado</td>
-                                                <td>Sí aplica</td>
-                                                <td>Sí aplica (Art. 50)</td>
-                                                <td>Liquidación completa: 3 meses de salario</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fin de contrato</td>
-                                                <td>Sí aplica</td>
-                                                <td>No aplica</td>
-                                                <td>Prima de antigüedad conforme Art. 162 LFT</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Muerte del Trabajador</td>
-                                                <td>Sí aplica</td>
-                                                <td>No aplica</td>
-                                                <td>A beneficiarios según Art. 501 LFT</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Incapacidad permanente</td>
-                                                <td>Sí aplica</td>
-                                                <td>No aplica</td>
-                                                <td>Conforme Art. 162 LFT</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jubilación</td>
-                                                <td>Sí aplica</td>
-                                                <td>No aplica</td>
-                                                <td>Conforme Art. 162 LFT</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Muerte/Incapacidad</td>
-                                                <td>Sí aplica</td>
-                                                <td>No aplica</td>
-                                                <td>A beneficiarios</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="mobile-app-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <style>
+                                        .mali-item { background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 1rem; }
+                                        .mali-header h4 { margin: 0 0 0.5rem 0; font-family: var(--font-heading); font-size: 1.1rem; color: #111; }
+                                        .mali-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+                                        .mali-badge { font-family: var(--font-body); font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 4px; }
+                                        .mali-badge.si { background: rgba(16, 185, 129, 0.15); color: #065F46; }
+                                        .mali-badge.no { background: rgba(239, 68, 68, 0.15); color: #991B1B; }
+                                        .mali-badge.si-warn { background: rgba(245, 158, 11, 0.15); color: #92400E; }
+                                        .mali-obs { margin: 0; font-family: var(--font-body); font-size: 0.8rem; color: #555; }
+                                    </style>
+                                    
+                                    <div class="mali-item">
+                                        <div class="mali-header"><h4>Renuncia voluntaria</h4></div>
+                                        <div class="mali-badges">
+                                            <span class="mali-badge si"><i class="fas fa-check"></i> Prima Antigüedad</span>
+                                            <span class="mali-badge no"><i class="fas fa-times"></i> Indemnización</span>
+                                        </div>
+                                        <p class="mali-obs">Prima de antigüedad conforme Art. 162 LFT</p>
+                                    </div>
+                                    <div class="mali-item">
+                                        <div class="mali-header"><h4>Despido justificado</h4></div>
+                                        <div class="mali-badges">
+                                            <span class="mali-badge si"><i class="fas fa-check"></i> Prima Antigüedad</span>
+                                            <span class="mali-badge no"><i class="fas fa-times"></i> Indemnización</span>
+                                        </div>
+                                        <p class="mali-obs">Prima de antigüedad conforme Art. 162 LFT</p>
+                                    </div>
+                                    <div class="mali-item">
+                                        <div class="mali-header"><h4>Despido injustificado</h4></div>
+                                        <div class="mali-badges">
+                                            <span class="mali-badge si"><i class="fas fa-check"></i> Prima Antigüedad</span>
+                                            <span class="mali-badge si-warn"><i class="fas fa-exclamation-circle"></i> Indemnización (Art. 50)</span>
+                                        </div>
+                                        <p class="mali-obs">Liquidación completa: 3 meses de salario</p>
+                                    </div>
+                                    <div class="mali-item">
+                                        <div class="mali-header"><h4>Fin de contrato</h4></div>
+                                        <div class="mali-badges">
+                                            <span class="mali-badge si"><i class="fas fa-check"></i> Prima Antigüedad</span>
+                                            <span class="mali-badge no"><i class="fas fa-times"></i> Indemnización</span>
+                                        </div>
+                                        <p class="mali-obs">Prima de antigüedad conforme Art. 162 LFT</p>
+                                    </div>
+                                    <div class="mali-item">
+                                        <div class="mali-header"><h4>Muerte del Trabajador</h4></div>
+                                        <div class="mali-badges">
+                                            <span class="mali-badge si"><i class="fas fa-check"></i> Prima Antigüedad</span>
+                                            <span class="mali-badge no"><i class="fas fa-times"></i> Indemnización</span>
+                                        </div>
+                                        <p class="mali-obs">A beneficiarios según Art. 501 LFT</p>
+                                    </div>
+                                    <div class="mali-item">
+                                        <div class="mali-header"><h4>Incapacidad permanente</h4></div>
+                                        <div class="mali-badges">
+                                            <span class="mali-badge si"><i class="fas fa-check"></i> Prima Antigüedad</span>
+                                            <span class="mali-badge no"><i class="fas fa-times"></i> Indemnización</span>
+                                        </div>
+                                        <p class="mali-obs">Conforme Art. 162 LFT</p>
+                                    </div>
+                                    <div class="mali-item">
+                                        <div class="mali-header"><h4>Jubilación</h4></div>
+                                        <div class="mali-badges">
+                                            <span class="mali-badge si"><i class="fas fa-check"></i> Prima Antigüedad</span>
+                                            <span class="mali-badge no"><i class="fas fa-times"></i> Indemnización</span>
+                                        </div>
+                                        <p class="mali-obs">Conforme Art. 162 LFT</p>
+                                    </div>
                                 </div>
                             </div>
                         </details>
