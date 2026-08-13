@@ -388,56 +388,34 @@
                         
                         <!-- Fila 1 -->
                         <a href="#filtro-orientacion" class="consulta-fila" aria-label="Opción: Cuéntanos tu caso. 15 minutos, sin costo.">
-                            <div class="consulta-fila-contenido">
-                                <div class="consulta-fila-header">
-                                    <h3 class="consulta-fila-titulo">Cuéntanos tu caso</h3>
-                                    <div class="consulta-fila-meta">
-                                        <span class="consulta-fila-duracion">15 min</span>
-                                        <span class="consulta-fila-precio">Sin costo</span>
-                                    </div>
-                                </div>
-                                <p class="consulta-fila-desc">Te escuchamos, confirmamos si podemos ayudarte y te recomendamos el servicio adecuado.</p>
-                                <div class="consulta-fila-cta-wrap">
-                                    <span class="consulta-fila-cta">Ver si mi caso aplica <i class="fas fa-arrow-right" style="font-size: 0.85em; margin-left: 4px;"></i></span>
-                                </div>
+                            <div class="consulta-fila-left">
+                                <h3 class="consulta-fila-titulo">Cuéntanos tu caso</h3>
+                                <p class="consulta-fila-desc">15 min &middot; Te escuchamos y recomendamos el servicio adecuado.</p>
+                            </div>
+                            <div class="consulta-fila-right pill-blue">
+                                Sin costo
                             </div>
                         </a>
 
                         <!-- Fila 2 -->
                         <a href="#agenda-consulta" class="consulta-fila consulta-fila--recomendada" aria-label="Opción Recomendada: Consulta legal. 45 minutos, 790 pesos.">
-                            <div class="consulta-fila-linea-roja"></div>
-                            <div class="consulta-fila-contenido">
-                                <div class="consulta-fila-header">
-                                    <h3 class="consulta-fila-titulo">
-                                        Consulta legal
-                                        <span class="consulta-fila-badge">RECOMENDADA</span>
-                                    </h3>
-                                    <div class="consulta-fila-meta">
-                                        <span class="consulta-fila-duracion">45 min</span>
-                                        <span class="consulta-fila-precio consulta-fila-precio--destacado">$790 MXN</span>
-                                    </div>
-                                </div>
-                                <p class="consulta-fila-desc">Expón tu situación, resuelve tus dudas y conoce tus opciones con un abogado.</p>
-                                <div class="consulta-fila-cta-wrap">
-                                    <span class="consulta-fila-cta">Agendar consulta <i class="fas fa-arrow-right" style="font-size: 0.85em; margin-left: 4px;"></i></span>
-                                </div>
+                            <div class="consulta-fila-left">
+                                <h3 class="consulta-fila-titulo">Consulta legal <span class="consulta-fila-badge">RECOMENDADA</span></h3>
+                                <p class="consulta-fila-desc">45 min &middot; Expón tu situación, resuelve dudas y conoce opciones.</p>
+                            </div>
+                            <div class="consulta-fila-right pill-red">
+                                $790 MXN
                             </div>
                         </a>
 
                         <!-- Fila 3 -->
                         <a href="#agenda-analisis" class="consulta-fila" aria-label="Opción: Análisis legal de tu caso. 60 minutos, 1290 pesos.">
-                            <div class="consulta-fila-contenido">
-                                <div class="consulta-fila-header">
-                                    <h3 class="consulta-fila-titulo">Análisis legal de tu caso</h3>
-                                    <div class="consulta-fila-meta">
-                                        <span class="consulta-fila-duracion">60 min</span>
-                                        <span class="consulta-fila-precio">$1,290 MXN</span>
-                                    </div>
-                                </div>
-                                <p class="consulta-fila-desc">Para asuntos que requieren revisar antecedentes relevantes y definir una ruta de acción.</p>
-                                <div class="consulta-fila-cta-wrap">
-                                    <span class="consulta-fila-cta">Agendar análisis <i class="fas fa-arrow-right" style="font-size: 0.85em; margin-left: 4px;"></i></span>
-                                </div>
+                            <div class="consulta-fila-left">
+                                <h3 class="consulta-fila-titulo">Análisis legal de tu caso</h3>
+                                <p class="consulta-fila-desc">60 min &middot; Revisión de antecedentes y ruta de acción.</p>
+                            </div>
+                            <div class="consulta-fila-right pill-green">
+                                $1,290 MXN
                             </div>
                         </a>
                     </div>
@@ -454,46 +432,27 @@
         </div>
         <style>
             .consulta-fila {
-                display: block;
-                text-decoration: none;
-                color: inherit;
-                border: 1px solid rgba(0,0,0,0.03);
-                border-radius: 16px;
-                position: relative;
-                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-                background-color: rgba(255, 255, 255, 0.6);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                box-shadow: 0 4px 24px -6px rgba(0,0,0,0.02);
-                overflow: hidden;
-            }
-            .consulta-fila-contenido {
-                padding: 1.5rem 1.25rem;
-                position: relative;
-                z-index: 2;
-            }
-            .consulta-fila--recomendada {
-                background-color: rgba(255, 255, 255, 0.95);
-                border: 1px solid rgba(255, 113, 18, 0.2);
-                box-shadow: 0 8px 30px -8px rgba(255, 113, 18, 0.08);
-            }
-            .consulta-fila-linea-roja {
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 4px;
-                background: linear-gradient(to bottom, #FF7112, #dc2626);
-                z-index: 3;
-                opacity: 0.8;
-            }
-            .consulta-fila-header {
                 display: flex;
                 justify-content: space-between;
-                align-items: baseline;
-                margin-bottom: 0.5rem;
-                flex-wrap: wrap;
-                gap: 0.5rem;
+                align-items: center;
+                text-decoration: none;
+                color: inherit;
+                border: none;
+                border-radius: 24px;
+                background-color: #fdfbf7;
+                padding: 1.5rem 1.8rem;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            }
+            .consulta-fila--recomendada {
+                border: 1px solid rgba(255, 113, 18, 0.2);
+                box-shadow: 0 8px 30px rgba(255, 113, 18, 0.08);
+            }
+            .consulta-fila-left {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                max-width: 65%;
             }
             .consulta-fila-titulo {
                 font-family: var(--font-heading, 'Cormorant Garamond', serif);
@@ -504,6 +463,7 @@
                 display: flex;
                 align-items: center;
                 gap: 12px;
+                flex-wrap: wrap;
             }
             .consulta-fila-badge {
                 font-family: var(--font-body, system-ui, sans-serif);
@@ -517,104 +477,64 @@
                 text-transform: uppercase;
                 border: 1px solid rgba(255, 113, 18, 0.2);
             }
-            .consulta-fila-meta {
-                display: flex;
-                align-items: baseline;
-                gap: 1rem;
-                font-family: var(--font-body, system-ui, sans-serif);
-            }
-            .consulta-fila-duracion {
-                font-size: 0.85rem;
-                color: #888;
-                font-weight: 500;
-            }
-            .consulta-fila-precio {
-                font-size: 1.1rem;
-                font-weight: 600;
-                color: #333;
-            }
-            .consulta-fila-precio--destacado {
-                color: #e65c00;
-                font-weight: 600;
-            }
             .consulta-fila-desc {
                 font-family: var(--font-body, system-ui, sans-serif);
                 font-size: 0.95rem;
                 color: #555;
-                line-height: 1.5;
+                line-height: 1.4;
                 margin: 0;
-                max-width: 90%;
             }
-            .consulta-fila-cta-wrap {
-                margin-top: 0.8rem;
-                opacity: 0;
-                transform: translateX(-10px);
-                transition: all 0.3s ease;
-            }
-            .consulta-fila-cta {
+            .consulta-fila-right {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 24px;
+                padding: 1.2rem 1.5rem;
                 font-family: var(--font-body, system-ui, sans-serif);
-                font-size: 0.85rem;
                 font-weight: 600;
-                color: #dc2626;
-                text-transform: uppercase;
-                letter-spacing: 0.05em;
+                font-size: 1.1rem;
+                white-space: nowrap;
+                transition: transform 0.3s ease;
+            }
+            .pill-blue {
+                background-color: #BBE1FA;
+                color: #1B262C;
+            }
+            .pill-red {
+                background-color: #F8B4B4;
+                color: #5C1A1A;
+            }
+            .pill-green {
+                background-color: #B5E095;
+                color: #1F3F08;
             }
             
             @media (hover: hover) {
                 .consulta-fila:hover {
-                    background-color: rgba(255, 255, 255, 1);
+                    background-color: #ffffff;
                     transform: translateY(-4px);
-                    box-shadow: 0 16px 40px -10px rgba(0,0,0,0.06);
-                    border-color: rgba(0,0,0,0.06);
+                    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
                 }
-                .consulta-fila--recomendada:hover {
-                    border-color: rgba(255, 113, 18, 0.3);
-                    box-shadow: 0 16px 40px -10px rgba(255, 113, 18, 0.12);
-                }
-                .consulta-fila:hover .consulta-fila-cta-wrap {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-
-            @media (prefers-reduced-motion: reduce) {
-                .consulta-fila {
-                    transition: none !important;
-                    transform: none !important;
-                }
-                .consulta-fila:hover {
-                    transform: none !important;
-                }
-                .consulta-fila-cta-wrap {
-                    opacity: 1 !important;
-                    transform: none !important;
-                    transition: none !important;
+                .consulta-fila:hover .consulta-fila-right {
+                    transform: scale(1.05);
                 }
             }
             
             @media (max-width: 768px) {
-                .consulta-fila-contenido {
-                    padding: 1.25rem 1rem;
-                }
-                .consulta-fila-titulo {
-                    font-size: 1.4rem;
+                .consulta-fila {
                     flex-direction: column;
                     align-items: flex-start;
-                    gap: 6px;
+                    gap: 1.25rem;
+                    padding: 1.25rem;
+                    border-radius: 20px;
                 }
-                .consulta-fila-meta {
-                    width: 100%;
-                    justify-content: flex-start;
-                    margin-top: 0.5rem;
-                    margin-bottom: 0.5rem;
-                }
-                .consulta-fila-desc {
+                .consulta-fila-left {
                     max-width: 100%;
                 }
-                .consulta-fila-cta-wrap {
-                    opacity: 1;
-                    transform: translateX(0);
-                    margin-top: 0.8rem;
+                .consulta-fila-right {
+                    align-self: stretch;
+                    padding: 1rem;
+                    border-radius: 16px;
                 }
             }
         </style>
