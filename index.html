@@ -384,7 +384,7 @@
                 <!-- Right Column: Content and Options -->
                 <div class="blur-fade" data-bf-delay="1" style="display: flex; flex-direction: column;">
                     <!-- Filas de Opciones -->
-                    <div style="display: flex; flex-direction: column; width: 100%; border-top: 1px solid rgba(0,0,0,0.1);">
+                    <div style="display: flex; flex-direction: column; width: 100%; gap: 1rem;">
                         
                         <!-- Fila 1 -->
                         <a href="#filtro-orientacion" class="consulta-fila" aria-label="Opción: Cuéntanos tu caso. 15 minutos, sin costo.">
@@ -465,10 +465,13 @@
                 display: block;
                 text-decoration: none;
                 color: inherit;
-                border-bottom: 1px solid rgba(0,0,0,0.1);
+                border: 1px solid rgba(0,0,0,0.08);
+                border-radius: 12px;
                 position: relative;
                 transition: all 0.25s ease;
-                background-color: transparent;
+                background-color: rgba(255, 255, 255, 0.4);
+                box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02);
+                overflow: hidden;
             }
             .consulta-fila-contenido {
                 padding: 1.25rem 0.75rem;
@@ -476,7 +479,8 @@
                 z-index: 2;
             }
             .consulta-fila--recomendada {
-                background-color: rgba(255, 255, 255, 0.6);
+                background-color: rgba(255, 255, 255, 0.85);
+                border-color: rgba(220, 38, 38, 0.2);
             }
             .consulta-fila-linea-roja {
                 position: absolute;
@@ -561,8 +565,10 @@
             
             @media (hover: hover) {
                 .consulta-fila:hover {
-                    background-color: rgba(255, 255, 255, 0.9);
-                    transform: translateX(4px);
+                    background-color: rgba(255, 255, 255, 0.95);
+                    transform: translateY(-3px);
+                    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+                    border-color: rgba(0,0,0,0.12);
                 }
                 .consulta-fila:hover .consulta-fila-cta-wrap {
                     opacity: 1;
