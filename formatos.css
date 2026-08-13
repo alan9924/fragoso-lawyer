@@ -1992,6 +1992,7 @@ body:has(.step-container.active:not(#step-0)) .formatos-wrapper {
     /* Hide all website UI */
     #navbar,
     #intro-loader,
+    .wizard-top-bar,
     .wizard-header,
     .wizard-footer,
     .wizard-question,
