@@ -37,6 +37,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@200;300;400;500;600&family=Abril+Fatface&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Evitar selección de texto accidental y highlight de toques en móvil */
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .titulo-seleccion, .titulo-cartel, h1, h2, h3 {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        /* Ocultar botón de play nativo en videos (iOS low power mode) */
+        video::-webkit-media-controls-start-playback-button {
+            display: none !important;
+            -webkit-appearance: none;
+        }
+        video::-webkit-media-controls {
+            display: none !important;
+        }
+
         /* Eliminar todas las líneas de separación entre secciones */
         section {
             border-top: none !important;
