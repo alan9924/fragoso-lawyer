@@ -432,17 +432,15 @@ body.columna-navegando #columna-rail {
     gap: 2rem;
     margin-top: 3rem;
   }
-  /* The "Empezar" button becomes sticky bottom */
+  /* The "Empezar" button stays inline but mobile-optimized */
   .hero-cartel-btn {
-    position: fixed;
-    bottom: 2rem;
-    left: 1.5rem;
-    right: 1.5rem;
+    display: block;
+    width: 100%;
     text-align: center;
-    padding: 1.25rem 2rem;
-    border-radius: 30px; /* High rounding like iOS */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    z-index: 100;
+    padding: 1.15rem 2rem;
+    border-radius: 20px; /* High rounding */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    margin-top: 1rem;
   }
   /* The links become a vertical menu list */
   .hero-cartel-links {
