@@ -52,13 +52,13 @@ body.calculadora-page .circular-back-btn:hover {
 }
 
 /* Hide navbar when showing results or wizard to achieve full screen dark aesthetic */
-body:has(#calc-step-1.active) #navbar,
-body:has(#calc-step-2.active) #navbar {
+body:has(#tool-finiquito.active):has(#calc-step-1.active) #navbar,
+body:has(#tool-finiquito.active):has(#calc-step-2.active) #navbar {
     display: none !important;
 }
 
 /* El resultado se presenta como un dictamen editorial sobre papel marfil. */
-body:has(#calc-step-2.active) {
+body:has(#tool-finiquito.active):has(#calc-step-2.active) {
     background-color: #f6f3ee !important;
 }
 
@@ -1130,7 +1130,7 @@ body:has(#calc-step-2.active) {
 }
 
 /* Change page background to match the dashboard on results view */
-body:has(#calc-step-2.active) {
+body:has(#tool-finiquito.active):has(#calc-step-2.active) {
     background-color: #f4f3ef !important; /* tono cálido de marca, consistente con el wizard */
 }
 
@@ -1733,7 +1733,7 @@ body:has(#calc-step-2.active) {
 
 /* ── Impresión ── */
 @media print {
-    body:has(#calc-step-2.active) { background: #fff !important; }
+    body:has(#tool-finiquito.active):has(#calc-step-2.active) { background: #fff !important; }
     .dictamen-card { box-shadow: none; border-color: #ccc; }
     .dictamen-radar { display: none !important; }
     .dictamen-watermark { opacity: 0.06; }
@@ -2276,8 +2276,8 @@ details.calc-marco-card.card-charcoal summary::after { color: #fff; border-color
    ═══════════════════════════════════════════════ */
 
 /* Hide nav when in an active tool screen */
-body:has(#calc-step-1.active) #navbar,
-body:has(#calc-step-2.active) #navbar { display: none !important; }
+body:has(#tool-finiquito.active):has(#calc-step-1.active) #navbar,
+body:has(#tool-finiquito.active):has(#calc-step-2.active) #navbar { display: none !important; }
 
 .calc-hub-screen,
 .calc-tool-screen { display: none; width: 100%; min-height: 100vh; }
