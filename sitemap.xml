@@ -6,6 +6,26 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>https://ferrofragoso.com/civil.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/familiar.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/inmobiliario.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/propiedad-intelectual.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://ferrofragoso.com/marcas.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
@@ -16,22 +36,7 @@
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://ferrofragoso.com/franquicias.html</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://ferrofragoso.com/empresa.html</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://ferrofragoso.com/revision.html</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://ferrofragoso.com/consulta.html</loc>
+        <loc>https://ferrofragoso.com/secreto-industrial.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -41,14 +46,34 @@
         <priority>0.9</priority>
     </url>
     <url>
+        <loc>https://ferrofragoso.com/revision.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
         <loc>https://ferrofragoso.com/finiquito.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://ferrofragoso.com/empresas.html</loc>
+        <loc>https://ferrofragoso.com/reclamacion.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/empresa.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/empresa-operacion.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/consulta.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
     </url>
     <url>
         <loc>https://ferrofragoso.com/plan.html</loc>
@@ -56,14 +81,34 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://ferrofragoso.com/nosotros.html</loc>
+        <loc>https://ferrofragoso.com/independiente.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/marca-diagnostico.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
     <url>
         <loc>https://ferrofragoso.com/evaluacion.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/solicitud.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/seguimiento.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://ferrofragoso.com/nosotros.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://ferrofragoso.com/terminos.html</loc>
