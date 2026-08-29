@@ -556,7 +556,7 @@ nav.scrolled {
     transform: rotate(180deg);
 }
 
-.sidebar-wa {
+.sidebar-contact {
     background: #ffffff;
     color: var(--carbon);
     border-left: 1px solid var(--stone-200);
@@ -2724,10 +2724,10 @@ footer {
         line-height: 1;
     }
 
-    .sidebar-wa::before {
-        font-family: "Font Awesome 6 Brands";
-        font-weight: 400;
-        content: "\f232";
+    .sidebar-contact::before {
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        content: "\f556";
     }
 
     .sidebar-email::before {
