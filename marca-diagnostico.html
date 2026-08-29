@@ -272,7 +272,6 @@
 (function(){
   'use strict';
 
-  var WA = '524191239646';
   var LS = 'ff_dx_marca';
   var TOTAL = 4;
   var estado = { nombre:'', giro:'', logo:'', uso:'', paso:1 };
@@ -432,14 +431,14 @@
   /* El handoff: el cliente ya hizo la entrevista, el despacho recibe un lead
      estructurado en vez de un "hola, información". */
   function enviar(){
-    var msg =
-      'Hola, hice el diagnóstico de marca en el sitio y quiero que un abogado lo revise.\n\n' +
+    var detalle =
+      'Hice el diagnóstico de marca en el sitio y quiero que un abogado lo revise.\n\n' +
       '• Marca: ' + estado.nombre + '\n' +
       '• A qué me dedico: ' + estado.giro + '\n' +
       '• Logotipo: ' + estado.logo + '\n' +
       '• Uso actual: ' + estado.uso;
     evento('diagnostico_marca_enviado', { marca: estado.nombre });
-    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    location.href = 'solicitud.html?servicio=marca_esencial&detalle=' + encodeURIComponent(detalle);
   }
 
   function ir(destino){
