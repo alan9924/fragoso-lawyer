@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fdfdfc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Planes y Precios | Escudo Legal | FERRO FRAGOSO</title>
     <link rel="canonical" href="https://ferrofragoso.com/plan.html">
     <!-- Open Graph / redes: sin esto, al compartir el link en WhatsApp o LinkedIn
@@ -25,6 +30,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css?v=14">
     <link rel="stylesheet" href="home-new.css?v=11">
+    <link rel="stylesheet" href="mobile-app.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -96,7 +102,7 @@
                     </li>
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
-                    <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
+                    <li><a href="seguimiento.html" class="nav-top-link">Seguimiento</a></li>
                 </ul>
             </div>
 
@@ -145,7 +151,7 @@
                             <li>Tu <b>testamento</b> incluido 1 vez/año</li>
                             <li>Descuento de miembro en todo servicio</li>
                         </ul>
-                        <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Tranquilidad" target="_blank" rel="noopener">Empezar</a>
+                        <a class="btn btn-line" data-servicio="tranquilidad" href="solicitud.html?servicio=tranquilidad&detalle=Me%20interesa%20el%20plan%20de%20membres%C3%ADa%20Tranquilidad." target="_blank" rel="noopener">Empezar</a>
                     </div>
 
                     <div class="plan feat">
@@ -160,7 +166,7 @@
                             <li>2 consultas telefónicas al mes</li>
                             <li>Atención prioritaria</li>
                         </ul>
-                        <a class="btn btn-brass" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Familia" target="_blank" rel="noopener">Proteger a mi familia</a>
+                        <a class="btn btn-brass" data-servicio="familia" href="solicitud.html?servicio=familia&detalle=Me%20interesa%20el%20plan%20de%20membres%C3%ADa%20Familia." target="_blank" rel="noopener">Proteger a mi familia</a>
                     </div>
 
                     <div class="plan">
@@ -174,7 +180,7 @@
                             <li>Orientación en arrendamientos e inversiones</li>
                             <li>Sesión estratégica trimestral</li>
                         </ul>
-                        <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Patrimonio" target="_blank" rel="noopener">Empezar</a>
+                        <a class="btn btn-line" data-servicio="patrimonio" href="solicitud.html?servicio=patrimonio&detalle=Me%20interesa%20el%20plan%20de%20membres%C3%ADa%20Patrimonio." target="_blank" rel="noopener">Empezar</a>
                     </div>
                 </div>
 
@@ -193,7 +199,7 @@
                             </p>
                             <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
                                 <a href="consulta.html" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Solicitar</a>
-                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">$1,290 MXN</span>
+                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">$1,490 MXN</span>
                             </div>
                         </div>
                         
@@ -231,7 +237,7 @@
                                 ¿No sabes qué necesitas? Te orientamos y te decimos el camino (10-15 min).
                             </p>
                             <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
-                                <a href="https://wa.me/524191239646?text=Hola,%20me%20gustaría%20agendar%20una%20llamada%20de%20filtro" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Agendar</a>
+                                <a href="solicitud.html?servicio=llamada_filtro" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Agendar</a>
                                 <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">Gratis</span>
                             </div>
                         </div>
@@ -288,48 +294,44 @@
 
                 <div class="grid animated-group" data-ag-preset="blur-slide">
                     <div class="plan">
-                        <div class="pname">Contratos Esenciales</div>
-                        <div class="ptag">Negocio en marcha</div>
-                        <div class="price">$1,990 <small>MXN / MES</small></div>
-                        <div class="annual">o $19,900/año · 2 meses gratis</div>
+                        <div class="pname">Dirección Base</div>
+                        <div class="ptag">Independientes y negocios que firman ocasionalmente</div>
+                        <div class="price">$1,990 <small>MXN / MES + IVA</small></div>
                         <ul>
                             <li>1 revisión de contrato simple al mes</li>
-                            <li>1 consulta breve al mes</li>
-                            <li>Acceso a plantillas y su mantenimiento</li>
-                            <li>Respuesta en hasta 48 h hábiles</li>
+                            <li>1 consulta breve (20 min) al mes</li>
+                            <li>10% de descuento en servicios a la carta</li>
                         </ul>
-                        <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Contratos%20Esenciales" target="_blank" rel="noopener">Empezar</a>
+                        <a class="btn btn-line" href="empresa-operacion.html#planes">Ver detalle</a>
                     </div>
 
                     <div class="plan feat">
                         <div class="ribbon">★ Más elegido</div>
-                        <div class="pname">Dirección Ligera</div>
-                        <div class="ptag">PyME que firma seguido</div>
-                        <div class="price">$3,990 <small>MXN / MES</small></div>
-                        <div class="annual">o $39,900/año · 2 meses gratis</div>
+                        <div class="pname">Dirección Estratégica</div>
+                        <div class="ptag">PyMEs que crecen, contratan o venden B2B</div>
+                        <div class="price">$5,990 <small>MXN / MES + IVA</small></div>
                         <ul>
-                            <li>Hasta 3 revisiones simples <b>o</b> 1 contrato intermedio</li>
-                            <li>Videollamada mensual con un socio</li>
-                            <li>Canal prioritario</li>
-                            <li>Alertas legislativas de tu giro</li>
+                            <li>Hasta 5 revisiones + 1 documento nuevo al mes</li>
+                            <li>1 sesión estratégica de 60 min con socio</li>
+                            <li>Radar Legal prioritario + reporte anual de riesgos</li>
                         </ul>
-                        <a class="btn btn-brass" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Dirección%20Ligera" target="_blank" rel="noopener">Elegir plan</a>
+                        <a class="btn btn-brass" href="empresa-operacion.html#planes">Ver detalle</a>
                     </div>
 
                     <div class="plan">
                         <div class="pname">Dirección Externa</div>
-                        <div class="ptag">Empresa consolidada</div>
-                        <div class="price"><span class="price-prefix">desde</span>$6,990 <small>MXN / MES</small></div>
-                        <div class="annual">desde $69,900/año · requiere diagnóstico previo</div>
+                        <div class="ptag">Función jurídica continua, sin equipo interno</div>
+                        <div class="price"><span class="price-prefix">desde</span>$12,900 <small>MXN / MES + IVA</small></div>
+                        <div class="annual">requiere diagnóstico previo</div>
                         <ul>
-                            <li>Hasta 5 revisiones simples al mes</li>
-                            <li>Hasta 2 documentos nuevos o ajustes relevantes</li>
-                            <li>2 sesiones mensuales + acompañamiento</li>
-                            <li>Estrategia jurídica continua</li>
+                            <li>Bolsa mensual de hasta 8 horas de asesoría y ejecución</li>
+                            <li>Reunión mensual con dirección</li>
+                            <li>Diagnóstico inicial y plan legal de 90 días</li>
                         </ul>
-                        <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20de%20membresía%20Dirección%20Externa" target="_blank" rel="noopener">Agendar diagnóstico</a>
+                        <a class="btn btn-line" href="empresa-operacion.html#planes">Agendar diagnóstico</a>
                     </div>
                 </div>
+                <p class="note" style="margin-top: 1.5rem;">También existe <b>Dirección Activa</b> ($3,490 MXN/mes + IVA), a medio camino entre Base y Estratégica. <a href="empresa-operacion.html#planes">Ver los 4 planes completos →</a></p>
 
                 <!-- à la carte negocios -->
                 <div class="carte">
@@ -359,7 +361,7 @@
                             </p>
                             <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
                                 <a href="marcas.html" target="_blank" rel="noopener" style="background-color: #111; color: #fff; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">Solicitar</a>
-                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">desde $8,050</span>
+                                <span style="border: 1px solid #ccc; border-radius: 100px; padding: 0.5rem 1.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: #444; flex: 1; display: flex; align-items: center; justify-content: center;">desde $7,990</span>
                             </div>
                         </div>
                     </div>
@@ -388,7 +390,7 @@
 
     <!-- Scripts locales -->
     <script src="script.js?v=11"></script>
-    <script src="precios.js?v=8"></script>
+    <script src="precios.js?v=20"></script>
     <script src="analytics.js?v=11"></script>
 </body>
 </html>

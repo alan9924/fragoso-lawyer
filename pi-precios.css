@@ -1,0 +1,491 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROPIEDAD INTELECTUAL — TARJETAS DE PRECIO
+   ═══════════════════════════════════════════════════════════════════════════
+
+   Una sola hoja para las tres pestañas del hub de PI —derechos-autor, marcas y
+   secreto-industrial—, que hasta ahora pintaban sus precios con tres bloques
+   <style> distintos y ligeramente desalineados entre sí.
+
+   EL MODELO
+   ---------
+   Tarjeta blanca, centrada, borde gris de 1 px y radio corto; nombre del
+   paquete arriba, importe grande debajo con la moneda en pequeño, lista con
+   palomita, y el botón a todo el ancho al pie. La tarjeta destacada invierte
+   el esquema: fondo sólido, texto blanco, botón blanco y una etiqueta en
+   píldora montada sobre el canto superior.
+
+   POR QUÉ NO SE TOCAN LOS <style> DE CADA PÁGINA
+   ----------------------------------------------
+   Esos bloques van DESPUÉS de este archivo en el documento, así que a igualdad
+   de especificidad ganarían ellos. En vez de reescribirlos —y arriesgar el
+   resto de cada página, que comparte las mismas clases `ed-*`— aquí se sube la
+   especificidad anclando en `#precios` y en `.ed-bottom-content`, que son los
+   contenedores exclusivos de los precios. Nada fuera de ellos cambia.
+
+   EL ORDEN VISUAL SE ARREGLA CON `order`, NO CON HTML
+   ---------------------------------------------------
+   En el marcado el importe va antes del nombre del paquete; el modelo los pide
+   al revés. Reordenar el HTML de tres páginas para eso es tocar contenido —y
+   el auditor de precios de precios.js lee el texto del documento—, así que las
+   tarjetas se vuelven flex column y el orden se reasigna con `order`.
+
+   EL COLOR
+   --------
+   `--pi-acento` es el azul del cartel de portada (#1B2080), no el índigo del
+   modelo: es el mismo azul con el que ya abre el sitio. Cambiar esa sola
+   variable cambia palomitas, botones y tarjeta destacada a la vez.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --pi-acento: #1B2080;
+  /* Un paso más claro para la píldora sobre la tarjeta llena: con el mismo
+     azul la etiqueta desaparecía dentro de la tarjeta. */
+  --pi-acento-claro: #4B51C4;
+  --pi-tinta: rgba(31, 41, 55, 0.82);
+  --pi-suave: #6b7280;
+  --pi-linea: #e5e7eb;
+}
+
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   A) derechos-autor.html y secreto-industrial.html  →  #precios .da-card
+   ───────────────────────────────────────────────────────────────────────── */
+
+#precios .da-pricing-grid {
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+#precios .da-card {
+  position: relative;          /* ancla de la píldora */
+  overflow: visible;           /* la píldora sale por el canto superior */
+  background: #fff;
+  border: 1px solid var(--pi-linea);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--pi-tinta);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Orden del modelo: nombre → importe → descripción → lista → botón. */
+#precios .da-card .da-card-label { order: 1; }
+#precios .da-card .ed-price      { order: 2; }
+#precios .da-card .da-card-desc  { order: 3; }
+#precios .da-card ul             { order: 4; }
+#precios .da-card .ed-btn        { order: 5; }
+
+#precios .da-card .da-card-label {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #1f2937;
+  margin: 0;
+}
+
+#precios .da-card .ed-price {
+  font-family: var(--font-body);
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #1f2937;
+  margin: 0.15rem 0 0;
+}
+
+/* El `font-size: 0.5em` en línea estaba calculado contra un importe de 2rem;
+   con el cuerpo nuevo la moneda salía casi tan grande como la cifra. Es la
+   única declaración que necesita !important, porque compite con un atributo
+   style del HTML. */
+#precios .da-card .ed-price span {
+  font-size: 0.85rem !important;
+  font-weight: 400;
+  color: var(--pi-suave);
+}
+
+#precios .da-card .da-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--pi-suave);
+  margin: 0.9rem 0 0;
+}
+
+#precios .da-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex-grow: 1;
+}
+
+#precios .da-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--pi-suave);
+  /* El modelo alinea la lista a la izquierda aunque la tarjeta esté centrada:
+     una lista centrada con palomitas se lee como un poema, no como un alcance. */
+  text-align: left;
+  padding: 0;
+}
+
+/* La palomita del modelo, a 18×18, como imagen de fondo (no máscara: así no
+   depende de -webkit-mask). La imagen va DENTRO de esta regla y no en una
+   suelta de menor especificidad porque la página declara después
+   `.da-card li::before { background: var(--bronze) }` —atajo, no propiedad
+   larga—, y ese atajo reponía `background-image: none` sobre la palomita. */
+#precios .da-card li::before {
+  content: "";
+  position: static;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 0;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z' fill='%231B2080'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  /* Baja la palomita a la altura de la primera línea del texto. */
+  margin-top: 0.05em;
+}
+
+#precios .da-card .ed-btn {
+  margin-top: 1.75rem;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: var(--pi-acento);
+  color: #fff;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: filter 0.2s ease, background 0.2s ease;
+}
+#precios .da-card .ed-btn:hover {
+  background: var(--pi-acento);
+  color: #fff;
+  filter: brightness(1.25);
+}
+
+/* ── La destacada ──
+   `.highlight` no es fija: el carrusel de categorías de estas páginas la mueve
+   de tarjeta al elegir una. Por eso el relleno de color cuelga de esa clase y
+   no de un id: la tarjeta llena sigue siendo la que el usuario señaló. */
+#precios .da-card.highlight {
+  background: var(--pi-acento);
+  border-color: rgba(107, 114, 128, 0.3);
+  color: #fff;
+  box-shadow: none;
+}
+#precios .da-card.highlight .da-card-label,
+#precios .da-card.highlight .ed-price { color: #fff; }
+#precios .da-card.highlight .ed-price span,
+#precios .da-card.highlight .da-card-desc,
+#precios .da-card.highlight li { color: rgba(255, 255, 255, 0.88); }
+#precios .da-card.highlight .da-card-desc em { color: rgba(255, 255, 255, 0.7) !important; }
+#precios .da-card.highlight li::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z' fill='%23ffffff'/%3E%3C/svg%3E");
+}
+#precios .da-card.highlight .ed-btn {
+  background: #fff;
+  color: var(--pi-acento);
+}
+#precios .da-card.highlight .ed-btn:hover {
+  background: #e9e9ee;
+  color: var(--pi-acento);
+  filter: none;
+}
+
+/* La píldora montada sobre el canto, como en el modelo. */
+#precios .da-card .ed-badge {
+  position: absolute;
+  top: -0.85rem;
+  left: 0.85rem;
+  margin: 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: var(--pi-acento);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+#precios .da-card.highlight .ed-badge {
+  background: var(--pi-acento-claro);
+  color: #fff;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   B) marcas.html  →  .ed-bottom-content .ed-col
+   Mismo modelo, otro marcado: aquí no hay lista con palomitas sino desglose y
+   párrafos, así que la tarjeta se queda sin checks y conserva su contenido.
+   ───────────────────────────────────────────────────────────────────────── */
+
+body.editorial-body .ed-bottom-content {
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+body.editorial-body .ed-bottom-content .ed-col {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--pi-linea);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--pi-suave);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+/* nombre → importe → desglose → alcance → botón */
+body.editorial-body .ed-bottom-content .ed-col > p[style*="font-weight"] { order: 1; }
+body.editorial-body .ed-bottom-content .ed-col .ed-price                { order: 2; }
+body.editorial-body .ed-bottom-content .ed-col .ed-desglose             { order: 3; }
+body.editorial-body .ed-bottom-content .ed-col > p                      { order: 4; }
+body.editorial-body .ed-bottom-content .ed-col .ed-alcance              { order: 5; }
+body.editorial-body .ed-bottom-content .ed-col .ed-btn                  { order: 6; }
+
+body.editorial-body .ed-bottom-content .ed-col > p[style*="font-weight"] {
+  font-size: 0.95rem;
+  color: #1f2937 !important;
+  margin: 0 0 0.15rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+body.editorial-body .ed-bottom-content .ed-col .ed-price {
+  font-family: var(--font-body);
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #1f2937;
+  margin: 0 0 0.9rem;
+}
+body.editorial-body .ed-bottom-content .ed-col .ed-price span {
+  font-size: 0.85rem !important;
+  font-weight: 400;
+  color: var(--pi-suave);
+}
+
+/* La etiqueta de etapa pasa a ser la píldora del modelo: ya decía «el más
+   elegido», así que no hace falta inventar una insignia nueva. */
+body.editorial-body .ed-bottom-content .ed-col .ed-etapa {
+  order: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--pi-suave);
+  margin: 0 0 0.6rem !important;
+}
+body.editorial-body .ed-bottom-content .ed-col--destacada .ed-etapa {
+  position: absolute;
+  top: -0.85rem;
+  left: 0.85rem;
+  margin: 0 !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: var(--pi-acento-claro);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+body.editorial-body .ed-bottom-content .ed-col .ed-desglose {
+  margin: 0 0 0.9rem;
+  padding: 0.7rem 0;
+  font-size: 0.78rem;
+  color: var(--pi-suave);
+  border-top: 1px solid var(--pi-linea);
+  border-bottom: 1px solid var(--pi-linea);
+}
+body.editorial-body .ed-bottom-content .ed-col .ed-desglose b { color: #1f2937; }
+
+body.editorial-body .ed-bottom-content .ed-col .ed-alcance {
+  margin: 0;
+  padding: 0;
+  border-left: 0;
+  font-size: 0.76rem;
+  color: var(--pi-suave);
+  text-align: left;
+}
+
+body.editorial-body .ed-bottom-content .ed-col .ed-btn {
+  margin-top: auto;
+  padding: 0.6rem 1rem;
+  width: 100%;
+  background: var(--pi-acento);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: filter 0.2s ease;
+}
+body.editorial-body .ed-bottom-content .ed-col .ed-btn:hover {
+  background: var(--pi-acento);
+  filter: brightness(1.25);
+}
+
+/* Destacada: el mismo relleno sólido que en las otras dos pestañas. */
+body.editorial-body .ed-bottom-content .ed-col--destacada {
+  background: var(--pi-acento);
+  border-color: rgba(107, 114, 128, 0.3);
+  color: rgba(255, 255, 255, 0.88);
+}
+body.editorial-body .ed-bottom-content .ed-col--destacada > p[style*="font-weight"],
+body.editorial-body .ed-bottom-content .ed-col--destacada .ed-price,
+body.editorial-body .ed-bottom-content .ed-col--destacada .ed-desglose b {
+  color: #fff !important;
+}
+body.editorial-body .ed-bottom-content .ed-col--destacada .ed-price span,
+body.editorial-body .ed-bottom-content .ed-col--destacada .ed-desglose,
+body.editorial-body .ed-bottom-content .ed-col--destacada .ed-alcance,
+body.editorial-body .ed-bottom-content .ed-col--destacada > p {
+  color: rgba(255, 255, 255, 0.88);
+}
+body.editorial-body .ed-bottom-content .ed-col--destacada .ed-desglose {
+  border-top-color: rgba(255, 255, 255, 0.28);
+  border-bottom-color: rgba(255, 255, 255, 0.28);
+}
+body.editorial-body .ed-bottom-content .ed-col--destacada .ed-btn {
+  background: #fff;
+  color: var(--pi-acento);
+}
+body.editorial-body .ed-bottom-content .ed-col--destacada .ed-btn:hover {
+  background: #e9e9ee;
+  filter: none;
+}
+
+@media (max-width: 900px) {
+  #precios .da-pricing-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   C) LAS TARJETAS ANCHAS DEL PIE  —  cotización y programa recurrente
+   ─────────────────────────────────────────────────────────────────────────
+   Son planes igual que los tres de arriba, sólo que uno va bajo cotización y
+   el otro agrupa tres niveles mensuales. Antes cada uno llevaba su tarjeta
+   escrita en atributos `style` —crema, radio 16, importe en serif— y por eso
+   se quedaban fuera del sistema; ese HTML se limpió y ahora son `.da-card`
+   con un modificador de ancho, así que heredan el modelo entero.
+
+   Ojo con `order`: un hijo sin `order` declarado vale 0 y se iría al frente,
+   por delante del nombre del paquete. En estas dos variantes cada hijo lo
+   lleva explícito.
+   ───────────────────────────────────────────────────────────────────────── */
+
+#precios .da-card--cotiza,
+#precios .da-card--programa {
+  margin: 2rem auto 0;
+  text-align: center;
+}
+#precios .da-card--cotiza  { max-width: 720px; }
+#precios .da-card--programa { max-width: 900px; }
+
+#precios .da-card .da-card-titulo {
+  order: 2;
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #1f2937;
+  margin: 0.35rem 0 0;
+}
+
+#precios .da-card .da-card-nota {
+  order: 4;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: #9ca3af;
+  margin: 0.9rem auto 0;
+  max-width: 60ch;
+}
+#precios .da-card--programa .da-card-nota { order: 5; }
+
+/* El botón a todo el ancho de una tarjeta de 900 px sería una barra; se acota
+   al ancho de un botón y se centra, que es lo que el modelo pide a su escala. */
+#precios .da-card--cotiza .ed-btn,
+#precios .da-card--programa .ed-btn {
+  order: 6;
+  width: 100%;
+  max-width: 320px;
+  margin: 1.75rem auto 0;
+}
+
+/* ── Los tres niveles del programa ──
+   La misma tarjeta en su versión mínima: borde, radio corto, nombre, importe
+   y una línea. Sin botón, porque el del programa es uno solo para los tres. */
+#precios .da-card .pi-tiers {
+  order: 4;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+#precios .pi-tier {
+  background: #fff;
+  border: 1px solid var(--pi-linea);
+  border-radius: 8px;
+  padding: 1.1rem 1rem;
+  text-align: center;
+}
+
+#precios .pi-tier h4 {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.3rem;
+}
+
+#precios .pi-tier-precio {
+  font-family: var(--font-body);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #1f2937;
+  margin-bottom: 0.45rem;
+}
+#precios .pi-tier-precio span {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--pi-suave);
+}
+
+#precios .pi-tier p {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--pi-suave);
+  margin: 0;
+}
+
+/* Si el selector de categorías llena de color la tarjeta de cotización, los
+   textos que no cubre la regla general también tienen que virar. */
+#precios .da-card.highlight .da-card-titulo { color: #fff; }
+#precios .da-card.highlight .da-card-nota { color: rgba(255, 255, 255, 0.75); }

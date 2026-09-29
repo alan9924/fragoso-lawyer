@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fdfdfc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Derechos de Autor | FERRO FRAGOSO</title>
     <!-- Open Graph / redes: sin esto, al compartir el link en WhatsApp o LinkedIn
          aparece solo la URL, sin imagen ni descripción. -->
@@ -25,6 +30,8 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css?v=14">
     <link rel="stylesheet" href="home-new.css?v=11">
+    <link rel="stylesheet" href="mobile-app.css?v=5">
+    <link rel="stylesheet" href="pi-precios.css?v=4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -867,7 +874,7 @@
                     </li>
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
-                    <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
+                    <li><a href="seguimiento.html" class="nav-top-link">Seguimiento</a></li>
                 </ul>
             </div>
 
@@ -884,7 +891,7 @@
         <div class="da-hero-left">
             <h1 class="da-hero-title">Protege la expresión original de tu trabajo.</h1>
             <p class="da-hero-desc">Código, contenido, diseños, fotografía, música y materiales digitales. Registramos tu obra ante el INDAUTOR y revisamos que la titularidad esté donde debe estar: en ti o en tu empresa.</p>
-            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20proteger%20mi%20obra%20y%20registrar%20mis%20derechos%20de%20autor" class="da-hero-btn">PROTEGER MI OBRA</a>
+            <a href="#precios" class="da-hero-btn">PROTEGER MI OBRA</a>
         </div>
         <div class="da-hero-right">
             <img src="lamp_document_line_art.png" alt="Lámpara iluminando documento en arte lineal" class="da-hero-img">
@@ -1123,7 +1130,7 @@
     </section>
 
     <!-- ═══ PRECIOS ═══ -->
-    <section class="da-pricing">
+    <section class="da-pricing" id="precios">
         <div class="da-section-wrap">
             <div class="da-pricing-head">
                 <span class="da-eyebrow">Precios claros</span>
@@ -1144,7 +1151,7 @@
                         <li>Seguimiento hasta acuse</li>
                         <li>1 obra individual</li>
                     </ul>
-                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Registro%20Esencial%20de%20derechos%20de%20autor%20(%242%2C490%20MXN)."
+                    <a href="solicitud.html?servicio=derecho_autor_esencial&detalle=Quiero%20el%20Registro%20Esencial%20de%20derechos%20de%20autor."
                        target="_blank" rel="noopener" class="ed-btn">Registrar Obra</a>
                 </div>
 
@@ -1160,7 +1167,7 @@
                         <li>Recomendaciones sobre secretos empresariales y acceso a repositorios</li>
                         <li>Revisión de un contrato de desarrollo o cesión existente (observaciones; elaboración aparte)</li>
                     </ul>
-                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Registro%20de%20Software%20(%245%2C490%20MXN)."
+                    <a href="solicitud.html?servicio=derecho_autor_software&detalle=Quiero%20el%20Registro%20de%20Software."
                        target="_blank" rel="noopener" class="ed-btn">Blindar Código</a>
                 </div>
 
@@ -1179,20 +1186,28 @@
                         <li>Recomendaciones de NDA, controles de acceso y evidencia de creación</li>
                         <li>Plan de acción de 90 días</li>
                     </ul>
-                    <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20el%20Blindaje%20Digital%20(%249%2C900%20MXN)."
+                    <a href="solicitud.html?servicio=derecho_autor_blindaje&detalle=Quiero%20el%20Blindaje%20Digital."
                        target="_blank" rel="noopener" class="ed-btn">Iniciar Blindaje</a>
                 </div>
 
             </div>
 
-            <!-- Portafolio Creativo: bajo cotización -->
-            <div style="max-width: 720px; margin: 2.5rem auto 0; padding: 1.8rem 2rem; background: #faf8f5; border: 1px solid #e8e1d5; border-radius: 16px; text-align: center;" id="card-coleccion">
-                <p class="da-card-label" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #2e2c2a; margin: 0 0 0.5rem;">Portafolio Creativo</p>
-                <p style="font-family: var(--font-heading); font-size: 1.8rem; color: #2e2c2a; margin: 0 0 0.6rem;">Desde $4,990 <span style="font-size:0.5em; font-family: var(--font-body);">MXN</span></p>
-                <p style="font-family: var(--font-body); font-size: 0.9rem; color: #5c5856; line-height: 1.6; margin: 0 0 0.8rem;">Hasta 10 piezas relacionadas y aptas para tramitarse como colección. Organización del material, expediente y derechos oficiales incluidos. Piezas adicionales: $350–$600 MXN por pieza según formato y complejidad.</p>
-                <p style="font-family: var(--font-body); font-size: 0.82rem; color: #888; font-style: italic; margin: 0 0 1.2rem;">La procedencia de registro como colección se confirma durante la evaluación inicial. No todas las obras independientes deben o pueden agruparse en un solo expediente.</p>
-                <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20cotizar%20un%20Portafolio%20Creativo%20de%20derechos%20de%20autor."
-                   target="_blank" rel="noopener" class="ed-btn" style="display: inline-block; width: auto;">Solicitar cotización</a>
+            <!-- Portafolio Creativo: bajo cotización.
+                 Los estilos en línea se retiraron a propósito: llevaba su propia
+                 tarjeta escrita a mano —crema, radio 16, serif— y ninguna hoja
+                 podía alinearla con las otras tres sin pelear contra el atributo
+                 style. Ahora es una `.da-card` más, con un modificador para el
+                 ancho, y hereda el modelo de pi-precios.css.
+                 El id importa: el selector de categorías de arriba lo apunta con
+                 data-target, así que al elegir «colección» esta tarjeta se llena
+                 de color igual que las demás. -->
+            <div class="da-card da-card--cotiza" id="card-coleccion">
+                <p class="da-card-label">Portafolio Creativo</p>
+                <p class="ed-price">Desde $4,990 <span>MXN</span></p>
+                <p class="da-card-desc">Hasta 10 piezas relacionadas y aptas para tramitarse como colección. Organización del material, expediente y derechos oficiales incluidos. Piezas adicionales: $350–$600 MXN por pieza según formato y complejidad.</p>
+                <p class="da-card-nota">La procedencia de registro como colección se confirma durante la evaluación inicial. No todas las obras independientes deben o pueden agruparse en un solo expediente.</p>
+                <a href="solicitud.html?servicio=derecho_autor_portafolio&detalle=Quiero%20cotizar%20un%20Portafolio%20Creativo%20de%20derechos%20de%20autor."
+                   target="_blank" rel="noopener" class="ed-btn">Solicitar cotización</a>
             </div>
         </div>
     </section>
@@ -1316,8 +1331,17 @@
         })();
     </script>
 
+    <!-- ═══ SOLICITUD CTA ═══ -->
+    <section style="background-color: #f2ede4; padding: 3rem 5vw; text-align: center;">
+        <div style="max-width: 640px; margin: 0 auto;">
+            <p style="font-family: var(--font-body, system-ui, sans-serif); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent, #958463); margin-bottom: 0.6rem;">¿Ya decidiste?</p>
+            <h3 style="font-family: var(--font-heading, 'Cormorant Garamond', serif); font-size: 1.6rem; font-weight: 500; color: #111; margin: 0 0 1rem;">Pide tu Registro Esencial ahora mismo</h3>
+            <a href="solicitud.html?servicio=derecho_autor_esencial" style="display: inline-block; background-color: var(--accent, #958463); color: #fff; font-family: var(--font-body, system-ui, sans-serif); font-size: 0.85rem; font-weight: 600; text-decoration: none; padding: 0.9rem 2rem; border-radius: 10px;">Pedir Registro Esencial</a>
+        </div>
+    </section>
+
     <script src="script.js?v=11"></script>
-    <script src="precios.js?v=8"></script>
+    <script src="precios.js?v=20"></script>
     <script src="analytics.js?v=11"></script>
 </body>
 </html>

@@ -13,3 +13,8 @@ node_modules/
 
 # Salidas locales de Vercel
 .vercel
+
+# Variables de entorno / secretos (token de Notion, etc.) — nunca se suben
+.env
+.env.*
+!.env.example

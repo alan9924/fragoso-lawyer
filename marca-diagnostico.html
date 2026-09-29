@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="styles.css?v=14">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Courier+Prime&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -78,56 +78,15 @@
     border-left:3px solid var(--brass);font-size:.8rem;color:var(--slate)}
   .dx-rail .promesa b{color:var(--ink);display:block;margin-bottom:.2rem;font-size:.82rem}
 
-  /* ── tarjeta del formulario ── */
-  .dx-card{background:var(--panel);border:1px solid var(--line);padding:clamp(1.25rem,3.5vw,2.25rem)}
-  .dx-meta{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-    font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
-  .dx-bar{height:3px;background:var(--paper-2);margin:.7rem 0 1.75rem;overflow:hidden}
-  .dx-bar i{display:block;height:100%;width:0;background:var(--brass);transition:width .45s cubic-bezier(.4,0,.2,1)}
-
-  .dx-paso{display:none}
-  .dx-paso.on{display:block;animation:dx-in .32s ease both}
-  @keyframes dx-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  @media(prefers-reduced-motion:reduce){
-    .dx-paso.on{animation:none}
-    .dx-bar i{transition:none}
-  }
-
-  .dx-paso h1,.dx-paso h2.q{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,4vw,2.3rem);
-    line-height:1.14;letter-spacing:-.01em;margin:0 0 .6rem;color:var(--ink)}
-  .dx-paso .ayuda{color:var(--slate);font-size:.9rem;margin:0 0 1.5rem;max-width:52ch}
-
-  .dx-campo{display:block;margin-bottom:1.25rem}
-  .dx-campo>span{display:block;font-size:.78rem;font-weight:600;letter-spacing:.04em;margin-bottom:.45rem}
-  .dx-campo input,.dx-campo textarea{
-    width:100%;font-family:var(--sans);font-size:1rem;color:var(--ink);
-    background:#fff;border:1px solid var(--line-2);border-radius:0;padding:.85rem .9rem;
-  }
-  .dx-campo textarea{min-height:110px;resize:vertical;line-height:1.55}
-  .dx-campo input:focus,.dx-campo textarea:focus{outline:2px solid var(--brass);outline-offset:1px;border-color:transparent}
-  .dx-cuenta{font-family:var(--mono);font-size:.68rem;color:var(--fog);text-align:right;margin-top:.3rem}
-
-  .dx-ops{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.25rem}
-  .dx-op{
-    font-family:var(--sans);font-size:.88rem;padding:.7rem 1.15rem;cursor:pointer;
-    background:#fff;border:1px solid var(--line-2);color:var(--ink);transition:all .16s ease;
-  }
-  .dx-op:hover{border-color:var(--brass)}
-  .dx-op[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-  .dx-op:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
-
-  .dx-nav{display:flex;gap:.75rem;align-items:center;margin-top:1.75rem;flex-wrap:wrap}
-  .dx-btn{
-    font-family:var(--sans);font-size:.85rem;font-weight:600;letter-spacing:.05em;
-    padding:.85rem 1.9rem;cursor:pointer;border:1px solid transparent;transition:all .18s ease;
-    background:var(--brass);color:#fff;
-  }
-  .dx-btn:hover{background:var(--brass-deep)}
-  .dx-btn:disabled{opacity:.4;cursor:not-allowed}
-  .dx-btn.ghost{background:transparent;border-color:var(--line-2);color:var(--slate);padding:.85rem 1.3rem}
-  .dx-btn.ghost:hover{border-color:var(--ink);color:var(--ink)}
-  .dx-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-  .dx-err{color:var(--seal);font-size:.8rem;margin:.5rem 0 0;min-height:1.1em}
+  /* ── cuestionario (componente compartido) ── */
+  .dx-card{min-width:0}
+  /* Un botón deshabilitado no recibe clics: así el clic cae en el pie y
+     podemos decir por qué no avanza. */
+  .dx-card .ffq-sig:disabled{pointer-events:none}
+  .dx-card .ffq-pie:has(.ffq-sig:disabled){cursor:not-allowed}
+  .dx-grupo+.dx-grupo{margin-top:1.15rem}
+  .dx-grupo-et{margin:0 0 .5rem;font-size:.78rem;font-weight:600;color:#4a443d}
+  .dx-cuenta{font-family:var(--mono);font-size:.68rem;color:var(--fog);text-align:right;margin:.3rem 0 0}
 
   /* ── resultado ── */
   .dx-señal{border:1px solid var(--line);background:#fff;padding:1rem 1.15rem;margin-bottom:.85rem}
@@ -152,6 +111,7 @@
   .dx-precio .n{font-family:var(--mono);font-size:1.5rem;color:var(--brass-deep);font-weight:500}
   .dx-precio .u{font-size:.75rem;color:var(--slate)}
 </style>
+<link rel="stylesheet" href="cuestionario.css?v=2">
 </head>
 <body class="dx">
 
@@ -177,107 +137,18 @@
     </div>
   </aside>
 
-  <main class="dx-card">
-    <div class="dx-meta">
-      <span id="dxPasoNum">Paso 1 de 4</span>
-      <span>2 minutos</span>
-    </div>
-    <div class="dx-bar"><i id="dxBar"></i></div>
-
-    <!-- PASO 1 -->
-    <section class="dx-paso on" data-paso="1">
-      <h1>¿Cómo se llama tu marca?</h1>
-      <p class="ayuda">Escríbela tal cual la usas o la piensas usar: el nombre que va en el letrero, en el empaque o en la app.</p>
-      <label class="dx-campo">
-        <span>Nombre de la marca</span>
-        <input type="text" id="dxNombre" maxlength="80" autocomplete="off" placeholder="Ej. Casa Verde" enterkeyhint="next">
-      </label>
-      <p class="dx-err" id="dxErr1" role="alert"></p>
-      <div class="dx-nav"><button class="dx-btn" type="button" data-ir="2">Siguiente</button></div>
-    </section>
-
-    <!-- PASO 2 -->
-    <section class="dx-paso" data-paso="2">
-      <h2 class="q">¿A qué se dedica tu negocio?</h2>
-      <p class="ayuda">Con tus palabras. Entre más concreto, mejor: qué vendes, a quién y cómo. De aquí sale la clase que te corresponde.</p>
-      <label class="dx-campo">
-        <span>Actividades que realizas</span>
-        <textarea id="dxGiro" maxlength="250" placeholder="Ej. Vendemos café de especialidad en grano y tenemos una cafetería en Querétaro."></textarea>
-        <span class="dx-cuenta"><span id="dxCuenta">0</span> / 250</span>
-      </label>
-      <p class="dx-err" id="dxErr2" role="alert"></p>
-      <div class="dx-nav">
-        <button class="dx-btn ghost" type="button" data-ir="1">Atrás</button>
-        <button class="dx-btn" type="button" data-ir="3">Siguiente</button>
-      </div>
-    </section>
-
-    <!-- PASO 3 -->
-    <section class="dx-paso" data-paso="3">
-      <h2 class="q">Dos detalles más</h2>
-      <p class="ayuda">Cambian qué tipo de marca conviene solicitar y cuántas clases necesitas.</p>
-
-      <div class="dx-campo">
-        <span>¿Tienes logotipo?</span>
-        <div class="dx-ops" role="group" aria-label="¿Tienes logotipo?">
-          <button class="dx-op" type="button" data-g="logo" data-v="Sí, ya tengo logotipo" aria-pressed="false">Sí tengo</button>
-          <button class="dx-op" type="button" data-g="logo" data-v="Todavía no tengo logotipo" aria-pressed="false">No tengo</button>
-        </div>
-      </div>
-
-      <div class="dx-campo">
-        <span>¿Ya la estás usando en el mercado?</span>
-        <div class="dx-ops" role="group" aria-label="¿Ya la usas?">
-          <button class="dx-op" type="button" data-g="uso" data-v="Ya la uso en el mercado" aria-pressed="false">Ya la uso</button>
-          <button class="dx-op" type="button" data-g="uso" data-v="Aún no la lanzo" aria-pressed="false">Aún no la lanzo</button>
-        </div>
-      </div>
-
-      <p class="dx-err" id="dxErr3" role="alert"></p>
-      <div class="dx-nav">
-        <button class="dx-btn ghost" type="button" data-ir="2">Atrás</button>
-        <button class="dx-btn" type="button" data-ir="4">Ver mis señales</button>
-      </div>
-    </section>
-
-    <!-- PASO 4 · RESULTADO -->
-    <section class="dx-paso" data-paso="4">
-      <h2 class="q">Esto es lo que vemos en <em id="dxEco">tu marca</em></h2>
-      <p class="ayuda">Señales que se revisan antes de gastar en el trámite. No sustituyen la búsqueda de anterioridades — para eso hace falta consultar el padrón del IMPI.</p>
-
-      <div id="dxSenales"></div>
-
-      <div class="dx-resumen" id="dxResumen"></div>
-
-      <p style="font-size:.92rem;color:var(--slate);margin:0 0 .2rem">
-        El siguiente paso es que un abogado revise tu caso y te diga <b style="color:var(--ink)">la clase que te corresponde y el riesgo real</b>. Eso no te cuesta nada.
-      </p>
-      <div class="dx-precio">
-        <span class="n">$0</span><span class="u">MXN &middot; revisión inicial</span>
-      </div>
-
-      <div class="dx-nav">
-        <button class="dx-btn" type="button" id="dxEnviar">Enviar a un abogado por WhatsApp</button>
-        <button class="dx-btn ghost" type="button" data-ir="1">Empezar de nuevo</button>
-      </div>
-
-      <p class="dx-aviso">
-        <b>Esto es una orientación preliminar, no un dictamen legal.</b> Las señales de arriba se basan en lo que nos contaste y en los supuestos de irregistrabilidad de la Ley Federal de Protección a la Propiedad Industrial. Saber si tu marca ya está ocupada exige una búsqueda de anterioridades en el padrón del IMPI, que es un servicio distinto y sí tiene costo.
-      </p>
-    </section>
-  </main>
+  <main class="dx-card" id="dxCuestionario"></main>
 </div>
 
+<script src="cuestionario.js?v=2"></script>
 <script>
 (function(){
   'use strict';
 
   var LS = 'ff_dx_marca';
-  var TOTAL = 4;
-  var estado = { nombre:'', giro:'', logo:'', uso:'', paso:1 };
-
-  var $ = function(id){ return document.getElementById(id); };
-  var pasos = [].slice.call(document.querySelectorAll('.dx-paso'));
+  var CAMPOS = ['nombre','giro','logo','uso'];
+  var estado = { nombre:'', giro:'', logo:'', uso:'' };
+  var guardado = {};
 
   /* Rescata un intento a medias: la mayoría abandona en el paso 2 y vuelve
      desde otro dispositivo o más tarde. */
@@ -285,12 +156,14 @@
     var g = localStorage.getItem(LS);
     if (g) {
       var p = JSON.parse(g);
-      ['nombre','giro','logo','uso'].forEach(function(k){ if (p[k]) estado[k] = p[k]; });
+      CAMPOS.forEach(function(k){ if (p[k]) guardado[k] = p[k]; });
     }
   } catch(e){}
 
-  function guardar(){
-    try { localStorage.setItem(LS, JSON.stringify(estado)); } catch(e){}
+  function guardar(r){
+    var o = {};
+    CAMPOS.forEach(function(k){ o[k] = String(r[k] || '').trim(); });
+    try { localStorage.setItem(LS, JSON.stringify(o)); } catch(e){}
   }
 
   function evento(nombre, extra){
@@ -299,32 +172,86 @@
     }
   }
 
-  function pintar(){
-    pasos.forEach(function(s){
-      s.classList.toggle('on', Number(s.dataset.paso) === estado.paso);
-    });
-    $('dxBar').style.width = Math.round(estado.paso / TOTAL * 100) + '%';
-    $('dxPasoNum').textContent = 'Paso ' + estado.paso + ' de ' + TOTAL;
-    var foco = pasos[estado.paso-1].querySelector('input, textarea, .dx-op, .dx-btn');
-    if (foco && estado.paso > 1) { try { foco.focus({preventScroll:true}); } catch(e){} }
-    window.scrollTo({ top:0, behavior:'smooth' });
+  var ERR = {
+    1: 'Escribe el nombre de tu marca para continuar.',
+    2: 'Cuéntanos un poco más: con una frase completa basta.',
+    3: 'Elige una opción en cada pregunta.'
+  };
+  var GENERICO = 'Escribe tu respuesta.';
+  var DETALLES = [
+    ['logo', '¿Tienes logotipo?', '¿Tienes logotipo?',
+      [['Sí, ya tengo logotipo','Sí tengo'], ['Todavía no tengo logotipo','No tengo']]],
+    ['uso', '¿Ya la estás usando en el mercado?', '¿Ya la usas?',
+      [['Ya la uso en el mercado','Ya la uso'], ['Aún no la lanzo','Aún no la lanzo']]]
+  ];
+
+  var contenedor = document.getElementById('dxCuestionario');
+  var actual = 1;
+  var api;
+
+  /* El componente no avisa al pintar un paso; el texto se pide justo al
+     pintarlo, así que ahí sabemos en qué paso está. */
+  function paso(n, texto){
+    return function(){
+      if (n !== actual) { actual = n; evento('diagnostico_marca_paso', { paso: n }); }
+      queueMicrotask(decorar);
+      return texto;
+    };
   }
 
-  function limpiarError(n){ var e = $('dxErr'+n); if (e) e.textContent = ''; }
+  function decorar(){
+    var entrada = contenedor.querySelector('.ffq-respuesta .ffq-input');
+    if (entrada) {
+      entrada.enterKeyHint = 'next';
+      entrada.setAttribute('aria-label', 'Nombre de la marca');
+    }
+    var area = contenedor.querySelector('.ffq-respuesta .ffq-area');
+    if (area) area.setAttribute('aria-label', 'Actividades que realizas');
+    if (area && !contenedor.querySelector('.dx-cuenta')) {
+      var c = document.createElement('p');
+      c.className = 'dx-cuenta';
+      c.innerHTML = '<span>' + area.value.length + '</span> / 250';
+      area.insertAdjacentElement('afterend', c);
+    }
+  }
 
-  function validar(desde){
-    if (desde === 1) {
-      estado.nombre = $('dxNombre').value.trim();
-      if (estado.nombre.length < 2) { $('dxErr1').textContent = 'Escribe el nombre de tu marca para continuar.'; return false; }
-    }
-    if (desde === 2) {
-      estado.giro = $('dxGiro').value.trim();
-      if (estado.giro.length < 12) { $('dxErr2').textContent = 'Cuéntanos un poco más: con una frase completa basta.'; return false; }
-    }
-    if (desde === 3) {
-      if (!estado.logo || !estado.uso) { $('dxErr3').textContent = 'Elige una opción en cada pregunta.'; return false; }
-    }
-    return true;
+  function precisarError(){
+    var e = contenedor.querySelector('.ffq-error');
+    if (e && e.textContent === GENERICO && ERR[actual]) e.textContent = ERR[actual];
+  }
+
+  function largo(min, n){
+    return function(v){ return String(v).trim().length < min ? ERR[n] : null; };
+  }
+
+  function detalles(caja, r){
+    DETALLES.forEach(function(d){
+      var grupo = document.createElement('div');
+      grupo.className = 'dx-grupo';
+      var et = document.createElement('p');
+      et.className = 'dx-grupo-et';
+      et.textContent = d[1];
+      var ops = document.createElement('div');
+      ops.className = 'ffq-opciones';
+      ops.setAttribute('role', 'group');
+      ops.setAttribute('aria-label', d[2]);
+      d[3].forEach(function(o){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'ffq-op';
+        b.textContent = o[1];
+        b.setAttribute('aria-pressed', String(r[d[0]] === o[0]));
+        b.addEventListener('click', function(){
+          r[d[0]] = o[0];
+          ops.querySelectorAll('.ffq-op').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+          contenedor.querySelector('.ffq-error').textContent = '';
+          guardar(r);
+        });
+        ops.appendChild(b);
+      });
+      grupo.append(et, ops);
+      caja.appendChild(grupo);
+    });
   }
 
   /* ── Señales de registrabilidad ──
@@ -404,22 +331,33 @@
   }
 
   function resultado(){
-    $('dxEco').textContent = estado.nombre;
+    var caja = document.createElement('div');
 
-    var cont = $('dxSenales');
-    cont.innerHTML = '';
     analizar().forEach(function(s){
       var d = document.createElement('div');
       d.className = 'dx-señal ' + s[0];
       d.innerHTML = '<span class="et">' + s[1] + '</span><p>' + s[2] + '</p>';
-      cont.appendChild(d);
+      caja.appendChild(d);
     });
 
-    $('dxResumen').innerHTML =
+    var resumen = document.createElement('div');
+    resumen.className = 'dx-resumen';
+    resumen.innerHTML =
       '<span>Marca:</span> ' + esc(estado.nombre) + '<br>' +
       '<span>Giro:</span> ' + esc(estado.giro) + '<br>' +
       '<span>Logotipo:</span> ' + esc(estado.logo) + '<br>' +
       '<span>Uso:</span> ' + esc(estado.uso);
+    caja.appendChild(resumen);
+
+    caja.insertAdjacentHTML('beforeend',
+      '<p style="font-size:.92rem;color:var(--slate);margin:0 0 .2rem">' +
+        'El siguiente paso es que un abogado revise tu caso y te diga <b style="color:var(--ink)">la clase que te corresponde y el riesgo real</b>. Eso no te cuesta nada.' +
+      '</p>' +
+      '<div class="dx-precio"><span class="n">$0</span><span class="u">MXN &middot; revisión inicial</span></div>' +
+      '<p class="dx-aviso">' +
+        '<b>Esto es una orientación preliminar, no un dictamen legal.</b> Las señales de arriba se basan en lo que nos contaste y en los supuestos de irregistrabilidad de la Ley Federal de Protección a la Propiedad Industrial. Saber si tu marca ya está ocupada exige una búsqueda de anterioridades en el padrón del IMPI, que es un servicio distinto y sí tiene costo.' +
+      '</p>');
+    return caja;
   }
 
   function esc(t){
@@ -430,66 +368,75 @@
 
   /* El handoff: el cliente ya hizo la entrevista, el despacho recibe un lead
      estructurado en vez de un "hola, información". */
-  function enviar(){
+  function destino(){
     var detalle =
       'Hice el diagnóstico de marca en el sitio y quiero que un abogado lo revise.\n\n' +
       '• Marca: ' + estado.nombre + '\n' +
       '• A qué me dedico: ' + estado.giro + '\n' +
       '• Logotipo: ' + estado.logo + '\n' +
       '• Uso actual: ' + estado.uso;
-    evento('diagnostico_marca_enviado', { marca: estado.nombre });
-    location.href = 'solicitud.html?servicio=marca_esencial&detalle=' + encodeURIComponent(detalle);
+    return 'solicitud.html?servicio=marca_esencial&detalle=' + encodeURIComponent(detalle);
   }
 
-  function ir(destino){
-    if (destino > estado.paso && !validar(estado.paso)) return;
-    guardar();
-    estado.paso = destino;
-    if (destino === 4) { resultado(); evento('diagnostico_marca_resultado'); }
-    else { evento('diagnostico_marca_paso', { paso: destino }); }
-    pintar();
+  function terminar(r, api){
+    CAMPOS.forEach(function(k){ estado[k] = String(r[k] || '').trim(); });
+    guardar(estado);
+    actual = 4;
+    evento('diagnostico_marca_resultado');
+    api.final({
+      titulo: 'Esto es lo que vemos en ' + estado.nombre,
+      texto: 'Señales que se revisan antes de gastar en el trámite. No sustituyen la búsqueda de anterioridades — para eso hace falta consultar el padrón del IMPI.',
+      contenido: resultado(),
+      botones: [
+        { texto: 'Enviar a un abogado por WhatsApp', href: destino(),
+          accion: function(){ evento('diagnostico_marca_enviado', { marca: estado.nombre }); } },
+        { texto: 'Empezar de nuevo', accion: function(e, r, api){ api.ir('nombre'); } }
+      ]
+    });
+    var t = api.raiz.querySelector('.ffq-titulo');
+    var em = document.createElement('em');
+    em.textContent = estado.nombre;
+    t.textContent = 'Esto es lo que vemos en ';
+    t.appendChild(em);
+    window.scrollTo({ top:0, behavior:'smooth' });
   }
 
-  /* ── enlaces de eventos ── */
-  document.querySelectorAll('[data-ir]').forEach(function(b){
-    b.addEventListener('click', function(){ ir(Number(b.dataset.ir)); });
+  api = FFCuestionario.abrir({
+    contenedor: contenedor,
+    respuestas: guardado,
+    pasos: [
+      { clave: 'nombre', tipo: 'campo', titulo: 'Tu marca',
+        texto: paso(1, '¿Cómo se llama tu marca?'),
+        ayuda: 'Escríbela tal cual la usas o la piensas usar: el nombre que va en el letrero, en el empaque o en la app.',
+        entrada: { tipo: 'text', maxlength: 80, autocomplete: 'off', placeholder: 'Ej. Casa Verde' },
+        validar: largo(2, 1) },
+      { clave: 'giro', tipo: 'campo', area: true, titulo: 'Tu negocio',
+        texto: paso(2, '¿A qué se dedica tu negocio?'),
+        ayuda: 'Con tus palabras. Entre más concreto, mejor: qué vendes, a quién y cómo. De aquí sale la clase que te corresponde.',
+        entrada: { maxlength: 250, placeholder: 'Ej. Vendemos café de especialidad en grano y tenemos una cafetería en Querétaro.' },
+        validar: largo(12, 2) },
+      { clave: 'detalles', tipo: 'contenido', titulo: 'Dos detalles más',
+        texto: paso(3, 'Cambian qué tipo de marca conviene solicitar y cuántas clases necesitas.'),
+        render: detalles,
+        validar: function(v, r){ return r.logo && r.uso ? null : ERR[3]; },
+        boton: 'Ver mis señales' }
+    ],
+    alCambiar: function(clave, valor, r){
+      guardar(r);
+      var c = clave === 'giro' && contenedor.querySelector('.dx-cuenta span');
+      if (c) c.textContent = valor.length;
+    },
+    alTerminar: terminar
   });
 
-  document.querySelectorAll('.dx-op').forEach(function(b){
-    b.addEventListener('click', function(){
-      var grupo = b.dataset.g;
-      document.querySelectorAll('.dx-op[data-g="' + grupo + '"]').forEach(function(o){
-        o.setAttribute('aria-pressed', String(o === b));
-      });
-      estado[grupo] = b.dataset.v;
-      limpiarError(3);
-      guardar();
-    });
+  contenedor.addEventListener('click', function(e){
+    var sig = contenedor.querySelector('.ffq-pie .ffq-sig');
+    if (e.target.classList.contains('ffq-pie') && sig && sig.disabled) { api.avanzar(); precisarError(); }
+  });
+  contenedor.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') precisarError();
   });
 
-  $('dxNombre').addEventListener('input', function(){ limpiarError(1); });
-  $('dxGiro').addEventListener('input', function(){
-    $('dxCuenta').textContent = $('dxGiro').value.length;
-    limpiarError(2);
-  });
-  $('dxEnviar').addEventListener('click', enviar);
-
-  /* Enter avanza en los campos de texto: en móvil evita buscar el botón. */
-  $('dxNombre').addEventListener('keydown', function(e){
-    if (e.key === 'Enter') { e.preventDefault(); ir(2); }
-  });
-
-  /* Restaura lo ya contestado. */
-  if (estado.nombre) $('dxNombre').value = estado.nombre;
-  if (estado.giro) { $('dxGiro').value = estado.giro; $('dxCuenta').textContent = estado.giro.length; }
-  ['logo','uso'].forEach(function(g){
-    if (!estado[g]) return;
-    document.querySelectorAll('.dx-op[data-g="' + g + '"]').forEach(function(o){
-      o.setAttribute('aria-pressed', String(o.dataset.v === estado[g]));
-    });
-  });
-
-  pintar();
   evento('diagnostico_marca_inicio');
 })();
 </script>

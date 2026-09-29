@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#fdfdfc">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Presión Legal — Gestión Extrajudicial con Abogado | FERRO FRAGOSO</title>
+    <title>Presión Legal — Gestión Extrajudicial de Reclamación | FERRO FRAGOSO</title>
     <link rel="canonical" href="https://ferrofragoso.com/reclamacion.html">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ferrofragoso.com/reclamacion.html">
-    <meta property="og:title" content="Presión Legal — Gestión Extrajudicial con Abogado | FERRO FRAGOSO">
-    <meta property="og:description" content="Deja de que te ignoren. Un abogado evalúa, redacta, presiona y da seguimiento a tu nombre durante 15 días. $1,450 MXN, todo incluido.">
+    <meta property="og:title" content="Presión Legal — Gestión Extrajudicial de Reclamación | FERRO FRAGOSO">
+    <meta property="og:description" content="Un abogado formula y comunica tu reclamación de forma profesional y documentada durante 15 días, buscando una respuesta, negociación o cumplimiento voluntario. $1,450 MXN, todo incluido.">
     <meta property="og:image" content="https://ferrofragoso.com/signature_on_dark.png">
     <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
     <meta property="og:locale" content="es_MX">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Presión Legal — Gestión Extrajudicial con Abogado | FERRO FRAGOSO">
-    <meta name="twitter:description" content="Deja de que te ignoren. Un abogado evalúa, redacta, presiona y da seguimiento a tu nombre durante 15 días. $1,450 MXN, todo incluido.">
+    <meta name="twitter:title" content="Presión Legal — Gestión Extrajudicial de Reclamación | FERRO FRAGOSO">
+    <meta name="twitter:description" content="Un abogado formula y comunica tu reclamación de forma profesional y documentada durante 15 días, buscando una respuesta, negociación o cumplimiento voluntario. $1,450 MXN, todo incluido.">
     <meta name="twitter:image" content="https://ferrofragoso.com/signature_on_dark.png">
-    <meta name="description" content="Deja de que te ignoren. Un abogado evalúa, redacta, presiona y da seguimiento a tu nombre durante 15 días. $1,450 MXN, pago único. Ferro Fragoso, Estudio Jurídico.">
+    <meta name="description" content="Un abogado formula y comunica tu reclamación de forma profesional y documentada durante 15 días, buscando una respuesta, negociación o cumplimiento voluntario. $1,450 MXN, pago único. Ferro Fragoso, Estudio Jurídico.">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
@@ -27,10 +28,12 @@
     <link rel="stylesheet" href="styles.css?v=14">
     <link rel="stylesheet" href="home-new.css?v=43">
     <link rel="stylesheet" href="areas.css?v=5">
+    <link rel="stylesheet" href="mobile-app.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@200;300;400;500;600&family=Josefin+Sans:wght@500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Courier+Prime&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="cuestionario.css?v=2">
 
     <style>
     /* ══════════════════════════════════════════════════
@@ -66,18 +69,6 @@
         letter-spacing: 4px; text-transform: uppercase;
         color: var(--pl-bronze);
     }
-    .pl-h2 {
-        font-family: var(--pl-serif);
-        font-size: clamp(1.7rem,3.5vw,2.5rem);
-        font-weight: 400; line-height: 1.15;
-        color: var(--pl-carbon);
-        margin: .6rem 0 1.2rem;
-    }
-    .pl-body {
-        font-family: var(--pl-sans);
-        font-size: .95rem; line-height: 1.7;
-        color: var(--pl-taupe);
-    }
 
     /* ── Buttons ── */
     /* THE one solid CTA (used once on the page) */
@@ -95,34 +86,6 @@
         background: var(--pl-carbon-d); border-color: var(--pl-carbon-d);
         box-shadow: 0 6px 24px rgba(0,0,0,.14); transform: translateY(-1px);
     }
-    /* Outline / secondary (every other button) */
-    .pl-btn-outline {
-        display: inline-flex; align-items: center; gap: .6rem;
-        background: transparent; color: var(--pl-carbon);
-        font-family: var(--pl-sans); font-size: .85rem; font-weight: 600;
-        letter-spacing: 1px; text-transform: uppercase;
-        padding: .9rem 2rem; border-radius: 4px;
-        text-decoration: none;
-        border: 1.5px solid rgba(0,0,0,.18);
-        cursor: pointer;
-        transition: all .25s;
-    }
-    .pl-btn-outline:hover {
-        border-color: var(--pl-carbon); background: rgba(0,0,0,.03);
-    }
-    /* Outline on dark bg */
-    .pl-btn-outline-light {
-        display: inline-flex; align-items: center; gap: .6rem;
-        background: transparent; color: #fff;
-        font-family: var(--pl-sans); font-size: .85rem; font-weight: 600;
-        letter-spacing: 1px; text-transform: uppercase;
-        padding: .9rem 2rem; border-radius: 4px;
-        text-decoration: none;
-        border: 1.5px solid rgba(255,255,255,.3);
-        cursor: pointer; transition: all .25s;
-    }
-    .pl-btn-outline-light:hover { border-color: #fff; background: rgba(255,255,255,.08); }
-
 
     /* ═══════════════════════════════════════
        1.  HERO (New Design)
@@ -156,7 +119,8 @@
         font-size: 0.75rem;
     }
 
-    .pl-hero h1 {
+    .pl-hero h1,
+    .pl-hero .pl-hero-title {
         font-family: var(--pl-sans);
         font-size: clamp(3rem, 6vw, 4.8rem);
         font-weight: 700; line-height: 1.05; letter-spacing: -1.5px;
@@ -430,13 +394,209 @@
       letter-spacing: .14em;
     }
 
-    .situaciones h2 {
+    .situaciones h2,
+    .situaciones h1 {
       max-width: 520px;
       margin: 0 0 18px;
       color: #182218;
       font-size: clamp(28px, 3.8vw, 48px);
       line-height: 1.06;
     }
+
+    /* Como hero: ocupa la pantalla y deja libre la franja del menú fijo.
+       Fondo y tipografía son los de la oferta (.pl-hero): crema con el trazo
+       lima, titular en sans gruesa y remate en serif cursiva. */
+    .situaciones--hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: calc(110px + env(safe-area-inset-top));
+      background-color: #fcfdf8;
+    }
+    .situaciones--hero .situaciones__container { width: 100%; position: relative; z-index: 2; }
+    .situaciones.situaciones--hero .eyebrow {
+      display: inline-block;
+      color: #0c1a12; letter-spacing: 2px; font-weight: 700; font-size: .75rem;
+      background: #d8f870; padding: .35rem 1rem; border-radius: 30px;
+      border: 1px solid rgba(0,0,0,.05);
+      margin-bottom: 1.75rem;
+    }
+    .situaciones.situaciones--hero h1 {
+      font-family: var(--pl-sans);
+      font-size: clamp(2.4rem, 4.6vw, 4.2rem);
+      font-weight: 700; line-height: 1.05; letter-spacing: -1.5px;
+      color: #0c1a12;
+      max-width: 600px;
+      margin: 0 0 1.75rem;
+    }
+    .situaciones--hero h1 em {
+      font-family: var(--pl-serif);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -.5px;
+    }
+    .situaciones.situaciones--hero p {
+      font-family: var(--pl-sans);
+      font-size: 1.15rem; line-height: 1.6; font-weight: 500;
+      color: #2a3a2e;
+    }
+    .situaciones--hero .situaciones__cta { color: #0c1a12; }
+
+    .hero-opciones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+      max-width: 560px;
+    }
+    .hero-opcion {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 16px 18px;
+      border: 2px solid #0c1a12;
+      border-radius: 16px;
+      background: #ffffff;
+      color: #0c1a12;
+      font-family: var(--pl-sans);
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .hero-opcion:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #0c1a12; }
+    .hero-opcion--principal { background: #d8f870; }
+    .hero-opcion strong {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .hero-opcion strong span { transition: transform 180ms ease; }
+    .hero-opcion:hover strong span { transform: translateX(4px); }
+    .hero-opcion small {
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 500;
+      color: #2a3a2e;
+    }
+    .hero-opcion__precio {
+      margin-top: auto;
+      padding-top: 4px;
+      font-style: normal;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .pl-modal-dialog.pl-servicio {
+      max-width: 820px;
+      padding: clamp(1.75rem, 4vw, 2.75rem);
+      background: #ffffff;
+      font-family: var(--pl-sans);
+      color: #0c1a12;
+    }
+    .pl-servicio h2 {
+      margin: 0 0 .35rem;
+      font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .pl-servicio__cabeza { max-width: 600px; padding-right: 2.5rem; }
+    .pl-servicio__cabeza p { margin: 0 0 .75rem; font-size: 1rem; line-height: 1.55; color: #2a3a2e; }
+    .pl-servicio .pl-servicio__lema {
+      font-family: var(--pl-serif);
+      font-style: italic;
+      font-size: 1.35rem;
+      color: #0c1a12;
+    }
+    .pl-servicio .pl-servicio__precio {
+      display: flex;
+      align-items: baseline;
+      gap: .75rem;
+      margin: 1rem 0 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0c1a12;
+    }
+    .pl-servicio__precio span { font-size: .95rem; font-weight: 500; color: #2a3a2e; }
+
+    .pl-servicio__opciones {
+      display: grid;
+      gap: .5rem;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      border: 0;
+    }
+    .pl-servicio__opciones legend { margin-bottom: .6rem; font-size: 1rem; font-weight: 700; }
+    .pl-servicio__opciones label {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .8rem 1rem;
+      border: 2px solid rgba(12,26,18,.15);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .pl-servicio__opciones label:has(input:checked) { border-color: #0c1a12; background: #f3fbd9; }
+    .pl-servicio__opciones input { accent-color: #0c1a12; margin: 0; }
+    .pl-servicio__opciones span { flex: 1; }
+    .pl-servicio__opciones b { font-size: 1.1rem; }
+
+    .pl-servicio__rejilla {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2.25rem;
+      margin-top: 1.75rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(12,26,18,.12);
+    }
+    .pl-servicio h3 { margin: 0 0 .6rem; font-size: 1rem; font-weight: 700; }
+    .pl-servicio ul, .pl-servicio ol {
+      margin: 0;
+      padding-left: 1.15rem;
+      font-size: .93rem;
+      line-height: 1.55;
+      color: #2a3a2e;
+    }
+    .pl-servicio ul { list-style: disc; }
+    .pl-servicio ol { list-style: decimal; }
+    .pl-servicio li { display: list-item; }
+    .pl-servicio li + li { margin-top: .3rem; }
+    .pl-servicio ul li::marker { color: #7a9a2a; }
+    .pl-servicio ol li::marker { font-weight: 700; color: #0c1a12; }
+    .pl-servicio .pl-servicio__nota { margin: .7rem 0 0; font-size: .88rem; font-weight: 600; color: #0c1a12; }
+
+    .pl-servicio__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      margin-top: 2rem;
+      padding: .95rem 1.6rem;
+      border: 2px solid #0c1a12;
+      border-radius: 999px;
+      background: #d8f870;
+      color: #0c1a12;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .pl-servicio__cta:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #0c1a12; }
+
+    @media (max-width: 760px) {
+      .pl-servicio__rejilla { grid-template-columns: 1fr; }
+      .pl-servicio__cta { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 760px) {
+      .hero-opciones { grid-template-columns: 1fr; gap: 10px; }
+      .hero-opcion { padding: 13px 16px; }
+      .hero-opcion strong { font-size: 16px; }
+    }
+
+    /* La oferta (el hero anterior) ya no abre la página: mide lo que su
+       contenido pide y no reserva el hueco del menú. */
+    .pl-hero--oferta { min-height: 0; padding: clamp(4rem, 8vw, 6rem) 1.5rem; }
 
     .situaciones p {
       max-width: 500px;
@@ -473,15 +633,14 @@
       position: relative;
     }
 
+    /* El contenedor mide lo mismo que el dibujo (abogado_ilustracion_recorte.png
+       viene recortado a su contenido), así que los cuadros se posicionan
+       contra la figura y no contra un lienzo vacío. */
     .hero-visual {
       position: relative;
-      width: min(100%, 650px);
-      min-height: 580px;
+      width: min(100%, 560px);
       margin-inline: auto;
       isolation: isolate;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
     }
 
     .hero-visual__circle {
@@ -498,29 +657,30 @@
     }
 
     .hero-visual__image {
-      position: absolute;
+      position: relative;
       z-index: 1;
-      bottom: 0;
-      left: 50%;
-      width: 76%;
-      max-height: 92%;
-      object-fit: contain;
-      object-position: center top;
-      transform: translateX(-50%);
+      display: block;
+      width: 80%;
+      height: auto;
+      margin: 0 auto;
       filter: contrast(1.03);
     }
 
+    /* Letrero de los años 50: papel crudo con grano, filete negro grueso de
+       esquinas muy redondas y rotulación geométrica en mayúsculas, centrada
+       y con mucho aire entre letras. Sin sombra: es tinta sobre papel. */
     .case-float {
       position: absolute;
       z-index: 2;
-      width: min(320px, 53%);
-      padding: 18px 22px;
-      border: 1px solid rgba(24, 34, 24, .08);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, .96);
-      box-shadow: 0 16px 40px rgba(23, 35, 23, .10);
-      backdrop-filter: blur(8px);
-      font-family: var(--pl-sans);
+      width: min(230px, 44%);
+      padding: 13px 16px 11px;
+      border: 3px solid #1c1b19;
+      border-radius: 26px;
+      background-color: #ffffff;
+      font-family: 'Josefin Sans', var(--pl-sans);
+      text-align: center;
+      text-transform: uppercase;
+      color: #1c1b19;
       opacity: 0;
       transform: translateY(18px) scale(0.98);
       transition:
@@ -534,20 +694,23 @@
       transform: translateY(0) scale(1);
     }
 
-    /* Positioned carefully away from lawyer's face across all breakpoints */
+    /* Tres posiciones pegadas a la figura y lejos de la cara (franja
+       superior central): a la derecha a media altura, a la izquierda abajo y
+       a la derecha abajo. Sólo se ve un cuadro a la vez, así que pueden
+       compartir lado sin estorbarse. */
     .case-float--one {
-      top: 6%;
-      left: -4%;
+      top: 30%;
+      right: -2%;
     }
 
     .case-float--two {
-      top: 46%;
-      left: -8%;
+      top: 58%;
+      left: -2%;
     }
 
     .case-float--three {
-      right: -5%;
-      bottom: 4%;
+      right: 0;
+      bottom: 3%;
     }
 
     .case-float.is-changing {
@@ -555,54 +718,19 @@
       transform: translateY(-8px) scale(.97);
     }
 
-    .case-float.is-active {
-      box-shadow: 0 22px 52px rgba(23, 35, 23, .22), 0 0 0 1.5px rgba(92, 110, 66, .35);
-    }
+    /* El punto verde era de la tarjeta de app; en el letrero no va. */
+    .case-float__pulse-dot { display: none; }
 
-    .case-float__pulse-dot {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(92, 110, 66, 0.25);
-      transition: background 300ms ease;
-    }
-
-    .case-float.is-active .case-float__pulse-dot {
-      background: #4a9c42;
-      animation: pulsePing 2s infinite;
-    }
-
-    @keyframes pulsePing {
-      0% {
-        box-shadow: 0 0 0 0 rgba(74, 156, 66, 0.6);
-      }
-      70% {
-        box-shadow: 0 0 0 8px rgba(74, 156, 66, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(74, 156, 66, 0);
-      }
-    }
-
-    .case-float__label {
-      display: block;
-      margin-bottom: 8px;
-      color: #62764a;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .16em;
-      padding-right: 18px;
-    }
+    /* La etiqueta sigue en el HTML (el script la actualiza) pero no se
+       muestra: el letrero lleva sólo el caso. */
+    .case-float__label { display: none; }
 
     .case-float strong {
       display: block;
-      color: #172317;
-      font-size: clamp(15px, 1.8vw, 21px);
-      line-height: 1.18;
+      font-size: clamp(12px, 1.1vw, 14px);
+      line-height: 1.5;
       font-weight: 600;
+      letter-spacing: .14em;
     }
 
     @media (max-width: 960px) {
@@ -613,47 +741,29 @@
     }
 
     @media (max-width: 760px) {
-      .hero-visual {
-        min-height: 480px;
-      }
-
       .hero-visual__image {
-        width: 81%;
+        width: 84%;
       }
 
       .case-float {
-        width: 62%;
-        padding: 14px 16px;
-        border-radius: 15px;
+        width: 52%;
+        padding: 10px 12px 8px;
+        border-width: 2.5px;
+        border-radius: 20px;
       }
 
-      .case-float--one {
-        top: 3%;
-        left: 2%;
-      }
-
-      .case-float--two {
-        top: 65%;
-        left: -2%;
-      }
-
-      .case-float--three {
-        display: none !important; /* Oculta la 3ra tarjeta en móvil para evitar saturar */
-      }
-
-      .case-float__label {
-        margin-bottom: 5px;
-        font-size: 8px;
-      }
+      .case-float--one { top: 30%; right: 0; }
+      .case-float--two { top: 58%; left: 0; }
+      .case-float--three { right: 0; bottom: 2%; }
 
       .case-float strong {
-        font-size: 15px;
+        font-size: 11px;
+        letter-spacing: .11em;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .case-float {
-        opacity: 1 !important;
         transform: none !important;
         transition: none !important;
       }
@@ -715,184 +825,6 @@
         color: var(--pl-muted); font-weight: 500;
         letter-spacing: .5px; text-transform: uppercase;
     }
-
-
-    /* ═══════════════════════════════════════
-       3.  FILTRO DE ELEGIBILIDAD
-       ═══════════════════════════════════════ */
-    .pl-filter-section { background: #fff; }
-    .pl-filter-box {
-        max-width: 700px; margin: 0 auto;
-        background: var(--pl-bg-warm);
-        border: 1px solid var(--pl-border);
-        border-radius: 16px; padding: 2.5rem 2rem;
-        box-shadow: 0 8px 30px rgba(0,0,0,.025);
-    }
-    .pl-filter-header { text-align: center; margin-bottom: 2rem; }
-    .pl-progress {
-        display: flex; align-items: center; justify-content: center;
-        gap: .4rem; margin-bottom: 1.5rem;
-    }
-    .pl-progress-dot {
-        width: 8px; height: 8px; border-radius: 50%;
-        background: rgba(0,0,0,.1); transition: all .3s;
-    }
-    .pl-progress-dot.active { width: 24px; border-radius: 4px; background: var(--pl-bronze); }
-    .pl-progress-label {
-        font-family: var(--pl-sans); font-size: .72rem;
-        color: var(--pl-muted); margin-left: .5rem; font-weight: 500;
-    }
-
-    /* Step containers */
-    .pl-step-panel { display: none; }
-    .pl-step-panel.active { display: block; animation: plSlideIn .35s ease; }
-    @keyframes plSlideIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-
-    .pl-q-title {
-        font-family: var(--pl-sans); font-weight: 600;
-        font-size: 1.05rem; color: var(--pl-carbon);
-        margin-bottom: 1rem; text-align: center;
-    }
-
-    /* Click-card options */
-    .pl-card-options {
-        display: grid; grid-template-columns: 1fr 1fr;
-        gap: .8rem;
-    }
-    .pl-card-opt {
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        gap: .5rem; padding: 1.4rem 1rem;
-        background: #fff; border: 1.5px solid rgba(0,0,0,.07);
-        border-radius: var(--pl-radius); cursor: pointer;
-        transition: all .2s; text-align: center;
-        user-select: none;
-    }
-    .pl-card-opt:hover { border-color: rgba(0,0,0,.15); background: #fefefe; }
-    .pl-card-opt.selected {
-        border-color: var(--pl-bronze);
-        background: rgba(149,132,99,.06);
-        box-shadow: 0 0 0 1px var(--pl-bronze);
-    }
-    .pl-card-opt i {
-        font-size: 1.4rem; color: var(--pl-bronze);
-    }
-    .pl-card-opt span {
-        font-family: var(--pl-sans); font-size: .82rem;
-        font-weight: 500; color: var(--pl-carbon); line-height: 1.3;
-    }
-    .pl-card-opt.full-width { grid-column: 1 / -1; flex-direction: row; gap: 1rem; }
-    .pl-card-opt.full-width i { font-size: 1.2rem; }
-
-    /* Evidence radios (step 3) */
-    .pl-evidence-opts { display: flex; flex-direction: column; gap: .5rem; }
-    .pl-ev-label {
-        display: flex; align-items: center; gap: .8rem;
-        padding: .9rem 1rem; background: #fff;
-        border: 1.5px solid rgba(0,0,0,.07);
-        border-radius: 8px; cursor: pointer;
-        font-family: var(--pl-sans); font-size: .88rem;
-        color: var(--pl-taupe); transition: all .2s;
-    }
-    .pl-ev-label:hover { border-color: rgba(0,0,0,.15); }
-    .pl-ev-label:has(input:checked) {
-        border-color: var(--pl-bronze); background: rgba(149,132,99,.05);
-        color: var(--pl-carbon); font-weight: 500;
-    }
-    .pl-ev-label input { accent-color: var(--pl-bronze); }
-
-    .pl-amount-input {
-        width: 100%; padding: .9rem 1rem;
-        border: 1.5px solid rgba(0,0,0,.07);
-        border-radius: 8px; font-family: var(--pl-sans);
-        font-size: .95rem; background: #fff;
-        margin-top: .8rem; transition: border-color .2s;
-    }
-    .pl-amount-input:focus { outline: none; border-color: var(--pl-bronze); }
-
-    /* Result panels */
-    .pl-result { display: none; animation: plSlideIn .4s ease; }
-    .pl-result.active { display: block; }
-    .pl-result-header { text-align: center; margin-bottom: 2rem; }
-    .pl-result-header h2 {
-        font-family: var(--pl-serif);
-        font-size: clamp(1.5rem,3vw,2rem);
-        font-weight: 400; color: var(--pl-carbon);
-        margin-bottom: .5rem;
-    }
-    .pl-result-header p {
-        font-family: var(--pl-sans); font-size: .92rem;
-        color: var(--pl-taupe); max-width: 480px; margin: 0 auto;
-    }
-
-    /* Product card in result */
-    .pl-product-result {
-        background: #fff; border: 1.5px solid rgba(149,132,99,.18);
-        border-radius: 14px; overflow: hidden;
-        box-shadow: 0 10px 35px rgba(0,0,0,.04);
-    }
-    .pl-pr-top {
-        background: linear-gradient(135deg, var(--pl-carbon) 0%, #3a3835 100%);
-        color: #fff; padding: 2rem 2rem 1.6rem;
-    }
-    .pl-pr-badge {
-        font-family: var(--pl-sans); font-size: .58rem; font-weight: 600;
-        letter-spacing: 3px; text-transform: uppercase;
-        color: var(--pl-bronze); border: 1px solid rgba(149,132,99,.35);
-        padding: .25rem .7rem; border-radius: 30px;
-        display: inline-block; margin-bottom: .8rem;
-    }
-    .pl-pr-name { font-family: var(--pl-serif); font-size: 1.8rem; font-weight: 400; margin-bottom: .3rem; }
-    .pl-pr-sub { font-family: var(--pl-sans); font-size: .85rem; color: rgba(255,255,255,.55); margin-bottom: 1.2rem; }
-    .pl-pr-price-row { display: flex; align-items: baseline; gap: .6rem; margin-bottom: 1.4rem; }
-    .pl-pr-price { font-family: var(--pl-sans); font-size: 2.2rem; font-weight: 700; }
-    .pl-pr-price-label { font-family: var(--pl-sans); font-size: .8rem; color: rgba(255,255,255,.5); }
-    .pl-pr-bottom { padding: 1.8rem 2rem; }
-    .pl-pr-list { list-style: none; padding: 0; margin: 0 0 1.6rem; display: flex; flex-direction: column; gap: .55rem; }
-    .pl-pr-list li {
-        font-family: var(--pl-sans); font-size: .84rem;
-        color: var(--pl-taupe); padding-left: 1.5rem;
-        position: relative; line-height: 1.45;
-    }
-    .pl-pr-list li::before {
-        content: ''; position: absolute; left: 0; top: .45em;
-        width: 7px; height: 7px; border-radius: 50%;
-        background: var(--pl-bronze);
-    }
-    .pl-pr-upsell {
-        background: var(--pl-bg-warm); border: 1px solid rgba(149,132,99,.12);
-        border-radius: 8px; padding: 1rem 1.2rem;
-        display: flex; align-items: center; justify-content: space-between;
-        gap: 1rem; margin-top: 1.2rem;
-    }
-    .pl-pr-upsell-text { font-family: var(--pl-sans); font-size: .82rem; color: var(--pl-taupe); line-height: 1.4; }
-    .pl-pr-upsell-text strong { color: var(--pl-carbon); font-weight: 600; }
-    .pl-pr-upsell-price { font-family: var(--pl-sans); font-size: 1rem; font-weight: 700; color: var(--pl-carbon); white-space: nowrap; }
-
-    /* Redirect / no-apply cards */
-    .pl-redirect-card {
-        max-width: 520px; margin: 0 auto;
-        border: 1px solid var(--pl-border); border-radius: var(--pl-radius);
-        padding: 2.2rem; text-align: center;
-    }
-    .pl-redirect-card i.lead { font-size: 2rem; color: var(--pl-bronze); margin-bottom: .8rem; }
-    .pl-redirect-card h3 {
-        font-family: var(--pl-serif); font-size: 1.6rem;
-        font-weight: 400; margin-bottom: .6rem;
-    }
-    .pl-redirect-card p { font-family: var(--pl-sans); font-size: .9rem; color: var(--pl-taupe); line-height: 1.55; margin-bottom: 1.6rem; }
-    .pl-redirect-card .pl-link-subtle {
-        display: block; margin-top: .8rem;
-        font-family: var(--pl-sans); font-size: .82rem;
-        color: var(--pl-muted); text-decoration: underline;
-    }
-    .pl-noapply-card {
-        max-width: 520px; margin: 0 auto;
-        background: #fef7f7; border: 1px solid #fce8e8;
-        border-radius: var(--pl-radius); padding: 2.2rem; text-align: center;
-    }
-    .pl-noapply-card h3 { font-family: var(--pl-serif); font-size: 1.6rem; font-weight: 400; color: #b91c1c; margin-bottom: .6rem; }
-    .pl-noapply-card p { font-family: var(--pl-sans); font-size: .9rem; color: var(--pl-taupe); line-height: 1.55; margin-bottom: 1.6rem; }
 
 
     /* ═══════════════════════════════════════
@@ -1359,7 +1291,8 @@
        ═══════════════════════════════════════ */
     @media (max-width:768px) {
         .pl-hero { padding: 130px 1.5rem 4rem; }
-        .pl-hero h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); }
+        .pl-hero h1,
+        .pl-hero .pl-hero-title { font-size: clamp(2.5rem, 8vw, 3.5rem); }
         .pl-hero-bg-swirl svg {
             left: -50%;
             top: -10%;
@@ -1368,9 +1301,12 @@
         }
         .pl-hero-desc-row { flex-direction: column; gap: 1rem; }
         .pl-hero-arrow svg { transform: rotate(90deg); }
+        .pl-hero--oferta { padding: 3.5rem 1.5rem; }
+        .situaciones--hero { padding-top: calc(90px + env(safe-area-inset-top)); }
     }
     @media (max-width:600px) {
         .pl-hero { padding: 110px 1.2rem 3rem; }
+        .pl-hero--oferta { padding: 3rem 1.2rem; }
         .pl-section { padding: 3.5rem 1.2rem; }
         .pl-filter-box { padding: 1.8rem 1.3rem; }
         .pl-card-options { grid-template-columns: 1fr; }
@@ -1380,6 +1316,326 @@
         .pl-alt-card { padding: 1.5rem; }
         .pl-recompra { border-radius: 10px; padding: 2.5rem 1.4rem; }
     }
+    /* ══════════════════════════════════════════════════
+       AÑADIDOS — cronograma, blindaje jurídico y modales
+       Todo cuelga de los mismos tokens de arriba: verde
+       #7a8b5c, tinta #0c1a12, crema #faf8f5 y bronce
+       --pl-bronze. No hay colores nuevos.
+       ══════════════════════════════════════════════════ */
+
+    /* ─── Cronograma de 15 días ─── */
+    .pl-timeline {
+        list-style: none;
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0;
+        text-align: left;
+        position: relative;
+    }
+    /* El riel va detrás de los días; con `left` en el centro exacto del
+       marcador (56px de columna / 2) no se desalinea al cambiar el ancho. */
+    .pl-timeline::before {
+        content: "";
+        position: absolute;
+        top: 28px;
+        bottom: 28px;
+        left: 34px;
+        width: 2px;
+        background: rgba(122, 139, 92, 0.25);
+    }
+    .pl-tl-item {
+        position: relative;
+        display: grid;
+        grid-template-columns: 68px 1fr;
+        gap: 1rem;
+        align-items: start;
+        margin-bottom: 1rem;
+    }
+    .pl-tl-item:last-child { margin-bottom: 0; }
+    .pl-tl-day {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 28px;
+        padding: .35rem .5rem;
+        background: #0c1a12;
+        color: #fff;
+        border-radius: 999px;
+        font-family: var(--pl-sans);
+        font-size: .7rem;
+        font-weight: 700;
+        letter-spacing: .02em;
+        white-space: nowrap;
+        margin-top: 1.15rem;
+    }
+    .pl-tl-card {
+        background: #fff;
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 16px;
+        padding: 1.15rem 1.3rem;
+        box-shadow: 0 4px 18px rgba(0,0,0,.02);
+    }
+    .pl-tl-title {
+        font-family: var(--pl-sans);
+        font-size: 1rem;
+        font-weight: 700;
+        color: #0c1a12;
+        margin: 0 0 .35rem;
+    }
+    .pl-tl-desc {
+        font-family: var(--pl-sans);
+        font-size: .88rem;
+        line-height: 1.6;
+        color: #5a665d;
+        margin: 0 0 .7rem;
+    }
+    .pl-tl-canal {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        background: rgba(122, 139, 92, 0.12);
+        color: #5c6b46;
+        border-radius: 999px;
+        padding: .3rem .7rem;
+        font-family: var(--pl-sans);
+        font-size: .72rem;
+        font-weight: 600;
+    }
+    @media (max-width: 560px) {
+        .pl-timeline::before { left: 26px; }
+        .pl-tl-item { grid-template-columns: 54px 1fr; gap: .7rem; }
+        .pl-tl-day { font-size: .62rem; padding: .3rem .35rem; }
+        .pl-tl-card { padding: 1rem; }
+    }
+
+    /* ─── Cédula del firmante ─── */
+    .pl-cedula { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+    /* ─── Nota de testimonios verificados ─── */
+    .pl-testimonios-nota {
+        max-width: 640px;
+        margin: 2rem auto 0;
+        text-align: center;
+        font-family: var(--pl-sans);
+        font-size: .82rem;
+        line-height: 1.6;
+        color: var(--pl-muted);
+    }
+    .pl-testimonios-nota i { color: #7a8b5c; margin-right: .35rem; }
+    .pl-testimonios-nota a { color: inherit; text-decoration: underline; }
+
+    /* ─── Línea de «servicio cumplido» ─── */
+    .pl-trans-cumplido {
+        margin: 1.2rem 0 0;
+        padding: .9rem 1rem;
+        background: rgba(122, 139, 92, 0.10);
+        border-left: 3px solid #7a8b5c;
+        border-radius: 0 10px 10px 0;
+        font-family: var(--pl-sans);
+        font-size: .84rem;
+        line-height: 1.6;
+        color: #43503f;
+    }
+    .pl-trans-cumplido strong { color: #0c1a12; }
+
+    /* ─── Árbol de decisión de siguientes pasos ─── */
+    .pl-branch-q {
+        display: block;
+        margin: 0 0 .7rem;
+        font-family: var(--pl-sans);
+        font-size: .92rem;
+        font-weight: 700;
+        color: #0c1a12;
+        text-align: center;
+    }
+    .pl-branch-q .pl-branch-arrow { display: block; color: #7a8b5c; font-size: .85rem; margin-top: .15rem; }
+    .pl-next-note {
+        display: block;
+        margin-top: .8rem;
+        font-family: var(--pl-sans);
+        font-size: .72rem;
+        line-height: 1.5;
+        color: var(--pl-muted);
+    }
+
+    /* ─── Tarjeta de alto monto ─── */
+    .pl-alto-card {
+        max-width: 760px;
+        margin: 2.5rem auto 0;
+        background: #0c1a12;
+        color: #f4f1ea;
+        border-radius: 18px;
+        padding: 2rem 1.8rem;
+        text-align: left;
+    }
+    .pl-alto-card h3 {
+        font-family: var(--pl-serif);
+        font-size: 1.7rem;
+        font-weight: 400;
+        color: #fff;
+        margin: 0 0 .6rem;
+    }
+    .pl-alto-card p {
+        font-family: var(--pl-sans);
+        font-size: .9rem;
+        line-height: 1.65;
+        color: rgba(244,241,234,.85);
+        margin: 0 0 .8rem;
+    }
+    .pl-alto-card p:last-of-type { margin-bottom: 1.4rem; }
+    .pl-alto-badge {
+        display: inline-block;
+        background: rgba(216, 248, 112, 0.18);
+        color: #d8f870;
+        border-radius: 999px;
+        padding: .3rem .8rem;
+        font-family: var(--pl-sans);
+        font-size: .7rem;
+        font-weight: 700;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        margin-bottom: .9rem;
+    }
+    .pl-alto-card .pl-btn-outline-light { width: auto; }
+
+    /* ─── Aviso de privacidad en el pie ─── */
+    .pl-footer-privacidad {
+        max-width: 720px;
+        margin: 2rem auto 0;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255,255,255,.08);
+        font-family: var(--pl-sans);
+        font-size: .72rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+        opacity: .8;
+        text-align: left;
+    }
+    .pl-footer-privacidad strong { display: block; margin-bottom: .4rem; opacity: 1; }
+    .pl-footer-privacidad a { color: inherit; text-decoration: underline; }
+
+    /* ═══ Modales (servicios y contrato) ═══
+       Uno solo sirve a todos: cambia el contenido, no el andamio. Se abre
+       con .is-open para poder animar la entrada; el <body> se bloquea para
+       que el fondo no siga rodando debajo del panel.
+       El contrato se abre desde el resultado del diagnóstico (.ffq--modal,
+       z-index 10000), así que debe quedar por encima. */
+    .pl-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 10001;
+        display: none;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 4vh 1rem;
+        background: rgba(12, 26, 18, .55);
+        backdrop-filter: blur(3px);
+        overflow-y: auto;
+    }
+    .pl-modal.is-open { display: flex; }
+    .pl-modal-dialog {
+        position: relative;
+        width: 100%;
+        max-width: 760px;
+        background: var(--pl-bg-warm);
+        border-radius: 20px;
+        box-shadow: 0 24px 60px rgba(0,0,0,.28);
+        animation: plModalIn .28s cubic-bezier(.16,1,.3,1);
+    }
+    @keyframes plModalIn {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .pl-modal-dialog { animation: none; }
+    }
+    .pl-modal-close {
+        position: absolute;
+        top: .8rem;
+        right: .8rem;
+        z-index: 2;
+        width: 40px;
+        height: 40px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(12,26,18,.08);
+        color: #0c1a12;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background .2s ease;
+    }
+    .pl-modal-close:hover { background: rgba(12,26,18,.16); }
+    .pl-modal-close:focus-visible { outline: 2px solid #0c1a12; outline-offset: 2px; }
+    body.pl-modal-abierto { overflow: hidden; }
+
+    /* ─── Contrato de prestación de servicios ─── */
+    .pl-contrato-cuerpo {
+        padding: 2.2rem 2rem;
+        max-height: 70vh;
+        overflow-y: auto;
+        font-family: var(--pl-sans);
+        font-size: .86rem;
+        line-height: 1.7;
+        color: var(--pl-taupe);
+    }
+    .pl-contrato-cuerpo h2 {
+        font-family: var(--pl-serif);
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: #0c1a12;
+        margin: 0 0 .3rem;
+    }
+    .pl-contrato-cuerpo h3 {
+        font-family: var(--pl-sans);
+        font-size: .95rem;
+        font-weight: 700;
+        color: #0c1a12;
+        margin: 1.5rem 0 .4rem;
+    }
+    .pl-contrato-cuerpo p { margin: 0 0 .7rem; }
+    .pl-contrato-cuerpo ul { margin: 0 0 .7rem; padding-left: 1.2rem; }
+    .pl-contrato-cuerpo li { margin-bottom: .4rem; }
+    .pl-contrato-intro {
+        font-size: .78rem;
+        color: var(--pl-muted);
+        margin-bottom: 1.2rem;
+    }
+
+    /* Casilla de aceptación: bloquea el CTA hasta que se marca. */
+    .pl-acepta {
+        display: flex;
+        align-items: flex-start;
+        gap: .6rem;
+        margin: 1.2rem 0 0;
+        padding: .9rem 1rem;
+        background: rgba(122, 139, 92, 0.10);
+        border-radius: 12px;
+        font-family: var(--pl-sans);
+        font-size: .8rem;
+        line-height: 1.55;
+        color: #43503f;
+        text-align: left;
+        cursor: pointer;
+    }
+    .pl-acepta input { margin-top: .2rem; width: 18px; height: 18px; flex: 0 0 auto; accent-color: #7a8b5c; }
+    .pl-acepta a { color: #0c1a12; font-weight: 600; }
+    .pl-cta-bloqueado { opacity: .45; pointer-events: none; }
+
+    /* ─── Resultados del diagnóstico (dentro del cuestionario) ─── */
+    .recl-producto .recl-insignia {
+        display: inline-block; margin-bottom: .5rem;
+        font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--ffq-acento);
+    }
+    .recl-producto h3 { margin: 0; font-family: var(--ffq-serif); font-size: 1.5rem; font-weight: 400; }
+    .recl-producto p { margin: .15rem 0 .6rem; font-size: .85rem; color: var(--ffq-suave); }
+    .recl-producto .ffq-cifra small { font-family: var(--ffq-sans); font-size: .78rem; color: var(--ffq-suave); }
+    .recl-extra { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: .82rem; }
+    .recl-extra b { font-size: 1rem; white-space: nowrap; }
+    .recl-texto { margin: 0; font-size: .92rem; line-height: 1.6; color: #3d3833; }
+
     </style>
 
     <noscript>
@@ -1421,7 +1677,7 @@
                     </li>
                     <li><a href="finiquito.html" class="nav-top-link" style="color:#111;">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link" style="color:#111;">Empresa</a></li>
-                    <li><a href="radar/index.html" class="nav-top-link" style="color:#111;">Blog</a></li>
+                    <li><a href="seguimiento.html" class="nav-top-link" style="color:#111;">Seguimiento</a></li>
                 </ul>
             </div>
             <div class="nav-actions">
@@ -1434,121 +1690,39 @@
 
 
     <!-- ═══════════════════════════════════════
-         1.  HERO (New Design)
+         1.  HERO — Los problemas se arreglan hablando
          ═══════════════════════════════════════ -->
-    <header class="pl-hero">
-        <div class="pl-hero-bg-swirl">
-            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" style="overflow: visible;">
-                <path d="M -10,80 C 10,20 40,-10 80,10 C 130,35 120,95 70,110 C 20,125 -20,80 10,40 C 35,0 85,-15 130,10" fill="none" stroke="#d8f870" stroke-width="28" stroke-linecap="round"/>
-            </svg>
-        </div>
-        <div class="pl-container" style="position:relative; z-index:2; width:100%;">
-            <div class="pl-hero-inner blur-fade">
-                <span class="pl-eyebrow">PRESIÓN LEGAL</span>
-                <h1>Deja de que<br>te ignoren.<br><span style="font-weight:400; font-family:var(--pl-serif); font-style:italic;">Que hable tu abogado.</span></h1>
-                
-                <div class="pl-hero-desc-row">
-                    <div class="pl-hero-arrow">
-                        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#0c1a12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                    <p class="pl-hero-sub">El taller no entrega tu coche. Un proveedor dejó de contestar. Alguien no te paga lo que te debe. No importa el caso: un abogado evalúa, redacta, presiona y da seguimiento a tu nombre — durante 15 días, con un solo pago.</p>
-                </div>
-
-                <div class="pl-price-block">
-                    <span class="pl-price-big">$1,450 MXN</span>
-                    <span class="pl-price-note">Pago único · Todo incluido</span>
-                </div>
-                
-                <div class="pl-badges">
-                    <span>Evaluación</span>
-                    <span>Redacción y envío</span>
-                    <span>Seguimiento día 10</span>
-                    <span>Cierre día 15</span>
-                </div>
-                
-                <div class="pl-hero-cta-wrap">
-                    <a href="#filtro" class="pl-btn-solid">
-                        Empezar mi gestión <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <p class="pl-hero-hint">Comienza con una llamada de evaluación gratuita · 10-15 min</p>
-                </div>
-                
-                <p class="pl-hero-trust"><i class="fas fa-shield-alt"></i> Firmado por un socio del despacho con cédula profesional · Respuesta en 24–48 horas hábiles</p>
-            </div>
-        </div>
-    </header>
-
-
-    <!-- ═══════════════════════════════════════
-         1B.  COMPARACIÓN DE PRECIO
-         ═══════════════════════════════════════ -->
-    <section class="pl-section pl-compare-section" style="background:#ffffff; border-bottom:1px solid rgba(0,0,0,0.05); padding: 4rem 1.5rem;">
-        <div class="pl-container" style="max-width:800px;">
-            <div style="text-align:center; margin-bottom: 2rem;" class="blur-fade">
-                <span class="pl-eyebrow">Comparativa real</span>
-                <h2 class="pl-h2" style="margin-bottom:.5rem;">¿Por qué pagar más por menos?</h2>
-                <p class="pl-body" style="font-size:.92rem;">La diferencia entre contratar horas de despacho tradicional o una solución integral.</p>
-            </div>
-            
-            <div class="pl-compare-table-wrap blur-fade">
-                <table class="pl-compare-table">
-                    <thead>
-                        <tr>
-                            <th>Concepto</th>
-                            <th class="col-trad">Abogado tradicional</th>
-                            <th class="col-pl">Presión Legal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="cell-concept">Primera consulta</td>
-                            <td class="cell-trad">$3,000–$5,000</td>
-                            <td class="cell-pl"><i class="fa-solid fa-circle-check"></i> Incluida</td>
-                        </tr>
-                        <tr>
-                            <td class="cell-concept">Redacción y envío</td>
-                            <td class="cell-trad">Cotización aparte</td>
-                            <td class="cell-pl"><i class="fa-solid fa-circle-check"></i> Incluido</td>
-                        </tr>
-                        <tr>
-                            <td class="cell-concept">Seguimiento 15 días</td>
-                            <td class="cell-trad">Cotización aparte</td>
-                            <td class="cell-pl"><i class="fa-solid fa-circle-check"></i> Incluido</td>
-                        </tr>
-                        <tr class="row-total">
-                            <td class="cell-concept"><strong>Total</strong></td>
-                            <td class="cell-trad"><strong>$3,000–$5,000+</strong></td>
-                            <td class="cell-pl"><strong>$1,450 MXN</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════
-         1C.  SITUACIONES REALES
-         ═══════════════════════════════════════ -->
-    <section class="situaciones" id="situaciones">
+    <section class="situaciones situaciones--hero" id="situaciones">
+      <div class="pl-hero-bg-swirl" aria-hidden="true">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" style="overflow: visible;">
+          <path d="M -10,80 C 10,20 40,-10 80,10 C 130,35 120,95 70,110 C 20,125 -20,80 10,40 C 35,0 85,-15 130,10" fill="none" stroke="#d8f870" stroke-width="28" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="situaciones__container">
         
         <!-- Columna Izquierda: Copy limpia sin lista -->
         <div class="situaciones__content">
           <div class="situaciones__intro">
-            <span class="eyebrow">SITUACIONES REALES</span>
-            <h2>No importa cómo empezó.<br>Importa que ya no tienes que resolverlo solo.</h2>
+            <span class="eyebrow">PRESIÓN LEGAL</span>
+            <h1>Los problemas se arreglan hablando.<br><em>Mejor si habla tu abogado.</em></h1>
             <p>
-              El taller no entrega tu coche. No te devuelven un depósito.
-              Un proveedor desapareció. Un vecino ignora un daño.
-              Si alguien no cumple, no responde o te hace dar vueltas,
-              un abogado puede intervenir por ti.
+              La mayoría de los conflictos no necesitan un juicio: necesitan
+              que alguien con cédula tome la palabra.
             </p>
           </div>
 
-          <a class="situaciones__cta" href="#filtro">
-            Ver si mi caso aplica <span>→</span>
-          </a>
+          <div class="hero-opciones">
+            <a class="hero-opcion hero-opcion--principal" href="#modalReclamo" data-modal="modalReclamo">
+              <strong>Reclamo Express <span aria-hidden="true">→</span></strong>
+              <small>Un abogado reclama por ti.</small>
+              <em class="hero-opcion__precio">$3,490</em>
+            </a>
+            <a class="hero-opcion" href="#modalRespuesta" data-modal="modalRespuesta">
+              <strong>Respuesta Directa <span aria-hidden="true">→</span></strong>
+              <small>Tu abogado le responde al abogado de la otra parte.</small>
+              <em class="hero-opcion__precio">Desde $1,990</em>
+            </a>
+          </div>
         </div>
 
         <!-- Columna Derecha: Imagen del Abogado + 3 Tarjetas Flotantes -->
@@ -1556,10 +1730,9 @@
           <div class="hero-visual" id="heroVisual">
             <img
               class="hero-visual__image"
-              src="abogado_ilustracion.png"
+              src="abogado_ilustracion_recorte.png" width="595" height="618"
               alt="Abogado de Ferro Fragoso atendiendo una gestión legal"
-              loading="lazy" decoding="async"
-              style="width: 100%; height: auto; object-fit: contain;"
+              fetchpriority="high" decoding="async"
             >
 
             <div class="case-float case-float--one">
@@ -1586,590 +1759,173 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════
-         2.  PRUEBA SOCIAL
-         ═══════════════════════════════════════ -->
-    <section class="pl-section pl-social">
-        <div class="pl-container">
-            <div class="pl-social-header blur-fade">
-                <span class="pl-eyebrow">Resultados reales</span>
-                <h2 class="pl-h2">Lo que dicen quienes ya usaron Presión Legal</h2>
-            </div>
-            <div class="pl-testimonials blur-fade">
-                <!-- Testimonio 1 -->
-                <figure class="testimonio-card">
-                    <!-- Stars -->
-                    <div style="display: flex; gap: 4px; margin-bottom: 0.5rem;">
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                    </div>
-                    <blockquote>Recuperé mi depósito de renta en 8 días. No me habían contestado en 3 meses.</blockquote>
-                    <figcaption>
-                        <div class="testimonio-profile">
-                            <!-- Google G Logo SVG -->
-                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
-                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
-                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
-                            </svg>
-                            <div class="testimonio-profile-info">
-                                <span class="testimonio-autor">J.M.</span>
-                                <span class="testimonio-meta">Querétaro • Vía Google Reviews</span>
-                            </div>
-                        </div>
-                    </figcaption>
-                </figure>
+    <!-- ═══ Detalle de los dos servicios del hero ═══ -->
+    <div class="pl-modal" id="modalReclamo" role="dialog" aria-modal="true" aria-labelledby="reclamoTitulo">
+        <div class="pl-modal-dialog pl-servicio">
+            <button type="button" class="pl-modal-close" onclick="cerrarModal('modalReclamo')" aria-label="Cerrar Reclamo Express">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <header class="pl-servicio__cabeza">
+                <h2 id="reclamoTitulo">Reclamo Express</h2>
+                <p class="pl-servicio__lema">Un abogado reclama por ti.</p>
+                <p>¿Te deben dinero o no te cumplieron? Yo envío el reclamo a tu nombre y le doy seguimiento por 7 días.</p>
+                <p class="pl-servicio__precio">$3,490 <span>Envío incluido.</span></p>
+            </header>
 
-                <!-- Testimonio 2 -->
-                <figure class="testimonio-card">
-                    <!-- Stars -->
-                    <div style="display: flex; gap: 4px; margin-bottom: 0.5rem;">
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                    </div>
-                    <blockquote>Mi proveedor llevaba 4 meses sin pagar. Al día 3 ya estaba negociando un plan de pagos.</blockquote>
-                    <figcaption>
-                        <div class="testimonio-profile">
-                            <!-- Google G Logo SVG -->
-                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
-                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
-                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
-                            </svg>
-                            <div class="testimonio-profile-info">
-                                <span class="testimonio-autor">L.R.</span>
-                                <span class="testimonio-meta">Ciudad de México • Vía Google Reviews</span>
-                            </div>
-                        </div>
-                    </figcaption>
-                </figure>
-
-                <!-- Testimonio 3 -->
-                <figure class="testimonio-card">
-                    <!-- Stars -->
-                    <div style="display: flex; gap: 4px; margin-bottom: 0.5rem;">
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                        <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1.1rem;"></i>
-                    </div>
-                    <blockquote>El taller no me entregaba mi coche desde hacía semanas. En cuanto llegó el mensaje del abogado, me llamaron el mismo día.</blockquote>
-                    <figcaption>
-                        <div class="testimonio-profile">
-                            <!-- Google G Logo SVG -->
-                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
-                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
-                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
-                            </svg>
-                            <div class="testimonio-profile-info">
-                                <span class="testimonio-autor">D.C.</span>
-                                <span class="testimonio-meta">Querétaro • Vía Google Reviews</span>
-                            </div>
-                        </div>
-                    </figcaption>
-                </figure>
+            <div class="pl-servicio__rejilla">
+                <section>
+                    <h3>Qué recibes</h3>
+                    <ul>
+                        <li>Carta de abogado enviada por paquetería y correo</li>
+                        <li>Mensajes por WhatsApp a la otra persona</li>
+                        <li>Hasta 3 llamadas</li>
+                        <li>Reporte de todo lo que se hizo</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Cómo funciona</h3>
+                    <ol>
+                        <li>Cuéntanos tu caso y sube tus pruebas.</li>
+                        <li>Paga en línea.</li>
+                        <li>Enviamos tu reclamo en 2 días hábiles.</li>
+                        <li>Damos seguimiento por 7 días hábiles.</li>
+                        <li>Recibes tu reporte final.</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Sirve para</h3>
+                    <ul>
+                        <li>Deudas y préstamos</li>
+                        <li>Depósitos que no devuelven</li>
+                        <li>Proveedores que no cumplieron</li>
+                        <li>Daños de vecinos</li>
+                    </ul>
+                    <p class="pl-servicio__nota">Conviene desde $10,000 de reclamo.</p>
+                </section>
+                <section>
+                    <h3>Importante</h3>
+                    <ul>
+                        <li>Si no es viable tu caso o no enviamos a tiempo, te devolvemos tu dinero.</li>
+                        <li>No prometemos que te paguen. Sí hacemos el reclamo y te damos las pruebas.</li>
+                        <li>No incluye demandas ni juicios.</li>
+                        <li>No amenazamos a nadie. Todo es legal y profesional.</li>
+                    </ul>
+                </section>
             </div>
 
+            <a class="pl-servicio__cta" href="solicitud.html?servicio=reclamo_express">Empezar mi reclamo <span aria-hidden="true">→</span></a>
         </div>
-    </section>
+    </div>
 
+    <div class="pl-modal" id="modalRespuesta" role="dialog" aria-modal="true" aria-labelledby="respuestaTitulo">
+        <div class="pl-modal-dialog pl-servicio">
+            <button type="button" class="pl-modal-close" onclick="cerrarModal('modalRespuesta')" aria-label="Cerrar Respuesta Directa">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <header class="pl-servicio__cabeza">
+                <h2 id="respuestaTitulo">Respuesta Directa</h2>
+                <p class="pl-servicio__lema">Tu abogado le responde al abogado de la otra parte.</p>
+                <p>¿Te llegó una carta o mensaje de un abogado? No lo ignores. Yo respondo por ti.</p>
+            </header>
 
-    <!-- ═══════════════════════════════════════
-         3.  FILTRO DE ELEGIBILIDAD
-         ═══════════════════════════════════════ -->
-    <section class="pl-section pl-filter-section" id="filtro">
-        <div class="pl-container">
-            <div class="pl-filter-box" id="filterBox">
+            <fieldset class="pl-servicio__opciones">
+                <legend>Elige cómo responder</legend>
+                <label><input type="radio" name="respuestaOpcion" value="respuesta_whatsapp" checked> <span>Mensaje por WhatsApp</span> <b>$1,990</b></label>
+                <label><input type="radio" name="respuestaOpcion" value="respuesta_carta"> <span>Carta formal</span> <b>$2,490</b></label>
+                <label><input type="radio" name="respuestaOpcion" value="respuesta_mensaje_carta"> <span>Mensaje y carta</span> <b>$2,990</b></label>
+            </fieldset>
 
-                <div class="pl-filter-header">
-                    <span class="pl-eyebrow" style="margin-bottom:.4rem;display:block;">Diagnóstico rápido</span>
-                    <h2 class="pl-h2" style="margin-bottom:.2rem;">¿Tu caso aplica?</h2>
-                    <p class="pl-body" style="font-size:.9rem;">Sin costo · Sin compromiso</p>
-                </div>
-
-                <!-- Progress -->
-                <div class="pl-progress" id="progressBar">
-                    <div class="pl-progress-dot active" data-step="0"></div>
-                    <div class="pl-progress-dot" data-step="1"></div>
-                    <div class="pl-progress-dot" data-step="2"></div>
-                    <span class="pl-progress-label" id="progressLabel">Paso 1 de 3</span>
-                </div>
-
-                <!-- ── STEP 0: Gate question ── -->
-                <div class="pl-step-panel active" id="step0">
-                    <div class="pl-q-title">¿Cuál describe mejor tu situación?</div>
-                    <div class="pl-card-options" style="grid-template-columns: 1fr; max-width:540px; margin:0 auto; gap: .7rem;">
-                        <div class="pl-card-opt full-width" data-val="deuda" onclick="handleGate(this,'deuda')" style="text-align:left; justify-content:flex-start; padding: 1.1rem 1.4rem;">
-                            <i class="fa-solid fa-hand-holding-dollar"></i>
-                            <span>Me deben dinero, un depósito o un pago</span>
-                        </div>
-                        <div class="pl-card-opt full-width" data-val="incumplimiento" onclick="handleGate(this,'incumplimiento')" style="text-align:left; justify-content:flex-start; padding: 1.1rem 1.4rem;">
-                            <i class="fa-solid fa-screwdriver-wrench"></i>
-                            <span>Alguien no cumplió una entrega, reparación o servicio</span>
-                        </div>
-                        <div class="pl-card-opt full-width" data-val="ignoraron" onclick="handleGate(this,'ignoraron')" style="text-align:left; justify-content:flex-start; padding: 1.1rem 1.4rem;">
-                            <i class="fa-solid fa-comment-slash"></i>
-                            <span>Ya intenté resolverlo directamente y me ignoraron</span>
-                        </div>
-                        <div class="pl-card-opt full-width" data-val="otro" onclick="handleGate(this,'otro')" style="text-align:left; justify-content:flex-start; padding: 1.1rem 1.4rem;">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <span>Otro tipo de conflicto donde necesito que hable un abogado</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ── STEP 0b: Non-debt / Other conflict redirect ── -->
-                <div class="pl-result" id="resultNoDebt">
-                    <div class="pl-result-header">
-                        <h2>Tu caso requiere orientación personalizada</h2>
-                        <p>Presión Legal se enfoca en requerimientos directos y cumplimiento. Escríbenos para evaluar tu situación o explora nuestras áreas especializadas:</p>
-                    </div>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;max-width:520px;margin:0 auto;">
-                        <a href="civil.html" class="pl-btn-outline" style="justify-content:center;"><i class="fa-solid fa-scale-balanced"></i> Civil</a>
-                        <a href="familiar.html" class="pl-btn-outline" style="justify-content:center;"><i class="fa-solid fa-home"></i> Familiar</a>
-                        <a href="finiquito.html" class="pl-btn-outline" style="justify-content:center;"><i class="fa-solid fa-briefcase"></i> Laboral</a>
-                        <a href="https://wa.me/524191239646?text=Hola,%20tengo%20un%20conflicto%20legal%20y%20quiero%20saber%20si%20un%20abogado%20puede%20intervenir." target="_blank" class="pl-btn-outline" style="justify-content:center;grid-column:1/-1; background:#0c1a12; color:#fff; border-color:#0c1a12;"><i class="fa-solid fa-comment-dots"></i> Hablar directamente por WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- ── STEP 1: Type of debt ── -->
-                <div class="pl-step-panel" id="step1">
-                    <div class="pl-q-title">¿Qué tipo de deuda o incumplimiento es?</div>
-                    <div class="pl-card-options">
-                        <div class="pl-card-opt" onclick="selectCard(this,'step1')">
-                            <i class="fa-solid fa-hand-holding-dollar"></i>
-                            <span>No me devuelven un depósito o pago</span>
-                        </div>
-                        <div class="pl-card-opt" onclick="selectCard(this,'step1')">
-                            <i class="fa-solid fa-file-invoice-dollar"></i>
-                            <span>Un cliente no me pagó un trabajo</span>
-                        </div>
-                        <div class="pl-card-opt" onclick="selectCard(this,'step1')">
-                            <i class="fa-solid fa-box-open"></i>
-                            <span>Pagué algo y no me lo entregaron</span>
-                        </div>
-                        <div class="pl-card-opt" onclick="selectCard(this,'step1')">
-                            <i class="fa-solid fa-ellipsis"></i>
-                            <span>Otro tipo de deuda o incumplimiento</span>
-                        </div>
-                    </div>
-                    <div style="text-align:center;margin-top:1.4rem;">
-                        <button class="pl-btn-outline" id="btnStep1" onclick="goToStep(2)" disabled style="opacity:.4;">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- ── STEP 2: Evidence + Amount ── -->
-                <div class="pl-step-panel" id="step2">
-                    <div class="pl-q-title">¿Tienes pruebas y sabes cómo contactar a la otra persona?</div>
-                    <div class="pl-evidence-opts">
-                        <label class="pl-ev-label"><input type="radio" name="evidence" value="both"> Sí, tengo evidencia (contrato, mensajes, comprobante) y datos de contacto</label>
-                        <label class="pl-ev-label"><input type="radio" name="evidence" value="partial"> Tengo una cosa, pero no la otra</label>
-                        <label class="pl-ev-label"><input type="radio" name="evidence" value="none"> No tengo nada por escrito ni sé cómo contactarla</label>
-                    </div>
-
-                    <div style="margin-top:1.2rem;">
-                        <label class="pl-q-title" style="font-size:.92rem;text-align:left;display:block;">Monto aproximado de la deuda (opcional)</label>
-                        <input type="text" class="pl-amount-input" id="amountInput" placeholder="Ej. $15,000 MXN">
-                    </div>
-
-                    <div style="text-align:center;margin-top:1.6rem;">
-                        <button class="pl-btn-outline" id="btnStep2" onclick="submitFilter()" disabled style="opacity:.4;">Ver mi resultado <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- ── RESULT A: Aplica ── -->
-                <div class="pl-result" id="resultA">
-                    <div class="pl-result-header">
-                        <h2>Tu caso aplica para Presión Legal.</h2>
-                        <p>Un abogado va a actuar a tu nombre durante 15 días — evaluación, redacción, envío, seguimiento y cierre incluidos.</p>
-                    </div>
-                    <div class="pl-product-result">
-                        <div class="pl-pr-top">
-                            <span class="pl-pr-badge">Gestión activa · 15 días</span>
-                            <h3 class="pl-pr-name">Presión Legal</h3>
-                            <p class="pl-pr-sub">Todo incluido, un solo pago.</p>
-                            <div class="pl-pr-price-row">
-                                <span class="pl-pr-price">$1,450</span>
-                                <span class="pl-pr-price-label">MXN · pago único</span>
-                            </div>
-                            <a href="#" id="btnProducto" class="pl-btn-outline-light" style="width:100%;justify-content:center;">
-                                Agendar evaluación gratuita <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <div class="pl-pr-bottom">
-                            <ul class="pl-pr-list">
-                                <li>Llamada de evaluación (10–15 min) para confirmar que tu caso aplica</li>
-                                <li>Redacción personalizada por abogado con cédula profesional</li>
-                                <li>Documento membretado y firmado por un socio del despacho</li>
-                                <li>Envío formal a la contraparte (WhatsApp o correo)</li>
-                                <li>Seguimiento activo al día 10: llamada del abogado si no hay respuesta</li>
-                                <li>Carta física certificada al día 15 como última presión, si persiste el silencio</li>
-                                <li>Recomendación final con cotización del siguiente paso, sin obligación</li>
-                            </ul>
-                            <div class="pl-pr-upsell">
-                                <div class="pl-pr-upsell-text">
-                                    <strong>¿Necesitas la carta física desde el día 1?</strong><br>
-                                    Envío certificado inmediato con acuse — útil en montos altos o plazos que vencen.
-                                </div>
-                                <span class="pl-pr-upsell-price">+$390</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ── RESULT B: Needs evaluation ── -->
-                <div class="pl-result" id="resultB">
-                    <div class="pl-redirect-card">
-                        <i class="fa-solid fa-phone lead"></i>
-                        <h3>Tu caso necesita evaluación primero</h3>
-                        <p>Te falta evidencia o datos de contacto. Empecemos por una llamada corta para ver qué necesitas reunir y si tu caso aplica para Presión Legal.</p>
-                        <a href="#" id="btnEval" class="pl-btn-outline" style="width:100%;justify-content:center;">Agendar evaluación gratuita <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- ── RESULT C: Already in legal process ── -->
-                <div class="pl-result" id="resultC">
-                    <div class="pl-noapply-card">
-                        <h3>Este servicio no aplica si ya hay proceso legal</h3>
-                        <p>Presión Legal funciona antes de llegar a juzgados. Si tu caso ya está en proceso, escríbenos para evaluar cómo ayudarte.</p>
-                        <a href="solicitud.html?servicio=consulta_particular&detalle=Mi%20caso%20ya%20est%C3%A1%20en%20proceso%20legal%20y%20quiero%20orientaci%C3%B3n." class="pl-btn-outline" style="display:inline-flex;">Cuéntanos tu caso</a>
-                    </div>
-                </div>
+            <div class="pl-servicio__rejilla">
+                <section>
+                    <h3>Qué recibes</h3>
+                    <ul>
+                        <li>Revisión de lo que te enviaron</li>
+                        <li>Respuesta firmada por abogado</li>
+                        <li>Una réplica si contestan</li>
+                        <li>Video corto explicándote qué hacer</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Cómo funciona</h3>
+                    <ol>
+                        <li>Sube la carta o mensaje. Es gratis saber si es urgente.</li>
+                        <li>Elige tu opción y paga.</li>
+                        <li>Aprueba mi respuesta.</li>
+                        <li>Yo la envío en 2 días hábiles.</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Importante</h3>
+                    <ul>
+                        <li>No incluye juicios ni audiencias.</li>
+                        <li>No prometemos un resultado.</li>
+                    </ul>
+                </section>
             </div>
+
+            <a class="pl-servicio__cta" id="btnRespuesta" href="solicitud.html?servicio=respuesta_whatsapp">Subir mi carta gratis <span aria-hidden="true">→</span></a>
         </div>
-    </section>
+    </div>
 
 
     <!-- ═══════════════════════════════════════
-         4.  LOS 15 DÍAS
+         CONTRATO DE PRESTACIÓN DE SERVICIOS
+         Texto base redactado para este servicio. Debe ser revisado y
+         ajustado por el socio responsable antes de publicarse: los datos
+         entre corchetes ([NÚM. DE CÉDULA], domicilio) están pendientes de
+         captura y la jurisdicción debe confirmarse.
          ═══════════════════════════════════════ -->
-    <section class="process-section">
-        <p class="process-eyebrow">EL PROCESO</p>
-        <h2 class="process-title">Los 15 días, paso a paso</h2>
-        <p class="process-subtitle">No es mandar una carta y esperar. Es una escalera de presión progresiva con un abogado actuando a tu nombre.</p>
+    <div class="pl-modal" id="modalContrato" role="dialog" aria-modal="true" aria-labelledby="contratoTitulo">
+        <div class="pl-modal-dialog">
+            <button type="button" class="pl-modal-close" onclick="cerrarModal('modalContrato')" aria-label="Cerrar contrato">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="pl-contrato-cuerpo">
+                <h2 id="contratoTitulo">Contrato de prestación de servicios</h2>
+                <p class="pl-contrato-intro">Servicio «Presión Legal» · Gestión extrajudicial de reclamación · 15 días naturales</p>
 
-        <div class="process-grid">
-            <!-- Paso 1 -->
-            <div class="process-card" data-progress="0">
-                <div class="process-card-head">
-                    <span class="process-icon"><i class="fa-solid fa-headset"></i></span>
-                    <span class="process-label">Evaluación</span>
-                </div>
-                <div class="ring-wrap">
-                    <svg viewBox="0 0 120 120" class="ring-svg">
-                        <circle class="ring-track" cx="60" cy="60" r="52"/>
-                        <circle class="ring-fill" cx="60" cy="60" r="52"/>
-                    </svg>
-                    <div class="ring-center">
-                        <span class="ring-value">DÍA 0</span>
-                    </div>
-                </div>
-                <p class="process-desc">Llamada de 10-15 min, sin costo. Confirmamos que el caso aplica y te pedimos la información necesaria.</p>
-            </div>
+                <h3>1. Partes</h3>
+                <p>Presta el servicio <strong>Ferro Fragoso, Estudio Jurídico</strong>, con domicilio en Querétaro, México, a través del socio responsable <strong>Alan Obed Fragoso Rivera</strong>, abogado con cédula profesional <span class="pl-cedula">[NÚM. DE CÉDULA]</span> («el Despacho»). Lo recibe la persona que contrata el servicio («el Cliente»).</p>
 
-            <!-- Paso 2 -->
-            <div class="process-card" data-progress="20">
-                <div class="process-card-head">
-                    <span class="process-icon"><i class="fa-solid fa-paper-plane"></i></span>
-                    <span class="process-label">Redacción y envío</span>
-                </div>
-                <div class="ring-wrap">
-                    <svg viewBox="0 0 120 120" class="ring-svg">
-                        <circle class="ring-track" cx="60" cy="60" r="52"/>
-                        <circle class="ring-fill" cx="60" cy="60" r="52"/>
-                    </svg>
-                    <div class="ring-center">
-                        <span class="ring-value">DÍA 1–2</span>
-                    </div>
-                </div>
-                <p class="process-desc">Reclamación formal firmada por un socio del despacho, enviada por WhatsApp o correo a la contraparte.</p>
-            </div>
+                <h3>2. Objeto</h3>
+                <p>El Despacho formula, comunica y da seguimiento a una reclamación extrajudicial a nombre del Cliente frente a una contraparte identificada, durante 15 días naturales contados a partir de la confirmación de datos, conforme al cronograma publicado: reclamación inicial (día 1-2), recordatorio escrito (día 6-7), contacto verbal de negociación (día 10) y cierre con envío por mensajería o correo certificado (día 15).</p>
 
-            <!-- Paso 3 -->
-            <div class="process-card" data-progress="65">
-                <div class="process-card-head">
-                    <span class="process-icon"><i class="fa-solid fa-phone-volume"></i></span>
-                    <span class="process-label">Seguimiento activo</span>
-                </div>
-                <div class="ring-wrap">
-                    <svg viewBox="0 0 120 120" class="ring-svg">
-                        <circle class="ring-track" cx="60" cy="60" r="52"/>
-                        <circle class="ring-fill" cx="60" cy="60" r="52"/>
-                    </svg>
-                    <div class="ring-center">
-                        <span class="ring-value">DÍA 10</span>
-                    </div>
-                </div>
-                <p class="process-desc">Si no hay respuesta, el abogado llama directamente a la contraparte para presionar y explorar negociación.</p>
-            </div>
+                <h3>3. Obligación de medios, no de resultado</h3>
+                <p>El Despacho se obliga a <strong>ejecutar las gestiones descritas con la diligencia profesional que corresponde</strong>, no a obtener un resultado determinado. El servicio <strong>no garantiza</strong> el pago, la respuesta, la entrega, el cumplimiento ni la negociación por parte de la contraparte, por depender de la voluntad de un tercero ajeno al Despacho.</p>
+                <p>El servicio se tiene por <strong>cumplido</strong> al haberse enviado la reclamación y realizado el seguimiento en los plazos indicados, con independencia de la respuesta obtenida.</p>
 
-            <!-- Paso 4 -->
-            <div class="process-card" data-progress="100">
-                <div class="process-card-head">
-                    <span class="process-icon"><i class="fa-solid fa-file-signature"></i></span>
-                    <span class="process-label">Cierre</span>
-                </div>
-                <div class="ring-wrap">
-                    <svg viewBox="0 0 120 120" class="ring-svg">
-                        <circle class="ring-track" cx="60" cy="60" r="52"/>
-                        <circle class="ring-fill" cx="60" cy="60" r="52"/>
-                    </svg>
-                    <div class="ring-center">
-                        <span class="ring-value">DÍA 15</span>
-                    </div>
-                </div>
-                <p class="process-desc">Carta física certificada como último recurso + diagnóstico con siguiente paso y costo, sin obligación de continuar.</p>
+                <h3>4. Exclusión de responsabilidad por conducta de la contraparte</h3>
+                <p>El Despacho <strong>no responde por el no pago, el silencio, la negativa, la insolvencia, el cambio de domicilio, la desaparición ni cualquier otra conducta de la contraparte</strong>, ni por los daños que de ello deriven para el Cliente. Tampoco responde por la veracidad, suficiencia o autenticidad de la información y documentación que el Cliente proporcione, ni por los efectos de la prescripción, caducidad o plazos que hubieran corrido antes de la contratación.</p>
+
+                <h3>5. Confidencialidad de las comunicaciones con terceros</h3>
+                <p>Las comunicaciones que el Despacho dirija a la contraparte o a terceros contienen únicamente la información estrictamente necesaria para formular la reclamación. El Despacho guarda secreto profesional respecto de la información del Cliente y <strong>no la comparte con terceros ajenos al asunto</strong>, salvo autorización expresa del Cliente o requerimiento de autoridad competente.</p>
+                <p>El Cliente se obliga, a su vez, a <strong>no divulgar, publicar ni difundir</strong> por ningún medio —incluidas redes sociales— el contenido de las comunicaciones sostenidas con la contraparte ni los documentos elaborados por el Despacho, salvo para hacerlos valer ante autoridad. La difusión indebida puede generar responsabilidad del Cliente frente a la contraparte y libera al Despacho de responsabilidad por sus consecuencias.</p>
+
+                <h3>6. Alcance excluido</h3>
+                <p>El servicio no comprende representación judicial, presentación de demandas, denuncias, medidas cautelares, requerimientos notariales, ni asuntos penales, familiares, laborales, fiscales, administrativos, sucesorios, de violencia o que requieran intervención judicial inmediata. Tampoco incluye amenazas, simulación de autoridad, hostigamiento ni contacto con terceros ajenos al asunto.</p>
+
+                <h3>7. Honorarios</h3>
+                <p>El servicio tiene un costo de <strong>$1,450 MXN</strong>, en un solo pago, que cubre evaluación, redacción, envío, seguimiento, cierre con envío por mensajería o correo certificado y diagnóstico final. El envío certificado anticipado (desde el día 1) tiene un costo adicional de $390 MXN. Los servicios posteriores —segunda reclamación, evaluación judicial o convenio de pago— se contratan y cobran por separado.</p>
+
+                <h3>8. Obligaciones del Cliente</h3>
+                <p>El Cliente se obliga a proporcionar información veraz y completa, la evidencia disponible y los datos de contacto de la contraparte, así como a informar al Despacho de cualquier comunicación o acuerdo que sostenga directamente con ella durante la vigencia del servicio.</p>
+
+                <h3>9. Datos personales</h3>
+                <p>El tratamiento de los datos personales del Cliente se rige por el <a href="privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.</p>
+
+                <h3>10. Vigencia y terminación</h3>
+                <p>El servicio concluye al día 15 con la entrega del diagnóstico final. Si el Cliente decide interrumpir la gestión antes de ese plazo, las gestiones ya realizadas se tienen por prestadas y devengadas.</p>
+
+                <h3>11. Ley aplicable</h3>
+                <p>Para la interpretación y cumplimiento de este contrato, las partes se someten a la legislación aplicable y a los tribunales competentes de Querétaro, México, renunciando a cualquier otro fuero.</p>
             </div>
         </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════
-         5.  TRANSPARENCIA
-         ═══════════════════════════════════════ -->
-    <section class="pl-section pl-trans-section">
-        <div class="pl-container">
-            <div class="pl-trans-header blur-fade">
-                <span class="pl-eyebrow">Sin letra chiquita</span>
-                <h2 class="pl-h2">Transparencia de alcance</h2>
-            </div>
-            <div class="pl-trans-grid blur-fade">
-                <!-- Card SI -->
-                <div class="pl-trans-card pl-trans-card-yes">
-                    <div class="pl-trans-card-header">
-                        <div class="pl-trans-card-badge">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                    </div>
-                    <div class="pl-trans-card-body">
-                        <h3 class="pl-trans-card-title">Qué sí hace</h3>
-                        <ul class="pl-trans-list-ref">
-                            <li><i class="fa-solid fa-circle-check yes"></i> <span>Habla por ti cuando ya no quieres o no puedes seguir discutiendo directamente</span></li>
-                            <li><i class="fa-solid fa-circle-check yes"></i> <span>Presiona formalmente con el peso de un abogado y un despacho</span></li>
-                            <li><i class="fa-solid fa-circle-check yes"></i> <span>Documenta tu reclamo con validez legal</span></li>
-                            <li><i class="fa-solid fa-circle-check yes"></i> <span>Te acompaña 15 días con seguimiento real, no te deja esperando</span></li>
-                            <li><i class="fa-solid fa-circle-check yes"></i> <span>Escala la presión: WhatsApp → llamada → carta certificada</span></li>
-                            <li><i class="fa-solid fa-circle-check yes"></i> <span>Cierra con un diagnóstico claro y cotización del siguiente paso</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Card NO -->
-                <div class="pl-trans-card pl-trans-card-no">
-                    <div class="pl-trans-card-header">
-                        <div class="pl-trans-card-badge">
-                            <i class="fa-solid fa-xmark"></i>
-                        </div>
-                    </div>
-                    <div class="pl-trans-card-body">
-                        <h3 class="pl-trans-card-title">Qué no hace</h3>
-                        <ul class="pl-trans-list-ref">
-                            <li><i class="fa-solid fa-circle-xmark no"></i> <span>No obliga a pagar — eso solo lo decide un juez</span></li>
-                            <li><i class="fa-solid fa-circle-xmark no"></i> <span>No garantiza respuesta de la contraparte</span></li>
-                            <li><i class="fa-solid fa-circle-xmark no"></i> <span>No es una demanda ni representación judicial</span></li>
-                            <li><i class="fa-solid fa-circle-xmark no"></i> <span>No te cobra automáticamente si necesitas escalar</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Alternativa real -->
-            <div class="pl-alt-card blur-fade">
-                <div class="pl-alt-side">
-                    <h4>Abogado tradicional</h4>
-                    <div class="pl-alt-price muted">$3,000–$5,000</div>
-                    <div class="pl-alt-items">Solo por la primera consulta</div>
-                </div>
-                <div class="pl-alt-divider"></div>
-                <div class="pl-alt-side">
-                    <h4>Presión Legal</h4>
-                    <div class="pl-alt-price">$1,450</div>
-                    <div class="pl-alt-items">Evaluación + redacción + envío + seguimiento + cierre</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════
-         6.  SI NO RESPONDE
-         ═══════════════════════════════════════ -->
-    <section class="pl-section pl-next-section">
-        <div class="pl-container">
-            <div class="pl-next-header blur-fade">
-                <span class="pl-eyebrow">Siguiente paso</span>
-                <h2 class="pl-h2">Si el deudor no responde, no te quedas solo</h2>
-                <p class="pl-body" style="max-width:560px;margin:0 auto;">Al día 15 te presentamos opciones con precios claros. Sin presión ni cobro automático — tú decides si continúas.</p>
-            </div>
-            <div class="pl-next-grid blur-fade">
-                <!-- Card 1 -->
-                <div class="pl-next-card">
-                    <div class="pl-card-header-ref">
-                        <div class="pl-card-icon-ref">
-                            <i class="fa-solid fa-file-circle-exclamation"></i>
-                        </div>
-                        <div class="pl-card-actions-ref">
-                            <span class="pl-card-dots-ref">•••</span>
-                            <div class="pl-card-plus-ref"><i class="fa-solid fa-plus"></i></div>
-                        </div>
-                    </div>
-                    
-                    <span class="pl-card-eyebrow-ref">PRESIÓN EXTRAJUDICIAL</span>
-                    <h3 class="pl-card-title-ref">Segunda<br><span>reclamación</span></h3>
-                    <div class="pl-card-price-row-ref">
-                        <span class="pl-card-price">$990</span>
-                        <span class="pl-card-currency-ref">MXN</span>
-                        <span class="pl-card-arrow-badge-ref"><i class="fa-solid fa-arrow-up"></i></span>
-                    </div>
-                    
-                    <p class="pl-card-desc-ref">Aviso más severo con apercibimiento legal explícito. Sube la presión antes de ir a juicio.</p>
-                    
-                    <a href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20servicio%20de%20Segunda%20Reclamaci%C3%B3n" target="_blank" class="pl-card-btn-ref">
-                        Solicitar <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    
-                    <div class="pl-card-footer-ref">
-                        <div class="pl-card-indicator-ref">
-                            <span class="active"></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="pl-next-card">
-                    <div class="pl-card-header-ref">
-                        <div class="pl-card-icon-ref">
-                            <i class="fa-solid fa-gavel"></i>
-                        </div>
-                        <div class="pl-card-actions-ref">
-                            <span class="pl-card-dots-ref">•••</span>
-                            <div class="pl-card-plus-ref"><i class="fa-solid fa-plus"></i></div>
-                        </div>
-                    </div>
-                    
-                    <span class="pl-card-eyebrow-ref">ESTRATEGIA JUDICIAL</span>
-                    <h3 class="pl-card-title-ref">Evaluación<br><span>judicial</span></h3>
-                    <div class="pl-card-price-row-ref">
-                        <span class="pl-card-price">$1,290</span>
-                        <span class="pl-card-currency-ref">MXN</span>
-                        <span class="pl-card-arrow-badge-ref"><i class="fa-solid fa-arrow-up"></i></span>
-                    </div>
-                    
-                    <p class="pl-card-desc-ref">Análisis de viabilidad para saber si una demanda conviene por costo, tiempo y probabilidad.<br><small style="color: #65756a; display: block; margin-top: 0.4rem; font-size: 0.78rem;">* Acreditable a honorarios si continúas a litigio.</small></p>
-                    
-                    <a href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20servicio%20de%20Evaluaci%C3%B3n%20Judicial" target="_blank" class="pl-card-btn-ref">
-                        Solicitar <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    
-                    <div class="pl-card-footer-ref">
-                        <div class="pl-card-indicator-ref">
-                            <span></span>
-                            <span class="active"></span>
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="pl-next-card">
-                    <div class="pl-card-header-ref">
-                        <div class="pl-card-icon-ref">
-                            <i class="fa-solid fa-handshake"></i>
-                        </div>
-                        <div class="pl-card-actions-ref">
-                            <span class="pl-card-dots-ref">•••</span>
-                            <div class="pl-card-plus-ref"><i class="fa-solid fa-plus"></i></div>
-                        </div>
-                    </div>
-                    
-                    <span class="pl-card-eyebrow-ref">MECANISMO DE ACUERDO</span>
-                    <h3 class="pl-card-title-ref">Convenio de<br><span>pago</span></h3>
-                    <div class="pl-card-price-row-ref">
-                        <span class="pl-card-price">$1,990</span>
-                        <span class="pl-card-currency-ref">MXN</span>
-                        <span class="pl-card-arrow-badge-ref"><i class="fa-solid fa-arrow-up"></i></span>
-                    </div>
-                    
-                    <p class="pl-card-desc-ref">Redacción del acuerdo formal si la contraparte quiere negociar un plan de pagos o cumplimiento parcial.</p>
-                    
-                    <a href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20servicio%20de%20Convenio%20de%20Pago" target="_blank" class="pl-card-btn-ref">
-                        Solicitar <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    
-                    <div class="pl-card-footer-ref">
-                        <div class="pl-card-indicator-ref">
-                            <span></span>
-                            <span></span>
-                            <span class="active"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-    <!-- ═══════════════════════════════════════
-         8.  FAQ
-         ═══════════════════════════════════════ -->
-    <section class="pl-section pl-faq-section">
-        <div class="pl-container">
-            <div class="pl-faq-header blur-fade">
-                <span class="pl-eyebrow">Preguntas frecuentes</span>
-                <h2 class="pl-h2">Lo que necesitas saber</h2>
-            </div>
-            <div class="pl-faq-wrap blur-fade">
-                <div class="pl-faq-item">
-                    <div class="pl-faq-q">¿Solo sirve para cobrar deudas? <i class="fas fa-plus"></i></div>
-                    <div class="pl-faq-a">No. Presión Legal funciona para cualquier situación donde alguien no cumple, no responde o te ignora: talleres, proveedores, préstamos, servicios mal entregados y más. Lo importante es que exista una contraparte identificable y una petición concreta.</div>
-                </div>
-                <div class="pl-faq-item">
-                    <div class="pl-faq-q">¿Qué pasa si la contraparte no contesta en los 15 días? <i class="fas fa-plus"></i></div>
-                    <div class="pl-faq-a">Cada etapa sube la presión: primero envío digital, luego llamada del abogado, y al día 15 carta física certificada. Si después de todo eso no hay respuesta, te damos un diagnóstico con tus opciones (segunda reclamación, demanda, convenio) con precios claros antes de que decidas gastar un peso más.</div>
-                </div>
-                <div class="pl-faq-item">
-                    <div class="pl-faq-q">¿Esto es lo mismo que una demanda? <i class="fas fa-plus"></i></div>
-                    <div class="pl-faq-a">No. Es la vía extrajudicial — fuera de juzgados — que presiona con el peso de un despacho jurídico. Funciona porque la contraparte sabe que detrás hay un abogado con cédula que puede escalar. Si necesitas ir a juicio, al día 15 te decimos si conviene y cuánto cuesta.</div>
-                </div>
-                <div class="pl-faq-item">
-                    <div class="pl-faq-q">¿Por qué $1,450 y no menos? <i class="fas fa-plus"></i></div>
-                    <div class="pl-faq-a">Porque no estás comprando una carta — estás comprando 15 días de gestión legal activa con un abogado que evalúa, redacta, envía, llama y cierra tu caso. La alternativa real es un abogado tradicional que cobra $3,000–$5,000 solo por sentarse a escucharte. Aquí eso ya viene incluido.</div>
-                </div>
-                <div class="pl-faq-item">
-                    <div class="pl-faq-q">¿Qué pasa si mi caso no aplica? <i class="fas fa-plus"></i></div>
-                    <div class="pl-faq-a">Si en la llamada de evaluación vemos que tu caso no es para reclamación extrajudicial (porque ya hay demanda, es tema familiar, o necesita otra vía), te lo decimos de frente y te orientamos sin costo. No te cobramos por decirte que no aplica.</div>
-                </div>
-                <div class="pl-faq-item">
-                    <div class="pl-faq-q">¿El documento tiene validez legal? <i class="fas fa-plus"></i></div>
-                    <div class="pl-faq-a">Sí. Va membretado y firmado por un socio del despacho con cédula profesional. Tiene pleno peso como evidencia de que realizaste el requerimiento formal. Si incluyes la carta certificada (incluida al día 15 o disponible desde el día 1 por +$390), además tienes acuse de recibo con fe de entrega.</div>
-                </div>
-                <div class="pl-faq-item">
-                    <div class="pl-faq-q">¿Puedo usarlo para varios deudores? <i class="fas fa-plus"></i></div>
-                    <div class="pl-faq-a">El precio es por caso/deudor. Si ya fuiste cliente, tienes 20% de descuento permanente en cada gestión futura ($1,160 en vez de $1,450), sin mensualidad ni suscripción.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    </div>
 
     <!-- ═══════════════════════════════════════
          9.  FOOTER
          ═══════════════════════════════════════ -->
+
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
@@ -2181,11 +1937,30 @@
                 <a href="terminos.html" style="color:var(--text-muted);text-decoration:none;font-size:.85rem;">Términos y Condiciones</a>
                 <a href="privacidad.html" style="color:var(--text-muted);text-decoration:none;font-size:.85rem;">Aviso de Privacidad</a>
                 <a href="radar/index.html" style="color:var(--text-muted);text-decoration:none;font-size:.85rem;">Blog</a>
-                <a href="https://wa.me/524191239646" style="color:var(--text-muted);text-decoration:none;font-size:.85rem;">WhatsApp</a>
+                <a href="solicitud.html" style="color:var(--text-muted);text-decoration:none;font-size:.85rem;">Contáctanos</a>
             </div>
             <p style="color:var(--text-muted);font-size:.75rem;max-width:600px;margin:2rem auto 0;text-align:center;opacity:.7;font-family:var(--font-body);">
                 Disclaimer: El generador de contratos y la calculadora laboral son herramientas informativas y no constituyen asesoría jurídica vinculante. La revisión pagada sí es un servicio profesional sujeto a responsabilidad.
             </p>
+
+            <!-- Aviso de privacidad simplificado (LFPDPPP, arts. 15-17). El
+                 integral vive en privacidad.html; aquí va el resumen exigible
+                 en el punto de recolección de datos. -->
+            <div class="pl-footer-privacidad">
+                <strong>Aviso de Privacidad</strong>
+                <p style="margin:0 0 .5rem;">
+                    <strong style="display:inline;">Responsable:</strong> Ferro Fragoso, Estudio Jurídico, con domicilio en Querétaro, México, es responsable del tratamiento de tus datos personales.
+                </p>
+                <p style="margin:0 0 .5rem;">
+                    <strong style="display:inline;">Finalidades primarias:</strong> evaluar la procedencia de tu caso, prestar el servicio contratado, formular y comunicar la reclamación a la contraparte, dar seguimiento, facturar y cumplir obligaciones legales. <strong style="display:inline;">Finalidades secundarias:</strong> envío de información sobre servicios del despacho; puedes oponerte a estas últimas sin que afecte la prestación del servicio.
+                </p>
+                <p style="margin:0 0 .5rem;">
+                    <strong style="display:inline;">Datos y transferencias:</strong> tratamos datos de identificación y contacto y los documentos que nos proporciones. No transferimos tus datos a terceros sin tu consentimiento, salvo los casos del artículo 37 de la LFPDPPP. Los datos estrictamente necesarios para formular la reclamación se comunican a la contraparte por instrucción tuya.
+                </p>
+                <p style="margin:0;">
+                    <strong style="display:inline;">Derechos ARCO:</strong> puedes acceder, rectificar, cancelar u oponerte al tratamiento de tus datos, así como revocar tu consentimiento, escribiendo a <a href="mailto:contacto@ferrofragoso.com">contacto@ferrofragoso.com</a>. Consulta el <a href="privacidad.html">Aviso de Privacidad integral</a>, donde se publican también los cambios a este aviso.
+                </p>
+            </div>
             <div class="footer-social" style="margin-top:2rem;">
                 <a href="https://www.linkedin.com/company/136144007/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=61590937883266" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -2198,110 +1973,273 @@
     <!-- ═══════════════════════════════════════
          LOGIC
          ═══════════════════════════════════════ -->
+    <script src="cuestionario.js?v=2"></script>
     <script>
     const PHONE = '524191239646';
 
-    /* ── State ── */
-    let currentStep = 0;
-    let selectedDebtType = '';
-    let selectedEvidence = '';
-    let selectedAmount   = '';
+    /* ══ Modales ══════════════════════════════════════════════════════════
+       Paneles de servicio (#modalReclamo, #modalRespuesta) y contrato
+       (#modalContrato). Se guarda quién tenía el foco para devolvérselo al
+       cerrar — si no, al cerrar con Esc el foco se va al <body> y quien
+       navega con teclado pierde el sitio. */
+    let focoPrevio = null;
 
-    /* ── Step 0: Gate question ── */
-    function handleGate(el, val) {
-        // Visual selection
-        el.parentElement.querySelectorAll('.pl-card-opt').forEach(c => c.classList.remove('selected'));
-        el.classList.add('selected');
+    function abrirModal(id, ev) {
+        if (ev) ev.preventDefault();
+        const m = document.getElementById(id);
+        if (!m) return;
+        focoPrevio = document.activeElement;
+        m.classList.add('is-open');
+        document.body.classList.add('pl-modal-abierto');
+        const cerrar = m.querySelector('.pl-modal-close');
+        if (cerrar) cerrar.focus();
+    }
 
-        selectedDebtType = el.querySelector('span').textContent;
-
-        if (val === 'otro') {
-            // Hide steps, show redirect
-            hideAllSteps(); hideAllResults();
-            document.getElementById('resultNoDebt').classList.add('active');
-            document.getElementById('resultNoDebt').style.display = 'block';
-        } else {
-            document.getElementById('resultNoDebt').style.display = 'none';
-            document.getElementById('resultNoDebt').classList.remove('active');
-            setTimeout(() => goToStep(1), 350);
+    function cerrarModal(id) {
+        const m = document.getElementById(id);
+        if (!m) return;
+        m.classList.remove('is-open');
+        if (!document.querySelector('.pl-modal.is-open')) {
+            document.body.classList.remove('pl-modal-abierto');
         }
+        if (focoPrevio && typeof focoPrevio.focus === 'function') focoPrevio.focus();
     }
 
-    /* ── Card selection (step 1) ── */
-    function selectCard(el, stepId) {
-        const panel = document.getElementById(stepId);
-        panel.querySelectorAll('.pl-card-opt').forEach(c => c.classList.remove('selected'));
-        el.classList.add('selected');
-        selectedDebtType = el.querySelector('span').textContent;
+    /* Clic en el fondo y Escape cierran el panel de encima. Escape se atiende
+       en captura y no sigue: si el contrato está abierto sobre el
+       diagnóstico, el cuestionario también cerraría con la misma tecla. */
+    document.querySelectorAll('.pl-modal').forEach(m => {
+        m.addEventListener('click', e => { if (e.target === m) cerrarModal(m.id); });
+    });
+    window.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+        const abiertos = document.querySelectorAll('.pl-modal.is-open');
+        if (!abiertos.length) return;
+        e.stopImmediatePropagation();
+        cerrarModal(abiertos[abiertos.length - 1].id);
+    }, true);
 
-        const btn = document.getElementById('btnStep1');
-        btn.disabled = false; btn.style.opacity = '1';
-    }
-
-    /* ── Evidence radios (step 2) ── */
-    document.querySelectorAll('input[name="evidence"]').forEach(r => {
+    document.querySelectorAll('a[data-modal]').forEach(a => {
+        a.addEventListener('click', e => abrirModal(a.dataset.modal, e));
+    });
+    document.querySelectorAll('input[name="respuestaOpcion"]').forEach(r => {
         r.addEventListener('change', () => {
-            selectedEvidence = r.value;
-            const btn = document.getElementById('btnStep2');
-            btn.disabled = false; btn.style.opacity = '1';
+            document.getElementById('btnRespuesta').href = 'solicitud.html?servicio=' + r.value;
         });
     });
 
-    /* ── Navigation ── */
-    function goToStep(n) {
-        currentStep = n;
-        hideAllSteps(); hideAllResults();
-        document.getElementById('step' + n).classList.add('active');
-        updateProgress(n);
-        scrollToFilter();
-    }
+    /* ══ Diagnóstico «¿Tu caso aplica?» ═══════════════════════════════════
+       Cualquier enlace a #filtro lo abre como modal. */
+    const AVISOS = {
+        menos5:  'Para reclamaciones menores a $5,000 MXN, el costo del servicio ($1,450) representa una parte grande de lo que buscas recuperar. Te vamos a sugerir la Evaluación judicial o la conciliación gratuita ante PROFECO si es un asunto de consumo.',
+        mas100:  'Para reclamaciones mayores a $100,000 MXN te conviene una Evaluación judicial o nuestra Gestión de cobro de alto monto (cuota base reducida + porcentaje de éxito), en vez del paquete cerrado de 15 días.'
+    };
 
-    function hideAllSteps() {
-        document.querySelectorAll('.pl-step-panel').forEach(p => p.classList.remove('active'));
-    }
-    function hideAllResults() {
-        document.querySelectorAll('#filterBox .pl-result').forEach(r => { r.classList.remove('active'); r.style.display = 'none'; });
-    }
+    const ETIQUETA_MONTO = {
+        menos5: 'menos de $5,000 MXN',
+        '5-20': '$5,000 a $20,000 MXN',
+        '20-80': '$20,000 a $80,000 MXN',
+        '80-100': '$80,000 a $100,000 MXN',
+        mas100: 'más de $100,000 MXN'
+    };
 
-    function updateProgress(step) {
-        const dots = document.querySelectorAll('.pl-progress-dot');
-        dots.forEach((d, i) => {
-            d.classList.toggle('active', i <= step);
-        });
-        document.getElementById('progressLabel').textContent = `Paso ${step + 1} de 3`;
-    }
-
-    /* ── Submit filter ── */
-    function submitFilter() {
-        selectedAmount = document.getElementById('amountInput').value;
-        hideAllSteps(); hideAllResults();
-
-        // Remove progress bar on results
-        document.getElementById('progressBar').style.display = 'none';
-
-        if (selectedEvidence === 'none') {
-            // Needs evaluation first
-            show('resultB');
-            const url = `https://wa.me/${PHONE}?text=` + encodeURIComponent(`Hola, quiero agendar la evaluación gratuita de Presión Legal. Mi caso: ${selectedDebtType}. Monto aprox: ${selectedAmount || 'no especificado'}. Me falta evidencia o datos de contacto.`);
-            document.getElementById('btnEval').href = url;
-        } else {
-            // Aplica
-            show('resultA');
-            const url = `https://wa.me/${PHONE}?text=` + encodeURIComponent(`Hola, quiero contratar Presión Legal ($1,450 MXN). Mi caso: ${selectedDebtType}. Monto aprox: ${selectedAmount || 'no especificado'}.`);
-            document.getElementById('btnProducto').href = url;
+    const PASOS_DIAGNOSTICO = [
+        {
+            clave: 'situacion', tipo: 'opciones', lista: true,
+            titulo: '¿Tu caso aplica?',
+            texto: '¿Cuál describe mejor tu situación?',
+            ayuda: 'Sin costo · Sin compromiso. Para conflictos civiles, mercantiles o de consumo. No aplica a asuntos penales, familiares, laborales, fiscales, sucesorios ni de violencia.',
+            opciones: [
+                { valor: 'deuda', etiqueta: 'Me deben dinero, un depósito o un pago' },
+                { valor: 'incumplimiento', etiqueta: 'Alguien no cumplió una entrega, reparación o servicio' },
+                { valor: 'ignoraron', etiqueta: 'Ya intenté resolverlo directamente y me ignoraron' },
+                { valor: 'otro', etiqueta: 'Otro tipo de conflicto donde necesito que hable un abogado' }
+            ]
+        },
+        {
+            clave: 'tipo', tipo: 'opciones', lista: true,
+            titulo: '¿Tu caso aplica?',
+            texto: '¿Qué tipo de deuda o incumplimiento es?',
+            cuando: r => r.situacion !== 'otro',
+            opciones: [
+                'No me devuelven un depósito o pago',
+                'Un cliente no me pagó un trabajo',
+                'Pagué algo y no me lo entregaron',
+                'Otro tipo de deuda o incumplimiento'
+            ]
+        },
+        {
+            clave: 'evidencia', tipo: 'opciones', lista: true,
+            titulo: '¿Tu caso aplica?',
+            texto: '¿Tienes pruebas y sabes cómo contactar a la otra persona?',
+            cuando: r => r.situacion !== 'otro',
+            opciones: [
+                { valor: 'both', etiqueta: 'Sí, tengo evidencia (contrato, mensajes, comprobante) y datos de contacto' },
+                { valor: 'partial', etiqueta: 'Tengo una cosa, pero no la otra' },
+                { valor: 'none', etiqueta: 'No tengo nada por escrito ni sé cómo contactarla' }
+            ]
+        },
+        {
+            /* Obligatorio: el rango decide si Presión Legal es el producto
+               correcto o si conviene otra vía. */
+            clave: 'monto', tipo: 'campo',
+            titulo: '¿Tu caso aplica?',
+            texto: '¿Cuál es el monto aproximado de tu reclamación?',
+            cuando: r => r.situacion !== 'otro',
+            entrada: {
+                tipo: 'select', placeholder: 'Selecciona un rango',
+                opciones: [
+                    { valor: 'menos5', etiqueta: 'Menos de $5,000 MXN' },
+                    { valor: '5-20', etiqueta: '$5,000 – $20,000 MXN' },
+                    { valor: '20-80', etiqueta: '$20,000 – $80,000 MXN' },
+                    { valor: '80-100', etiqueta: '$80,000 – $100,000 MXN' },
+                    { valor: 'mas100', etiqueta: 'Más de $100,000 MXN' }
+                ]
+            },
+            ayuda: r => AVISOS[r.monto] || '',
+            boton: 'Ver mi resultado'
         }
-        scrollToFilter();
+    ];
+
+    const nodo = (tag, clase, html) => {
+        const n = document.createElement(tag);
+        if (clase) n.className = clase;
+        if (html != null) n.innerHTML = html;
+        return n;
+    };
+
+    const RESULTADOS = {
+        orientacion: () => ({
+            titulo: 'Tu caso requiere orientación personalizada',
+            texto: 'Presión Legal se enfoca en requerimientos directos y cumplimiento. Escríbenos para evaluar tu situación o explora nuestras áreas especializadas:',
+            botones: [
+                { texto: 'Cuéntanos tu caso', href: 'solicitud.html?detalle=Tengo%20un%20conflicto%20legal%20y%20quiero%20saber%20si%20un%20abogado%20puede%20intervenir.' },
+                { texto: 'Civil', href: 'civil.html' },
+                { texto: 'Familiar', href: 'familiar.html' },
+                { texto: 'Laboral', href: 'finiquito.html' }
+            ]
+        }),
+
+        /* El monto manda sobre la evidencia: si la reclamación queda fuera del
+           rango que este producto atiende, no tiene sentido ofrecerlo aunque
+           el caso cumpla todo lo demás. */
+        monto: (r) => {
+            const alto = r.monto === 'mas100';
+            const detalleM = `Mi reclamación es de ${ETIQUETA_MONTO[r.monto]}. Mi caso: ${r.tipo}. Quiero saber qué vía me conviene.`;
+            const botones = [{ texto: 'Solicitar Evaluación judicial · $1,290', href: 'solicitud.html?servicio=evaluacion_judicial&detalle=' + encodeURIComponent(detalleM) }];
+            if (alto) {
+                botones.push({ texto: 'Ver Gestión de cobro de alto monto', href: 'solicitud.html?servicio=presion_legal&detalle=' + encodeURIComponent('Quiero evaluar una Gestión de cobro de alto monto. ' + detalleM) });
+            }
+            return {
+                titulo: alto ? 'Para este monto conviene otro esquema' : 'Para este monto conviene otra vía',
+                contenido: nodo('p', 'recl-texto', alto
+                    ? 'Con una reclamación de más de $100,000 MXN, el paquete cerrado de 15 días se queda corto: conviene analizar solvencia, estrategia y viabilidad judicial antes de mover una carta. Empieza por la <strong>Evaluación judicial</strong> —acreditable a honorarios si continúas— o pregunta por la <strong>Gestión de cobro de alto monto</strong>, con cuota base reducida y porcentaje de éxito.'
+                    : 'Con una reclamación de menos de $5,000 MXN, los $1,450 del servicio se comen una parte grande de lo que buscas recuperar. La <strong>Evaluación judicial</strong> te dice en firme si conviene reclamar y por qué vía; si es un asunto de consumo, la conciliación ante PROFECO es gratuita y te orientamos sin costo.'),
+                botones
+            };
+        },
+
+        evaluacion: (r) => {
+            const detalle = `Quiero agendar la evaluación gratuita de Presión Legal. Mi caso: ${r.tipo}. Monto aprox: ${ETIQUETA_MONTO[r.monto]}. Me falta evidencia o datos de contacto.`;
+            return {
+                titulo: 'Tu caso necesita evaluación primero',
+                texto: 'Te falta evidencia o datos de contacto. Empecemos por una llamada corta para ver qué necesitas reunir y si tu caso aplica para Presión Legal.',
+                botones: [{ texto: 'Agendar evaluación gratuita', href: `solicitud.html?servicio=presion_legal&detalle=${encodeURIComponent(detalle)}` }]
+            };
+        },
+
+        /* La contratación queda condicionada a la aceptación expresa del
+           contrato: el botón nace bloqueado y la casilla lo libera. */
+        aplica: (r) => {
+            const detalle = `Quiero contratar Presión Legal. Mi caso: ${r.tipo}. Monto aprox: ${ETIQUETA_MONTO[r.monto]}.`;
+            const caja = document.createElement('div');
+            caja.append(
+                nodo('div', 'ffq-destacado recl-producto',
+                    '<span class="recl-insignia">Gestión activa · 15 días</span>' +
+                    '<h3>Presión Legal</h3>' +
+                    '<p>Todo incluido, un solo pago.</p>' +
+                    '<span class="ffq-cifra">$1,450 <small>MXN · pago único</small></span>'),
+                nodo('div', 'ffq-bloque',
+                    '<ul class="ffq-lista">' +
+                    '<li>Llamada de evaluación (10–15 min) para confirmar que tu caso aplica</li>' +
+                    '<li>Redacción personalizada por abogado con cédula profesional</li>' +
+                    '<li>Documento membretado y firmado por Alan Obed Fragoso Rivera, socio fundador · Céd. Prof. <span class="pl-cedula">[NÚM. DE CÉDULA]</span></li>' +
+                    '<li>Envío formal a la contraparte (WhatsApp o correo)</li>' +
+                    '<li>Seguimiento activo al día 10: llamada del abogado si no hay respuesta</li>' +
+                    '<li>Envío por mensajería o correo certificado, siempre incluido al cierre del proceso (día 15)</li>' +
+                    '<li>Recomendación final con cotización del siguiente paso, sin obligación</li>' +
+                    '</ul>'),
+                nodo('div', 'ffq-bloque ffq-destacado recl-extra',
+                    '<span><strong>¿Necesitas el envío certificado desde el día 1?</strong><br>' +
+                    'Mensajería o correo certificado con constancia de depósito y, cuando esté disponible, acuse de recepción — útil en montos altos o plazos que vencen.</span>' +
+                    '<b>+$390</b>')
+            );
+            const acepta = nodo('label', 'pl-acepta',
+                '<input type="checkbox">' +
+                '<span>He leído y acepto el <a href="#" onclick="abrirModal(\'modalContrato\', event)">Contrato de prestación de servicios</a> y el <a href="privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.</span>');
+            const casilla = acepta.querySelector('input');
+            caja.appendChild(acepta);
+            return {
+                titulo: 'Tu caso aplica para Presión Legal.',
+                texto: 'Un abogado va a actuar a tu nombre durante 15 días — evaluación, redacción, envío, seguimiento y cierre incluidos.',
+                contenido: caja,
+                botones: [{
+                    texto: 'Agendar evaluación gratuita',
+                    href: `solicitud.html?servicio=presion_legal&detalle=${encodeURIComponent(detalle)}`,
+                    accion: (e) => { if (!casilla.checked) e.preventDefault(); }
+                }],
+                casilla
+            };
+        },
+
+        /* Sin pregunta que lleve aquí (tampoco en la versión anterior); se
+           conserva por si se vuelve a preguntar si ya hay juicio. */
+        proceso: () => ({
+            titulo: 'Este servicio no aplica si ya hay proceso legal',
+            texto: 'Presión Legal funciona antes de llegar a juzgados. Si tu caso ya está en proceso, escríbenos para evaluar cómo ayudarte.',
+            botones: [{ texto: 'Cuéntanos tu caso', href: 'solicitud.html?servicio=consulta_particular&detalle=Mi%20caso%20ya%20est%C3%A1%20en%20proceso%20legal%20y%20quiero%20orientaci%C3%B3n.' }]
+        })
+    };
+
+    function resultadoDiagnostico(r) {
+        if (r.situacion === 'otro') return RESULTADOS.orientacion(r);
+        if (r.monto === 'menos5' || r.monto === 'mas100') return RESULTADOS.monto(r);
+        if (r.evidencia === 'none') return RESULTADOS.evaluacion(r);
+        return RESULTADOS.aplica(r);
     }
 
-    function show(id) {
-        const el = document.getElementById(id);
-        el.style.display = 'block';
-        el.classList.add('active');
+    function abrirDiagnostico() {
+        const control = FFCuestionario.abrir({
+            pasos: PASOS_DIAGNOSTICO,
+            /* El aviso de monto se pinta como «ayuda» del paso, que el
+               componente sólo evalúa al pintar: aquí se refresca al elegir. */
+            alCambiar: (clave, valor) => {
+                if (clave !== 'monto') return;
+                const ayuda = control.raiz.querySelector('.ffq-respuesta .ffq-ayuda');
+                if (ayuda) ayuda.textContent = AVISOS[valor] || '';
+            },
+            alTerminar: (r, api) => {
+                const res = resultadoDiagnostico(r);
+                api.final(res);
+                if (!res.casilla) return;
+                const comprar = api.raiz.querySelector('.ffq-pie .ffq-sig');
+                const alternar = () => {
+                    comprar.classList.toggle('pl-cta-bloqueado', !res.casilla.checked);
+                    comprar.setAttribute('aria-disabled', res.casilla.checked ? 'false' : 'true');
+                    comprar.tabIndex = res.casilla.checked ? 0 : -1;
+                };
+                res.casilla.addEventListener('change', alternar);
+                alternar();
+            }
+        });
     }
 
-    function scrollToFilter() {
-        document.getElementById('filterBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    document.addEventListener('click', e => {
+        const a = e.target.closest('a[href="#filtro"]');
+        if (!a) return;
+        e.preventDefault();
+        abrirDiagnostico();
+    });
 
 
     /* ── FAQ Accordion ── */
@@ -2313,27 +2251,10 @@
         });
     });
 
-    /* ── Process Progress Rings Animation ── */
-    const processCards = document.querySelectorAll('.process-card');
-    const circumference = 2 * Math.PI * 52; // 326.72
-
-    processCards.forEach(card => {
-        const progress = parseFloat(card.dataset.progress);
-        const offset = circumference - (progress / 100) * circumference;
-        card.style.setProperty('--offset', offset);
-    });
-
-    const processObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = Array.from(processCards).indexOf(entry.target) * 150;
-                setTimeout(() => entry.target.classList.add('is-visible'), delay);
-                processObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.25 });
-
-    processCards.forEach(card => processObserver.observe(card));
+    /* Los anillos de progreso se retiraron junto con las tarjetas del proceso:
+       el cronograma es una lista con fechas, no cuatro medidores. Su
+       IntersectionObserver se elimina con ellos en vez de quedar observando
+       una NodeList vacía. */
 
     /* ── Situaciones Reales Staggered Animation ── */
     const situacionLines = document.querySelectorAll('.situacion-line');
@@ -2355,102 +2276,71 @@
     const situacionesSection = document.querySelector('#situaciones');
     if (situacionesSection) situacionObserver.observe(situacionesSection);
 
-    /* ── Situaciones Reales (Entrada escalonada + Respaldo de seguridad 500ms + Rotación 1 a 1) ── */
+    /* ── Situaciones reales: un cuadro a la vez ──
+       Tres posiciones alrededor del abogado y una lista de casos. En cada
+       turno el cuadro visible se desvanece y el siguiente caso aparece en la
+       siguiente posición, así nunca hay dos cuadros en pantalla. */
     const cases = [
       { label: "INCUMPLIMIENTO", text: "El taller no entrega mi coche" },
       { label: "DEPÓSITO", text: "No me devuelven mi depósito" },
+      { label: "OTRO ABOGADO", text: "Necesito responderle a otro abogado" },
       { label: "PAGO PENDIENTE", text: "Me deben dinero y no responden" },
       { label: "SERVICIO", text: "Pagué un servicio y salió mal" },
       { label: "VECINOS", text: "Un vecino ignora un daño" },
       { label: "PROVEEDOR", text: "Un proveedor no entregó lo acordado" },
-      { label: "CONFLICTO PERSONAL", text: "Ya no quiero seguir discutiendo yo" }
+      { label: "GARANTÍA", text: "Me vendieron algo defectuoso y no responden" }
     ];
 
     const cards = [...document.querySelectorAll('.case-float')];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SALIDA_MS = 450;   // debe coincidir con la transición de .case-float
+    const TURNO_MS = 3400;
 
-    let nextCaseIndex = 3;
-    let cardToChangeIndex = 0;
-    let rotationInterval;
-    let observerTriggered = false;
+    let caseIndex = 0;
+    let cardIndex = 0;
+    let started = false;
 
-    function revealCardsSequentially() {
-      if (observerTriggered) return;
-      observerTriggered = true;
-
-      cards.forEach((card, idx) => {
-        setTimeout(() => {
-          card.classList.add('is-entered');
-          if (idx === 0) card.classList.add('is-active');
-        }, idx * 260);
-      });
-
-      if (!reducedMotion) {
-        setTimeout(() => {
-          if (!rotationInterval) {
-            rotationInterval = setInterval(rotateOneCase, 3200);
-          }
-        }, cards.length * 260 + 500);
-      }
+    function paint(card, c) {
+      card.querySelector('.case-float__label').textContent = c.label;
+      card.querySelector('strong').textContent = c.text;
     }
 
-    function rotateOneCase() {
-      if (!cards.length) return;
-
-      let card = cards[cardToChangeIndex];
-
-      // Omitir tarjetas ocultas en móvil
-      if (window.getComputedStyle(card).display === 'none') {
-        cardToChangeIndex = (cardToChangeIndex + 1) % cards.length;
-        card = cards[cardToChangeIndex];
-      }
-
-      const label = card.querySelector('.case-float__label');
-      const text = card.querySelector('strong');
-
-      card.classList.add('is-changing');
+    function showNext() {
+      const prev = cards[cardIndex];
+      prev.classList.remove('is-entered', 'is-active');
 
       setTimeout(() => {
-        if (label) label.textContent = cases[nextCaseIndex].label;
-        if (text) text.textContent = cases[nextCaseIndex].text;
-        
-        card.classList.remove('is-changing');
+        cardIndex = (cardIndex + 1) % cards.length;
+        caseIndex = (caseIndex + 1) % cases.length;
+        const card = cards[cardIndex];
+        paint(card, cases[caseIndex]);
+        card.classList.add('is-entered', 'is-active');
+      }, SALIDA_MS);
+    }
 
-        // Actualizar indicador de enfoque activo (.is-active)
-        cards.forEach(c => c.classList.remove('is-active'));
-        card.classList.add('is-active');
-
-        nextCaseIndex = (nextCaseIndex + 1) % cases.length;
-        cardToChangeIndex = (cardToChangeIndex + 1) % cards.length;
-      }, 300);
+    function startCases() {
+      if (started || !cards.length) return;
+      started = true;
+      paint(cards[0], cases[0]);
+      cards[0].classList.add('is-entered', 'is-active');
+      if (!reducedMotion) setInterval(showNext, TURNO_MS);
     }
 
     if (situacionesSection) {
-      // 1. Verificación de seguridad a los 500ms por si el observer no se activa inmediatamente
-      const safetyTimer = setTimeout(() => {
-        if (!observerTriggered) {
-          revealCardsSequentially();
-        }
-      }, 500);
-
-      if (reducedMotion) {
-        cards.forEach(card => card.classList.add('is-entered'));
-      } else {
-        const observer = new IntersectionObserver((entries, inst) => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            clearTimeout(safetyTimer);
-            revealCardsSequentially();
-            inst.unobserve(entry.target);
-          });
-        }, { threshold: 0.2 });
-
-        observer.observe(situacionesSection);
-      }
+      const safetyTimer = setTimeout(startCases, 500);
+      new IntersectionObserver((entries, inst) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          clearTimeout(safetyTimer);
+          startCases();
+          inst.unobserve(entry.target);
+        });
+      }, { threshold: 0.2 }).observe(situacionesSection);
     }
     </script>
 
     <script src="script.js?v=12"></script>
+    <script src="precios.js?v=20"></script>
     <script src="analytics.js?v=11"></script>
 </body>
 </html>

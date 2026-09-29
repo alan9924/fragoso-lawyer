@@ -55,6 +55,149 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ════════════════════════════════════
+       HERO CARTA — texto a máquina de escribir
+       Cada [data-maquina] se parte en letras que se revelan en orden, con un
+       cursor que avanza. Arranca cuando se retira el loader (1.5 s).
+    ════════════════════════════════════ */
+    const heroCarta = document.querySelector('.hero-cartel');
+    const lineasMaquina = heroCarta ? heroCarta.querySelectorAll('[data-maquina]') : [];
+    const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const bajar = heroCarta ? heroCarta.querySelector('.hero-carta-bajar') : null;
+
+    /* El hero se queda quieto hasta que se presionan las flechas. Si la
+       página ya llega desplazada (volver atrás, un #ancla), no se bloquea:
+       dejaría al visitante atrapado a media página. */
+    let liberarHero = () => {};
+    if (bajar && window.scrollY < 10 && !location.hash) {
+        const raiz = document.documentElement;
+        const TECLAS = [' ', 'PageDown', 'PageUp', 'ArrowDown', 'ArrowUp', 'End', 'Home'];
+        const frenar = (e) => e.preventDefault();
+        const frenarTecla = (e) => {
+            const campo = e.target.closest && e.target.closest('input, textarea, select, [contenteditable]');
+            if (!campo && TECLAS.includes(e.key)) e.preventDefault();
+        };
+        // overflow:hidden frena al usuario pero no a un scroll programático
+        // (foco, restauración del navegador, otros scripts).
+        const regresar = () => { if (window.scrollY !== 0) window.scrollTo({ top: 0, behavior: 'instant' }); };
+        raiz.classList.add('hero-fijo');
+        window.addEventListener('wheel', frenar, { passive: false });
+        window.addEventListener('touchmove', frenar, { passive: false });
+        window.addEventListener('keydown', frenarTecla);
+        window.addEventListener('scroll', regresar);
+        liberarHero = () => {
+            raiz.classList.remove('hero-fijo');
+            window.removeEventListener('wheel', frenar);
+            window.removeEventListener('touchmove', frenar);
+            window.removeEventListener('keydown', frenarTecla);
+            window.removeEventListener('scroll', regresar);
+            liberarHero = () => {};
+        };
+    }
+
+    if (bajar) {
+        bajar.addEventListener('click', (e) => {
+            const destino = document.querySelector(bajar.getAttribute('href'));
+            if (!destino) return;
+            e.preventDefault();
+            liberarHero();
+            destino.scrollIntoView({ behavior: sinMovimiento ? 'auto' : 'smooth', block: 'start' });
+        });
+    }
+
+    /* La firma se escribe cuando la carta termina, y se vuelve a firmar cada
+       vez que el hero reaparece en pantalla. */
+    const firmaVideo = heroCarta ? heroCarta.querySelector('.hero-carta-firma-video') : null;
+    let cartaTerminada = false;
+    const firmar = () => {
+        if (!firmaVideo) return;
+        try { firmaVideo.currentTime = 0; } catch (e) {}
+        const p = firmaVideo.play();
+        if (p && p.catch) p.catch(() => {});
+    };
+    if (firmaVideo) {
+        firmaVideo.addEventListener('error', () => {
+            const img = document.createElement('img');
+            img.src = 'firma_ff_hero.png';
+            img.alt = 'Firma de Ferro Fragoso';
+            firmaVideo.replaceWith(img);
+        }, true);
+        if (sinMovimiento) {
+            // Sin animación: se muestra la firma ya terminada.
+            firmaVideo.addEventListener('loadedmetadata', () => {
+                firmaVideo.currentTime = Math.max(0, firmaVideo.duration - 0.05);
+            });
+        } else {
+            new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && cartaTerminada) firmar();
+                });
+            }, { threshold: 0.4 }).observe(firmaVideo);
+        }
+    }
+
+    if (lineasMaquina.length && !sinMovimiento) {
+        heroCarta.classList.add('is-escribiendo');
+        const letras = [];
+        lineasMaquina.forEach(linea => {
+            const texto = linea.textContent;
+            linea.textContent = '';
+            const sr = document.createElement('span');
+            sr.className = 'hero-carta-sr';
+            sr.textContent = texto;
+            const visible = document.createElement('span');
+            visible.setAttribute('aria-hidden', 'true');
+            // Las palabras no se parten entre renglones aunque cada letra sea un span.
+            texto.split(/(\s+)/).forEach(trozo => {
+                if (/^\s+$/.test(trozo)) {
+                    visible.appendChild(document.createTextNode(trozo));
+                    return;
+                }
+                const palabra = document.createElement('span');
+                palabra.style.whiteSpace = 'nowrap';
+                [...trozo].forEach(ch => {
+                    const s = document.createElement('span');
+                    s.className = 'hero-carta-letra';
+                    s.textContent = ch;
+                    palabra.appendChild(s);
+                    letras.push({ s, linea: visible });
+                });
+                visible.appendChild(palabra);
+            });
+            linea.appendChild(sr);
+            linea.appendChild(visible);
+        });
+
+        const cursor = document.createElement('span');
+        cursor.className = 'hero-carta-cursor';
+        cursor.setAttribute('aria-hidden', 'true');
+
+        let i = 0;
+        const escribir = () => {
+            if (i >= letras.length) {
+                heroCarta.classList.remove('is-escribiendo');
+                setTimeout(() => cursor.remove(), 2400);
+                cartaTerminada = true;
+                firmar();
+                return;
+            }
+            const { s, linea } = letras[i];
+            s.classList.add('is-escrita');
+            s.after(cursor);
+            const siguiente = letras[i + 1];
+            i++;
+            // Ritmo pausado: cada letra entra con un desvanecido (columna.css) y
+            // hay respiros en los signos y al cambiar de párrafo, como un carro
+            // que regresa.
+            let espera = 20 + Math.random() * 10;
+            if (/[.,:]/.test(s.textContent)) espera += 200;
+            if (siguiente && siguiente.linea !== linea) espera += 520;
+            setTimeout(escribir, espera);
+        };
+        setTimeout(escribir, 1650);
+    }
+
+    /* ════════════════════════════════════
        BLUR-WORD ANIMATION ENGINE
        Ported from React blur-text-animation component to vanilla JS.
        Animates each word in the hero taglines with cinematic blur + 3D reveal.
@@ -796,24 +939,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(s => sectionObserver.observe(s));
 
-    /* ════════════════════════════════════
-       FIRMA ANIMADA — la caligrafía se "escribe" al entrar en vista
-       (y se vuelve a firmar cada vez que la sección reaparece)
-    ════════════════════════════════════ */
-    const firmaVideo = document.querySelector('.promesa-signature-video');
-    if (firmaVideo) {
-        const firmaObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    try { firmaVideo.currentTime = 0; } catch (e) {}
-                    const p = firmaVideo.play();
-                    if (p && p.catch) p.catch(() => {});
-                }
-            });
-        }, { threshold: 0.4 });
-        firmaObserver.observe(firmaVideo);
-    }
-
     /* ── Marcatextos de los tres miedos ──
        El trazo se pinta al entrar en vista, no al cargar: si se dispara antes
        de que nadie lo vea, el usuario llega y ya está subrayado. Se desconecta
@@ -847,6 +972,77 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { threshold: 0.3 });
         carpetaObserver.observe(carpetaVideo);
+    }
+
+    /* "Relájate mientras nos encargamos de todo.": cada palabra entra por
+       separado y se repite cada vez que la frase vuelve a verse. */
+    const garantia = document.querySelector('.garantia-frase');
+    if (garantia) {
+        let n = 0;
+        const partir = (nodo) => {
+            [...nodo.childNodes].forEach(hijo => {
+                if (hijo.nodeType === Node.ELEMENT_NODE) {
+                    if (hijo.namespaceURI === 'http://www.w3.org/2000/svg') return;
+                    partir(hijo);
+                    return;
+                }
+                if (hijo.nodeType !== Node.TEXT_NODE || !hijo.textContent.trim()) return;
+                const frag = document.createDocumentFragment();
+                hijo.textContent.split(/(\s+)/).forEach(parte => {
+                    if (!parte) return;
+                    if (/^\s+$/.test(parte)) { frag.appendChild(document.createTextNode(' ')); return; }
+                    const s = document.createElement('span');
+                    s.className = 'garantia-palabra';
+                    s.style.setProperty('--i', n++);
+                    s.textContent = parte;
+                    frag.appendChild(s);
+                });
+                hijo.replaceWith(frag);
+            });
+        };
+        partir(garantia);
+        new IntersectionObserver((entries) => {
+            entries.forEach(entry => garantia.classList.toggle('is-visible', entry.isIntersecting));
+        }, { threshold: 0.6 }).observe(garantia);
+    }
+
+    /* Socios: la sección queda fija y una cortina se retira de cada ficha
+       conforme se hace scroll. Solo se activa si el contenido cabe en la
+       pantalla; si no, se muestra la versión normal sin cortina. */
+    const socios = document.getElementById('socios');
+    if (socios && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const interior = socios.querySelector('.socios-home-inner');
+        const tarjetas = [...socios.querySelectorAll('.socio-card')];
+        const acotar = (v) => Math.min(1, Math.max(0, v));
+        let pendiente = false;
+
+        const pintar = () => {
+            pendiente = false;
+            if (!socios.classList.contains('socios--cortina')) return;
+            const recorrido = socios.offsetHeight - window.innerHeight;
+            const p = recorrido > 0 ? acotar(-socios.getBoundingClientRect().top / recorrido) : 1;
+            tarjetas.forEach((t, i) => {
+                const inicio = 0.08 + i * 0.42;
+                t.style.setProperty('--r', acotar((p - inicio) / 0.34).toFixed(3));
+            });
+        };
+        const pedir = () => { if (!pendiente) { pendiente = true; requestAnimationFrame(pintar); } };
+
+        const decidir = () => {
+            socios.classList.add('socios--cortina');
+            const cabe = interior.scrollHeight <= window.innerHeight + 1;
+            if (!cabe) {
+                socios.classList.remove('socios--cortina');
+                tarjetas.forEach(t => t.style.removeProperty('--r'));
+            }
+            pintar();
+        };
+
+        decidir();
+        // Las fotos y las fuentes cambian el alto: se vuelve a medir al cargar.
+        window.addEventListener('load', decidir);
+        window.addEventListener('scroll', pedir, { passive: true });
+        window.addEventListener('resize', decidir);
     }
 
     /* ════════════════════════════════════

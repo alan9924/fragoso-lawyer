@@ -248,238 +248,275 @@ body.columna-navegando #columna-rail {
 }
 
 /* ════════════════════════════════════════════════════════════════════════
-   HERO — cartel: panel azul + templo que lo rompe
+   HERO — carta a máquina sobre el cartel azul
    ------------------------------------------------------------------------
-   Proporciones tomadas del referente: el panel ocupa ~62% del ancho y ~60%
-   del alto, y el templo es MÁS ANCHO que el panel para salirse por ambos
-   lados. Ese desborde es lo que hace la composición; si el templo cabe
-   dentro, se pierde el gesto y queda una tarjeta con una foto.
-
-   ACTUALIZACIÓN: el templo se retiró. El cartel es ahora sólo el bloque azul
-   centrado sobre blanco —el contraste del rectángulo contra el papel es todo
-   el gesto—, así que el panel ya no reserva franja inferior y se centra en
-   vertical en lugar de colgar de arriba.
+   El bloque azul centrado sobre blanco y el sello de lacre en la esquina se
+   quedan: son la firma visual del estudio. Lo que cambia es la voz. En vez de
+   titular + botón, el panel se lee como una carta mecanografiada: un menú
+   discreto arriba, el mensaje centrado en letra de máquina de escribir, un
+   remate en otro color, la firma caligráfica (antes en "Nuestra promesa") y
+   las dos salidas al pie.
    ════════════════════════════════════════════════════════════════════════ */
 
 :root {
   --cartel-fondo: #FFFFFF;
   --cartel-azul:  #1B2080;
   --cartel-hueso: #F6F4EE;
+  --cartel-oro:   #D8B77A;
+  --carta-maquina: "Courier Prime", "Courier New", Courier, monospace;
 }
 
+/* El azul ocupa toda la pantalla: el panel ya no es un bloque sobre blanco,
+   es el hero entero. El contenido se centra y conserva su ancho de lectura. */
 .hero-cartel {
   position: relative;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* Sin templo que anclar abajo, el bloque se centra en el alto disponible. */
-  justify-content: center;
-  background: var(--cartel-fondo);
+  background: var(--cartel-azul);
   overflow: hidden;
-  padding: clamp(2rem, 6vh, 4rem) clamp(1rem, 4vw, 2.5rem);
 }
 
-/* ── El panel ── */
 .hero-cartel-panel {
   position: relative;
   z-index: 1;
-  width: min(820px, 88vw);
+  flex: 1;
+  width: 100%;
+  min-height: 100svh;
   background: var(--cartel-azul);
   color: var(--cartel-hueso);
-  /* Relleno parejo: el de abajo sólo cierra el bloque, ya no reserva sitio
-     para ninguna imagen. Un poco más generoso que el resto para que el
-     rectángulo no quede sentado sobre el texto. */
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4.5vw, 3.75rem)
-           clamp(3rem, 6vw, 4.75rem);
-  text-align: left;
+  padding: calc(clamp(2.5rem, 6vh, 4rem) + env(safe-area-inset-top)) clamp(1.5rem, 5vw, 4rem)
+           calc(clamp(1.5rem, 4vh, 2.5rem) + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--carta-maquina);
 }
 
-/* ── El sello ──
-   Va anclado a la esquina superior derecha del panel. El PNG está recortado a
-   su contenido (sello_ff_esquina.png): el original traía un 46% de lienzo
-   vacío alrededor y, anclado por top/right, el sello quedaba flotando hacia
-   dentro en lugar de pegado a la esquina.
-   La lechada del lacre es crema, así que sobre el azul se lee sola — no lleva
-   recuadro ni sombra añadida (el PNG ya trae la suya). */
+/* ── El sello ── anclado a la esquina superior derecha del panel. */
 .hero-cartel-sello {
   position: absolute;
   top: clamp(1.1rem, 2.4vw, 1.75rem);
   right: clamp(1.1rem, 2.4vw, 1.75rem);
-  width: clamp(52px, 8vw, 88px);
+  width: clamp(68px, 10vw, 112px);
   height: auto;
   display: block;
   z-index: 2;
   pointer-events: none;
 }
 
-.hero-cartel-eyebrow {
-  font-family: var(--font-body, system-ui, sans-serif);
-  font-size: .6rem;
-  font-weight: 600;
-  letter-spacing: .34em;
-  text-transform: uppercase;
-  color: var(--cartel-hueso);
-  opacity: .72;
-  margin: 0 0 1.5rem;
-}
-
-.hero-cartel-title {
-  font-family: var(--font-heading, Georgia, serif);
-  font-weight: 300;
-  font-size: clamp(2.4rem, 6.4vw, 4.9rem);
-  line-height: 1.02;
-  letter-spacing: -.02em;
-  color: var(--cartel-hueso);
-  margin: 0 0 1.4rem;
-  text-wrap: balance;
-}
-.hero-cartel-title em { font-style: italic; }
-
-.hero-cartel-dek {
-  font-family: var(--font-body, system-ui, sans-serif);
-  font-size: .82rem;
-  line-height: 1.8;
-  color: var(--cartel-hueso);
-  opacity: .8;
-  max-width: 34rem;
-  margin: 0;
-}
-
-.hero-cartel-cta {
-  margin-top: 2.1rem;
+/* ── Menú: la barra de texto del referente ("Over 52,218 memories…") ──
+   Texto apagado con cada opción en una píldora suave; la píldora se
+   enciende al pasar o enfocar. */
+.hero-carta-menu {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: .5rem 2rem;
+  margin: 0 0 clamp(2.5rem, 7vh, 4.5rem);
+}
+.hero-carta-menu a {
+  display: inline-flex;
   align-items: center;
-  gap: 1.1rem 1.75rem;
-}
-.hero-cartel-btn {
-  display: inline-block;
-  font-family: var(--font-body, system-ui, sans-serif);
-  font-size: .7rem;
-  font-weight: 600;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--cartel-azul);
-  background: var(--cartel-hueso);
-  padding: 1rem 2.3rem;
-  border-radius: 2px;
-  transition: background .25s ease;
-}
-.hero-cartel-btn:hover { background: #fff; }
-.hero-cartel-btn:focus-visible { outline: 2px solid var(--cartel-hueso); outline-offset: 3px; }
-
-.hero-cartel-links {
-  font-family: var(--font-body, system-ui, sans-serif);
-  font-size: .68rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  line-height: 1.2;
+  font-family: var(--carta-maquina);
+  font-size: .95rem;
   color: var(--cartel-hueso);
-  margin: 0;
+  padding: .2rem 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3em;
+  opacity: .78;
+  transition: opacity .2s ease;
+}
+.hero-carta-menu a:hover,
+.hero-carta-menu a:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+/* ── La carta ── */
+.hero-carta-texto {
+  max-width: 32rem;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.75;
+  letter-spacing: .01em;
+  color: var(--cartel-hueso);
+}
+.hero-carta-texto p { margin: 0 0 1.75rem; }
+/* Josefin Sans en mayúsculas espaciadas: el rótulo geométrico tipo
+   "Birdie Sans". Entra con un desvanecido, no con la máquina de escribir. */
+.hero-carta-titulo {
+  font-family: "Josefin Sans", "Futura", "Century Gothic", sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5.4vw, 3.8rem);
+  line-height: 1.15;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding-left: .14em;
+  margin: 0 0 1.9rem;
+  text-wrap: balance;
+  animation: hero-carta-titulo-entra 1.4s ease-out .9s both;
+}
+@keyframes hero-carta-titulo-entra {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Hasta que se presionan las flechas, la página no se desplaza (script.js). */
+html.hero-fijo,
+html.hero-fijo body { overflow: hidden; overscroll-behavior: none; }
+.hero-carta-acento {
+  color: var(--cartel-oro);
+  margin-top: 1.9rem !important;
+}
+
+/* ── La firma ──
+   signature_write.mp4 es 1280×720 y la caligrafía terminada ocupa el
+   recuadro (250,208)–(1030,512); a medio trazo los rasgos se salen un poco,
+   así que se recorta con margen: (200,170)–(1080,550). El contenedor tiene
+   esa proporción y el vídeo se agranda y desplaza para llenarlo.
+   El fondo del vídeo es gris (~44/255, con ruido de compresión): brightness
+   + contrast lo llevan a negro puro y `screen` vuelve el negro transparente
+   sobre el azul. El blend va en el contenedor, no en el vídeo, para que
+   ninguna transición lo aísle. */
+.hero-carta-firma {
+  position: relative;
+  width: clamp(220px, 38vw, 340px);
+  aspect-ratio: 880 / 380;
+  overflow: hidden;
+  margin: clamp(1.5rem, 4.5vh, 2.75rem) auto clamp(1.75rem, 4.5vh, 2.75rem);
+  mix-blend-mode: screen;
+}
+.hero-carta-firma-video,
+.hero-carta-firma img {
+  position: absolute;
+  width: 145.45%;
+  height: auto;
+  left: -22.73%;
+  top: -44.74%;
+  max-width: none;
+  filter: grayscale(1) brightness(.85) contrast(2.4);
+}
+.hero-carta-firma img { width: 100%; left: 0; top: 0; filter: none; }
+
+/* ── Las dos salidas ── */
+.hero-carta-cta {
+  width: 100%;
+  max-width: 34rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .85rem;
+}
+.hero-carta-btn {
   display: flex;
-  gap: .75rem;
   align-items: center;
-}
-.hero-cartel-links a {
-  color: inherit;
+  justify-content: center;
+  min-height: 56px;
+  padding: .9rem 1.25rem;
+  border-radius: 10px;
+  font-family: var(--carta-maquina);
+  font-size: 1rem;
   text-decoration: none;
-  border-bottom: 1px solid rgba(246,244,238,.45);
-  padding-bottom: 2px;
-  transition: border-color .25s ease;
-}
-.hero-cartel-links a:hover { border-bottom-color: var(--cartel-hueso); }
-.hero-cartel-links span { opacity: .45; }
-
-.hero-cartel-nota {
-  font-family: var(--font-body, system-ui, sans-serif);
-  font-size: .62rem;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--cartel-hueso);
-  opacity: .62;
-  margin: 1.6rem 0 0;
-}
-
-.hero-cartel .hero-scroll-hint {
+  background: var(--cartel-hueso);
   color: var(--cartel-azul);
-  z-index: 3;
+  border: 1.5px solid var(--cartel-hueso);
+  transition: background .2s ease, transform .15s ease;
+}
+.hero-carta-btn:hover { background: #fff; }
+.hero-carta-btn:focus-visible { outline: 2px solid var(--cartel-hueso); outline-offset: 3px; }
+.hero-carta-btn:active { transform: scale(.98); }
+
+/* ── Flechas para bajar ── dos chevrones quietos; el blanco los recorre de
+   arriba abajo en cascada, como una señal que invita a desplazarse. */
+.hero-carta-bajar {
+  display: block;
+  margin-top: clamp(1.75rem, 5vh, 3rem);
+  padding: .5rem;
+  color: var(--cartel-hueso);
+}
+.hero-carta-bajar:focus-visible { outline: 1px solid var(--cartel-hueso); outline-offset: 2px; }
+.hero-carta-bajar svg {
+  display: block;
+  width: 22px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.5;
+  stroke-linecap: square;
+}
+.hero-carta-bajar polyline {
+  opacity: .25;
+  animation: hero-carta-cascada 2.2s ease-in-out infinite;
+}
+.hero-carta-bajar-2 { animation-delay: .35s !important; }
+@keyframes hero-carta-cascada {
+  0%, 100% { opacity: .25; }
+  30% { opacity: 1; }
+  60% { opacity: .25; }
 }
 
-@media (max-width: 780px) {
-  .hero-cartel-panel { width: 100%; }
+/* ── Efecto máquina de escribir ──
+   script.js parte cada [data-maquina] en letras y las va revelando. Mientras
+   no llegue, el texto se ve completo: sin JS la carta se lee igual. */
+.hero-carta-letra { opacity: 0; transition: opacity .5s ease-out; }
+.hero-carta-letra.is-escrita { opacity: 1; }
+.hero-carta-cursor {
+  display: inline-block;
+  width: .55em;
+  margin-left: .05em;
+  border-bottom: 2px solid currentColor;
+  animation: hero-carta-parpadeo 1s steps(1) infinite;
+}
+@keyframes hero-carta-parpadeo { 50% { opacity: 0; } }
+
+/* El texto completo queda para lectores de pantalla; las letras sueltas
+   son sólo el efecto visual. */
+.hero-carta-sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* La firma no necesita ocultarse mientras se escribe la carta: el primer
+   fotograma del vídeo es papel vacío, que el blend vuelve invisible. */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-carta-cursor,
+  .hero-carta-titulo,
+  .hero-carta-bajar polyline { animation: none; }
+  .hero-carta-bajar polyline { opacity: .7; }
 }
 
 /* La columna fija del conector no compite con el cartel: entra después. */
 #columna-spine.columna--hero { opacity: 0; }
 
-/* NATIVE APP MOBILE STYLES FOR HERO */
+/* ═══ HERO MÓVIL ═══
+   El azul también llena la pantalla del teléfono; botones apilados a lo
+   ancho y un alto que cabe sin scroll en los iPhone y Android más comunes. */
 @media (max-width: 780px) {
-  .hero-cartel {
-    padding: 5rem 1rem 2rem 1rem; /* Space for navbar and bottom margin */
-    min-height: auto;
+  .hero-cartel-panel {
+    padding: calc(1.6rem + env(safe-area-inset-top)) 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
   }
-  .hero-cartel-panel { 
-    width: 100%; 
-    min-height: auto; /* Remove 100svh */
-    border-radius: 24px; /* Tarjeta de presentación style */
-    display: flex;
-    flex-direction: column;
-    padding: 2.5rem 1.5rem;
-    box-sizing: border-box;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  .hero-cartel-sello { width: 64px; top: .9rem; right: .9rem; }
+  /* Las cuatro opciones en una línea centrada no caben al lado del sello:
+     la línea baja por debajo de él. */
+  .hero-carta-menu {
+    flex-wrap: nowrap;
+    gap: 1.1rem;
+    margin-top: 3.4rem;
+    margin-bottom: 1.6rem;
   }
-  .hero-cartel-cta {
-    flex-direction: column-reverse;
-    align-items: stretch;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  /* The "Empezar" button stays inline but mobile-optimized */
-  .hero-cartel-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 1.15rem 2rem;
-    border-radius: 20px; /* High rounding */
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    margin-top: 0;
-  }
-  /* The links become a vertical menu list */
-  .hero-cartel-links {
-    flex-direction: column;
-    align-items: stretch !important;
-    gap: 0 !important;
-    background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    padding: 0;
-    margin-bottom: 0; /* Remove space for sticky button */
-  }
-  .hero-cartel-links a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.15rem 1.2rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
-  .hero-cartel-links a:last-child {
-    border-bottom: none;
-  }
-  .hero-cartel-links a::after {
-    content: "›";
-    font-size: 1.5rem;
-    line-height: 1;
-    opacity: 0.5;
-    font-weight: 300;
-  }
-  .hero-cartel-nota {
-    margin-top: 1.5rem;
-    text-align: center;
-    padding-bottom: 0;
-    font-size: 0.8rem;
-    opacity: 0.7;
-  }
+  /* mobile-app.css da 48 px de alto a todo enlace táctil; aquí el menú es
+     una línea de texto y el alto lo pone su relleno. */
+  .hero-carta-menu a { font-size: .8rem; min-height: 0; }
+  .hero-carta-texto { font-size: .94rem; line-height: 1.7; }
+  .hero-carta-titulo { font-size: 1.75rem; letter-spacing: .12em; margin-bottom: 1.2rem; }
+  .hero-carta-bajar { margin-top: 1.1rem; }
+  .hero-carta-texto p { margin-bottom: 1.3rem; }
+  .hero-carta-acento { margin-top: 1.5rem !important; }
+  .hero-carta-firma { width: 215px; margin: .9rem auto 1.2rem; }
+  .hero-carta-cta { grid-template-columns: 1fr; gap: .65rem; }
+  .hero-carta-btn { border-radius: 16px; min-height: 50px; }
 }

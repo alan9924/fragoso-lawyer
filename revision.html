@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fdfdfc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Revisión de Contrato | FERRO FRAGOSO</title>
     <link rel="canonical" href="https://ferrofragoso.com/revision.html">
     <!-- Open Graph / redes: sin esto, al compartir el link en WhatsApp o LinkedIn
@@ -25,6 +30,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css?v=14">
     <link rel="stylesheet" href="home-new.css?v=11">
+    <link rel="stylesheet" href="mobile-app.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -353,7 +359,7 @@
                     </li>
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
-                    <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
+                    <li><a href="seguimiento.html" class="nav-top-link">Seguimiento</a></li>
                 </ul>
             </div>
 
@@ -393,45 +399,45 @@
 
     <!-- ═══ DARK PRICING SECTION ═══ -->
     <section class="dark-pricing-section">
-        <div class="dark-price-card" data-precio-normal="490" data-precio-expres="790" data-nombre="Revisión Simple">
+        <div class="dark-price-card" data-precio-normal="490" data-precio-expres="790" data-nombre="Revisión Simple" data-servicio-id="revision_simple">
             <h3>Revisión Simple</h3>
             <div class="price"><span class="price-amount">$490</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
             <p>Contratos estándar de hasta 10 páginas. Reporte de riesgos y cláusulas clave, con una ronda de ajustes. Entrega en 24–48 hrs hábiles.</p>
             <label class="express-toggle">
                 <input type="checkbox" class="express-checkbox"> Exprés (+$300, entrega en 24h) <i class="fas fa-bolt"></i>
             </label>
-            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20revisi%C3%B3n%20simple%20de%20mi%20contrato%20(%24490%20MXN)."
+            <a href="solicitud.html?servicio=revision_simple&detalle=Quiero%20solicitar%20la%20revisi%C3%B3n%20simple%20de%20mi%20contrato."
                target="_blank" rel="noopener" class="dark-btn"
                data-mp-link="PENDIENTE:revision-simple-490" data-producto="Revisión simple">Solicitar Revisión</a>
         </div>
-        <div class="dark-price-card" style="border-color:#fff;" data-precio-normal="990" data-precio-expres="1290" data-nombre="Revisión Intermedia">
+        <div class="dark-price-card" style="border-color:#fff;" data-precio-normal="990" data-precio-expres="1290" data-nombre="Revisión Intermedia" data-servicio-id="revision_intermedia">
             <h3>Revisión Intermedia</h3>
             <div class="price"><span style="font-size:0.42em; color:#999; letter-spacing:1px;">DESDE </span><span class="price-amount">$990</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
             <p>Contratos de 11 a 25 páginas o con anexos. Análisis cláusula por cláusula y recomendaciones priorizadas.</p>
             <label class="express-toggle">
                 <input type="checkbox" class="express-checkbox"> Exprés (+$300, entrega en 24h) <i class="fas fa-bolt"></i>
             </label>
-            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20revisi%C3%B3n%20intermedia%20de%20mi%20contrato%20(desde%20%24990%20MXN)."
+            <a href="solicitud.html?servicio=revision_intermedia&detalle=Quiero%20solicitar%20la%20revisi%C3%B3n%20intermedia%20de%20mi%20contrato."
                target="_blank" rel="noopener" class="dark-btn"
                data-mp-link="PENDIENTE:revision-intermedia-990" data-producto="Revisión intermedia">Solicitar Revisión</a>
         </div>
-        <div class="dark-price-card" data-precio-normal="1990" data-precio-expres="2290" data-nombre="Revisión Estratégica">
+        <div class="dark-price-card" data-precio-normal="1990" data-precio-expres="2290" data-nombre="Revisión Estratégica" data-servicio-id="revision_estrategica">
             <h3>Revisión Estratégica</h3>
             <div class="price"><span style="font-size:0.42em; color:#999; letter-spacing:1px;">DESDE </span><span class="price-amount">$1,990</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
             <p>Alta complejidad corporativa, contratos en inglés u operaciones con riesgo relevante. Incluye postura de negociación.</p>
             <label class="express-toggle">
                 <input type="checkbox" class="express-checkbox"> Exprés (+$300, entrega en 24h) <i class="fas fa-bolt"></i>
             </label>
-            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20revisi%C3%B3n%20estrat%C3%A9gica%20de%20mi%20contrato%20(desde%20%241%2C990%20MXN)."
+            <a href="solicitud.html?servicio=revision_estrategica&detalle=Quiero%20solicitar%20la%20revisi%C3%B3n%20estrat%C3%A9gica%20de%20mi%20contrato."
                target="_blank" rel="noopener" class="dark-btn"
                data-mp-link="PENDIENTE:revision-estrategica-1990" data-producto="Revisión estratégica">Solicitar Revisión</a>
         </div>
-        <div class="dark-price-card" data-precio-normal="1990" data-nombre="Contrato a tu medida">
+        <div class="dark-price-card" data-precio-normal="1990" data-nombre="Contrato a tu medida" data-servicio-id="contrato_medida">
             <h3>Contrato a tu medida</h3>
             <div class="price"><span style="font-size:0.42em; color:#999; letter-spacing:1px;">DESDE </span><span class="price-amount">$1,990</span> <span style="font-size:0.5em; color:#777;">MXN</span></div>
             <p>Redactamos tu contrato desde cero a la medida de tu operación: cláusulas negociadas, anexos y versión lista para firma. Entrega en 3–5 días hábiles.</p>
             <div style="height: 1.5rem; margin: 1rem 0;"></div>
-            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20solicitar%20la%20redacci%C3%B3n%20a%20medida%20de%20un%20contrato%20(desde%20%241%2C990%20MXN)."
+            <a href="solicitud.html?servicio=contrato_medida&detalle=Quiero%20solicitar%20la%20redacci%C3%B3n%20a%20medida%20de%20un%20contrato."
                target="_blank" rel="noopener" class="dark-btn"
                data-mp-link="PENDIENTE:redaccion-medida-1990" data-producto="Contrato a tu medida">Iniciar Proyecto</a>
         </div>
@@ -460,6 +466,7 @@
             const normal = card.dataset.precioNormal;
             const expres = card.dataset.precioExpres;
             const nombre = card.dataset.nombre;
+            const servicioId = card.dataset.servicioId;
 
             checkbox.addEventListener('change', () => {
                 const esExpres = checkbox.checked;
@@ -467,8 +474,13 @@
                 amountEl.textContent = '$' + Number(precio).toLocaleString('es-MX');
                 const etiqueta = esExpres ? `${nombre} exprés (entrega en 24h)` : nombre;
                 btn.textContent = esExpres ? 'Solicitar Revisión Exprés' : 'Solicitar Revisión';
-                btn.href = `https://wa.me/524191239646?text=${encodeURIComponent(`Hola, quiero solicitar ${etiqueta.toLowerCase()} de mi contrato ($${precio} MXN).`)}`;
-                btn.setAttribute('data-mp-link', `PENDIENTE:revision-${esExpres ? 'expres-' : ''}${precio}`);
+                // Exprés es un modificador (expres_24h) sobre el mismo servicio, no
+                // otro producto: se avisa en el detalle para que se sume al cobro,
+                // no se cambia el servicio bloqueado.
+                const detalle = esExpres
+                    ? `Quiero solicitar ${nombre.toLowerCase()} de mi contrato, con entrega exprés en 24h.`
+                    : `Quiero solicitar ${nombre.toLowerCase()} de mi contrato.`;
+                btn.href = `solicitud.html?servicio=${encodeURIComponent(servicioId)}&detalle=${encodeURIComponent(detalle)}`;
                 btn.setAttribute('data-producto', etiqueta);
             });
         });
@@ -541,12 +553,21 @@
     </script>
 
     <!-- Minimal Footer -->
+    <!-- ═══ SOLICITUD CTA ═══ -->
+    <section style="background-color: #f2ede4; padding: 3rem 5vw; text-align: center;">
+        <div style="max-width: 640px; margin: 0 auto;">
+            <p style="font-family: var(--font-body, system-ui, sans-serif); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent, #958463); margin-bottom: 0.6rem;">¿Ya decidiste?</p>
+            <h3 style="font-family: var(--font-heading, 'Cormorant Garamond', serif); font-size: 1.6rem; font-weight: 500; color: #111; margin: 0 0 1rem;">Pide tu revisión de contrato ahora mismo</h3>
+            <a href="solicitud.html?servicio=revision_simple" style="display: inline-block; background-color: var(--accent, #958463); color: #fff; font-family: var(--font-body, system-ui, sans-serif); font-size: 0.85rem; font-weight: 600; text-decoration: none; padding: 0.9rem 2rem; border-radius: 10px;">Pedir revisión simple</a>
+        </div>
+    </section>
+
     <footer style="padding: 2rem; border-top: 1px solid #333; text-align: center; font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 2px;">
         &copy; 2026 FERRO FRAGOSO. <a href="terminos.html" style="color:#999; text-decoration:none; margin-left:1rem;">Términos</a> <a href="privacidad.html" style="color:#999; text-decoration:none; margin-left:1rem;">Privacidad</a>
     </footer>
 
     <script src="script.js?v=11"></script>
-    <script src="precios.js?v=8"></script>
+    <script src="precios.js?v=20"></script>
     <script src="analytics.js?v=11"></script>
 
     <!-- ══ Cursor editorial: escribe frases sobre revisión contractual ══ -->

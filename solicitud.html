@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fdfdfc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Pide tu servicio | FERRO FRAGOSO</title>
+    <link rel="canonical" href="https://ferrofragoso.com/solicitud.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ferrofragoso.com/solicitud.html">
+    <meta property="og:title" content="Pide tu servicio | FERRO FRAGOSO">
+    <meta property="og:description" content="Elige tu servicio, cuéntanos tu caso en un minuto y recibe tu folio al instante.">
+    <meta property="og:image" content="https://ferrofragoso.com/signature_on_dark.png">
+    <meta property="og:site_name" content="Ferro Fragoso, Estudio Jurídico">
+    <meta property="og:locale" content="es_MX">
+    <meta name="description" content="Elige tu servicio, cuéntanos tu caso en un minuto y recibe tu folio al instante. Sin esperar respuesta.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css?v=15">
+    <link rel="stylesheet" href="home-new.css?v=44">
+    <link rel="stylesheet" href="solicitud.css?v=5">
+    <link rel="stylesheet" href="mobile-app.css?v=5">
+    <link rel="stylesheet" href="cuestionario.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@200;300;400;500;600&family=Newsreader:opsz,wght@6..72,400&family=Courier+Prime&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="navbar" class="scrolled">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="nav-logo-img">
+                <a href="index.html" class="logo-text">FERRO FRAGOSO</a>
+            </div>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-pi">
+                            Propiedad intelectual<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-pi">
+                            <li><a href="propiedad-intelectual.html">Ver todo</a></li>
+                            <li><a href="marcas.html">Registro de marca</a></li>
+                            <li><a href="derechos-autor.html">Derechos de autor</a></li>
+                            <li><a href="secreto-industrial.html">Secreto industrial</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-group">
+                        <button type="button" class="nav-group-btn" aria-expanded="false" aria-controls="nav-sub-co">
+                            Contratos<span class="nav-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="nav-submenu" id="nav-sub-co">
+                            <li><a href="contratos.html">Crear un contrato</a></li>
+                            <li><a href="revision.html">Revisar mi contrato</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
+                    <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
+                    <li><a href="seguimiento.html" class="nav-top-link">Seguimiento</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-actions">
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" id="mobileMenuBtn">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ SOLICITUD ═══ -->
+    <section class="sol-hero">
+        <span class="sol-eyebrow">Pide tu servicio</span>
+        <h1 class="sol-title">Elige, cuéntanos tu caso y listo.</h1>
+        <p class="sol-sub">Sin WhatsApp ni esperar respuesta: deja tus datos aquí y recibe tu folio al instante. Un abogado revisa tu caso y te contacta.</p>
+    </section>
+
+    <section class="sol-wrap">
+        <div id="solCuestionario"></div>
+        <p class="sol-privacidad">Usamos estos datos para atender tu solicitud y darte seguimiento. Consulta nuestro <a href="privacidad.html">Aviso de Privacidad</a>.</p>
+        <div class="sol-hp" aria-hidden="true">
+            <label for="solSitioWeb">No llenar este campo</label>
+            <input type="text" id="solSitioWeb" name="sitio_web" tabindex="-1" autocomplete="off">
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="site-footer" style="background: #111; color: #fff; padding: 4rem 2rem; text-align: center;">
+        <div class="footer-container">
+            <div class="footer-brand" style="margin-bottom: 1rem;">
+                <img src="logo_ff.png" alt="Ferro Fragoso" class="footer-logo-img" style="filter: invert(1);">
+                <span class="footer-brand-name" style="color: #fff;">FERRO FRAGOSO</span>
+            </div>
+            <p class="footer-tagline" style="color: #999;">Estudio Jurídico — Blindaje legal con propósito.</p>
+            <div class="footer-links" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="terminos.html" style="color: #999; text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
+                <a href="privacidad.html" style="color: #999; text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
+                <a href="radar/index.html" style="color: #999; text-decoration: none; font-size: 0.85rem;">Blog</a>
+                <a href="solicitud.html" style="color: #999; text-decoration: none; font-size: 0.85rem;">Contáctanos</a>
+            </div>
+            <p class="footer-copy" style="margin-top: 2rem; color: #666;">&copy; 2026 Ferro Fragoso, Estudio Jurídico.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=11"></script>
+    <script src="precios.js?v=20"></script>
+    <script src="analytics.js?v=11"></script>
+    <script src="cuestionario.js?v=2"></script>
+    <script>
+        (function () {
+            // Ids que nunca deben ofrecerse como producto elegible: deben
+            // coincidir con EXCLUIDOS en api/solicitud.js. La llamada de filtro
+            // gratuita sí se ofrece (primer peldaño del embudo); las entradas
+            // `legacy` del catálogo no.
+            const EXCLUIDOS = [];
+
+            // ── Cuestionarios por familia de producto ───────────────────────
+            // Cada familia mapea a los ids de precios.js que la usan. Las
+            // preguntas son las que de verdad pide un registro ante el
+            // INDAUTOR — no genéricas: autor y titular pueden ser personas
+            // distintas (obra por encargo, obra hecha por un empleado), y esa
+            // distinción determina quién firma qué documento después.
+            const WIZARDS = {
+                derecho_autor: {
+                    ids: ['derecho_autor_esencial', 'derecho_autor_software', 'derecho_autor_blindaje', 'derecho_autor_portafolio'],
+                    steps: [
+                        {
+                            key: 'tipo_obra',
+                            tipo: 'opciones',
+                            titulo: 'Tu obra',
+                            pregunta: '¿Qué tipo de obra vas a registrar?',
+                            info: 'El INDAUTOR clasifica las obras por rama (literaria, artística, musical, de cómputo…). Elegir la rama correcta desde el inicio evita observaciones al presentar la solicitud.',
+                            opciones: [
+                                ['literaria', 'Obra literaria o editorial'],
+                                ['software', 'Software o programa de cómputo'],
+                                ['musical', 'Obra musical'],
+                                ['fotografica', 'Obra fotográfica'],
+                                ['audiovisual', 'Obra audiovisual o video'],
+                                ['artistica', 'Obra artística, diseño o ilustración'],
+                                ['base_datos', 'Base de datos o compilación'],
+                                ['otra', 'Otra'],
+                            ],
+                        },
+                        {
+                            key: 'titulo',
+                            tipo: 'texto',
+                            titulo: 'Título',
+                            pregunta: '¿Cuál es el título de la obra?',
+                            placeholder: 'Ej. Manual de Procesos Internos v2',
+                            info: 'El título identifica tu obra en el certificado de registro y en cualquier trámite futuro (una cesión, una licencia, una defensa). Si todavía no tiene nombre definitivo, usa uno provisional.',
+                        },
+                        {
+                            key: 'autor_nombre',
+                            tipo: 'texto',
+                            titulo: 'Autor',
+                            pregunta: '¿Quién creó la obra? (nombre completo del autor)',
+                            placeholder: 'Nombre completo de quien la creó',
+                            info: 'El autor es quien físicamente creó la obra — puede ser una sola persona o varias (coautoría). Si fueron varias, escribe todos los nombres separados por coma.',
+                        },
+                        {
+                            key: 'titularidad',
+                            tipo: 'opciones',
+                            titulo: 'Titularidad',
+                            pregunta: '¿A quién le pertenecen los derechos sobre la obra?',
+                            info: 'El autor y el titular de los derechos no siempre son la misma persona: si la obra se hizo por encargo, para un empleador, o se transmitió a alguien más, el titular puede ser distinto de quien la creó — y eso determina quién firma la solicitud.',
+                            opciones: [
+                                ['autor', 'A mí, como autor'],
+                                ['empresa', 'A mi empresa u otra persona moral'],
+                                ['tercero', 'A otra persona (fue una obra por encargo o ya se cedió)'],
+                            ],
+                        },
+                        {
+                            key: 'titular_nombre',
+                            tipo: 'texto',
+                            titulo: 'Titular',
+                            pregunta: 'Nombre completo o razón social del titular',
+                            placeholder: 'Nombre completo o razón social',
+                            info: 'Debe coincidir exactamente con una identificación oficial (o el acta constitutiva, si es una empresa) — es el nombre que va a aparecer en el certificado del INDAUTOR.',
+                            saltarSi: (r) => r.titularidad === 'autor',
+                        },
+                        {
+                            key: 'fecha_creacion',
+                            tipo: 'texto',
+                            titulo: 'Fechas',
+                            pregunta: '¿Cuándo se creó y si ya se ha divulgado o publicado?',
+                            placeholder: 'Ej. Se creó en enero 2025 y aún no se ha publicado',
+                            info: 'No necesita ser exacta al día — sirve como referencia. Que la obra siga sin publicarse no es impedimento para registrarla; de hecho, registrarla antes de publicar suele ser lo más recomendable.',
+                        },
+                        {
+                            key: 'descripcion',
+                            tipo: 'textarea',
+                            titulo: 'De qué trata',
+                            pregunta: 'Cuéntanos brevemente de qué trata',
+                            placeholder: 'Una descripción breve del contenido, alcance o funcionalidad de la obra.',
+                            info: 'Ayuda al abogado a preparar el expediente antes de contactarte. El archivo o ejemplar de la obra no hace falta todavía — se pide después de confirmar, por correo.',
+                        },
+                    ],
+                },
+            };
+
+            function familiaDe(servicioId) {
+                return Object.keys(WIZARDS).find((f) => WIZARDS[f].ids.includes(servicioId)) || null;
+            }
+
+            // Un solo catálogo, dos fuentes: FF_SERVICIOS (a la carta) y
+            // FF_MEMBRESIAS (mensuales) — precios.js gobierna ambas, aquí
+            // solo se listan.
+            function opcionesCatalogo() {
+                const out = [];
+                Object.keys(window.FF_SERVICIOS || {}).forEach((id) => {
+                    const s = window.FF_SERVICIOS[id];
+                    if (s.modificador || s.legacy || EXCLUIDOS.includes(id)) return;
+                    out.push({ id, nombre: s.nombre, etiqueta: s.precio > 0 ? (window.ffEtiqueta(id) + ' ' + (s.unidad || '')) : 'Sin costo' });
+                });
+                Object.keys(window.FF_MEMBRESIAS || {}).forEach((id) => {
+                    const m = window.FF_MEMBRESIAS[id];
+                    out.push({ id, nombre: m.nombre + ' (membresía)', etiqueta: window.ffPrecio(m.mensual) + ' MXN / mes' });
+                });
+                return out;
+            }
+
+            function datosServicio(id) {
+                const s = (window.FF_SERVICIOS && window.FF_SERVICIOS[id]) || (window.FF_MEMBRESIAS && window.FF_MEMBRESIAS[id]);
+                if (!s) return null;
+                const esMembresia = !window.FF_SERVICIOS[id];
+                return {
+                    nombre: s.nombre,
+                    etiqueta: esMembresia ? (window.ffPrecio(s.mensual) + ' MXN / mes') : (s.precio > 0 ? (window.ffEtiqueta(id) + ' ' + (s.unidad || '')) : 'Sin costo'),
+                };
+            }
+
+            const el = (tag, clase, texto) => {
+                const n = document.createElement(tag);
+                if (clase) n.className = clase;
+                if (texto != null) n.textContent = texto;
+                return n;
+            };
+
+            // Servicio, precio y requisitos (FF_REQUISITOS en precios.js).
+            function pintarServicio(caja, r, api) {
+                const datos = datosServicio(r.servicio);
+                const ficha = el('dl', 'ffq-ficha');
+                [['Servicio', datos.nombre], ['Precio', datos.etiqueta]].forEach(([k, v]) => {
+                    const fila = el('div');
+                    fila.append(el('dt', '', k), el('dd', '', v));
+                    ficha.appendChild(fila);
+                });
+                caja.appendChild(ficha);
+
+                const req = (window.ffRequisitos && window.ffRequisitos(r.servicio)) || null;
+                if (req && Array.isArray(req.docs) && req.docs.length) {
+                    const bloque = el('div', 'ffq-bloque');
+                    bloque.style.marginTop = '1.2rem';
+                    bloque.appendChild(el('h3', '', 'Ten a la mano'));
+                    const ul = el('ul', 'ffq-lista');
+                    req.docs.forEach((d) => ul.appendChild(el('li', '', d)));
+                    bloque.appendChild(ul);
+                    if (req.plazo) bloque.appendChild(el('p', 'ffq-ayuda', 'Plazo: ' + req.plazo));
+                    if (req.nota) bloque.appendChild(el('p', 'ffq-ayuda', req.nota));
+                    bloque.appendChild(el('p', 'ffq-ayuda', 'No necesitas subir nada ahora: al confirmar te decimos por correo cómo enviarlo.'));
+                    caja.appendChild(bloque);
+                }
+
+                const cambiar = el('button', 'ffq-alt', 'Elegir otro servicio');
+                cambiar.type = 'button';
+                cambiar.style.marginTop = '1.2rem';
+                cambiar.addEventListener('click', () => {
+                    servicioFijo = false;
+                    api.ir('servicio');
+                });
+                caja.appendChild(cambiar);
+            }
+
+            // Las preguntas de cada familia pasan al formato del cuestionario;
+            // solo aparecen cuando el servicio elegido pertenece a la familia.
+            function pasosDeFamilias() {
+                const pasos = [];
+                Object.keys(WIZARDS).forEach((familia) => {
+                    WIZARDS[familia].steps.forEach((p) => {
+                        const paso = {
+                            clave: 'w_' + p.key,
+                            titulo: p.titulo,
+                            texto: p.pregunta,
+                            ayuda: p.info,
+                            cuando: (r) => familiaDe(r.servicio) === familia && !(p.saltarSi && p.saltarSi(soloFamilia(r))),
+                        };
+                        if (p.tipo === 'opciones') {
+                            paso.tipo = 'opciones';
+                            paso.lista = true;
+                            paso.opciones = p.opciones.map(([valor, etiqueta]) => ({ valor, etiqueta }));
+                        } else if (p.tipo === 'textarea') {
+                            paso.tipo = 'texto';
+                            paso.placeholder = p.placeholder;
+                        } else {
+                            paso.tipo = 'campo';
+                            paso.entrada = { placeholder: p.placeholder };
+                        }
+                        pasos.push(paso);
+                    });
+                });
+                return pasos;
+            }
+
+            function soloFamilia(r) {
+                const o = {};
+                Object.keys(r).forEach((k) => { if (k.startsWith('w_')) o[k.slice(2)] = r[k]; });
+                return o;
+            }
+
+            function detalleDe(r) {
+                const familia = familiaDe(r.servicio);
+                if (!familia) return (r.caso || '').trim();
+                const w = soloFamilia(r);
+                return WIZARDS[familia].steps
+                    .filter((p) => w[p.key] && !(p.saltarSi && p.saltarSi(w)))
+                    .map((p) => {
+                        const valor = p.tipo === 'opciones'
+                            ? (p.opciones.find((o) => o[0] === w[p.key]) || [, w[p.key]])[1]
+                            : String(w[p.key]).trim();
+                        return '• ' + p.pregunta + ' ' + valor;
+                    })
+                    .join('\n');
+            }
+
+            async function enviar(r, api) {
+                const payload = {
+                    servicio: r.servicio,
+                    nombre: (r.nombre || '').trim(),
+                    correo: (r.correo || '').trim(),
+                    telefono: (r.telefono || '').trim(),
+                    detalle: detalleDe(r),
+                    sitio_web: document.getElementById('solSitioWeb').value,
+                };
+                let resp, data;
+                try {
+                    resp = await fetch('/api/solicitud', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+                    data = await resp.json();
+                } catch (err) {
+                    throw new Error('No pudimos conectar con el servicio. Revisa tu conexión e intenta de nuevo.');
+                }
+                if (!resp.ok || !data.ok) {
+                    throw new Error((data && data.error) || 'No pudimos registrar tu solicitud. Intenta de nuevo en unos minutos.');
+                }
+
+                const folio = el('div', 'ffq-destacado');
+                folio.appendChild(el('span', 'ffq-ayuda', 'Tu folio'));
+                folio.lastChild.style.margin = '0 0 .2rem';
+                folio.appendChild(el('span', 'ffq-cifra', data.folio));
+
+                const botones = [];
+                if (data.pago) botones.push({ texto: 'Pagar ahora', href: data.pago, nuevaPestana: true });
+                botones.push({ texto: data.pago ? 'Ver mi seguimiento' : 'Dar seguimiento a mi folio', href: 'seguimiento.html' });
+
+                api.final({
+                    titulo: 'Listo, ya quedó registrado',
+                    texto: 'Guarda tu folio: te sirve para dar seguimiento a tu ' + (data.servicio || 'solicitud') + ' en cualquier momento.',
+                    contenido: folio,
+                    botones,
+                    atras: false,
+                });
+            }
+
+            const params = new URLSearchParams(location.search);
+            const preseleccion = params.get('servicio');
+            const detallePrevio = params.get('detalle');
+            let servicioFijo = !!(preseleccion && datosServicio(preseleccion));
+
+            const respuestas = {};
+            if (servicioFijo) respuestas.servicio = preseleccion;
+            // El cuestionario de familia reemplaza al campo libre: el texto que
+            // venía prellenado (de un botón "Solicitar X") no se mezcla con él.
+            if (detallePrevio && !(servicioFijo && familiaDe(preseleccion))) respuestas.caso = detallePrevio;
+
+            FFCuestionario.abrir({
+                contenedor: document.getElementById('solCuestionario'),
+                respuestas,
+                pasos: [
+                    {
+                        clave: 'servicio', tipo: 'campo', titulo: 'Tu servicio', texto: '¿Qué necesitas?',
+                        entrada: {
+                            tipo: 'select', placeholder: 'Elige un servicio…',
+                            opciones: opcionesCatalogo().map((o) => ({ valor: o.id, etiqueta: o.nombre + ' — ' + o.etiqueta })),
+                        },
+                        cuando: () => !servicioFijo,
+                    },
+                    {
+                        clave: 'resumen', tipo: 'contenido', titulo: 'Servicio elegido', cuenta: false,
+                        texto: 'Esto es lo que vas a pedir y lo que conviene tener a la mano.',
+                        render: pintarServicio,
+                        boton: 'Continuar',
+                    },
+                    ...pasosDeFamilias(),
+                    {
+                        clave: 'caso', tipo: 'texto', titulo: 'Tu caso', texto: 'Cuéntanos tu caso.',
+                        placeholder: 'Lo que necesites que sepamos antes de empezar.',
+                        ayuda: 'Puedes enviar documentos por correo después de confirmar.',
+                        opcional: true, maxlength: 1900,
+                        cuando: (r) => !familiaDe(r.servicio),
+                    },
+                    {
+                        clave: 'contacto', tipo: 'campos', titulo: 'Tus datos',
+                        texto: (r) => familiaDe(r.servicio)
+                            ? 'Ya tenemos el detalle de tu obra — solo faltan tus datos de contacto.'
+                            : '¿A quién le escribimos?',
+                        campos: [
+                            { clave: 'nombre', etiqueta: 'Tu nombre', autocomplete: 'name', maxlength: 120 },
+                            { clave: 'correo', etiqueta: 'Correo', tipo: 'email', autocomplete: 'email', inputmode: 'email', maxlength: 120,
+                              validar: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? null : 'Revisa tu correo: parece incompleto.' },
+                            { clave: 'telefono', etiqueta: 'Teléfono', opcional: true, tipo: 'tel', autocomplete: 'tel', inputmode: 'tel', maxlength: 120 },
+                        ],
+                        boton: 'Enviar solicitud',
+                    },
+                ],
+                alTerminar: enviar,
+            });
+        })();
+    </script>
+</body>
+</html>

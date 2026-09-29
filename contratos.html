@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fdfdfc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Formatos Legales | FERRO FRAGOSO</title>
     <link rel="canonical" href="https://ferrofragoso.com/contratos.html">
     <!-- Open Graph / redes: sin esto, al compartir el link en WhatsApp o LinkedIn
@@ -25,10 +30,11 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css?v=14">
     <link rel="stylesheet" href="home-new.css?v=11">
-    <link rel="stylesheet" href="formatos.css?v=13">
+    <link rel="stylesheet" href="formatos.css?v=17">
+    <link rel="stylesheet" href="mobile-app.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&family=Roboto+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="formatos-page">
@@ -68,7 +74,7 @@
                     </li>
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
-                    <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
+                    <li><a href="seguimiento.html" class="nav-top-link">Seguimiento</a></li>
                 </ul>
             </div>
 
@@ -371,7 +377,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <a href="https://wa.me/524191239646?text=Hola%2C%20acabo%20de%20generar%20un%20contrato%20gratuito%20y%20quiero%20blindarlo%20con%20la%20revisi%C3%B3n%20de%20un%20abogado%20(%24490%20MXN)."
+                            <a href="solicitud.html?servicio=revision_simple&detalle=Acabo%20de%20generar%20un%20contrato%20gratuito%20y%20quiero%20blindarlo%20con%20la%20revisi%C3%B3n%20de%20un%20abogado."
                                target="_blank" rel="noopener" class="pricing-card-btn" id="btn-upsell-generador"
                                data-mp-link="PENDIENTE:generador-upsell-490" data-producto="Blindar contrato del generador">
                                 <span>Blinda este contrato con un abogado</span>
@@ -387,7 +393,7 @@
                             </div>
                             <div class="pricing-card-middle">
                                 <div class="pricing-price-col">
-                                    <div class="pricing-price">$1,290</div>
+                                    <div class="pricing-price">$1,490</div>
                                     <div class="pricing-subtitle">MXN / Pago único</div>
                                 </div>
                                 <div class="pricing-features-col">
@@ -398,7 +404,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <a href="https://wa.me/524191239646?text=Hola%2C%20quiero%20agendar%20una%20Consulta%20Estrat%C3%A9gica%20por%20Zoom%20de%2060%20min%20(%241%2C290%20MXN)." target="_blank" class="pricing-card-btn" rel="noopener">
+                            <a href="solicitud.html?servicio=consulta_particular&detalle=Quiero%20agendar%20una%20Consulta%20Estrat%C3%A9gica%20por%20Zoom%20de%2060%20min." target="_blank" class="pricing-card-btn" rel="noopener">
                                 <span>Agendar Consulta</span>
                                 <div class="pricing-btn-icon"><i class="fas fa-chevron-right"></i></div>
                             </a>
@@ -414,7 +420,7 @@
     </div>
 
     <script src="script.js?v=11"></script>
-    <script src="precios.js?v=8"></script>
+    <script src="precios.js?v=20"></script>
     <script src="analytics.js?v=11"></script>
     <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -663,6 +669,8 @@
             let jurPaso = 0;
             const jurProgressText = document.getElementById('jur-progress-text');
             const jurProgressFill = document.getElementById('jur-progress-fill');
+            ['jur-municipio', 'jur-distinta-municipio', 'jur-distinta-justificacion']
+                .forEach((id) => conBotonLimpiar(document.getElementById(id)));
             const jurBtnPrev = document.getElementById('jur-btn-prev');
             const jurBtnNext = document.getElementById('btn-continue-from-2c');
 
@@ -916,6 +924,15 @@
                    una con la etiqueta cruda como única pregunta. */
                 const visibles = camposDelDocumento.filter((f) => campoVisible(c, f));
                 CamposIA.agrupar(visibles).forEach((g) => {
+                    /* Los datos de las partes van una pregunta por pantalla, igual
+                       que la jurisdicción: son los que la gente copia de su INE o
+                       acta y un formulario largo con seis cajas intimida. */
+                    if (g.clave === 'partes') {
+                        g.campos.forEach((f) => {
+                            wizardSteps.push({ type: 'group', grupo: Object.assign({}, g, { campos: [f], solo: true }) });
+                        });
+                        return;
+                    }
                     wizardSteps.push({ type: 'group', grupo: g });
                 });
 
@@ -1112,6 +1129,7 @@
                 } else {
                     wrap.appendChild(ctrl);
                 }
+                conBotonLimpiar(ctrl);
 
                 wrap.appendChild(aviso);
 
@@ -1141,6 +1159,51 @@
 
                 wrap.appendChild(bloqueAyuda(f));
                 return wrap;
+            }
+
+            /* Botón circular con × para vaciar una casilla de texto. Solo se ve
+               cuando hay algo escrito. Los select no lo llevan. */
+            function conBotonLimpiar(ctrl) {
+                if (!ctrl || ctrl.tagName === 'SELECT') return;
+                const tipo = (ctrl.type || '').toLowerCase();
+                if (ctrl.tagName === 'INPUT' && ['checkbox', 'radio', 'date', 'file', 'hidden'].includes(tipo)) return;
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'campo-limpiar';
+                btn.setAttribute('aria-label', 'Borrar');
+                btn.innerHTML = '<svg viewBox="0 0 10 10" aria-hidden="true"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5"/></svg>';
+
+                const padre = ctrl.parentNode;
+                if (padre && padre.classList && padre.classList.contains('campo-adorno')) {
+                    padre.appendChild(btn);
+                } else if (padre) {
+                    const envoltura = document.createElement('span');
+                    envoltura.className = 'campo-control' + (ctrl.tagName === 'TEXTAREA' ? ' campo-control--area' : '');
+                    padre.insertBefore(envoltura, ctrl);
+                    envoltura.appendChild(ctrl);
+                    envoltura.appendChild(btn);
+                }
+
+                /* Las áreas de texto nacen de una línea y crecen con lo que se escribe. */
+                const esArea = ctrl.tagName === 'TEXTAREA';
+                if (esArea) ctrl.rows = 1;
+                const crecer = () => {
+                    if (!esArea) return;
+                    ctrl.style.height = 'auto';
+                    if (ctrl.scrollHeight) ctrl.style.height = ctrl.scrollHeight + 'px';
+                };
+                const sync = () => { btn.hidden = !ctrl.value; crecer(); };
+                requestAnimationFrame(crecer);
+                ctrl.addEventListener('input', sync);
+                ctrl.addEventListener('change', sync);
+                btn.addEventListener('click', () => {
+                    ctrl.value = '';
+                    ctrl.dispatchEvent(new Event('input', { bubbles: true }));
+                    ctrl.dispatchEvent(new Event('change', { bubbles: true }));
+                    ctrl.focus();
+                });
+                sync();
             }
 
             /* "No entiendo qué va aquí" — plegado, para no ensuciar el formulario
@@ -1225,7 +1288,7 @@
                     const g = step.grupo;
                     const h2 = document.createElement('h2');
                     h2.className = 'wizard-question';
-                    h2.textContent = g.titulo;
+                    h2.textContent = g.solo ? '¿' + g.campos[0] + '?' : g.titulo;
 
                     const hint = document.createElement('p');
                     hint.className = 'wizard-hint';
@@ -1235,9 +1298,18 @@
                     container.appendChild(hint);
 
                     const grid = document.createElement('div');
-                    grid.className = 'campo-grid';
+                    grid.className = g.solo ? 'campo-grid campo-grid--solo' : 'campo-grid';
                     g.campos.forEach((f) => grid.appendChild(construirCampo(f)));
                     container.appendChild(grid);
+
+                    if (g.solo) {
+                        grid.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' && e.target.matches('input')) {
+                                e.preventDefault();
+                                wizardBtnNext.click();
+                            }
+                        });
+                    }
 
                     setTimeout(() => {
                         /* Si llegamos aquí corrigiendo desde la revisión, el foco
@@ -1574,7 +1646,21 @@
                 }
 
                 wizardBody.appendChild(container);
+                actualizarPendiente();
             }
+
+            /* "Continuar" se ve gris mientras las casillas del paso están vacías,
+               como en la referencia. Sigue funcionando: hay datos opcionales. */
+            function actualizarPendiente() {
+                const step = wizardSteps[currentWizardStep];
+                const ctrls = step && step.type === 'group'
+                    ? [...wizardBody.querySelectorAll('.campo-input')]
+                    : [];
+                const vacio = ctrls.length > 0 && ctrls.every((c) => !String(c.value).trim());
+                wizardBtnNext.classList.toggle('is-pendiente', vacio);
+            }
+            wizardBody.addEventListener('input', actualizarPendiente);
+            wizardBody.addEventListener('change', actualizarPendiente);
 
             wizardBtnNext.addEventListener('click', () => {
                 // Si estamos en el paso de firma, capturamos el canvas

@@ -1,0 +1,68 @@
+/* ═══ SOLICITUD — autoservicio Carril A (precio fijo, sin cotización previa) ═══
+   El cuestionario usa el componente compartido (cuestionario.css); aquí solo
+   vive el encabezado y lo que rodea al cuestionario. */
+
+.sol-hero {
+    background-color: #ffffff;
+    padding: 9rem 5vw 3rem;
+    text-align: center;
+}
+
+.sol-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.sol-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 500;
+    color: var(--text-primary, #2e2c2a);
+    line-height: 1.15;
+    margin: 0 auto 1rem;
+    max-width: 720px;
+}
+
+.sol-sub {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--text-secondary, #544e4b);
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.sol-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 5vw 7rem;
+}
+
+.sol-hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.sol-privacidad {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--text-muted, #9c9489);
+    line-height: 1.5;
+    margin: 1.2rem auto 0;
+    max-width: 470px;
+    text-align: center;
+}
+.sol-privacidad a { color: var(--accent); }
+
+/* En el teléfono el cuestionario ocupa la pantalla: el encabezado se reduce
+   y el cuestionario llega hasta los bordes. */
+@media (max-width: 560px) {
+    .sol-hero { padding: 6.5rem 1.5rem 1.5rem; }
+    .sol-title { font-size: 2rem; }
+    .sol-sub { font-size: .95rem; }
+    .sol-wrap { padding: 0 0 3rem; }
+    .sol-privacidad { padding: 0 1.5rem; }
+}

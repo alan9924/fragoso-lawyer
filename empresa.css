@@ -25,6 +25,8 @@
   .empresa-body .eyebrow { font-family:var(--mono); font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); }
   .empresa-body a { color:inherit; text-decoration:none; }
   .empresa-body .nav-cta-btn { background:#000; color:#fff !important; }
+  .empresa-body .empresas-section .btn-primary { color:var(--ivory, #fdfdfc); }
+  .empresa-body .empresas-secundario a { color:var(--carbon, #2e2c2a); text-decoration:underline; text-underline-offset:3px; }
   .empresa-body .btn-c { display:inline-flex; justify-content:center; align-items:center; gap:8px; font-family:var(--sans); font-weight:500; font-size:.92rem; padding:13px 24px; border-radius:999px; cursor:pointer; border:1px solid transparent; transition:.18s; }
   .empresa-body .btn-brass { background:var(--brass); color:#1a130a; } .empresa-body .btn-brass:hover { background:var(--brass-deep); }
   .empresa-body .btn-ghost { background:transparent; border-color:var(--paper); color:var(--paper); font-weight:500; border-width: 1.5px; } .empresa-body .btn-ghost:hover { background:var(--brass); border-color:var(--brass); color:#1a130a; }

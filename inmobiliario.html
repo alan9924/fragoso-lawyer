@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#fdfdfc">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -30,6 +31,7 @@
     <link rel="stylesheet" href="styles.css?v=14">
     <link rel="stylesheet" href="home-new.css?v=43">
     <link rel="stylesheet" href="areas.css?v=5">
+    <link rel="stylesheet" href="mobile-app.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -77,7 +79,7 @@
                     </li>
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
-                    <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
+                    <li><a href="seguimiento.html" class="nav-top-link">Seguimiento</a></li>
                 </ul>
             </div>
 
@@ -368,7 +370,7 @@
                                         <li><b>Requerimos al inquilino las rentas atrasadas</b> y damos aviso formal de terminación.</li>
                                         <li><b>Le pedimos a tu arrendador la devolución del depósito</b> al terminar el contrato.</li>
                                     </ul>
-                                    <p class="pc-note"><b>Nota:</b> Las gestiones a tu nombre se cotizan a convenir, o van incluidas en la membresía (desde $199 MXN/mes). La llamada de filtro es siempre gratuita.</p>
+                                    <p class="pc-note"><b>Nota:</b> Cada gestión a tu nombre cuesta $990 MXN ($749 MXN para miembros); la membresía Tranquilidad (desde $199 MXN/mes) incluye una al año. La llamada de filtro es siempre gratuita.</p>
                                 </div>
                             </details>
                         </div>
@@ -388,7 +390,7 @@
                                 <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-top: 0.4rem; line-height: 1.35;">Entrega en 24–48 horas hábiles desde que recibimos tu expediente completo.</div>
                             </div>
                             
-                            <a href="consulta.html" class="area-btn area-btn-card">Investigar mi caso</a>
+                            <a href="solicitud.html?servicio=filtro_inmobiliario" class="area-btn area-btn-card">Investigar mi caso</a>
                         </div>
                         
                         <div class="pc-bottom">
@@ -416,7 +418,7 @@
                                 <div class="pc-price-ladder" style="display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.5rem; border-top:1px solid rgba(255,255,255,0.15); padding-top:1rem;">
                                     <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.9rem;">
                                         <span>Simple <small style="opacity:0.6;">(hasta 10 pp)</small></span>
-                                        <strong style="font-size:1.1rem; font-weight:700;">$690 <small style="font-size:0.7em; opacity:0.7;">MXN</small></strong>
+                                        <strong style="font-size:1.1rem; font-weight:700;">$490 <small style="font-size:0.7em; opacity:0.7;">MXN</small></strong>
                                     </div>
                                     <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.9rem;">
                                         <span>Intermedia <small style="opacity:0.6;">(11–25 pp)</small></span>
@@ -438,15 +440,15 @@
                                     <div class="pc-price-ladder" style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
                                         <div class="ladder-item" style="border-bottom: 1px solid rgba(0,0,0,0.1);">
                                             <span>Revisión Simple</span>
-                                            <strong>$690 MXN</strong>
+                                            <strong>$490 MXN</strong>
                                         </div>
                                         <div class="ladder-item" style="border-bottom: 1px solid rgba(0,0,0,0.1); color: #0f1c3f;">
                                             <span>Revisión Intermedia</span>
-                                            <strong>desde $1,190 MXN</strong>
+                                            <strong>desde $990 MXN</strong>
                                         </div>
                                         <div class="ladder-item" style="border-bottom: none;">
                                             <span>Revisión Estratégica</span>
-                                            <strong>desde $2,290 MXN</strong>
+                                            <strong>desde $1,990 MXN</strong>
                                         </div>
                                     </div>
                                     <ul class="pc-list">
@@ -480,6 +482,7 @@
     </main>
 
     <!-- ═══ FOOTER ═══ -->
+
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
@@ -518,7 +521,7 @@
 
     <!-- Scripts -->
     <script src="script.js?v=12"></script>
-    <script src="precios.js?v=8"></script>
+    <script src="precios.js?v=20"></script>
     <script src="analytics.js?v=11"></script>
 </body>
 </html>

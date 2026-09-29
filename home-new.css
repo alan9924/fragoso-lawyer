@@ -2037,3 +2037,491 @@ h2.titulo-seleccion {
     .asoma-mockup { transition: none; transform: translateY(6%); }
     .asoma-burbuja { transition: none; opacity: 1; transform: none; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   TITULAR «Comienza tu trámite» — serif editorial
+   ------------------------------------------------------------------------
+   Referencia: titular tipo «Deep Research» — una sola línea, serif de peso
+   ligero y tamaño grande. El énfasis no lo pone el color ni la cursiva
+   (antes «trámite» iba en em bronce sobre un salto de línea), sino la
+   proporción: cuerpo alto + trazo fino + interlínea corta.
+
+   Newsreader es de eje óptico (opsz 6..72): a tamaño display el navegador
+   pide el corte de titular, con serifas más afiladas y menos peso aparente
+   que el corte de texto. Por eso `font-optical-sizing: auto` no es adorno:
+   sin él la fuente se queda en el diseño de párrafo y engorda.
+
+   El 300 es el peso justo: en 200 las serifas se rompen sobre blanco en
+   pantallas sin retina, y en 400 el titular deja de leerse ligero.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Lleva el `h2` porque `.quick-actions-header h2` empata en especificidad. */
+h2.titulo-deep {
+    font-family: 'Newsreader', 'Source Serif 4', 'Iowan Old Style',
+                 'Palatino Linotype', Georgia, serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: clamp(2rem, 4.2vw, 3.2rem);
+    line-height: 1.08;
+    /* Casi nulo: la serif ya trae su propio ajuste y a este cuerpo un tracking
+       negativo marcado le cierra los contrapunzones. */
+    letter-spacing: -0.012em;
+    color: #22201d;
+    margin: 0;
+    /* Si cae a dos líneas en tablet, que se repartan parejo en vez de dejar
+       una palabra suelta abajo. */
+    text-wrap: balance;
+}
+
+@media (max-width: 480px) {
+    h2.titulo-deep {
+        font-size: clamp(1.7rem, 7.4vw, 2.15rem);
+        letter-spacing: -0.008em;
+    }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   TARJETAS DE PLAN — bloque de color con geometría animada
+   ------------------------------------------------------------------------
+   Sustituye la tarjeta blanca con borde por un bloque de color saturado,
+   tipografía blanca en negra y un botón sólido abajo, con una trama
+   geométrica que se mueve detrás del texto (ondas o cruces).
+
+   Va en `.plan.plan-neo` y no en `.plan` a secas porque plan.html reutiliza
+   `.home-solutions .plan` con su propio tema claro a base de !important; si
+   el rediseño colgara de la clase base, esa página quedaría a medio camino
+   entre los dos diseños.
+
+   Los cuatro colores no son nuevos: son los mismos de los iconos de «Comienza
+   tu trámite» (#0F766E, #1D4ED8, #334155) más el ámbar de finiquito bajado a
+   700. Los cuatro pasan 4.5:1 con texto blanco — el ámbar 600 del icono no lo
+   hacía, y aquí el color no decora un dibujo sino que sostiene texto.
+
+   La trama va bajo `.plan-deco` en z-0 y el contenido en z-2, como en el
+   diseño de referencia: el orden importa porque el trazo es opaco.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.home-solutions .plan.plan-neo {
+    background: var(--plan-bg, #1D4ED8);
+    color: #fff;
+    border: 0;
+    border-radius: 18px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    min-height: 500px;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
+}
+
+/* La destacada no se distingue con borde de latón —sobre color no se ve—
+   sino con un anillo claro separado del canto y algo más de elevación. */
+.home-solutions .grid .plan.plan-neo.feat {
+    border: 0;
+    box-shadow: 0 0 0 2px rgba(253, 252, 249, 0.85), 0 22px 52px rgba(0, 0, 0, 0.42);
+}
+
+/* El `!important` y la especificidad larga no son capricho: el deck cancela
+   los transforms de las tarjetas con
+   `.grid.is-visible .plan:not(.feat) { transform: none !important }`, y sin
+   ganarle esa regla el hover se quedaba sin elevación. */
+.home-solutions .grid.is-visible .plan.plan-neo:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 26px 56px rgba(0, 0, 0, 0.42);
+}
+.home-solutions .grid .plan.plan-neo.feat:hover {
+    box-shadow: 0 0 0 2px rgba(253, 252, 249, 0.9), 0 30px 64px rgba(0, 0, 0, 0.48);
+}
+
+/* ── Contenido ──────────────────────────────────────────────────────── */
+
+.home-solutions .plan.plan-neo .plan-body {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 20px;
+}
+
+.home-solutions .plan.plan-neo .pname {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(1.35rem, 2.1vw, 1.75rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: none;
+    color: #fff;
+}
+
+.home-solutions .plan.plan-neo .price {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 18px 0 0;
+    font-weight: 700;
+    font-size: clamp(2rem, 3.1vw, 2.6rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #fff;
+}
+
+.home-solutions .plan.plan-neo .price-prefix,
+.home-solutions .plan.plan-neo .price small {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    /* .82 y no .6: sobre color saturado el blanco rebajado pierde forma antes
+       que sobre blanco. */
+    color: rgba(255, 255, 255, 0.82);
+}
+.home-solutions .plan.plan-neo .price-prefix {
+    width: 100%;
+    margin-bottom: -2px;
+}
+
+.home-solutions .plan.plan-neo .ptag {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    letter-spacing: 0;
+    text-transform: none;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 12px;
+}
+
+/* Píldora translúcida: el descuento es un dato aparte, no una viñeta más. */
+.home-solutions .plan.plan-neo .annual {
+    align-self: flex-start;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 999px;
+    padding: 5px 11px;
+    margin-top: 14px;
+}
+
+.home-solutions .plan.plan-neo ul {
+    margin: 16px 0 18px;
+    padding: 0;
+    flex: 1;
+    list-style: none;
+}
+
+.home-solutions .plan.plan-neo li {
+    font-size: 0.84rem;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.92);
+    padding: 7px 0 7px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    text-align: left;
+}
+.home-solutions .plan.plan-neo li:last-child { border-bottom: 0; }
+.home-solutions .plan.plan-neo li b { color: #fff; }
+
+/* La palomita en blanco: el latón del check original desaparecía sobre azul. */
+.home-solutions .plan.plan-neo li::before {
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+    top: 12px;
+}
+
+.home-solutions .plan.plan-neo .plan-cta {
+    margin-top: auto;
+    height: 48px;
+    padding: 0 18px;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--carbon-deep, #1a1917);
+    font-weight: 700;
+    border: 0;
+}
+.home-solutions .plan.plan-neo .plan-cta:hover {
+    background: #fff;
+    color: var(--carbon-deep, #1a1917);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+}
+
+/* Etiqueta «Más elegido»: blanca sobre el color, no latón sobre blanco. */
+.home-solutions .plan.plan-neo .ribbon {
+    z-index: 3;
+    background: #fff;
+    color: var(--carbon-deep, #1a1917);
+    border-radius: 0 18px 0 12px;
+    padding: 7px 13px;
+}
+
+/* ── Trama de fondo ─────────────────────────────────────────────────── */
+
+.plan-deco-defs { position: absolute; }
+
+.home-solutions .plan.plan-neo .plan-deco {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    /* Los <use> heredan este color: un negro muy rebajado que funciona igual
+       sobre los cuatro fondos, en vez de un color por tarjeta. */
+    color: rgba(9, 9, 9, 0.2);
+}
+
+/* ONDAS
+   El path se repite cada 672 px en su propio sistema de coordenadas, así que
+   dos copias (la segunda a y=1344, dos periodos abajo) empalman sin costura y
+   el bucle es un translateY de exactamente un periodo. Sin la segunda copia el
+   dibujo se acaba a media tarjeta al desplazarse. */
+.home-solutions .plan.plan-neo .deco-wave {
+    position: absolute;
+    top: -106px;
+    width: 129px;
+    height: 2731px;
+    animation: ff-wave-drift 16s linear infinite;
+    will-change: transform;
+}
+.home-solutions .plan.plan-neo .deco-wave--l { left: 4px; }
+.home-solutions .plan.plan-neo .deco-wave--r { right: 4px; }
+/* Desfasada media animación: con las dos en sincronía la tarjeta parecía un
+   solo bloque rayado en lugar de dos columnas. */
+.home-solutions .plan.plan-neo .deco-wave--r { animation-delay: -8s; }
+
+@keyframes ff-wave-drift {
+    from { transform: translateY(-672px); }
+    to   { transform: translateY(0); }
+}
+
+/* CRUCES */
+.home-solutions .plan.plan-neo .deco-cross {
+    position: absolute;
+    width: 162px;
+    height: 162px;
+    animation: ff-cross-spin 5s linear infinite;
+    will-change: transform;
+}
+.home-solutions .plan.plan-neo .deco-cross--a { top: -14px; left: -40px; }
+.home-solutions .plan.plan-neo .deco-cross--b { top: 50%; right: -48px; animation-duration: 7s; }
+.home-solutions .plan.plan-neo .deco-cross--c { top: 85%; left: -20px; animation-duration: 6s; }
+
+@keyframes ff-cross-spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-solutions .plan.plan-neo .deco-wave,
+    .home-solutions .plan.plan-neo .deco-cross {
+        animation: none;
+    }
+}
+
+@media (max-width: 820px) {
+    .home-solutions .plan.plan-neo {
+        min-height: 0;
+    }
+    .home-solutions .plan.plan-neo .plan-body {
+        padding: 24px 22px;
+    }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   UN ABOGADO EN TU BOLSILLO — cabe en una pantalla
+   ------------------------------------------------------------------------
+   Titular, párrafo, pictograma y los tres miedos se leen sin desplazarse.
+   Los espacios se miden contra el alto de la ventana (vh) para que el
+   conjunto se encoja en pantallas bajas en vez de desbordarlas.
+   ════════════════════════════════════════════════════════════════════════ */
+.bolsillo {
+    position: relative;
+    background-color: #ffffff;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(2rem, 6vh, 4.5rem) 5vw;
+}
+.bolsillo-intro { max-width: 800px; margin-bottom: clamp(.5rem, 2vh, 1.5rem); }
+.bolsillo h2.titulo-seleccion {
+    font-size: clamp(2rem, min(5.4vw, 7vh), 4.1rem);
+    margin-bottom: clamp(1rem, 3vh, 2rem);
+}
+.bolsillo-dek {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: clamp(.9rem, 1.4vw, 1.25rem);
+    color: #222;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: -.01em;
+    margin: 0;
+}
+.bolsillo .mono { margin: clamp(.5rem, 2vh, 1rem) 0 clamp(1rem, 3vh, 2rem); }
+.bolsillo .mono-video,
+.bolsillo .mono::after { width: clamp(90px, 16vh, 150px); }
+
+.bolsillo-miedos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+.bolsillo-miedos h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    color: #111;
+    font-weight: 500;
+    letter-spacing: -.5px;
+    margin: 0 0 .5rem;
+}
+.bolsillo-miedos .marca-texto {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* En el teléfono cada miedo es una fila: la pregunta a la izquierda y la
+   respuesta resaltada a la derecha. Tres filas ocupan lo que antes ocupaba
+   uno solo de los bloques apilados. */
+@media (max-width: 780px) {
+    .bolsillo { padding: 2rem 1.25rem; }
+    .bolsillo h2.titulo-seleccion { font-size: clamp(1.9rem, 8.4vw, 2.4rem); }
+    .bolsillo-dek { font-size: .92rem; }
+    .bolsillo-miedos { grid-template-columns: 1fr; gap: 0; }
+    .bolsillo-miedos > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        padding: .75rem 0;
+    }
+    .bolsillo-miedos h3 { font-size: 1.08rem; margin: 0; }
+    .bolsillo-miedos .marca-texto { font-size: .88rem; white-space: nowrap; }
+}
+
+/* ═══ "Relájate mientras nos encargamos de todo." ═══
+   Las palabras suben desde un desenfoque, una tras otra, y al final un
+   trazo a mano subraya "de todo". script.js las parte y pone .is-visible. */
+.garantia-frase {
+    margin: 0;
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    line-height: 1.3;
+    color: var(--tl-text, #22201d);
+}
+.garantia-linea { display: block; }
+.garantia-palabra {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(.45em);
+    transition: opacity .9s ease, filter .9s ease, transform 1s cubic-bezier(.16, 1, .3, 1);
+    transition-delay: calc(var(--i, 0) * 140ms);
+}
+.garantia-frase.is-visible .garantia-palabra { opacity: 1; filter: none; transform: none; }
+.garantia-remate { position: relative; display: inline-block; }
+.garantia-trazo {
+    position: absolute;
+    left: -2%;
+    bottom: -.28em;
+    width: 104%;
+    height: .42em;
+    overflow: visible;
+    fill: none;
+    stroke: #b08d57;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    transition: stroke-dashoffset 1.1s cubic-bezier(.65, 0, .35, 1) 1.05s;
+}
+.garantia-frase.is-visible .garantia-trazo { stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: reduce) {
+    .garantia-palabra { opacity: 1; filter: none; transform: none; transition: none; }
+    .garantia-trazo { stroke-dashoffset: 0; transition: none; }
+}
+
+/* ═══ Socios en una pantalla, con cortina ═══
+   Compacto para que encabezado, dos socios y cierre quepan en el alto de la
+   pantalla. Con .socios--cortina (script.js) la sección se alarga, su
+   contenido queda fijo y una cortina se retira de la ficha de cada socio
+   según avanza el scroll (--r de 0 a 1 por tarjeta). */
+.socios-home { padding: clamp(3rem, 7vh, 5rem) 1.5rem; }
+.socios-home .sec-title { margin-bottom: 0; }
+.socios-home-intro { margin-top: .9rem; }
+.socios-home-grid { gap: 2.5rem; margin-top: clamp(1.5rem, 4vh, 2.75rem); }
+.socio-card-foto { width: 112px; height: 112px; margin-bottom: 1rem; }
+.socio-card-info { position: relative; overflow: hidden; padding: .35rem .5rem .5rem; border-radius: 14px; }
+.socio-card-desc { margin: .75rem auto 1rem; }
+.socios-home-cierre { margin-top: clamp(1.5rem, 4vh, 2.5rem); text-align: center; }
+.socios-home-quote { margin: 0 auto 1.1rem; font-size: 1.15rem; }
+.socio-card-cortina { display: none; }
+
+.socios--cortina { height: 230vh; padding: 0; }
+.socios--cortina .socios-home-inner {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: calc(64px + 1rem) 1.5rem 1.25rem;
+}
+.socios--cortina .socio-card-cortina {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: #22201d;
+    transform-origin: right center;
+    transform: scaleX(calc(1 - var(--r, 0)));
+    will-change: transform;
+}
+/* El filo de la cortina: una línea de latón que barre la ficha. */
+.socios--cortina .socio-card-cortina::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 3px;
+    background: #b08d57;
+}
+.socios--cortina .socio-card-info > :not(.socio-card-cortina) {
+    opacity: calc(.15 + var(--r, 0) * .85);
+    transform: translateX(calc((1 - var(--r, 0)) * 18px));
+}
+.socios--cortina .socio-card-foto {
+    transform: scale(calc(.92 + var(--r, 0) * .08));
+    filter: grayscale(calc(1 - var(--r, 0)));
+}
+
+@media (max-width: 780px) {
+    .socios-home .sec-title { font-size: 1.7rem; }
+    .socios-home-intro { font-size: .84rem; line-height: 1.5; margin-top: .6rem; }
+    .socios-home-grid { gap: .6rem; margin-top: 1.1rem; }
+    .socios-home-cierre { margin-top: 1rem; }
+    .socio-card {
+        display: grid;
+        grid-template-columns: 84px 1fr;
+        gap: .9rem;
+        align-items: center;
+        text-align: left;
+    }
+    .socio-card-foto { width: 84px; height: 84px; margin: 0; }
+    .socio-card-info { padding: .3rem .4rem .4rem; }
+    .socio-card-nombre { font-size: 1.15rem; line-height: 1.2; margin-bottom: .2rem; }
+    .socio-card-cargo { font-size: .6rem; letter-spacing: 1.5px; margin-bottom: .15rem; }
+    .socio-card-univ { font-size: .68rem; }
+    .socio-card-desc { font-size: .76rem; line-height: 1.45; margin: .35rem 0 .45rem; }
+    .socio-card-contacto { justify-content: flex-start; gap: .5rem; }
+    .socio-card-contacto a { width: 34px; height: 34px; min-height: 0; font-size: .8rem; }
+    .socios-home-quote { font-size: .9rem; line-height: 1.35; margin-bottom: .65rem; }
+    .socios--cortina .socios-home-inner { padding: 80px 1.25rem .75rem; }
+}

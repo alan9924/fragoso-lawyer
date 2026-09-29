@@ -2193,6 +2193,44 @@ body:has(.step-container.active:not(#step-0)) .formatos-wrapper {
     .campo--medio, .campo--corto { grid-column: 1 / -1; }
 }
 
+/* Una pregunta por pantalla (datos de las partes): mismo look que
+   .wizard-input — sin caja, línea inferior y tipografía grande. La
+   etiqueta ya es el título de la pantalla, así que solo queda para
+   lectores de pantalla. */
+.campo-grid--solo { grid-template-columns: 1fr; margin-top: 0; }
+.campo-grid--solo .campo-label {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+}
+.campo-grid--solo .campo-input,
+.campo-grid--solo .campo-adorno {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    padding: 0.8rem 0;
+    font-size: 1.5rem;
+    background: transparent;
+}
+.campo-grid--solo .campo-adorno .campo-input { border: none; padding: 0.8rem 0; }
+.campo-grid--solo .campo-input:focus,
+.campo-grid--solo .campo-adorno:focus-within { border-bottom-color: #000; }
+.campo-grid--solo textarea.campo-input { font-size: 1.1rem; min-height: 3.2rem; line-height: 1.4; }
+.campo-grid--solo select.campo-input {
+    padding-right: 2rem;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.4rem center;
+}
+.campo-grid--solo .campo--error .campo-input,
+.campo-grid--solo .campo--error .campo-adorno { border-bottom-color: #c0392b; }
+.campo-grid--solo .campo--resaltado .campo-input { box-shadow: none; border-bottom-color: #111; }
+.campo-grid--solo .campo-ayuda { margin-top: 1rem; }
+@media (max-width: 640px) {
+    .campo-grid--solo .campo-input,
+    .campo-grid--solo .campo-adorno { font-size: 1.15rem; }
+    .campo-grid--solo textarea.campo-input { font-size: 1rem; }
+}
+
 .campo { display: flex; flex-direction: column; }
 .campo-label {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -2346,4 +2384,182 @@ select.campo-input { appearance: none; background-image: none; cursor: pointer; 
 .campo-nota--manual {
     font-weight: 600; color: #7a5b00 !important;
     background: #FFF8E1; border-radius: 999px; padding: 0.12rem 0.55rem;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   ASISTENTE — hoja de llenado (referencia "Freelance contract")
+   ------------------------------------------------------------------------
+   Una hoja blanca: "Paso X de Y", barra negra redondeada, píldora lima con
+   el documento, pregunta en grotesca grande, casillas de solo línea inferior
+   con botón para borrar, opciones con casilla cuadrada y un pie con flecha
+   negra y "Continuar". Aplica a jurisdicción (#step-2c) y llenado (#step-3).
+   ════════════════════════════════════════════════════════════════════════ */
+#step-2c, #step-3 {
+    --wz-font: "Space Grotesk", -apple-system, "Segoe UI", Roboto, sans-serif;
+    --wz-tinta: #0a0a0a;
+    --wz-linea: #1a1a1a;
+}
+#step-2c .wizard-modal,
+#step-3 .wizard-modal { font-family: var(--wz-font); background: #ffffff; }
+
+#step-2c .wizard-header,
+#step-3 .wizard-header { gap: .8rem; margin-bottom: 1.6rem; }
+#step-2c .wizard-progress-text,
+#step-3 .wizard-progress-text {
+    font-family: var(--wz-font); font-size: .82rem; font-weight: 500;
+    color: var(--wz-tinta); letter-spacing: 0;
+}
+#step-2c .wizard-progress-bar-bg,
+#step-3 .wizard-progress-bar-bg { height: 6px; background: #e8e8e8; border-radius: 99px; }
+#step-2c .wizard-progress-bar-fill,
+#step-3 .wizard-progress-bar-fill { background: #000; border-radius: 99px; }
+#step-2c .wizard-tag,
+#step-3 .wizard-tag {
+    margin-top: .7rem; padding: .45rem .9rem;
+    font-family: var(--wz-font); font-size: .68rem; font-weight: 700; letter-spacing: .04em;
+}
+
+#step-2c .wizard-body,
+#step-3 .wizard-body { justify-content: flex-start; }
+#step-2c .jur-step.active,
+#step-3 .wizard-step-container.active { gap: 1rem; }
+#step-2c .wizard-question,
+#step-3 .wizard-question {
+    margin: 0 0 1rem;
+    font-family: var(--wz-font); font-weight: 500;
+    font-size: clamp(1.9rem, 6.6vw, 2.6rem); line-height: 1.08; letter-spacing: -.035em;
+    color: var(--wz-tinta);
+}
+#step-2c .wizard-hint,
+#step-3 .wizard-hint {
+    margin: -1.1rem 0 .6rem;
+    font-family: var(--wz-font); font-size: .85rem; line-height: 1.45; color: #7a7a7a;
+}
+#step-2c .wizard-hint:empty,
+#step-3 .wizard-hint:empty { display: none; }
+
+/* ── Casillas: solo línea inferior ── */
+#step-3 .campo-grid,
+#step-3 .campo-grid--solo { grid-template-columns: 1fr; gap: 1.35rem; margin-top: 0; }
+#step-3 .campo--medio,
+#step-3 .campo--corto { grid-column: 1 / -1; }
+#step-3 .campo-label {
+    margin-bottom: 0;
+    font-family: var(--wz-font); font-size: .74rem; font-weight: 500; color: #8a8a8a;
+}
+#step-2c .wizard-input,
+#step-2c .wizard-select,
+#step-3 .campo-input,
+#step-3 .campo-adorno,
+#step-3 .campo-derivado {
+    width: 100%;
+    border: 0;
+    border-bottom: 1.5px solid var(--wz-linea);
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    padding: .85rem 2.4rem .85rem 0;
+    font-family: var(--wz-font); font-size: 1.05rem; font-weight: 400;
+    color: var(--wz-tinta);
+    transition: border-color .2s ease;
+}
+#step-2c .wizard-input::placeholder,
+#step-3 .campo-input::placeholder { color: #a3a3a3; }
+#step-2c .wizard-input:focus,
+#step-2c .wizard-select:focus,
+#step-3 .campo-input:focus,
+#step-3 .campo-adorno:focus-within { border-bottom-color: #000; border-bottom-width: 2px; }
+#step-3 .campo-adorno { display: flex; align-items: center; gap: .4rem; padding: 0; }
+#step-3 .campo-adorno > span { font-size: 1.05rem; color: #7a7a7a; }
+#step-3 .campo-adorno .campo-input { border: 0; padding: .85rem 0; }
+#step-3 .campo-derivado { border-bottom-style: dashed; min-height: 0; padding-right: 0; }
+#step-2c .wizard-textarea,
+#step-3 textarea.campo-input { min-height: 0; font-size: 1rem; line-height: 1.45; resize: none; overflow: hidden; }
+#step-2c .wizard-select,
+#step-3 select.campo-input {
+    appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 2rem;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right .3rem center;
+}
+#step-3 .campo--error .campo-input,
+#step-3 .campo--error .campo-adorno { border-bottom-color: #c0392b; }
+
+/* Botón para borrar: círculo negro con una ×, solo si hay texto. */
+.campo-control { position: relative; display: block; }
+.campo-limpiar {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    width: 22px; height: 22px; min-width: 0; min-height: 0; padding: 0;
+    display: grid; place-items: center;
+    border: 0; border-radius: 50%;
+    background: #111; color: #fff; cursor: pointer;
+}
+.campo-limpiar svg { width: 10px; height: 10px; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+.campo-limpiar[hidden] { display: none; }
+.campo-control--area .campo-limpiar { top: 1.1rem; transform: none; }
+.campo-adorno > .campo-limpiar { position: static; transform: none; flex-shrink: 0; }
+
+/* ── Opciones: casilla cuadrada a la izquierda ── */
+#step-2c .wizard-option-row,
+#step-3 .wizard-option-row {
+    flex-direction: row-reverse; justify-content: flex-end; gap: .9rem;
+    margin: 0; padding: .45rem 0;
+    background: transparent; border-radius: 0;
+}
+#step-2c .wizard-option-row:hover,
+#step-3 .wizard-option-row:hover,
+#step-2c .wizard-option-row.selected,
+#step-3 .wizard-option-row.selected { background: transparent; }
+#step-2c .wizard-option-check,
+#step-3 .wizard-option-check {
+    flex-shrink: 0; width: 30px; height: 30px;
+    border: 1.5px solid #111; border-radius: 9px;
+    transition: background .15s ease;
+}
+#step-2c .wizard-option-row.selected .wizard-option-check,
+#step-3 .wizard-option-row.selected .wizard-option-check { background: #000; }
+#step-2c .wizard-option-text,
+#step-3 .wizard-option-text {
+    font-family: var(--wz-font); font-size: 1rem; font-weight: 400; line-height: 1.35; color: var(--wz-tinta);
+}
+
+/* ── Pie: flecha negra + Continuar ── */
+#step-2c .wizard-footer,
+#step-3 .wizard-footer { gap: .6rem; margin-top: auto; padding-top: 2rem; }
+#step-2c .wizard-nav-btn,
+#step-3 .wizard-nav-btn {
+    min-height: 58px; padding: 1rem;
+    border-radius: 10px; background: #000; color: #fff;
+    font-family: var(--wz-font); font-size: 1rem; font-weight: 500;
+}
+#step-2c .wizard-prev,
+#step-3 .wizard-prev { width: 92px; border-radius: 10px; }
+#step-2c .wizard-next,
+#step-3 .wizard-next { max-width: none; border-radius: 10px; transition: background .2s ease, transform .2s ease; }
+#step-2c .wizard-next.is-pendiente,
+#step-3 .wizard-next.is-pendiente { background: #e6e6e6; color: #fff; }
+
+/* ═══ Pantallas completas en el teléfono ═══
+   Lista de contratos, ficha, jurisdicción y llenado ocupan la pantalla
+   entera: sin tarjeta flotante, sin esquinas ni sombra. */
+@media (max-width: 767px) {
+    #step-1.active, #step-2.active, #step-2c.active, #step-3.active { background: #ffffff; }
+    body:has(.step-container.active:not(#step-0)) .formatos-wrapper { padding-left: 0; padding-right: 0; }
+    .wizard-top-bar .wizard-close-btn { min-height: 0; min-width: 0; }
+    #step-1 .wizard-modal,
+    #step-2 .wizard-modal,
+    #step-2c .wizard-modal,
+    #step-3 .wizard-modal {
+        max-width: none; width: 100%; margin: 0;
+        min-height: calc(100svh - 64px);
+        border-radius: 0; box-shadow: none;
+        padding: 1.4rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
+    }
+    #step-1 .step1-modal-title { font-size: 2rem; margin-bottom: 1.5rem; }
+    #step-1 .step1-card { padding: 1.25rem; }
+    #step-2 .step2-modal-title { line-height: 1.15; font-size: 1.9rem; margin-bottom: 1.25rem; }
+    #step-2 .ficha-content { padding-right: 0; gap: 1rem; }
+    #step-2 .ficha-block { gap: 1rem; margin-bottom: .5rem; }
+    #step-2 .ficha-block h4 { font-size: 1.5rem; max-width: none; }
+    #step-2 .ficha-card { padding: 1.25rem 1.3rem; border-radius: 16px; }
+    #step-2 .ficha-card p { font-size: .95rem; line-height: 1.55; }
 }

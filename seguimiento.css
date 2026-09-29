@@ -1,0 +1,415 @@
+/* ═══ SEGUIMIENTO ═══
+   Verde profundo a pantalla completa con un emblema de líneas blancas; la
+   consulta y el avance viven en una hoja crema que sube desde abajo. El
+   avance se lee dos veces: un mini track de un vistazo y la línea de tiempo
+   con palomita, título y descripción por etapa. */
+
+.seg {
+    --seg-verde: #1f3a32;
+    --seg-verde-2: #2a4a40;
+    --seg-hueso: #f1efe7;
+    --seg-papel: #faf9f4;
+    --seg-tinta: #1b1f1d;
+    --seg-suave: #8a8f8a;
+    --seg-ok: #4caf6a;
+    --seg-pendiente: #dcdcd6;
+    --seg-espera: #d9a441;
+    font-family: "Montserrat", var(--font-body), sans-serif;
+}
+
+/* ── Hero verde ── */
+.seg-hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: calc(64px + 1.5rem);
+    background: radial-gradient(120% 70% at 70% 20%, var(--seg-verde-2) 0%, var(--seg-verde) 60%);
+    color: #fff;
+    overflow: hidden;
+}
+.seg-hero-inner {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2rem;
+}
+
+.seg-marca {
+    display: block;
+    width: clamp(150px, 38vw, 210px);
+    height: auto;
+    margin: 0 0 1.4rem;
+    overflow: visible;
+}
+.seg-marca line {
+    stroke: #f4f1e8;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-dasharray: 70;
+    stroke-dashoffset: 70;
+    animation: segTrazo .9s cubic-bezier(.65, 0, .35, 1) forwards;
+    animation-delay: calc(var(--i) * 35ms + .2s);
+}
+.seg-marca-giro {
+    transform-origin: 100px 100px;
+    animation: segGiro 60s linear infinite;
+}
+@keyframes segTrazo { to { stroke-dashoffset: 0; } }
+@keyframes segGiro { to { transform: rotate(360deg); } }
+
+.seg-eyebrow {
+    display: block;
+    margin-bottom: .8rem;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .6);
+}
+.seg-title {
+    margin: 0 0 .9rem;
+    font-family: "Montserrat", var(--font-body), sans-serif;
+    font-size: clamp(2rem, 6.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -.02em;
+    color: #fff;
+}
+.seg-sub {
+    margin: 0;
+    max-width: 30rem;
+    font-size: .95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, .72);
+}
+
+/* ── Hoja crema ── */
+.seg-sheet {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 1.1rem 1.5rem 2rem;
+    border-radius: 26px 26px 0 0;
+    background: var(--seg-hueso);
+    color: var(--seg-tinta);
+    animation: segSube .7s cubic-bezier(.16, 1, .3, 1) .35s both;
+}
+@keyframes segSube { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.seg-sheet-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: .9rem;
+    margin-bottom: 1.3rem;
+    border-bottom: 1px solid rgba(27, 31, 29, .12);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #6e726e;
+}
+
+.seg-field { margin-bottom: 1.15rem; }
+.seg-field label {
+    display: block;
+    margin-bottom: .45rem;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--seg-tinta);
+}
+.seg-field input {
+    width: 100%;
+    padding: .85rem 1rem;
+    border: 1.5px solid #d9d6cc;
+    border-radius: 14px;
+    background: #fff;
+    color: var(--seg-tinta);
+    font-family: inherit;
+    font-size: 1rem;
+}
+.seg-field input:focus { outline: none; border-color: var(--seg-verde); }
+.seg-field small {
+    display: block;
+    margin-top: .4rem;
+    font-size: .74rem;
+    color: var(--seg-suave);
+}
+.seg-hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.seg-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    width: 100%;
+    min-height: 54px;
+    padding: 1rem;
+    border: 0;
+    border-radius: 99px;
+    background: var(--seg-verde);
+    color: #fff;
+    font-family: inherit;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+.seg-submit:hover { background: #16302a; transform: translateY(-1px); }
+.seg-submit:disabled { opacity: .7; cursor: default; transform: none; }
+.seg-spin {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, .35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: segGiro .8s linear infinite;
+}
+.seg-privacidad {
+    margin: 1rem 0 0;
+    font-size: .74rem;
+    line-height: 1.5;
+    text-align: center;
+    color: var(--seg-suave);
+}
+.seg-privacidad a { color: var(--seg-verde); }
+
+.seg-msg {
+    display: none;
+    margin-top: 1rem;
+    padding: .95rem 1.1rem;
+    border-radius: 14px;
+    font-size: .88rem;
+    line-height: 1.5;
+}
+.seg-msg.is-visible { display: block; }
+.seg-msg--error { background: #fdecea; color: #8a1f17; }
+.seg-msg--empty { background: #fff; color: var(--seg-tinta); border: 1px solid #e4e1d8; }
+.seg-msg a { color: var(--seg-verde); font-weight: 600; }
+
+/* ── Resultado ── */
+.seg-resultado { display: none; }
+.seg-resultado.is-visible { display: block; }
+.seg-resultado-head {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    margin-bottom: 1.2rem;
+}
+.seg-resultado-servicio {
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -.01em;
+}
+.seg-resultado-folio {
+    font-family: "Courier Prime", ui-monospace, monospace;
+    font-size: .85rem;
+    color: var(--seg-suave);
+}
+
+/* Mini track */
+.seg-mini {
+    display: flex;
+    align-items: center;
+    padding: .9rem 1rem;
+    border-radius: 16px;
+    background: var(--seg-verde);
+}
+.seg-mini-punto {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .22);
+    transition: background .4s ease;
+}
+.seg-mini-punto.is-hecho { background: var(--seg-ok); }
+.seg-mini-punto.is-actual {
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, .18);
+    animation: segLatido 1.8s ease-in-out infinite;
+}
+.seg-mini-tramo {
+    position: relative;
+    flex: 1;
+    height: 2px;
+    margin: 0 4px;
+    background: rgba(255, 255, 255, .18);
+    overflow: hidden;
+}
+.seg-mini-tramo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--seg-ok);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .6s ease;
+}
+.seg-resultado.is-animado .seg-mini-tramo.is-hecho::after { transform: scaleX(1); }
+@keyframes segLatido { 50% { box-shadow: 0 0 0 7px rgba(255, 255, 255, .08); } }
+.seg-mini-texto {
+    margin: .6rem 0 1.6rem;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--seg-tinta);
+}
+
+/* Línea de tiempo */
+.seg-linea { list-style: none; margin: 0; padding: 0; }
+.seg-etapa {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3.6rem 34px 1fr;
+    column-gap: .9rem;
+    padding-bottom: 1.6rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .45s ease, transform .45s ease;
+    transition-delay: calc(var(--i) * 90ms);
+}
+.seg-resultado.is-animado .seg-etapa { opacity: 1; transform: none; }
+.seg-etapa:last-child { padding-bottom: 0; }
+/* La línea que une un punto con el siguiente */
+.seg-etapa:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 38px;
+    bottom: 4px;
+    left: calc(3.6rem + .9rem + 16px);
+    width: 2px;
+    background: #cfcdc4;
+}
+.seg-etapa.is-hecho::before { background: #9fcfae; }
+.seg-etapa-hora {
+    padding-top: .55rem;
+    font-size: .78rem;
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+    color: var(--seg-tinta);
+}
+.seg-etapa-punto {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--seg-pendiente);
+}
+.seg-etapa-punto svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.seg-etapa.is-hecho .seg-etapa-punto,
+.seg-etapa.is-actual .seg-etapa-punto { background: var(--seg-ok); }
+.seg-etapa.is-actual .seg-etapa-punto { box-shadow: 0 0 0 5px rgba(76, 175, 106, .18); }
+.seg-etapa.is-espera .seg-etapa-punto { background: var(--seg-espera); box-shadow: 0 0 0 5px rgba(217, 164, 65, .2); }
+.seg-etapa-cuerpo strong {
+    display: block;
+    padding-top: .45rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--seg-tinta);
+}
+.seg-etapa-cuerpo p {
+    margin: .3rem 0 0;
+    font-size: .82rem;
+    line-height: 1.5;
+    color: var(--seg-suave);
+}
+.seg-etapa.is-pendiente .seg-etapa-cuerpo strong { color: #6e726e; }
+
+.seg-callout {
+    margin-top: 1.4rem;
+    padding: 1rem 1.1rem;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid #e4e1d8;
+}
+.seg-callout-label {
+    display: block;
+    margin-bottom: .35rem;
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--seg-verde);
+}
+.seg-callout p { margin: 0; font-size: .9rem; line-height: 1.55; }
+.seg-resultado-meta { margin: 1rem 0 0; font-size: .76rem; color: var(--seg-suave); }
+
+.seg-acciones { display: grid; gap: .55rem; margin-top: 1.4rem; }
+.seg-accion {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .85rem 1rem;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid #e4e1d8;
+    color: var(--seg-tinta);
+    font-size: .88rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+.seg-accion i { color: var(--seg-verde); }
+.seg-accion:hover { border-color: var(--seg-verde); }
+.seg-nueva-consulta {
+    display: block;
+    margin: 1.3rem auto 0;
+    padding: .4rem;
+    border: 0;
+    background: none;
+    color: var(--seg-verde);
+    font-family: inherit;
+    font-size: .85rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+/* ── Preguntas frecuentes ── */
+.seg-faq {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 5rem;
+}
+.seg-faq h2 {
+    margin: 0 0 1.2rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--seg-tinta);
+}
+.seg-faq details { border-bottom: 1px solid #e4e1d8; }
+.seg-faq summary {
+    padding: 1rem 0;
+    font-size: .95rem;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+}
+.seg-faq summary::-webkit-details-marker { display: none; }
+.seg-faq summary::after { content: "+"; float: right; color: var(--seg-verde); }
+.seg-faq details[open] summary::after { content: "–"; }
+.seg-faq details p { margin: 0 0 1rem; font-size: .88rem; line-height: 1.6; color: #5b605c; }
+
+/* En computadora la hoja queda como tarjeta, no pegada al borde inferior. */
+@media (min-width: 761px) {
+    .seg-hero { justify-content: center; padding-bottom: 3rem; }
+    .seg-sheet { border-radius: 26px; box-shadow: 0 30px 70px rgba(0, 0, 0, .25); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .seg-marca line { animation: none; stroke-dashoffset: 0; }
+    .seg-marca-giro, .seg-sheet, .seg-mini-punto.is-actual { animation: none; }
+    .seg-etapa { transition: none; }
+}

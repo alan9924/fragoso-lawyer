@@ -9,7 +9,9 @@
    y no se envía ni un byte a terceros.
    ═══════════════════════════════════════════════════════════════ */
 
-const GA4_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // ← reemplazar con el ID real de GA4
+const GA4_MEASUREMENT_ID = (typeof window !== 'undefined' && window.FF_GA4_ID)
+    ? window.FF_GA4_ID
+    : 'G-XXXXXXXXXX'; // ← reemplazar con el ID real de GA4
 
 // Ojo: el placeholder 'G-XXXXXXXXXX' cumple el patrón de un ID real (la X es
 // una letra válida), así que hay que descartarlo de forma explícita. Sin esto,

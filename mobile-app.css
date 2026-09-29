@@ -469,13 +469,12 @@
     .calc-marco-cifras { grid-template-columns: 1fr 1fr !important; }
 }
 
-/* ── 10. HOME — Quick Actions ── */
+/* ── 10. HOME — Quick Actions ──
+   El hero (.hero-cartel*) ya NO se toca aquí: vivía partido entre este
+   archivo y columna.css, cada uno con su propio min-height/padding, y
+   ganaba el que cargara al final del <head> — no el que tuviera sentido.
+   Ahora columna.css es la única fuente de verdad para el hero en móvil. */
 @media (max-width: 767px) {
-    .hero-cartel {
-        min-height: 100svh;
-        padding: calc(80px + var(--sat)) 1.25rem calc(2rem + var(--sab));
-    }
-    .hero-cartel-title { font-size: clamp(2.2rem, 9vw, 3rem); }
     .quick-actions-grid { grid-template-columns: 1fr 1fr !important; gap: 0.75rem !important; }
     .qa-card {
         border-radius: var(--radius-card) !important;
@@ -529,5 +528,20 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* ── 15. BOTONES FLOTANTES EN MÓVIL ──
+   El botón lateral de WhatsApp/correo tapa contenido en pantallas
+   angostas, así que en móvil no se muestra. */
+@media (max-width: 767px) {
+    .fixed-sidebar-contact { display: none !important; }
+}
+
+/* Al imprimir/exportar a PDF (contratos.html, finiquito.html) el botón
+   flotante quedaría pegado al pie de cada página. */
+@media print {
+    .fixed-sidebar-contact {
+        display: none !important;
     }
 }

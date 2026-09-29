@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#fdfdfc">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -28,13 +29,13 @@
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css?v=15">
-    <link rel="stylesheet" href="home-new.css?v=44">
-    <link rel="stylesheet" href="columna.css?v=11">
+    <link rel="stylesheet" href="home-new.css?v=52">
+    <link rel="stylesheet" href="columna.css?v=31">
     <link rel="stylesheet" href="folder-tabs.css">
-    <link rel="stylesheet" href="mobile-app.css?v=1">
+    <link rel="stylesheet" href="mobile-app.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@200;300;400;500;600&family=Abril+Fatface&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200;6..72,300;6..72,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@200;300;400;500;600&family=Abril+Fatface&family=Courier+Prime:wght@400;700&family=Josefin+Sans:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Evitar selección de texto accidental y highlight de toques en móvil */
@@ -123,7 +124,7 @@
                     </li>
                     <li><a href="finiquito.html" class="nav-top-link">Laboral</a></li>
                     <li><a href="empresa.html" class="nav-top-link">Empresa</a></li>
-                    <li><a href="radar/index.html" class="nav-top-link">Blog</a></li>
+                    <li><a href="seguimiento.html" class="nav-top-link">Seguimiento</a></li>
                 </ul>
             </div>
 
@@ -135,37 +136,56 @@
         </div>
     </nav>
 
-    <!-- ═══ HERO CARTEL ═══
-         Un cuadro azul centrado sobre fondo blanco: el contraste del bloque
-         contra el papel es el gesto, y el sello de lacre en la esquina lo
-         firma. Los estilos viven en columna.css (.hero-cartel*). -->
+    <!-- ═══ HERO CARTA ═══
+         El cartel azul con el sello de lacre, ahora escrito como una carta a
+         máquina y firmado con la caligrafía del estudio (antes vivía abajo, en
+         "Nuestra promesa"). Los estilos viven en columna.css (.hero-cartel*,
+         .hero-carta*). -->
     <section id="inicio" class="hero-cartel">
       <div class="hero-cartel-panel">
-        <!-- Sello de lacre en la esquina. El PNG va recortado a su contenido y
-             con alfa, así que se recorta solo contra el azul. -->
-        <img class="hero-cartel-sello" src="sello_ff_esquina.png" alt="" aria-hidden="true">
+          <!-- Sello de lacre en la esquina. El PNG va recortado a su contenido y
+               con alfa, así que se recorta solo contra el azul. -->
+          <img class="hero-cartel-sello" src="sello_ff_esquina.png" alt="" aria-hidden="true">
 
-        <p class="hero-cartel-eyebrow">Estudio jurídico</p>
-
-        <h1 class="hero-cartel-title">Protege hoy<br><em>lo que más te importa</em></h1>
-
-        <p class="hero-cartel-dek">Asesoría clara y precio público para personas, familias y negocios.</p>
-
-        <div class="hero-cartel-cta">
-          <a href="#abogado-de-bolsillo" class="hero-cartel-btn">Empezar</a>
-          <!-- Apuntaban a anclas (#civil, #familiar…) que no existían en la
-               página: los cinco enlaces no llevaban a ninguna parte. Ahora van
-               a la página de cada área. -->
-          <p class="hero-cartel-links" style="flex-wrap: wrap; justify-content: flex-start; gap: 1.5rem; flex: 1;">
-            <a href="civil.html">Civil</a>
-            <a href="familiar.html">Familiar</a>
-            <a href="empresa.html">Corporativo</a>
-            <a href="propiedad-intelectual.html">Propiedad Intelectual</a>
-            <a href="inmobiliario.html">Inmobiliario</a>
-          </p>
+        <!-- div con role y no <nav>: styles.css fija cualquier <nav> arriba de la página. -->
+        <div class="hero-carta-menu" role="navigation" aria-label="Servicios">
+          <a href="contratos.html">Contratos</a>
+          <a href="servicios.html">Servicios</a>
+          <a href="planes-empresa.html">Planes</a>
+          <a href="seguimiento.html">Seguimiento</a>
         </div>
 
-        <p class="hero-cartel-nota">Precio público &middot; Sin letra pequeña</p>
+        <div class="hero-carta-texto">
+          <h1 class="hero-carta-titulo">Estudio jurídico</h1>
+
+          <p data-maquina>En Ferro Fragoso te ayudamos a entender tus opciones, generar estrategias y brindarte el mejor servicio. Asesoramos a personas, familias y negocios con un trato cercano y precios transparentes.</p>
+
+          <p data-maquina>Porque las decisiones importantes las acompañan abogados.</p>
+
+          <p class="hero-carta-acento" data-maquina>sin letra pequeña</p>
+        </div>
+
+        <!-- La caligrafía se escribe sola al terminar la carta (script.js). El
+             vídeo trae fondo gris oscuro: columna.css lo lleva a negro y lo
+             funde con `screen`, así que sobre el azul sólo queda la tinta. -->
+        <div class="hero-carta-firma">
+          <video class="hero-carta-firma-video" muted playsinline preload="auto"
+                 aria-label="Firma de Ferro Fragoso escribiéndose">
+            <source src="signature_write.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="hero-carta-cta">
+          <a href="necesito-abogado.html" class="hero-carta-btn">Necesito un abogado</a>
+          <a href="llamar-abogado.html" class="hero-carta-btn">Llamar a un abogado</a>
+        </div>
+
+        <a href="#abogado-de-bolsillo" class="hero-carta-bajar" aria-label="Ver más contenido">
+          <svg viewBox="0 0 40 44" width="40" height="44" aria-hidden="true">
+            <polyline class="hero-carta-bajar-1" points="6,6 20,19 34,6"></polyline>
+            <polyline class="hero-carta-bajar-2" points="6,24 20,37 34,24"></polyline>
+          </svg>
+        </a>
       </div>
     </section>
 
@@ -181,7 +201,7 @@
          situaciones, tres pasos y un remate. El mensaje se sostiene con el
          antes/después, que dice lo mismo en dos columnas — todo lo demás
          era repetirlo con otras palabras. -->
-    <section data-columna-seccion="Tu abogado" id="abogado-de-bolsillo" style="position: relative; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; padding: 5.5rem 5vw;">
+    <section data-columna-seccion="Tu abogado" id="abogado-de-bolsillo" class="bolsillo">
         <!-- Glowing background -->
         <div style="position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5; mix-blend-mode: multiply; background-image: radial-gradient(50% 50% at 50% 50%, #93c5fd 0%, transparent 100%);"></div>
 
@@ -189,7 +209,7 @@
              `mix-blend-mode` del pictograma. Se pinta sobre el halo igual, por
              orden del DOM. -->
         <div style="position: relative; max-width: 1000px; margin: 0 auto; width: 100%;">
-            <div class="blur-fade" data-bf-delay="1" style="max-width: 800px; margin-bottom: 2.25rem;">
+            <div class="blur-fade bolsillo-intro" data-bf-delay="1">
                 <!-- Los saltos van marcados a mano: el remate tiene que caer
                      entero en la última línea para que la selección lo abarque
                      completo. -->
@@ -198,8 +218,8 @@
                     <span>no tiene por qué</span>
                     <span class="sel">darte miedo.</span>
                 </h2>
-                <p style="font-family: var(--font-body, system-ui, sans-serif); font-size: clamp(0.85rem, 1.5vw, 1.4rem); color: #222; line-height: 1.35; font-weight: 500; letter-spacing: -0.01em; margin-top: 1.5rem;">
-                    Un abogado en tu <span style="color: #405efc;">bolsillo</span>. No para ir a <span style="color: #405efc;">juicio</span> — para esa <span style="color: #405efc;">llamada</span> que llevas semanas sin hacer, ese <span style="color: #405efc;">papel</span> que no sabes si firmar, ese <span style="color: #405efc;">trámite</span> donde te dan largas.
+                <p class="bolsillo-dek">
+                    No todo se trata de <span style="color: #405efc;">juicios</span> — para esa <span style="color: #405efc;">llamada</span> que llevas semanas sin hacer, ese <span style="color: #405efc;">papel</span> que no sabes si firmar, ese <span style="color: #405efc;">trámite</span> donde te dan largas.
                 </p>
             </div>
 
@@ -209,375 +229,29 @@
             <div class="mono" aria-hidden="true">
                 <video class="mono-video" autoplay muted loop playsinline preload="metadata" poster="mono_miedo.png">
                     <source src="mono_miedo.mp4" type="video/mp4">
+                    <img src="mono_miedo.png" alt="" class="mono-video" loading="lazy" decoding="async">
                 </video>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4rem;">
+            <div class="bolsillo-miedos">
                 <div class="blur-fade" data-bf-delay="2">
-                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: #111; margin-bottom: 1rem; font-weight: 500; letter-spacing: -0.5px;">“¿Y cuánto me va a cobrar?”</h3>
-                    <p class="marca-texto" style="font-family: var(--font-body); font-size: 1.05rem; color: #666; line-height: 1.7;"><span>Precio</span> <span>fijo.</span></p>
+                    <h3>“¿Y cuánto me va a cobrar?”</h3>
+                    <p class="marca-texto"><span>Precio</span> <span>fijo.</span></p>
                 </div>
                 <div class="blur-fade" data-bf-delay="3">
-                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: #111; margin-bottom: 1rem; font-weight: 500; letter-spacing: -0.5px;">“No le voy a entender.”</h3>
-                    <p class="marca-texto" style="font-family: var(--font-body); font-size: 1.05rem; color: #666; line-height: 1.7;"><span>Lenguaje</span> <span>claro.</span></p>
+                    <h3>“No le voy a entender.”</h3>
+                    <p class="marca-texto"><span>Lenguaje</span> <span>claro.</span></p>
                 </div>
                 <div class="blur-fade" data-bf-delay="4">
-                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: #111; margin-bottom: 1rem; font-weight: 500; letter-spacing: -0.5px;">“No es para tanto.”</h3>
-                    <p class="marca-texto" style="font-family: var(--font-body); font-size: 1.05rem; color: #666; line-height: 1.7;"><span>Mejor</span> <span>prevenir.</span></p>
+                    <h3>“No es para tanto.”</h3>
+                    <p class="marca-texto"><span>Mejor</span> <span>prevenir.</span></p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- ═══ COMPARATIVA ABOGADO ═══ -->
-    <section id="comparativa-abogado" style="position: relative; background-color: #ffffff; padding: 8rem 5vw; overflow: hidden;">
-        <!-- Soft Green Glow -->
-        <div style="position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.4; mix-blend-mode: multiply; background-image: radial-gradient(50% 50% at 50% 50%, #8FFFB0 0%, transparent 100%);"></div>
-
-        <div style="position: relative; z-index: 10; max-width: 900px; margin: 0 auto; width: 100%;">
-            <!-- Comparison Columns -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; margin-bottom: 3rem;">
-                <div class="blur-fade">
-                    <!-- Los saltos van marcados a mano: el escalón entre líneas es
-                         el diseño y no puede quedar a merced del ancho. Tres
-                         líneas y no dos porque «Que hable / mi abogado» quedaban
-                         casi del mismo largo y el escalón se reducía a 11px: sin
-                         contraste de longitud no hay gesto. Corta limpio por
-                         conjunción / verbo / sujeto. -->
-                    <h2 class="titulo-cartel">
-                        <span>Que</span>
-                        <span class="der">hable</span>
-                        <span>mi abogado</span>
-                    </h2>
-                    <p style="font-family: var(--sans, sans-serif); font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: #666; line-height: 1.3; font-weight: 300; letter-spacing: -0.5px; margin-top: 4rem;">
-                        Mandas mensajes que nadie contesta.<br>
-                        <strong style="font-weight: 700; color: #111;">No te falta razón, te falta peso.</strong>
-                    </p>
-                </div>
-                <div class="blur-fade" data-bf-delay="1" style="margin-top: 1rem;">
-                    <p style="font-family: var(--sans, sans-serif); font-size: clamp(1.8rem, 4vw, 3rem); color: #111; line-height: 1.2; font-weight: 700; letter-spacing: -1.5px; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;">
-                        <span>Ya no estás solo,</span>
-                        <span style="background-color: #c7f933; color: #111; padding: 0.1em 0.4em; border-radius: 12px; display: inline-flex; align-items: center; position: relative; white-space: nowrap;">
-                            y se nota.
-                            <svg style="position: absolute; top: -6px; right: -12px; width: 24px; height: 24px; transform: rotate(10deg);" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter">
-                                <line x1="6" y1="18" x2="18" y2="6"></line>
-                                <polyline points="8 6 18 6 18 16"></polyline>
-                            </svg>
-                        </span>
-                    </p>
-                </div>
-            </div>
-
-            <!-- El teléfono que se asoma.
-                 El marco es un PNG real (phone_mockup.png) y el chat va vivo en
-                 HTML dentro del hueco de la pantalla: el texto sigue siendo
-                 texto —escala y se relee sin pixelarse— y la animación se
-                 controla por partes.
-                 A propósito NO lleva la insignia de cuenta oficial de WhatsApp:
-                 reproducirla aquí sería hacer pasar al despacho por una cuenta
-                 verificada de la plataforma. Se usa el mismo lenguaje de chat,
-                 con el remitente que sí corresponde. -->
-            <div class="asoma" aria-hidden="true">
-                <div class="asoma-mockup">
-                    <!-- La pantalla: va DEBAJO del marco y se asoma por su hueco. -->
-                    <div class="asoma-tel">
-                        <div class="asoma-barra">
-                            <span class="asoma-avatar">FF</span>
-                            <span class="asoma-quien">
-                                <b>Ferro Fragoso</b>
-                                <i>Abogados &middot; en línea</i>
-                            </span>
-                        </div>
-                        <div class="asoma-chat">
-                            <p class="asoma-burbuja">Listo. Ya le escribimos al arrendador con copia de tu contrato.</p>
-                            <p class="asoma-burbuja asoma-burbuja--2">Cualquier respuesta te la paso en cuanto llegue.</p>
-                        </div>
-                    </div>
-
-                    <!-- El marco va ENCIMA: su hueco de pantalla es transparente,
-                         así que recorta las esquinas del chat y dibuja el notch
-                         sin necesidad de border-radius ni máscaras. -->
-                    <img class="asoma-marco" src="phone_mockup.png" alt="" aria-hidden="true">
-                </div>
-            </div>
-
-            <!-- List items (Editorial Design) -->
-            <div class="blur-fade" data-bf-delay="2" style="margin-bottom: 4rem;">
-                <!-- Item 01 -->
-                <div style="display: flex; align-items: flex-start; padding: 1rem 0; gap: 2rem;">
-                    <div style="display: flex; flex-direction: column; width: 40px; flex-shrink: 0; padding-top: 0.5rem;">
-                        <div style="height: 1px; background-color: #111; width: 100%; margin-bottom: 0.8rem;"></div>
-                        <span style="font-size: 0.75rem; font-family: var(--mono, monospace); color: #111; font-weight: 500;">01</span>
-                    </div>
-                    <div style="font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 400; color: #111; line-height: 1.2; letter-spacing: -0.5px;">
-                        El casero no te devuelve el depósito.
-                    </div>
-                </div>
-                <!-- Item 02 -->
-                <div style="display: flex; align-items: flex-start; padding: 1rem 0; gap: 2rem;">
-                    <div style="display: flex; flex-direction: column; width: 40px; flex-shrink: 0; padding-top: 0.5rem;">
-                        <div style="height: 1px; background-color: #111; width: 100%; margin-bottom: 0.8rem;"></div>
-                        <span style="font-size: 0.75rem; font-family: var(--mono, monospace); color: #111; font-weight: 500;">02</span>
-                    </div>
-                    <div style="font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 400; color: #111; line-height: 1.2; letter-spacing: -0.5px;">
-                        Un cliente no te paga lo que trabajaste.
-                    </div>
-                </div>
-
-                <!-- Item 03 -->
-                <div style="display: flex; align-items: flex-start; padding: 1rem 0; gap: 2rem;">
-                    <div style="display: flex; flex-direction: column; width: 40px; flex-shrink: 0; padding-top: 0.5rem;">
-                        <div style="height: 1px; background-color: #111; width: 100%; margin-bottom: 0.8rem;"></div>
-                        <span style="font-size: 0.75rem; font-family: var(--mono, monospace); color: #111; font-weight: 500;">03</span>
-                    </div>
-                    <div style="font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 400; color: #111; line-height: 1.2; letter-spacing: -0.5px;">
-                        Tu ex-patrón te debe el finiquito.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pricing and Action -->
-            <div class="blur-fade" data-bf-delay="3" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 3rem;">
-                <div>
-                    <div style="font-family: var(--font-heading); font-size: clamp(3rem, 6vw, 4.5rem); color: #111; line-height: 1; font-weight: 300; letter-spacing: -2px; margin-bottom: 0.5rem;">
-                        $1,450 <span style="font-size: 1rem; font-family: var(--font-body); font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: #666; vertical-align: middle;">Pago Único</span>
-                    </div>
-
-                </div>
-                <div style="max-width: 400px;">
-                    <a href="reclamacion.html" style="display: inline-block; background-color: #8FFFB0; color: #064e3b; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 1.2rem 2.5rem; border-radius: 4px; text-decoration: none; transition: all 0.3s ease; margin-bottom: 1rem; box-shadow: 0 4px 14px rgba(143, 255, 176, 0.4);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(143, 255, 176, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 14px rgba(143, 255, 176, 0.4)'">Ver Presión Legal</a>
-                    <p style="font-family: var(--font-body); font-size: 0.8rem; color: #888; line-height: 1.5;">
-                        Gestión activa de 15 días por abogado con cédula profesional para evaluar, redactar, enviar y dar seguimiento a tu caso.
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ═══ CONSULTA LEGAL ═══ -->
-    <section id="consulta-legal" style="position: relative; background-color: #ffffff; padding: 6rem 5vw; overflow: hidden;">
-        <!-- Orange Soft Glow -->
-        <div style="position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.12; mix-blend-mode: multiply; background-image: radial-gradient(40% 50% at 50% 50%, #FF7112 0%, transparent 100%);"></div>
         
-        <div style="position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; width: 100%;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;">
-                
-                <!-- Left Column: Image -->
-                <div class="blur-fade" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start;">
-                    <h2 style="font-family: 'Impact', 'Anton', sans-serif; font-size: clamp(3.5rem, 7vw, 5.5rem); color: #FF7112; line-height: 0.85; margin-bottom: 1.8rem; text-transform: uppercase; letter-spacing: -0.02em; display: flex; flex-direction: column; transform: scaleY(1.1); transform-origin: left center;">
-                        <span class="blur-fade" style="align-self: flex-start;">CONSULTA</span>
-                        <span class="blur-fade" data-bf-delay="1" style="align-self: flex-start;">CON UN</span>
-                        <span class="blur-fade" data-bf-delay="2" style="align-self: flex-start;">ABOGADO</span>
-                    </h2>
-                    <p style="font-family: var(--font-body, system-ui, sans-serif); font-size: clamp(1.1rem, 2vw, 1.25rem); color: #333; line-height: 1.4; margin-bottom: 1rem; font-weight: 400;">
-                        Antes de firmar, pagar, reclamar o decidir, entiende tus opciones y define el siguiente paso.
-                    </p>
-                    <p style="font-family: var(--font-body, system-ui, sans-serif); font-size: 1rem; color: #555; line-height: 1.5; margin-bottom: 2rem;">
-                        Habla directamente con un abogado de Ferro Fragoso. Elige el nivel de atención que necesitas, con alcance y precio claro desde el inicio.
-                    </p>
-
-                    <img src="black_phone_transparent.png" alt="Teléfono clásico negro para consultas legales" style="width: 100%; max-width: 450px; height: auto; object-fit: contain; align-self: center;">
-                </div>
-                
-                <!-- Right Column: Content and Options -->
-                <div class="blur-fade" data-bf-delay="1" style="display: flex; flex-direction: column;">
-                    <!-- Filas de Opciones -->
-                    <div style="display: flex; flex-direction: column; width: 100%; gap: 1rem;">
-                        
-                        <!-- Fila 1 -->
-                        <a href="#filtro-orientacion" class="consulta-fila" aria-label="Opción: Cuéntanos tu caso. 15 minutos, sin costo.">
-                            <div class="consulta-fila-left">
-                                <h3 class="consulta-fila-titulo">Cuéntanos tu caso</h3>
-                                <p class="consulta-fila-desc">15 min &middot; Te escuchamos y recomendamos el servicio adecuado.</p>
-                            </div>
-                            <div class="consulta-fila-right pill-blue">
-                                Sin costo
-                            </div>
-                        </a>
-
-                        <!-- Fila 2 -->
-                        <a href="#agenda-consulta" class="consulta-fila consulta-fila--recomendada" aria-label="Opción Recomendada: Consulta legal. 45 minutos, 790 pesos.">
-                            <div class="consulta-fila-left">
-                                <h3 class="consulta-fila-titulo">Consulta legal <span class="consulta-fila-badge">RECOMENDADA</span></h3>
-                                <p class="consulta-fila-desc">45 min &middot; Expón tu situación, resuelve dudas y conoce opciones.</p>
-                            </div>
-                            <div class="consulta-fila-right pill-gold">
-                                $790 MXN
-                            </div>
-                        </a>
-
-                        <!-- Fila 3 -->
-                        <a href="#agenda-analisis" class="consulta-fila" aria-label="Opción: Análisis legal de tu caso. 60 minutos, 1290 pesos.">
-                            <div class="consulta-fila-left">
-                                <h3 class="consulta-fila-titulo">Análisis legal de tu caso</h3>
-                                <p class="consulta-fila-desc">60 min &middot; Revisión de antecedentes y ruta de acción.</p>
-                            </div>
-                            <div class="consulta-fila-right pill-green">
-                                $1,290 MXN
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Nota Aclaratoria -->
-                    <p style="font-family: var(--font-body, system-ui, sans-serif); font-size: 0.8rem; color: #777; line-height: 1.5; margin-top: 1.5rem; margin-bottom: 2.5rem;">
-                        La orientación inicial sirve únicamente para conocer tu situación y recomendarte el servicio adecuado. No incluye análisis jurídico de fondo, estrategia ni revisión de documentos.
-                    </p>
-
-
-
-                </div>
-            </div>
-        </div>
-        <style>
-            .consulta-fila {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                text-decoration: none;
-                color: inherit;
-                border: none;
-                border-radius: 24px;
-                background-color: #fdfbf7;
-                padding: 1.5rem 1.8rem;
-                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            }
-            .consulta-fila--recomendada {
-                border: 1px solid rgba(255, 113, 18, 0.2);
-                box-shadow: 0 8px 30px rgba(255, 113, 18, 0.08);
-            }
-            .consulta-fila-left {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                max-width: 65%;
-            }
-            .consulta-fila-titulo {
-                font-family: var(--font-heading, 'Cormorant Garamond', serif);
-                font-size: 1.6rem;
-                font-weight: 600;
-                color: #111;
-                margin: 0;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                flex-wrap: wrap;
-            }
-            .consulta-fila-badge {
-                font-family: var(--font-body, system-ui, sans-serif);
-                font-size: 0.6rem;
-                font-weight: 700;
-                letter-spacing: 0.1em;
-                background-color: rgba(255, 113, 18, 0.1);
-                color: #e65c00;
-                padding: 4px 10px;
-                border-radius: 20px;
-                text-transform: uppercase;
-                border: 1px solid rgba(255, 113, 18, 0.2);
-            }
-            .consulta-fila-desc {
-                font-family: var(--font-body, system-ui, sans-serif);
-                font-size: 0.95rem;
-                color: #555;
-                line-height: 1.4;
-                margin: 0;
-            }
-            .consulta-fila-right {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 24px;
-                padding: 1.2rem 1.5rem;
-                font-family: var(--font-body, system-ui, sans-serif);
-                font-weight: 600;
-                font-size: 1.1rem;
-                white-space: nowrap;
-                transition: transform 0.3s ease;
-            }
-            .pill-blue {
-                background-color: #BBE1FA;
-                color: #1B262C;
-            }
-            .pill-gold {
-                background-color: #F4D393;
-                color: #4A3306;
-            }
-            .pill-green {
-                background-color: #B5E095;
-                color: #1F3F08;
-            }
-            
-            @media (hover: hover) {
-                .consulta-fila:hover {
-                    background-color: #ffffff;
-                    transform: translateY(-4px);
-                    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-                }
-                .consulta-fila:hover .consulta-fila-right {
-                    transform: scale(1.05);
-                }
-            }
-            
-            @media (max-width: 768px) {
-                .consulta-fila {
-                    flex-direction: column;
-                    align-items: flex-start;
-                    gap: 1.25rem;
-                    padding: 1.25rem;
-                    border-radius: 20px;
-                }
-                .consulta-fila-left {
-                    max-width: 100%;
-                }
-                .consulta-fila-right {
-                    align-self: stretch;
-                    padding: 1rem;
-                    border-radius: 16px;
-                }
-            }
-        </style>
-    </section>
-
-    <!-- ═══ QUICK ACTIONS ═══ -->
-    <section class="quick-actions-section" data-columna-seccion="Trámites" style="background-color: #ffffff;">
-        <div class="quick-actions-wrap">
-            <header class="quick-actions-header blur-fade">
-                <h2 class="sec-title" style="font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1.05;">Comienza tu<br><em>trámite</em></h2>
-            </header>
-            <div class="quick-actions-grid blur-fade" data-bf-delay="1">
-                <a href="marcas.html" class="qa-card">
-                    <div class="qa-card-img-wrapper" style="background-color: #0F766E;">
-                        <img src="icon_trademark.png" alt="Registrar marca" class="qa-card-img" loading="lazy">
-                    </div>
-                    <h3>Registrar marca</h3>
-                    <p>Protege tu nombre y logotipo comercial</p>
-                </a>
-                <a href="consulta.html" class="qa-card">
-                    <div class="qa-card-img-wrapper" style="background-color: #1D4ED8;">
-                        <img src="icon_company.png" alt="Constituir empresa" class="qa-card-img" loading="lazy">
-                    </div>
-                    <h3>Constituir empresa</h3>
-                    <p>Crea tu sociedad mercantil legalmente</p>
-                </a>
-                <a href="finiquito.html" class="qa-card">
-                    <div class="qa-card-img-wrapper" style="background-color: #D97706;">
-                        <img src="icon_finiquito.png" alt="Calcular finiquito" class="qa-card-img" loading="lazy">
-                    </div>
-                    <h3>Calcula finiquito</h3>
-                    <p>Liquida o renuncia conforme a la ley</p>
-                </a>
-                <a href="contratos.html" class="qa-card">
-                    <div class="qa-card-img-wrapper" style="background-color: #334155;">
-                        <img src="icon_contracts_una_firma.png" alt="Contratos" class="qa-card-img" loading="lazy">
-                    </div>
-                    <h3>Contratos</h3>
-                    <p>Crea y firma contratos con validez legal</p>
-                </a>
-            </div>
-        </div>
-    </section>
 
 
     <!-- ═══ FOLDER TABS ═══ -->
@@ -685,52 +359,13 @@
         });
     </script>
 
-    <!-- ═══ 4. EMPRESAS ═══ -->
-    <section class="empresas-section" data-columna-seccion="Membresía" id="empresas" style="background-color: #ffffff;">
-        <div class="empresas-inner">
-            <div class="empresas-copy fade-in-up">
-
-                <h2 class="sec-title blur-fade" data-bf-delay="1">¿Tu empresa firma<br><em>contratos todos los meses?</em></h2>
-                <p class="empresas-text">
-                    Contratos en orden, sin contratar a un abogado de planta.<br>
-                    Revisión mensual de un contrato simple, una consulta legal breve y acceso a herramientas para mantener tus acuerdos claros y actualizados.
-                </p>
-
-                <!-- Una sola acción primaria -->
-                <a href="empresa-operacion.html" class="btn-primary">Empezar</a>
-
-                <!-- Reporte de Riesgo: enlace secundario, no compite -->
-                <p class="empresas-secundario">
-                    ¿Prefieres empezar con un diagnóstico?
-                    <a href="empresa-operacion.html#reporte">Reporte de Riesgo Contractual — desde $3,990</a>
-                </p>
-            </div>
-            <div class="empresas-img-wrap fade-in-up delay-1" style="display: flex; justify-content: center; align-items: center;">
-                <!-- preload="none" y sin autoplay: son 3 MB a mitad de página. El
-                     IntersectionObserver de script.js lo arranca al entrar en
-                     vista y hasta entonces se ve el poster, que es el primer
-                     fotograma. Sin esto se descargaba en cada visita aunque
-                     nadie bajara hasta aquí. -->
-                <video class="empresas-video" muted loop playsinline preload="none"
-                       poster="icon_folder_docs.png"
-                       aria-label="Un documento se asoma de una carpeta de contratos"
-                       style="max-width: 100%; border-radius: 12px;">
-                    <source src="folder_docs_anim.mp4" type="video/mp4">
-                    <!-- Sin vídeo (o con datos ahorrados) queda la ilustración fija. -->
-                    <img src="icon_folder_docs.png" alt="Carpeta con contratos" style="max-width: 100%; border-radius: 12px;" loading="lazy" decoding="async">
-                </video>
-            </div>
-
-        </div>
-    </section>
-
 
     <!-- ═══ HOW IT WORKS (INFOGRAPHIC) ═══ -->
     <section class="process-section" data-columna-seccion="Cómo funciona" id="como-funciona-timeline">
         <header class="process-header sec-head fade-in-up">
 
             <h2 class="sec-title blur-fade" data-bf-delay="1">De la duda a la solución,<br><em>en tres pasos.</em></h2>
-            <p class="process-subtitle blur-fade" data-bf-delay="2" style="margin-top: 1.5rem;">Sin cotizaciones a puerta cerrada, sin llamadas para ‘ver cuánto sale’. Precio cerrado desde el clic.</p>
+            <p class="process-subtitle blur-fade" data-bf-delay="2" style="margin-top: 1.5rem;">Sin cotizaciones a puerta cerrada, sin llamadas para ‘ver cuánto sale’. Precio público desde el clic.</p>
         </header>
 
         <div class="timeline-container">
@@ -749,9 +384,9 @@
                     </div>
                     <div class="timeline-side timeline-right">
                         <div class="timeline-content">
-                            <span class="step-tag">En línea · Seguro</span>
-                            <h3 class="step-title">Elige y paga</h3>
-                            <p class="step-desc">Escoge tu servicio y paga en el momento, con precio cerrado.</p>
+                            <span class="step-tag">En línea · Con folio</span>
+                            <h3 class="step-title">Elige y solicita</h3>
+                            <p class="step-desc">Escoge tu servicio con precio cerrado y recibe tu folio al instante. Pagas en línea o al confirmar con tu abogado.</p>
                         </div>
                     </div>
                 </article>
@@ -794,8 +429,10 @@
 
         <div class="timeline-guarantee">
             <div class="guarantee-capsule">
-                <img src="icon_coffee_hand.png" alt="Relájate" class="guarantee-icon" style="width: 80px; height: 80px; object-fit: contain;">
-                <span class="guarantee-text tr-reveal" data-tr-split="words">Relájate mientras nos encargamos de todo.</span>
+                <p class="guarantee-text garantia-frase">
+                    <span class="garantia-linea">Relájate mientras</span>
+                    <span class="garantia-linea">nos encargamos <span class="garantia-remate">de todo.<svg class="garantia-trazo" viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path d="M3 11 C 45 4, 95 3, 140 7 S 185 12, 197 6"/></svg></span></span>
+                </p>
             </div>
         </div>
 
@@ -812,39 +449,45 @@
             </header>
 
             <div class="socios-home-grid">
-                <article class="socio-card fade-in-up">
+                <article class="socio-card">
                     <img src="socio_alan.png" alt="Alan Obed Fragoso Rivera, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
-                    <h3 class="socio-card-nombre word-fade-in">Alan Obed Fragoso Rivera</h3>
-                    <p class="socio-card-cargo word-fade-in">Socio fundador &middot; Abogado</p>
-                    <p class="socio-card-univ word-fade-in">Universidad Autónoma de Querétaro</p>
-                    <p class="socio-card-desc word-fade-in">
-                        Trayectoria en materia corporativa, administrativa y civil. Especialista en estrategia
-                        legal preventiva y blindaje de negocios.
-                    </p>
-                    <div class="socio-card-contacto">
-                        <a href="https://wa.me/524425827053" target="_blank" rel="noopener" aria-label="WhatsApp de Alan Fragoso"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                        <a href="mailto:alan@ferrofragoso.com" aria-label="Correo de Alan Fragoso"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                    <div class="socio-card-info">
+                        <h3 class="socio-card-nombre">Alan Obed Fragoso Rivera</h3>
+                        <p class="socio-card-cargo">Socio fundador &middot; Abogado</p>
+                        <p class="socio-card-univ">Universidad Autónoma de Querétaro</p>
+                        <p class="socio-card-desc">
+                            Trayectoria en materia corporativa, administrativa y civil. Especialista en estrategia
+                            legal preventiva y blindaje de negocios.
+                        </p>
+                        <div class="socio-card-contacto">
+                            <a href="https://wa.me/524425827053" target="_blank" rel="noopener" aria-label="WhatsApp de Alan Fragoso"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                            <a href="mailto:alan@ferrofragoso.com" aria-label="Correo de Alan Fragoso"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                        </div>
+                        <span class="socio-card-cortina" aria-hidden="true"></span>
                     </div>
                 </article>
 
-                <article class="socio-card fade-in-up delay-1">
+                <article class="socio-card">
                     <img src="socio_daniel.png" alt="Daniel Ferro Gutiérrez, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
-                    <h3 class="socio-card-nombre word-fade-in">Daniel Ferro Gutiérrez</h3>
-                    <p class="socio-card-cargo word-fade-in">Socio fundador &middot; Abogado</p>
-                    <p class="socio-card-univ word-fade-in">Universidad Autónoma de Querétaro</p>
-                    <p class="socio-card-desc word-fade-in">
-                        Especializado en derecho constitucional, contratos y protección del patrimonio.
-                        Enfocado en consultoría empresarial y reestructuración de activos.
-                    </p>
-                    <div class="socio-card-contacto">
-                        <a href="https://wa.me/524425948978" target="_blank" rel="noopener" aria-label="WhatsApp de Daniel Ferro"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                        <a href="mailto:daniel@ferrofragoso.com" aria-label="Correo de Daniel Ferro"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                    <div class="socio-card-info">
+                        <h3 class="socio-card-nombre">Daniel Ferro Gutiérrez</h3>
+                        <p class="socio-card-cargo">Socio fundador &middot; Abogado</p>
+                        <p class="socio-card-univ">Universidad Autónoma de Querétaro</p>
+                        <p class="socio-card-desc">
+                            Especializado en derecho constitucional, contratos y protección del patrimonio.
+                            Enfocado en consultoría empresarial y reestructuración de activos.
+                        </p>
+                        <div class="socio-card-contacto">
+                            <a href="https://wa.me/524425948978" target="_blank" rel="noopener" aria-label="WhatsApp de Daniel Ferro"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                            <a href="mailto:daniel@ferrofragoso.com" aria-label="Correo de Daniel Ferro"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                        </div>
+                        <span class="socio-card-cortina" aria-hidden="true"></span>
                     </div>
                 </article>
             </div>
 
-            <p class="socios-home-quote fade-in-up">&ldquo;La mejor posición jurídica posible, construida con estrategia y honestidad.&rdquo;</p>
-            <div style="text-align: center; margin-top: 1.5rem;" class="fade-in-up">
+            <div class="socios-home-cierre">
+                <p class="socios-home-quote">&ldquo;La mejor posición jurídica posible, construida con estrategia y honestidad.&rdquo;</p>
                 <a href="consulta.html" class="btn-primary">Agendar Consulta</a>
             </div>
         </div>
@@ -951,113 +594,13 @@
     </section>
 
 
-    <!-- ═══ 6. NUESTRA PROMESA ═══ -->
-    <section id="promesa" class="promesa-section" data-columna-seccion="Promesa">
-        <div class="promesa-container fade-in-up">
-            <span class="promesa-eyebrow blur-fade">NUESTRA PROMESA</span>
-            <h2 class="promesa-title blur-fade" data-bf-delay="1">Un compromiso que<br><em>no tiene letra pequeña</em></h2>
-            <div class="promesa-rule reveal-line"></div>
-            <p class="promesa-text text-blur-in">
-                Operamos como plataforma: precios públicos, procesos claros y respuestas o entregas documentales en hasta 48 horas hábiles cuando el servicio lo permite. Algunos acompañamientos tienen una duración distinta y se especifican antes de contratar. Tecnología en el proceso, abogados en las decisiones.
-            </p>
-            <!-- Firma animada (Higgsfield): la caligrafía se escribe en tiempo real. -->
-            <div class="promesa-signature-wrap">
-                <!-- preload="none": son 9.2 MB al final de la página. No hay autoplay;
-                     el IntersectionObserver de script.js lo reproduce al entrar en vista,
-                     y hasta entonces se ve el poster. Con preload="auto" se descargaba
-                     entero en cada visita aunque nadie llegara hasta aquí. -->
-                <video class="promesa-signature-video" muted playsinline preload="none"
-                       poster="signature_on_dark.png" aria-label="Firma Ferro Fragoso escribiéndose">
-                    <source src="signature_write.mp4" type="video/mp4">
-                    <img src="signature_logo.png" alt="Ferro Fragoso Caligrafía" class="promesa-signature-img" loading="lazy" decoding="async">
-                </video>
-            </div>
-            <p class="promesa-firma">— Ferro Fragoso, Estudio Jurídico</p>
-
-        </div>
-    </section>
-
-    <!-- ═══ HOME SOLUTIONS (PLANES Y PRECIOS) ═══ -->
-    <section class="home-solutions" data-columna-seccion="Soluciones" id="soluciones">
-        <div class="wrap top">
-            <h2 class="blur-fade" data-bf-delay="1">Tu operación legal,<br><em>sin una nómina fija</em>.</h2>
-            <p class="tr-reveal" data-tr-split="words">Contratos en orden, asesoría cuando decides y alertas jurídicas relevantes para tu giro.</p>
-        </div>
-
-        <div class="wrap" style="padding-top: 2rem;">
-            <div class="grid animated-group" data-ag-preset="blur-slide">
-                <!-- Plan 1: Dirección Base -->
-                <div class="plan">
-                    <div class="pname">Dirección Base</div>
-                    <div class="ptag">Para independientes y pequeñas operaciones</div>
-                    <div class="price">$1,990 <small>MXN / MES</small></div>
-                    <div class="annual">10% de descuento en servicios a la carta</div>
-                    <ul>
-                        <li>1 revisión de contrato estándar al mes</li>
-                        <li>1 consulta breve (20 min)</li>
-                        <li>Formatos base y checklist de firmas</li>
-                        <li>Respuesta en hasta 48 hrs hábiles</li>
-                    </ul>
-                    <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20Dirección%20Base" target="_blank" rel="noopener">Empezar</a>
-                </div>
-
-                <!-- Plan 2: Dirección Activa -->
-                <div class="plan">
-                    <div class="pname">Dirección Activa</div>
-                    <div class="ptag">Para negocios con contratos recurrentes</div>
-                    <div class="price">$3,490 <small>MXN / MES</small></div>
-                    <div class="annual">15% de descuento en servicios a la carta</div>
-                    <ul>
-                        <li>Hasta 3 revisiones estándar al mes</li>
-                        <li>2 consultas breves (30 min)</li>
-                        <li>Radar Legal (2 categorías)</li>
-                        <li>1 actualización semestral de plantilla</li>
-                    </ul>
-                    <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20Dirección%20Activa" target="_blank" rel="noopener">Empezar</a>
-                </div>
-
-                <!-- Plan 3: Dirección Estratégica -->
-                <div class="plan feat">
-                    <div class="ribbon">★ Más elegido</div>
-                    <div class="pname">Dirección Estratégica</div>
-                    <div class="ptag">Para PyMEs que crecen o venden B2B</div>
-                    <div class="price">$5,990 <small>MXN / MES</small></div>
-                    <div class="annual">20% de descuento en servicios a la carta</div>
-                    <ul>
-                        <li>Hasta 5 revisiones estándar al mes</li>
-                        <li>1 documento estándar nuevo al mes</li>
-                        <li>1 sesión estratégica (60 min) mensual</li>
-                        <li>Radar Legal prioritario (4 categorías)</li>
-                    </ul>
-                    <a class="btn btn-brass" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20el%20plan%20Dirección%20Estratégica" target="_blank" rel="noopener">Elegir plan</a>
-                </div>
-
-                <!-- Plan 4: Dirección Externa -->
-                <div class="plan">
-                    <div class="pname">Dirección Externa</div>
-                    <div class="ptag">Función jurídica continua externalizada</div>
-                    <div class="price"><span class="price-prefix">Desde</span>$12,900 <small>MXN / MES</small></div>
-                    <div class="annual">20% de descuento en proyectos fuera de bolsa</div>
-                    <ul>
-                        <li>Bolsa mensual de 8h de asesoría y ejecución</li>
-                        <li>Coordinación de 1 negociación contractual activa</li>
-                        <li>Reunión mensual con responsables de área</li>
-                        <li>Radar Legal 100% personalizado</li>
-                    </ul>
-                    <a class="btn btn-line" href="https://wa.me/524191239646?text=Hola,%20me%20interesa%20agendar%20un%20diagnóstico%20para%20Dirección%20Externa" target="_blank" rel="noopener">Agendar diagnóstico</a>
-                </div>
-            </div>
-
-            <p class="note tr-reveal" data-tr-split="words"><b>Sin "ilimitado" de humo:</b> precios claros y alcances definidos bajo política de uso razonable. Litigios, trámites y operaciones extraordinarias se cotizan por separado, siempre con precio cerrado antes de arrancar.</p>
-        </div>
-    </section>
+    
 
     <!-- ═══ PREGUNTAS FRECUENTES ═══ -->
     <section class="home-faq" data-columna-seccion="FAQ" id="preguntas-frecuentes">
         <div class="home-faq__inner">
             <header class="sec-head home-faq__head fade-in-up">
-                <span class="sec-eyebrow">Antes de empezar</span>
-                <h2 class="sec-title blur-fade">Preguntas<br><em>frecuentes</em></h2>
+                <h2 class="sec-title home-faq__title blur-fade">Preguntas <em>frecuentes</em></h2>
                 <p class="home-faq__intro blur-fade" data-bf-delay="1">Respuestas claras, sin letra pequeña. Si tu caso no aparece aquí, te orientamos antes de que pagues.</p>
             </header>
 
@@ -1120,153 +663,217 @@
         </div>
 
         <style>
+            /* ════════════════════════════════════════════════════════════════
+               PREGUNTAS FRECUENTES — papel crema y tinta
+               ----------------------------------------------------------------
+               Antes eran tarjetas blancas con borde, sombra y radio sobre el
+               gris de superficie: cinco cajas flotando. Aquí no hay cajas. El
+               fondo es un crema de papel, las preguntas van en la misma serif
+               que el resto de titulares y lo único que separa una de otra es
+               una regla de tinta finísima — como una hoja impresa.
+
+               Las tres decisiones que sostienen el estilo:
+
+                 · La ilustración es línea continua, no un icono relleno, y va
+                   sobre una sombra DIBUJADA (un trazo de pincel en SVG). Una
+                   sombra CSS difuminada bajo un dibujo a mano delata que el
+                   dibujo está pegado encima; el trazo pertenece al dibujo.
+
+                 · El acento latón se retira de esta sección. Sobre crema el
+                   latón se ensucia, y el diseño de referencia es estrictamente
+                   bitono: papel y tinta.
+
+                 · La tinta nunca es negro puro (#22201d): sobre un crema cálido
+                   el negro absoluto vibra y se ve más duro que la propia
+                   ilustración.
+               ════════════════════════════════════════════════════════════════ */
+
             .home-faq {
+                --faq-paper: #ffffff;
+                --faq-ink: #22201d;
+                --faq-ink-soft: #55504a;
+                --faq-rule: rgba(34, 32, 29, 0.16);
+
                 position: relative;
-                background: var(--bg-surface);
-                padding: clamp(5rem, 9vw, 8rem) 5vw;
+                background: var(--faq-paper);
+                padding: clamp(4rem, 8vw, 7rem) 5vw clamp(4.5rem, 8vw, 7rem);
                 overflow: hidden;
             }
 
-            .home-faq::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                pointer-events: none;
-                background: radial-gradient(42% 32% at 50% 0%, rgba(149, 132, 99, 0.12), transparent 70%);
-            }
+            /* El degradado de latón que había aquí se elimina: sobre el crema
+               dejaba un halo verdoso justo detrás de la ilustración. */
+            .home-faq::before { content: none; }
 
             .home-faq__inner {
                 position: relative;
-                max-width: 880px;
+                max-width: 760px;
                 margin: 0 auto;
             }
 
             .home-faq__head {
-                margin-bottom: clamp(2.5rem, 5vw, 4rem);
+                margin-bottom: clamp(2.2rem, 4.5vw, 3.4rem);
                 text-align: center;
             }
 
-            .home-faq__intro {
-                max-width: 620px;
-                margin: 1.2rem auto 0;
-                font-family: var(--font-body);
-                font-size: clamp(1rem, 1.6vw, 1.12rem);
-                line-height: 1.65;
-                color: var(--text-secondary);
+            .home-faq__title {
+                font-family: 'Newsreader', 'Source Serif 4', Georgia, serif;
+                font-optical-sizing: auto;
+                font-weight: 300;
+                font-size: clamp(2rem, 4.2vw, 3.1rem);
+                line-height: 1.06;
+                letter-spacing: -0.012em;
+                color: var(--faq-ink);
+                margin: 0.7rem 0 0;
+                text-wrap: balance;
             }
 
+            /* En bitono el énfasis lo da la cursiva, no un color de acento. */
+            .home-faq__title em {
+                font-style: italic;
+                color: var(--faq-ink);
+            }
+
+            .home-faq .sec-eyebrow {
+                color: var(--faq-ink-soft);
+                opacity: 0.75;
+                margin-bottom: 0;
+            }
+
+            .home-faq__intro {
+                max-width: 560px;
+                margin: 1.1rem auto 0;
+                font-family: 'Newsreader', 'Source Serif 4', Georgia, serif;
+                font-size: clamp(1.02rem, 1.6vw, 1.15rem);
+                line-height: 1.6;
+                color: var(--faq-ink-soft);
+            }
+
+            /* ── Acordeón ───────────────────────────────────────────────── */
+
             .home-faq__list {
-                display: grid;
-                gap: 0.85rem;
+                display: block;
+                border-top: 1px solid var(--faq-rule);
             }
 
             .home-faq__item {
-                background: rgba(255, 255, 255, 0.88);
-                border: 1px solid var(--stone-200);
-                border-radius: 16px;
-                box-shadow: 0 10px 30px rgba(26, 25, 23, 0.04);
+                background: none;
+                border: 0;
+                border-bottom: 1px solid var(--faq-rule);
+                border-radius: 0;
+                box-shadow: none;
                 overflow: hidden;
-                transition: border-color 0.3s var(--ease-premium), box-shadow 0.3s var(--ease-premium), transform 0.3s var(--ease-premium);
+                transition: none;
             }
 
-            .home-faq__item:hover {
-                border-color: rgba(149, 132, 99, 0.45);
-                box-shadow: 0 16px 38px rgba(26, 25, 23, 0.07);
-                transform: translateY(-1px);
-            }
+            .home-faq__item:hover { transform: none; box-shadow: none; }
 
             .home-faq__question {
                 display: flex;
-                align-items: center;
+                align-items: baseline;
                 justify-content: space-between;
-                gap: 1.25rem;
-                padding: 1.25rem 1.35rem;
+                gap: 1.5rem;
+                padding: 1.15rem 0.2rem;
                 cursor: pointer;
                 list-style: none;
-                font-family: var(--font-body);
-                font-size: clamp(1rem, 1.7vw, 1.1rem);
-                font-weight: 600;
-                line-height: 1.35;
-                color: var(--text-primary);
+                font-family: 'Newsreader', 'Source Serif 4', Georgia, serif;
+                font-optical-sizing: auto;
+                font-size: clamp(1.08rem, 1.9vw, 1.32rem);
+                font-weight: 400;
+                line-height: 1.3;
                 letter-spacing: -0.01em;
+                color: var(--faq-ink);
+                text-align: left;
+                transition: opacity 0.25s ease;
             }
+
+            .home-faq__question:hover { opacity: 0.62; }
 
             .home-faq__question::-webkit-details-marker { display: none; }
 
             .home-faq__question:focus-visible {
-                outline: 2px solid var(--accent);
+                outline: 2px solid var(--faq-ink);
                 outline-offset: 3px;
             }
 
+            /* El signo pierde el círculo de latón: dos trazos de tinta, del
+               grosor de las reglas, que se cruzan al abrir. */
             .home-faq__icon {
+                position: relative;
                 flex: 0 0 auto;
-                width: 2rem;
-                height: 2rem;
-                border: 1px solid rgba(149, 132, 99, 0.35);
-                border-radius: 999px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--accent);
-                transition: transform 0.3s var(--ease-premium), background 0.3s var(--ease-premium), color 0.3s var(--ease-premium);
+                width: 15px;
+                height: 15px;
+                align-self: center;
+                border: 0;
+                border-radius: 0;
+                background: none;
+                color: var(--faq-ink);
+                transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             }
 
-            .home-faq__icon::before {
-                content: "+";
-                font-size: 1.25rem;
-                line-height: 1;
+            .home-faq__icon::before,
+            .home-faq__icon::after {
+                content: "";
+                position: absolute;
+                inset: 50% 0 auto 0;
+                height: 1.5px;
+                background: currentColor;
+                transform: translateY(-50%);
             }
+            .home-faq__icon::after { transform: translateY(-50%) rotate(90deg); }
 
-            .home-faq__item[open] { border-color: rgba(149, 132, 99, 0.55); }
+            .home-faq__item[open] { border-color: var(--faq-rule); }
 
             .home-faq__item[open] .home-faq__icon {
-                transform: rotate(45deg);
-                background: var(--accent);
-                color: var(--ivory);
+                transform: rotate(135deg);
+                background: none;
+                color: var(--faq-ink);
             }
 
-            .home-faq__answer { padding: 0 1.35rem 1.35rem; }
+            .home-faq__answer { padding: 0 2.6rem 1.5rem 0.2rem; }
 
             .home-faq__answer p {
                 margin: 0;
-                font-family: var(--font-body);
-                font-size: 0.96rem;
-                line-height: 1.75;
-                color: var(--text-secondary);
+                font-family: 'Newsreader', 'Source Serif 4', Georgia, serif;
+                font-size: 1.02rem;
+                line-height: 1.72;
+                color: var(--faq-ink-soft);
+                max-width: 62ch;
             }
 
+            /* ── Cierre ─────────────────────────────────────────────────── */
+
             .home-faq__cta {
-                margin-top: 2.2rem;
+                margin-top: 2.4rem;
                 display: flex;
-                align-items: center;
+                align-items: baseline;
                 justify-content: center;
-                gap: 0.9rem;
+                gap: 0.6rem;
                 flex-wrap: wrap;
                 text-align: center;
-                font-family: var(--font-body);
-                color: var(--text-secondary);
-                font-size: 0.95rem;
+                font-family: 'Newsreader', 'Source Serif 4', Georgia, serif;
+                color: var(--faq-ink-soft);
+                font-size: 1.05rem;
             }
 
             .home-faq__cta p { margin: 0; }
 
             .home-faq__cta a {
-                color: var(--accent);
-                font-weight: 600;
-                border-bottom: 1px solid rgba(149, 132, 99, 0.4);
+                color: var(--faq-ink);
+                font-weight: 500;
+                border-bottom: 1px solid var(--faq-ink);
                 padding-bottom: 2px;
-                transition: color 0.2s ease, border-color 0.2s ease;
+                transition: opacity 0.2s ease;
             }
 
             .home-faq__cta a:hover {
-                color: var(--carbon);
-                border-bottom-color: var(--carbon);
+                color: var(--faq-ink);
+                border-bottom-color: var(--faq-ink);
+                opacity: 0.6;
             }
 
             @media (max-width: 640px) {
-                .home-faq__question { padding: 1.1rem 1rem; }
-                .home-faq__answer { padding: 0 1rem 1.1rem; }
-                .home-faq__icon { width: 1.8rem; height: 1.8rem; }
+                .home-faq__question { padding: 1rem 0.1rem; gap: 1rem; }
+                .home-faq__answer { padding: 0 1.6rem 1.2rem 0.1rem; }
             }
         </style>
     </section>
@@ -1291,7 +898,7 @@
                 <a href="terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
                 <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
                 <a href="radar/index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Blog</a>
-                <a href="https://wa.me/524191239646" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">WhatsApp</a>
+                <a href="solicitud.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Contáctanos</a>
             </div>
 
             <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 600px; margin: 2rem auto 0; text-align: center; opacity: 0.7;">
@@ -1311,7 +918,7 @@
 
     <!-- ═══ BOTONES FLOTANTES LATERALES ═══ -->
     <div class="fixed-sidebar-contact">
-        <a href="https://wa.me/524191239646" class="sidebar-btn sidebar-wa" target="_blank" aria-label="WhatsApp" rel="noopener"><span>WhatsApp</span></a>
+        <a href="solicitud.html" class="sidebar-btn sidebar-contact" aria-label="Contáctanos"><span>Contáctanos</span></a>
         <a href="mailto:contacto@ferrofragoso.com" class="sidebar-btn sidebar-email" aria-label="Enviar Correo"><span>Email</span></a>
     </div>
 
@@ -1340,15 +947,15 @@
             "https://www.instagram.com/ferrofragosoestudiojuridico/"
         ],
         "makesOffer": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Registro de marca" }, "price": "6990", "priceCurrency": "MXN" },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Registro de marca" }, "price": "6916", "priceCurrency": "MXN" },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Revisión de contrato" }, "price": "490", "priceCurrency": "MXN" },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consulta estratégica" }, "price": "1290", "priceCurrency": "MXN" }
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consulta estratégica" }, "price": "1490", "priceCurrency": "MXN" }
         ]
     }
     </script>
 
     <!-- Scripts -->
-    <script src="script.js?v=13"></script>
-    <script src="precios.js?v=10"></script>
+    <script src="script.js?v=22"></script>
+    <script src="precios.js?v=20"></script>
     <script src="analytics.js?v=11"></script>
 </body></html>

@@ -1,0 +1,26 @@
+{
+  "name": "Ferro Fragoso, Estudio Jurídico",
+  "short_name": "Ferro Fragoso",
+  "description": "Asesoría legal con precio público para personas, familias y negocios.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fdfdfc",
+  "theme_color": "#fdfdfc",
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon-64.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
