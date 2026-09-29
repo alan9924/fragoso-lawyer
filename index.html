@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="styles.css?v=15">
     <link rel="stylesheet" href="home-new.css?v=52">
     <link rel="stylesheet" href="columna.css?v=33">
-    <link rel="stylesheet" href="folder-tabs.css">
+    <link rel="stylesheet" href="folder-tabs.css?v=2">
     <link rel="stylesheet" href="mobile-app.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -253,60 +253,41 @@
 
     <!-- ═══ FOLDER TABS ═══ -->
     <section class="folder-tabs-section">
-        <div class="folder-container" data-active="civil">
+        <div class="folder-container" data-active="negocios">
             <div class="folder-tabs" role="tablist" aria-label="Áreas jurídicas">
-                <button class="folder-tab active" id="tab-civil" role="tab" aria-selected="true" aria-controls="panel-civil" tabindex="0" data-tab="civil"><span>Civil</span></button>
-                <button class="folder-tab" id="tab-familiar" role="tab" aria-selected="false" aria-controls="panel-familiar" tabindex="-1" data-tab="familiar"><span>Familiar</span></button>
-                <button class="folder-tab" id="tab-inmobiliario" role="tab" aria-selected="false" aria-controls="panel-inmobiliario" tabindex="-1" data-tab="inmobiliario"><span>Inmobiliario</span></button>
+                <button class="folder-tab active" id="tab-negocios" role="tab" aria-selected="true" aria-controls="panel-negocios" tabindex="0" data-tab="negocios"><span>Negocios</span></button>
+                <button class="folder-tab" id="tab-franquicias" role="tab" aria-selected="false" aria-controls="panel-franquicias" tabindex="-1" data-tab="franquicias"><span>Franquicias</span></button>
+                <button class="folder-tab" id="tab-propiedad" role="tab" aria-selected="false" aria-controls="panel-propiedad" tabindex="-1" data-tab="propiedad"><span>Propiedad intelectual</span></button>
             </div>
             <div class="folder-content-area">
-                <div class="folder-panel active" id="panel-civil" role="tabpanel" aria-labelledby="tab-civil" tabindex="0" aria-hidden="false">
+                <div class="folder-panel active" id="panel-negocios" role="tabpanel" aria-labelledby="tab-negocios" tabindex="0" aria-hidden="false">
                     <div class="panel-header">
                         <span class="left">01</span>
                         <span class="right">Ferro Fragoso Estudio Jurídico</span>
                     </div>
-                    <h2 class="panel-title">¿Problemas con<br>arrendamientos<br>y contratos?</h2>
+                    <h2 class="panel-title">Tu negocio en orden,<br>sin abogado<br>de planta.</h2>
                     <div class="panel-cta-wrap">
-                        <a href="civil.html" class="panel-cta">Empezar</a>
+                        <a href="empresa.html" class="panel-cta">Empezar</a>
                     </div>
                 </div>
-                <div class="folder-panel" id="panel-familiar" role="tabpanel" aria-labelledby="tab-familiar" tabindex="0" aria-hidden="true">
+                <div class="folder-panel" id="panel-franquicias" role="tabpanel" aria-labelledby="tab-franquicias" tabindex="0" aria-hidden="true">
                     <div class="panel-header">
                         <span class="left">02</span>
                         <span class="right">Ferro Fragoso Estudio Jurídico</span>
                     </div>
-                    <h2 class="panel-title">Divorcios, pensiones<br>y sucesiones con<br>sensibilidad.</h2>
+                    <h2 class="panel-title">¿Tu negocio<br>puede crecer<br>como franquicia?</h2>
                     <div class="panel-cta-wrap">
-                        <a href="familiar.html" class="panel-cta">Empezar</a>
+                        <a href="propiedad-intelectual.html#diagnostico-franquicia" class="panel-cta">Empezar</a>
                     </div>
                 </div>
-                <div class="folder-panel" id="panel-inmobiliario" role="tabpanel" aria-labelledby="tab-inmobiliario" tabindex="0" aria-hidden="true">
+                <div class="folder-panel" id="panel-propiedad" role="tabpanel" aria-labelledby="tab-propiedad" tabindex="0" aria-hidden="true">
                     <div class="panel-header">
                         <span class="left">03</span>
                         <span class="right">Ferro Fragoso Estudio Jurídico</span>
                     </div>
-                    <h2 class="panel-title" style="font-size: 2.2rem; line-height: 1.1; margin-bottom: 1rem;">El dinero se mueve antes que los papeles.<br>Nosotros lo cambiamos de orden.</h2>
-                    <p class="panel-subtitle" style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem;">Antes de comprar, rentar o firmar: alguien de tu lado revisa lo que nadie más te va a explicar.</p>
-
-                    <ul class="panel-preview-list" style="list-style: none; padding: 0; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; font-size: 1.05rem;">
-                        <li style="display: flex; gap: 0.75rem; align-items: baseline;">
-                            <i class="fas fa-check" style="font-size: 0.9rem; opacity: 0.7;"></i>
-                            <span><strong>¿Ya te dejaron de contestar?</strong> &rarr; Hablamos por ti.</span>
-                        </li>
-                        <li style="display: flex; gap: 0.75rem; align-items: baseline;">
-                            <i class="fas fa-check" style="font-size: 0.9rem; opacity: 0.7;"></i>
-                            <span><strong>¿No sabes si es real?</strong> &rarr; Lo investigamos antes de que pagues.</span>
-                        </li>
-                        <li style="display: flex; gap: 0.75rem; align-items: baseline;">
-                            <i class="fas fa-check" style="font-size: 0.9rem; opacity: 0.7;"></i>
-                            <span><strong>¿Ya te pasaron el contrato?</strong> &rarr; Lo leemos antes de que firmes.</span>
-                        </li>
-                    </ul>
-
-                    <div class="panel-price-anchor" style="font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">Llamada de filtro sin costo</div>
-
+                    <h2 class="panel-title">Tu marca, tu obra<br>y tus ideas,<br>protegidas.</h2>
                     <div class="panel-cta-wrap">
-                        <a href="inmobiliario.html" class="panel-cta">Ver cómo te protegemos</a>
+                        <a href="propiedad-intelectual.html" class="panel-cta">Empezar</a>
                     </div>
                 </div>
             </div>
