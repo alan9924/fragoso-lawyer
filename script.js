@@ -69,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
        página ya llega desplazada (volver atrás, un #ancla), no se bloquea:
        dejaría al visitante atrapado a media página. */
     let liberarHero = () => {};
-    if (bajar && window.scrollY < 10 && !location.hash) {
+    const panelHero = heroCarta ? heroCarta.querySelector('.hero-cartel-panel') : null;
+    const heroCabe = () => !panelHero || panelHero.scrollHeight <= window.innerHeight + 2;
+    if (bajar && window.scrollY < 10 && !location.hash && heroCabe()) {
         const raiz = document.documentElement;
         const TECLAS = [' ', 'PageDown', 'PageUp', 'ArrowDown', 'ArrowUp', 'End', 'Home'];
         const frenar = (e) => e.preventDefault();
@@ -85,7 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('touchmove', frenar, { passive: false });
         window.addEventListener('keydown', frenarTecla);
         window.addEventListener('scroll', regresar);
+        // Si al girar el teléfono el hero deja de caber, se suelta el bloqueo.
+        const alRedimensionar = () => { if (!heroCabe()) liberarHero(); };
+        window.addEventListener('resize', alRedimensionar);
         liberarHero = () => {
+            window.removeEventListener('resize', alRedimensionar);
             raiz.classList.remove('hero-fijo');
             window.removeEventListener('wheel', frenar);
             window.removeEventListener('touchmove', frenar);
@@ -107,32 +113,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* La firma se escribe cuando la carta termina, y se vuelve a firmar cada
        vez que el hero reaparece en pantalla. */
-    const firmaVideo = heroCarta ? heroCarta.querySelector('.hero-carta-firma-video') : null;
+    const firmaImg = heroCarta ? heroCarta.querySelector('.hero-carta-firma-img') : null;
     let cartaTerminada = false;
     const firmar = () => {
-        if (!firmaVideo) return;
-        try { firmaVideo.currentTime = 0; } catch (e) {}
-        const p = firmaVideo.play();
-        if (p && p.catch) p.catch(() => {});
+        if (!firmaImg) return;
+        firmaImg.classList.remove('is-firmada');
+        void firmaImg.offsetWidth; // reinicia la transición para volver a firmar
+        firmaImg.classList.add('is-firmada');
     };
-    if (firmaVideo) {
-        firmaVideo.addEventListener('error', () => {
-            const img = document.createElement('img');
-            img.src = 'firma_ff_hero.png';
-            img.alt = 'Firma de Ferro Fragoso';
-            firmaVideo.replaceWith(img);
-        }, true);
+    if (firmaImg) {
+        if (!sinMovimiento) heroCarta.classList.add('firma-pendiente');
         if (sinMovimiento) {
-            // Sin animación: se muestra la firma ya terminada.
-            firmaVideo.addEventListener('loadedmetadata', () => {
-                firmaVideo.currentTime = Math.max(0, firmaVideo.duration - 0.05);
-            });
+            firmaImg.classList.add('is-firmada');
         } else {
             new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && cartaTerminada) firmar();
                 });
-            }, { threshold: 0.4 }).observe(firmaVideo);
+            }, { threshold: 0.4 }).observe(firmaImg);
         }
     }
 
