@@ -30,7 +30,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css?v=15">
     <link rel="stylesheet" href="home-new.css?v=52">
-    <link rel="stylesheet" href="columna.css?v=33">
+    <link rel="stylesheet" href="columna.css?v=34">
     <link rel="stylesheet" href="folder-tabs.css?v=2">
     <link rel="stylesheet" href="mobile-app.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -165,11 +165,13 @@
           <p class="hero-carta-acento" data-maquina>sin letra pequeña</p>
         </div>
 
-        <!-- PNG con alfa en vez del vídeo: Safari de iPhone no funde el vídeo
-             con el azul y dejaba ver su fondo oscuro. El trazo se revela con
-             un barrido al terminar la carta (script.js + columna.css). -->
+        <!-- Safari de iPhone no funde el vídeo con el azul y dejaba ver su
+             fondo oscuro. La escritura original va como tira de cuadros con
+             alfa (firma_trazo_sprite.webp: 113 cuadros de 460×185, 10 por fila)
+             que script.js dibuja en el lienzo; el PNG es la firma terminada. -->
         <div class="hero-carta-firma">
-          <img class="hero-carta-firma-img" src="firma_ff_trazo.png" width="804" height="328" alt="Firma de Ferro Fragoso" decoding="async">
+          <img class="hero-carta-firma-img" src="firma_ff_trazo.png" width="520" height="209" alt="Firma de Ferro Fragoso" decoding="async">
+          <canvas class="hero-carta-firma-lienzo" width="460" height="185" aria-hidden="true"></canvas>
         </div>
 
         <div class="hero-carta-cta">
@@ -933,7 +935,7 @@
     </script>
 
     <!-- Scripts -->
-    <script src="script.js?v=23"></script>
+    <script src="script.js?v=24"></script>
     <script src="precios.js?v=20"></script>
     <script src="analytics.js?v=11"></script>
 </body></html>

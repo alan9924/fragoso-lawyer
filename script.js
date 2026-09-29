@@ -114,8 +114,43 @@ document.addEventListener('DOMContentLoaded', () => {
     /* La firma se escribe cuando la carta termina, y se vuelve a firmar cada
        vez que el hero reaparece en pantalla. */
     const firmaImg = heroCarta ? heroCarta.querySelector('.hero-carta-firma-img') : null;
+    const lienzo = heroCarta ? heroCarta.querySelector('.hero-carta-firma-lienzo') : null;
     let cartaTerminada = false;
+
+    // Tira de cuadros de la escritura original (ver comentario en index.html).
+    const TIRA = { src: 'firma_trazo_sprite.webp', cuadros: 113, porFila: 10, ancho: 460, alto: 185, fps: 24 };
+    const tira = new Image();
+    let tiraLista = false;
+    let cuadroRaf = 0;
+    const dibujarCuadro = (k) => {
+        const ctx = lienzo.getContext('2d');
+        ctx.clearRect(0, 0, TIRA.ancho, TIRA.alto);
+        ctx.drawImage(tira, (k % TIRA.porFila) * TIRA.ancho, Math.floor(k / TIRA.porFila) * TIRA.alto,
+            TIRA.ancho, TIRA.alto, 0, 0, TIRA.ancho, TIRA.alto);
+    };
+    const escribirFirma = () => {
+        cancelAnimationFrame(cuadroRaf);
+        let inicio = null;
+        const paso = (t) => {
+            if (inicio === null) inicio = t;
+            const k = Math.min(TIRA.cuadros - 1, Math.floor((t - inicio) / 1000 * TIRA.fps));
+            dibujarCuadro(k);
+            if (k < TIRA.cuadros - 1) cuadroRaf = requestAnimationFrame(paso);
+        };
+        cuadroRaf = requestAnimationFrame(paso);
+    };
+    if (lienzo && !sinMovimiento) {
+        tira.onload = () => {
+            // Si la carta ya terminó, la firma ya se reveló con el PNG: no se cambia a media vista.
+            if (cartaTerminada) return;
+            tiraLista = true;
+            heroCarta.classList.add('firma-animada');
+        };
+        tira.src = TIRA.src;
+    }
+
     const firmar = () => {
+        if (tiraLista) { escribirFirma(); return; }
         if (!firmaImg) return;
         firmaImg.classList.remove('is-firmada');
         void firmaImg.offsetWidth; // reinicia la transición para volver a firmar

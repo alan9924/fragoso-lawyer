@@ -390,6 +390,18 @@ html.hero-fijo body { overflow: hidden; overscroll-behavior: none; }
   clip-path: inset(0 100% 0 0);
   transition: none;
 }
+/* Con la tira de cuadros cargada, la escritura original se dibuja en el
+   lienzo y el PNG solo guarda el espacio. */
+.hero-carta-firma { position: relative; }
+.hero-carta-firma-lienzo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.firma-animada .hero-carta-firma-lienzo { display: block; }
+.firma-animada .hero-carta-firma-img { visibility: hidden; }
 
 /* ── Las dos salidas ── */
 .hero-carta-cta {
