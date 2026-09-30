@@ -139,6 +139,15 @@ const FF_SERVICIOS = {
     nota: 'Redactado desde cero: cuestionario, redacción y una ronda de ajustes.',
     pago: '',
   },
+  /* Combo para freelancers: existía en independiente.html ($3,990 + IVA) sin
+     entrada aquí, así que el selector de solicitud no lo ofrecía y el
+     validador no lo vigilaba. */
+  paquete_independiente: {
+    nombre: 'Paquete Profesional Independiente',
+    precio: 3990, unidad: 'MXN + IVA', desde: true, publico: 'personas',
+    nota: 'Contrato a tu medida + NDA o cláusula de propiedad intelectual + sesión de implementación con un socio.',
+    pago: '',
+  },
 
   /* — Asesoría — */
   /* Escalera de asesoría en tres peldaños, de menor a mayor compromiso:
@@ -736,6 +745,10 @@ const FF_REQUISITOS = {
   revision_estrategica: {
     docs: [FF_REQ_COMUN.contrato, 'Anexos, cartas de intención o versiones anteriores', 'Qué quieres lograr en la negociación y qué no estás dispuesto a ceder', 'Contexto de la relación con la otra parte'],
     plazo: 'Reporte con postura de negociación en 48–72 h hábiles.',
+  },
+  paquete_independiente: {
+    docs: ['Descripción de tus servicios y a quién le cobras', 'Plantillas o contratos que usas hoy, si existen', 'Qué quieres proteger (entregables, código, marca, know-how)'],
+    plazo: 'Paquete listo en 5–7 días hábiles desde que recibimos tu información.',
   },
   contrato_medida: {
     docs: ['Nombre, RFC y domicilio de las partes', 'Qué se contrata (objeto), monto y forma de pago', 'Plazo, entregables y fechas clave', 'Cláusulas que quieras incluir (confidencialidad, penalizaciones, exclusividad)'],
