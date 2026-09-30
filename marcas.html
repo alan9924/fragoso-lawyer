@@ -498,6 +498,12 @@
             line-height: 1.4;
             max-width: 200px;
         }
+        .oh-actions-link {
+            color: #2e2c2a;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
 
         .orbit-hero-right {
             width: 50%;
@@ -798,6 +804,33 @@
 
     <!-- ═══ EDITORIAL LAYOUT ═══ -->
     
+    <!-- La portada ocupa la pantalla; el resto vive en marcas-paquetes.html. -->
+    <style>
+        .orbit-hero-section { min-height: 100svh; box-sizing: border-box; }
+        /* En el teléfono texto y órbitas no caben juntos: las órbitas pasan
+           detrás del texto, tenues, y la portada entra en una pantalla. */
+        @media (max-width: 900px) {
+            .orbit-hero-section {
+                position: relative;
+                overflow: hidden;
+                margin-top: 0;
+                margin-bottom: 0;
+                padding-top: calc(88px + 1rem);
+                display: flex;
+                align-items: center;
+            }
+            .orbit-hero-left { position: relative; z-index: 1; }
+            .orbit-hero-right {
+                position: absolute;
+                right: -38%;
+                bottom: -6%;
+                margin: 0;
+                opacity: .16;
+                pointer-events: none;
+                z-index: 0;
+            }
+        }
+    </style>
     <main class="orbit-hero-section">
         <!-- Left side: Heading and Text -->
         <div class="orbit-hero-left">
@@ -809,10 +842,7 @@
             <div class="oh-fine-print">Diagnóstico gratuito · 2 minutos · no pedimos datos de tu empresa</div>
             <div class="oh-actions">
                 <a href="marca-diagnostico.html" class="oh-btn">Evaluar mi marca gratis</a>
-                <div class="oh-actions-text">
-                    Un solo CTA importa aquí:<br>
-                    saber si tu marca sí se puede registrar.
-                </div>
+                <a href="marcas-paquetes.html" class="oh-actions-text oh-actions-link">Ver paquetes, precios y proceso →</a>
             </div>
         </div>
 
@@ -852,549 +882,6 @@
             </div>
         </div>
     </main>
-
-
-    
-    <!-- NUEVAS SECCIONES: CHECKLIST Y TIMELINE -->
-    
-    <!-- Checklist / Geometric Cards Design -->
-    <style>
-        .marca-checklist-section {
-            background-color: var(--bg-surface, #f8f6f1);
-            padding: 6rem 24px;
-        }
-        .mc-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .mc-new-card {
-            background-color: #ffffff;
-            border-radius: 6px;
-            padding: 3.5rem 2.5rem 2.5rem 2.5rem;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-        }
-        .mc-new-card-check {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            width: 32px;
-            height: 32px;
-            background: #14b8a6;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
-        }
-        .mc-new-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-        }
-        .mc-icon-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin-bottom: 4rem;
-            height: 100px;
-        }
-        .mc-icon-wrapper svg {
-            width: 90px;
-            height: 90px;
-            stroke: #1a1917;
-            stroke-width: 1.5;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        .mc-card-title {
-            font-family: var(--font-body);
-            font-size: 1.25rem;
-            color: #111;
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-        }
-        .mc-card-desc {
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-            font-size: 0.75rem;
-            color: #555;
-            line-height: 1.6;
-            margin: 0;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-        }
-
-        .animated-title {
-            font-family: var(--font-heading);
-            font-size: clamp(2.2rem, 4vw, 3.2rem);
-            font-weight: 400;
-            text-align: center;
-            background: linear-gradient(to right, #111 20%, #b59f72 40%, #b59f72 60%, #111 80%);
-            background-size: 200% auto;
-            color: #111;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
-        }
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
-        }
-    </style>
-
-    <section class="marca-checklist-section">
-        <div style="max-width: 1100px; margin: 0 auto 4rem auto; text-align: center;">
-            <h2 class="animated-title blur-fade">Diagnóstico gratuito en 2 minutos</h2>
-        </div>
-        <div class="mc-grid">
-            
-            <!-- Item 1 -->
-            <div class="mc-new-card">
-                <div class="mc-new-card-check"><i class="fa-solid fa-check"></i></div>
-                <div class="mc-icon-wrapper" style="justify-content: center;">
-                    <svg viewBox="0 0 100 100">
-                        <!-- Concentric open circles (Mindful Meditation style) -->
-                        <path d="M 35,65 A 22,22 0 1,1 65,65" />
-                        <path d="M 27,73 A 33,33 0 1,1 73,73" />
-                        <path d="M 19,81 A 44,44 0 1,1 81,81" />
-                    </svg>
-                </div>
-                <h3 class="mc-card-title">Registrabilidad real</h3>
-                <p class="mc-card-desc">Detectamos si tu nombre es distintivo, descriptivo, geográfico o confundible con marcas ya registradas. Si nace débil, te decimos cómo fortalecerla antes de cobrarte.</p>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="mc-new-card">
-                <div class="mc-new-card-check"><i class="fa-solid fa-check"></i></div>
-                <div class="mc-icon-wrapper" style="justify-content: center;">
-                    <svg viewBox="0 0 100 100">
-                        <!-- Shifted rotated squares (Intentional Movement style) -->
-                        <rect x="15" y="25" width="45" height="45" />
-                        <polygon points="45,30 75,26 79,56 49,60" />
-                        <polygon points="65,40 85,36 89,56 69,60" />
-                    </svg>
-                </div>
-                <h3 class="mc-card-title">Clase y alcance</h3>
-                <p class="mc-card-desc">Traducimos tu giro a la clasificación de Niza correcta y te decimos si una clase basta o si tu operación necesita protección adicional.</p>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="mc-new-card">
-                <div class="mc-new-card-check"><i class="fa-solid fa-check"></i></div>
-                <div class="mc-icon-wrapper" style="justify-content: center;">
-                    <svg viewBox="0 0 100 100">
-                        <!-- Wireframe globe (Mind + Body style) -->
-                        <circle cx="50" cy="50" r="40" />
-                        <ellipse cx="50" cy="50" rx="40" ry="12" />
-                        <ellipse cx="50" cy="50" rx="40" ry="6" transform="rotate(30 50 50)" />
-                        <ellipse cx="50" cy="50" rx="40" ry="25" transform="rotate(-20 50 50)" />
-                    </svg>
-                </div>
-                <h3 class="mc-card-title">Ruta antes de pagar</h3>
-                <p class="mc-card-desc">Sales con una recomendación clara: no registrar todavía, ajustar el signo, o elegir Esencial, Protegido o Marca 360 con precio cerrado.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <main class="editorial-container" style="min-height:auto; padding-top:4rem;">
-
-        <!-- Explicación de las dos etapas. Va arriba y a todo lo ancho para que
-             las tres tarjetas queden en una sola fila comparable. -->
-        <div class="ed-intro">
-            <div>
-                <h2>Elige el nivel de protección, no letra pequeña.</h2>
-                <p><b>Primero evalúa gratis.</b> Si tu marca es viable, eliges paquete y pagas con el precio ya cerrado por clase. Si no es viable, te decimos qué ajustar antes de gastar.</p>
-                <p>Los tres paquetes incluyen presentación y seguimiento ante el IMPI. La diferencia está en el dictamen, la defensa incluida y la vigilancia posterior.</p>
-            </div>
-            <div>
-                <p class="ed-cerrado"><b>Prueba de transparencia:</b> derechos IMPI por clase <b>$3,126.40</b> y honorarios netos por separado. Fuente oficial: <a href="https://www.gob.mx/impi" target="_blank" rel="noopener">gob.mx/IMPI</a>.</p>
-                <p class="ed-nota">Precio total por clase, IVA incluido. Pago con tarjeta, transferencia SPEI o a meses. Si el IMPI actualiza su tarifario, te lo mostramos antes de pagar.</p>
-            </div>
-        </div>
-
-        <!-- Columns at Bottom -->
-        <div class="ed-bottom-content">
-            <div class="ed-col">
-                <p class="ed-etapa">Por clase · IVA incluido</p>
-                <div class="ed-price">$6,916 <span style="font-size:0.5em;">MXN</span></div>
-                <p style="font-weight: 600; color:#111;">ESENCIAL</p>
-                <p class="ed-desglose">
-                    <span>Honorarios netos</span><b>$3,790</b><br>
-                    <span>Derechos IMPI incluidos</span><b>$3,126.40</b>
-                </p>
-                <p>Dictamen de registrabilidad básico (1 clase), presentación y seguimiento del expediente hasta la resolución del IMPI.</p>
-                <p class="ed-alcance">No incluye respuesta a objeción de fondo; si aparece, se cotiza aparte antes de actuar. Incluye recordatorio de declaración de uso.</p>
-                <a href="solicitud.html?servicio=marca_esencial&detalle=Ya%20evalu%C3%A9%20mi%20marca%20y%20quiero%20iniciar%20el%20paquete%20Esencial.%20Antes%20de%20pagar%20tengo%20a%20la%20mano%3A%20nombre%20de%20la%20marca%2C%20logotipo%20si%20aplica%2C%20giro%20y%20productos%20o%20servicios%2C%20titular%20y%20RFC%2C%20domicilio%20y%20correo%2C%20y%20fecha%20de%20primer%20uso."
-                   target="_blank" rel="noopener" class="ed-btn"
-                   data-mp-link="PENDIENTE:marca-esencial-6916" data-producto="Marca Esencial">Elegir Esencial</a>
-            </div>
-
-            <div class="ed-col ed-col--destacada">
-                <p class="ed-etapa">Por clase · el más elegido</p>
-                <div class="ed-price">$8,916 <span style="font-size:0.5em;">MXN</span></div>
-                <p style="font-weight: 600; color:#111;">PROTEGIDO ⭐</p>
-                <p class="ed-desglose">
-                    <span>Honorarios netos</span><b>$5,790</b><br>
-                    <span>Derechos IMPI incluidos</span><b>$3,126.40</b>
-                </p>
-                <p>Dictamen estratégico (hasta 2 clases + 1 alternativa), presentación y seguimiento, con 1 respuesta a objeción de fondo incluida.</p>
-                <p class="ed-alcance"><b>Garantía:</b> si el dictamen fue viable y el IMPI niega la marca, devolvemos honorarios o presentamos una alternativa sin volver a cobrarlos. Incluye recordatorio de declaración de uso.</p>
-                <a href="solicitud.html?servicio=marca_protegida&detalle=Ya%20evalu%C3%A9%20mi%20marca%20y%20quiero%20iniciar%20el%20paquete%20Protegido.%20Antes%20de%20pagar%20tengo%20a%20la%20mano%3A%20nombre%20de%20la%20marca%2C%20logotipo%20si%20aplica%2C%20giro%20y%20productos%20o%20servicios%2C%20titular%20y%20RFC%2C%20domicilio%20y%20correo%2C%20y%20fecha%20de%20primer%20uso."
-                   target="_blank" rel="noopener" class="ed-btn"
-                   data-mp-link="PENDIENTE:marca-protegido-8916" data-producto="Marca Protegido">Elegir Protegido</a>
-            </div>
-
-            <div class="ed-col">
-                <p class="ed-etapa">Por clase · protección completa</p>
-                <div class="ed-price">$11,900 <span style="font-size:0.5em;">MXN</span></div>
-                <p style="font-weight: 600; color:#111;">MARCA 360</p>
-                <p class="ed-desglose">
-                    <span>Honorarios netos</span><b>$8,774</b><br>
-                    <span>Derechos IMPI incluidos</span><b>$3,126.40</b>
-                </p>
-                <p>Dictamen completo con plan de clases, presentación y seguimiento, 1 objeción de fondo incluida, identidad digital y vigilancia de marca por 12 meses.</p>
-                <p class="ed-alcance">Incluye la garantía de Protegido, revisión de dominio y redes, y aviso si aparece una solicitud conflictiva. La defensa por oposición de tercero se cotiza aparte.</p>
-                <a href="solicitud.html?servicio=marca_360&detalle=Ya%20evalu%C3%A9%20mi%20marca%20y%20quiero%20iniciar%20el%20paquete%20Marca%20360.%20Antes%20de%20pagar%20tengo%20a%20la%20mano%3A%20nombre%20de%20la%20marca%2C%20logotipo%20si%20aplica%2C%20giro%20y%20productos%20o%20servicios%2C%20titular%20y%20RFC%2C%20domicilio%20y%20correo%2C%20y%20fecha%20de%20primer%20uso."
-                   target="_blank" rel="noopener" class="ed-btn"
-                   data-mp-link="PENDIENTE:marca-360-11900" data-producto="Marca 360">Elegir Marca 360</a>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- Circular Timeline -->
-    <section class="circular-timeline-section">
-        <div class="ct-container" style="display: flex; align-items: center; justify-content: space-between;">
-            
-            <!-- Left side: Title -->
-            <div style="flex: 0 0 35%; position: relative; z-index: 20; padding: 0 20px; text-align: left;">
-                <h2 class="animated-title blur-fade" style="margin: 0; font-family: var(--serif); color: var(--brass-deep); font-weight: 400; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1;">
-                    El trámite, con tiempos<br>reales del IMPI.
-                </h2>
-            </div>
-
-            <!-- Middle: Circle -->
-            <div class="ct-circle-wrapper">
-                <div class="ct-circle" id="ctCircle">
-                    <!-- Base Angles: -40, -20, 0, 20, 40 -->
-                    <div class="ct-point" data-index="0" style="transform: rotate(-40deg) translateX(475px);">
-                        <div class="ct-dot"></div>
-                        <div class="ct-num">01</div>
-                    </div>
-                    <div class="ct-point" data-index="1" style="transform: rotate(-20deg) translateX(475px);">
-                        <div class="ct-dot"></div>
-                        <div class="ct-num">02</div>
-                    </div>
-                    <div class="ct-point" data-index="2" style="transform: rotate(0deg) translateX(475px);">
-                        <div class="ct-dot"></div>
-                        <div class="ct-num">03</div>
-                    </div>
-                    <div class="ct-point" data-index="3" style="transform: rotate(20deg) translateX(475px);">
-                        <div class="ct-dot"></div>
-                        <div class="ct-num">04</div>
-                    </div>
-                    <div class="ct-point" data-index="4" style="transform: rotate(40deg) translateX(475px);">
-                        <div class="ct-dot"></div>
-                        <div class="ct-num">05</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right side: Content -->
-            <div class="ct-content-wrapper" style="flex: 0 0 35%; position: relative; z-index: 10; padding: 0 20px; margin-left: auto;">
-                <div class="ct-mobile-nav">
-                    <span class="ct-mob-dot active" data-index="0"></span>
-                    <span class="ct-mob-dot" data-index="1"></span>
-                    <span class="ct-mob-dot" data-index="2"></span>
-                    <span class="ct-mob-dot" data-index="3"></span>
-                    <span class="ct-mob-dot" data-index="4"></span>
-                </div>
-                <div class="ct-content" id="ctContent">
-                    <h3 id="ctTitle"></h3>
-                    <p id="ctDesc"></p>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
-    <!-- Script for Circular Timeline -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const angles = [-40, -20, 0, 20, 40];
-            const circle = document.getElementById('ctCircle');
-            const points = document.querySelectorAll('.ct-point');
-            const mobDots = document.querySelectorAll('.ct-mob-dot');
-            const titleEl = document.getElementById('ctTitle');
-            const descEl = document.getElementById('ctDesc');
-
-            const timelineData = [
-                { title: '1 · Evaluación gratuita', desc: 'En 2 minutos nos dices el nombre, el giro y si ya lo usas. Un abogado revisa registrabilidad y clase antes de que pagues.' },
-                { title: '2 · Dictamen y paquete', desc: 'Te decimos si conviene Esencial, Protegido o Marca 360, con honorarios y derechos IMPI separados. Sin viabilidad, no hay cobro del trámite.' },
-                { title: '3 · Expediente y presentación', desc: 'Armamos la solicitud, poder y anexos, confirmamos contigo los datos del titular y presentamos ante el IMPI.' },
-                { title: '4 · Examen del IMPI', desc: 'El Instituto revisa forma y fondo. El tiempo realista es de 6 a 18 meses según carga, requerimientos u oposiciones.' },
-                { title: '5 · Resolución y vigencia', desc: 'Te avisamos cada movimiento. Si se otorga, la marca dura 10 años renovables; te recordamos la declaración de uso del tercer año.' }
-            ];
-
-            let currentIndex = 0;
-            let autoPlayInterval;
-
-            function setActiveTimeline(index) {
-                currentIndex = index;
-                points.forEach(p => p.classList.remove('active'));
-                points[index].classList.add('active');
-                
-                mobDots.forEach(d => d.classList.remove('active'));
-                mobDots[index].classList.add('active');
-                
-                const rotateAngle = -angles[index];
-                if(circle) {
-                    circle.style.transform = `rotate(${rotateAngle}deg)`;
-                }
-                
-                if(titleEl && descEl) {
-                    titleEl.style.opacity = 0;
-                    descEl.style.opacity = 0;
-                    setTimeout(() => {
-                        titleEl.textContent = timelineData[index].title;
-                        descEl.textContent = timelineData[index].desc;
-                        titleEl.style.opacity = 1;
-                        descEl.style.opacity = 1;
-                    }, 200);
-                }
-            }
-
-            function startAutoPlay() {
-                autoPlayInterval = setInterval(() => {
-                    let nextIndex = (currentIndex + 1) % timelineData.length;
-                    setActiveTimeline(nextIndex);
-                }, 4000);
-            }
-
-            function stopAutoPlay() {
-                clearInterval(autoPlayInterval);
-            }
-
-            points.forEach((p, idx) => {
-                p.addEventListener('click', () => {
-                    setActiveTimeline(idx);
-                    stopAutoPlay();
-                    startAutoPlay();
-                });
-            });
-            mobDots.forEach((d, idx) => {
-                d.addEventListener('click', () => {
-                    setActiveTimeline(idx);
-                    stopAutoPlay();
-                    startAutoPlay();
-                });
-            });
-
-            const container = document.querySelector('.circular-timeline-section');
-            if(container) {
-                container.addEventListener('mouseenter', stopAutoPlay);
-                container.addEventListener('mouseleave', startAutoPlay);
-            }
-
-            setActiveTimeline(0);
-            startAutoPlay();
-        });
-    </script>
-
-
-    <!-- ═══ GARANTÍA ═══ -->
-    <section class="marca-checklist-section" style="padding-top:0;">
-        <div class="marca-checklist-container">
-            <h2 class="animated-title blur-fade">Garantía escrita, en simple</h2>
-            <div class="mc-card" style="margin-top:2rem;">
-                <i class="fa-solid fa-shield-halved mc-icon" aria-hidden="true"></i>
-                <p><b>Regla clara:</b> si el dictamen estratégico calificó tu marca como viable y el IMPI la niega, Protegido y Marca 360 devuelven los honorarios o presentan una alternativa sin volver a cobrarlos. No cubre oposiciones de terceros, hechos posteriores al dictamen ni solicitudes presentadas con información incompleta. Los derechos IMPI no se devuelven porque se pagan al gobierno.</p>
-            </div>
-        </div>
-    </section>
-
-    <style>
-        /* CSS para Checklist y Timeline */
-        .marca-checklist-section {
-            padding: 4rem 2rem;
-            background: #fff;
-        }
-        .marca-checklist-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .mc-header {
-            font-family: var(--font-heading, 'Montserrat', sans-serif);
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #111;
-            margin: 2rem 0 1rem 0;
-            padding-left: 0.5rem;
-        }
-        .mc-card {
-            background: #f7f8fa;
-            border-radius: 12px;
-            padding: 1.5rem 2rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1.2rem;
-        }
-        .mc-icon {
-            color: #14b8a6; /* Teal corporativo */
-            font-size: 1.8rem;
-            margin-top: 0.1rem;
-            flex-shrink: 0;
-        }
-        .mc-card p {
-            font-family: var(--font-body);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: #555;
-            margin: 0;
-        }
-        .mc-card b {
-            color: #111;
-        }
-
-        
-    </style>
-
-
-
-
-    <!-- ═══ FAQ ═══ -->
-    <section class="faq-section" style="background: #fff;">
-        <span class="faq-eyebrow">Preguntas frecuentes</span>
-        <h2 class="faq-title">Objeciones reales antes de registrar</h2>
-
-        <details class="faq-item">
-            <summary>¿Y si el IMPI me niega la marca?</summary>
-            <p>Depende del paquete. En Esencial se cotiza la defensa aparte. En Protegido y Marca 360, si el dictamen fue viable y aun así el IMPI la niega, te devolvemos los honorarios o presentamos una alternativa sin volver a cobrarlos. Los derechos pagados al gobierno no se devuelven porque no son nuestros.</p>
-        </details>
-        <details class="faq-item">
-            <summary>¿Puedo hacerlo solo ante el IMPI?</summary>
-            <p>Sí. El trámite es público. Lo que compras aquí no es llenar un formato: es saber si el signo es registrable, elegir bien la clase, evitar errores de titularidad y responder a tiempo los requerimientos. Si tu caso es simple y quieres hacerlo solo, el diagnóstico igual te sirve para decidir.</p>
-        </details>
-        <details class="faq-item">
-            <summary>¿Cuánto tarda el registro?</summary>
-            <p>El tiempo realista del IMPI es de 6 a 18 meses, según la carga del Instituto y si hay requerimientos u oposiciones. Nosotros no prometemos la fecha de la autoridad; sí nos comprometemos a presentar completo, dar seguimiento y avisarte cada movimiento.</p>
-        </details>
-        <details class="faq-item">
-            <summary>¿Qué necesito tener a la mano antes de pagar?</summary>
-            <p>Nombre de la marca, logotipo si aplica, giro y productos o servicios, datos del titular (nombre, RFC, domicilio y correo), país de origen si aplica, y fecha de primer uso. Si representas a una empresa, también la escritura o poder del representante.</p>
-        </details>
-        <details class="faq-item">
-            <summary>¿Por qué Protegido cuesta más que Esencial?</summary>
-            <p>Porque traslada parte del riesgo al despacho: incluye dictamen estratégico y una objeción de fondo. Si la marca dictaminada como viable se niega, asumimos el costo de los honorarios. Es la opción pensada para la mayoría de los negocios que ya están vendiendo.</p>
-        </details>
-        <details class="faq-item">
-            <summary>¿Qué pasa después de que se registra?</summary>
-            <p>La marca dura 10 años y se puede renovar. Al tercer año debes presentar la declaración de uso; Protegido y Marca 360 incluyen recordatorio. Marca 360 además vigila solicitudes similares durante 12 meses y revisa dominio y redes.</p>
-        </details>
-    </section>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "¿Y si el IMPI me niega la marca?",
-                "acceptedAnswer": { "@type": "Answer", "text": "En Esencial la defensa se cotiza aparte. En Protegido y Marca 360, si el dictamen fue viable y el IMPI la niega, se devuelven los honorarios o se presenta una alternativa sin volver a cobrarlos. Los derechos pagados al gobierno no se devuelven." }
-            },
-            {
-                "@type": "Question",
-                "name": "¿Puedo hacerlo solo ante el IMPI?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Sí. El trámite es público. El servicio profesional cubre registrabilidad, clase, titularidad, presentación completa y respuesta a requerimientos." }
-            },
-            {
-                "@type": "Question",
-                "name": "¿Cuánto tarda el registro?",
-                "acceptedAnswer": { "@type": "Answer", "text": "El tiempo realista del IMPI es de 6 a 18 meses, según carga, requerimientos u oposiciones. El despacho no controla la fecha de resolución, sí la presentación y el seguimiento." }
-            },
-            {
-                "@type": "Question",
-                "name": "¿Qué necesito tener a la mano antes de pagar?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Nombre de la marca, logotipo si aplica, giro y productos o servicios, datos del titular, país de origen si aplica y fecha de primer uso. Si actúas por una empresa, también el poder del representante." }
-            },
-            {
-                "@type": "Question",
-                "name": "¿Por qué Protegido cuesta más que Esencial?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Porque incluye dictamen estratégico, una objeción de fondo y garantía de honorarios si la marca dictaminada como viable se niega." }
-            },
-            {
-                "@type": "Question",
-                "name": "¿Qué pasa después de que se registra?",
-                "acceptedAnswer": { "@type": "Answer", "text": "La marca dura 10 años renovables. Al tercer año se presenta la declaración de uso; Protegido y Marca 360 incluyen recordatorio. Marca 360 añade identidad digital y vigilancia por 12 meses." }
-            }
-        ]
-    }
-    </script>
-
-
-
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "Product",
-                "name": "Registro de marca · Esencial",
-                "description": "Dictamen básico de registrabilidad (1 clase), presentación y seguimiento ante el IMPI. Derechos IMPI incluidos; objeción de fondo se cotiza aparte.",
-                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
-                "offers": { "@type": "Offer", "price": "6916", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
-            },
-            {
-                "@type": "Product",
-                "name": "Registro de marca · Protegido",
-                "description": "Dictamen estratégico (hasta 2 clases + 1 alternativa), presentación, seguimiento y 1 respuesta a objeción de fondo incluida. Garantía de honorarios si el dictamen viable se niega.",
-                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
-                "offers": { "@type": "Offer", "price": "8916", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
-            },
-            {
-                "@type": "Product",
-                "name": "Registro de marca · Marca 360",
-                "description": "Dictamen completo con plan de clases, presentación y seguimiento, objeción de fondo incluida, identidad digital y vigilancia de marca por 12 meses.",
-                "brand": { "@type": "Organization", "name": "Ferro Fragoso" },
-                "offers": { "@type": "Offer", "price": "11900", "priceCurrency": "MXN", "availability": "https://schema.org/InStock", "url": "https://ferrofragoso.com/marcas.html" }
-            }
-        ]
-    }
-    </script>
-
-    <!-- TODO: Slot "Del Radar Legal:" — activar cuando existan artículos de la categoría Marcas y Propiedad Intelectual -->
-    <!--
-    <section style="padding: 4rem 2rem; background: var(--bg-base);">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <span style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze, #c5a880); display: block; margin-bottom: 1.5rem;">Del Radar Legal:</span>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
-                <article style="background: #fff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; padding: 1.5rem;">
-                    <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--bronze, #c5a880);">Marcas y Propiedad Intelectual</span>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 400; margin: 0.5rem 0;">Título del artículo relacionado</h3>
-                    <a href="radar/slug.html" style="font-family: var(--font-body); font-size: 0.8rem; color: var(--carbon, #2e2c2a); text-decoration: underline;">Leer más →</a>
-                </article>
-                <article style="background: #fff; border: 1px solid var(--stone-200, #e8e1d5); border-radius: 16px; padding: 1.5rem;">
-                    <span style="font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--bronze, #c5a880);">Marcas y Propiedad Intelectual</span>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 400; margin: 0.5rem 0;">Título del artículo relacionado</h3>
-                    <a href="radar/slug.html" style="font-family: var(--font-body); font-size: 0.8rem; color: var(--carbon, #2e2c2a); text-decoration: underline;">Leer más →</a>
-                </article>
-            </div>
-        </div>
-    </section>
-    -->
 
     <script src="script.js?v=11"></script>
     <script src="precios.js?v=20"></script>
