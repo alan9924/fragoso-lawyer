@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     heroItems.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'none'; });
 
+    const esperaLoader = loader && loader.querySelector('.loader-nombre') ? 3200 : 1500;
+
     setTimeout(() => {
         if (!window.__VIDEO_LOADER && loader) loader.classList.add('hidden');
         
@@ -972,22 +974,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(s => sectionObserver.observe(s));
 
-    /* ── Marcatextos de los tres miedos ──
-       El trazo se pinta al entrar en vista, no al cargar: si se dispara antes
-       de que nadie lo vea, el usuario llega y ya está subrayado. Se desconecta
-       tras marcarlo porque es un gesto de una sola vez, no un bucle. */
-    const marcados = document.querySelectorAll('.marca-texto');
-    if (marcados.length) {
-        const marcaObserver = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('is-marcado');
-                obs.unobserve(entry.target);
-            });
-        }, { threshold: 0.9 });
-        marcados.forEach(el => marcaObserver.observe(el));
-    }
-
     /* El vídeo de la carpeta va en bucle, así que —a diferencia de la firma—
        no se rebobina al reentrar: cortarlo a la mitad para reiniciarlo se nota
        más que dejarlo seguir. Se pausa al salir de vista para no decodificar
@@ -1005,77 +991,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { threshold: 0.3 });
         carpetaObserver.observe(carpetaVideo);
-    }
-
-    /* "Relájate mientras nos encargamos de todo.": cada palabra entra por
-       separado y se repite cada vez que la frase vuelve a verse. */
-    const garantia = document.querySelector('.garantia-frase');
-    if (garantia) {
-        let n = 0;
-        const partir = (nodo) => {
-            [...nodo.childNodes].forEach(hijo => {
-                if (hijo.nodeType === Node.ELEMENT_NODE) {
-                    if (hijo.namespaceURI === 'http://www.w3.org/2000/svg') return;
-                    partir(hijo);
-                    return;
-                }
-                if (hijo.nodeType !== Node.TEXT_NODE || !hijo.textContent.trim()) return;
-                const frag = document.createDocumentFragment();
-                hijo.textContent.split(/(\s+)/).forEach(parte => {
-                    if (!parte) return;
-                    if (/^\s+$/.test(parte)) { frag.appendChild(document.createTextNode(' ')); return; }
-                    const s = document.createElement('span');
-                    s.className = 'garantia-palabra';
-                    s.style.setProperty('--i', n++);
-                    s.textContent = parte;
-                    frag.appendChild(s);
-                });
-                hijo.replaceWith(frag);
-            });
-        };
-        partir(garantia);
-        new IntersectionObserver((entries) => {
-            entries.forEach(entry => garantia.classList.toggle('is-visible', entry.isIntersecting));
-        }, { threshold: 0.6 }).observe(garantia);
-    }
-
-    /* Socios: la sección queda fija y una cortina se retira de cada ficha
-       conforme se hace scroll. Solo se activa si el contenido cabe en la
-       pantalla; si no, se muestra la versión normal sin cortina. */
-    const socios = document.getElementById('socios');
-    if (socios && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        const interior = socios.querySelector('.socios-home-inner');
-        const tarjetas = [...socios.querySelectorAll('.socio-card')];
-        const acotar = (v) => Math.min(1, Math.max(0, v));
-        let pendiente = false;
-
-        const pintar = () => {
-            pendiente = false;
-            if (!socios.classList.contains('socios--cortina')) return;
-            const recorrido = socios.offsetHeight - window.innerHeight;
-            const p = recorrido > 0 ? acotar(-socios.getBoundingClientRect().top / recorrido) : 1;
-            tarjetas.forEach((t, i) => {
-                const inicio = 0.08 + i * 0.42;
-                t.style.setProperty('--r', acotar((p - inicio) / 0.34).toFixed(3));
-            });
-        };
-        const pedir = () => { if (!pendiente) { pendiente = true; requestAnimationFrame(pintar); } };
-
-        const decidir = () => {
-            socios.classList.add('socios--cortina');
-            const cabe = interior.scrollHeight <= window.innerHeight + 1;
-            if (!cabe) {
-                socios.classList.remove('socios--cortina');
-                tarjetas.forEach(t => t.style.removeProperty('--r'));
-            }
-            pintar();
-        };
-
-        decidir();
-        // Las fotos y las fuentes cambian el alto: se vuelve a medir al cargar.
-        window.addEventListener('load', decidir);
-        window.addEventListener('scroll', pedir, { passive: true });
-        window.addEventListener('resize', decidir);
     }
 
     /* ════════════════════════════════════
@@ -1280,89 +1195,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- TIMELINE DE CÓMO FUNCIONA ---
-    (function () {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            document.querySelectorAll('.timeline-item').forEach(item => {
-                item.classList.add('is-visible', 'is-active');
-            });
-            const progress = document.querySelector('.timeline-progress');
-            if (progress) progress.style.height = '100%';
-            return;
-        }
-
-        const items = document.querySelectorAll('.timeline-item');
-        if (items.length === 0) return;
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -10% 0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        items.forEach(item => observer.observe(item));
-
-        const section = document.getElementById('como-funciona-timeline');
-        const track = document.querySelector('.timeline-track');
-        const progress = document.querySelector('.timeline-progress');
-
-        if (!section || !track || !progress) return;
-
-        let isScrolling = false;
-
-        function updateTimeline() {
-            const sectionRect = section.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            
-            const startPoint = viewportHeight / 2;
-            const totalHeight = sectionRect.height;
-            const currentPosition = startPoint - sectionRect.top;
-
-            let percentage = (currentPosition / totalHeight) * 100;
-            percentage = Math.max(0, Math.min(100, percentage));
-
-            progress.style.height = `${percentage}%`;
-
-            items.forEach(item => {
-                const numberNode = item.querySelector('.timeline-number');
-                if (!numberNode) return;
-                
-                const numRect = numberNode.getBoundingClientRect();
-                const numCenterY = numRect.top + (numRect.height / 2);
-                
-                if (numCenterY <= viewportHeight / 2) {
-                    item.classList.add('is-active');
-                } else {
-                    item.classList.remove('is-active');
-                }
-            });
-
-            isScrolling = false;
-        }
-
-        window.addEventListener('scroll', function () {
-            if (!isScrolling) {
-                window.requestAnimationFrame(updateTimeline);
-                isScrolling = true;
-            }
-        }, { passive: true });
-
-        window.addEventListener('resize', function () {
-            window.requestAnimationFrame(updateTimeline);
-        });
-
-        updateTimeline();
-    })();
-
     /* ════════════════════════════════════
        ASOMA (Chat Widget) Scroll Observer
     ════════════════════════════════════ */
@@ -1381,3 +1213,94 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+/* Fundadores: un retrato a la vez. Avanza solo, con el dedo o con un toque.
+   Hay una copia a cada extremo para que, al dar la vuelta, siga de frente
+   y no regrese de un salto. Vive fuera del arranque general para que
+   un fallo anterior no deje el carrusel quieto. */
+(function () {
+    const marco = document.querySelector('.fundadores-marco');
+    if (!marco) return;
+    const pista = marco.querySelector('.fundadores-pista');
+    const originales = [...pista.children];
+    if (originales.length < 2) return;
+    const copiaFinal = originales[0].cloneNode(true);
+    const copiaInicio = originales[originales.length - 1].cloneNode(true);
+    copiaFinal.setAttribute('aria-hidden', 'true');
+    copiaInicio.setAttribute('aria-hidden', 'true');
+    pista.appendChild(copiaFinal);
+    pista.insertBefore(copiaInicio, originales[0]);
+
+    const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let indice = 1;
+    let timer = 0;
+    let origen = null;
+    let arrastro = false;
+
+    const medida = () => marco.clientWidth;
+    const colocar = (n, animar) => {
+        const ancho = medida();
+        if (!ancho) return;
+        [...pista.children].forEach((slide) => {
+            slide.style.flexBasis = ancho + 'px';
+            slide.style.width = ancho + 'px';
+        });
+        pista.style.transition = animar ? '' : 'none';
+        pista.style.transform = 'translateX(' + (-n * ancho) + 'px)';
+        if (!animar) {
+            pista.offsetWidth;
+            pista.style.transition = '';
+        }
+    };
+    const corregir = () => {
+        const ultima = pista.children.length - 1;
+        if (indice === ultima) indice = 1;
+        else if (indice === 0) indice = ultima - 1;
+        else return;
+        colocar(indice, false);
+    };
+    const ir = (n) => {
+        indice = n;
+        colocar(indice, !reducido);
+        if (reducido) corregir();
+    };
+    const reiniciar = () => {
+        clearInterval(timer);
+        if (reducido) return;
+        timer = setInterval(() => ir(indice + 1), 5600);
+    };
+
+    pista.addEventListener('transitionend', (e) => {
+        if (e.target !== pista || e.propertyName !== 'transform') return;
+        corregir();
+    });
+
+    marco.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('a, button')) return;
+        arrastro = false;
+        origen = { x: e.clientX, y: e.clientY };
+    });
+    marco.addEventListener('pointerup', (e) => {
+        if (!origen) return;
+        const dx = e.clientX - origen.x;
+        const dy = e.clientY - origen.y;
+        origen = null;
+        if (e.target.closest('a, button')) return;
+        if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy)) return;
+        arrastro = true;
+        ir(indice + (dx < 0 ? 1 : -1));
+        reiniciar();
+    });
+    marco.addEventListener('click', (e) => {
+        if (arrastro) { arrastro = false; return; }
+        if (e.target.closest('a, button')) return;
+        ir(indice + 1);
+        reiniciar();
+    });
+    marco.addEventListener('pointercancel', () => { origen = null; });
+    marco.addEventListener('mouseenter', () => clearInterval(timer));
+    marco.addEventListener('mouseleave', reiniciar);
+    window.addEventListener('resize', () => colocar(indice, false));
+    colocar(1, false);
+    reiniciar();
+})();

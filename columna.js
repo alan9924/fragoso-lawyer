@@ -135,28 +135,3 @@
   window.addEventListener('resize', () => { activa = -1; medir(); }, { passive: true });
   window.addEventListener('load', medir);
 })();
-
-/* ── El pictograma de la sección del miedo ──
-   Un video en bucle corriendo bajo el pliegue gasta batería sin que nadie lo
-   vea. Se pausa al salir de pantalla y se reanuda al volver. */
-(function () {
-  'use strict';
-  var v = document.querySelector('.mono-video');
-  if (!v) return;
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    v.removeAttribute('autoplay');
-    v.pause();
-    return;
-  }
-
-  var arrancar = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
-
-  new IntersectionObserver(function (e) {
-    if (e[0].isIntersecting) arrancar(); else v.pause();
-  }, { threshold: 0 }).observe(v);
-
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) v.pause();
-  });
-})();

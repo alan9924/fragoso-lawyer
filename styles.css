@@ -129,6 +129,30 @@ html.lenis, html.lenis body {
     animation: loaderIn 0.9s var(--ease-out-quart) 0.2s forwards;
 }
 
+/* Monograma F.F al centro; el apellido aparece entero, en un fundido. */
+.loader-overlay--marca .loader-logo {
+    letter-spacing: 0;
+    display: grid;
+    place-items: center;
+}
+
+.loader-mono,
+.loader-nombre {
+    grid-area: 1 / 1;
+    white-space: nowrap;
+}
+
+.loader-mono {
+    letter-spacing: 0.22em;
+    animation: loaderMonoSale 0.45s var(--ease-out-quart) 1.05s forwards;
+}
+
+.loader-nombre {
+    letter-spacing: 8px;
+    opacity: 0;
+    animation: loaderIn 0.9s var(--ease-out-quart) 1.2s forwards;
+}
+
 .loader-line {
     width: 0;
     height: 1px;
@@ -137,8 +161,19 @@ html.lenis, html.lenis body {
     animation: lineExpand 1.4s var(--ease-out-quart) 0.5s forwards;
 }
 
+.loader-overlay--marca .loader-line {
+    animation-delay: 1.2s;
+}
+
 @keyframes loaderIn  { to { opacity: 1; } }
 @keyframes lineExpand { to { width: 200px; } }
+@keyframes loaderMonoSale { to { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .loader-mono { opacity: 0; animation: none; }
+    .loader-nombre { opacity: 1; animation: none; }
+    .loader-overlay--marca .loader-line { width: 200px; animation: none; }
+}
 
 /* ─── NAVIGATION ─── */
 nav {
@@ -977,12 +1012,12 @@ section { position: relative; }
 .site-footer {
     background: var(--carbon-deep);
     color: var(--stone-300);
-    padding: 4rem 2rem 2.5rem;
+    padding: 2rem 1.25rem 1.15rem;
     text-align: center;
 }
 
 .footer-container {
-    max-width: 640px;
+    max-width: 560px;
     margin: 0 auto;
 }
 
@@ -990,40 +1025,65 @@ section { position: relative; }
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
 }
 
 .footer-logo-img {
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     object-fit: contain;
 }
 
 .footer-brand-name {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     letter-spacing: 3px;
     color: var(--ivory);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.2rem 1rem;
+    margin: 0;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    line-height: 1.3;
+}
+
+.footer-disclaimer {
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    max-width: 480px;
+    margin: 0.7rem auto 0;
+    text-align: center;
+    opacity: 0.7;
+    line-height: 1.45;
 }
 
 .footer-social {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
+    gap: 0.7rem;
+    margin: 0.75rem 0 0;
 }
 
 .footer-social-btn {
-    width: 42px;
-    height: 42px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     border: 1px solid rgba(253, 252, 249, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--ivory);
-    font-size: 1rem;
+    font-size: 0.85rem;
     transition: background 0.3s var(--ease-premium), border-color 0.3s var(--ease-premium), color 0.3s var(--ease-premium), transform 0.3s var(--ease-premium);
 }
 
@@ -1035,10 +1095,10 @@ section { position: relative; }
 }
 
 .footer-rule {
-    width: 60px;
+    width: 40px;
     height: 1px;
     background: rgba(253, 252, 249, 0.15);
-    margin: 0 auto 2rem;
+    margin: 0.7rem auto 0.5rem;
 }
 
 .footer-copy {
@@ -2425,12 +2485,13 @@ footer {
 
 .footer-tagline {
     font-family: var(--font-body);
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 300;
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
     color: var(--text-muted);
     text-transform: uppercase;
-    margin-bottom: 2.5rem;
+    margin: 0 0 0.75rem;
+    line-height: 1.45;
 }
 
 .social-links {
@@ -4327,16 +4388,25 @@ body.menu-locked {
         gap: 0.25rem;
     }
 
-    /* Enlaces del pie: 24px de alto es incómodo con el pulgar */
+    /* Enlaces del pie: compactos, sin inflar cada fila a 44px */
+    .footer-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.15rem 0.75rem;
+        max-width: 340px;
+        margin: 0 auto;
+    }
     .footer-links a {
         display: inline-flex;
         align-items: center;
-        min-height: 44px;
-        padding-inline: 0.25rem;
+        justify-content: center;
+        min-height: 32px;
+        padding: 0.15rem 0.2rem;
+        text-align: center;
     }
     .footer-social-btn {
-        min-width: 44px;
-        min-height: 44px;
+        min-width: 36px;
+        min-height: 36px;
     }
 
     /* Casilla del aviso de privacidad en el formulario del Radar */
@@ -4421,15 +4491,16 @@ body.menu-locked {
         min-height: 44px;
     }
 
-    /* Enlaces del pie minimalista (revision.html y similares): 14px de alto */
+    /* Enlaces del pie: área pulsable sin estirar el interlineado */
     footer a {
-        display: inline-block;
-        min-height: 44px;
-        line-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
     }
-
-    /* Ancho mínimo en enlaces de una sola palabra ("Blog") */
-    .footer-links a { min-width: 44px; justify-content: center; }
+    .site-footer .footer-links a,
+    .site-footer .footer-social-btn {
+        line-height: 1.2;
+    }
 
     /* Los puntos del carrusel ya tienen 45px de alto; se iguala el ancho */
     .tst-dots .tst-dot { min-width: 44px; }

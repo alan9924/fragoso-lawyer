@@ -475,16 +475,12 @@
    ganaba el que cargara al final del <head> — no el que tuviera sentido.
    Ahora columna.css es la única fuente de verdad para el hero en móvil. */
 @media (max-width: 767px) {
-    .quick-actions-grid { grid-template-columns: 1fr 1fr !important; gap: 0.75rem !important; }
-    .qa-card {
-        border-radius: var(--radius-card) !important;
-        padding: 1.1rem !important;
-        transition: transform 0.1s var(--spring);
-    }
-    .qa-card:active { transform: scale(0.97); }
-    .qa-card-img-wrapper { width: 52px !important; height: 52px !important; border-radius: 12px !important; margin-bottom: 0.75rem !important; }
-    .qa-card h3 { font-size: 0.85rem !important; }
-    .qa-card p  { font-size: 0.73rem !important; }
+    .quick-actions-grid { grid-template-columns: 1fr 1fr !important; gap: 1.6rem 0.9rem !important; }
+    .qa-item { padding: 0 !important; background: none !important; box-shadow: none !important; border: none !important; }
+    .qa-item:active { transform: scale(0.98); }
+    .qa-icon { width: 48px !important; height: 48px !important; border-radius: 12px !important; margin-bottom: 0.65rem !important; }
+    .qa-item h3 { font-size: 0.78rem !important; }
+    .qa-item p  { font-size: 0.72rem !important; max-width: none; }
 }
 
 /* ── 11. ANIMACIONES DE PANTALLA ── */

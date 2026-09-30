@@ -28,10 +28,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=15">
-    <link rel="stylesheet" href="home-new.css?v=52">
+    <link rel="stylesheet" href="styles.css?v=21">
+    <link rel="stylesheet" href="home-new.css?v=64">
     <link rel="stylesheet" href="columna.css?v=34">
-    <link rel="stylesheet" href="folder-tabs.css?v=2">
+    <link rel="stylesheet" href="folder-tabs.css?v=3">
     <link rel="stylesheet" href="mobile-app.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,8 +85,11 @@
 <body>
 
     <!-- ═══ INTRO LOADER ═══ -->
-    <div id="intro-loader" class="loader-overlay">
-        <div class="loader-logo">FERRO FRAGOSO</div>
+    <div id="intro-loader" class="loader-overlay loader-overlay--marca">
+        <div class="loader-logo" aria-label="Ferro Fragoso">
+            <span class="loader-mono">F.F</span>
+            <span class="loader-nombre">FERRO FRAGOSO</span>
+        </div>
         <div class="loader-line"></div>
     </div>
 
@@ -158,7 +161,7 @@
         <div class="hero-carta-texto">
           <h1 class="hero-carta-titulo">Estudio <em>jurídico</em></h1>
 
-          <p data-maquina>En Ferro Fragoso hacemos que lo legal sea fácil, claro y sin complicaciones. Diseñamos la mejor estrategia para ti, tu familia o tu negocio con un trato cercano y precios transparentes.</p>
+          <p data-maquina>En Ferro Fragoso hacemos que lo legal sea fácil, claro y sin complicaciones.</p>
 
           <p data-maquina>Porque las decisiones importantes las acompañan abogados.</p>
 
@@ -179,7 +182,7 @@
           <a href="llamar-abogado.html" class="hero-carta-btn">Llamar a un abogado</a>
         </div>
 
-        <a href="#abogado-de-bolsillo" class="hero-carta-bajar" aria-label="Ver más contenido">
+        <a href="#areas" class="hero-carta-bajar" aria-label="Ver más contenido">
           <svg viewBox="0 0 40 44" width="40" height="44" aria-hidden="true">
             <polyline class="hero-carta-bajar-1" points="6,6 20,19 34,6"></polyline>
             <polyline class="hero-carta-bajar-2" points="6,24 20,37 34,24"></polyline>
@@ -188,81 +191,15 @@
       </div>
     </section>
 
-    <!-- ═══ UN ABOGADO EN TU BOLSILLO ═══
-         Va inmediatamente bajo el hero porque es la promesa que convierte
-         visitante en miembro. El héroe del mensaje NO es la consulta —eso lo
-         vende cualquiera y nadie paga mensual por consejos— sino la
-         intervención: que alguien dé la cara por ti. Por eso las situaciones
-         concretas van antes que la lista de beneficios. -->
-    <!-- ═══ UN ABOGADO EN TU BOLSILLO ═══
-         Fondo radial y vídeo + contenido mínimo encima.
-         Se recortó a la mitad: el bloque antes traía tres miedos, seis
-         situaciones, tres pasos y un remate. El mensaje se sostiene con el
-         antes/después, que dice lo mismo en dos columnas — todo lo demás
-         era repetirlo con otras palabras. -->
-    <section data-columna-seccion="Tu abogado" id="abogado-de-bolsillo" class="bolsillo">
-        <!-- Glowing background -->
-        <div style="position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5; mix-blend-mode: multiply; background-image: radial-gradient(50% 50% at 50% 50%, #93c5fd 0%, transparent 100%);"></div>
-
-        <!-- Sin z-index a propósito: al crear contexto de apilamiento anulaba el
-             `mix-blend-mode` del pictograma. Se pinta sobre el halo igual, por
-             orden del DOM. -->
-        <div style="position: relative; max-width: 1000px; margin: 0 auto; width: 100%;">
-            <div class="blur-fade bolsillo-intro" data-bf-delay="1">
-                <!-- Los saltos van marcados a mano: el remate tiene que caer
-                     entero en la última línea para que la selección lo abarque
-                     completo. -->
-                <h2 class="titulo-seleccion">
-                    <span>Lo legal</span>
-                    <span>no tiene por qué</span>
-                    <span class="sel">darte miedo.</span>
-                </h2>
-                <p class="bolsillo-dek">
-                    No todo se trata de <span style="color: #405efc;">juicios</span> — para esa <span style="color: #405efc;">llamada</span> que llevas semanas sin hacer, ese <span style="color: #405efc;">papel</span> que no sabes si firmar, ese <span style="color: #405efc;">trámite</span> donde te dan largas.
-                </p>
-            </div>
-
-            <!-- El pictograma va aquí, entre la promesa y los tres miedos.
-                 No puede vivir dentro de un elemento con filter/transform/z-index:
-                 eso aísla el blend y le devuelve el fondo blanco. -->
-            <div class="mono" aria-hidden="true">
-                <video class="mono-video" autoplay muted loop playsinline preload="metadata" poster="mono_miedo.png">
-                    <source src="mono_miedo.mp4" type="video/mp4">
-                    <img src="mono_miedo.png" alt="" class="mono-video" loading="lazy" decoding="async">
-                </video>
-            </div>
-
-            <div class="bolsillo-miedos">
-                <div class="blur-fade" data-bf-delay="2">
-                    <h3>“¿Y cuánto me va a cobrar?”</h3>
-                    <p class="marca-texto"><span>Precio</span> <span>fijo.</span></p>
-                </div>
-                <div class="blur-fade" data-bf-delay="3">
-                    <h3>“No le voy a entender.”</h3>
-                    <p class="marca-texto"><span>Lenguaje</span> <span>claro.</span></p>
-                </div>
-                <div class="blur-fade" data-bf-delay="4">
-                    <h3>“No es para tanto.”</h3>
-                    <p class="marca-texto"><span>Mejor</span> <span>prevenir.</span></p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-        
-
-
     <!-- ═══ FOLDER TABS ═══ -->
-    <section class="folder-tabs-section">
-        <div class="folder-container" data-active="negocios">
-            <div class="folder-tabs" role="tablist" aria-label="Áreas jurídicas">
-                <button class="folder-tab active" id="tab-negocios" role="tab" aria-selected="true" aria-controls="panel-negocios" tabindex="0" data-tab="negocios"><span>Negocios</span></button>
-                <button class="folder-tab" id="tab-franquicias" role="tab" aria-selected="false" aria-controls="panel-franquicias" tabindex="-1" data-tab="franquicias"><span>Franquicias</span></button>
-                <button class="folder-tab" id="tab-propiedad" role="tab" aria-selected="false" aria-controls="panel-propiedad" tabindex="-1" data-tab="propiedad"><span>Propiedad intelectual</span></button>
+    <section class="folder-tabs-section" id="areas">
+        <div class="folder-container" data-active="empresa">
+            <div class="folder-tabs" role="tablist" aria-label="Servicios">
+                <button class="folder-tab active" id="tab-empresa" role="tab" aria-selected="true" aria-controls="panel-empresa" tabindex="0" data-tab="empresa"><span>Para mi empresa</span></button>
+                <button class="folder-tab" id="tab-kits" role="tab" aria-selected="false" aria-controls="panel-kits" tabindex="-1" data-tab="kits"><span>Kit legales</span></button>
             </div>
             <div class="folder-content-area">
-                <div class="folder-panel active" id="panel-negocios" role="tabpanel" aria-labelledby="tab-negocios" tabindex="0" aria-hidden="false">
+                <div class="folder-panel active" id="panel-empresa" role="tabpanel" aria-labelledby="tab-empresa" tabindex="0" aria-hidden="false">
                     <div class="panel-header">
                         <span class="left">01</span>
                         <span class="right">Ferro Fragoso Estudio Jurídico</span>
@@ -272,24 +209,14 @@
                         <a href="empresa.html" class="panel-cta">Empezar</a>
                     </div>
                 </div>
-                <div class="folder-panel" id="panel-franquicias" role="tabpanel" aria-labelledby="tab-franquicias" tabindex="0" aria-hidden="true">
+                <div class="folder-panel" id="panel-kits" role="tabpanel" aria-labelledby="tab-kits" tabindex="0" aria-hidden="true">
                     <div class="panel-header">
                         <span class="left">02</span>
                         <span class="right">Ferro Fragoso Estudio Jurídico</span>
                     </div>
-                    <h2 class="panel-title">¿Tu negocio<br>puede crecer<br>como franquicia?</h2>
+                    <h2 class="panel-title">Guías y políticas<br>listas para<br>tu operación.</h2>
                     <div class="panel-cta-wrap">
-                        <a href="propiedad-intelectual.html#diagnostico-franquicia" class="panel-cta">Empezar</a>
-                    </div>
-                </div>
-                <div class="folder-panel" id="panel-propiedad" role="tabpanel" aria-labelledby="tab-propiedad" tabindex="0" aria-hidden="true">
-                    <div class="panel-header">
-                        <span class="left">03</span>
-                        <span class="right">Ferro Fragoso Estudio Jurídico</span>
-                    </div>
-                    <h2 class="panel-title">Tu marca, tu obra<br>y tus ideas,<br>protegidas.</h2>
-                    <div class="panel-cta-wrap">
-                        <a href="propiedad-intelectual.html" class="panel-cta">Empezar</a>
+                        <a href="servicios.html" class="panel-cta">Empezar</a>
                     </div>
                 </div>
             </div>
@@ -340,135 +267,33 @@
     </script>
 
 
-    <!-- ═══ HOW IT WORKS (INFOGRAPHIC) ═══ -->
-    <section class="process-section" data-columna-seccion="Cómo funciona" id="como-funciona-timeline">
-        <header class="process-header sec-head fade-in-up">
-
-            <h2 class="sec-title blur-fade" data-bf-delay="1">De la duda a la solución,<br><em>en tres pasos.</em></h2>
-            <p class="process-subtitle blur-fade" data-bf-delay="2" style="margin-top: 1.5rem;">Sin cotizaciones a puerta cerrada, sin llamadas para ‘ver cuánto sale’. Precio público desde el clic.</p>
-        </header>
-
-        <div class="timeline-container">
-            <div class="timeline-track" aria-hidden="true">
-                <div class="timeline-progress"></div>
-            </div>
-
-            <div class="timeline-list">
-                <!-- Paso 1 -->
-                <article class="timeline-item" id="step-1">
-                    <div class="timeline-number" aria-hidden="true">1</div>
-                    <div class="timeline-side timeline-left">
-                        <div class="timeline-icon">
-                            <img src="paso_1.png" alt="Icono Elige y Paga" class="timeline-sketch-img" />
-                        </div>
-                    </div>
-                    <div class="timeline-side timeline-right">
-                        <div class="timeline-content">
-                            <span class="step-tag">En línea · Con folio</span>
-                            <h3 class="step-title">Elige y solicita</h3>
-                            <p class="step-desc">Escoge tu servicio con precio cerrado y recibe tu folio al instante. Pagas en línea o al confirmar con tu abogado.</p>
+    <!-- ═══ SOCIOS — retrato a pantalla, un fundador a la vez ═══ -->
+    <section id="socios" class="fundadores" data-columna-seccion="Socios">
+        <h2 class="fundadores-titulo">SOCIOS FUNDADORES</h2>
+        <div class="fundadores-marco">
+            <div class="fundadores-pista">
+                <article class="fundador">
+                    <img class="fundador-foto" src="socio_alan.png" alt="" width="800" height="1000">
+                    <div class="fundador-copia">
+                        <h2>Alan Obed<br>Fragoso Rivera</h2>
+                        <p>Socio fundador. Estrategia legal preventiva y blindaje de negocios.</p>
+                        <div class="fundador-pills">
+                            <a href="https://wa.me/524425827053" target="_blank" rel="noopener">442 582 7053</a>
+                            <a class="fundador-pill--claro" href="mailto:alan@ferrofragoso.com">alan@ferrofragoso.com</a>
                         </div>
                     </div>
                 </article>
-
-                <!-- Paso 2 -->
-                <article class="timeline-item" id="step-2">
-                    <div class="timeline-number" aria-hidden="true">2</div>
-                    <div class="timeline-side timeline-left">
-                        <div class="timeline-content">
-                            <span class="step-tag">Cuestionario breve</span>
-                            <h3 class="step-title">Cuéntanos tu caso</h3>
-                            <p class="step-desc">Respondes unas preguntas simples, subes lo que aplique o eliges tu horario. A tu ritmo.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-side timeline-right">
-                        <div class="timeline-icon">
-                            <img src="paso_2.png" alt="Icono Cuestionario" class="timeline-sketch-img" loading="lazy" decoding="async">
+                <article class="fundador">
+                    <img class="fundador-foto" src="socio_daniel.png" alt="" width="800" height="1000">
+                    <div class="fundador-copia">
+                        <h2>Daniel Ferro<br>Gutiérrez</h2>
+                        <p>Socio fundador. Contratos, patrimonio y reestructuración de activos.</p>
+                        <div class="fundador-pills">
+                            <a href="https://wa.me/524425948978" target="_blank" rel="noopener">442 594 8978</a>
+                            <a class="fundador-pill--claro" href="mailto:daniel@ferrofragoso.com">daniel@ferrofragoso.com</a>
                         </div>
                     </div>
                 </article>
-
-                <!-- Paso 3 -->
-                <article class="timeline-item" id="step-3">
-                    <div class="timeline-number" aria-hidden="true">3</div>
-                    <div class="timeline-side timeline-left">
-                        <div class="timeline-icon">
-                            <img src="paso_3.png" alt="Icono Abogado Entrega" class="timeline-sketch-img" loading="lazy" decoding="async">
-                        </div>
-                    </div>
-                    <div class="timeline-side timeline-right">
-                        <div class="timeline-content">
-                            <span class="step-tag">24–48 h hábiles</span>
-                            <h3 class="step-title">Un abogado entrega</h3>
-                            <p class="step-desc">Un abogado con cédula toma tu caso y te entrega la solución — documento, trámite, análisis o estrategia. Nunca un bot.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <div class="timeline-guarantee">
-            <div class="guarantee-capsule">
-                <p class="guarantee-text garantia-frase">
-                    <span class="garantia-linea">Relájate mientras</span>
-                    <span class="garantia-linea">nos encargamos <span class="garantia-remate">de todo.<svg class="garantia-trazo" viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path d="M3 11 C 45 4, 95 3, 140 7 S 185 12, 197 6"/></svg></span></span>
-                </p>
-            </div>
-        </div>
-
-    </section>
-    <!-- ═══ 5. SOCIOS — pieza de confianza ═══ -->
-    <section id="socios" class="socios-home" data-columna-seccion="Socios" style="background-color: #ffffff;">
-        <div class="socios-home-inner">
-            <header class="sec-head fade-in-up">
-
-                <h2 class="sec-title blur-fade" data-bf-delay="1">Las personas detrás<br><em>de tu asunto.</em></h2>
-                <p class="socios-home-intro blur-fade" data-bf-delay="2">
-                    No hay call center ni asociados junior: tu caso lo analiza y lo firma uno de los dos socios fundadores.
-                </p>
-            </header>
-
-            <div class="socios-home-grid">
-                <article class="socio-card">
-                    <img src="socio_alan.png" alt="Alan Obed Fragoso Rivera, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
-                    <div class="socio-card-info">
-                        <h3 class="socio-card-nombre">Alan Obed Fragoso Rivera</h3>
-                        <p class="socio-card-cargo">Socio fundador &middot; Abogado</p>
-                        <p class="socio-card-univ">Universidad Autónoma de Querétaro</p>
-                        <p class="socio-card-desc">
-                            Trayectoria en materia corporativa, administrativa y civil. Especialista en estrategia
-                            legal preventiva y blindaje de negocios.
-                        </p>
-                        <div class="socio-card-contacto">
-                            <a href="https://wa.me/524425827053" target="_blank" rel="noopener" aria-label="WhatsApp de Alan Fragoso"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                            <a href="mailto:alan@ferrofragoso.com" aria-label="Correo de Alan Fragoso"><i class="fas fa-envelope" aria-hidden="true"></i></a>
-                        </div>
-                        <span class="socio-card-cortina" aria-hidden="true"></span>
-                    </div>
-                </article>
-
-                <article class="socio-card">
-                    <img src="socio_daniel.png" alt="Daniel Ferro Gutiérrez, socio fundador" class="socio-card-foto" loading="lazy" decoding="async">
-                    <div class="socio-card-info">
-                        <h3 class="socio-card-nombre">Daniel Ferro Gutiérrez</h3>
-                        <p class="socio-card-cargo">Socio fundador &middot; Abogado</p>
-                        <p class="socio-card-univ">Universidad Autónoma de Querétaro</p>
-                        <p class="socio-card-desc">
-                            Especializado en derecho constitucional, contratos y protección del patrimonio.
-                            Enfocado en consultoría empresarial y reestructuración de activos.
-                        </p>
-                        <div class="socio-card-contacto">
-                            <a href="https://wa.me/524425948978" target="_blank" rel="noopener" aria-label="WhatsApp de Daniel Ferro"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                            <a href="mailto:daniel@ferrofragoso.com" aria-label="Correo de Daniel Ferro"><i class="fas fa-envelope" aria-hidden="true"></i></a>
-                        </div>
-                        <span class="socio-card-cortina" aria-hidden="true"></span>
-                    </div>
-                </article>
-            </div>
-
-            <div class="socios-home-cierre">
-                <p class="socios-home-quote">&ldquo;La mejor posición jurídica posible, construida con estrategia y honestidad.&rdquo;</p>
-                <a href="consulta.html" class="btn-primary">Agendar Consulta</a>
             </div>
         </div>
     </section>
@@ -874,18 +699,18 @@
             </div>
             <p class="footer-tagline">Estudio Jurídico — Blindaje legal con propósito.</p>
             
-            <div class="footer-links" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="terminos.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Términos y Condiciones</a>
-                <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Aviso de Privacidad</a>
-                <a href="radar/index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Blog</a>
-                <a href="solicitud.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Contáctanos</a>
+            <div class="footer-links">
+                <a href="terminos.html">Términos y Condiciones</a>
+                <a href="privacidad.html">Aviso de Privacidad</a>
+                <a href="radar/index.html">Blog</a>
+                <a href="solicitud.html">Contáctanos</a>
             </div>
 
-            <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 600px; margin: 2rem auto 0; text-align: center; opacity: 0.7;">
+            <p class="footer-disclaimer">
                 Disclaimer: El generador de contratos y la calculadora laboral son herramientas informativas y no constituyen asesoría jurídica vinculante. La revisión pagada sí es un servicio profesional sujeto a responsabilidad.
             </p>
 
-            <div class="footer-social" style="margin-top: 2rem;">
+            <div class="footer-social">
                 <a href="https://www.linkedin.com/company/136144007/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=61590937883266" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/ferrofragosoestudiojuridico/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -935,7 +760,7 @@
     </script>
 
     <!-- Scripts -->
-    <script src="script.js?v=24"></script>
+    <script src="script.js?v=36"></script>
     <script src="precios.js?v=20"></script>
     <script src="analytics.js?v=11"></script>
 </body></html>

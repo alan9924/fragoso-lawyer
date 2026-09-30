@@ -29,10 +29,10 @@
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css?v=15">
-    <link rel="stylesheet" href="home-new.css?v=48">
+    <link rel="stylesheet" href="home-new.css?v=55">
     <link rel="stylesheet" href="columna.css?v=26">
     <link rel="stylesheet" href="folder-tabs.css">
-    <link rel="stylesheet" href="mobile-app.css?v=5">
+    <link rel="stylesheet" href="mobile-app.css?v=6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200;6..72,300;6..72,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@200;300;400;500;600&family=Abril+Fatface&family=Courier+Prime:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -130,40 +130,108 @@
         </div>
     </nav>
 
-    <main style="padding-top: 64px; min-height: 100svh; display: flex; flex-direction: column; justify-content: center;">
+    <main style="padding-top: 64px;">
     <section class="quick-actions-section" id="tramites" data-columna-seccion="Trámites" style="background-color: #ffffff;">
         <div class="quick-actions-wrap">
             <header class="quick-actions-header blur-fade">
                 <h2 class="sec-title titulo-deep">Comienza tu trámite</h2>
             </header>
             <div class="quick-actions-grid blur-fade" data-bf-delay="1">
-                <a href="marcas.html" class="qa-card">
-                    <div class="qa-card-img-wrapper" style="background-color: #0F766E;">
-                        <img src="icon_trademark.png" alt="Registrar marca" class="qa-card-img" loading="lazy">
-                    </div>
+                <a href="marcas.html" class="qa-item">
+                    <span class="qa-icon" style="background:#0F766E;" aria-hidden="true">
+                        <img src="icon_trademark.png" alt="" class="qa-icon-img" loading="lazy">
+                    </span>
                     <h3>Registrar marca</h3>
                     <p>Protege tu nombre y logotipo comercial</p>
                 </a>
-                <a href="consulta.html" class="qa-card">
-                    <div class="qa-card-img-wrapper" style="background-color: #1D4ED8;">
-                        <img src="icon_company.png" alt="Constituir empresa" class="qa-card-img" loading="lazy">
-                    </div>
+                <a href="consulta.html" class="qa-item">
+                    <span class="qa-icon" style="background:#1D4ED8;" aria-hidden="true">
+                        <img src="icon_company.png" alt="" class="qa-icon-img" loading="lazy">
+                    </span>
                     <h3>Constituir empresa</h3>
                     <p>Crea tu sociedad mercantil legalmente</p>
                 </a>
-                <a href="finiquito.html" class="qa-card">
-                    <div class="qa-card-img-wrapper" style="background-color: #D97706;">
-                        <img src="icon_finiquito.png" alt="Calcular finiquito" class="qa-card-img" loading="lazy">
-                    </div>
+                <a href="finiquito.html" class="qa-item">
+                    <span class="qa-icon" style="background:#D97706;" aria-hidden="true">
+                        <img src="icon_finiquito.png" alt="" class="qa-icon-img" loading="lazy">
+                    </span>
                     <h3>Calcula finiquito</h3>
                     <p>Liquida o renuncia conforme a la ley</p>
                 </a>
-                <a href="contratos.html" class="qa-card">
-                    <div class="qa-card-img-wrapper" style="background-color: #334155;">
-                        <img src="icon_contracts_una_firma.png" alt="Contratos" class="qa-card-img" loading="lazy">
-                    </div>
+                <a href="contratos.html" class="qa-item">
+                    <span class="qa-icon" style="background:#334155;" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke-width="1.55" d="M7 33c.2-14 11-18 16-6 2 5.2-6 11-1.6 3.8 5.4-9 14-11 18-2.4 2 4.4-4.8 9.6.6 4 6.2-6.8 13.4-8 17.4-1 2.2 3.6-1.8 7.6 2.6 3.6 5.2-4.8 10.6-5.2 14.4.2"/>
+                            <path stroke-width="1.3" d="M6 50c18 3.6 36 .6 52-5"/>
+                        </svg>
+                    </span>
                     <h3>Contratos</h3>
                     <p>Crea y firma contratos con validez legal</p>
+                </a>
+                <a href="propiedad-intelectual.html#diagnostico-franquicia" class="qa-item">
+                    <span class="qa-icon" style="background:#6D28D9;" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 52h52"/>
+                            <path d="M8 52V30h14v22"/>
+                            <path d="M7 33.5h16"/>
+                            <path d="M10 30c1.2-4 4-6 6-6s4.8 2 6 6"/>
+                            <path d="M12.2 52v-9h5.6v9"/>
+                            <path d="M10.4 38h2.4M15.2 38h2.4"/>
+                            <path d="M25 52V26h14v26"/>
+                            <path d="M24 30h16"/>
+                            <path d="M27.2 26c1.2-4.4 4-6.6 5.8-6.6s4.6 2.2 5.8 6.6"/>
+                            <path d="M29.4 52v-11h5.2v11"/>
+                            <path d="M27.6 35h2.6M33.8 35h2.6"/>
+                            <path d="M42 52V30h14v22"/>
+                            <path d="M41 33.5h16"/>
+                            <path d="M44 30c1.2-4 4-6 6-6s4.8 2 6 6"/>
+                            <path d="M46.2 52v-9h5.6v9"/>
+                            <path d="M44.4 38h2.4M49.2 38h2.4"/>
+                        </svg>
+                    </span>
+                    <h3>Franquicias</h3>
+                    <p>Evalúa si tu negocio puede replicarse y créalo con estructura legal</p>
+                </a>
+                <a href="derechos-autor.html" class="qa-item">
+                    <span class="qa-icon" style="background:#0369A1;" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="32" cy="32" r="23"/>
+                            <path d="M40.5 23.5a12.4 12.4 0 1 0 0 17"/>
+                        </svg>
+                    </span>
+                    <h3>Derecho de autor</h3>
+                    <p>Registra tus obras creativas ante el INDAUTOR</p>
+                </a>
+                <a href="secreto-industrial.html" class="qa-item">
+                    <span class="qa-icon" style="background:#B45309;" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 18h20l10 10v24H16z"/>
+                            <path d="M36 18v10h10"/>
+                            <path d="M22 34h18M22 39h12M22 44h14"/>
+                            <rect x="26" y="46.5" width="12" height="9" rx="1.6"/>
+                            <path d="M29.2 46.5v-2.6a2.8 2.8 0 0 1 5.6 0v2.6"/>
+                            <circle cx="32" cy="51" r=".9" fill="#fff" stroke="none"/>
+                        </svg>
+                    </span>
+                    <h3>Secreto industrial</h3>
+                    <p>Blindaje de información confidencial y know-how</p>
+                </a>
+                <a href="solicitud.html" class="qa-item">
+                    <span class="qa-icon" style="background:#BE123C;" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="12" width="32" height="44" rx="3"/>
+                            <path d="M26 12v-2.2A2.2 2.2 0 0 1 28.2 7.6h7.6A2.2 2.2 0 0 1 38 9.8V12"/>
+                            <path d="M26 8.6h12"/>
+                            <path d="M23 26.5l2.4 2.4 4.6-4.8"/>
+                            <path d="M34 26.5h10"/>
+                            <path d="M23 37l2.4 2.4 4.6-4.8"/>
+                            <path d="M34 37h10"/>
+                            <path d="M23 47.5l2.4 2.4 4.6-4.8"/>
+                            <path d="M34 47.5h10"/>
+                        </svg>
+                    </span>
+                    <h3>Kit de cumplimiento laboral</h3>
+                    <p>NOM-035 / NOM-037. Guías de implementación para factores de riesgo psicosocial y regulación de teletrabajo, junto con modelos de políticas internas.</p>
                 </a>
             </div>
         </div>

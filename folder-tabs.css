@@ -20,16 +20,12 @@
     --active-text: #ffffff;
 }
 
-.folder-container[data-active="negocios"] { 
+.folder-container[data-active="empresa"] { 
     --active-bg: var(--color-navy); 
     --active-text: #ffffff; 
 }
-.folder-container[data-active="franquicias"] { 
+.folder-container[data-active="kits"] { 
     --active-bg: var(--color-orange); 
-    --active-text: #111111;
-}
-.folder-container[data-active="propiedad"] { 
-    --active-bg: var(--color-beige); 
     --active-text: #111111;
 }
 
@@ -57,10 +53,9 @@
 
 .folder-tab:first-child {
     margin-left: 0;
-    z-index: 3;
+    z-index: 2;
 }
-.folder-tab:nth-child(2) { z-index: 2; }
-.folder-tab:nth-child(3) { z-index: 1; }
+.folder-tab:nth-child(2) { z-index: 1; }
 
 .folder-tab::before {
     content: '';
@@ -87,15 +82,12 @@
     transition: transform 0.2s ease;
 }
 
-.folder-tab[data-tab="negocios"] { 
+.folder-tab[data-tab="empresa"] { 
     --tab-bg: var(--color-navy); 
     --tab-text: #ffffff; 
 }
-.folder-tab[data-tab="franquicias"] { 
+.folder-tab[data-tab="kits"] { 
     --tab-bg: var(--color-orange); 
-}
-.folder-tab[data-tab="propiedad"] { 
-    --tab-bg: var(--color-beige); 
 }
 
 .folder-tab:not(.active):hover::before,
