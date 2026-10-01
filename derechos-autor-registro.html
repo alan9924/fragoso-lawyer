@@ -659,22 +659,18 @@
             align-items: center;
             margin-bottom: 2rem;
         }
-        /* GRID plano de categorías (antes: carrusel circular) */
+        /* Tarjetas interactivas de categoría */
         .da-carousel-container {
             position: relative;
             width: 100%;
-            max-width: 920px;
+            max-width: 960px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
             outline: none;
         }
         .da-carousel-track {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 1rem;
+            gap: 0.85rem;
             width: 100%;
         }
         @media (max-width: 720px) {
@@ -683,80 +679,112 @@
             }
         }
         .da-cat-card {
+            appearance: none;
+            -webkit-appearance: none;
             position: relative;
             width: 100%;
-            aspect-ratio: 1;
-            max-height: 160px;
+            min-height: 168px;
+            margin: 0;
+            padding: 1.1rem 0.85rem 1rem;
             background-color: #fff;
-            border-radius: 12px 16px 10px 14px;
+            border-radius: 14px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 0.55rem;
             color: #111;
-            border: 2.5px solid #111;
+            font: inherit;
+            text-align: center;
+            border: 1.5px solid #d8d4ce;
             box-shadow: none;
             user-select: none;
-            transition: transform 0.2s ease, border-width 0.2s ease, background-color 0.2s ease;
-            opacity: 1;
-            transform: none;
+            transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease;
         }
-
         .da-cat-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            border-color: #111;
+            background-color: #fffcf5;
+        }
+        .da-cat-card:focus-visible {
+            outline: 2px solid #111;
+            outline-offset: 3px;
+        }
+        .da-cat-card:active {
+            transform: translateY(0);
         }
         .da-cat-card.active {
-            border: 4px solid #111;
-            background-color: #fdfdfd;
-        }
-        .da-carousel-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
-        .da-carousel-center .da-hero-btn {
-            padding: 1rem 3rem;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            background-color: #1a1a1a;
+            border-color: #111;
+            border-width: 2px;
+            background-color: #111;
             color: #fff;
-            text-decoration: none;
+            transform: translateY(-3px);
+        }
+        .da-cat-card.active .da-cat-label {
+            color: #fff;
+        }
+        .da-cat-card.active .da-cat-img {
+            filter: invert(1) brightness(1.15);
+            mix-blend-mode: normal;
+        }
+        .da-cat-card.active .da-cat-icon {
+            -webkit-text-stroke-color: #fff;
+        }
+        .da-cat-card.active .da-cat-icon::after {
+            background-color: #ffea00;
+        }
+        .da-cat-cta {
+            display: none;
+            margin-top: 0.15rem;
+            padding: 0.45rem 0.9rem;
+            border: none;
+            border-radius: 999px;
+            background: #ffea00;
+            color: #111;
+            font-size: 0.72rem;
             font-weight: 700;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            pointer-events: none;
         }
-        .da-carousel-center .da-hero-btn:hover {
-            background-color: #000;
-            transform: translateY(-1px);
+        .da-cat-card.active .da-cat-cta {
+            display: inline-flex;
+            animation: da-cta-in 0.28s ease both;
         }
+        @keyframes da-cta-in {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .da-carousel-center,
         .da-carousel-controls {
             display: none;
         }
         .da-cat-img {
-            width: 72px;
-            height: 72px;
+            width: 64px;
+            height: 64px;
             object-fit: contain;
-            margin-bottom: 12px;
-            mix-blend-mode: multiply; /* ensures white background from image blends well */
+            margin: 0;
+            mix-blend-mode: multiply;
+            transition: filter 0.22s ease;
+            pointer-events: none;
         }
         .da-cat-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
+            font-size: 2.2rem;
+            margin: 0;
             color: transparent;
-            -webkit-text-stroke: 2.5px #111; /* Bold doodle lines */
+            -webkit-text-stroke: 2.5px #111;
             position: relative;
             z-index: 2;
+            transition: -webkit-text-stroke-color 0.22s ease;
+            pointer-events: none;
         }
-        /* Organic yellow accent blob for FontAwesome fallback */
         .da-cat-icon::after {
             content: '';
             position: absolute;
-            width: 36px;
-            height: 36px;
-            background-color: #ffea00; /* Bright yellow */
+            width: 34px;
+            height: 34px;
+            background-color: #ffea00;
             z-index: -1;
             top: 50%;
             left: 50%;
@@ -768,22 +796,8 @@
             font-size: 0.95rem;
             color: #111;
             letter-spacing: -0.5px;
-        }
-        .da-cat-radio {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #fff;
-            border: 2px solid #111;
-            box-sizing: border-box;
-            transition: all 0.2s;
-        }
-        .da-cat-card.active .da-cat-radio {
-            border: 6px solid #111;
-            background-color: #ffea00;
+            transition: color 0.22s ease;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -845,99 +859,78 @@
         <header class="quick-actions-header blur-fade" style="margin-bottom: 2.5rem;">
             <h2>Selecciona una <em>categoría</em></h2>
         </header>
-        <div class="da-carousel-container" id="categoryCarousel" tabindex="0" role="listbox" aria-label="Categorías de obra">
-            <div class="da-carousel-track" id="categoryTrack">
-                <div class="da-cat-card active" role="option" aria-selected="true" data-target="card-obra">
-                    <div class="da-cat-radio"></div>
+        <div class="da-carousel-container" id="categoryCarousel">
+            <div class="da-carousel-track" id="categoryTrack" role="group" aria-label="Categorías de obra">
+                <button type="button" class="da-cat-card active" aria-pressed="true" data-target="card-obra">
                     <img src="cat_doodle_literatura_1785471538947.png" alt="" class="da-cat-img">
                     <span class="da-cat-label">Literatura</span>
-                </div>
-                <div class="da-cat-card" role="option" aria-selected="false" data-target="card-obra">
-                    <div class="da-cat-radio"></div>
+                    <span class="da-cat-cta">Empezar</span>
+                </button>
+                <button type="button" class="da-cat-card" aria-pressed="false" data-target="card-obra">
                     <img src="cat_doodle_musica_1785471547048.png" alt="" class="da-cat-img">
                     <span class="da-cat-label">Música</span>
-                </div>
-                <div class="da-cat-card" role="option" aria-selected="false" data-target="card-obra">
-                    <div class="da-cat-radio"></div>
+                    <span class="da-cat-cta">Empezar</span>
+                </button>
+                <button type="button" class="da-cat-card" aria-pressed="false" data-target="card-obra">
                     <img src="cat_doodle_arte_1785471555372.png" alt="" class="da-cat-img">
                     <span class="da-cat-label">Arte</span>
-                </div>
-                <div class="da-cat-card" role="option" aria-selected="false" data-target="card-obra">
-                    <div class="da-cat-radio"></div>
+                    <span class="da-cat-cta">Empezar</span>
+                </button>
+                <button type="button" class="da-cat-card" aria-pressed="false" data-target="card-obra">
                     <img src="cat_doodle_diseno_1785471562710.png" alt="" class="da-cat-img">
                     <span class="da-cat-label">Diseño</span>
-                </div>
-                <div class="da-cat-card" role="option" aria-selected="false" data-target="card-obra">
-                    <div class="da-cat-radio"></div>
+                    <span class="da-cat-cta">Empezar</span>
+                </button>
+                <button type="button" class="da-cat-card" aria-pressed="false" data-target="card-obra">
                     <img src="cat_doodle_audiovisual_1785471569011.png" alt="" class="da-cat-img">
                     <span class="da-cat-label">Audiovisual</span>
-                </div>
-                <div class="da-cat-card" role="option" aria-selected="false" data-target="card-coleccion">
-                    <div class="da-cat-radio"></div>
+                    <span class="da-cat-cta">Empezar</span>
+                </button>
+                <button type="button" class="da-cat-card" aria-pressed="false" data-target="card-coleccion">
                     <img src="cat_doodle_fotografia_1785471584019.png" alt="" class="da-cat-img">
                     <span class="da-cat-label">Fotografía</span>
-                </div>
-                <div class="da-cat-card" role="option" aria-selected="false" data-target="card-codigo">
-                    <div class="da-cat-radio"></div>
+                    <span class="da-cat-cta">Empezar</span>
+                </button>
+                <button type="button" class="da-cat-card" aria-pressed="false" data-target="card-codigo">
                     <i class="fa-solid fa-code da-cat-icon" aria-hidden="true"></i>
                     <span class="da-cat-label">Código</span>
-                </div>
-            </div>
-
-            <div class="da-carousel-center">
-                <a href="#" class="da-hero-btn" id="btn-empezar-carousel">Empezar</a>
+                    <span class="da-cat-cta">Empezar</span>
+                </button>
             </div>
         </div>
         
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const items = Array.from(document.querySelectorAll('.da-cat-card'));
-                const carouselContainer = document.getElementById('categoryCarousel');
-                let activeIndex = Math.max(0, items.findIndex((el) => el.classList.contains('active')));
 
-                function select(index) {
-                    activeIndex = ((index % items.length) + items.length) % items.length;
+                function goToTarget(card) {
+                    const targetId = card.getAttribute('data-target');
+                    const targetEl = document.getElementById(targetId);
+                    if (!targetEl) return;
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    document.querySelectorAll('.da-card').forEach((c) => c.classList.remove('highlight'));
+                    targetEl.classList.add('highlight');
+                    targetEl.style.transition = 'box-shadow 0.45s ease, transform 0.45s ease';
+                }
+
+                function select(index, andGo) {
+                    const next = ((index % items.length) + items.length) % items.length;
                     items.forEach((item, i) => {
-                        const on = i === activeIndex;
+                        const on = i === next;
                         item.classList.toggle('active', on);
-                        item.setAttribute('aria-selected', on ? 'true' : 'false');
+                        item.setAttribute('aria-pressed', on ? 'true' : 'false');
                     });
+                    if (andGo) goToTarget(items[next]);
                 }
 
                 items.forEach((item, i) => {
-                    item.addEventListener('click', () => select(i));
-                });
-
-                carouselContainer.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                        e.preventDefault();
-                        select(activeIndex - 1);
-                    }
-                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                        e.preventDefault();
-                        select(activeIndex + 1);
-                    }
-                });
-
-                select(activeIndex);
-
-                const btnEmpezar = document.getElementById('btn-empezar-carousel');
-                if (btnEmpezar) {
-                    btnEmpezar.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const activeCard = document.querySelector('.da-cat-card.active');
-                        if (activeCard) {
-                            const targetId = activeCard.getAttribute('data-target');
-                            const targetEl = document.getElementById(targetId);
-                            if (targetEl) {
-                                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                                document.querySelectorAll('.da-card').forEach(c => c.classList.remove('highlight'));
-                                targetEl.classList.add('highlight');
-                                targetEl.style.transition = 'all 0.5s ease';
-                            }
-                        }
+                    item.addEventListener('click', () => {
+                        const already = item.classList.contains('active');
+                        select(i, already);
                     });
-                }
+                });
+
+                select(Math.max(0, items.findIndex((el) => el.classList.contains('active'))), false);
             });
         </script>
     </section>
