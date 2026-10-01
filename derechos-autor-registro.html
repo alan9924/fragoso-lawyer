@@ -925,7 +925,6 @@
                 if (btnEmpezar) {
                     btnEmpezar.addEventListener('click', (e) => {
                         e.preventDefault();
-                        if (typeof stopAutoplay === 'function') stopAutoplay();
                         const activeCard = document.querySelector('.da-cat-card.active');
                         if (activeCard) {
                             const targetId = activeCard.getAttribute('data-target');
