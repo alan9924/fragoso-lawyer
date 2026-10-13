@@ -1,0 +1,31 @@
+{
+  "organizationId": "136144007",
+  "name": "Ferro Fragoso, Estudio Jurídico",
+  "tagline": "Estudio jurídico en Querétaro. Precio claro, alcance definido y un socio en cada asunto.",
+  "website": "https://ferrofragoso.com/",
+  "locale": {
+    "language": "es",
+    "country": "MX"
+  },
+  "description": "Ferro Fragoso es un estudio jurídico en Querétaro para empresas, independientes y personas que necesitan certeza antes de firmar, registrar o crecer.\n\nHacemos que lo legal sea claro: precio público, alcance definido y un socio fundador en cada asunto. La tecnología quita la burocracia. La estrategia, la firma y las decisiones las toma un abogado.\n\nQué resolvemos\n• Registro de marca ante el IMPI\n• Derechos de autor y secreto industrial\n• Contratos: redacción, revisión y franquicias\n• Constitución de sociedades y dirección jurídica por membresía\n• Laboral: finiquitos y cumplimiento\n• Asuntos civiles, familiares y patrimoniales, cuando el caso lo amerita\n\nLa representación en juicio se ofrece solo en asuntos seleccionados, previa evaluación de viabilidad.\n\nSocios fundadores: Alan Obed Fragoso Rivera y Daniel Ferro Gutiérrez, abogados por la Universidad Autónoma de Querétaro.\n\nEmpieza en ferrofragoso.com o escribe a contacto@ferrofragoso.com.",
+  "specialties": [
+    "Registro de marcas",
+    "Propiedad intelectual",
+    "Contratos mercantiles",
+    "Dirección jurídica",
+    "Constitución de sociedades",
+    "Derecho laboral",
+    "Derechos de autor",
+    "Secreto industrial",
+    "Franquicias",
+    "Consultoría empresarial"
+  ],
+  "manualOnly": [
+    "tagline",
+    "logo",
+    "coverPhoto",
+    "industry",
+    "staffCount",
+    "customButton"
+  ]
+}
